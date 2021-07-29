@@ -6,42 +6,21 @@ import { AccessibilityIcon, AtmIcon, CarIcon } from '@westpac/icon';
 import { ChatPictogram, TruckPictogram, ClockPictogram } from '@westpac/pictogram';
 import { blenderPictogram } from '../src/overrides/pictogram';
 import { blenderIcon } from '../src/overrides/icon';
+import { blenderIndicatorNext } from '../src/overrides/indicatorNext';
 
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
 	overridesWithTokens['@westpac/selector'] = {
-		/* OptionBtn: {
-			styles: blenderButton.styles,
-		}, */
 		Pictogram: {
 			component: blenderPictogram.component,
 		},
 		Icon: {
-			component: blenderIcon.component,
+			component: blenderIcon.blenderIcon,
+			// styles: blenderIcon.styles,
 		},
-		/* Text: {
-			styles: blenderText.styles,
-		}, */
-		/* Label: {
-			component: blenderLabel.component,
-			styles: blenderLabel.styles,
-		}, */
-		/* LabelPrimary: {
-			component: blenderLabelPrimary.component,
-			styles: blenderLabelPrimary.styles,
-		}, */
-		/* LabelSecondary: {
-			component: blenderLabelSecondary.component,
-			styles: blenderLabelSecondary.styles,
-		}, */
-		/* Hint: {
-			component: blenderHint.component,
-			styles: blenderHint.styles,
-		}, */
-		/* Indicator: {
-			component: blenderIndicator.component,
-			styles: blenderIndicator.styles,
-		}, */
+		IndicatorNext: {
+			component: blenderIndicatorNext.component,
+		},
 	};
 
 	return (
@@ -55,22 +34,50 @@ export function AllStyles({ brand }) {
 
 			{/* Radio */}
 			<Selector type="radio" name="text">
-				<Option value="1" hint="text">
+				<Option value="1" hint="text" disabled>
 					Text
 				</Option>
-				<Option value="2" icon={AccessibilityIcon}>
+				<Option value="2" secondaryLabel="text" icon={AccessibilityIcon} size="xsmall">
 					Text
 				</Option>
-				<Option value="3" pictogram={ChatPictogram}>
+				<Option value="3" secondaryLabel="text" icon={AccessibilityIcon} size="small">
+					Text
+				</Option>
+				<Option value="4" secondaryLabel="text" icon={AccessibilityIcon} size="medium">
+					Text
+				</Option>
+				<Option value="5" secondaryLabel="text" icon={AccessibilityIcon} size="large">
+					Text
+				</Option>
+				<Option value="6" secondaryLabel="text" icon={AccessibilityIcon} size="xlarge">
+					Text
+				</Option>
+				<Option value="7" pictogram={ChatPictogram}>
 					Text
 				</Option>
 			</Selector>
 
 			{/* Checkbox */}
 			<Selector type="checkbox" name="text">
+				<Option value="1" disabled>
+					Text
+				</Option>
+				<Option value="2">Text</Option>
+				<Option value="3">Text</Option>
+			</Selector>
+
+			{/* Button */}
+			<Selector type="button" name="text">
 				<Option value="1">Text</Option>
 				<Option value="2">Text</Option>
 				<Option value="3">Text</Option>
+			</Selector>
+
+			{/* Link */}
+			<Selector type="link" name="text">
+				<Option href="#">Text</Option>
+				<Option href="#">Text</Option>
+				<Option href="#">Text</Option>
 			</Selector>
 		</GEL>
 	);
@@ -84,6 +91,10 @@ export function Docs({ brand }) {
 		},
 		Icon: {
 			component: blenderIcon.component,
+			// attributes: blenderIcon.attributes,
+		},
+		IndicatorNext: {
+			component: blenderIndicatorNext.component,
 		},
 	};
 
@@ -98,7 +109,27 @@ export function Docs({ brand }) {
 						<Option value="2" hint="Your option hint text">
 							Your option 2
 						</Option>
-						<Option value="3">Your option 3</Option>
+						<Option value="3" secondaryLabel="Your secondary label">
+							Your option 3
+						</Option>
+					</Selector>
+				</GEL>
+			),
+		},
+		{
+			heading: 'Radio disabled',
+			component: () => (
+				<GEL brand={overridesWithTokens}>
+					<Selector type="radio" name="example-radio-disabled" instanceIdPrefix="GEL">
+						<Option value="1" disabled>
+							Your option 1
+						</Option>
+						<Option value="2" hint="Your option hint text" disabled>
+							Your option 2
+						</Option>
+						<Option value="3" secondaryLabel="Your secondary label" disabled>
+							Your option 3
+						</Option>
 					</Selector>
 				</GEL>
 			),
@@ -108,14 +139,20 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<Selector type="radio" name="example-radio-icons" instanceIdPrefix="GEL">
-						<Option value="1" icon={AccessibilityIcon}>
+						<Option value="1" icon={AccessibilityIcon} size="xsmall">
 							Your option 1
 						</Option>
-						<Option value="2" hint="Your option hint text" icon={AtmIcon}>
+						<Option value="2" hint="Your option hint text" icon={AtmIcon} size="small">
 							Your option 2
 						</Option>
-						<Option value="3" icon={CarIcon}>
+						<Option value="3" icon={CarIcon} size="medium">
 							Your option 3
+						</Option>
+						<Option value="4" icon={AccessibilityIcon} size="large">
+							Your option 4
+						</Option>
+						<Option value="5" icon={AtmIcon} size="xlarge">
+							Your option 5
 						</Option>
 					</Selector>
 				</GEL>
@@ -150,7 +187,27 @@ export function Docs({ brand }) {
 						<Option value="2" hint="Your option hint text">
 							Your option 2
 						</Option>
-						<Option value="3">Your option 3</Option>
+						<Option value="3" secondaryLabel="Your secondary label">
+							Your option 3
+						</Option>
+					</Selector>
+				</GEL>
+			),
+		},
+		{
+			heading: 'Checkbox disabled',
+			component: () => (
+				<GEL brand={overridesWithTokens}>
+					<Selector type="checkbox" name="example-checkbox-disabled" instanceIdPrefix="GEL">
+						<Option value="1" disabled>
+							Your option 1
+						</Option>
+						<Option value="2" hint="Your option hint text" disabled>
+							Your option 2
+						</Option>
+						<Option value="3" secondaryLabel="Your secondary label" disabled>
+							Your option 3
+						</Option>
 					</Selector>
 				</GEL>
 			),
@@ -193,7 +250,7 @@ export function Docs({ brand }) {
 		},
 
 		// Button
-		/* {
+		{
 			heading: 'Button',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
@@ -204,10 +261,10 @@ export function Docs({ brand }) {
 					</Selector>
 				</GEL>
 			),
-		}, */
+		},
 
 		// Link
-		/* {
+		{
 			heading: 'Link',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
@@ -218,6 +275,6 @@ export function Docs({ brand }) {
 					</Selector>
 				</GEL>
 			),
-		}, */
+		},
 	];
 }

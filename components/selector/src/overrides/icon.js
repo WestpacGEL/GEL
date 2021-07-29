@@ -10,20 +10,24 @@ const Icon = ({ icon: Icon, state: { iconSize }, ...rest }) => (
 	<Icon size={iconSize} color="hero" assistiveText={null} {...rest} />
 );
 
-const BlenderIcon = (props) => (
+/* const BlenderIcon = (props) => (
 	<Icon
 		overrides={{
 			Icon: {
-				styles: (styles) => {
-					const blenderStyles = { ...styles };
-					delete blenderStyles.label;
-					return blenderStyles;
+				attributes: (attributes) => {
+					if (attributes.className) {
+						attributes.className = attributes.className.concat(
+							' ',
+							'__convert__selector-option-icon'
+						);
+					}
 				},
 			},
 		}}
 		{...props}
 	/>
-);
+); */
+const BlenderIcon = (props) => <Icon {...props} />;
 
 // ==============================
 // Styles
