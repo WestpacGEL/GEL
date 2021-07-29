@@ -139,8 +139,9 @@ const optionBtnStyles = () => {
 const optionBtnAttributes = (_, { type, value, checked, disabled }) => ({
 	type: type === 'button' ? 'button' : undefined,
 	disabled: type === 'button' ? disabled : undefined,
-	'data-value': type === 'button' ? value : undefined,
 	'aria-pressed': type === 'button' ? checked : undefined,
+	'data-value': type === 'button' ? value : undefined,
+	'data-js': 'selector-optionBtn__version__',
 });
 
 // ==============================

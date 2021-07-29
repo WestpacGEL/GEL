@@ -5,7 +5,8 @@
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/selector",
 	"blender": {
-		"recipe": "blender/recipe.js"
+		"recipe": "blender/recipe.js",
+		"js": "blender/script.js"
 	},
 	"components": [
 		{
