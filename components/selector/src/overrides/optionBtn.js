@@ -90,12 +90,12 @@ const optionBtnStyles = () => {
 		},
 
 		// Hover/focus state
+		// Note: Emotion won't combined these selectors for some reason
 		// - Checkbox/Radio
 		'input:hover + &, input:focus + &': {
 			borderColor: COLORS.hero,
 		},
 		// - Button/Submit
-		// Note: Emotion won't combined these selectors for some reason
 		'button&:hover': {
 			borderColor: COLORS.hero,
 		},
@@ -111,6 +111,7 @@ const optionBtnStyles = () => {
 
 		// Checked state
 		// Note: Padding reduced to counter the increased border width
+		// Note: Emotion won't combined these selectors for some reason
 		'input:checked + &, &[aria-pressed="true"]': {
 			borderColor: COLORS.hero,
 			borderWidth: '3px',
@@ -147,12 +148,6 @@ const optionBtnAttributes = (_, { type, value, checked, disabled }) => ({
 // ==============================
 
 export const defaultOptionBtn = {
-	component: OptionBtn,
-	styles: optionBtnStyles,
-	attributes: optionBtnAttributes,
-};
-
-export const blenderOptionBtn = {
 	component: OptionBtn,
 	styles: optionBtnStyles,
 	attributes: optionBtnAttributes,

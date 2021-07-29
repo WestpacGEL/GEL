@@ -6,7 +6,7 @@ import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const IndicatorCheck = (props) => <div {...props} />;
+const IndicatorCheck = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles

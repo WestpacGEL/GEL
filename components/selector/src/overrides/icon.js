@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel } from '@westpac/core';
 
 // ==============================
 // Component
@@ -31,13 +31,12 @@ const BlenderIcon = (props) => (
 
 const iconStyles = () => {
 	const { SPACING } = useBrand();
-	const mq = useMediaQuery();
 
-	return mq({
+	return {
 		label: getLabel('selector-option-icon'),
 		marginRight: SPACING(4), //gap
 		flex: 'none',
-	});
+	};
 };
 
 // ==============================

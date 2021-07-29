@@ -7,7 +7,9 @@ import { ArrowRightIcon } from '@westpac/icon';
 // Component
 // ==============================
 
-const IndicatorNext = (props) => <ArrowRightIcon size="medium" assistiveText={null} {...props} />;
+const IndicatorNext = ({ state: _, ...rest }) => (
+	<ArrowRightIcon size="medium" assistiveText={null} {...rest} />
+);
 
 const BlenderIndicatorNext = (props) => (
 	<IndicatorNext
