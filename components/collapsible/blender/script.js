@@ -18,11 +18,13 @@
 
 		if (mode === 'open' || (mode === 'toggle' && !isOpen)) {
 			$trigger.attr('aria-expanded', 'true');
-			$content.attr('aria-hidden', 'false');
+			$content.attr('aria-hidden', 'false').css('opacity', 0).fadeTo(150, 1, 'linear');
 			$collapsible.addClass(openClass);
 		} else if (mode === 'close' || (mode === 'toggle' && isOpen)) {
 			$trigger.attr('aria-expanded', 'false');
-			$content.attr('aria-hidden', 'true');
+			$content.attr('aria-hidden', 'true').fadeTo(150, 0, 'linear', function () {
+				$(this).css({ display: '', opacity: '' });
+			});
 			$collapsible.removeClass(openClass);
 			$trigger.trigger('focus');
 		}
