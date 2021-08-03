@@ -17,16 +17,18 @@ import { Body } from '@westpac/body';
 // ==============================
 
 const List = ({ state: { type, nested, assistiveText }, children, ...rest }) => {
-	//a11y: tick bullet meaning must be conveyed; render a (configurable) VisuallyHidden first item
+	//a11y: tick & cross bullet meaning must be conveyed; render a (configurable) VisuallyHidden first item
 	const hiddenItem =
-		type === 'tick' && nested === 0 ? (
+		(type === 'tick' || type === 'cross') && nested === 0 ? (
 			<VisuallyHidden
 				tag="li"
 				css={{
-					'::before': { display: 'none !important' },
+					'::before': {
+						display: 'none !important', //hide tick/cross
+					},
 				}}
 			>
-				{assistiveText || 'The following items are ticked:'}
+				{assistiveText || `The following items are ${type === 'tick' ? 'ticked' : 'crossed'}:`}
 			</VisuallyHidden>
 		) : null;
 
@@ -111,9 +113,35 @@ const listStyles = (_, { type, look, spacing, nested }) => {
 				display: 'block',
 				width: '0.75rem',
 				height: '0.375rem',
-				border: `solid ${COLORS.hero}`,
+				border: `solid ${COLORS[look]}`,
 				borderWidth: '0 0 0.125rem 0.125rem',
 				transform: 'rotate(-44deg)',
+				boxSizing: 'border-box',
+			},
+		},
+		cross: {
+			'::before': {
+				content: "''",
+				position: 'absolute',
+				left: '0.3125rem',
+				top: '0.25rem',
+				display: 'block',
+				width: 0,
+				height: '0.75rem',
+				borderLeft: `0.125rem solid ${COLORS[look]}`,
+				transform: 'rotate(-45deg)',
+				boxSizing: 'border-box',
+			},
+			'::after': {
+				content: "''",
+				position: 'absolute',
+				left: '0.3125rem',
+				top: '0.25rem',
+				display: 'block',
+				width: 0,
+				height: '0.75rem',
+				borderLeft: `0.125rem solid ${COLORS[look]}`,
+				transform: 'rotate(45deg)',
 				boxSizing: 'border-box',
 			},
 		},
