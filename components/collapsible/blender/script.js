@@ -36,7 +36,7 @@
 			.parent()
 			.on('keyup', function (e) {
 				if (e.key === 'Escape' || e.keyCode === 27) {
-					GEL.buttonDropdown.toggle(
+					GEL.collapsible.toggle(
 						$(this).find('[data-js="collapsible-trigger__version__"]'),
 						'close'
 					);

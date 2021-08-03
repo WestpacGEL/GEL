@@ -104,7 +104,7 @@ export function Docs({ brand }) {
 
 		// Sizes
 		...sizes.map((size, i) => ({
-			...(i === 0 && { heading: 'Collapsible sizes' }),
+			...(i === 0 && { heading: 'Collapsible toggle sizes' }),
 			subheading: titleCase(size),
 			component: () => (
 				<GEL brand={overridesWithTokens}>
