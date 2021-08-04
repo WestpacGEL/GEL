@@ -8,12 +8,12 @@ import { useSpring, animated } from 'react-spring';
 // Component
 // ==============================
 
-const Content = forwardRef(({ state: { open, setClosed }, ...rest }, ref) => {
+const Content = forwardRef(({ state: { isOpen, setClosed }, ...rest }, ref) => {
 	const fade = useSpring({
 		config: {
 			duration: 150, //CSS 'linear' easing-function
 		},
-		opacity: open ? 1 : 0,
+		opacity: isOpen ? 1 : 0,
 		from: {
 			opacity: 0, //reset
 		},
@@ -21,29 +21,43 @@ const Content = forwardRef(({ state: { open, setClosed }, ...rest }, ref) => {
 			setClosed(false);
 		},
 		onRest: () => {
-			setClosed(!open);
+			setClosed(!isOpen);
 		},
 	});
 
 	return <animated.div ref={ref} style={fade} {...rest} />;
 });
 
+const BlenderContent = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+
 // ==============================
 // Styles
 // ==============================
 
-const contentStyles = (_, { open }) => ({
+export const contentStyles = (_, { isOpen }) => ({
 	label: getLabel('collapsible-content'),
-	display: open ? 'block' : 'none',
+	display: isOpen ? 'block' : 'none',
 });
+
+// ==============================
+// Blender Styles
+// ==============================
+
+// Default state is closed, open state handled at collapsible level
+const blenderStyles = (_) => contentStyles(_, { isOpen: false });
 
 // ==============================
 // Attributes
 // ==============================
 
-const contentAttributes = (_, { instanceId, open }) => ({
+const contentAttributes = (_, { instanceId, isOpen }) => ({
 	id: instanceId,
-	'aria-hidden': !open,
+	'aria-hidden': !isOpen,
+});
+
+const blenderAttributes = (_, props) => ({
+	...contentAttributes(_, props),
+	'data-js': 'collapsible-content__version__',
 });
 
 // ==============================
@@ -54,4 +68,10 @@ export const defaultContent = {
 	component: Content,
 	styles: contentStyles,
 	attributes: contentAttributes,
+};
+
+export const blenderContent = {
+	component: BlenderContent,
+	styles: blenderStyles,
+	attributes: blenderAttributes,
 };
