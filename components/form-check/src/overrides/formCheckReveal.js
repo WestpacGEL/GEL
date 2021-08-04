@@ -1,13 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, getLabel, getModifier, classNames, formatClassName } from '@westpac/core';
+import { jsx, useBrand, getLabel, getModifier, classNames, formatClassName } from '@westpac/core';
+import { FormCheck, defaultProps } from '../FormCheck';
 
-import { FormCheck } from '../FormCheck';
-// import { defaultProps } from '../FormCheck';
-
-// import { nestedOptionStyles } from './option';
-// import { nestedLabelStyles } from './label';
-// import { nestedHintStyles } from './hint';
+import { nestedOptionStyles } from './option';
+import { nestedLabelStyles } from './label';
+import { nestedHintStyles } from './hint';
 
 // ==============================
 // Component
@@ -15,29 +13,26 @@ import { FormCheck } from '../FormCheck';
 
 const FormCheckReveal = ({ state: _, ...rest }) => <FormCheck {...rest} />;
 
-/* const BlenderFormCheckReveal = ({ className, ...rest }) => (
-	<FormCheck className={formatClassName(className)} {...rest} />
-); */
+const BlenderFormCheckReveal = ({ className, ...rest }) => (
+	<FormCheckReveal className={formatClassName(className)} {...rest} />
+);
 
 // ==============================
 // Styles
 // ==============================
 
 const formCheckRevealStyles = () => ({
-	label: getLabel('formCheckReveal'),
+	label: getLabel('formCheck'), //retain the root component name (rather than 'formCheckReveal')
 });
 
-// ==============================
-// Blender Styles
-// ==============================
-
-/* const blenderStyles = (_, { type, size, inline }) => {
+const blenderStyles = (_, { type, size, inline }) => {
 	const props = { type, size, inline };
-	const baseStyles = formCheckStyles();
+	const baseStyles = formCheckRevealStyles();
 
 	let modifiers = getModifier(defaultProps, props);
 	if (!modifiers.length) return baseStyles;
 
+	const reconciledStyles = {};
 	let label = baseStyles.label;
 
 	let modifier;
@@ -57,16 +52,23 @@ const formCheckRevealStyles = () => ({
 		case 'inline':
 			label = `${label}-inline`;
 			break;
+		case 'open':
+			label = `${label}-open`;
+			Object.assign(reconciledStyles, {
+				'.__convert__formCheckReveal-panel': { display: 'inline-block' },
+			});
+			break;
 		default:
+			label = `${label}-${modifier}`;
 			break;
 	}
 
 	// returning an array here as nestedLabelStyles returns a css string, so letting emotion handle the merge of these
 	return [
-		{ label, ...nestedOptionStyles(props), ...nestedHintStyles(props) },
+		{ label, ...reconciledStyles, ...nestedOptionStyles(props), ...nestedHintStyles(props) },
 		nestedLabelStyles(props),
 	];
-}; */
+};
 
 // ==============================
 // Attributes
@@ -74,14 +76,15 @@ const formCheckRevealStyles = () => ({
 
 const formCheckRevealAttributes = () => null;
 
-/* const blenderAttributes = (_, { type, size, inline }) => ({
+const blenderAttributes = (_, { type, size, inline }) => ({
+	'data-js': 'formCheck__version__',
 	className: classNames({
 		[`__convert__formCheck-${type}`]: type !== defaultProps.type,
 		[`__convert__formCheck-${size}`]: size !== defaultProps.size && type === 'checkbox',
 		[`__convert__formCheck-radio-${size}`]: size !== defaultProps.size && type === 'radio',
 		[`__convert__formCheck-inline`]: inline,
 	}),
-}); */
+});
 
 // ==============================
 // Exports
@@ -93,8 +96,8 @@ export const defaultFormCheckReveal = {
 	attributes: formCheckRevealAttributes,
 };
 
-/* export const blenderFormCheck = {
-	component: BlenderFormCheck,
+export const blenderFormCheckReveal = {
+	component: BlenderFormCheckReveal,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
-}; */
+};

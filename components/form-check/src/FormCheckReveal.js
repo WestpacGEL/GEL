@@ -165,6 +165,9 @@ FormCheckReveal.propTypes = {
 };
 
 export const defaultProps = {
+	type: 'checkbox',
+	inline: false,
+	size: 'medium',
 	show: -1,
 };
 

@@ -92,6 +92,11 @@ const triggerAttributes = (_, { instanceId, isOpen }) => ({
 	'aria-hidden': isOpen,
 });
 
+const blenderAttributes = (_, props) => ({
+	...triggerAttributes(_, props),
+	'data-js': 'formCheckReveal-trigger__version__',
+});
+
 // ==============================
 // Exports
 // ==============================
@@ -105,5 +110,5 @@ export const defaultTrigger = {
 export const blenderTrigger = {
 	component: Trigger,
 	styles: blenderStyles,
-	attributes: triggerAttributes,
+	attributes: blenderAttributes,
 };

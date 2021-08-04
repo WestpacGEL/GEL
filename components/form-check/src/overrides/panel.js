@@ -7,7 +7,7 @@ import { defaultProps } from '../FormCheck';
 // Component
 // ==============================
 
-const Panel = ({ state: _, ...rest }) => <span {...rest} />;
+const Panel = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles
@@ -16,7 +16,7 @@ const Panel = ({ state: _, ...rest }) => <span {...rest} />;
 const panelStyles = (_, { isOpen }) => {
 	return {
 		label: getLabel('formCheckReveal-panel'),
-		display: !isOpen ? 'none' : 'inline',
+		display: !isOpen ? 'none' : 'inline-block',
 	};
 };
 
@@ -55,6 +55,11 @@ const panelAttributes = (_, { instanceId, isOpen }) => ({
 	'aria-hidden': !isOpen,
 });
 
+const blenderAttributes = (_, props) => ({
+	...panelAttributes(_, props),
+	'data-js': 'formCheckReveal-panel__version__',
+});
+
 // ==============================
 // Exports
 // ==============================
@@ -68,5 +73,5 @@ export const defaultPanel = {
 export const blenderPanel = {
 	component: Panel,
 	styles: blenderStyles,
-	attributes: panelAttributes,
+	attributes: blenderAttributes,
 };
