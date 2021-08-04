@@ -44,7 +44,7 @@ export const BlockListItem = ({ href, link, target, logo: Logo, children, ...res
 			css={mq({
 				display: 'block',
 				borderBottom: `1px solid ${COLORS.border}`,
-				padding: !href && itemPadding,
+				padding: !(href || link) && itemPadding,
 			})}
 			{...rest}
 		>
