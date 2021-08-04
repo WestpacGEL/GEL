@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel, classNames, formatClassName } from '@westpac/core';
 
 // ==============================
 // Component
@@ -9,25 +9,6 @@ import { jsx, useBrand, getLabel } from '@westpac/core';
 const Icon = ({ icon: Icon, state: { iconSize }, ...rest }) => (
 	<Icon size={iconSize} color="hero" assistiveText={null} {...rest} />
 );
-
-/* const BlenderIcon = (props) => (
-	<Icon
-		overrides={{
-			Icon: {
-				attributes: (attributes) => {
-					if (attributes.className) {
-						attributes.className = attributes.className.concat(
-							' ',
-							'__convert__selector-option-icon'
-						);
-					}
-				},
-			},
-		}}
-		{...props}
-	/>
-); */
-const BlenderIcon = (props) => <Icon {...props} />;
 
 // ==============================
 // Styles
@@ -51,6 +32,15 @@ const iconAttributes = () => ({
 	'aria-hidden': 'true',
 });
 
+const blenderAttributes = (_, { iconSize }) => ({
+	...iconAttributes(),
+	className: classNames({
+		'__convert__selector-option-icon': true,
+		'__convert__icon-hero': true,
+		[`__convert__icon-${iconSize}`]: iconSize && iconSize !== 'medium',
+	}),
+});
+
 // ==============================
 // Exports
 // ==============================
@@ -62,7 +52,7 @@ export const defaultIcon = {
 };
 
 export const blenderIcon = {
-	component: BlenderIcon,
+	component: Icon,
 	styles: iconStyles,
-	attributes: iconAttributes,
+	attributes: blenderAttributes,
 };

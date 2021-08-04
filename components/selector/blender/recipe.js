@@ -1,4 +1,4 @@
-import { GEL, titleCase } from '@westpac/core';
+import { GEL } from '@westpac/core';
 import React from 'react';
 
 import { Selector, Option } from '@westpac/selector';
@@ -15,8 +15,7 @@ export function AllStyles({ brand }) {
 			component: blenderPictogram.component,
 		},
 		Icon: {
-			component: blenderIcon.blenderIcon,
-			// styles: blenderIcon.styles,
+			component: (props) => <span {...props} />,
 		},
 		IndicatorNext: {
 			component: blenderIndicatorNext.component,
@@ -90,8 +89,8 @@ export function Docs({ brand }) {
 			component: blenderPictogram.component,
 		},
 		Icon: {
-			component: blenderIcon.component,
-			// attributes: blenderIcon.attributes,
+			attributes: blenderIcon.attributes,
+			styles: () => ({}),
 		},
 		IndicatorNext: {
 			component: blenderIndicatorNext.component,
@@ -139,19 +138,19 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<Selector type="radio" name="example-radio-icons" instanceIdPrefix="GEL">
-						<Option value="1" icon={AccessibilityIcon} size="xsmall">
+						<Option value="1" icon={AccessibilityIcon} iconSize="xsmall">
 							Your option 1
 						</Option>
-						<Option value="2" hint="Your option hint text" icon={AtmIcon} size="small">
+						<Option value="2" hint="Your option hint text" icon={AtmIcon} iconSize="small">
 							Your option 2
 						</Option>
-						<Option value="3" icon={CarIcon} size="medium">
+						<Option value="3" icon={CarIcon} iconSize="medium">
 							Your option 3
 						</Option>
-						<Option value="4" icon={AccessibilityIcon} size="large">
+						<Option value="4" icon={AccessibilityIcon} iconSize="large">
 							Your option 4
 						</Option>
-						<Option value="5" icon={AtmIcon} size="xlarge">
+						<Option value="5" icon={AtmIcon} iconSize="xlarge">
 							Your option 5
 						</Option>
 					</Selector>
