@@ -35,6 +35,18 @@ function Example({ brand }) {
 			</Code>
 			=>
 			<Code>{JSON.stringify(useFonts({ path: 'path/to/my/fonts/' }), null, 2)}</Code>
+			<hr />
+			<Code>
+				useFonts({'{'} path: 'path/to/my/fonts/', fontDisplay: 'swap', fontWeight: 900 {'}'})
+			</Code>
+			=>
+			<Code>
+				{JSON.stringify(
+					useFonts({ path: 'path/to/my/fonts/', fontDisplay: 'swap', fontWeight: 900 }),
+					null,
+					2
+				)}
+			</Code>
 		</GEL>
 	);
 }
