@@ -9,36 +9,15 @@ import {
 	styleReconciler,
 	formatClassName,
 } from '@westpac/core';
-import { VisuallyHidden } from '@westpac/a11y';
 import { Body } from '@westpac/body';
 
 // ==============================
 // Component
 // ==============================
 
-const List = ({ state: { type, nested, assistiveText }, children, ...rest }) => {
-	//a11y: tick & cross bullet meaning must be conveyed; render a (configurable) VisuallyHidden first item
-	const hiddenItem =
-		(type === 'tick' || type === 'cross') && nested === 0 ? (
-			<VisuallyHidden
-				tag="li"
-				css={{
-					'::before': {
-						display: 'none !important', //hide tick/cross
-					},
-				}}
-			>
-				{assistiveText || `The following items are ${type === 'tick' ? 'ticked' : 'crossed'}:`}
-			</VisuallyHidden>
-		) : null;
-
-	return (
-		<Body tag={type === 'ordered' ? 'ol' : 'ul'} {...rest}>
-			{hiddenItem}
-			{children}
-		</Body>
-	);
-};
+const List = ({ state: { type }, ...rest }) => (
+	<Body tag={type === 'ordered' ? 'ol' : 'ul'} {...rest} />
+);
 
 const BlenderList = (props) => (
 	<List
@@ -234,12 +213,20 @@ const blenderStyles = (_, { type, look, spacing }) => {
 // Attributes
 // ==============================
 
-const listAttributes = (_, { type }) => ({
+const listAttributes = (_, { type, nested, assistiveText }) => ({
 	//a11y: as we're using `list-style:none` CSS, we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
 	role: type !== 'ordered' ? 'list' : undefined,
+
+	//a11y: tick & cross bullet meaning must be conveyed
+	//Note: `aria-label` only valid on list element because there's a `role` defined
+	'aria-label':
+		(type === 'tick' || type === 'cross') && nested === 0
+			? assistiveText || `The following items are ${type === 'tick' ? 'ticked' : 'crossed'}`
+			: undefined,
 });
 
-const blenderAttributes = (_, { type, look, spacing }) => ({
+const blenderAttributes = (_, { type, look, spacing, nested, assistiveText }) => ({
+	...listAttributes(_, { type, nested, assistiveText }),
 	className: classNames({
 		[`__convert__list-${type}`]: type !== defaultProps.type,
 		[`__convert__list-${look}`]: type === 'bullet' && look !== 'hero',
