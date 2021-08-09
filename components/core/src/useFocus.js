@@ -5,29 +5,33 @@ export const useFocus = () => {
 
 		if (!hasScript) {
 			// Insert a script that:
-			// - adds the "isMouseMode" class to the body
+			// - removes the "focus-visible" class to the body if somehow present
 			// - listens for the tab key
-			// - when tab key is pressed removes the "isMouseMode" class and removes the listener
+			// - when tab key is pressed adds the "focus-visible" class and removes the listener
 			const scriptEl = document.createElement('script');
 			scriptEl.setAttribute('id', 'GELFocus');
 			scriptEl.text = `
-				function GELKeyHandler( event ) {
-					if( event.key === 'Tab' ) {
-						document.getElementsByTagName('body')[ 0 ].classList.remove('isMouseMode');
-						document.removeEventListener('keydown', GELKeyHandler);
+				function GELKeyHandler(event) {
+					if (event.key === 'Tab') {
+						document.body.classList.add('focus-visible');
 					}
 				};
 
-				document.getElementsByTagName('body')[ 0 ].classList.add('isMouseMode');
-				window.document.addEventListener('keydown', GELKeyHandler);
+				function GELClickHandler(event) {
+					document.body.classList.remove('focus-visible');
+				};
+
+				document.body.classList.remove('focus-visible');
+				document.addEventListener('keydown', GELKeyHandler);
+				document.addEventListener('mousedown', GELClickHandler);
 			`;
 			document.body.insertBefore(scriptEl, document.body.firstChild);
 
-			// Insert CSS style to hide all focus only when the "isMouseMode" is present
+			// Insert CSS style to hide all focus only when the "focus-visible" is absent
 			const styleEl = document.createElement('style');
 			styleEl.setAttribute('type', 'text/css');
 			styleEl.innerHTML = `
-				.isMouseMode :focus {
+				body:not(.focus-visible) :focus {
 					outline: 0 !important;
 				}
 			`;

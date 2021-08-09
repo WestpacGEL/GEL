@@ -88,7 +88,7 @@ const toggleStyles = (_, { size }) => {
 			cursor: 'not-allowed',
 		},
 
-		'body:not(.isMouseMode) input:focus ~ &': {
+		'body.focus-visible input:focus ~ &': {
 			...PACKS.focus,
 		},
 	})[0];

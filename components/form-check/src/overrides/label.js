@@ -71,7 +71,7 @@ const labelStyles = (_, { type, size }) => {
 			borderRadius: type === 'radio' ? '50%' : 3,
 
 			// Focus state
-			'body:not(.isMouseMode) input:focus + &': {
+			'body.focus-visible input:focus + &': {
 				...PACKS.focus,
 			},
 

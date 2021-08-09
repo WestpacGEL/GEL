@@ -126,7 +126,7 @@ const optionBtnStyles = () => {
 		},
 
 		// Focus state
-		'body:not(.isMouseMode) input:focus + &': {
+		'body.focus-visible input:focus + &': {
 			...PACKS.focus,
 		},
 	})[0];
