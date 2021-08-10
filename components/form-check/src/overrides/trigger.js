@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, getLabel, useBrand } from '@westpac/core';
-import { defaultProps } from '../FormCheck';
 import { Button } from '@westpac/button';
 import { ExpandMoreIcon } from '@westpac/icon';
 import { forwardRef } from 'react';
@@ -43,6 +42,38 @@ const Trigger = forwardRef(({ state: { revealCount }, ...rest }, ref) => {
 	);
 });
 
+// Moved icon styling to button to avoid clashing icon class names
+const BlenderTrigger = forwardRef(({ state: { revealCount }, ...rest }, ref) => {
+	const { COLORS } = useBrand();
+
+	return (
+		<Button
+			ref={ref}
+			look="link"
+			size="small"
+			iconAfter={ExpandMoreIcon}
+			{...rest}
+			overrides={{
+				Button: {
+					styles: (styles) => {
+						const blenderStyles = { ...styles };
+						delete blenderStyles.label;
+						return {
+							...blenderStyles, // ensuring classname to be 'formCheckReveal-trigger'
+							color: COLORS.text,
+							paddingLeft: 0,
+							paddingRight: 0,
+							textDecoration: 'none',
+						};
+					},
+				},
+			}}
+		>
+			Show {revealCount} {revealCount === 1 ? 'item' : 'items'}
+		</Button>
+	);
+});
+
 // ==============================
 // Styles
 // ==============================
@@ -50,8 +81,6 @@ const Trigger = forwardRef(({ state: { revealCount }, ...rest }, ref) => {
 const triggerStyles = (_, { isOpen }) => {
 	return {
 		label: getLabel('formCheckReveal-trigger'),
-		paddingLeft: 0,
-		paddingRight: 0,
 		display: isOpen && 'none',
 	};
 };
@@ -60,26 +89,14 @@ const triggerStyles = (_, { isOpen }) => {
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { block }) => {
-	const props = { block };
-	const baseStyles = triggerStyles(_, defaultProps);
-
-	let modifiers = getModifier(defaultProps, props);
-	if (!modifiers.length) return baseStyles;
-
-	const modifierStyles = triggerStyles(_, props);
-	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
-
-	let label = baseStyles.label;
-	const modifier = modifiers[0];
-
-	switch (modifier) {
-		default:
-			label = `${label}-${modifier}`;
-			break;
-	}
-
-	return { label, ...reconciledStyles };
+const blenderStyles = (_, { isOpen }) => {
+	const { COLORS } = useBrand();
+	return {
+		...triggerStyles(_, { isOpen }),
+		svg: {
+			color: COLORS.link,
+		},
+	};
 };
 
 // ==============================
@@ -108,7 +125,7 @@ export const defaultTrigger = {
 };
 
 export const blenderTrigger = {
-	component: Trigger,
+	component: BlenderTrigger,
 	styles: blenderStyles,
 	attributes: blenderAttributes,
 };

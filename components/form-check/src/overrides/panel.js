@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx, getLabel } from '@westpac/core';
-import { defaultProps } from '../FormCheck';
 
 // ==============================
 // Component
@@ -18,32 +17,6 @@ const panelStyles = (_, { isOpen }) => {
 		label: getLabel('formCheckReveal-panel'),
 		display: !isOpen ? 'none' : 'inline-block',
 	};
-};
-
-// ==============================
-// Blender Styles
-// ==============================
-
-const blenderStyles = (_, { block }) => {
-	const props = { block };
-	const baseStyles = panelStyles(_, defaultProps);
-
-	let modifiers = getModifier(defaultProps, props);
-	if (!modifiers.length) return baseStyles;
-
-	const modifierStyles = panelStyles(_, props);
-	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
-
-	let label = baseStyles.label;
-	const modifier = modifiers[0];
-
-	switch (modifier) {
-		default:
-			label = `${label}-${modifier}`;
-			break;
-	}
-
-	return { label, ...reconciledStyles };
 };
 
 // ==============================
@@ -72,6 +45,6 @@ export const defaultPanel = {
 
 export const blenderPanel = {
 	component: Panel,
-	styles: blenderStyles,
+	styles: panelStyles,
 	attributes: blenderAttributes,
 };

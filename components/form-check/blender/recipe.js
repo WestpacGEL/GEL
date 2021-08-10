@@ -1,4 +1,4 @@
-import { GEL, titleCase } from '@westpac/core';
+import { GEL } from '@westpac/core';
 import React from 'react';
 
 import { FormCheck, FormCheckReveal, Option } from '@westpac/form-check';
@@ -7,7 +7,6 @@ import { blenderOption } from '../src/overrides/option';
 import { blenderLabel } from '../src/overrides/label';
 import { blenderHint } from '../src/overrides/hint';
 
-import { blenderFormCheckReveal } from '../src/overrides/formCheckReveal';
 import { blenderTrigger } from '../src/overrides/trigger';
 import { blenderPanel } from '../src/overrides/panel';
 
@@ -29,9 +28,9 @@ export function AllStyles({ brand }) {
 			component: blenderHint.component,
 			styles: blenderHint.styles,
 		},
-		FormCheckReveal: {
-			component: blenderFormCheckReveal.component,
-			styles: blenderFormCheckReveal.styles,
+		Trigger: {
+			component: blenderTrigger.component,
+			styles: blenderTrigger.styles,
 		},
 	};
 
@@ -87,11 +86,8 @@ export function Docs({ brand }) {
 		Hint: {
 			component: blenderHint.component,
 		},
-		FormCheckReveal: {
-			component: blenderFormCheckReveal.component,
-			attributes: blenderFormCheckReveal.attributes,
-		},
 		Trigger: {
+			component: blenderTrigger.component,
 			attributes: blenderTrigger.attributes,
 		},
 		Panel: {
