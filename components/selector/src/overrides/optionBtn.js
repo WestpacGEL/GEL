@@ -25,7 +25,7 @@ const optionBtnStyles = (_, { type }) => {
 	const { PACKS, SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
 
-	const paddingArr = [SPACING(3), null, SPACING(4)];
+	const paddingArr = [SPACING(2), null, SPACING(4)];
 
 	return mq({
 		// Normalize
