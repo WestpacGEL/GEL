@@ -10,10 +10,10 @@ import { defaultPictogram } from './overrides/pictogram';
 import { defaultIcon } from './overrides/icon';
 import { defaultText } from './overrides/text';
 import { defaultLabel } from './overrides/label';
-import { defaultLabelPrimary } from './overrides/labelPrimary';
 import { defaultLabelSecondary } from './overrides/labelSecondary';
 import { defaultHint } from './overrides/hint';
-import { defaultIndicator } from './overrides/indicator';
+import { defaultIndicatorNext } from './overrides/indicatorNext';
+import { defaultIndicatorCheck } from './overrides/indicatorCheck';
 
 import { useSelectorContext } from './Selector';
 import pkg from '../package.json';
@@ -69,10 +69,10 @@ export const Option = forwardRef(
 			Icon: defaultIcon,
 			Text: defaultText,
 			Label: defaultLabel,
-			LabelPrimary: defaultLabelPrimary,
 			LabelSecondary: defaultLabelSecondary,
 			Hint: defaultHint,
-			Indicator: defaultIndicator,
+			IndicatorCheck: defaultIndicatorCheck,
+			IndicatorNext: defaultIndicatorNext,
 		};
 
 		const componentOverrides = overrides || ctxOverrides;
@@ -107,18 +107,22 @@ export const Option = forwardRef(
 			Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
 			Text: { component: Text, styles: textStyles, attributes: textAttributes },
 			Label: { component: Label, styles: labelStyles, attributes: labelAttributes },
-			LabelPrimary: {
-				component: LabelPrimary,
-				styles: labelPrimaryStyles,
-				attributes: labelPrimaryAttributes,
-			},
 			LabelSecondary: {
 				component: LabelSecondary,
 				styles: labelSecondaryStyles,
 				attributes: labelSecondaryAttributes,
 			},
 			Hint: { component: Hint, styles: hintStyles, attributes: hintAttributes },
-			Indicator: { component: Indicator, styles: indicatorStyles, attributes: indicatorAttributes },
+			IndicatorCheck: {
+				component: IndicatorCheck,
+				styles: indicatorCheckStyles,
+				attributes: indicatorCheckAttributes,
+			},
+			IndicatorNext: {
+				component: IndicatorNext,
+				styles: indicatorNextStyles,
+				attributes: indicatorNextAttributes,
+			},
 		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 		return (
@@ -200,13 +204,7 @@ export const Option = forwardRef(
 					) : null}
 					<Text state={state} {...textAttributes(state)} css={textStyles(state)}>
 						<Label state={state} {...labelAttributes(state)} css={labelStyles(state)}>
-							<LabelPrimary
-								state={state}
-								{...labelPrimaryAttributes(state)}
-								css={labelPrimaryStyles(state)}
-							>
-								{children}
-							</LabelPrimary>
+							{children}
 							{secondaryLabel && (
 								<LabelSecondary
 									state={state}
@@ -223,7 +221,19 @@ export const Option = forwardRef(
 							</Hint>
 						)}
 					</Text>
-					<Indicator state={state} {...indicatorAttributes(state)} css={indicatorStyles(state)} />
+					{type === 'button' || type === 'link' ? (
+						<IndicatorNext
+							state={state}
+							{...indicatorNextAttributes(state)}
+							css={indicatorNextStyles(state)}
+						/>
+					) : (
+						<IndicatorCheck
+							state={state}
+							{...indicatorCheckAttributes(state)}
+							css={indicatorCheckStyles(state)}
+						/>
+					)}
 				</OptionBtn>
 			</Option>
 		);
@@ -306,12 +316,12 @@ Option.propTypes = {
 	children: PropTypes.node.isRequired,
 
 	overrides: PropTypes.shape({
-		Button: PropTypes.shape({
+		Option: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Option: PropTypes.shape({
+		OptionBtn: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -336,17 +346,22 @@ Option.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		LabelPrimary: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		LabelSecondary: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
 		Hint: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		IndicatorCheck: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		IndicatorNext: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

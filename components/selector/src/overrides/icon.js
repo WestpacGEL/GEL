@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel, classNames, formatClassName } from '@westpac/core';
 
 // ==============================
 // Component
@@ -16,13 +16,12 @@ const Icon = ({ icon: Icon, state: { iconSize }, ...rest }) => (
 
 const iconStyles = () => {
 	const { SPACING } = useBrand();
-	const mq = useMediaQuery();
 
-	return mq({
+	return {
 		label: getLabel('selector-option-icon'),
 		marginRight: SPACING(4), //gap
 		flex: 'none',
-	});
+	};
 };
 
 // ==============================
@@ -33,6 +32,15 @@ const iconAttributes = () => ({
 	'aria-hidden': 'true',
 });
 
+const blenderAttributes = (_, { iconSize }) => ({
+	...iconAttributes(),
+	className: classNames({
+		'__convert__selector-option-icon': true,
+		'__convert__icon-hero': true,
+		[`__convert__icon-${iconSize}`]: iconSize && iconSize !== 'medium',
+	}),
+});
+
 // ==============================
 // Exports
 // ==============================
@@ -41,4 +49,10 @@ export const defaultIcon = {
 	component: Icon,
 	styles: iconStyles,
 	attributes: iconAttributes,
+};
+
+export const blenderIcon = {
+	component: Icon,
+	styles: iconStyles,
+	attributes: blenderAttributes,
 };
