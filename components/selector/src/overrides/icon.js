@@ -20,9 +20,9 @@ const iconStyles = () => {
 
 	return mq({
 		label: getLabel('selector-option-icon'),
-		marginRight: SPACING(4), //gap
+		marginRight: [SPACING(2), null, SPACING(4)], //gap
 		flex: 'none',
-	});
+	})[0];
 };
 
 // ==============================
