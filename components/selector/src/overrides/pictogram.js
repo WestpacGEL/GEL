@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
@@ -23,13 +23,28 @@ const Pictogram = ({
 	);
 };
 
+const BlenderPictogram = (props) => (
+	<Pictogram
+		overrides={{
+			Pictogram: {
+				styles: (styles) => {
+					const blenderStyles = { ...styles };
+					delete blenderStyles.label;
+					return blenderStyles;
+				},
+			},
+		}}
+		{...props}
+	/>
+);
+
 // ==============================
 // Styles
 // ==============================
 
 const pictogramStyles = () => {
-	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
+	const { SPACING } = useBrand();
 
 	return mq({
 		label: getLabel('selector-option-pictogram'),
@@ -52,6 +67,12 @@ const pictogramAttributes = () => ({
 
 export const defaultPictogram = {
 	component: Pictogram,
+	styles: pictogramStyles,
+	attributes: pictogramAttributes,
+};
+
+export const blenderPictogram = {
+	component: BlenderPictogram,
 	styles: pictogramStyles,
 	attributes: pictogramAttributes,
 };

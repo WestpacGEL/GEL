@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 // ==============================
 // Component

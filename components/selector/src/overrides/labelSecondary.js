@@ -19,7 +19,8 @@ const labelSecondaryStyles = () => {
 		label: getLabel('selector-option-label-secondary'),
 		width: '50%',
 		textAlign: 'right',
-		marginLeft: SPACING(2),
+		marginLeft: 'auto', //right align
+		paddingLeft: SPACING(2), //gap
 		overflow: 'hidden',
 		textOverflow: 'ellipsis',
 		whiteSpace: 'nowrap',
