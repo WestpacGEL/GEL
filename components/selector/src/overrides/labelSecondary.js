@@ -21,9 +21,6 @@ const labelSecondaryStyles = () => {
 		textAlign: 'right',
 		marginLeft: 'auto', //right align
 		paddingLeft: SPACING(2), //gap
-		overflow: 'hidden',
-		textOverflow: 'ellipsis',
-		whiteSpace: 'nowrap',
 		...TYPE.bodyFont[400],
 		fontFeatureSettings: '"tnum"', //enable tabular (monospaced) figures
 	};
