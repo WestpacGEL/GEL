@@ -9,7 +9,7 @@ import { ArrowRightIcon } from '@westpac/icon';
 
 const Indicator = ({ state: { type }, ...rest }) =>
 	type === 'button' || type === 'link' ? (
-		<ArrowRightIcon size="medium" assistiveText={null} {...rest} />
+		<ArrowRightIcon size={['small', null, 'medium']} assistiveText={null} {...rest} />
 	) : (
 		<div {...rest} />
 	);
@@ -31,7 +31,7 @@ const indicatorStyles = (_, { type }) => {
 		// Next indicator (ArrowNextIcon)
 		...((type === 'button' || type === 'link') && {
 			color: COLORS.primary,
-			marginRight: `-${SPACING(1)}`, //tweak
+			marginRight: [`-${SPACING(1, 'minor')}`, null, `-${SPACING(1)}`], //tweak
 			transition: 'transform 0.2s ease',
 
 			'button:hover &, button:focus &, a:hover &, a:focus &': {
