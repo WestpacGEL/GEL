@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel, classNames, formatClassName } from '@westpac/core';
+import { jsx, useBrand, getLabel, useMediaQuery, classNames } from '@westpac/core';
 
 // ==============================
 // Component
@@ -15,13 +15,14 @@ const Icon = ({ icon: Icon, state: { iconSize }, ...rest }) => (
 // ==============================
 
 const iconStyles = () => {
+	const mq = useMediaQuery();
 	const { SPACING } = useBrand();
 
-	return {
+	return mq({
 		label: getLabel('selector-option-icon'),
-		marginRight: SPACING(4), //gap
+		marginRight: [SPACING(2), null, SPACING(4)], //gap
 		flex: 'none',
-	};
+	})[0];
 };
 
 // ==============================

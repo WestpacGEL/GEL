@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
@@ -43,13 +43,14 @@ const BlenderPictogram = (props) => (
 // ==============================
 
 const pictogramStyles = () => {
+	const mq = useMediaQuery();
 	const { SPACING } = useBrand();
 
-	return {
+	return mq({
 		label: getLabel('selector-option-pictogram'),
-		marginRight: SPACING(4), //gap
+		marginRight: [SPACING(2), null, SPACING(4)], //gap
 		flex: 'none',
-	};
+	})[0];
 };
 
 // ==============================
