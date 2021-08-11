@@ -40,7 +40,7 @@ const indicatorNextStyles = () => {
 		marginLeft: [SPACING(2), null, SPACING(3)], //gap
 		flex: 'none',
 		color: COLORS.primary,
-		marginRight: `-${SPACING(1)}`, //tweak
+		marginRight: [`-${SPACING(1, 'minor')}`, null, `-${SPACING(1)}`], //tweak
 		transition: 'transform 0.2s ease',
 
 		'button:hover &, button:focus &, a:hover &, a:focus &': {
