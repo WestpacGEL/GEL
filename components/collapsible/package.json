@@ -4,6 +4,10 @@
 	"description": "",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/collapsible",
+	"blender": {
+		"recipe": "blender/recipe.js",
+		"js": "blender/script.js"
+	},
 	"components": [
 		{
 			"name": "Collapsible",
