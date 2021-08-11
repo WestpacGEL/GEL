@@ -13,7 +13,7 @@ const LabelSecondary = ({ state: _, ...rest }) => <span {...rest} />;
 // ==============================
 
 const labelSecondaryStyles = () => {
-	const { SPACING } = useBrand();
+	const { SPACING, TYPE } = useBrand();
 
 	return {
 		label: getLabel('selector-option-label-secondary'),
@@ -23,6 +23,8 @@ const labelSecondaryStyles = () => {
 		overflow: 'hidden',
 		textOverflow: 'ellipsis',
 		whiteSpace: 'nowrap',
+		...TYPE.bodyFont[400],
+		fontFeatureSettings: '"tnum"', //enable tabular (monospaced) figures
 	};
 };
 
