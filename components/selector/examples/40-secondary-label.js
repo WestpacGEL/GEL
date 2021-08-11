@@ -16,7 +16,7 @@ const hintBankAccount = (
 const hintShort = 'This is some content to go in the product selector thing';
 const hintLong =
 	"This is some content to go in the product selector thing which is longer. It's a little longer, actually when I come to think of it, it's quite a bit longer. But not crazy long, just enough length to test this with.";
-const secondLabelShort = '$15,000';
+const secondLabelShort = '$200,000.00';
 const secondLabelLong = 'I am a very long secondary label';
 
 function Example({ brand }) {
