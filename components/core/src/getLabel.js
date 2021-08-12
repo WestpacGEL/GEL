@@ -5,7 +5,8 @@ export function getLabel(name, props = {}) {
 		.sort(([a], [b]) => (a.toLowerCase() < b.toLowerCase() ? -1 : 1))
 		.map(([name, value]) => {
 			switch (typeof value) {
-				case 'undefined': break;
+				case 'undefined':
+					break;
 				case 'boolean':
 					label += value ? `-${name}` : '';
 					break;
