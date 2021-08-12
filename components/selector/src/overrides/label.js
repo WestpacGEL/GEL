@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
@@ -16,15 +16,21 @@ const Label = ({ state: { type }, ...rest }) => {
 // ==============================
 
 const labelStyles = () => {
+	const mq = useMediaQuery();
 	const { PACKS, TYPE } = useBrand();
 
-	return {
+	return mq({
 		label: getLabel('selector-option-label'),
 		flex: 1,
 		display: 'flex',
-		...PACKS.typeScale.bodyFont[8],
+		fontSize: [PACKS.typeScale.bodyFont[10].fontSize, null, PACKS.typeScale.bodyFont[8].fontSize],
+		lineHeight: [
+			PACKS.typeScale.bodyFont[10].lineHeight,
+			null,
+			PACKS.typeScale.bodyFont[8].lineHeight,
+		],
 		...TYPE.bodyFont[500],
-	};
+	})[0];
 };
 
 // ==============================

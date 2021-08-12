@@ -19,7 +19,9 @@ export const optionStyles = () => {
 	return mq({
 		label: getLabel('selector-option'),
 		position: 'relative',
-		':not(:last-child)': { marginBottom: SPACING(4) },
+		':not(:last-child)': {
+			marginBottom: [SPACING(2), null, SPACING(4)],
+		},
 	})[0];
 };
 
