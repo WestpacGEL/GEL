@@ -10,7 +10,7 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Wrapper>
 				<h3>Default</h3>
-				<Header />
+				<Header fixed />
 				<h3>With right button</h3>
 				<Header>
 					<Button look="faint" soft>

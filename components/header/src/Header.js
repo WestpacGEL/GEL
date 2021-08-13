@@ -137,7 +137,7 @@ Header.propTypes = {
 	/**
 	 * On click handler for logo
 	 */
-	logoLink: PropTypes.string,
+	logoOnClick: PropTypes.func,
 
 	/**
 	 * Center logo at xs breakpoint
@@ -163,6 +163,11 @@ Header.propTypes = {
 	 * Visually hidden text for left button
 	 */
 	leftAssistiveText: PropTypes.string,
+
+	/**
+	 * Enable fixed header
+	 */
+	fixed: PropTypes.bool,
 
 	/**
 	 * The id to the pages main content

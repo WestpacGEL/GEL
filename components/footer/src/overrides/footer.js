@@ -22,12 +22,7 @@ const footerStyles = (_, { offsetSidebar }) => {
 		overflow: 'hidden',
 		backgroundColor: '#fff',
 		marginRight: offsetSidebar && [null, null, null, '300px'],
-		'::before': {
-			content: '""',
-			display: 'block',
-			backgroundColor: COLORS.primary,
-			height: '1px',
-		},
+		borderTop: `1px solid ${COLORS.primary}`,
 	})[0];
 };
 
