@@ -23,6 +23,8 @@ const labelSecondaryStyles = () => {
 		paddingLeft: SPACING(2), //gap
 		...TYPE.bodyFont[400],
 		fontFeatureSettings: '"tnum"', //enable tabular (monospaced) figures
+		boxSizing: 'border-box',
+		overflowWrap: 'break-word',
 	};
 };
 

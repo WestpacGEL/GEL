@@ -10,3 +10,4 @@
 - Reduce secondary label to 400 weight and enable 'tnum' font feature setting
 - Remove secondary label ellipsis truncation, enable word break
 - Reduce next indicator hover movement in mobile
+- Reduce hint gap in mobile

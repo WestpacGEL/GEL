@@ -19,7 +19,7 @@ const hintStyles = () => {
 	return mq({
 		label: getLabel('selector-option-hint'),
 		color: COLORS.muted,
-		marginTop: SPACING(1),
+		marginTop: [SPACING(1, 'minor'), null, SPACING(1)],
 		fontSize: [PACKS.typeScale.bodyFont[10].fontSize, null, PACKS.typeScale.bodyFont[9].fontSize],
 		lineHeight: [
 			PACKS.typeScale.bodyFont[10].lineHeight,
