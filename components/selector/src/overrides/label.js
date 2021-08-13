@@ -23,9 +23,9 @@ const labelStyles = () => {
 		label: getLabel('selector-option-label'),
 		flex: 1,
 		display: 'flex',
-		fontSize: [PACKS.typeScale.bodyFont[10].fontSize, null, PACKS.typeScale.bodyFont[8].fontSize],
+		fontSize: [PACKS.typeScale.bodyFont[9].fontSize, null, PACKS.typeScale.bodyFont[8].fontSize],
 		lineHeight: [
-			PACKS.typeScale.bodyFont[10].lineHeight,
+			PACKS.typeScale.bodyFont[9].lineHeight,
 			null,
 			PACKS.typeScale.bodyFont[8].lineHeight,
 		],
