@@ -17,14 +17,13 @@ const labelSecondaryStyles = () => {
 
 	return {
 		label: getLabel('selector-option-label-secondary'),
-		width: '50%',
+		flex: '0 1 50%',
 		textAlign: 'right',
 		marginLeft: 'auto', //right align
 		paddingLeft: SPACING(2), //gap
 		...TYPE.bodyFont[400],
 		fontFeatureSettings: '"tnum"', //enable tabular (monospaced) figures
 		boxSizing: 'border-box',
-		overflowWrap: 'break-word',
 	};
 };
 
