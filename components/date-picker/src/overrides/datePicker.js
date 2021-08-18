@@ -102,6 +102,7 @@ const datePickerStyles = (_, { size }) => {
 				outlineOffset: focus.outlineOffset,
 			},
 		},
+		// Temp solution, until Duet allow configurable icon https://github.com/duetds/date-picker/issues/40
 		'.duet-date__toggle-icon': {
 			width: `${size === 'small' || size === 'medium' ? '18px' : '24px'}`,
 			height: `${size === 'small' || size === 'medium' ? '18px' : '24px'}`,
@@ -111,17 +112,21 @@ const datePickerStyles = (_, { size }) => {
 			backgroundSize: 'cover',
 
 			svg: {
-				display: 'none', // Hide, replace with background-image
+				display: 'none', //hide, replace with background-image
 			},
 		},
 
 		/* Calendar selects */
+		'.duet-date__select': {
+			marginTop: 0, //reset, no longer required due to increased `<span>` height (lineHeight)
+		},
 		'.duet-date__select-label': {
 			border: '1px solid transparent', //for WHCM (a11y)
 			color: COLORS.primary, //for icon (uses currentColor)
 
 			span: {
 				color: COLORS.text, //reset text
+				lineHeight: 1.5, //fix type descender overlay in WHCM (a11y)
 			},
 		},
 		'.duet-date__select select:focus + .duet-date__select-label': {
