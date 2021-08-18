@@ -106,10 +106,11 @@ const datePickerStyles = (_, { size }) => {
 		'.duet-date__toggle-icon': {
 			width: `${size === 'small' || size === 'medium' ? '18px' : '24px'}`,
 			height: `${size === 'small' || size === 'medium' ? '18px' : '24px'}`,
-			backgroundImage: `url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23${COLORS.muted.substring(
+			backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23${COLORS.muted.substring(
 				1
-			)}%22%20fill-rule%3D%22evenodd%22%20d%3D%22M20%2C2%20L22%2C2%20C23.1045695%2C2%2024%2C2.8954305%2024%2C4%20L24%2C22%20C24%2C23.1045695%2023.1045695%2C24%2022%2C24%20L2%2C24%20C0.8954305%2C24%201.3527075e-16%2C23.1045695%200%2C22%20L0%2C4%20C-1.3527075e-16%2C2.8954305%200.8954305%2C2%202%2C2%20L4%2C2%20L4%2C0%20L6%2C0%20L6%2C2%20L18%2C2%20L18%2C0%20L20%2C0%20L20%2C2%20Z%20M2%2C8%20L2%2C22%20L22%2C22%20L22%2C8%20L2%2C8%20Z%20M14%2C14%20L20%2C14%20L20%2C20%20L14%2C20%20L14%2C14%20Z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E")`,
+			)}' fill-rule='evenodd' d='M20,2 L22,2 C23.1045695,2 24,2.8954305 24,4 L24,22 C24,23.1045695 23.1045695,24 22,24 L2,24 C0.8954305,24 1.3527075e-16,23.1045695 0,22 L0,4 C-1.3527075e-16,2.8954305 0.8954305,2 2,2 L4,2 L4,0 L6,0 L6,2 L18,2 L18,0 L20,0 L20,2 Z M2,8 L2,22 L22,22 L22,8 L2,8 Z M14,14 L20,14 L20,20 L14,20 L14,14 Z'%3E%3C/path%3E%3C/svg%3E")`,
 			backgroundSize: 'cover',
+			flexBasis: 'auto', //reset, causes issues in IE with our temp icon approach
 
 			svg: {
 				display: 'none', //hide, replace with background-image
