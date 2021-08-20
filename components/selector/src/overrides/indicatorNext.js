@@ -8,7 +8,7 @@ import { ArrowRightIcon } from '@westpac/icon';
 // ==============================
 
 const IndicatorNext = ({ state: _, ...rest }) => (
-	<ArrowRightIcon size={['small', null, 'medium']} assistiveText={null} {...rest} />
+	<ArrowRightIcon size="medium" assistiveText={null} {...rest} />
 );
 
 const BlenderIndicatorNext = (props) => (
@@ -40,11 +40,11 @@ const indicatorNextStyles = () => {
 		marginLeft: [SPACING(2), null, SPACING(3)], //gap
 		flex: 'none',
 		color: COLORS.primary,
-		marginRight: [`-${SPACING(1, 'minor')}`, null, `-${SPACING(1)}`], //tweak
+		marginRight: `-${SPACING(1)}`, //tweak
 		transition: 'transform 0.2s ease',
 
 		'button:hover &, button:focus &, a:hover &, a:focus &': {
-			transform: `translateX(${SPACING(1)})`,
+			transform: [`translateX(${SPACING(1, 'minor')})`, null, `translateX(${SPACING(1)})`],
 		},
 	})[0];
 };

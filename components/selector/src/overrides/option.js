@@ -20,7 +20,7 @@ export const optionStyles = () => {
 		label: getLabel('selector-option'),
 		position: 'relative',
 		':not(:last-child)': {
-			marginBottom: [SPACING(2), null, SPACING(4)],
+			marginBottom: [SPACING(2), null, SPACING(3)],
 		},
 	})[0];
 };

@@ -51,8 +51,8 @@ describe('getLabel', () => {
 	});
 
 	test('Generate a label from an object prop', () => {
-		const result = getLabel('prefix', { a: { b: 1, c: 'string', d: true } });
-		expect(result).toBe('prefix-a_b_1_c_string_d_true');
+		const result = getLabel('prefix', { a: { b: 1, c: 'some-string', d: true } });
+		expect(result).toBe('prefix-a_b_1_c_some_string_d_true');
 	});
 
 	test('Generate a label and ignore undefined values', () => {

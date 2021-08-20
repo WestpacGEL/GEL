@@ -24,8 +24,8 @@ const indicatorCheckStyles = () => {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		width: '24px', // medium icon size
-		height: '24px', // medium icon size
+		width: '24px', //medium icon size
+		height: '24px', //medium icon size
 		flex: 'none',
 
 		'input:checked + div &::after': {
@@ -34,8 +34,8 @@ const indicatorCheckStyles = () => {
 			boxSizing: 'border-box',
 			position: 'relative',
 			top: '-0.125rem', //tweak
-			width: '1.25rem',
-			height: '0.625rem',
+			width: ['1rem', null, '1.25rem'],
+			height: ['0.5rem', null, '0.625rem'],
 			border: `solid ${COLORS.hero}`,
 			borderWidth: '0 0 0.1875rem 0.1875rem',
 			transform: 'rotate(-54deg)',

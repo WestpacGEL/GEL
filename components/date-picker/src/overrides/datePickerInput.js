@@ -42,11 +42,9 @@ const DatePickerInput = ({
 }) => {
 	useEffect(() => {
 		// Register Duet Date Picker
-		if (!customElements.get('duet-date-picker')) {
-			applyPolyfills().then(() => {
-				defineCustomElements(window);
-			});
-		}
+		applyPolyfills().then(() => {
+			defineCustomElements(window);
+		});
 	}, []);
 
 	const ref = useRef(null);
