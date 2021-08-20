@@ -2784,11 +2784,6 @@
   resolved "https://registry.yarnpkg.com/@josephg/resolvable/-/resolvable-1.0.1.tgz#69bc4db754d79e1a2f17a650d3466e038d94a5eb"
   integrity sha512-CtzORUwWTTOTqfVtHaKRJ0I1kNQd1bpn3sUh8I3nJDVY+5/M/Oe1DnEWzPQvqq/xPIIkzzzIP7mfCoAjFRvDhg==
 
-"@juggle/resize-observer@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.3.1.tgz#b50a781709c81e10701004214340f25475a171a0"
-  integrity sha512-zMM9Ds+SawiUkakS7y94Ymqx+S0ORzpG3frZirN3l+UlXUmSUR7hF4wxCVqW+ei94JzV5kt0uXBcoOEAuiydrw==
-
 "@keystonejs/access-control@^5.2.0":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@keystonejs/access-control/-/access-control-5.2.0.tgz#4ec79bd6105f1c8992690e8042a141aef1886347"
