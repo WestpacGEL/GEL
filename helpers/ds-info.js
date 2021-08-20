@@ -24,9 +24,7 @@ for (const component of components) {
 	i++;
 	process.stdout.write(`\x1b[2K\x1b[0G${i}/${total}`);
 	if (component.isDirectory()) {
-		const pkgJsonPath = path.normalize(
-			`${__dirname}/../components/${component.name}/package.json`
-		);
+		const pkgJsonPath = path.normalize(`${__dirname}/../components/${component.name}/package.json`);
 		if (!fs.existsSync(pkgJsonPath)) {
 			return;
 		}
