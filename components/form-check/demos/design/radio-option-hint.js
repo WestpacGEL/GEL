@@ -13,7 +13,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 			<Grid>
 				<Cell width={6}>
 					<Title>Medium</Title>
-					<FormCheck type="radio" name="example-type-radio-option-hint-size-medium" size="medium">
+					<FormCheck type="radio" name="example-radio-option-hint-medium" size="medium">
 						<Option value="1" hint="This is hint text">
 							Option 1
 						</Option>
@@ -27,7 +27,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 				</Cell>
 				<Cell width={6}>
 					<Title>Large</Title>
-					<FormCheck type="radio" name="example-type-radio-option-hint-size-large" size="large">
+					<FormCheck type="radio" name="example-radio-option-hint-large" size="large">
 						<Option value="1" hint="This is hint text">
 							Option 1
 						</Option>
