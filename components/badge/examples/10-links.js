@@ -10,7 +10,7 @@ function Example({ brand }) {
 			<Body>
 				<p>
 					<a href="#0">
-						Default <Badge value="42" />
+						Default <Badge value="42" data-testing="badge-link" />
 					</a>
 				</p>
 

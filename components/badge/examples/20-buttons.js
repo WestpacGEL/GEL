@@ -10,7 +10,7 @@ function Example({ brand }) {
 			<h2>Default button instance (no styling props)</h2>
 			<p>
 				<Button>
-					Default <Badge value="Default" />
+					Default <Badge value="Default" data-testing="badge-button" />
 				</Button>
 			</p>
 

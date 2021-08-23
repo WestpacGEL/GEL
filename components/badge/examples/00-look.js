@@ -7,7 +7,7 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<p>
-				<Badge value="Default" />
+				<Badge value="Default" data-testing="badge" />
 			</p>
 			<p>
 				<Badge look="primary" value="Primary" /> <Badge look="hero" value="Hero" />{' '}
