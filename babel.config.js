@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
 	presets: ['@babel/preset-env', '@babel/preset-react'],
 	plugins: [
@@ -23,6 +21,7 @@ module.exports = {
 								'last 2 firefox versions',
 								'last 2 safari versions',
 								'last 2 edge versions',
+								'ie 11',
 							],
 						},
 					},

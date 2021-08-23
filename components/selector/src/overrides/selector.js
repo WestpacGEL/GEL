@@ -29,7 +29,9 @@ const selectorStyles = () => ({
 // Attributes
 // ==============================
 
-const selectorAttributes = () => null;
+const selectorAttributes = () => ({
+	'data-js': 'selector__version__',
+});
 
 // ==============================
 // Exports

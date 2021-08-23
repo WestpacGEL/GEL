@@ -174,7 +174,7 @@ const blenderStyles = (_, { type, look, spacing }) => {
 	let modifier;
 
 	if (modifiers.length > 1 && modifiers.includes('type') && modifiers.includes('look')) {
-		if (type === 'bullet' && look === 'hero') {
+		if ((type === 'bullet' || type === 'tick' || type === 'cross') && look === 'hero') {
 			modifier = 'type';
 		} else {
 			modifier = 'look';

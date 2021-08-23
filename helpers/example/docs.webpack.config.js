@@ -60,6 +60,8 @@ module.exports = () => ({
 		publicPath: '/',
 	},
 
+	target: ['web', 'es5'],
+
 	performance: {
 		hints: false,
 		maxEntrypointSize: 512000,
@@ -70,7 +72,11 @@ module.exports = () => ({
 		rules: [
 			{
 				test: /\.js$/,
-				exclude: babelLoaderExcludeNodeModulesExcept(['react-spring', 'react-use-measure']),
+				exclude: babelLoaderExcludeNodeModulesExcept([
+					'react-spring',
+					'react-use-measure',
+					'@react-spring/*',
+				]),
 				loader: 'babel-loader',
 				options: {
 					rootMode: 'upward',
