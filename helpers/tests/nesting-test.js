@@ -17,10 +17,7 @@ function nestingTest({ name, Component }) {
 		});
 
 		test('Errors when the component is rendered outside of <GEL/>', () => {
-			const text = 'Our alert content';
-			const Wrapper = () => <Component>{text}</Component>;
-
-			const { container } = render(<Wrapper />, { wrapper: ErrorBoundary });
+			const { container } = render(<Component />, { wrapper: ErrorBoundary });
 
 			expect(container).toHaveTextContent(
 				/GEL components require that you wrap your application with the <GEL \/> brand provider from @westpac\/core./i
@@ -29,10 +26,9 @@ function nestingTest({ name, Component }) {
 		});
 
 		test('Renders when the component is rendered inside of <GEL/>', () => {
-			const text = 'Our alert content';
 			const Wrapper = () => (
 				<GEL brand={wbc}>
-					<Component>{text}</Component>
+					<Component />
 				</GEL>
 			);
 
@@ -42,7 +38,6 @@ function nestingTest({ name, Component }) {
 				/GEL components require that you wrap your application with the <GEL \/> brand provider from @westpac\/core./i
 			);
 			expect(console.error).toHaveBeenCalledTimes(0);
-			expect(container).toHaveTextContent(text);
 		});
 	});
 }
