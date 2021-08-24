@@ -102,6 +102,7 @@ const datePickerStyles = (_, { size }) => {
 				outlineOffset: focus.outlineOffset,
 			},
 		},
+		// Temp solution, until Duet allow configurable icon https://github.com/duetds/date-picker/issues/40
 		'.duet-date__toggle-icon': {
 			width: `${size === 'small' || size === 'medium' ? '18px' : '24px'}`,
 			height: `${size === 'small' || size === 'medium' ? '18px' : '24px'}`,
@@ -109,19 +110,24 @@ const datePickerStyles = (_, { size }) => {
 				1
 			)}' fill-rule='evenodd' d='M20,2 L22,2 C23.1045695,2 24,2.8954305 24,4 L24,22 C24,23.1045695 23.1045695,24 22,24 L2,24 C0.8954305,24 1.3527075e-16,23.1045695 0,22 L0,4 C-1.3527075e-16,2.8954305 0.8954305,2 2,2 L4,2 L4,0 L6,0 L6,2 L18,2 L18,0 L20,0 L20,2 Z M2,8 L2,22 L22,22 L22,8 L2,8 Z M14,14 L20,14 L20,20 L14,20 L14,14 Z'%3E%3C/path%3E%3C/svg%3E")`,
 			backgroundSize: 'cover',
+			flexBasis: 'auto', //reset, causes issues in IE with our temp icon approach
 
 			svg: {
-				display: 'none', // Hide, replace with background-image
+				display: 'none', //hide, replace with background-image
 			},
 		},
 
 		/* Calendar selects */
+		'.duet-date__select': {
+			marginTop: 0, //reset, no longer required due to increased `<span>` height (lineHeight)
+		},
 		'.duet-date__select-label': {
 			border: '1px solid transparent', //for WHCM (a11y)
 			color: COLORS.primary, //for icon (uses currentColor)
 
 			span: {
 				color: COLORS.text, //reset text
+				lineHeight: 1.5, //fix type descender overlay in WHCM (a11y)
 			},
 		},
 		'.duet-date__select select:focus + .duet-date__select-label': {

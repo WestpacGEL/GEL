@@ -99,29 +99,22 @@ const listStyles = (_, { type, look, spacing, nested }) => {
 			},
 		},
 		cross: {
-			'::before': {
+			'::before, ::after': {
 				content: "''",
 				position: 'absolute',
-				left: '0.3125rem',
+				left: '0.375rem',
 				top: '0.25rem',
 				display: 'block',
 				width: 0,
 				height: '0.75rem',
 				borderLeft: `0.125rem solid ${COLORS[look]}`,
-				transform: 'rotate(-45deg)',
 				boxSizing: 'border-box',
 			},
+			'::before': {
+				transform: 'rotate(-45deg)',
+			},
 			'::after': {
-				content: "''",
-				position: 'absolute',
-				left: '0.3125rem',
-				top: '0.25rem',
-				display: 'block',
-				width: 0,
-				height: '0.75rem',
-				borderLeft: `0.125rem solid ${COLORS[look]}`,
 				transform: 'rotate(45deg)',
-				boxSizing: 'border-box',
 			},
 		},
 		unstyled: {
@@ -174,7 +167,7 @@ const blenderStyles = (_, { type, look, spacing }) => {
 	let modifier;
 
 	if (modifiers.length > 1 && modifiers.includes('type') && modifiers.includes('look')) {
-		if (type === 'bullet' && look === 'hero') {
+		if ((type === 'bullet' || type === 'tick' || type === 'cross') && look === 'hero') {
 			modifier = 'type';
 		} else {
 			modifier = 'look';
