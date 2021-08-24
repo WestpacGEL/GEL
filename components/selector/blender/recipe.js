@@ -138,19 +138,19 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<Selector type="radio" name="example-radio-icons" instanceIdPrefix="GEL">
-						<Option value="1" icon={AccessibilityIcon} iconSize="xsmall">
+						<Option value="1" icon={AccessibilityIcon}>
 							Your option 1
 						</Option>
-						<Option value="2" hint="Your option hint text" icon={AtmIcon} iconSize="small">
+						<Option value="2" hint="Your option hint text" icon={AtmIcon}>
 							Your option 2
 						</Option>
-						<Option value="3" icon={CarIcon} iconSize="medium">
+						<Option value="3" icon={CarIcon}>
 							Your option 3
 						</Option>
-						<Option value="4" icon={AccessibilityIcon} iconSize="large">
+						<Option value="4" icon={AccessibilityIcon}>
 							Your option 4
 						</Option>
-						<Option value="5" icon={AtmIcon} iconSize="xlarge">
+						<Option value="5" icon={AtmIcon}>
 							Your option 5
 						</Option>
 					</Selector>
