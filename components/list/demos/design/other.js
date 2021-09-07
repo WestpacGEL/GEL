@@ -26,6 +26,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 				<Item>This is a tick list</Item>
 			</List>
 			<br />
+			<Title>Cross list</Title>
+			<List type="cross">
+				<Item>This is a cross list</Item>
+				<Item>This is a cross list</Item>
+			</List>
+			<br />
 			<Title>Unstyled list</Title>
 			<List type="unstyled">
 				<Item>This is an unstyled list</Item>
