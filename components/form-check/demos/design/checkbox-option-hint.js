@@ -13,7 +13,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 			<Grid>
 				<Cell width={6}>
 					<Title>Medium</Title>
-					<FormCheck name="example-option-hint-size-medium" size="medium">
+					<FormCheck name="example-checkbox-option-hint-medium" size="medium">
 						<Option value="1" hint="This is hint text">
 							Option 1
 						</Option>
@@ -27,7 +27,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 				</Cell>
 				<Cell width={6}>
 					<Title>Large</Title>
-					<FormCheck name="example-option-hint-size-large" size="large">
+					<FormCheck name="example-checkbox-option-hint-large" size="large">
 						<Option value="1" hint="This is hint text">
 							Option 1
 						</Option>
