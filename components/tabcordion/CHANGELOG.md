@@ -1,5 +1,18 @@
 # @westpac/tabcordion
 
+## 2.1.2
+
+### Patch Changes
+
+- 63f89d17: Update dependencies
+- Updated dependencies [63f89d17]
+- Updated dependencies [46b3d4db]
+- Updated dependencies [c6d4f18e]
+  - @westpac/body@1.4.1
+  - @westpac/core@2.2.0
+  - @westpac/hooks@2.0.1
+  - @westpac/icon@1.3.3
+
 ## 2.1.1
 
 ### Patch Changes
