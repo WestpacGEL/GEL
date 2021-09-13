@@ -9,7 +9,7 @@ import {
 	getLabel,
 	formatClassName,
 } from '@westpac/core';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated } from '@react-spring/web';
 import BezierEasing from 'bezier-easing';
 
 import { defaultProps } from '../Modal';

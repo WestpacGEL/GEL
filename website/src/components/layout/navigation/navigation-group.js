@@ -4,7 +4,7 @@ import { jsx, useBrand, useInstanceId } from '@westpac/core';
 import { AddIcon, RemoveIcon } from '@westpac/icon';
 import { useState, useEffect } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated } from '@react-spring/web';
 import useMeasure from 'react-use-measure';
 import { NavigationItem, StyledItem } from './navigation-item';
 

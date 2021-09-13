@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import react, { Fragment } from 'react';
-import { useTransition, animated } from 'react-spring';
+import { useTransition, animated } from '@react-spring/web';
 
 import { jsx } from '@westpac/core';
 import { Container, Grid, Cell } from '@westpac/grid';

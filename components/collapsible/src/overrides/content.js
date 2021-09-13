@@ -2,7 +2,7 @@
 
 import { jsx, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated } from '@react-spring/web';
 
 // ==============================
 // Component
