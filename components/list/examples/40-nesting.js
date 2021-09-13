@@ -8,6 +8,8 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<h2>Reset nesting level</h2>
+
+			<h3>Example 1</h3>
 			<List type="ordered">
 				<Item>Styled ordered list</Item>
 				<Item>Styled ordered list</Item>
@@ -25,10 +27,7 @@ function Example({ brand }) {
 				<Item>Styled ordered list</Item>
 			</List>
 
-			<br />
-			<hr />
-			<br />
-
+			<h3>Example 2</h3>
 			<List>
 				<Item>Styled bullet list - primary</Item>
 				<Item>Styled bullet list - primary</Item>

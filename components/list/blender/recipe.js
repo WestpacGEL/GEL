@@ -7,7 +7,7 @@ import { AndroidIcon } from '@westpac/icon';
 import { blenderIcon } from '../src/overrides/icon';
 import { blenderList } from '../src/overrides/list';
 
-const types = ['bullet', 'link', 'tick', 'ordered', 'icon', 'unstyled', 'none'];
+const types = ['bullet', 'link', 'tick', 'cross', 'ordered', 'icon', 'unstyled', 'none'];
 const looks = ['primary', 'hero', 'neutral'];
 
 const itemText = (type = 'bullet', text = 'Your list item text') =>
@@ -58,6 +58,9 @@ export function AllStyles({ brand }) {
 				<Item>Text</Item>
 			</List>
 			<List type="tick">
+				<Item>Text</Item>
+			</List>
+			<List type="cross">
 				<Item>Text</Item>
 			</List>
 			<List type="unstyled">

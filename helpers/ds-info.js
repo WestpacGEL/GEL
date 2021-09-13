@@ -24,9 +24,11 @@ for (const component of components) {
 	i++;
 	process.stdout.write(`\x1b[2K\x1b[0G${i}/${total}`);
 	if (component.isDirectory()) {
-		const pkg = require(path.normalize(
-			`${__dirname}/../components/${component.name}/package.json`
-		));
+		const pkgJsonPath = path.normalize(`${__dirname}/../components/${component.name}/package.json`);
+		if (!fs.existsSync(pkgJsonPath)) {
+			return;
+		}
+		const pkg = require(pkgJsonPath);
 		GEL.components[component.name] = {
 			name: pkg.name,
 			version: pkg.version,

@@ -9,7 +9,7 @@ import { forwardRef } from 'react';
 // Component
 // ==============================
 
-const Trigger = forwardRef(({ state: { open, size }, ...rest }, ref) => {
+const Trigger = forwardRef(({ state: { isOpen, size }, ...rest }, ref) => {
 	const { COLORS } = useBrand();
 
 	return (
@@ -17,7 +17,7 @@ const Trigger = forwardRef(({ state: { open, size }, ...rest }, ref) => {
 			ref={ref}
 			look="link"
 			size={size}
-			iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}
+			iconAfter={isOpen ? ExpandLessIcon : ExpandMoreIcon}
 			{...rest}
 			overrides={{
 				Button: {
@@ -40,6 +40,10 @@ const Trigger = forwardRef(({ state: { open, size }, ...rest }, ref) => {
 	);
 });
 
+const BlenderTrigger = forwardRef((props, ref) => {
+	return <button ref={ref} {...props} />;
+});
+
 // ==============================
 // Styles
 // ==============================
@@ -55,6 +59,11 @@ const triggerAttributes = (_, { instanceId, open }) => ({
 	'aria-expanded': open,
 });
 
+const blenderAttributes = (_, props) => ({
+	...triggerAttributes(_, props),
+	'data-js': 'collapsible-trigger__version__',
+});
+
 // ==============================
 // Exports
 // ==============================
@@ -63,4 +72,10 @@ export const defaultTrigger = {
 	component: Trigger,
 	styles: triggerStyles,
 	attributes: triggerAttributes,
+};
+
+export const blenderTrigger = {
+	component: BlenderTrigger,
+	styles: triggerStyles,
+	attributes: blenderAttributes,
 };
