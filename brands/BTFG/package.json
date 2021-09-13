@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/btfg",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"description": "BTFG brand component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/brands/BTFG",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

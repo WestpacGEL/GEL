@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/icon",
-	"version": "1.3.2",
+	"version": "1.3.3",
 	"description": "Small symbolic illustrations used for navigation and context, implemented as SVGs",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/icon",
@@ -63,14 +63,14 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/core": "^2.1.0",
+		"@westpac/core": "^2.2.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^17.0.2"
 	},
 	"devDependencies": {
-		"@westpac/grid": "^1.0.1",
+		"@westpac/grid": "^1.0.2",
 		"cypress": "^8.0.0",
 		"react": "^17.0.2",
 		"start-server-and-test": "^1.12.6"

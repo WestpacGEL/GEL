@@ -1,5 +1,19 @@
 # @westpac/list-group
 
+## 1.0.1
+
+### Patch Changes
+
+- 63f89d17: Update dependencies
+- Updated dependencies [d6a0b3e4]
+- Updated dependencies [63f89d17]
+- Updated dependencies [550db730]
+- Updated dependencies [78e7115b]
+- Updated dependencies [46b3d4db]
+- Updated dependencies [c6d4f18e]
+  - @westpac/list@1.1.0
+  - @westpac/core@2.2.0
+
 ## 1.0.0
 
 ### Patch Changes

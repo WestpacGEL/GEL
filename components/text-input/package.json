@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/text-input",
-	"version": "1.2.0",
+	"version": "1.3.0",
 	"description": "Styling for text input, select and textarea input elements, used for capturing text and numerical data",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/text-input",
@@ -57,8 +57,8 @@
 	"module": "dist/westpac-text-input.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/button": "^1.2.1",
-		"@westpac/core": "^2.1.0",
+		"@westpac/button": "^1.3.0",
+		"@westpac/core": "^2.2.0",
 		"mini-svg-data-uri": "^1.3.3",
 		"prop-types": "^15.7.2"
 	},
@@ -66,8 +66,8 @@
 		"react": "^17.0.2"
 	},
 	"devDependencies": {
-		"@westpac/grid": "^1.0.1",
-		"@westpac/icon": "^1.3.2",
+		"@westpac/grid": "^1.0.2",
+		"@westpac/icon": "^1.3.3",
 		"cypress": "^8.0.0",
 		"react": "^17.0.2",
 		"start-server-and-test": "^1.12.6"

@@ -1,5 +1,11 @@
 # @westpac/wbc
 
+## 3.0.1
+
+### Patch Changes
+
+- 63f89d17: Update dependencies
+
 ## 3.0.0
 
 ### Major Changes

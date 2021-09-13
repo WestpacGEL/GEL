@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/stg",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"description": "STG brand component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/brands/STG",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

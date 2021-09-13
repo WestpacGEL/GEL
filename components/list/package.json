@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/list",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"description": "Styling for lists of text or links, including bullets, numbers or icons",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/list",
@@ -53,15 +53,15 @@
 	"module": "dist/westpac-list.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/body": "^1.4.0",
-		"@westpac/core": "^2.1.0",
+		"@westpac/body": "^1.4.1",
+		"@westpac/core": "^2.2.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^17.0.2"
 	},
 	"devDependencies": {
-		"@westpac/icon": "^1.3.1",
+		"@westpac/icon": "^1.3.3",
 		"cypress": "^8.0.0",
 		"react": "^17.0.2",
 		"start-server-and-test": "^1.12.6"

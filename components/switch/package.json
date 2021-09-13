@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/switch",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Custom toggle controls used to capture simple responses, powered by checkbox elements",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/switch",
@@ -49,7 +49,7 @@
 	"module": "dist/westpac-switch.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/core": "^2.1.0",
+		"@westpac/core": "^2.2.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
