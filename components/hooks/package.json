@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/hooks",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Hooks for the Westpac GEL Design System",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/hooks",
@@ -40,7 +40,7 @@
 	"module": "dist/westpac-hooks.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/core": "^2.1.0",
+		"@westpac/core": "^2.2.0",
 		"prop-types": "^15.7.2",
 		"resize-observer-polyfill": "^1.5.1"
 	},
@@ -48,7 +48,7 @@
 		"react": "^17.0.2"
 	},
 	"devDependencies": {
-		"@westpac/button": "^1.2.1",
+		"@westpac/button": "^1.3.0",
 		"cypress": "^8.0.0",
 		"react": "^17.0.2",
 		"start-server-and-test": "^1.12.6"

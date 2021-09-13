@@ -1,5 +1,21 @@
 # @westpac/button
 
+## 1.3.0
+
+### Minor Changes
+
+- 7d16f040: Export utils
+
+### Patch Changes
+
+- 63f89d17: Update dependencies
+- Updated dependencies [63f89d17]
+- Updated dependencies [46b3d4db]
+- Updated dependencies [c6d4f18e]
+  - @westpac/core@2.2.0
+  - @westpac/hooks@2.0.1
+  - @westpac/icon@1.3.3
+
 ## 1.2.1
 
 ### Patch Changes

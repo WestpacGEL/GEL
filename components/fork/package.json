@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/fork",
-	"version": "1.0.0-beta",
+	"version": "1.0.0",
 	"description": "Westpac GEL fork component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/fork",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -17,8 +17,8 @@
 	"module": "dist/westpac-fork.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/button-group": "^1.1.1",
-		"@westpac/core": "^2.0.0",
+		"@westpac/button-group": "^1.2.1",
+		"@westpac/core": "^2.2.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

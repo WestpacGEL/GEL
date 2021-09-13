@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/button-dropdown",
-	"version": "1.1.2",
+	"version": "1.1.3",
 	"description": "Highly configurable popup panels triggered by a button, containing text, switches, radios, checkboxes, links and more",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button-dropdown",
@@ -49,21 +49,21 @@
 	"module": "dist/westpac-button-dropdown.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/button": "^1.2.1",
-		"@westpac/core": "^2.1.0",
-		"@westpac/heading": "^1.0.1",
-		"@westpac/hooks": "^2.0.0",
+		"@westpac/button": "^1.3.0",
+		"@westpac/core": "^2.2.0",
+		"@westpac/heading": "^1.0.2",
+		"@westpac/hooks": "^2.0.1",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^17.0.2"
 	},
 	"devDependencies": {
-		"@westpac/button-group": "^1.2.0",
-		"@westpac/form-check": "^1.2.0",
-		"@westpac/icon": "^1.3.2",
-		"@westpac/list": "^1.0.1",
-		"@westpac/switch": "^1.1.0",
+		"@westpac/button-group": "^1.2.1",
+		"@westpac/form-check": "^1.3.0",
+		"@westpac/icon": "^1.3.3",
+		"@westpac/list": "^1.1.0",
+		"@westpac/switch": "^1.1.1",
 		"cypress": "^8.0.0",
 		"react": "^17.0.2",
 		"start-server-and-test": "^1.12.6"
