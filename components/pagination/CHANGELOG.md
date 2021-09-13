@@ -1,5 +1,16 @@
 # @westpac/pagination
 
+## 1.2.1
+
+### Patch Changes
+
+- 63f89d17: Update dependencies
+- Updated dependencies [63f89d17]
+- Updated dependencies [46b3d4db]
+- Updated dependencies [c6d4f18e]
+  - @westpac/a11y@1.0.3
+  - @westpac/core@2.2.0
+
 ## 1.2.0
 
 ### Minor Changes

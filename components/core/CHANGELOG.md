@@ -1,5 +1,16 @@
 # @westpac/core
 
+## 2.2.0
+
+### Minor Changes
+
+- 46b3d4db: Refactor getLabel to use switch() instead of chain of if…else
+- c6d4f18e: Add ability for useFonts hook to add custom CSS, allows you to override the defaults
+
+### Patch Changes
+
+- 63f89d17: Update dependencies
+
 ## 2.1.0
 
 ### Minor Changes

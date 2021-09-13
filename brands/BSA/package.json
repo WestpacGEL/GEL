@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/bsa",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"description": "BSA brand component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/brands/BSA",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

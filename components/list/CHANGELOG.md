@@ -1,5 +1,23 @@
 # @westpac/list
 
+## 1.1.0
+
+### Minor Changes
+
+- 550db730: - Add new cross type list
+  - Add success and danger looks for tick and cross type lists
+- 78e7115b: Update tick/cross list to use aria-label attribute, rather than VisuallyHidden item, to convey tick/cross meaning. This approach is simpler, drops the @westpac/a11y dependency and means assistive technologies announce the correct number of list items (a11y)
+
+### Patch Changes
+
+- d6a0b3e4: Fixed blender support for tick and cross types
+- 63f89d17: Update dependencies
+- Updated dependencies [63f89d17]
+- Updated dependencies [46b3d4db]
+- Updated dependencies [c6d4f18e]
+  - @westpac/body@1.4.1
+  - @westpac/core@2.2.0
+
 ## 1.0.1
 
 ### Patch Changes

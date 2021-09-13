@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/rams",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"description": "RAMS brand component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/brands/RAMS",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

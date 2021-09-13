@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/grid",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Mobile-first grid framework used to build responsive layouts using the common 12-column system",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/grid",
@@ -62,14 +62,14 @@
 	"module": "dist/westpac-grid.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/core": "^2.1.0",
+		"@westpac/core": "^2.2.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^17.0.2"
 	},
 	"devDependencies": {
-		"@westpac/hooks": "^2.0.0",
+		"@westpac/hooks": "^2.0.1",
 		"cypress": "^8.0.0",
 		"react": "^17.0.2",
 		"start-server-and-test": "^1.12.6"
