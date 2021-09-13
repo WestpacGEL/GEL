@@ -72,7 +72,7 @@ export function AppDocs({ components, packageName, pkg }) {
 												setBrandName={setBrandName}
 												parent={slug}
 											/>
-											<Page {...route} {...props} brand={brand} />
+											<Page {...route} {...props} brand={brand} slug={slug} />
 										</Fragment>
 									)}
 								/>
