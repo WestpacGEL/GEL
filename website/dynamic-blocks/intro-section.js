@@ -145,6 +145,7 @@ const PackageInfoTable = ({ item }) => {
 	if (!item) return null;
 	const { PACKS, SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
+	const packageName = item.packageName.replace('_', '-');
 	return (
 		<table
 			css={mq({
@@ -177,7 +178,7 @@ const PackageInfoTable = ({ item }) => {
 					<th>History</th>
 					<td>
 						<a
-							href={`https://github.com/WestpacGEL/GEL/blob/master/components/${item.packageName}/CHANGELOG.md`}
+							href={`https://github.com/WestpacGEL/GEL/blob/master/components/${packageName}/CHANGELOG.md`}
 							target="_blank"
 						>
 							View Changes
@@ -188,7 +189,7 @@ const PackageInfoTable = ({ item }) => {
 				<tr>
 					<th>Install</th>
 					<td>
-						<code>npm install @westpac/{item.packageName}</code>
+						<code>npm install @westpac/{packageName}</code>
 					</td>
 				</tr>
 				<tr>
