@@ -1,5 +1,11 @@
 # @westpac/table
 
+## 1.1.0
+
+### Minor Changes
+
+- 52d56d8f: Remove border styling in narrow viewports
+
 ## 1.0.2
 
 ### Patch Changes
