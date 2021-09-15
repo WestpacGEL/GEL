@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/repeater",
-	"version": "1.0.0-beta",
+	"version": "1.0.0",
 	"description": "Repeater component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/repeater",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -16,18 +16,18 @@
 	"main": "dist/westpac-repeater.cjs.js",
 	"module": "dist/westpac-repeater.esm.js",
 	"dependencies": {
-		"@babel/runtime": "^7.14.0",
-		"@westpac/button": "^1.0.0",
-		"@westpac/core": "^2.1.0",
-		"@westpac/icon": "^1.1.0",
+		"@babel/runtime": "^7.14.8",
+		"@westpac/button": "^1.3.0",
+		"@westpac/core": "^2.2.0",
+		"@westpac/icon": "^1.3.3",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^17.0.2"
 	},
 	"devDependencies": {
-		"cypress": "^7.4.0",
+		"cypress": "^8.0.0",
 		"react": "^17.0.2",
-		"start-server-and-test": "^1.12.3"
+		"start-server-and-test": "^1.12.6"
 	}
 }

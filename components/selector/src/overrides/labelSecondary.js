@@ -13,16 +13,17 @@ const LabelSecondary = ({ state: _, ...rest }) => <span {...rest} />;
 // ==============================
 
 const labelSecondaryStyles = () => {
-	const { SPACING } = useBrand();
+	const { SPACING, TYPE } = useBrand();
 
 	return {
 		label: getLabel('selector-option-label-secondary'),
-		width: '40%',
+		flex: '0 0 50%',
 		textAlign: 'right',
-		marginLeft: SPACING(2),
-		overflow: 'hidden',
-		textOverflow: 'ellipsis',
-		whiteSpace: 'nowrap',
+		marginLeft: 'auto', //push right
+		paddingLeft: SPACING(2), //gap
+		...TYPE.bodyFont[400],
+		fontFeatureSettings: '"tnum"', //enable tabular (monospaced) figures
+		boxSizing: 'border-box',
 	};
 };
 

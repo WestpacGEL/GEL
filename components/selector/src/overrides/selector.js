@@ -8,7 +8,7 @@ import { jsx, getLabel } from '@westpac/core';
 
 const Selector = ({ state: { type, checked, disabled, name }, children, ...rest }) => (
 	<div {...rest}>
-		{type === 'button' || type === 'submit' ? (
+		{type === 'button' ? (
 			<input type="hidden" value={checked} disabled={disabled} name={name} />
 		) : undefined}
 		{children}
@@ -29,7 +29,9 @@ const selectorStyles = () => ({
 // Attributes
 // ==============================
 
-const selectorAttributes = () => null;
+const selectorAttributes = () => ({
+	'data-js': 'selector__version__',
+});
 
 // ==============================
 // Exports

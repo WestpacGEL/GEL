@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, useBrand, getLabel, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
@@ -13,21 +13,29 @@ const Hint = ({ state: _, ...rest }) => <div {...rest} />;
 // ==============================
 
 const hintStyles = () => {
+	const mq = useMediaQuery();
 	const { COLORS, PACKS, SPACING } = useBrand();
 
-	return {
+	return mq({
 		label: getLabel('selector-option-hint'),
 		color: COLORS.muted,
-		marginTop: SPACING(1),
-		...PACKS.typeScale.bodyFont[9],
-	};
+		marginTop: [SPACING(1, 'minor'), null, SPACING(1)],
+		fontSize: [PACKS.typeScale.bodyFont[10].fontSize, null, PACKS.typeScale.bodyFont[9].fontSize],
+		lineHeight: [
+			PACKS.typeScale.bodyFont[10].lineHeight,
+			null,
+			PACKS.typeScale.bodyFont[9].lineHeight,
+		],
+	})[0];
 };
 
 // ==============================
 // Attributes
 // ==============================
 
-const hintAttributes = (_, { hintId }) => ({ id: hintId });
+const hintAttributes = (_, { type, hintId }) => ({
+	id: type === 'radio' || type === 'checkbox' ? hintId : undefined,
+});
 
 // ==============================
 // Exports

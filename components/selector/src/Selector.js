@@ -76,7 +76,7 @@ export const Selector = ({
 	};
 
 	const handleChange = (event, value, wasChecked) => {
-		if (type === 'radio' || type === 'button' || type === 'submit') {
+		if (type === 'radio' || type === 'button') {
 			setChecked(asArray(value));
 		} else {
 			if (wasChecked) {
@@ -135,7 +135,7 @@ Selector.propTypes = {
 	/**
 	 * Selector type
 	 */
-	type: PropTypes.oneOf(['radio', 'checkbox', 'button', 'submit']).isRequired,
+	type: PropTypes.oneOf(['radio', 'checkbox', 'button', 'link']).isRequired,
 
 	/**
 	 * The Selector input element’s name
@@ -205,12 +205,12 @@ Selector.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Button: PropTypes.shape({
+		Option: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
-		Option: PropTypes.shape({
+		OptionBtn: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
@@ -235,7 +235,22 @@ Selector.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
+		LabelSecondary: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 		Hint: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		IndicatorCheck: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		IndicatorNext: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

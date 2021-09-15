@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/pictogram",
-	"version": "1.4.1",
+	"version": "1.4.2",
 	"description": "Small brand illustrations generally for visual embellishment, implemented as SVGs",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/pictogram",
@@ -47,17 +47,17 @@
 		]
 	},
 	"dependencies": {
-		"@babel/runtime": "^7.14.0",
-		"@westpac/core": "^2.1.0",
+		"@babel/runtime": "^7.14.8",
+		"@westpac/core": "^2.2.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^17.0.2"
 	},
 	"devDependencies": {
-		"@westpac/grid": "^1.0.1",
-		"cypress": "^7.4.0",
+		"@westpac/grid": "^1.0.2",
+		"cypress": "^8.0.0",
 		"react": "^17.0.2",
-		"start-server-and-test": "^1.12.3"
+		"start-server-and-test": "^1.12.6"
 	}
 }

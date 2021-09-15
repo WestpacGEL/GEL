@@ -4,20 +4,26 @@ export function getLabel(name, props = {}) {
 	Object.entries(props)
 		.sort(([a], [b]) => (a.toLowerCase() < b.toLowerCase() ? -1 : 1))
 		.map(([name, value]) => {
-			if (typeof value === 'undefined') {
-			} else if (typeof value === 'boolean') {
-				label += value ? `-${name}` : '';
-			} else if (typeof value === 'string') {
-				label += value === '' ? '' : `-${name}_${value.replace(/-/g, '_')}`;
-			} else if (typeof value === 'number') {
-				label += `-${name}_${String(value).replace(/-/g, '_')}`;
-			} else if (typeof value === 'function') {
-				label += `-${value.displayName || value.name}`;
-			} else {
-				label += `-${name}_${JSON.stringify(value)
-					.replace(/-/g, '_')
-					.replace(/,/g, '_')
-					.replace(/:/g, '_')}`;
+			switch (typeof value) {
+				case 'undefined':
+					break;
+				case 'boolean':
+					label += value ? `-${name}` : '';
+					break;
+				case 'string':
+					label += value === '' ? '' : `-${name}_${value.replace(/-/g, '_')}`;
+					break;
+				case 'number':
+					label += `-${name}_${String(value).replace(/-/g, '_')}`;
+					break;
+				case 'function':
+					label += `-${value.displayName || value.name}`;
+					break;
+				default:
+					label += `-${name}_${JSON.stringify(value)
+						.replace(/-/g, '_')
+						.replace(/,/g, '_')
+						.replace(/:/g, '_')}`;
 			}
 		});
 

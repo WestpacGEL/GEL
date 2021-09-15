@@ -9,34 +9,15 @@ import {
 	styleReconciler,
 	formatClassName,
 } from '@westpac/core';
-import { VisuallyHidden } from '@westpac/a11y';
 import { Body } from '@westpac/body';
 
 // ==============================
 // Component
 // ==============================
 
-const List = ({ state: { type, nested, assistiveText }, children, ...rest }) => {
-	//a11y: tick bullet meaning must be conveyed; render a (configurable) VisuallyHidden first item
-	const hiddenItem =
-		type === 'tick' && nested === 0 ? (
-			<VisuallyHidden
-				tag="li"
-				css={{
-					'::before': { display: 'none !important' },
-				}}
-			>
-				{assistiveText || 'The following items are ticked:'}
-			</VisuallyHidden>
-		) : null;
-
-	return (
-		<Body tag={type === 'ordered' ? 'ol' : 'ul'} {...rest}>
-			{hiddenItem}
-			{children}
-		</Body>
-	);
-};
+const List = ({ state: { type }, ...rest }) => (
+	<Body tag={type === 'ordered' ? 'ol' : 'ul'} {...rest} />
+);
 
 const BlenderList = (props) => (
 	<List
@@ -111,10 +92,29 @@ const listStyles = (_, { type, look, spacing, nested }) => {
 				display: 'block',
 				width: '0.75rem',
 				height: '0.375rem',
-				border: `solid ${COLORS.hero}`,
+				border: `solid ${COLORS[look]}`,
 				borderWidth: '0 0 0.125rem 0.125rem',
 				transform: 'rotate(-44deg)',
 				boxSizing: 'border-box',
+			},
+		},
+		cross: {
+			'::before, ::after': {
+				content: "''",
+				position: 'absolute',
+				left: '0.375rem',
+				top: '0.25rem',
+				display: 'block',
+				width: 0,
+				height: '0.75rem',
+				borderLeft: `0.125rem solid ${COLORS[look]}`,
+				boxSizing: 'border-box',
+			},
+			'::before': {
+				transform: 'rotate(-45deg)',
+			},
+			'::after': {
+				transform: 'rotate(45deg)',
 			},
 		},
 		unstyled: {
@@ -167,7 +167,7 @@ const blenderStyles = (_, { type, look, spacing }) => {
 	let modifier;
 
 	if (modifiers.length > 1 && modifiers.includes('type') && modifiers.includes('look')) {
-		if (type === 'bullet' && look === 'hero') {
+		if ((type === 'bullet' || type === 'tick' || type === 'cross') && look === 'hero') {
 			modifier = 'type';
 		} else {
 			modifier = 'look';
@@ -206,12 +206,20 @@ const blenderStyles = (_, { type, look, spacing }) => {
 // Attributes
 // ==============================
 
-const listAttributes = (_, { type }) => ({
+const listAttributes = (_, { type, nested, assistiveText }) => ({
 	//a11y: as we're using `list-style:none` CSS, we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
 	role: type !== 'ordered' ? 'list' : undefined,
+
+	//a11y: tick & cross bullet meaning must be conveyed
+	//Note: `aria-label` only valid on list element because there's a `role` defined
+	'aria-label':
+		(type === 'tick' || type === 'cross') && nested === 0
+			? assistiveText || `The following items are ${type === 'tick' ? 'ticked' : 'crossed'}`
+			: undefined,
 });
 
-const blenderAttributes = (_, { type, look, spacing }) => ({
+const blenderAttributes = (_, { type, look, spacing, nested, assistiveText }) => ({
+	...listAttributes(_, { type, nested, assistiveText }),
 	className: classNames({
 		[`__convert__list-${type}`]: type !== defaultProps.type,
 		[`__convert__list-${look}`]: type === 'bullet' && look !== 'hero',

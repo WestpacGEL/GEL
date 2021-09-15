@@ -1,5 +1,11 @@
 # @westpac/bom
 
+## 2.1.1
+
+### Patch Changes
+
+- 63f89d17: Update dependencies
+
 ## 2.1.0
 
 ### Minor Changes

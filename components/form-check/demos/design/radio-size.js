@@ -13,7 +13,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 			<Grid>
 				<Cell width={6}>
 					<Title>Medium</Title>
-					<FormCheck type="radio" name="example-type-radio-size-medium" size="medium">
+					<FormCheck type="radio" name="example-radio-medium" size="medium">
 						<Option value="1">Option 1</Option>
 						<Option value="2">Option 2</Option>
 						<Option value="3">Option 3</Option>
@@ -21,7 +21,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 				</Cell>
 				<Cell width={6}>
 					<Title>Large</Title>
-					<FormCheck type="radio" name="example-type-radio-size-large" size="large">
+					<FormCheck type="radio" name="example-radio-large" size="large">
 						<Option value="1">Option 1</Option>
 						<Option value="2">Option 2</Option>
 						<Option value="3">Option 3</Option>

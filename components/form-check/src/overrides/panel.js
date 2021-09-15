@@ -1,13 +1,12 @@
 /** @jsx jsx */
 
 import { jsx, getLabel } from '@westpac/core';
-import { defaultProps } from '../FormCheck';
 
 // ==============================
 // Component
 // ==============================
 
-const Panel = ({ state: _, ...rest }) => <span {...rest} />;
+const Panel = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles
@@ -16,34 +15,8 @@ const Panel = ({ state: _, ...rest }) => <span {...rest} />;
 const panelStyles = (_, { isOpen }) => {
 	return {
 		label: getLabel('formCheckReveal-panel'),
-		display: !isOpen ? 'none' : 'inline',
+		display: !isOpen ? 'none' : 'inline-block',
 	};
-};
-
-// ==============================
-// Blender Styles
-// ==============================
-
-const blenderStyles = (_, { block }) => {
-	const props = { block };
-	const baseStyles = panelStyles(_, defaultProps);
-
-	let modifiers = getModifier(defaultProps, props);
-	if (!modifiers.length) return baseStyles;
-
-	const modifierStyles = panelStyles(_, props);
-	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
-
-	let label = baseStyles.label;
-	const modifier = modifiers[0];
-
-	switch (modifier) {
-		default:
-			label = `${label}-${modifier}`;
-			break;
-	}
-
-	return { label, ...reconciledStyles };
 };
 
 // ==============================
@@ -53,6 +26,11 @@ const blenderStyles = (_, { block }) => {
 const panelAttributes = (_, { instanceId, isOpen }) => ({
 	id: `${instanceId}-panel`,
 	'aria-hidden': !isOpen,
+});
+
+const blenderAttributes = (_, props) => ({
+	...panelAttributes(_, props),
+	'data-js': 'formCheckReveal-panel__version__',
 });
 
 // ==============================
@@ -67,6 +45,6 @@ export const defaultPanel = {
 
 export const blenderPanel = {
 	component: Panel,
-	styles: blenderStyles,
-	attributes: panelAttributes,
+	styles: panelStyles,
+	attributes: blenderAttributes,
 };

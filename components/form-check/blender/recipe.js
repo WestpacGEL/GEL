@@ -1,11 +1,14 @@
-import { GEL, titleCase } from '@westpac/core';
+import { GEL } from '@westpac/core';
 import React from 'react';
 
-import { FormCheck, Option } from '@westpac/form-check';
+import { FormCheck, FormCheckReveal, Option } from '@westpac/form-check';
 import { blenderFormCheck } from '../src/overrides/formCheck';
 import { blenderOption } from '../src/overrides/option';
 import { blenderLabel } from '../src/overrides/label';
 import { blenderHint } from '../src/overrides/hint';
+
+import { blenderTrigger } from '../src/overrides/trigger';
+import { blenderPanel } from '../src/overrides/panel';
 
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };
@@ -24,6 +27,10 @@ export function AllStyles({ brand }) {
 		Hint: {
 			component: blenderHint.component,
 			styles: blenderHint.styles,
+		},
+		Trigger: {
+			component: blenderTrigger.component,
+			styles: blenderTrigger.styles,
 		},
 	};
 
@@ -56,6 +63,11 @@ export function AllStyles({ brand }) {
 				<Option value="2">Text</Option>
 				<Option value="3">Text</Option>
 			</FormCheck>
+			<FormCheckReveal type="checkbox" name="text" show={1}>
+				<Option value="1">Text</Option>
+				<Option value="2">Text</Option>
+				<Option value="3">Text</Option>
+			</FormCheckReveal>
 		</GEL>
 	);
 }
@@ -73,6 +85,13 @@ export function Docs({ brand }) {
 		},
 		Hint: {
 			component: blenderHint.component,
+		},
+		Trigger: {
+			component: blenderTrigger.component,
+			attributes: blenderTrigger.attributes,
+		},
+		Panel: {
+			attributes: blenderPanel.attributes,
 		},
 	};
 
@@ -280,6 +299,24 @@ export function Docs({ brand }) {
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
 					</FormCheck>
+				</GEL>
+			),
+		},
+
+		{
+			heading: 'Reveal',
+			component: () => (
+				<GEL brand={overridesWithTokens}>
+					<FormCheckReveal
+						type="radio"
+						name="example-reveal-radios"
+						instanceIdPrefix="GEL"
+						show={1}
+					>
+						<Option value="1">Your option 1</Option>
+						<Option value="2">Your option 2</Option>
+						<Option value="3">Your option 3</Option>
+					</FormCheckReveal>
 				</GEL>
 			),
 		},
