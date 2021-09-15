@@ -36,8 +36,8 @@ function Example({ brand }) {
 			<h3>Brand colours</h3>
 			<Grid>
 				{brandColors.map((color) => (
-					<Cell>
-						<FavouriteIcon key={color} assistiveText="Coloured heart" color={color} />
+					<Cell key={color}>
+						<FavouriteIcon assistiveText="Coloured heart" color={color} />
 						<Name>{`<FavouriteIcon color="${color}"\u00A0/>`}</Name>
 					</Cell>
 				))}
@@ -46,8 +46,8 @@ function Example({ brand }) {
 			<h3>Reserved colours</h3>
 			<Grid>
 				{reservedColors.map((color) => (
-					<Cell>
-						<FavouriteIcon key={color} assistiveText="Coloured heart" color={color} />
+					<Cell key={color}>
+						<FavouriteIcon assistiveText="Coloured heart" color={color} />
 						<Name>{`<FavouriteIcon color="${color}"\u00A0/>`}</Name>
 					</Cell>
 				))}
