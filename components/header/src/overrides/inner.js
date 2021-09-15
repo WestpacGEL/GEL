@@ -29,26 +29,11 @@ const innerStyles = (_, { fixed, scrolled }) => {
 		padding: ['0 0.75rem', null, '0 1.5rem'],
 		width: '100%',
 
-		// double check this
 		borderBottom: `solid #e8e8ed`,
 		borderBottomWidth: `${scrolled ? 0 : 1}px`,
 		transition: 'border-bottom-width .2s',
 		willChange: 'border-botom-width',
 
-		// '::before': {
-		// 	content: '""',
-		// 	display: 'block',
-		// 	position: 'absolute',
-		// 	zIndex: '1',
-		// 	left: 0,
-		// 	right: 0,
-		// 	top: '100%',
-		// 	overflow: 'hidden',
-		// 	opacity: scrolled ? 0 : 1,
-		// 	borderTop: '1px solid #e8e8ed',
-		// 	transition: 'opacity .2s',
-		// 	willChange: 'opacity',
-		// },
 		...(fixed && {
 			position: 'fixed',
 			top: 0,
