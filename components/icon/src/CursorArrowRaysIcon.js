@@ -1,5 +1,5 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from '../Icon';
+import { propTypes, defaultProps, Icon } from './Icon';
 
 export const CursorArrowRaysIcon = (props) => (
 	<Icon icon="CursorArrowRaysIcon" {...props}>
