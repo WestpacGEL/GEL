@@ -11,9 +11,9 @@ export const CursorArrowRaysIcon = (props) => (
 	</Icon>
 );
 
-AccessibilityIcon.defaultProps = {
+CursorArrowRaysIcon.defaultProps = {
 	...defaultProps,
 	assistiveText: 'Cursor arrow rays',
 	copyrightYear: '2021',
 };
-AccessibilityIcon.propTypes = propTypes;
+CursorArrowRaysIcon.propTypes = propTypes;
