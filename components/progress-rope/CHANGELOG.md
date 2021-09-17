@@ -1,5 +1,11 @@
 # @westpac/progress-rope
 
+## 2.2.0
+
+### Minor Changes
+
+- 89dfb30b: Replaced peer dependency react-spring with @react-spring/web
+
 ## 2.1.2
 
 ### Patch Changes
