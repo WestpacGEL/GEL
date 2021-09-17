@@ -1,5 +1,11 @@
 # @westpac/icon
 
+## 1.4.0
+
+### Minor Changes
+
+- 4a3282a0: Add new icons: CursorArrowClickIcon, CursorArrowDoubleClickIcon, CursorArrowIcon and CursorArrowRaysIcon
+
 ## 1.3.3
 
 ### Patch Changes
