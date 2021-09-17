@@ -2,7 +2,7 @@
 
 import { jsx, getLabel, formatClassName } from '@westpac/core';
 import ResizeObserver from 'resize-observer-polyfill';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated } from '@react-spring/web';
 import useMeasure from 'react-use-measure';
 import { Body } from '@westpac/body';
 import { useEffect } from 'react';

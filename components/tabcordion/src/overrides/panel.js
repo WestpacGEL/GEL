@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, getLabel, classNames, getModifier, formatClassName } from '@westpac/core';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated } from '@react-spring/web';
 import BezierEasing from 'bezier-easing';
 import { forwardRef } from 'react';
 

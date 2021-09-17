@@ -10,7 +10,7 @@ import {
 	Global,
 } from '@westpac/core';
 import { forwardRef, Fragment } from 'react';
-import { useTransition, animated } from 'react-spring';
+import { useTransition, animated } from '@react-spring/web';
 
 import { defaultProps } from '../Modal';
 import { nestedStyles } from './modalDialog';
