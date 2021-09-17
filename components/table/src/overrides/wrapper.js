@@ -22,7 +22,6 @@ const wrapperStyles = () => {
 			marginBottom: '1.125rem',
 			overflowY: 'hidden',
 			overflowX: 'auto',
-			border: `1px solid ${COLORS.border}`,
 		},
 	};
 };

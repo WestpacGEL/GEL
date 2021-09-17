@@ -15,7 +15,7 @@ import { Switch } from '@westpac/switch';
 import { Textarea, Select } from '@westpac/text-input';
 import { Container, Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
-import { useTransition, animated } from 'react-spring';
+import { useTransition, animated } from '@react-spring/web';
 import { useQuery } from '@apollo/react-hooks';
 import merge from 'lodash.merge';
 import gql from 'graphql-tag';

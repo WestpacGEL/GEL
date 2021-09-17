@@ -1,5 +1,6 @@
 {
 	"name": "gel",
+	"version": "0.0.0",
 	"description": "The Westpac GEL Design System components, brand tokens and website monorepo",
 	"repository": "https://github.com/WestpacGEL/GEL",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -96,6 +97,7 @@
 		"@emotion/weak-memoize": "^0.2.5",
 		"@manypkg/cli": "^0.18.0",
 		"@preconstruct/cli": "^2.1.0",
+		"@react-spring/web": "^9.2.4",
 		"@testing-library/jest-dom": "^5.14.1",
 		"@testing-library/react": "^12.0.0",
 		"babel-core": "^7.0.0-bridge.0",
@@ -128,7 +130,6 @@
 		"react-docgen": "^5.4.0",
 		"react-dom": "^17.0.2",
 		"react-router-dom": "^5.2.0",
-		"react-spring": "^9.2.4",
 		"regenerator-runtime": "^0.13.7",
 		"resize-observer-polyfill": "^1.5.1",
 		"shortid": "^2.2.16",
@@ -151,6 +152,5 @@
 		"**/@keystonejs/keystone": "^8.1.4",
 		"**/react": "^17.0.2",
 		"**/react-dom": "^17.0.2"
-	},
-	"version": "0.0.0"
+	}
 }

@@ -3,7 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import { forwardRef, useState, useEffect } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated } from '@react-spring/web';
 import useMeasure from 'react-use-measure';
 import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';

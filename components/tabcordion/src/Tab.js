@@ -183,7 +183,7 @@ Tab.propTypes = {
 	/**
 	 * The text label for this tab
 	 */
-	text: PropTypes.string.isRequired,
+	text: PropTypes.node.isRequired,
 
 	/**
 	 * Render as either an accordion or tabs
