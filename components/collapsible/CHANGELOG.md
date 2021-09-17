@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- 89dfb30b: Replaced peer depenency react-spring with @react-spring/web
+- 89dfb30b: Replaced peer dependency react-spring with @react-spring/web
 
 ### Patch Changes
 
