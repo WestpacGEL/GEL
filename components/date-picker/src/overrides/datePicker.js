@@ -44,7 +44,7 @@ const DatePicker = ({ state: _, ...rest }) => {
 // Styles
 // ==============================
 
-const datePickerStyles = (_, { size }) => {
+const datePickerStyles = (_, { block, size }) => {
 	const { COLORS, PACKS } = useBrand();
 
 	const toggleWidthMap = {
@@ -60,7 +60,7 @@ const datePickerStyles = (_, { size }) => {
 	const focus = { ...PACKS.focus };
 
 	return {
-		display: 'inline-block',
+		display: !block && 'inline-block',
 
 		/* Input */
 		'.duet-date__input': {
@@ -69,7 +69,7 @@ const datePickerStyles = (_, { size }) => {
 			lineHeight: textInputSizeMap[size].lineHeight,
 			padding: textInputSizeMap[size].padding.join(' '),
 			paddingRight: `calc(${toggleWidthMap[size]} + ${textInputSizeMap[size].padding[1]})`,
-			maxWidth: getMaxWidth(size, width, toggleWidthMap[size]),
+			maxWidth: !block && getMaxWidth(size, width, toggleWidthMap[size]),
 
 			':focus': {
 				borderColor: COLORS.borderDark,

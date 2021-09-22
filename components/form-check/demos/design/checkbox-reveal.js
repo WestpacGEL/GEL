@@ -19,6 +19,11 @@ const Demo = ({ context, showCode, showDemo }) => {
 						<Option value="3">Option 3</Option>
 						<Option value="4">Option 4</Option>
 						<Option value="5">Option 5</Option>
+						<Option value="6">Option 6</Option>
+						<Option value="7">Option 7</Option>
+						<Option value="8">Option 8</Option>
+						<Option value="9">Option 9</Option>
+						<Option value="10">Option 10</Option>
 					</FormCheckReveal>
 				</Cell>
 				<Cell width={6}>
@@ -29,6 +34,11 @@ const Demo = ({ context, showCode, showDemo }) => {
 						<Option value="3">Option 3</Option>
 						<Option value="4">Option 4</Option>
 						<Option value="5">Option 5</Option>
+						<Option value="6">Option 6</Option>
+						<Option value="7">Option 7</Option>
+						<Option value="8">Option 8</Option>
+						<Option value="9">Option 9</Option>
+						<Option value="10">Option 10</Option>
 					</FormCheckReveal>
 				</Cell>
 			</Grid>
