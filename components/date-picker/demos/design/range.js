@@ -29,6 +29,7 @@ const DatePickerDemo = () => {
 						<DatePicker
 							id="example-from"
 							name="example-from"
+							block
 							max={dateTo}
 							onChange={(e) => handleChangeFrom(e)}
 						/>
@@ -40,6 +41,7 @@ const DatePickerDemo = () => {
 						<DatePicker
 							id="example-to"
 							name="example-to"
+							block
 							min={dateFrom}
 							onChange={(e) => handleChangeTo(e)}
 						/>
