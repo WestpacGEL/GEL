@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { jsx } from '@westpac/core';
 import { DatePicker } from '@westpac/date-picker';
 import { Grid, Cell } from '@westpac/grid';
@@ -8,7 +8,7 @@ import { Field } from '@westpac/form';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Title } from '../../../../helpers/demos';
 
-const Demo = ({ context, showCode, showDemo }) => {
+const DatePickerDemo = () => {
 	const [dateFrom, setDateFrom] = useState(null);
 	const [dateTo, setDateTo] = useState(null);
 
@@ -20,7 +20,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 	};
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+		<Fragment>
 			<Title>Selecting a date range</Title>
 
 			<Grid>
@@ -46,6 +46,14 @@ const Demo = ({ context, showCode, showDemo }) => {
 					</Field>
 				</Cell>
 			</Grid>
+		</Fragment>
+	);
+};
+
+const Demo = ({ context, showCode, showDemo }) => {
+	return (
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+			<DatePickerDemo />
 		</Playground>
 	);
 };
