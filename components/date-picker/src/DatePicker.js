@@ -115,7 +115,7 @@ DatePicker.propTypes = {
 	/**
 	 * Block mode
 	 *
-	 * Fit input width to its parent width
+	 * Fit component width to its parent width
 	 */
 	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 
