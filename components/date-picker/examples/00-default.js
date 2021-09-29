@@ -13,6 +13,13 @@ function Example({ brand }) {
 
 			<hr />
 
+			<h2>Block</h2>
+			<DatePicker onChange={(e) => console.log(e.detail)} block />
+			<br />
+			<br />
+
+			<hr />
+
 			<h2>Placeholder</h2>
 			<DatePicker
 				id="example-placeholder"
