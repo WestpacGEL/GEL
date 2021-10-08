@@ -9,7 +9,7 @@ import { VisuallyHidden } from '@westpac/a11y';
 
 const FormLabel = ({ state: { tag, srOnly }, ...rest }) => {
 	const Tag = srOnly ? VisuallyHidden : tag;
-	return <Tag {...rest} />;
+	return <Tag tag={srOnly ? 'label' : undefined} {...rest} />;
 };
 
 // ==============================
