@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFieldset } from './overrides/fieldset';
@@ -16,11 +16,10 @@ import pkg from '../package.json';
 // ==============================
 
 export const Fieldset = ({
+	instanceId,
 	legend,
 	hint,
-	hintIdPrefix,
 	error,
-	ariadescribedby,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -30,18 +29,31 @@ export const Fieldset = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const [id, setId] = useState(instanceId);
+	const [ariaDescribedByValue, setAriaDescribedByValue] = useState();
+
+	// create the prefix for internal IDs
+	useEffect(() => {
+		if (!instanceId) {
+			setId(`gel-fieldset-${useInstanceId()}`);
+		}
+	}, [instanceId]);
+
+	useEffect(() => {
+		const arr = [...(hint ? [`${id}-hint`] : []), ...(error ? [`${id}-error`] : [])];
+		setAriaDescribedByValue(arr.join(' '));
+	}, [id, hint, error]);
+
 	const defaultOverrides = {
 		Fieldset: defaultFieldset,
 	};
 
-	const [hintId] = useState(hintIdPrefix ? hintIdPrefix : `gel-hint-${useInstanceId()}`);
-
 	const state = {
+		id,
 		legend,
 		hint,
-		hintId,
 		error,
-		ariadescribedby,
+		ariaDescribedByValue,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -56,11 +68,11 @@ export const Fieldset = ({
 				{legend}
 			</FormLabel>
 			{hint && (
-				<Hint id={hintId} overrides={componentOverrides}>
+				<Hint id={`${id}-hint`} overrides={componentOverrides}>
 					{typeof hint === 'function' ? hint() : hint}
 				</Hint>
 			)}
-			{error && <ErrorMessage message={error} overrides={componentOverrides} />}
+			{error && <ErrorMessage id={`${id}-error`} message={error} overrides={componentOverrides} />}
 			{children}
 		</Fieldset>
 	);
@@ -72,29 +84,24 @@ export const Fieldset = ({
 
 Fieldset.propTypes = {
 	/**
-	 * label text
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+
+	/**
+	 * Legend text
 	 */
 	legend: PropTypes.string,
 
 	/**
-	 * hint text
+	 * Hint text
 	 */
 	hint: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-
-	/**
-	 * hint id
-	 */
-	hintIdPrefix: PropTypes.string,
 
 	/**
 	 * Error message text
 	 */
 	error: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-
-	/**
-	 * aria-describedby
-	 */
-	ariadescribedby: PropTypes.string,
 
 	/**
 	 * The override API

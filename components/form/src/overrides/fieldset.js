@@ -18,9 +18,9 @@ const fieldsetStyles = () => ({ label: 'fieldset', border: 'none', margin: 0, pa
 // Attributes
 // ==============================
 
-const fieldsetAttributes = (_, { ariadescribedby, error }) => ({
-	role: 'group',
-	'aria-describedby': ariadescribedby,
+const fieldsetAttributes = (_, { ariaDescribedByValue, error }) => ({
+	role: 'group', //a11y: for JAWS support of fieldset wrapped text inputs
+	'aria-describedby': ariaDescribedByValue ? ariaDescribedByValue : undefined,
 	'aria-invalid': !!error,
 });
 
