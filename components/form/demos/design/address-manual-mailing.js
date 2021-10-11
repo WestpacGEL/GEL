@@ -3,9 +3,9 @@
 import { jsx, useMediaQuery } from '@westpac/core';
 import { Form, Fieldset } from '@westpac/form';
 import { Fork, Content } from '@westpac/fork';
-import { Container } from './_utils';
+import { Container, FormHeading } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
-import { AddressManual } from './address-manual';
+import { AddressManualPattern } from './address-manual';
 
 const Demo = ({ context, showCode, showDemo }) => {
 	const mq = useMediaQuery();
@@ -17,7 +17,9 @@ const Demo = ({ context, showCode, showDemo }) => {
 					<Fieldset legend="Do you have a different mailing address?">
 						<Fork size="large" css={mq({ marginBottom: ['1.5rem', '1.875rem'] })}>
 							<Content text="Yes">
-								<AddressManual mailing />
+								{/* A11y: tabindex="0" so screen readers announce the heading in Forms mode */}
+								<FormHeading tabIndex="0">Mailing address</FormHeading>
+								<AddressManualPattern mailing />
 							</Content>
 							<Content text="No" />
 						</Fork>

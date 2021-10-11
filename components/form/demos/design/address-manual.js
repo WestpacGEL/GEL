@@ -7,29 +7,35 @@ import { Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Fragment } from 'react';
 
-export const AddressManual = ({ showErrors = false, mailing = false }) => {
+export const StreetPattern = ({ hint, error, invalid, token = '' }) => {
+	return (
+		<FormGroup>
+			<Fieldset legend="Street" hint={hint} error={error}>
+				<InputCluster>
+					<Item>
+						<Field label="Line 1 of 2" hideLabel>
+							<TextInput size="large" autocomplete={`${token}address-line1`} invalid={invalid} />
+						</Field>
+					</Item>
+					<Item>
+						<Field label="Line 2 of 2" hideLabel>
+							<TextInput size="large" autocomplete={`${token}address-line2`} />
+						</Field>
+					</Item>
+				</InputCluster>
+			</Fieldset>
+		</FormGroup>
+	);
+};
+
+export const AddressManualPattern = ({ showErrors = false, mailing = false }) => {
 	const error = showErrors ? 'Error message goes here if activated' : '';
 	const invalid = showErrors;
 	const token = mailing ? 'shipping ' : '';
 
 	return (
 		<Fragment>
-			<FormGroup>
-				<Fieldset legend="Street" hint="Not a PO Box" error={error}>
-					<InputCluster>
-						<Item>
-							<Field label="Line 1 of 2" hideLabel>
-								<TextInput size="large" autocomplete={`${token}address-line1`} invalid={invalid} />
-							</Field>
-						</Item>
-						<Item>
-							<Field label="Line 2 of 2" hideLabel>
-								<TextInput size="large" autocomplete={`${token}address-line2`} />
-							</Field>
-						</Item>
-					</InputCluster>
-				</Fieldset>
-			</FormGroup>
+			<StreetPattern hint="Not a PO Box" error={error} invalid={invalid} token={token} />
 			<FormGroup>
 				<Field label="Suburb" error={error}>
 					<TextInput
@@ -73,7 +79,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Container>
 				<Form spacing="large">
-					<AddressManual />
+					<AddressManualPattern />
 				</Form>
 			</Container>
 		</Playground>

@@ -7,7 +7,7 @@ import { Fragment, useState } from 'react';
 import { Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-const AddressManualComplex = ({ property = 'house' }) => {
+const AddressManualComplexPattern = ({ property = 'house' }) => {
 	let propertyStr;
 	let extraStreetNum = false;
 
@@ -113,7 +113,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 							<PropertySelect value={property} onChange={(e) => setProperty(e.target.value)} />
 						</Field>
 					</FormGroup>
-					{property && <AddressManualComplex property={property} />}
+					{property && <AddressManualComplexPattern property={property} />}
 				</Form>
 			</Container>
 		</Playground>
