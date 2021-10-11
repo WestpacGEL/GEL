@@ -9,6 +9,8 @@ import { TextInput, Select } from '@westpac/text-input';
 import { Link, Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
+import { AddressManualPattern } from './address-manual';
+
 const Input = ({ autoComplete, options, ...props }) => (
 	<components.Input {...props} autoComplete="street-address" />
 );
@@ -16,7 +18,7 @@ const Input = ({ autoComplete, options, ...props }) => (
 const Demo = ({ context, showCode, showDemo }) => {
 	const [manual, setManual] = useState(false);
 
-	const Hint = () => (
+	const StreetHint = () => (
 		<Fragment>
 			Not a PO Box
 			<br />
@@ -50,51 +52,10 @@ const Demo = ({ context, showCode, showDemo }) => {
 			<Container>
 				<Form spacing="large">
 					{manual ? (
-						<Fragment>
-							<FormGroup>
-								<Fieldset legend="Street address" hint={Hint}>
-									<InputCluster>
-										<Item>
-											<Field hideLabel label="Line 1 of 2">
-												<TextInput size="large" autocomplete="street address-line1" />
-											</Field>
-										</Item>
-										<Item>
-											<Field hideLabel label="Line 2 of 2">
-												<TextInput size="large" autocomplete="street address-line2" />
-											</Field>
-										</Item>
-									</InputCluster>
-								</Fieldset>
-							</FormGroup>
-							<FormGroup>
-								<Field label="Suburb">
-									<TextInput size="large" width={20} autocomplete="address-level2" />
-								</Field>
-							</FormGroup>
-							<FormGroup>
-								<Field label="State">
-									<Select size="large" width={10} autocomplete="address-level1">
-										<option>Select</option>
-										<option>NSW</option>
-										<option>VIC</option>
-										<option>QLD</option>
-										<option>ACT</option>
-										<option>SA</option>
-										<option>WA</option>
-										<option>NT</option>
-									</Select>
-								</Field>
-							</FormGroup>
-							<FormGroup>
-								<Field label="Postcode">
-									<TextInput size="large" width={4} autocomplete="postal-code" />
-								</Field>
-							</FormGroup>
-						</Fragment>
+						<AddressManualPattern streetHint={StreetHint} />
 					) : (
 						<FormGroup>
-							<Field label="Search for your home address" hint={Hint}>
+							<Field label="Search for your home address" hint={StreetHint}>
 								<Autocomplete
 									size="large"
 									footer={Footer}
