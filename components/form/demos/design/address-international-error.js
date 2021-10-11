@@ -8,6 +8,7 @@ import { components } from 'react-select';
 import { TextInput } from '@westpac/text-input';
 import { Link, Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
+import { StreetPattern } from './address-manual';
 
 const Footer = (props) => (
 	<Fragment {...props}>
@@ -16,7 +17,7 @@ const Footer = (props) => (
 );
 
 const Input = ({ autoComplete, options, ...props }) => (
-	<components.Input {...props} autoComplete="country" />
+	<components.Input {...props} autoComplete="country-name" />
 );
 
 const Demo = ({ context, showCode, showDemo }) => {
@@ -24,22 +25,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Container>
 				<Form spacing="large">
-					<FormGroup>
-						<Fieldset legend="Street">
-							<InputCluster>
-								<Item>
-									<Field hideLabel label="Line 1 of 2">
-										<TextInput size="large" autocomplete="street address-line1" />
-									</Field>
-								</Item>
-								<Item>
-									<Field hideLabel label="Line 2 of 2">
-										<TextInput size="large" autocomplete="street address-line2" />
-									</Field>
-								</Item>
-							</InputCluster>
-						</Fieldset>
-					</FormGroup>
+					<StreetPattern error="Error message goes here if activated" invalid />
 					<FormGroup>
 						<Field label="City, town or suburb" error="Enter a city, town or suburb">
 							<TextInput size="large" width={20} invalid />
@@ -51,8 +37,8 @@ const Demo = ({ context, showCode, showDemo }) => {
 						</Field>
 					</FormGroup>
 					<FormGroup>
-						<Field label="Postcode or Zip code">
-							<TextInput size="large" width={5} autocomplete="postal-code" />
+						<Field label="Postcode or Zip code" error="Enter a postcode or zip code">
+							<TextInput size="large" width={5} invalid autocomplete="postal-code" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
