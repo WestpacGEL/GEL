@@ -12,12 +12,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 			<Container>
 				<Form spacing="large">
 					<FormGroup>
-						<Fieldset
-							legend="Date of birth"
-							hint="Example: 31 3 1980"
-							hintIdPrefix="dob-hint"
-							ariadescribedby="dob-hint"
-						>
+						<Fieldset legend="Date of birth" hint="Example: 31 3 1980">
 							<InputCluster horizontal>
 								<Item>
 									<Field label="Day" subLabel>

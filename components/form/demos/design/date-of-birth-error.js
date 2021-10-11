@@ -15,8 +15,6 @@ const Demo = ({ context, showCode, showDemo }) => {
 						<Fieldset
 							legend="Date of birth"
 							hint="Example: 31 3 1980"
-							hintIdPrefix="dob-hint"
-							ariadescribedby="dob-hint"
 							error={['Day must be valid', 'Year must be valid']}
 						>
 							<InputCluster horizontal>
