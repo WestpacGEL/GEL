@@ -28,14 +28,18 @@ export const StreetPattern = ({ hint, error, invalid, token = '' }) => {
 	);
 };
 
-export const AddressManualPattern = ({ showErrors = false, mailing = false }) => {
+export const AddressManualPattern = ({
+	streetHint = 'Not a PO Box',
+	showErrors = false,
+	mailing = false,
+}) => {
 	const error = showErrors ? 'Error message goes here if activated' : '';
 	const invalid = showErrors;
 	const token = mailing ? 'shipping ' : '';
 
 	return (
 		<Fragment>
-			<StreetPattern hint="Not a PO Box" error={error} invalid={invalid} token={token} />
+			<StreetPattern hint={streetHint} error={error} invalid={invalid} token={token} />
 			<FormGroup>
 				<Field label="Suburb" error={error}>
 					<TextInput
