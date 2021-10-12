@@ -1,0 +1,34 @@
+{
+	"name": "@westpac/compacta",
+	"version": "1.0.0",
+	"description": "gel compacta",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/compacta",
+	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"license": "GPL-3.0+",
+	"scripts": {
+		"start": "PACKAGE_NAME=compacta NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
+		"test": "start-server-and-test start http://localhost:8080 test:all",
+		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
+		"test:all": "yarn test:integration",
+		"test:integration": "cypress run",
+		"test:test-dev": "cypress open"
+	},
+	"main": "dist/westpac-compacta.cjs.js",
+	"module": "dist/westpac-compacta.esm.js",
+	"dependencies": {
+		"@babel/runtime": "^7.14.8",
+		"@westpac/button": "^1.3.0",
+		"@westpac/core": "^2.1.0",
+		"@westpac/icon": "^1.3.3",
+		"prop-types": "^15.7.2"
+	},
+	"peerDependencies": {
+		"react": "^17.0.2"
+	},
+	"devDependencies": {
+		"cypress": "^8.0.0",
+		"react": "^17.0.2",
+		"start-server-and-test": "^1.12.6"
+	}
+}
