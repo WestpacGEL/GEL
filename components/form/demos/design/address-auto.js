@@ -15,13 +15,12 @@ const Input = ({ autoComplete, options, ...props }) => (
 );
 
 const Demo = ({ context, showCode, showDemo }) => {
-	const [manual, setManual] = useState(true);
+	const [manual, setManual] = useState(false);
 	const streetLegendRef = useRef(null);
 
 	useLayoutEffect(() => {
 		if (manual) {
-			console.log(streetLegendRef);
-			streetLegendRef.current.focus();
+			setTimeout(() => streetLegendRef.current.focus());
 		}
 	}, [manual, streetLegendRef]);
 
