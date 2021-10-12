@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 import { Fragment } from 'react';
-import { Form, FormGroup, Field, Fieldset, InputCluster, Item } from '@westpac/form';
+import { Form, FormGroup, Field } from '@westpac/form';
 import { Autocomplete } from '@westpac/autocomplete';
 import { components } from 'react-select';
 import { TextInput } from '@westpac/text-input';
@@ -28,17 +28,17 @@ const Demo = ({ context, showCode, showDemo }) => {
 					<StreetPattern />
 					<FormGroup>
 						<Field label="City, town or suburb">
-							<TextInput size="large" width={20} autocomplete="address-level2" />
+							<TextInput size="large" width={20} autoComplete="address-level2" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
 						<Field label="State, province or region">
-							<TextInput size="large" width={20} autocomplete="address-level1" />
+							<TextInput size="large" width={20} autoComplete="address-level1" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
 						<Field label="Postcode or Zip code">
-							<TextInput size="large" width={5} autocomplete="postal-code" />
+							<TextInput size="large" width={5} autoComplete="postal-code" />
 						</Field>
 					</FormGroup>
 					<FormGroup>

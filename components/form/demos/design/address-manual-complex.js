@@ -63,12 +63,12 @@ const AddressManualComplexPattern = ({ property = 'house' }) => {
 			</FormGroup>
 			<FormGroup>
 				<Field label="Suburb">
-					<TextInput size="large" width={20} autocomplete="address-level2" />
+					<TextInput size="large" width={20} autoComplete="address-level2" />
 				</Field>
 			</FormGroup>
 			<FormGroup>
 				<Field label="State">
-					<Select size="large" width={10} autocomplete="address-level1">
+					<Select size="large" width={10} autoComplete="address-level1">
 						<option>Select</option>
 						<option>NSW</option>
 						<option>VIC</option>
@@ -82,7 +82,7 @@ const AddressManualComplexPattern = ({ property = 'house' }) => {
 			</FormGroup>
 			<FormGroup>
 				<Field label="Postcode">
-					<TextInput size="large" width={4} autocomplete="postal-code" />
+					<TextInput size="large" width={4} autoComplete="postal-code" />
 				</Field>
 			</FormGroup>
 		</Fragment>

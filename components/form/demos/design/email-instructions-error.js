@@ -17,7 +17,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 							hint="Make sure your email address is correct as we will use it to confirm your account"
 							error="Enter a valid email address"
 						>
-							<TextInput type="email" size="large" width={30} invalid autocomplete="email" />
+							<TextInput type="email" size="large" width={30} invalid autoComplete="email" />
 						</Field>
 					</FormGroup>
 				</Form>

@@ -18,12 +18,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 							<InputCluster horizontal>
 								<Item>
 									<Field label="Code" subLabel>
-										<TextInput type="tel" size="large" width={4} autocomplete="tel-country-code" />
+										<TextInput type="tel" size="large" width={4} autoComplete="tel-country-code" />
 									</Field>
 								</Item>
 								<Item>
 									<Field label="Phone number" subLabel>
-										<TextInput type="tel" size="large" width={10} autocomplete="tel-national" />
+										<TextInput type="tel" size="large" width={10} autoComplete="tel-national" />
 									</Field>
 								</Item>
 							</InputCluster>

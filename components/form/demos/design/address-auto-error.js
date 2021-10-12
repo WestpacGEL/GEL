@@ -56,12 +56,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 									<InputCluster>
 										<Item>
 											<Field hideLabel label="Line 1 of 2">
-												<TextInput size="large" autocomplete="street address-line1" />
+												<TextInput size="large" autoComplete="street address-line1" />
 											</Field>
 										</Item>
 										<Item>
 											<Field hideLabel label="Line 2 of 2">
-												<TextInput size="large" autocomplete="street address-line2" />
+												<TextInput size="large" autoComplete="street address-line2" />
 											</Field>
 										</Item>
 									</InputCluster>
@@ -69,12 +69,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 							</FormGroup>
 							<FormGroup>
 								<Field label="Suburb">
-									<TextInput size="large" width={20} autocomplete="address-level2" />
+									<TextInput size="large" width={20} autoComplete="address-level2" />
 								</Field>
 							</FormGroup>
 							<FormGroup>
 								<Field label="State">
-									<Select size="large" width={10} autocomplete="address-level1">
+									<Select size="large" width={10} autoComplete="address-level1">
 										<option>Select</option>
 										<option>NSW</option>
 										<option>VIC</option>
@@ -88,7 +88,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 							</FormGroup>
 							<FormGroup>
 								<Field label="Postcode">
-									<TextInput size="large" width={4} autocomplete="postal-code" />
+									<TextInput size="large" width={4} autoComplete="postal-code" />
 								</Field>
 							</FormGroup>
 						</Fragment>

@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 import { Fragment } from 'react';
-import { Form, FormGroup, Field, Fieldset, InputCluster, Item } from '@westpac/form';
+import { Form, FormGroup, Field } from '@westpac/form';
 import { Autocomplete } from '@westpac/autocomplete';
 import { components } from 'react-select';
 import { TextInput } from '@westpac/text-input';
@@ -33,12 +33,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 					</FormGroup>
 					<FormGroup>
 						<Field label="State, province or region" error="Enter a state, province or region">
-							<TextInput size="large" width={20} invalid autocomplete="address-level2" />
+							<TextInput size="large" width={20} invalid autoComplete="address-level2" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
 						<Field label="Postcode or Zip code" error="Enter a postcode or zip code">
-							<TextInput size="large" width={5} invalid autocomplete="postal-code" />
+							<TextInput size="large" width={5} invalid autoComplete="postal-code" />
 						</Field>
 					</FormGroup>
 					<FormGroup>

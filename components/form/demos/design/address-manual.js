@@ -14,12 +14,12 @@ export const StreetPattern = ({ hint, error, invalid, token = '' }) => {
 				<InputCluster>
 					<Item>
 						<Field label="Line 1 of 2" hideLabel>
-							<TextInput size="large" autocomplete={`${token}address-line1`} invalid={invalid} />
+							<TextInput size="large" autoComplete={`${token}address-line1`} invalid={invalid} />
 						</Field>
 					</Item>
 					<Item>
 						<Field label="Line 2 of 2" hideLabel>
-							<TextInput size="large" autocomplete={`${token}address-line2`} />
+							<TextInput size="large" autoComplete={`${token}address-line2`} />
 						</Field>
 					</Item>
 				</InputCluster>
@@ -45,14 +45,14 @@ export const AddressManualPattern = ({
 					<TextInput
 						size="large"
 						width={20}
-						autocomplete={`${token}address-level2`}
+						autoComplete={`${token}address-level2`}
 						invalid={invalid}
 					/>
 				</Field>
 			</FormGroup>
 			<FormGroup>
 				<Field label="State" error={error}>
-					<Select size="large" width={10} autocomplete={`${token}address-level1`} invalid={invalid}>
+					<Select size="large" width={10} autoComplete={`${token}address-level1`} invalid={invalid}>
 						<option>Select</option>
 						<option>NSW</option>
 						<option>VIC</option>
@@ -69,7 +69,7 @@ export const AddressManualPattern = ({
 					<TextInput
 						size="large"
 						width={4}
-						autocomplete={`${token}postal-code`}
+						autoComplete={`${token}postal-code`}
 						invalid={invalid}
 					/>
 				</Field>

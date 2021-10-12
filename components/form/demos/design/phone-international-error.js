@@ -33,7 +33,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 											size="large"
 											width={4}
 											defaultValue="+891"
-											autocomplete="tel-country-code"
+											autoComplete="tel-country-code"
 										/>
 									</Field>
 								</Item>
@@ -45,7 +45,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 											width={10}
 											invalid
 											defaultValue="213-5096995"
-											autocomplete="tel-national"
+											autoComplete="tel-national"
 										/>
 									</Field>
 								</Item>

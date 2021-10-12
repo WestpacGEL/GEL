@@ -26,7 +26,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 											width={2}
 											invalid
 											defaultValue={33}
-											autocomplete="bday-day"
+											autoComplete="bday-day"
 										/>
 									</Field>
 								</Item>
@@ -37,7 +37,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 											size="large"
 											width={2}
 											defaultValue={'02'}
-											autocomplete="bday-month"
+											autoComplete="bday-month"
 										/>
 									</Field>
 								</Item>
@@ -49,7 +49,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 											width={4}
 											invalid
 											defaultValue={3000}
-											autocomplete="bday-year"
+											autoComplete="bday-year"
 										/>
 									</Field>
 								</Item>
