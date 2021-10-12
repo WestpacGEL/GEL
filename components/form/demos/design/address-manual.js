@@ -1,16 +1,23 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
+import { forwardRef } from 'react';
 import { Form, FormGroup, Field, Fieldset, InputCluster, Item } from '@westpac/form';
 import { TextInput, Select } from '@westpac/text-input';
 import { Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Fragment } from 'react';
 
-export const StreetPattern = ({ hint, error, invalid, token = '' }) => {
+export const StreetPattern = ({ hint, error, invalid, token = '', legendTabIndex, legendRef }) => {
 	return (
 		<FormGroup>
-			<Fieldset legend="Street" hint={hint} error={error}>
+			<Fieldset
+				legend="Street"
+				hint={hint}
+				error={error}
+				legendTabIndex={legendTabIndex}
+				legendRef={legendRef}
+			>
 				<InputCluster>
 					<Item>
 						<Field label="Line 1 of 2" hideLabel>
@@ -32,6 +39,8 @@ export const AddressManualPattern = ({
 	streetHint = 'Not a PO Box',
 	showErrors = false,
 	mailing = false,
+	streetLegendTabIndex,
+	streetLegendRef,
 }) => {
 	const error = showErrors ? 'Error message goes here if activated' : '';
 	const invalid = showErrors;
@@ -39,7 +48,14 @@ export const AddressManualPattern = ({
 
 	return (
 		<Fragment>
-			<StreetPattern hint={streetHint} error={error} invalid={invalid} token={token} />
+			<StreetPattern
+				hint={streetHint}
+				error={error}
+				invalid={invalid}
+				token={token}
+				legendTabIndex={streetLegendTabIndex}
+				legendRef={streetLegendRef}
+			/>
 			<FormGroup>
 				<Field label="Suburb" error={error}>
 					<TextInput

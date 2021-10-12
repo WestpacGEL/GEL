@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFormLabel } from './overrides/formLabel';
@@ -11,45 +12,48 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const FormLabel = ({ tag, subLabel, htmlFor, srOnly, overrides, ...rest }) => {
-	const {
-		OVERRIDES: { [pkg.name]: tokenOverrides },
-		[pkg.name]: brandOverrides,
-	} = useBrand();
+export const FormLabel = forwardRef(
+	({ tag, subLabel, htmlFor, srOnly, overrides, ...rest }, ref) => {
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
 
-	const context = useFormContext();
+		const context = useFormContext();
 
-	const defaultOverrides = {
-		FormLabel: defaultFormLabel,
-	};
+		const defaultOverrides = {
+			FormLabel: defaultFormLabel,
+		};
 
-	const componentOverrides = overrides || context?.state?.overrides;
-	const spacing = context?.state?.spacing || 'medium';
+		const componentOverrides = overrides || context?.state?.overrides;
+		const spacing = context?.state?.spacing || 'medium';
 
-	const state = {
-		tag,
-		subLabel,
-		htmlFor,
-		srOnly,
-		spacing,
-		context: context?.state,
-		overrides: componentOverrides,
-		...rest,
-	};
+		const state = {
+			tag,
+			subLabel,
+			htmlFor,
+			srOnly,
+			spacing,
+			context: context?.state,
+			overrides: componentOverrides,
+			...rest,
+		};
 
-	const {
-		FormLabel: { component: FormLabel, styles: formLabelStyles, attributes: formLabelAttributes },
-	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+		const {
+			FormLabel: { component: FormLabel, styles: formLabelStyles, attributes: formLabelAttributes },
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	return (
-		<FormLabel
-			{...rest}
-			state={state}
-			{...formLabelAttributes(state)}
-			css={formLabelStyles(state)}
-		/>
-	);
-};
+		return (
+			<FormLabel
+				ref={ref}
+				{...rest}
+				state={state}
+				{...formLabelAttributes(state)}
+				css={formLabelStyles(state)}
+			/>
+		);
+	}
+);
 
 // ==============================
 // Types

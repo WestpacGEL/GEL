@@ -1,11 +1,10 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useLayoutEffect, useRef } from 'react';
 import { components } from 'react-select';
 import { Autocomplete } from '@westpac/autocomplete';
-import { Form, FormGroup, Field, Fieldset, InputCluster, Item } from '@westpac/form';
-import { TextInput, Select } from '@westpac/text-input';
+import { Form, FormGroup, Field } from '@westpac/form';
 import { Link, Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
@@ -16,7 +15,15 @@ const Input = ({ autoComplete, options, ...props }) => (
 );
 
 const Demo = ({ context, showCode, showDemo }) => {
-	const [manual, setManual] = useState(false);
+	const [manual, setManual] = useState(true);
+	const streetLegendRef = useRef(null);
+
+	useLayoutEffect(() => {
+		if (manual) {
+			console.log(streetLegendRef);
+			streetLegendRef.current.focus();
+		}
+	}, [manual, streetLegendRef]);
 
 	const StreetHint = () => (
 		<Fragment>
@@ -52,7 +59,12 @@ const Demo = ({ context, showCode, showDemo }) => {
 			<Container>
 				<Form spacing="large">
 					{manual ? (
-						<AddressManualPattern streetHint={StreetHint} />
+						/* A11y: tabindex="-1" so fieldset can receive programmatic focus on auto/manual toggle */
+						<AddressManualPattern
+							streetHint={StreetHint}
+							streetLegendTabIndex="-1"
+							streetLegendRef={streetLegendRef}
+						/>
 					) : (
 						<FormGroup>
 							<Field label="Search for your home address" hint={StreetHint}>

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFieldset } from './overrides/fieldset';
@@ -20,6 +20,8 @@ export const Fieldset = ({
 	legend,
 	hint,
 	error,
+	legendTabIndex,
+	legendRef,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -53,6 +55,8 @@ export const Fieldset = ({
 		legend,
 		hint,
 		error,
+		legendTabIndex,
+		legendRef,
 		ariaDescribedByValue,
 		overrides: componentOverrides,
 		...rest,
@@ -64,7 +68,12 @@ export const Fieldset = ({
 
 	return (
 		<Fieldset state={state} {...fieldsetAttributes(state)} css={fieldsetStyles(state)} {...rest}>
-			<FormLabel tag="legend" overrides={componentOverrides}>
+			<FormLabel
+				ref={legendRef}
+				tag="legend"
+				tabIndex={legendTabIndex}
+				overrides={componentOverrides}
+			>
 				{legend}
 			</FormLabel>
 			{hint && (
@@ -102,6 +111,11 @@ Fieldset.propTypes = {
 	 * Error message text
 	 */
 	error: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+
+	/**
+	 * Tabindex of the legend element
+	 */
+	legendTabIndex: PropTypes.string,
 
 	/**
 	 * The override API
