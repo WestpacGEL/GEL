@@ -28,58 +28,10 @@ const BlenderLabel = ({ className, ...rest }) => (
 const labelStyles = (_, { look }) => {
 	const { COLORS, TYPE } = useBrand();
 
-	let color = '#fff';
-	if (look === 'faint') {
-		color = COLORS.muted;
-	}
-
-	const styleMap = {
-		primary: {
-			color,
-			backgroundColor: COLORS[look],
-			border: `1px solid ${COLORS[look]}`,
-		},
-		hero: {
-			color,
-			backgroundColor: COLORS[look],
-			border: `1px solid ${COLORS[look]}`,
-		},
-		neutral: {
-			color,
-			backgroundColor: COLORS[look],
-			border: `1px solid ${COLORS[look]}`,
-		},
-		faint: {
-			color,
-			backgroundColor: COLORS.light,
-			border: `1px solid ${COLORS.border}`,
-		},
-		success: {
-			color,
-			backgroundColor: COLORS[look],
-			border: `1px solid ${COLORS[look]}`,
-		},
-		info: {
-			color,
-			backgroundColor: COLORS[look],
-			border: `1px solid ${COLORS[look]}`,
-		},
-		warning: {
-			color,
-			backgroundColor: COLORS[look],
-			border: `1px solid ${COLORS[look]}`,
-		},
-		danger: {
-			color,
-			backgroundColor: COLORS[look],
-			border: `1px solid ${COLORS[look]}`,
-		},
-	};
-
 	return {
 		label: getLabel('label'),
 		display: 'inline-block',
-		appearance: 'none',
+		border: '1px solid',
 		borderRadius: '0.125rem',
 		fontSize: '0.75rem',
 		lineHeight: 'normal',
@@ -87,7 +39,9 @@ const labelStyles = (_, { look }) => {
 		textAlign: 'center',
 		verticalAlign: 'baseline',
 		whiteSpace: 'nowrap',
-		...styleMap[look],
+		color: look === 'faint' ? COLORS.muted : '#fff',
+		backgroundColor: look === 'faint' ? '#fff' : COLORS[look],
+		borderColor: look === 'faint' ? COLORS.border : COLORS[look],
 		...TYPE.bodyFont[400],
 
 		':empty': {
