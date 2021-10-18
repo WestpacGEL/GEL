@@ -42,7 +42,7 @@ export const Fieldset = ({
 	}, [instanceId]);
 
 	useEffect(() => {
-		const arr = [...(hint ? [`${id}-hint`] : []), ...(error ? [`${id}-error`] : [])];
+		const arr = [...(error ? [`${id}-error`] : []), ...(hint ? [`${id}-hint`] : [])];
 		setAriaDescribedByValue(arr.join(' '));
 	}, [id, hint, error]);
 
