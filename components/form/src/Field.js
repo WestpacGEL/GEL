@@ -66,7 +66,6 @@ export const Field = ({
 	const inputProps = {
 		id,
 		'aria-describedby': ariaDescribedByValue ? ariaDescribedByValue : undefined,
-		'aria-invalid': !!error,
 	};
 
 	return (
