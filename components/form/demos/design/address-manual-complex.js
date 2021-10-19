@@ -7,7 +7,7 @@ import { Fragment, useState } from 'react';
 import { Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-const Address = ({ property = 'house' }) => {
+const AddressManualComplexPattern = ({ property = 'house' }) => {
 	let propertyStr;
 	let extraStreetNum = false;
 
@@ -63,12 +63,12 @@ const Address = ({ property = 'house' }) => {
 			</FormGroup>
 			<FormGroup>
 				<Field label="Suburb">
-					<TextInput size="large" width={20} />
+					<TextInput size="large" width={20} autoComplete="address-level2" />
 				</Field>
 			</FormGroup>
 			<FormGroup>
 				<Field label="State">
-					<Select size="large" width={10}>
+					<Select size="large" width={10} autoComplete="address-level1">
 						<option>Select</option>
 						<option>NSW</option>
 						<option>VIC</option>
@@ -82,7 +82,7 @@ const Address = ({ property = 'house' }) => {
 			</FormGroup>
 			<FormGroup>
 				<Field label="Postcode">
-					<TextInput size="large" width={4} />
+					<TextInput size="large" width={4} autoComplete="postal-code" />
 				</Field>
 			</FormGroup>
 		</Fragment>
@@ -113,7 +113,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 							<PropertySelect value={property} onChange={(e) => setProperty(e.target.value)} />
 						</Field>
 					</FormGroup>
-					{property && <Address property={property} />}
+					{property && <AddressManualComplexPattern property={property} />}
 				</Form>
 			</Container>
 		</Playground>

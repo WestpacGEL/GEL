@@ -28,54 +28,11 @@ const BlenderBadge = ({ className, ...rest }) => (
 const badgeStyles = (_, { look }) => {
 	const { COLORS, TYPE } = useBrand();
 
-	const styleMap = {
-		primary: {
-			color: '#fff',
-			backgroundColor: COLORS[look],
-			borderColor: COLORS[look],
-		},
-		hero: {
-			color: '#fff',
-			backgroundColor: COLORS[look],
-			borderColor: COLORS[look],
-		},
-		neutral: {
-			color: '#fff',
-			backgroundColor: COLORS[look],
-			borderColor: COLORS[look],
-		},
-		faint: {
-			color: COLORS.muted,
-			backgroundColor: '#fff',
-			borderColor: COLORS.border,
-		},
-		success: {
-			color: '#fff',
-			backgroundColor: COLORS[look],
-			borderColor: COLORS[look],
-		},
-		info: {
-			color: '#fff',
-			backgroundColor: COLORS[look],
-			borderColor: COLORS[look],
-		},
-		warning: {
-			color: '#fff',
-			backgroundColor: COLORS[look],
-			borderColor: COLORS[look],
-		},
-		danger: {
-			color: '#fff',
-			backgroundColor: COLORS[look],
-			borderColor: COLORS[look],
-		},
-	};
-
 	return {
 		label: getLabel('badge'),
-		border: `1px solid transparent`,
-		borderRadius: '0.75rem',
 		display: 'inline-block',
+		border: '1px solid',
+		borderRadius: '0.75rem',
 		fontSize: '0.875rem',
 		lineHeight: 1,
 		minWidth: '0.625rem',
@@ -83,8 +40,14 @@ const badgeStyles = (_, { look }) => {
 		textAlign: 'center',
 		verticalAlign: 'baseline',
 		whiteSpace: 'nowrap',
+		color: look === 'faint' ? COLORS.muted : '#fff',
+		backgroundColor: look === 'faint' ? '#fff' : COLORS[look],
+		borderColor: look === 'faint' ? COLORS.border : COLORS[look],
 		...TYPE.bodyFont[700],
-		...(look && styleMap[look]),
+
+		':empty': {
+			display: 'none',
+		},
 
 		'@media print': {
 			color: '#000',
