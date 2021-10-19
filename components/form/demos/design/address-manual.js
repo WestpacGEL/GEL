@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
 import { jsx } from '@westpac/core';
-import { forwardRef } from 'react';
 import { Form, FormGroup, Field, Fieldset, InputCluster, Item } from '@westpac/form';
 import { TextInput, Select } from '@westpac/text-input';
 import { Container } from './_utils';
