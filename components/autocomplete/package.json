@@ -5,6 +5,12 @@
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/autocomplete",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
+	"components": [
+		{
+			"name": "Autocomplete",
+			"src": "Autocomplete.js"
+		}
+	],
 	"scripts": {
 		"start": "PACKAGE_NAME=autocomplete NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "start-server-and-test start http://localhost:8080 test:all",
