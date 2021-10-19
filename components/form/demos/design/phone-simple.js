@@ -13,17 +13,17 @@ const Demo = ({ context, showCode, showDemo }) => {
 				<Form spacing="large">
 					<FormGroup>
 						<Field label="Home number" hint="Include the 2 digit area code">
-							<TextInput type="tel" size="large" width={20} autocomplete="tel" />
+							<TextInput type="tel" size="large" width={20} autoComplete="tel" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
 						<Field label="Work number" hint="Include the 2 digit area code">
-							<TextInput type="tel" size="large" width={20} autocomplete="tel" />
+							<TextInput type="tel" size="large" width={20} autoComplete="tel" />
 						</Field>
 					</FormGroup>
 					<FormGroup>
 						<Field label="Mobile number">
-							<TextInput type="tel" size="large" width={20} autocomplete="tel" />
+							<TextInput type="tel" size="large" width={20} autoComplete="tel" />
 						</Field>
 					</FormGroup>
 				</Form>

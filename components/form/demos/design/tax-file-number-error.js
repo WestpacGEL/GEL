@@ -2,11 +2,10 @@
 
 import { jsx, useBrand } from '@westpac/core';
 import { useState } from 'react';
-import { Form, Field, FormGroup } from '@westpac/form';
-import { TextInput, Select } from '@westpac/text-input';
-import { Alert } from '@westpac/alert';
+import { Form } from '@westpac/form';
 import { Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
+import { TaxFileNumberPattern } from './tax-file-number';
 
 const Demo = ({ context, showCode, showDemo }) => {
 	const [value, setValue] = useState();
@@ -15,45 +14,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Container>
 				<Form spacing="large">
-					<FormGroup>
-						<Field
-							label="Tax File Number preference"
-							hint="Providing your TFN or TFN exemption is not compulsory. However, if you do not provide it, tax may be withheld at the highest marginal rate plus the Medicare Levy on the interest earned on the account."
-							error="Error message goes here if activated"
-						>
-							<Select size="large" value={value} onChange={(e) => setValue(e.target.value)} invalid>
-								<option value="">Select</option>
-								<option value="provide-now">I'll provide my TFN now</option>
-								<option value="exemption">I've got an exemption reason</option>
-								<option value="provide-later">I'll provide my TFN later</option>
-							</Select>
-						</Field>
-					</FormGroup>
-
-					{value === 'provide-now' && (
-						<FormGroup>
-							<Field label="Enter your Tax File Number (TFN)">
-								<TextInput size="large" />
-							</Field>
-						</FormGroup>
-					)}
-
-					{value === 'exemption' && (
-						<FormGroup>
-							<Field label="Exemption reason">
-								<Select size="large">
-									<option>Select</option>
-								</Select>
-							</Field>
-						</FormGroup>
-					)}
-
-					{value === 'provide-later' && (
-						<Alert>
-							You can provide your TFN at any time via phone or at a {BRAND.name} branch. In the
-							meantime, please note, we may need to withhold tax from any interest you earn.
-						</Alert>
-					)}
+					<TaxFileNumberPattern showErrors />
 				</Form>
 			</Container>
 		</Playground>

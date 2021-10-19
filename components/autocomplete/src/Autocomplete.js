@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { defaultIndicatorsContainer } from './overrides/indicatorsContainer';
 import { defaultNoOptionsMessage } from './overrides/noOptionsMessage';
 import { defaultClearIndicator } from './overrides/clearIndicator';
+import { defaultValueContainer } from './overrides/valueContainer';
 import { defaultControl } from './overrides/control';
 import { defaultOption } from './overrides/option';
 import { defaultFooter } from './overrides/footer';
@@ -41,6 +42,7 @@ export const Autocomplete = ({
 		ClearIndicator: defaultClearIndicator,
 		Menu: defaultMenu,
 		Option: defaultOption,
+		ValueContainer: defaultValueContainer,
 		Footer: defaultFooter,
 		NoOptionsMessage: defaultNoOptionsMessage,
 	};
@@ -51,6 +53,7 @@ export const Autocomplete = ({
 		ClearIndicator: { component: ClearIndicator, styles: clearIndicatorStyles },
 		Menu: { component: Menu, styles: menuStyles },
 		Option: { component: Option, styles: optionStyles },
+		ValueContainer: { component: ValueContainer, styles: valueContainerStyles },
 		Footer: { component: Footer, styles: footerStyles },
 		NoOptionsMessage: { component: NoOptionsMessage, styles: noOptionsMessageStyles },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
@@ -62,6 +65,7 @@ export const Autocomplete = ({
 		ClearIndicator,
 		Menu,
 		Option,
+		ValueContainer,
 		NoOptionsMessage,
 		DropdownIndicator: () => null,
 		IndicatorSeparator: () => null,
@@ -70,7 +74,7 @@ export const Autocomplete = ({
 
 	const overrideStyles = {
 		control: (_, state) => controlStyles(state),
-		valueContainer: () => ({}),
+		valueContainer: (provided, state) => valueContainerStyles({ provided, ...state }),
 		indicatorsContainer: (_, state) => indicatorsContainerStyles(state),
 		clearIndicatorStyles: (_, state) => clearIndicatorStyles(state),
 		menu: (_, state) => menuStyles(state),

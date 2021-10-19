@@ -31,7 +31,10 @@ const errorMessageStyles = (_, { isMessages }) => {
 // Attributes
 // ==============================
 
-const errorMessageAttributes = () => null;
+const errorMessageAttributes = (_, { isMessages }) => ({
+	//a11y: as we're using `list-style:none` CSS, we need `role="list"` for VoiceOver to announce this as a list (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
+	role: isMessages ? 'list' : undefined,
+});
 
 // ==============================
 // Exports

@@ -16,8 +16,7 @@ import pkg from '../package.json';
 // ==============================
 
 export const Field = ({
-	instanceIdPrefix,
-	hintIdPrefix,
+	instanceId,
 	label,
 	hideLabel,
 	subLabel,
@@ -32,30 +31,26 @@ export const Field = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
+	const [id, setId] = useState(instanceId);
+	const [ariaDescribedByValue, setAriaDescribedByValue] = useState();
+
+	useEffect(() => {
+		if (!instanceId) {
+			setId(`gel-field-${useInstanceId()}`);
+		}
+	}, [instanceId]);
+
+	useEffect(() => {
+		const arr = [...(error ? [`${id}-error`] : []), ...(hint ? [`${id}-hint`] : [])];
+		setAriaDescribedByValue(arr.join(' '));
+	}, [id, hint, error]);
+
 	const defaultOverrides = {
 		Field: defaultField,
 	};
 
-	const [fieldInstance] = useState(useInstanceId());
-	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
-	const [hintId, setHintId] = useState(hintIdPrefix);
-
-	useEffect(() => {
-		if (!instanceIdPrefix) {
-			setInstanceId(`gel-field-${fieldInstance}`);
-		}
-	}, [instanceIdPrefix]);
-
-	useEffect(() => {
-		if (!hintId) {
-			setHintId(`gel-hint-${fieldInstance}`);
-		}
-	}, [hintIdPrefix]);
-
 	const state = {
-		fieldInstance,
-		instanceId,
-		hintId,
+		id,
 		label,
 		hideLabel,
 		hint,
@@ -69,27 +64,21 @@ export const Field = ({
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const inputProps = {
-		id: instanceId,
-		'aria-describedby': hintId,
-		'aria-invalid': !!error,
+		id,
+		'aria-describedby': ariaDescribedByValue ? ariaDescribedByValue : undefined,
 	};
 
 	return (
 		<Field state={state} {...fieldAttributes(state)} css={fieldStyles(state)} {...rest}>
-			<FormLabel
-				htmlFor={instanceId}
-				srOnly={hideLabel}
-				subLabel={subLabel}
-				overrides={componentOverrides}
-			>
+			<FormLabel htmlFor={id} srOnly={hideLabel} subLabel={subLabel} overrides={componentOverrides}>
 				{label}
 			</FormLabel>
 			{hint && (
-				<Hint id={hintId} overrides={componentOverrides}>
+				<Hint id={`${id}-hint`} overrides={componentOverrides}>
 					{typeof hint === 'function' ? hint() : hint}
 				</Hint>
 			)}
-			{error && <ErrorMessage message={error} overrides={componentOverrides} />}
+			{error && <ErrorMessage id={`${id}-error`} message={error} overrides={componentOverrides} />}
 			{Children.map(children, (child) => cloneElement(child, { ...inputProps }))}
 		</Field>
 	);
@@ -101,22 +90,17 @@ export const Field = ({
 
 Field.propTypes = {
 	/**
-	 * input id
+	 * Define an id for internal elements
 	 */
-	instanceIdPrefix: PropTypes.string,
+	instanceId: PropTypes.string,
 
 	/**
-	 * hint id
-	 */
-	hintIdPrefix: PropTypes.string,
-
-	/**
-	 * label text
+	 * Label text
 	 */
 	label: PropTypes.string,
 
 	/**
-	 * Sr-only label
+	 * Visually hide label
 	 */
 	hideLabel: PropTypes.bool,
 
@@ -126,7 +110,7 @@ Field.propTypes = {
 	subLabel: PropTypes.bool,
 
 	/**
-	 * hint text
+	 * Hint text
 	 */
 	hint: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 

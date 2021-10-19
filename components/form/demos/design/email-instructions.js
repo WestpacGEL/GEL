@@ -16,7 +16,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 							label="Email address"
 							hint="Make sure your email address is correct as we will use it to confirm your account"
 						>
-							<TextInput type="email" size="large" width={30} autocomplete="email" />
+							<TextInput type="email" size="large" width={30} autoComplete="email" />
 						</Field>
 					</FormGroup>
 				</Form>
