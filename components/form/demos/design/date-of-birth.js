@@ -11,8 +11,8 @@ export const DateOfBirthPattern = ({ showErrors = false }) => {
 	const error = showErrors ? ['Day must be valid', 'Year must be valid'] : [];
 	const invalid = showErrors;
 
-	const minBorn = new Date().getFullYear() - 122; // https://en.wikipedia.org/wiki/Jeanne_Calment
 	const maxBorn = new Date().getFullYear();
+	const minBorn = maxBorn - 122; // https://en.wikipedia.org/wiki/Jeanne_Calment
 
 	return (
 		<Fragment>
