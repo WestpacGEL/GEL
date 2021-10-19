@@ -13,7 +13,11 @@ const ErrorMessageContent = ({ state: { icon }, children }) => {
 
 	return (
 		<Fragment>
-			<Icon css={{ verticalAlign: 'top', marginRight: '0.25em' }} size="small" color="inherit" />
+			<Icon
+				css={{ verticalAlign: 'top', marginRight: '0.5em', marginTop: '0.25em' }}
+				size="xsmall"
+				color="inherit"
+			/>
 			{children}
 		</Fragment>
 	);

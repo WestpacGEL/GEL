@@ -136,9 +136,11 @@ const blenderStyles = (_, { size, width, inline, invalid, ariaInvalid }) => {
 // Attributes
 // ==============================
 
-const textareaAttributes = () => null;
-
+const textareaAttributes = (_, { invalid }) => ({
+	'aria-invalid': invalid ? invalid : undefined,
+});
 const blenderAttributes = (_, { size, width, inline, invalid }) => ({
+	...textareaAttributes(_, { invalid }),
 	className: classNames({
 		[`__convert__textarea-${size}`]: size !== defaultProps.size,
 		[`__convert__textarea-width-${width}`]: width,
