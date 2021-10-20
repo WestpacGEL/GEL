@@ -17,7 +17,7 @@ const itemStyles = () => {
 	return {
 		label: getLabel('compacta-item'),
 		backgroundColor: COLORS.light,
-		marginBottom: '0.375rem', // Need to work on this implementation to work with footer, either margin top except for the first which is probably easiest?
+		marginBottom: '0.375rem',
 	};
 };
 
