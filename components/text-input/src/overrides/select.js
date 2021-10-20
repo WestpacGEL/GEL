@@ -167,9 +167,12 @@ const blenderStyles = (_, { size, width, inline, invalid, ariaInvalid }) => {
 // Attributes
 // ==============================
 
-const selectAttributes = () => null;
+const selectAttributes = (_, { invalid }) => ({
+	'aria-invalid': invalid ? invalid : undefined,
+});
 
 const blenderAttributes = (_, { size, width, inline, invalid }) => ({
+	...selectAttributes(_, { invalid }),
 	className: classNames({
 		[`__convert__select-${size}`]: size !== defaultProps.size,
 		[`__convert__select-width-${width}`]: width,

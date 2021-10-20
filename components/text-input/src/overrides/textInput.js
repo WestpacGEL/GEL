@@ -130,9 +130,12 @@ const blenderStyles = (_, { size, width, inline, invalid, ariaInvalid }) => {
 // Attributes
 // ==============================
 
-const textInputAttributes = () => null;
+const textInputAttributes = (_, { invalid }) => ({
+	'aria-invalid': invalid ? invalid : undefined,
+});
 
 const blenderAttributes = (_, { size, width, inline, invalid }) => ({
+	...textInputAttributes(_, { invalid }),
 	className: classNames({
 		[`__convert__textInput-${size}`]: size !== defaultProps.size,
 		[`__convert__textInput-width-${width}`]: width,

@@ -18,7 +18,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 								size="large"
 								width={30}
 								defaultValue="gel@westpac.com.au"
-								autocomplete="email"
+								autoComplete="email"
 							/>
 						</Field>
 					</FormGroup>
@@ -33,7 +33,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 								width={30}
 								invalid
 								defaultValue="gel@westpacc.com.au"
-								autocomplete="email"
+								autoComplete="email"
 							/>
 						</Field>
 					</FormGroup>
