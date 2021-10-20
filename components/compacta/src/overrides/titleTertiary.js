@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, getLabel } from '@westpac/core';
+import { jsx, getLabel, useMediaQuery } from '@westpac/core';
 
 // ==============================
 // Component
@@ -12,15 +12,18 @@ const TitleTertiary = ({ state: _, ...rest }) => <span {...rest} />;
 // Styles
 // ==============================
 
-const titleTertiaryStyles = () => ({
-	label: getLabel('compacta-titleTertiary'),
-	flex: 1,
-	marginTop: '0.125rem',
-	marginRight: '0.75rem',
-	overflow: 'hidden',
-	whiteSpace: 'nowrap',
-	textOverflow: 'ellipsis',
-});
+const titleTertiaryStyles = () => {
+	const mq = useMediaQuery();
+	return mq({
+		label: getLabel('compacta-titleTertiary'),
+		flex: ['1 100%', null, '1'],
+		marginTop: '0.125rem',
+		marginRight: '0.75rem',
+		overflow: 'hidden',
+		whiteSpace: 'nowrap',
+		textOverflow: 'ellipsis',
+	})[0];
+};
 
 // ==============================
 // Attributes

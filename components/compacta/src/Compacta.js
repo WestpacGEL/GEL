@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultTitlePrimary } from './overrides/titlePrimary';
@@ -24,10 +24,16 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-// I can also introduce a prop called data which will contain the array and allows for the developer to update the data themselves,
-// if no data supplied then can be handled internally?
-// probably need an on remove?
-export const Compacta = ({ addText, children, overrides: componentOverrides, ...rest }) => {
+export const Compacta = ({
+	data,
+	addText,
+	onAdd,
+	onRemove,
+	onToggle,
+	children,
+	overrides: componentOverrides,
+	...rest
+}) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -50,46 +56,44 @@ export const Compacta = ({ addText, children, overrides: componentOverrides, ...
 		AddBtn: defaultAddBtn,
 	};
 
-	// remove second one later
-	// probably going to have to use this as source of truth for state of everything
-	// need to pass a function somehow
-	const [items, setItems] = useState([
-		{
-			id: useInstanceId(),
-			open: false,
-			title: 'Title',
-			secondaryTitle: 'Secondary',
-			tertiaryTitle: 'Tertiary',
-		},
-		{ id: useInstanceId(), open: true },
-	]);
+	const [items, setItems] = useState(data);
+
+	useEffect(() => {
+		if (!data.length) {
+			setItems([{ id: useInstanceId(), open: true }]);
+		}
+	}, [data]);
 
 	const state = {
 		overrides: componentOverrides,
 		...rest,
 	};
 
-	// handle stale state stuff here??
 	const handleAdd = () => {
-		setItems((items) => [...items, { id: useInstanceId(), open: true }]);
+		if (onAdd) {
+			onAdd();
+		} else {
+			setItems((items) => [...items, { id: useInstanceId(), open: true }]);
+		}
 	};
 
-	const handleRemove = (id) => {
-		const newItems = items.filter((item) => item.id !== id);
-		setItems(newItems);
+	const handleRemove = (id, index) => {
+		if (onRemove) {
+			onRemove(id, index);
+		} else {
+			const newItems = items.filter((item) => item.id !== id);
+			setItems(newItems);
+		}
 	};
 
-	// should this work on index or id's?
-	// what is more efficient
-	const handleOpen = (index) => {
-		const updatedItems = [...items];
-		updatedItems[index].open = !updatedItems[index].open;
-		setItems(updatedItems);
-	};
-
-	const setTitle = (index, title) => {
-		console.log('Index: ', index);
-		console.log('Title: ', title);
+	const handleToggle = (id, index) => {
+		if (onToggle) {
+			onToggle(id, index);
+		} else {
+			const updatedItems = [...items];
+			updatedItems[index].open = !updatedItems[index].open;
+			setItems(updatedItems);
+		}
 	};
 
 	const {
@@ -121,9 +125,6 @@ export const Compacta = ({ addText, children, overrides: componentOverrides, ...
 		AddBtn: { component: AddBtn, styles: addBtnStyles, attributes: addBtnAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	// need to fix the hooks bug whatever it is
-	// need to double check the mobile views
-	// need to figure out a nice way to do the conditional titling
 	return (
 		<Compacta {...rest} state={state} {...compactaAttributes(state)} css={compactaStyles(state)}>
 			{items.map((item, index) => {
@@ -137,32 +138,40 @@ export const Compacta = ({ addText, children, overrides: componentOverrides, ...
 							<ItemIndex state={state} {...itemIndexAttributes(state)} css={itemIndexStyles(state)}>
 								{index + 1}
 							</ItemIndex>
-							<Title state={state} {...titleAttributes(state)} css={titleStyles(state)}>
-								<TitlePrimary
-									state={state}
-									{...titlePrimaryAttributes(state)}
-									css={titlePrimaryStyles(state)}
-								>
-									{!item.open && 'Primary'}
-								</TitlePrimary>
-								<TitleSecondary
-									state={state}
-									{...titleSecondaryAttributes(state)}
-									css={titleSecondaryStyles(state)}
-								>
-									{!item.open && 'Secondary'}
-								</TitleSecondary>
-								<TitleTertiary
-									state={state}
-									{...titleTertiaryAttributes(state)}
-									css={titleTertiaryStyles(state)}
-								>
-									{!item.open && 'Tertiary'}
-								</TitleTertiary>
-							</Title>
+							{!item.open && (
+								<Title state={state} {...titleAttributes(state)} css={titleStyles(state)}>
+									{item.title && (
+										<TitlePrimary
+											state={state}
+											{...titlePrimaryAttributes(state)}
+											css={titlePrimaryStyles(state)}
+										>
+											{item.title}
+										</TitlePrimary>
+									)}
+									{item.secondaryTitle && (
+										<TitleSecondary
+											state={state}
+											{...titleSecondaryAttributes(state)}
+											css={titleSecondaryStyles(state)}
+										>
+											{item.secondaryTitle}
+										</TitleSecondary>
+									)}
+									{item.tertiaryTitle && (
+										<TitleTertiary
+											state={state}
+											{...titleTertiaryAttributes(state)}
+											css={titleTertiaryStyles(state)}
+										>
+											{item.tertiaryTitle}
+										</TitleTertiary>
+									)}
+								</Title>
+							)}
 							<Actions state={state} {...actionsAttributes(state)} css={actionsStyles(state)}>
 								<RemoveBtn
-									onClick={() => handleRemove(item.id)}
+									onClick={() => handleRemove(item.id, index)}
 									state={state}
 									{...removeBtnAttributes(state)}
 									css={removeBtnStyles(state)}
@@ -170,7 +179,7 @@ export const Compacta = ({ addText, children, overrides: componentOverrides, ...
 									Remove
 								</RemoveBtn>
 								<Toggle
-									onClick={() => handleOpen(index)}
+									onClick={() => handleToggle(item.id, index)}
 									open={item.open}
 									state={state}
 									{...toggleAttributes(state)}
@@ -183,7 +192,7 @@ export const Compacta = ({ addText, children, overrides: componentOverrides, ...
 							{...contentAttributes(state)}
 							css={contentStyles({ ...state, open: item.open })}
 						>
-							<div css={{ padding: '4rem' }}></div>
+							{children}
 						</Content>
 					</Item>
 				);
@@ -195,7 +204,7 @@ export const Compacta = ({ addText, children, overrides: componentOverrides, ...
 					{...addBtnAttributes(state)}
 					css={addBtnStyles(state)}
 				>
-					Add another
+					{addText}
 				</AddBtn>
 			</Footer>
 		</Compacta>
@@ -208,9 +217,15 @@ export const Compacta = ({ addText, children, overrides: componentOverrides, ...
 
 Compacta.propTypes = {
 	/**
+	 * Data to populate compacta header
+	 */
+	data: PropTypes.array,
+
+	/**
 	 * Component to repeat
 	 */
 	children: PropTypes.node.isRequired,
+
 	/**
 	 * Text for compacta
 	 */
@@ -254,5 +269,6 @@ Compacta.propTypes = {
 };
 
 Compacta.defaultProps = {
-	addText: 'Add another item',
+	addText: 'Add another',
+	data: [],
 };
