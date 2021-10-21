@@ -9,9 +9,9 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<h2>Default</h2>
 			<List>
-				<Item>Styled bullet list - primary</Item>
-				<Item>Styled bullet list - primary</Item>
-				<Item>Styled bullet list - primary</Item>
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
 			</List>
 
 			<br />
@@ -21,57 +21,57 @@ function Example({ brand }) {
 
 			<h3>Primary</h3>
 			<List type="bullet" look="primary">
-				<Item>Styled bullet list - primary</Item>
-				<Item>Styled bullet list - primary</Item>
-				<Item>Styled bullet list - primary</Item>
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
 			</List>
 
 			<h3>Hero</h3>
 			<List type="bullet" look="hero">
-				<Item>Styled bullet list - hero</Item>
-				<Item>Styled bullet list - hero</Item>
-				<Item>Styled bullet list - hero</Item>
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
 			</List>
 
 			<h3>Neutral</h3>
 			<List type="bullet" look="neutral">
-				<Item>Styled bullet list - neutral</Item>
-				<Item>Styled bullet list - neutral</Item>
-				<Item>Styled bullet list - neutral</Item>
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
 			</List>
 
 			<h3>Nesting with cascading look</h3>
 
 			<h4>Default / neutral</h4>
 			<List>
-				<Item>Styled bullet list - primary</Item>
-				<Item>Styled bullet list - primary</Item>
-				<Item>Styled bullet list - primary</Item>
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
 				<Item>
-					Styled bullet list - primary
+					Styled bullet list
 					<List>
-						<Item>Styled bullet list - primary</Item>
+						<Item>Styled bullet list</Item>
 						<Item>
-							Styled bullet list - primary
+							Styled bullet list
 							<List look="neutral">
 								<Item>Styled bullet list - neutral</Item>
 								<Item>Styled bullet list - neutral</Item>
 								<Item>Styled bullet list - neutral</Item>
 							</List>
 						</Item>
-						<Item>Styled bullet list - primary</Item>
+						<Item>Styled bullet list</Item>
 						<Item>
-							Styled bullet list - primary
+							Styled bullet list
 							<List>
-								<Item>Styled bullet list - primary</Item>
-								<Item>Styled bullet list - primary</Item>
-								<Item>Styled bullet list - primary</Item>
+								<Item>Styled bullet list</Item>
+								<Item>Styled bullet list</Item>
+								<Item>Styled bullet list</Item>
 							</List>
 						</Item>
-						<Item>Styled bullet list - primary</Item>
+						<Item>Styled bullet list</Item>
 					</List>
 				</Item>
-				<Item>Styled bullet list - primary</Item>
+				<Item>Styled bullet list</Item>
 			</List>
 
 			<h4>Hero / neutral</h4>
