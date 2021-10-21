@@ -21,7 +21,7 @@ const brands = {
 	BTFG: require('@westpac/btfg'),
 	STG: require('@westpac/stg'),
 	WBC: require('@westpac/wbc'),
-	WBG: require('@westpac/wbg'),
+	RAMS: require('@westpac/rams'),
 };
 
 /**
