@@ -1,5 +1,12 @@
 # @westpac/label
 
+## 1.1.0
+
+### Minor Changes
+
+- 53acac49: - Update faint label background colour to white
+  - Refactor styling
+
 ## 1.0.2
 
 ### Patch Changes
