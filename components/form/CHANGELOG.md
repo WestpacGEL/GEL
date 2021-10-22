@@ -1,5 +1,24 @@
 # @westpac/form
 
+## 2.0.0
+
+### Major Changes
+
+- 14215b04: - Field/Fieldset: remove props hintIdPrefix and instanceIdPrefix, add instanceId, render aria-describedby if required
+  - Fieldset: remove ariadescribedby prop, add legendTabIndex and legendRef props
+  - FormLabel: fix hidden formLabel tag (label), add ForwardRef
+  - ErrorMessage: fix alert icon size
+
+### Minor Changes
+
+- 301d001c: - Field/Fieldset: remove aria-invalid on error, set on input directly via invalid prop, reorder error and hint aria-describedby values
+  - ErrorMessage: add role="list" to list type error messages (e.g. DOB Pattern) to improve VoiceOver experience (see https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/)
+
+### Patch Changes
+
+- Updated dependencies [4abb0528]
+  - @westpac/text-input@1.4.0
+
 ## 1.0.1
 
 ### Patch Changes

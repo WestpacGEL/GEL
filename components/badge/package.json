@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/badge",
-	"version": "1.0.3",
+	"version": "1.1.0",
 	"description": "Small, coloured UI items used to highlight a number count",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/badge",
