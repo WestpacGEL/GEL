@@ -44,8 +44,8 @@ const Demo = ({ context, showCode, showDemo }) => {
 				<Item>This is an icon list</Item>
 			</List>
 			<List type="icon" icon={GenericFileIcon} look="primary">
-				<Item>This is an icon list</Item>
-				<Item>This is an icon list</Item>
+				<Item>This is a primary icon list</Item>
+				<Item>This is a primary icon list</Item>
 			</List>
 		</Playground>
 	);
