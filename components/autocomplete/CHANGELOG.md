@@ -1,6 +1,18 @@
 # @westpac/autocomplete
 
+## 1.1.0
+
+### Minor Changes
+
+- aab70ace: Upgrade react-select to v5
+
+### Patch Changes
+
+- Updated dependencies [4abb0528]
+  - @westpac/text-input@1.4.0
+
 ## 1.0.0
+
 ### Patch Changes
 
 - 63f89d17: Update dependencies
