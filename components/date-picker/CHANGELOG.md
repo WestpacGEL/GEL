@@ -1,6 +1,18 @@
 # @westpac/date-picker
 
+## 1.1.0
+
+### Minor Changes
+
+- a5b13c21: Add block option
+
+### Patch Changes
+
+- Updated dependencies [4abb0528]
+  - @westpac/text-input@1.4.0
+
 ## 1.0.1
+
 ### Patch Changes
 
 - 63f89d17: Update dependencies
