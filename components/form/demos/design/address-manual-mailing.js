@@ -7,7 +7,7 @@ import { Container, FormHeading } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { AddressManualPattern } from './address-manual';
 
-export const AddressManualMailingPattern = ({ showErrors }) => {
+export const AddressManualMailingPattern = ({ showErrors = false }) => {
 	const mq = useMediaQuery();
 
 	return (

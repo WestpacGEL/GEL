@@ -7,7 +7,7 @@ import { Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Fragment } from 'react';
 
-export const EmailConfirmPattern = ({ showErrors }) => {
+export const EmailConfirmPattern = ({ showErrors = false }) => {
 	const error = showErrors
 		? 'Email addresses did not match. Please enter the same email address in both fields.'
 		: '';

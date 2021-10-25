@@ -6,7 +6,7 @@ import { TextInput } from '@westpac/text-input';
 import { Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
-export const EmailInstructionsPattern = ({ showErrors }) => {
+export const EmailInstructionsPattern = ({ showErrors = false }) => {
 	const error = showErrors ? 'Enter a valid email address' : '';
 	const invalid = showErrors;
 

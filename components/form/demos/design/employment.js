@@ -47,7 +47,7 @@ const Wrapper = (props) => (
 	<div css={{ borderTop: '1px solid #e8e8ed', padding: '2.25rem 0 0' }} {...props} />
 );
 
-export const EmploymentPattern = ({ showErrors }) => {
+export const EmploymentPattern = ({ showErrors = false }) => {
 	const error = showErrors ? 'Error message goes here if activated' : '';
 	const invalid = showErrors;
 
