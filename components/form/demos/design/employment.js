@@ -47,7 +47,10 @@ const Wrapper = (props) => (
 	<div css={{ borderTop: '1px solid #e8e8ed', padding: '2.25rem 0 0' }} {...props} />
 );
 
-const Demo = ({ context, showCode, showDemo }) => {
+export const EmploymentPattern = ({ showErrors }) => {
+	const error = showErrors ? 'Error message goes here if activated' : '';
+	const invalid = showErrors;
+
 	const [employment, setEmployment] = useState();
 	const [prevEmployment, setPrevEmployment] = useState();
 	const [years, setYears] = useState();
@@ -55,110 +58,114 @@ const Demo = ({ context, showCode, showDemo }) => {
 	const employed = ['full', 'part', 'casual-seasonal', 'self'];
 
 	return (
-		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<Container>
-				<Form spacing="large">
+		<Fragment>
+			<FormGroup>
+				<Field label="Employment type">
+					<EmploymentSelect value={employment} onChange={(e) => setEmployment(e.target.value)} />
+				</Field>
+			</FormGroup>
+
+			{employed.includes(employment) && (
+				<Fragment>
 					<FormGroup>
-						<Field label="Employment type">
+						<Field label="Industry category">
+							<IndustrySelect />
+						</Field>
+					</FormGroup>
+					<FormGroup>
+						<Field label="Occupation">
+							<Select size="large">
+								<option>Select</option>
+							</Select>
+						</Field>
+					</FormGroup>
+					<FormGroup>
+						<Field
+							label={`${employment === 'self' ? 'Company' : 'Employer'}’s legal business name`}
+							error={error}
+						>
+							<TextInput size="large" invalid={invalid} />
+						</Field>
+					</FormGroup>
+					<FormGroup>
+						<Field
+							label={`Length of time with this ${employment === 'self' ? 'company' : 'employer'}`}
+						>
+							<Select
+								value={years}
+								onChange={(e) => {
+									setYears(e.target.value);
+								}}
+								width={5}
+								size="large"
+							>
+								<option>Select</option>
+								<option value="1">1 year</option>
+								<option value="2">2 years</option>
+							</Select>
+						</Field>
+					</FormGroup>
+				</Fragment>
+			)}
+
+			{years === '1' && (
+				<Wrapper>
+					<Alert>
+						As you have only been with your current employer for less than x years, we need to
+						capture your previous employment details.
+					</Alert>
+					<FormGroup>
+						<Field label="Previous employment type">
 							<EmploymentSelect
-								value={employment}
-								onChange={(e) => setEmployment(e.target.value)}
+								value={prevEmployment}
+								onChange={(e) => setPrevEmployment(e.target.value)}
 							/>
 						</Field>
 					</FormGroup>
-					{employed.includes(employment) && (
-						<Fragment>
-							<FormGroup>
-								<Field label="Industry category">
-									<IndustrySelect />
-								</Field>
-							</FormGroup>
-							<FormGroup>
-								<Field label="Occupation">
-									<Select size="large">
-										<option>Select</option>
-									</Select>
-								</Field>
-							</FormGroup>
-							<FormGroup>
-								<Field
-									label={`${employment === 'self' ? 'Company' : 'Employer'}'s legal business name`}
-								>
-									<TextInput size="large" />
-								</Field>
-							</FormGroup>
-							<FormGroup>
-								<Field
-									label={`Length of time with this ${
-										employment === 'self' ? 'company' : 'employer'
-									}`}
-								>
-									<Select
-										value={years}
-										onChange={(e) => {
-											setYears(e.target.value);
-										}}
-										width={5}
-										size="large"
-									>
-										<option>Select</option>
-										<option value="1">1 year</option>
-										<option value="2">2 years</option>
-									</Select>
-								</Field>
-							</FormGroup>
-						</Fragment>
-					)}
-					{years === '1' && (
-						<Wrapper>
-							<Alert>
-								As you have only been with your current employer for less than x years, we need to
-								capture your previous employment details.
-							</Alert>
-							<FormGroup>
-								<Field label="Previous employment type">
-									<EmploymentSelect
-										value={prevEmployment}
-										onChange={(e) => setPrevEmployment(e.target.value)}
-									/>
-								</Field>
-							</FormGroup>
-							<FormGroup>
-								<Field label="Previous industry category">
-									<IndustrySelect />
-								</Field>
-							</FormGroup>
-							<FormGroup>
-								<Field label="Previous occupation">
-									<Select size="large">
-										<option>Select</option>
-									</Select>
-								</Field>
-							</FormGroup>
-							<FormGroup>
-								<Field
-									label={`${
-										prevEmployment === 'self' ? 'Company' : 'Employer'
-									}'s legal business name`}
-								>
-									<TextInput size="large" />
-								</Field>
-							</FormGroup>
-							<FormGroup>
-								<Field
-									label={`Length of time with this ${
-										prevEmployment === 'self' ? 'company' : 'employer'
-									}`}
-								>
-									<Select width={5} size="large">
-										<option>Select</option>
-										<option value="1">1 year</option>
-										<option value="2">2 years</option>
-									</Select>
-								</Field>
-							</FormGroup>
-						</Wrapper>
-					)}
+					<FormGroup>
+						<Field label="Previous industry category">
+							<IndustrySelect />
+						</Field>
+					</FormGroup>
+					<FormGroup>
+						<Field label="Previous occupation">
+							<Select size="large">
+								<option>Select</option>
+							</Select>
+						</Field>
+					</FormGroup>
+					<FormGroup>
+						<Field
+							label={`${prevEmployment === 'self' ? 'Company' : 'Employer'}’s legal business name`}
+						>
+							<TextInput size="large" />
+						</Field>
+					</FormGroup>
+					<FormGroup>
+						<Field
+							label={`Length of time with this ${
+								prevEmployment === 'self' ? 'company' : 'employer'
+							}`}
+						>
+							<Select width={5} size="large">
+								<option>Select</option>
+								<option value="1">1 year</option>
+								<option value="2">2 years</option>
+							</Select>
+						</Field>
+					</FormGroup>
+				</Wrapper>
+			)}
+		</Fragment>
+	);
+};
+
+const Demo = ({ context, showCode, showDemo }) => {
+	return (
+		<Playground context={context} showCode={showCode} showDemo={showDemo}>
+			<Container>
+				<Form spacing="large">
+					<EmploymentPattern />
 				</Form>
 			</Container>
 		</Playground>
