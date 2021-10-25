@@ -30,8 +30,9 @@ export const useForkContext = () => {
 // ==============================
 
 export const Fork = ({
+	instanceId,
+	name,
 	defaultValue,
-	instanceIdPrefix,
 	onChange = () => {},
 	children,
 	overrides: componentOverrides,
@@ -46,14 +47,13 @@ export const Fork = ({
 		Fork: defaultFork,
 	};
 
+	const [id] = useState(instanceId || `gel-fork-${useInstanceId()}`);
 	const [activeForkIndex, setActiveForkIndex] = useState(defaultValue);
-	const [instanceId] = useState(
-		instanceIdPrefix ? instanceIdPrefix : `gel-fork-${useInstanceId()}`
-	);
 
 	const state = {
+		id,
+		name,
 		activeForkIndex,
-		instanceId,
 		onChange,
 		overrides: componentOverrides,
 		...rest,
@@ -74,19 +74,37 @@ export const Fork = ({
 		<ForkContext.Provider value={{ state }}>
 			<Fork state={state} {...forkAttributes(state)} css={forkStyles(state)}>
 				<ButtonGroup
-					name={instanceId}
+					name={name || id}
 					value={activeForkIndex}
 					onChange={handleChange}
 					overrides={componentOverrides}
 					{...rest}
 				>
-					{Children.map(children, (child) => {
-						return <Item key={child.props.text}>{child.props.text}</Item>;
+					{Children.map(children, (child, index) => {
+						const selected = activeForkIndex === index;
+						return (
+							<Item
+								key={child.props.text}
+								inputProps={{
+									'aria-controls': `${id}-content-${index}`,
+									'aria-expanded': selected,
+								}}
+							>
+								{child.props.text}
+							</Item>
+						);
 					})}
 				</ButtonGroup>
 				{Children.map(children, (child, index) => {
 					const selected = activeForkIndex === index;
-					return <ForkContent {...child.props} key={child.props.text} selected={selected} />;
+					return (
+						<ForkContent
+							{...child.props}
+							key={child.props.text}
+							id={`${id}-content-${index}`}
+							selected={selected}
+						/>
+					);
 				})}
 			</Fork>
 		</ForkContext.Provider>
@@ -99,14 +117,19 @@ export const Fork = ({
 
 Fork.propTypes = {
 	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+
+	/**
+	 * Name to be used for radio inputs
+	 */
+	name: PropTypes.string.isRequired,
+
+	/**
 	 * Default fork index
 	 */
 	defaultValue: PropTypes.number,
-
-	/**
-	 * Define an id prefix for internal elements
-	 */
-	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * Change the value. Requires `value`
