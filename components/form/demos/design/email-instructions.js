@@ -17,7 +17,14 @@ export const EmailInstructionsPattern = ({ showErrors = false }) => {
 				hint="Make sure your email address is correct as we will use it to confirm your account"
 				error={error}
 			>
-				<TextInput type="email" size="large" width={30} autoComplete="email" invalid={invalid} />
+				<TextInput
+					type="email"
+					size="large"
+					width={30}
+					spellCheck="false"
+					autoComplete="email"
+					invalid={invalid}
+				/>
 			</Field>
 		</FormGroup>
 	);

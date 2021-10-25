@@ -22,6 +22,7 @@ export const EmailConfirmPattern = ({ showErrors = false }) => {
 						size="large"
 						width={30}
 						defaultValue={showErrors ? 'gel@westpac.com.au' : undefined}
+						spellCheck="false"
 						autoComplete="email"
 						invalid={invalid}
 					/>
