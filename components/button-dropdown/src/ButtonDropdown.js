@@ -32,7 +32,7 @@ export const useButtonDropdownContext = () => {
 
 export const ButtonDropdown = ({
 	open,
-	instanceIdPrefix,
+	instanceId,
 	text,
 	dropdownSize,
 	block,
@@ -47,16 +47,16 @@ export const ButtonDropdown = ({
 	} = useBrand();
 
 	const [isOpen, setIsOpen] = useState(open);
-	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+	const [id, setId] = useState(instanceId);
 	const panelRef = useRef();
 	const buttonRef = useRef();
 
 	// create the prefix for internal ID
 	useEffect(() => {
-		if (!instanceIdPrefix) {
-			setInstanceId(`gel-button-dropdown-${useInstanceId()}`);
+		if (!instanceId) {
+			setId(`gel-button-dropdown-${useInstanceId()}`);
 		}
-	}, [instanceIdPrefix]);
+	}, [instanceId]);
 
 	const defaultOverrides = {
 		ButtonDropdown: defaultButtonDropdown,
@@ -64,7 +64,7 @@ export const ButtonDropdown = ({
 	};
 
 	const state = {
-		instanceId,
+		id,
 		isOpen,
 		text,
 		dropdownSize,
@@ -133,7 +133,7 @@ export const ButtonDropdown = ({
 				<Button
 					ref={buttonRef}
 					aria-expanded={isOpen}
-					aria-controls={instanceId}
+					aria-controls={id}
 					onClick={handleOpen}
 					dropdown={true}
 					block={block}
@@ -162,9 +162,9 @@ ButtonDropdown.propTypes = {
 	open: PropTypes.bool,
 
 	/**
-	 * Define an id prefix for internal elements
+	 * Define an id for internal elements
 	 */
-	instanceIdPrefix: PropTypes.string,
+	instanceId: PropTypes.string,
 
 	/**
 	 * Button text

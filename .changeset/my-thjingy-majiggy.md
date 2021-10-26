@@ -1,4 +1,5 @@
 ---
+'@westpac/button-dropdown': major
 '@westpac/collapsible': major
 ---
 
