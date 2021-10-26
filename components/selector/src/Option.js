@@ -25,6 +25,7 @@ import pkg from '../package.json';
 export const Option = forwardRef(
 	(
 		{
+			index,
 			value,
 			href,
 			pictogram,
@@ -60,7 +61,7 @@ export const Option = forwardRef(
 			...restCtx
 		} = useSelectorContext();
 		const selectorId = id || `gel-selector-${useInstanceId()}`;
-		const optionId = `${selectorId}-option-${useInstanceId()}`;
+		const optionId = `${selectorId}-option-${index}`;
 		const hintId = `${optionId}-hint`;
 
 		const defaultOverrides = {

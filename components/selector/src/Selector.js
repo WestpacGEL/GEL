@@ -9,7 +9,7 @@ import {
 	asArray,
 	useManagedState,
 } from '@westpac/core';
-import { useState, useEffect, useContext, createContext } from 'react';
+import { Children, useState, useEffect, useContext, createContext, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultSelector } from './overrides/selector';
@@ -116,12 +116,18 @@ export const Selector = ({
 				</Option>
 			);
 		});
+	} else {
+		allChildren = Children.map(children, (child, index) => {
+			return cloneElement(child, {
+				index,
+			});
+		});
 	}
 
 	return (
 		<SelectorContext.Provider value={state}>
 			<Selector {...rest} state={state} {...selectorAttributes(state)} css={selectorStyles(state)}>
-				{data ? allChildren : children}
+				{allChildren}
 			</Selector>
 		</SelectorContext.Provider>
 	);

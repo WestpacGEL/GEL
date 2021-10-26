@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { forwardRef } from 'react';
-import { jsx, useBrand, getLabel, overrideReconciler, useInstanceId } from '@westpac/core';
+import { jsx, useBrand, getLabel, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { defaultOption } from './overrides/option';
@@ -16,7 +16,7 @@ import pkg from '../package.json';
 // ==============================
 
 export const Option = forwardRef(
-	({ value, checked: checkedProp, hint, className, children, overrides, ...rest }, ref) => {
+	({ index, value, checked: checkedProp, hint, className, children, overrides, ...rest }, ref) => {
 		const {
 			OVERRIDES: { [pkg.name]: tokenOverrides },
 			[pkg.name]: brandOverrides,
@@ -40,7 +40,7 @@ export const Option = forwardRef(
 			...restCtx
 		} = useFormCheckContext();
 
-		const optionId = `${id}-option-${useInstanceId()}`;
+		const optionId = `${id}-option-${index}`;
 		const hintId = `${optionId}-hint`;
 
 		const defaultOverrides = {

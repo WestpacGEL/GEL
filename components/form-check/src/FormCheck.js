@@ -9,7 +9,7 @@ import {
 	asArray,
 	useManagedState,
 } from '@westpac/core';
-import { useState, useEffect, useContext, createContext } from 'react';
+import { Children, useState, useEffect, useContext, createContext, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFormCheck } from './overrides/formCheck';
@@ -109,13 +109,17 @@ export const FormCheck = ({
 	if (data) {
 		data.map(({ text, ...rest }, index) => {
 			allChildren.push(
-				<Option key={index} {...rest}>
+				<Option key={index} index={index} {...rest}>
 					{text}
 				</Option>
 			);
 		});
 	} else {
-		allChildren = children;
+		allChildren = Children.map(children, (child, index) => {
+			return cloneElement(child, {
+				index,
+			});
+		});
 	}
 
 	return (
