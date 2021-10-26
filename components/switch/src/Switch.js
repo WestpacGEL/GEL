@@ -16,6 +16,7 @@ import pkg from '../package.json';
 export const Switch = forwardRef(
 	(
 		{
+			instanceId,
 			name,
 			label,
 			checked: isChecked,
@@ -23,7 +24,6 @@ export const Switch = forwardRef(
 			size,
 			block,
 			disabled,
-			instanceIdPrefix,
 			overrides: componentOverrides,
 			...rest
 		},
@@ -35,14 +35,14 @@ export const Switch = forwardRef(
 		} = useBrand();
 
 		const [checked, setChecked] = useState(isChecked);
-		const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+		const [id, setId] = useState(instanceId);
 
 		// create the prefix for internal IDs
 		useEffect(() => {
-			if (!instanceIdPrefix) {
-				setInstanceId(`gel-switch-${useInstanceId()}`);
+			if (!instanceId) {
+				setId(`gel-switch-${useInstanceId()}`);
 			}
-		}, [instanceIdPrefix]);
+		}, [instanceId]);
 
 		const defaultOverrides = {
 			Switch: defaultSwitch,
@@ -51,8 +51,8 @@ export const Switch = forwardRef(
 		};
 
 		const state = {
+			id,
 			checked,
-			instanceId,
 			name,
 			label,
 			onChange,
@@ -81,7 +81,7 @@ export const Switch = forwardRef(
 				<input
 					ref={ref}
 					type="checkbox"
-					id={instanceId}
+					id={id}
 					onChange={handleChange(name)}
 					name={name}
 					checked={checked}
@@ -106,6 +106,11 @@ export const Switch = forwardRef(
 // ==============================
 
 Switch.propTypes = {
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+
 	/**
 	 * Switch input element name
 	 */
@@ -143,11 +148,6 @@ Switch.propTypes = {
 	 * Disable the switch
 	 */
 	disabled: PropTypes.bool,
-
-	/**
-	 * Define an id prefix for internal elements
-	 */
-	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * The override API
