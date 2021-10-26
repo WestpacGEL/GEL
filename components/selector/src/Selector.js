@@ -41,7 +41,7 @@ export const Selector = ({
 	pictogramHeight,
 	disabled,
 	defaultValue,
-	instanceIdPrefix,
+	instanceId,
 	data,
 	children,
 	onChange = () => {},
@@ -62,14 +62,14 @@ export const Selector = ({
 	);
 
 	const [checked, setChecked] = useManagedState(valueAsArray, defaultValueAsArray, onChange);
-	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+	const [id, setId] = useState(instanceId);
 
-	// create the prefix for internal IDs
+	// create the id for internal IDs
 	useEffect(() => {
-		if (!instanceIdPrefix) {
-			setInstanceId(`gel-selector-${useInstanceId()}`);
+		if (!instanceId) {
+			setId(`gel-selector-${useInstanceId()}`);
 		}
-	}, [instanceIdPrefix]);
+	}, [instanceId]);
 
 	const defaultOverrides = {
 		Selector: defaultSelector,
@@ -88,7 +88,7 @@ export const Selector = ({
 	};
 
 	const state = {
-		instanceId,
+		id,
 		type,
 		name,
 		iconSize,
@@ -182,9 +182,9 @@ Selector.propTypes = {
 	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
 
 	/**
-	 * Define an id prefix for internal elements
+	 * Define an id for internal elements
 	 */
-	instanceIdPrefix: PropTypes.string,
+	instanceId: PropTypes.string,
 
 	/**
 	 * A function called on change
