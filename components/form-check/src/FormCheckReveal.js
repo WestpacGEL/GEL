@@ -24,8 +24,8 @@ import pkg from '../package.json';
 // ==============================
 
 export const FormCheckReveal = ({
+	instanceId,
 	show,
-	instanceIdPrefix,
 	data,
 	children,
 	overrides: componentOverrides,
@@ -36,15 +36,15 @@ export const FormCheckReveal = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+	const [id, setId] = useState(instanceId);
 	const [isOpen, setIsOpen] = useState(false);
 	const firstNewOptionRef = useRef();
 
 	useEffect(() => {
-		if (!instanceIdPrefix) {
-			setInstanceId(`gel-form-check-reveal-${useInstanceId()}`);
+		if (!instanceId) {
+			setId(`gel-form-check-reveal-${useInstanceId()}`);
 		}
-	}, [instanceIdPrefix]);
+	}, [instanceId]);
 
 	const defaultOverrides = {
 		FormCheckReveal: defaultFormCheckReveal,
@@ -63,7 +63,7 @@ export const FormCheckReveal = ({
 	};
 
 	const state = {
-		instanceId,
+		id,
 		show,
 		isOpen,
 		...rest,
@@ -83,7 +83,7 @@ export const FormCheckReveal = ({
 	if (data) {
 		data.map(({ text, ...rest }, index) => {
 			allChildren.push(
-				<Option ref={index === show ? firstNewOptionRef : null} key={index} {...rest}>
+				<Option ref={index === show ? firstNewOptionRef : null} key={index} index={index} {...rest}>
 					{text}
 				</Option>
 			);
@@ -92,6 +92,7 @@ export const FormCheckReveal = ({
 		allChildren = Children.map(children, (child, index) => {
 			return cloneElement(child, {
 				ref: index === show ? firstNewOptionRef : null,
+				index,
 			});
 		});
 	}
@@ -128,14 +129,14 @@ export const FormCheckReveal = ({
 
 FormCheckReveal.propTypes = {
 	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+
+	/**
 	 * Show only the given number of Form check options, hide/show toggle the remainder
 	 */
 	show: PropTypes.number.isRequired,
-
-	/**
-	 * Define an id prefix for internal elements
-	 */
-	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * Form check item(s)
