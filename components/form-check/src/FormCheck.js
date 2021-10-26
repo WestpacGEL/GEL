@@ -33,6 +33,7 @@ export const useFormCheckContext = () => {
 // ==============================
 
 export const FormCheck = ({
+	instanceId,
 	type,
 	name,
 	size,
@@ -40,7 +41,6 @@ export const FormCheck = ({
 	inline,
 	disabled,
 	defaultValue,
-	instanceIdPrefix,
 	data,
 	children,
 	onChange = () => {},
@@ -61,14 +61,14 @@ export const FormCheck = ({
 	);
 
 	const [checked, setChecked] = useManagedState(valueAsArray, defaultValueAsArray, onChange);
-	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+	const [id, setId] = useState(instanceId);
 
 	// create the prefix for internal IDs
 	useEffect(() => {
-		if (!instanceIdPrefix) {
-			setInstanceId(`gel-form-check-${useInstanceId()}`);
+		if (!instanceId) {
+			setId(`gel-form-check-${useInstanceId()}`);
 		}
-	}, [instanceIdPrefix]);
+	}, [instanceId]);
 
 	const defaultOverrides = {
 		FormCheck: defaultFormCheck,
@@ -87,7 +87,7 @@ export const FormCheck = ({
 	};
 
 	const state = {
-		instanceId,
+		id,
 		type,
 		name,
 		size,
@@ -138,6 +138,11 @@ export const FormCheck = ({
 
 FormCheck.propTypes = {
 	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+
+	/**
 	 * Form check type
 	 */
 	type: PropTypes.oneOf(['checkbox', 'radio']).isRequired,
@@ -177,11 +182,6 @@ FormCheck.propTypes = {
 	 * The options already checked
 	 */
 	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
-
-	/**
-	 * Define an id prefix for internal elements
-	 */
-	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * A function called on change

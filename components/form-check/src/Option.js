@@ -23,7 +23,7 @@ export const Option = forwardRef(
 		} = useBrand();
 
 		const {
-			instanceId,
+			id,
 			type = 'checkbox',
 			name,
 			size = 'medium',
@@ -40,7 +40,7 @@ export const Option = forwardRef(
 			...restCtx
 		} = useFormCheckContext();
 
-		const optionId = `${instanceId}-option-${useInstanceId()}`;
+		const optionId = `${id}-option-${useInstanceId()}`;
 		const hintId = `${optionId}-hint`;
 
 		const defaultOverrides = {
@@ -150,7 +150,7 @@ Option.propTypes = {
 	/**
 	 * Define an id prefix for internal elements
 	 */
-	instanceIdPrefix: PropTypes.string,
+	instanceId: PropTypes.string,
 
 	/**
 	 * Form check type
