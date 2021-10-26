@@ -145,7 +145,7 @@ FormCheck.propTypes = {
 	/**
 	 * The form check input element’s name
 	 */
-	name: PropTypes.string,
+	name: PropTypes.string.isRequired,
 
 	/**
 	 * Form check size.
