@@ -86,7 +86,6 @@ export const Fork = ({
 							<Item
 								key={child.props.text}
 								inputProps={{
-									'aria-controls': `${id}-content-${index}`,
 									'aria-expanded': selected,
 								}}
 							>
@@ -97,14 +96,7 @@ export const Fork = ({
 				</ButtonGroup>
 				{Children.map(children, (child, index) => {
 					const selected = activeForkIndex === index;
-					return (
-						<ForkContent
-							{...child.props}
-							key={child.props.text}
-							id={`${id}-content-${index}`}
-							selected={selected}
-						/>
-					);
+					return <ForkContent {...child.props} key={child.props.text} selected={selected} />;
 				})}
 			</Fork>
 		</ForkContext.Provider>
