@@ -32,7 +32,7 @@ export const useInputGroupContext = () => {
 // ==============================
 
 export const InputGroup = ({
-	instanceIdPrefix,
+	instanceId,
 	name,
 	label,
 	size,
@@ -54,16 +54,16 @@ export const InputGroup = ({
 		InputGroup: defaultInputGroup,
 	};
 
-	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+	const [id, setId] = useState(instanceId);
 
 	useEffect(() => {
-		if (!instanceIdPrefix) {
-			setInstanceId(`gel-input-group-${useInstanceId()}`);
+		if (!instanceId) {
+			setId(`gel-input-group-${useInstanceId()}`);
 		}
-	}, [instanceIdPrefix]);
+	}, [instanceId]);
 
 	const state = {
-		instanceId,
+		id,
 		name,
 		label,
 		size,
@@ -95,7 +95,7 @@ export const InputGroup = ({
 			childrenWithProps.push(
 				<Before
 					key="before"
-					instanceId={`${instanceId}-before`}
+					instanceId={`${id}-before`}
 					size={size}
 					look={look}
 					disabled={disabled}
@@ -107,7 +107,7 @@ export const InputGroup = ({
 		childrenWithProps.push(
 			<TextInputField
 				key="textinput1"
-				instanceId={`${instanceId}-textinput`}
+				instanceId={`${id}-textInput`}
 				name={name}
 				label={label}
 				size={size}
@@ -123,7 +123,7 @@ export const InputGroup = ({
 			childrenWithProps.push(
 				<After
 					key="after"
-					instanceId={`${instanceId}-after`}
+					instanceId={`${id}-after`}
 					size={size}
 					look={look}
 					disabled={disabled}
@@ -137,7 +137,7 @@ export const InputGroup = ({
 			if (child.type.displayName === 'Before' && !textInputFieldAdded) {
 				childrenWithProps.push(
 					cloneElement(child, {
-						instanceId: `${instanceId}-before`,
+						instanceId: `${id}-before`,
 						size,
 						look,
 						disabled,
@@ -148,7 +148,7 @@ export const InputGroup = ({
 				childrenWithProps.push(
 					<TextInputField
 						key="textinput1"
-						instanceId={`${instanceId}-textinput`}
+						instanceId={`${id}-textInput`}
 						name={name}
 						label={label}
 						size={size}
@@ -165,7 +165,7 @@ export const InputGroup = ({
 				childrenWithProps.push(
 					<TextInputField
 						key="textinput2"
-						instanceId={`${instanceId}-textinput`}
+						instanceId={`${id}-textInput`}
 						name={name}
 						label={label}
 						size={size}
@@ -179,7 +179,7 @@ export const InputGroup = ({
 				);
 				childrenWithProps.push(
 					cloneElement(child, {
-						instanceId: `${instanceId}-after`,
+						instanceId: `${id}-after`,
 						size,
 						look,
 						disabled,
@@ -191,7 +191,7 @@ export const InputGroup = ({
 			} else if (child.type.displayName === 'After' || child.type.displayName === 'Before') {
 				childrenWithProps.push(
 					cloneElement(child, {
-						instanceId: `${instanceId}-other`,
+						instanceId: `${id}-other`,
 						size,
 						look,
 						disabled,

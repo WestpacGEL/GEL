@@ -122,7 +122,6 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<InputGroup
-						instanceIdPrefix="GEL"
 						name="inputgroup-before-text"
 						label="Your input label text"
 						data={{
@@ -137,7 +136,6 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<InputGroup
-						instanceIdPrefix="GEL"
 						name="inputgroup-before-button"
 						label="Your input label text"
 						data={{
@@ -152,7 +150,6 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<InputGroup
-						instanceIdPrefix="GEL"
 						name="inputgroup-before-select"
 						label="Your input label text"
 						data={{
@@ -179,7 +176,6 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<InputGroup
-						instanceIdPrefix="GEL"
 						name="inputgroup-after-text"
 						label="Your input label text"
 						data={{
@@ -194,7 +190,6 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<InputGroup
-						instanceIdPrefix="GEL"
 						name="inputgroup-after-button"
 						label="Your input label text"
 						data={{
@@ -209,7 +204,6 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<InputGroup
-						instanceIdPrefix="GEL"
 						name="inputgroup-after-select"
 						label="Your input label text"
 						data={{
@@ -235,7 +229,6 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<InputGroup
-						instanceIdPrefix="GEL"
 						name="inputgroup-before-text-after-button"
 						label="Your input label text"
 						data={{
@@ -251,7 +244,6 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<InputGroup
-						instanceIdPrefix="GEL"
 						name="inputgroup-before-text-after-text"
 						label="Your input label text"
 						data={{
@@ -267,7 +259,6 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<InputGroup
-						instanceIdPrefix="GEL"
 						name="inputgroup-before-button-after-button"
 						label="Your input label text"
 						data={{
@@ -286,7 +277,6 @@ export function Docs({ brand }) {
 			component: () => (
 				<GEL brand={overridesWithTokens}>
 					<InputGroup
-						instanceIdPrefix="GEL"
 						size={size}
 						name={`inputgroup-size-${size}`}
 						label="Your input label text"
