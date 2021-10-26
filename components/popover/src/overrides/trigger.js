@@ -20,8 +20,8 @@ const triggerStyles = () => ({});
 // Attributes
 // ==============================
 
-	'aria-controls': instanceId,
-const triggerAttributes = (_, { instanceId, isOpen }) => ({
+const triggerAttributes = (_, { id, isOpen }) => ({
+	'aria-controls': id,
 	'aria-expanded': isOpen,
 });
 
