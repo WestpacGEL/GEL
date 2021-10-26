@@ -1,4 +1,5 @@
 ---
+'@westpac/collapsible': patch
 '@westpac/popover': patch
 ---
 
