@@ -16,6 +16,23 @@ const ExampleText = ({ link = '' }) => (
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
+			<h2>Default</h2>
+			<Body>
+				<ExampleText
+					link={
+						<Link href="#" type="inline" iconBefore={PdfFileIcon}>
+							Look, I’m an inline link
+						</Link>
+					}
+				/>
+				<Link href="#" type="standalone" iconBefore={PdfFileIcon}>
+					Look, I’m a standalone link
+				</Link>
+			</Body>
+
+			<br />
+			<hr />
+
 			<h2>Extra small</h2>
 			<Body>
 				<ExampleText
@@ -72,7 +89,7 @@ function Example({ brand }) {
 				<ExampleText
 					link={
 						<Link href="#" type="inline" iconBefore={PdfFileIcon} iconSize="large">
-							Look, I’m an inline link
+							Look, I’m a inline link
 						</Link>
 					}
 				/>

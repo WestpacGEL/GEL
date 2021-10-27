@@ -24,47 +24,8 @@ function Example({ brand }) {
 			<br />
 			<hr />
 
-			<h2>Standalone</h2>
+			<h2>Icon before</h2>
 
-			<h3>Default</h3>
-			<Body>
-				<ExampleText />
-				<Link href="#">Look, I’m a standalone link</Link>
-			</Body>
-
-			<h3>Icon before</h3>
-			<Body>
-				<ExampleText />
-				<Link href="#" type="standalone" iconBefore={PdfFileIcon}>
-					Look, I’m a standalone link
-				</Link>
-			</Body>
-
-			<h3>Icon after</h3>
-			<Body>
-				<ExampleText />
-				<Link href="#" type="standalone" iconAfter={ArrowRightIcon}>
-					Look, I’m a standalone link
-				</Link>
-			</Body>
-
-			<br />
-			<hr />
-
-			<h2>Inline</h2>
-
-			<h3>Default</h3>
-			<Body>
-				<ExampleText
-					link={
-						<Link href="#" type="inline">
-							Look, I’m an inline link
-						</Link>
-					}
-				/>
-			</Body>
-
-			<h3>Icon before</h3>
 			<Body>
 				<ExampleText
 					link={
@@ -73,9 +34,16 @@ function Example({ brand }) {
 						</Link>
 					}
 				/>
+				<Link href="#" type="standalone" iconBefore={PdfFileIcon}>
+					Look, I’m a standalone link
+				</Link>
 			</Body>
 
-			<h3>Icon after</h3>
+			<br />
+			<hr />
+
+			<h2>Icon after</h2>
+
 			<Body>
 				<ExampleText
 					link={
@@ -84,6 +52,9 @@ function Example({ brand }) {
 						</Link>
 					}
 				/>
+				<Link href="#" type="standalone" iconAfter={ArrowRightIcon}>
+					Look, I’m a standalone link
+				</Link>
 			</Body>
 		</GEL>
 	);
