@@ -5,7 +5,7 @@ import { Link } from '@westpac/link';
 import { Body } from '@westpac/body';
 import { PdfFileIcon } from '@westpac/icon';
 
-const DummyText = ({ link = '' }) => (
+const ExampleText = ({ link = '' }) => (
 	<p>
 		Lorem ipsum dolor {link} sit amet consectetur, adipisicing elit. Libero facilis odit voluptate
 		reprehenderit laborum numquam ex optio doloribus magni repudiandae vero fugiat iusto tempora
@@ -18,7 +18,7 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<h2>Extra small</h2>
 			<Body>
-				<DummyText
+				<ExampleText
 					link={
 						<Link href="#" type="inline" iconBefore={PdfFileIcon} iconSize="xsmall">
 							Look, I’m an inline link
@@ -35,7 +35,7 @@ function Example({ brand }) {
 
 			<h2>Small</h2>
 			<Body>
-				<DummyText
+				<ExampleText
 					link={
 						<Link href="#" type="inline" iconBefore={PdfFileIcon} iconSize="small">
 							Look, I’m an inline link
@@ -52,7 +52,7 @@ function Example({ brand }) {
 
 			<h2>Medium</h2>
 			<Body>
-				<DummyText
+				<ExampleText
 					link={
 						<Link href="#" type="inline" iconBefore={PdfFileIcon} iconSize="medium">
 							Look, I’m an inline link
@@ -69,7 +69,7 @@ function Example({ brand }) {
 
 			<h2>Large</h2>
 			<Body>
-				<DummyText
+				<ExampleText
 					link={
 						<Link href="#" type="inline" iconBefore={PdfFileIcon} iconSize="large">
 							Look, I’m an inline link
@@ -86,7 +86,7 @@ function Example({ brand }) {
 
 			<h2>Extra large</h2>
 			<Body>
-				<DummyText
+				<ExampleText
 					link={
 						<Link href="#" type="inline" iconBefore={PdfFileIcon} iconSize="xlarge">
 							Look, I’m an inline link

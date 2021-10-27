@@ -5,7 +5,7 @@ import { Link } from '@westpac/link';
 import { Body } from '@westpac/body';
 import { PdfFileIcon, ArrowRightIcon } from '@westpac/icon';
 
-const DummyText = ({ link = '' }) => (
+const ExampleText = ({ link = '' }) => (
 	<p>
 		Lorem ipsum dolor {link} sit amet consectetur, adipisicing elit. Libero facilis odit voluptate
 		reprehenderit laborum numquam ex optio doloribus magni repudiandae vero fugiat iusto tempora
@@ -28,13 +28,13 @@ function Example({ brand }) {
 
 			<h3>Default</h3>
 			<Body>
-				<DummyText />
+				<ExampleText />
 				<Link href="#">Look, I’m a standalone link</Link>
 			</Body>
 
 			<h3>Icon before</h3>
 			<Body>
-				<DummyText />
+				<ExampleText />
 				<Link href="#" type="standalone" iconBefore={PdfFileIcon}>
 					Look, I’m a standalone link
 				</Link>
@@ -42,7 +42,7 @@ function Example({ brand }) {
 
 			<h3>Icon after</h3>
 			<Body>
-				<DummyText />
+				<ExampleText />
 				<Link href="#" type="standalone" iconAfter={ArrowRightIcon}>
 					Look, I’m a standalone link
 				</Link>
@@ -55,7 +55,7 @@ function Example({ brand }) {
 
 			<h3>Default</h3>
 			<Body>
-				<DummyText
+				<ExampleText
 					link={
 						<Link href="#" type="inline">
 							Look, I’m an inline link
@@ -66,9 +66,9 @@ function Example({ brand }) {
 
 			<h3>Icon before</h3>
 			<Body>
-				<DummyText
+				<ExampleText
 					link={
-						<Link href="#" iconBefore={PdfFileIcon} type="inline">
+						<Link href="#" type="inline" iconBefore={PdfFileIcon}>
 							Look, I’m an inline link
 						</Link>
 					}
@@ -77,9 +77,9 @@ function Example({ brand }) {
 
 			<h3>Icon after</h3>
 			<Body>
-				<DummyText
+				<ExampleText
 					link={
-						<Link href="#" iconAfter={ArrowRightIcon} type="inline">
+						<Link href="#" type="inline" iconAfter={ArrowRightIcon}>
 							Look, I’m an inline link
 						</Link>
 					}
