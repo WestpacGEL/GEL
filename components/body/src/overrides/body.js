@@ -129,12 +129,13 @@ const bodyStyles = (_, props) => {
 			backgroundColor: COLORS.tints.primary20,
 		},
 
-		// Note: :not() ensures styling not applied to `<Button />` children of `<Body />`,
+		// Note: :not() ensures styling not applied to `<Button />` or `<Link />` children of `<Body />`,
 		// this styling would have higher specificity
-		'a:not([class*="css-"][class*="-button"]):not([class*="GEL-"][class*="-button"])': {
-			color: COLORS.link,
-			textDecoration: 'underline',
-		},
+		'a:not([class*="css-"][class*="-button"]):not([class*="GEL-"][class*="-button"]):not([class*="css-"][class*="-link"])':
+			{
+				color: COLORS.link,
+				textDecoration: 'underline',
+			},
 
 		...(props[key]
 			? {
