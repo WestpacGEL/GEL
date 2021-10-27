@@ -38,7 +38,7 @@ export const ButtonGroupItem = forwardRef(
 		} = useBrand();
 
 		const context = useButtonGroupContext();
-		const [buttonGroupItemId] = useState(`gel-button group-item-${useInstanceId()}`);
+		const [buttonGroupItemId] = useState(`gel-button-group-item-${useInstanceId()}`);
 
 		const defaultOverrides = {
 			Item: defaultItem,
