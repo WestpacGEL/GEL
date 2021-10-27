@@ -13,7 +13,7 @@ export const ZipFileIcon = (props) => (
 
 ZipFileIcon.defaultProps = {
 	...defaultProps,
-	assistiveText: 'Zip file',
+	assistiveText: 'Zip File',
 	copyrightYear: '2020',
 };
 ZipFileIcon.propTypes = propTypes;
