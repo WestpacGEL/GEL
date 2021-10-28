@@ -65,7 +65,6 @@ ForkContent.propTypes = {
 	/**
 	 * Whether this content is selected and visible
 	 */
-
 	selected: PropTypes.bool,
 
 	/**
