@@ -64,7 +64,7 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 
 	return (
 		<Item {...rest} state={state} {...itemAttributes(state)} {...(styles ? { css: styles } : {})}>
-			{type === 'icon' && icon && (
+			{(type === 'icon' || type === 'iconLink') && icon && (
 				<Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />
 			)}
 			{children}

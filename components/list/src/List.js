@@ -111,7 +111,8 @@ export const List = ({
 	look =
 		look ||
 		(context && context.look) ||
-		((type === 'bullet' || type === 'tick' || type === 'cross') && 'hero');
+		((type === 'bullet' || type === 'tick' || type === 'cross') && 'hero') ||
+		((type === 'link' || type === 'iconLink') && 'link');
 	spacing = spacing || (context && context.spacing) || 'medium';
 	icon = icon || (context && context.icon);
 
@@ -167,12 +168,22 @@ List.propTypes = {
 	 * The type of the bullet
 	 * note: none is only used for blender
 	 */
-	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'cross', 'unstyled', 'icon', 'ordered', 'none']),
+	type: PropTypes.oneOf([
+		'bullet',
+		'link',
+		'tick',
+		'cross',
+		'unstyled',
+		'icon',
+		'iconLink',
+		'ordered',
+		'none',
+	]),
 
 	/**
 	 * The look of the bullet, icon, tick and cross lists
 	 */
-	look: PropTypes.oneOf(['primary', 'hero', 'neutral', 'success', 'danger']),
+	look: PropTypes.oneOf(['primary', 'hero', 'neutral', 'success', 'danger', 'link']),
 
 	/**
 	 * The size of space between list elements
