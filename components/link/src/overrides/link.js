@@ -13,7 +13,7 @@ const Link = ({ state: _, ...rest }) => <a {...rest} />;
 // Styles
 // ==============================
 
-const linkStyles = (_, { type }) => {
+const linkStyles = (_, { type, underline }) => {
 	const { COLORS } = useBrand();
 
 	return {
@@ -27,10 +27,9 @@ const linkStyles = (_, { type }) => {
 
 		label: 'link',
 		color: type === 'inline' ? COLORS.link : COLORS.text,
-		textDecoration: type === 'inline' ? 'underline' : 'none',
+		textDecoration: type === 'inline' && underline ? 'underline' : 'none',
 
 		':hover': {
-			color: COLORS.link,
 			textDecoration: 'underline',
 		},
 	};

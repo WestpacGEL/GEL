@@ -36,6 +36,7 @@ function Example({ brand }) {
 
 			<h2>Inline</h2>
 
+			<h3>Default</h3>
 			<Body>
 				<ExampleText
 					link={
@@ -44,6 +45,37 @@ function Example({ brand }) {
 						</Link>
 					}
 				/>
+				<Link href="#" type="inline">
+					Look, I’m an another inline link
+				</Link>
+			</Body>
+
+			<h3>With underline</h3>
+			<Body>
+				<ExampleText
+					link={
+						<Link href="#" type="inline" underline={true}>
+							Look, I’m an inline link
+						</Link>
+					}
+				/>
+				<Link href="#" type="inline" underline={true}>
+					Look, I’m an another inline link
+				</Link>
+			</Body>
+
+			<h3>Without underline</h3>
+			<Body>
+				<ExampleText
+					link={
+						<Link href="#" type="inline" underline={false}>
+							Look, I’m an inline link
+						</Link>
+					}
+				/>
+				<Link href="#" type="inline" underline={false}>
+					Look, I’m an another inline link
+				</Link>
 			</Body>
 		</GEL>
 	);

@@ -19,6 +19,7 @@ export const Link = ({
 	iconBefore: IconBefore,
 	iconAfter: IconAfter,
 	iconSize,
+	underline,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -45,6 +46,7 @@ export const Link = ({
 		iconBefore: IconBefore,
 		iconAfter: IconAfter,
 		iconSize,
+		underline,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -108,6 +110,11 @@ Link.propTypes = {
 	iconAfter: PropTypes.func,
 
 	/**
+	 * Visually style the (inline) link with an underline
+	 */
+	underline: PropTypes.bool,
+
+	/**
 	 * Icon size
 	 */
 	iconSize: PropTypes.oneOfType([
@@ -140,4 +147,5 @@ Link.propTypes = {
 Link.defaultProps = {
 	type: 'standalone',
 	iconSize: 'small',
+	underline: true,
 };
