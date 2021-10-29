@@ -109,7 +109,7 @@ const createRopeGraph = (current, data, children) => {
 // ==============================
 
 export const ProgressRope = ({
-	instanceIdPrefix,
+	instanceId,
 	current,
 	headingsTag,
 	assistiveText,
@@ -123,14 +123,14 @@ export const ProgressRope = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [instancePrefix, setInstancePrefix] = useState(instanceIdPrefix);
+	const [id, setId] = useState(instanceId);
 
 	// create the prefix for internal IDs
 	useEffect(() => {
-		if (!instancePrefix) {
-			setInstancePrefix(`gel-progress-rope-${useInstanceId()}`);
+		if (!instanceId) {
+			setId(`gel-progress-rope-${useInstanceId()}`);
 		}
-	}, [instancePrefix]);
+	}, [instanceId]);
 
 	const defaultOverrides = {
 		ProgressRope: defaultProgressRope,
@@ -138,7 +138,7 @@ export const ProgressRope = ({
 	};
 
 	const state = {
-		instancePrefix,
+		id,
 		current,
 		headingsTag,
 		assistiveText,
@@ -257,7 +257,7 @@ export const ProgressRope = ({
 	}
 
 	return (
-		<ProgressRopeContext.Provider value={{ ...progState, state, instancePrefix, handleClick }}>
+		<ProgressRopeContext.Provider value={{ ...progState, state, handleClick }}>
 			<ProgressRope
 				{...rest}
 				state={state}
@@ -278,9 +278,9 @@ export const ProgressRope = ({
 
 ProgressRope.propTypes = {
 	/**
-	 * Define an id prefix for the group step elements e.g. for a prefix of "progress-rope" --> "progress-rope-group-1" etc.
+	 * Define an id for the group step elements e.g. for an instanceId of "progress-rope" --> "progress-rope-group-1" etc.
 	 */
-	instanceIdPrefix: PropTypes.string,
+	instanceId: PropTypes.string,
 
 	/**
 	 * Current active step (zero-indexed)
