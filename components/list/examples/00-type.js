@@ -82,8 +82,8 @@ function Example({ brand }) {
 			<br />
 			<hr />
 
-			<h2>Icon link</h2>
-			<List type="iconLink" icon={PdfFileIcon}>
+			<h2>Link with custom icon</h2>
+			<List type="link" icon={PdfFileIcon}>
 				<Item>
 					<a href="#">Styled icon link list</a>
 				</Item>
