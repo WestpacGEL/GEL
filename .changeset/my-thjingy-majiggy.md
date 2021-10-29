@@ -6,6 +6,7 @@
 '@westpac/popover': major
 '@westpac/progress-rope': major
 '@westpac/switch': major
+'@westpac/tabcordion': major
 ---
 
 Rename instanceIdPrefix prop as instanceId
