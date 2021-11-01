@@ -33,10 +33,10 @@ const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const mq = useMediaQuery();
 
 	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
-	let focus = { ...PACKS.focus };
-	focus.outline += ' !important';
-	focus.outlineWidth += ' !important';
-	focus.outlineOffset += ' !important';
+	const focus = Object.entries(PACKS.focus).reduce((acc, [key, val]) => {
+		acc[key] = val += ' !important';
+		return acc;
+	}, {});
 
 	return mq({
 		// Normalize

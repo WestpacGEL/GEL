@@ -34,10 +34,10 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const mq = useMediaQuery();
 
 	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
-	const focus = { ...PACKS.focus };
-	focus.outline += ' !important';
-	focus.outlineWidth += ' !important';
-	focus.outlineOffset += ' !important';
+	const focus = Object.entries(PACKS.focus).reduce((acc, [key, val]) => {
+		acc[key] = val += ' !important';
+		return acc;
+	}, {});
 
 	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${COLORS.muted}" fillRule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
 	const caretGap = '0.5rem';
