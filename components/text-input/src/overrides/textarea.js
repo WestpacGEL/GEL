@@ -34,7 +34,7 @@ const textareaStyles = (_, { size, width, inline, invalid, ...rest }) => {
 
 	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
 	const focus = Object.entries(PACKS.focus).reduce((acc, [key, val]) => {
-		acc[key] = val += ' !important';
+		acc[key] = `${val} !important`;
 		return acc;
 	}, {});
 
