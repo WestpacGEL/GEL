@@ -33,6 +33,7 @@ export const useSelectorContext = () => {
 // ==============================
 
 export const Selector = ({
+	instanceId,
 	type,
 	name,
 	value,
@@ -41,7 +42,6 @@ export const Selector = ({
 	pictogramHeight,
 	disabled,
 	defaultValue,
-	instanceId,
 	data,
 	children,
 	onChange = () => {},
@@ -139,6 +139,11 @@ export const Selector = ({
 
 Selector.propTypes = {
 	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+
+	/**
 	 * Selector type
 	 */
 	type: PropTypes.oneOf(['radio', 'checkbox', 'button', 'link']).isRequired,
@@ -186,11 +191,6 @@ Selector.propTypes = {
 	 * The options already checked
 	 */
 	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
-
-	/**
-	 * Define an id for internal elements
-	 */
-	instanceId: PropTypes.string,
 
 	/**
 	 * A function called on change
