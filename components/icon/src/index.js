@@ -108,6 +108,7 @@ export { PauseIcon } from './PauseIcon';
 export { PayIcon } from './PayIcon';
 export { PayToMobileIcon } from './PayToMobileIcon';
 export { PaypassIcon } from './PaypassIcon';
+export { PdfFileIcon } from './PdfFileIcon';
 export { PendingIcon } from './PendingIcon';
 export { PeopleIcon } from './PeopleIcon';
 export { PercentIcon } from './PercentIcon';
