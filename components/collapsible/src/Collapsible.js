@@ -134,6 +134,11 @@ export const Collapsible = ({
 
 Collapsible.propTypes = {
 	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+
+	/**
 	 * State of whether the Collapsible is open
 	 */
 	open: PropTypes.bool,
@@ -142,11 +147,6 @@ Collapsible.propTypes = {
 	 * Button text
 	 */
 	text: PropTypes.string.isRequired,
-
-	/**
-	 * Define an id for internal elements
-	 */
-	instanceId: PropTypes.string,
 
 	/**
 	 * A function for the onClick event
