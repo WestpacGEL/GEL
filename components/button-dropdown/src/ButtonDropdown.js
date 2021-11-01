@@ -31,8 +31,8 @@ export const useButtonDropdownContext = () => {
 // ==============================
 
 export const ButtonDropdown = ({
-	open,
 	instanceId,
+	open,
 	text,
 	dropdownSize,
 	block,
@@ -157,14 +157,14 @@ export const ButtonDropdown = ({
 
 ButtonDropdown.propTypes = {
 	/**
-	 * State of whether the Popover is open
-	 */
-	open: PropTypes.bool,
-
-	/**
 	 * Define an id for internal elements
 	 */
 	instanceId: PropTypes.string,
+
+	/**
+	 * State of whether the Popover is open
+	 */
+	open: PropTypes.bool,
 
 	/**
 	 * Button text
