@@ -165,6 +165,11 @@ export const Popover = ({
 
 Popover.propTypes = {
 	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+
+	/**
 	 * State of whether the Popover is open
 	 */
 	open: PropTypes.bool,
@@ -183,11 +188,6 @@ Popover.propTypes = {
 	 * The body of the popover
 	 */
 	content: PropTypes.string.isRequired,
-
-	/**
-	 * Define an id for internal elements
-	 */
-	instanceId: PropTypes.string,
 
 	/**
 	 * A function for the onClick event
