@@ -9,7 +9,7 @@ import {
 	asArray,
 	useManagedState,
 } from '@westpac/core';
-import { Children, useState, useEffect, useContext, createContext, cloneElement } from 'react';
+import { Children, useState, useContext, createContext, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultSelector } from './overrides/selector';
@@ -61,15 +61,8 @@ export const Selector = ({
 		'The Selector as radio may only have one "current" item set.'
 	);
 
+	const [id] = useState(instanceId || `gel-selector-${useInstanceId()}`);
 	const [checked, setChecked] = useManagedState(valueAsArray, defaultValueAsArray, onChange);
-	const [id, setId] = useState(instanceId);
-
-	// create the id for internal IDs
-	useEffect(() => {
-		if (!instanceId) {
-			setId(`gel-selector-${useInstanceId()}`);
-		}
-	}, [instanceId]);
 
 	const defaultOverrides = {
 		Selector: defaultSelector,

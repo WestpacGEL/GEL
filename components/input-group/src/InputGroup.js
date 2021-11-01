@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId, devWarning } from '@westpac/core';
-import { Children, cloneElement, useState, useEffect, useContext, createContext } from 'react';
+import { Children, cloneElement, useState, useContext, createContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultInputGroup } from './overrides/inputGroup';
@@ -54,13 +54,7 @@ export const InputGroup = ({
 		InputGroup: defaultInputGroup,
 	};
 
-	const [id, setId] = useState(instanceId);
-
-	useEffect(() => {
-		if (!instanceId) {
-			setId(`gel-input-group-${useInstanceId()}`);
-		}
-	}, [instanceId]);
+	const [id] = useState(instanceId || `gel-input-group-${useInstanceId()}`);
 
 	const state = {
 		id,

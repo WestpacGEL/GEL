@@ -1,15 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, useInstanceId, overrideReconciler } from '@westpac/core';
-import {
-	Fragment,
-	useState,
-	useEffect,
-	useLayoutEffect,
-	useRef,
-	cloneElement,
-	Children,
-} from 'react';
+import { Fragment, useState, useLayoutEffect, useRef, cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFormCheckReveal } from './overrides/formCheckReveal';
@@ -36,15 +28,9 @@ export const FormCheckReveal = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [id, setId] = useState(instanceId);
+	const [id] = useState(instanceId || `gel-form-check-reveal-${useInstanceId()}`);
 	const [isOpen, setIsOpen] = useState(false);
 	const firstNewOptionRef = useRef();
-
-	useEffect(() => {
-		if (!instanceId) {
-			setId(`gel-form-check-reveal-${useInstanceId()}`);
-		}
-	}, [instanceId]);
 
 	const defaultOverrides = {
 		FormCheckReveal: defaultFormCheckReveal,

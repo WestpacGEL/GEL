@@ -57,7 +57,7 @@ export const Tabcordion = ({
 	};
 
 	const [activeTabIndex, setActiveTabIndex] = useState(openTab);
-	const [id, setId] = useState(instanceId ? instanceId : `gel-tabcordion-${useInstanceId()}`);
+	const [id] = useState(instanceId || `gel-tabcordion-${useInstanceId()}`);
 
 	const containerRef = useRef();
 	const panelRef = useRef();

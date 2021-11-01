@@ -9,4 +9,5 @@
 '@westpac/tabcordion': major
 ---
 
-Rename instanceIdPrefix prop as instanceId
+- Rename instanceIdPrefix prop as instanceId
+- Refactor internal id state to not require useEffect

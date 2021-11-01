@@ -51,13 +51,7 @@ export const Popover = ({
 		CloseBtn: defaultCloseBtn,
 	};
 
-	const [id, setId] = useState(instanceId);
-
-	useEffect(() => {
-		if (!instanceId) {
-			setId(`gel-popover-${useInstanceId()}`);
-		}
-	}, [instanceId]);
+	const [id] = useState(instanceId || `gel-popover-${useInstanceId()}`);
 
 	const state = {
 		id,

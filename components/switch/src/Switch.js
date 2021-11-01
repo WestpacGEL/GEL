@@ -35,14 +35,7 @@ export const Switch = forwardRef(
 		} = useBrand();
 
 		const [checked, setChecked] = useState(isChecked);
-		const [id, setId] = useState(instanceId);
-
-		// create the prefix for internal IDs
-		useEffect(() => {
-			if (!instanceId) {
-				setId(`gel-switch-${useInstanceId()}`);
-			}
-		}, [instanceId]);
+		const [id] = useState(instanceId || `gel-switch-${useInstanceId()}`);
 
 		const defaultOverrides = {
 			Switch: defaultSwitch,

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState, useEffect, forwardRef } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFieldset } from './overrides/fieldset';
@@ -31,15 +31,8 @@ export const Fieldset = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [id, setId] = useState(instanceId);
+	const [id] = useState(instanceId || `gel-fieldset-${useInstanceId()}`);
 	const [ariaDescribedByValue, setAriaDescribedByValue] = useState();
-
-	// create the prefix for internal IDs
-	useEffect(() => {
-		if (!instanceId) {
-			setId(`gel-fieldset-${useInstanceId()}`);
-		}
-	}, [instanceId]);
 
 	useEffect(() => {
 		const arr = [...(error ? [`${id}-error`] : []), ...(hint ? [`${id}-hint`] : [])];

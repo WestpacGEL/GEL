@@ -38,14 +38,8 @@ export const Collapsible = ({
 		Content: defaultContent,
 	};
 
-	const [id, setId] = useState(instanceId);
+	const [id] = useState(instanceId || `gel-collapsible-${useInstanceId()}`);
 	const [closed, setClosed] = useState(true);
-
-	useEffect(() => {
-		if (!instanceId) {
-			setId(`gel-collapsible-${useInstanceId()}`);
-		}
-	}, [instanceId]);
 
 	const state = {
 		id,

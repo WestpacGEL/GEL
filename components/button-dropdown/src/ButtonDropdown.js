@@ -47,16 +47,9 @@ export const ButtonDropdown = ({
 	} = useBrand();
 
 	const [isOpen, setIsOpen] = useState(open);
-	const [id, setId] = useState(instanceId);
+	const [id] = useState(instanceId || `gel-button-dropdown-${useInstanceId()}`);
 	const panelRef = useRef();
 	const buttonRef = useRef();
-
-	// create the prefix for internal ID
-	useEffect(() => {
-		if (!instanceId) {
-			setId(`gel-button-dropdown-${useInstanceId()}`);
-		}
-	}, [instanceId]);
 
 	const defaultOverrides = {
 		ButtonDropdown: defaultButtonDropdown,

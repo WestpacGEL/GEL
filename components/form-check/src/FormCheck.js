@@ -9,7 +9,7 @@ import {
 	asArray,
 	useManagedState,
 } from '@westpac/core';
-import { Children, useState, useEffect, useContext, createContext, cloneElement } from 'react';
+import { Children, useState, useContext, createContext, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFormCheck } from './overrides/formCheck';
@@ -61,14 +61,7 @@ export const FormCheck = ({
 	);
 
 	const [checked, setChecked] = useManagedState(valueAsArray, defaultValueAsArray, onChange);
-	const [id, setId] = useState(instanceId);
-
-	// create the prefix for internal IDs
-	useEffect(() => {
-		if (!instanceId) {
-			setId(`gel-form-check-${useInstanceId()}`);
-		}
-	}, [instanceId]);
+	const [id] = useState(instanceId || `gel-form-check-${useInstanceId()}`);
 
 	const defaultOverrides = {
 		FormCheck: defaultFormCheck,
