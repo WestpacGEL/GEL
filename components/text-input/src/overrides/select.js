@@ -38,10 +38,6 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 		acc[key] = `${val} !important`;
 		return acc;
 	}, {});
-	/* const focus = Object.keys(PACKS.focus).reduce((acc, key) => {
-		acc[key] = PACKS.focus[key] += ' !important';
-		return acc;
-	}, {}); */
 
 	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${COLORS.muted}" fillRule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
 	const caretGap = '0.5rem';
