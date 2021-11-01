@@ -41,7 +41,12 @@ export const ForkContent = ({ text, selected, children, overrides, ...rest }) =>
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<ForkContent state={state} {...forkContentAttributes(state)} css={forkContentStyles(state)}>
+		<ForkContent
+			{...rest}
+			state={state}
+			{...forkContentAttributes(state)}
+			css={forkContentStyles(state)}
+		>
 			{children}
 		</ForkContent>
 	);
@@ -60,7 +65,6 @@ ForkContent.propTypes = {
 	/**
 	 * Whether this content is selected and visible
 	 */
-
 	selected: PropTypes.bool,
 
 	/**

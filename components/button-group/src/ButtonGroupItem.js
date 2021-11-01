@@ -16,7 +16,20 @@ import pkg from '../package.json';
 
 export const ButtonGroupItem = forwardRef(
 	(
-		{ name, value, onChange, checked, look, size, block, disabled, children, overrides, ...rest },
+		{
+			name,
+			value,
+			onChange,
+			checked,
+			look,
+			size,
+			block,
+			disabled,
+			inputProps,
+			children,
+			overrides,
+			...rest
+		},
 		ref
 	) => {
 		const {
@@ -25,7 +38,7 @@ export const ButtonGroupItem = forwardRef(
 		} = useBrand();
 
 		const context = useButtonGroupContext();
-		const [buttonGroupItemId] = useState(`button-group-item-${useInstanceId()}`);
+		const [buttonGroupItemId] = useState(`gel-button-group-item-${useInstanceId()}`);
 
 		const defaultOverrides = {
 			Item: defaultItem,
@@ -43,6 +56,7 @@ export const ButtonGroupItem = forwardRef(
 			size,
 			block,
 			disabled,
+			inputProps,
 			context: context.state,
 			overrides: componentOverrides,
 			...rest,
@@ -71,6 +85,7 @@ export const ButtonGroupItem = forwardRef(
 					checked={checked}
 					disabled={disabled}
 					data-js="buttonGroup-input__version__"
+					{...inputProps}
 					css={{
 						label: getLabel('buttonGroup-input'),
 						position: 'absolute',
