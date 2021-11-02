@@ -32,7 +32,7 @@ const textareaStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
-	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
+	// We’ll add !important to focus state styling to ensure it’s always visible, even with the useFocus helper
 	const focus = Object.entries(PACKS.focus).reduce((acc, [key, val]) => {
 		acc[key] = `${val} !important`;
 		return acc;
