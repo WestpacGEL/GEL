@@ -33,7 +33,7 @@ export const getTypeScaleMargin = (size, isCollapse = false) => {
 
 export const Body = (props) => {
 	const mq = useMediaQuery();
-	const { PACKS, TYPE, SPACING } = useBrand();
+	const { PACKS, TYPE, SPACING, COLORS } = useBrand();
 
 	return (
 		<GELBody
@@ -69,6 +69,12 @@ export const Body = (props) => {
 								},
 								p: {
 									margin: `0 0 ${SPACING(2)}`,
+								},
+								code: {
+									paddingLeft: SPACING(1),
+									paddingRight: SPACING(1),
+									backgroundColor: '#fff',
+									color: COLORS.hero,
 								},
 							})[0],
 						}),
