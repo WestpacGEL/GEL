@@ -9,8 +9,8 @@ const Demo = ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<p>
 				<em>
-					Note: The text below this message is visually hidden, but will be announced by screen
-					readers
+					Note: The text found below this message is visually hidden, but will be announced by
+					screen readers
 				</em>
 			</p>
 			<VisuallyHidden>This is screen reader only text</VisuallyHidden>

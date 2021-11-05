@@ -9,8 +9,8 @@ const Demo = ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<p>
 				<em>
-					The link below this message is visually hidden until focused, but will be announced by
-					screen readers
+					Note: The link found below this message is visually hidden until focused, but will be
+					announced by screen readers
 				</em>
 			</p>
 			<SkipLink href="#content">This is screen reader only text (visible when focused)</SkipLink>
