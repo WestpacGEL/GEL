@@ -13,7 +13,6 @@ import reactStringReplace from 'react-string-replace';
 
 import createReactRenderer from './react-renderer';
 import { getShortCodes } from '../../../shortcodes';
-import { Separator } from '../../separator';
 
 const DynamicComponents = dynamic(() => import('./dynamic-components'), { ssr: false });
 
