@@ -2,7 +2,7 @@
 
 import { jsx } from '@emotion/react';
 
-import { Separator } from '../../../../../src/components/separator';
+import { Section } from '../../../../../src/components/section';
 import { ToolbarButton } from '../toolbar-components';
 import { hasAncestorBlock } from '../utils';
 import { CodeIcon } from '../toolbar-icons';
@@ -31,9 +31,14 @@ export function ToolbarElement({ editor, editorState }) {
 
 export function Node({ attributes, children }) {
 	return (
-		<section css={{ borderRight: '2px solid #2684FF', paddingTop: '24px' }} {...attributes}>
+		<Section
+			css={{
+				borderRight: '2px solid #2684FF',
+				marginBottom: '6px',
+			}}
+			{...attributes}
+		>
 			{children}
-			<Separator />
-		</section>
+		</Section>
 	);
 }
