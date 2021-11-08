@@ -71,8 +71,8 @@ export const Body = (props) => {
 									margin: `0 0 ${SPACING(2)}`,
 								},
 								code: {
-									paddingLeft: SPACING(1),
-									paddingRight: SPACING(1),
+									paddingLeft: SPACING(1, 'minor'),
+									paddingRight: SPACING(1, 'minor'),
 									backgroundColor: '#fff',
 									color: COLORS.hero,
 								},
