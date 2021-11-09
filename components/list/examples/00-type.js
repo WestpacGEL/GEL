@@ -2,7 +2,7 @@
 
 import { GEL, jsx } from '@westpac/core';
 import { List, Item } from '@westpac/list';
-import { AndroidIcon } from '@westpac/icon';
+import { AndroidIcon, PdfFileIcon } from '@westpac/icon';
 
 function Example({ brand }) {
 	return (
@@ -46,6 +46,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Link</h2>
+
 			<List type="link">
 				<Item>
 					<a href="#">Styled link list</a>
@@ -72,6 +73,42 @@ function Example({ brand }) {
 				</Item>
 				<Item>
 					<a href="#">Styled link list</a>
+				</Item>
+				<Item>
+					<a href="#unstyled">Autofocus on anchor links</a>
+				</Item>
+			</List>
+
+			<br />
+			<hr />
+
+			<h2>Link with custom icon</h2>
+			<List type="link" icon={PdfFileIcon}>
+				<Item>
+					<a href="#">Styled icon link list</a>
+				</Item>
+				<Item>
+					<a href="#">Styled icon link list</a>
+				</Item>
+				<Item>
+					<a href="#">Styled icon link list</a>
+				</Item>
+				<Item>
+					<a href="#">Styled icon link list</a>
+					<List>
+						<Item>
+							<a href="#">Styled icon link list</a>
+						</Item>
+						<Item>
+							<a href="#">Styled icon link list</a>
+						</Item>
+						<Item>
+							<a href="#">Styled icon link list</a>
+						</Item>
+					</List>
+				</Item>
+				<Item>
+					<a href="#">Styled icon link list</a>
 				</Item>
 				<Item>
 					<a href="#unstyled">Autofocus on anchor links</a>
