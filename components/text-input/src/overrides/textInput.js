@@ -32,9 +32,11 @@ const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
-	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
-	const focus = { ...PACKS.focus };
-	focus.outline += ' !important';
+	// We’ll add !important to focus state styling to ensure it’s always visible, even with the useFocus helper
+	const focus = Object.entries(PACKS.focus).reduce((acc, [key, val]) => {
+		acc[key] = `${val} !important`;
+		return acc;
+	}, {});
 
 	return mq({
 		// Normalize
@@ -72,8 +74,8 @@ const textInputStyles = (_, { size, width, inline, invalid, ...rest }) => {
 			...TYPE.bodyFont[300],
 		},
 
-		// Focus styling (for all, not just keyboard users)
-		':focus': {
+		// Focus styling (for all, not just keyboard users), specifying element tag to increase specificity
+		'input&:focus': {
 			...focus,
 		},
 

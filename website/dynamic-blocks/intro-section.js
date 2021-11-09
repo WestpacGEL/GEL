@@ -141,7 +141,7 @@ const TableOfContents = ({ content }) => {
 	);
 };
 
-const PackageInfoTable = ({ item }) => {
+const PackageInfoTable = ({ item, ...rest }) => {
 	if (!item) return null;
 	const { PACKS, SPACING, COLORS } = useBrand();
 	const mq = useMediaQuery();
@@ -157,6 +157,7 @@ const PackageInfoTable = ({ item }) => {
 				textAlign: 'left',
 				...PACKS.typeScale.bodyFont[10],
 			})}
+			{...rest}
 		>
 			<tbody
 				css={{
@@ -181,7 +182,7 @@ const PackageInfoTable = ({ item }) => {
 							href={`https://github.com/WestpacGEL/GEL/blob/master/components/${packageName}/CHANGELOG.md`}
 							target="_blank"
 						>
-							View Changes
+							View changes
 							<ExternalLinkIcon />
 						</a>
 					</td>
@@ -204,6 +205,7 @@ const PackageInfoTable = ({ item }) => {
 const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
 	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
+
 	return (
 		<Fragment>
 			<Section paddingTop="large">
@@ -223,7 +225,15 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 										{description}
 									</p>
 								) : null}
-								{showPackageInfo && <PackageInfoTable item={item} />}
+								{showPackageInfo && (
+									<PackageInfoTable
+										item={item}
+										css={mq({
+											marginTop: description &&
+												description !== '' && [SPACING(5), null, SPACING(7)],
+										})}
+									/>
+								)}
 							</Body>
 						</Cell>
 						{showTableOfContents && (
