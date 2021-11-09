@@ -68,10 +68,35 @@ const EmploymentAutocompletePattern = () => {
 							<Autocomplete
 								size="large"
 								options={[
-									{ value: '', label: '123 Sesame Street, Hornsby, NSW, 2077 ' },
-									{ value: '', label: '742 Evergreen Terrace , Chatswood, NSW, 2067 ' },
-									{ value: '', label: '42 Wallaby Way, Sydney, NSW, 2000 ' },
-									{ value: '', label: '124 Conch Street, Marrickville, NSW, 2204 ' },
+									{
+										value: '',
+										label: 'Accounting clerk / Branch accountant financial institution',
+									},
+									{ value: '', label: 'Actuarial clerk' },
+									{
+										value: '',
+										label: 'Articled clerk / Barrister / Solicitor / Legal Officer - corporation',
+									},
+									{ value: '', label: 'Booking clerk / TAB clerk / Ticket seller' },
+									{ value: '', label: 'Business machine operator/Ledger keeper' },
+									{ value: '', label: 'Charity collector / Debt collection clerk' },
+									{ value: '', label: 'Clerk / Recordtaker' },
+									{ value: '', label: 'Computer operator / Data entry' },
+									{ value: '', label: 'Courier / Messenger' },
+									{ value: '', label: 'Data processing - specialist manager' },
+									{ value: '', label: 'Human resource clerk / Training personnel specialists' },
+									{ value: '', label: 'Mail order clerk / Stock and purchasing clerk' },
+									{ value: '', label: 'Mail sorter' },
+									{ value: '', label: 'Office secretary / Stenographer' },
+									{ value: '', label: 'Photocopying clerk' },
+									{ value: '', label: 'Postal officer' },
+									{ value: '', label: 'Production recording clerk' },
+									{ value: '', label: 'Receptionist' },
+									{ value: '', label: 'Service counter clerk' },
+									{ value: '', label: 'Telephonist' },
+									{ value: '', label: 'Transport / Despatch clerk / Customs agent' },
+									{ value: '', label: 'Typist' },
+									{ value: '', label: 'Word processing operator' },
 								]}
 								noOptionsMessage={() => 'None found'}
 							/>

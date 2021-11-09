@@ -18,6 +18,7 @@ const PhoneInternationalSelectPattern = () => {
 							{ text: 'Select code', value: '' },
 							{ text: 'AU +61', value: 'AU +61' },
 						]}
+						value="AU +61"
 					/>
 				</InputGroup>
 			</Fieldset>
