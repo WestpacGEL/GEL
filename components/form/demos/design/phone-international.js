@@ -3,6 +3,7 @@
 import { jsx } from '@westpac/core';
 import { Form, FormGroup, Field, Fieldset, InputCluster, Item } from '@westpac/form';
 import { TextInput } from '@westpac/text-input';
+import { InputGroup, Before } from '@westpac/input-group';
 import { Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
