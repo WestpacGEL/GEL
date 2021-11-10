@@ -43,6 +43,45 @@ const IndustrySelect = (props) => (
 	</Select>
 );
 
+const OccupationAutocomplete = (props) => (
+	<Autocomplete
+		size="large"
+		options={[
+			{
+				value: '',
+				label: 'Accounting clerk / Branch accountant financial institution',
+			},
+			{ value: '', label: 'Actuarial clerk' },
+			{
+				value: '',
+				label: 'Articled clerk / Barrister / Solicitor / Legal Officer - corporation',
+			},
+			{ value: '', label: 'Booking clerk / TAB clerk / Ticket seller' },
+			{ value: '', label: 'Business machine operator/Ledger keeper' },
+			{ value: '', label: 'Charity collector / Debt collection clerk' },
+			{ value: '', label: 'Clerk / Recordtaker' },
+			{ value: '', label: 'Computer operator / Data entry' },
+			{ value: '', label: 'Courier / Messenger' },
+			{ value: '', label: 'Data processing - specialist manager' },
+			{ value: '', label: 'Human resource clerk / Training personnel specialists' },
+			{ value: '', label: 'Mail order clerk / Stock and purchasing clerk' },
+			{ value: '', label: 'Mail sorter' },
+			{ value: '', label: 'Office secretary / Stenographer' },
+			{ value: '', label: 'Photocopying clerk' },
+			{ value: '', label: 'Postal officer' },
+			{ value: '', label: 'Production recording clerk' },
+			{ value: '', label: 'Receptionist' },
+			{ value: '', label: 'Service counter clerk' },
+			{ value: '', label: 'Telephonist' },
+			{ value: '', label: 'Transport / Despatch clerk / Customs agent' },
+			{ value: '', label: 'Typist' },
+			{ value: '', label: 'Word processing operator' },
+		]}
+		noOptionsMessage={() => 'None found'}
+		{...props}
+	/>
+);
+
 const EmploymentAutocompletePattern = () => {
 	const [employment, setEmployment] = useState();
 
@@ -65,41 +104,7 @@ const EmploymentAutocompletePattern = () => {
 					</FormGroup>
 					<FormGroup>
 						<Field label="Search for your occupation">
-							<Autocomplete
-								size="large"
-								options={[
-									{
-										value: '',
-										label: 'Accounting clerk / Branch accountant financial institution',
-									},
-									{ value: '', label: 'Actuarial clerk' },
-									{
-										value: '',
-										label: 'Articled clerk / Barrister / Solicitor / Legal Officer - corporation',
-									},
-									{ value: '', label: 'Booking clerk / TAB clerk / Ticket seller' },
-									{ value: '', label: 'Business machine operator/Ledger keeper' },
-									{ value: '', label: 'Charity collector / Debt collection clerk' },
-									{ value: '', label: 'Clerk / Recordtaker' },
-									{ value: '', label: 'Computer operator / Data entry' },
-									{ value: '', label: 'Courier / Messenger' },
-									{ value: '', label: 'Data processing - specialist manager' },
-									{ value: '', label: 'Human resource clerk / Training personnel specialists' },
-									{ value: '', label: 'Mail order clerk / Stock and purchasing clerk' },
-									{ value: '', label: 'Mail sorter' },
-									{ value: '', label: 'Office secretary / Stenographer' },
-									{ value: '', label: 'Photocopying clerk' },
-									{ value: '', label: 'Postal officer' },
-									{ value: '', label: 'Production recording clerk' },
-									{ value: '', label: 'Receptionist' },
-									{ value: '', label: 'Service counter clerk' },
-									{ value: '', label: 'Telephonist' },
-									{ value: '', label: 'Transport / Despatch clerk / Customs agent' },
-									{ value: '', label: 'Typist' },
-									{ value: '', label: 'Word processing operator' },
-								]}
-								noOptionsMessage={() => 'None found'}
-							/>
+							<OccupationAutocomplete />
 						</Field>
 					</FormGroup>
 				</Fragment>

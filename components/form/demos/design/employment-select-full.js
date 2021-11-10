@@ -43,11 +43,40 @@ const IndustrySelect = (props) => (
 	</Select>
 );
 
+const OccupationSelect = (props) => (
+	<Select size="large" {...props}>
+		<option>Select</option>
+		<option>Accounting clerk / Branch accountant financial institution</option>
+		<option>Actuarial clerk</option>
+		<option>Articled clerk / Barrister / Solicitor / Legal Officer - corporation</option>
+		<option>Booking clerk / TAB clerk / Ticket seller</option>
+		<option>Business machine operator/Ledger keeper</option>
+		<option>Charity collector / Debt collection clerk</option>
+		<option>Clerk / Recordtaker</option>
+		<option>Computer operator / Data entry</option>
+		<option>Courier / Messenger</option>
+		<option>Data processing - specialist manager</option>
+		<option>Human resource clerk / Training personnel specialists</option>
+		<option>Mail order clerk / Stock and purchasing clerk</option>
+		<option>Mail sorter</option>
+		<option>Office secretary / Stenographer</option>
+		<option>Photocopying clerk</option>
+		<option>Postal officer</option>
+		<option>Production recording clerk</option>
+		<option>Receptionist</option>
+		<option>Service counter clerk</option>
+		<option>Telephonist</option>
+		<option>Transport / Despatch clerk / Customs agent</option>
+		<option>Typist</option>
+		<option>Word processing operator</option>
+	</Select>
+);
+
 const Wrapper = (props) => (
 	<div css={{ borderTop: '1px solid #e8e8ed', padding: '2.25rem 0 0' }} {...props} />
 );
 
-export const EmploymentPattern = ({ showErrors = false }) => {
+export const EmploymentSelectFullPattern = ({ showErrors = false }) => {
 	const error = showErrors ? 'Error message goes here if activated' : '';
 	const invalid = showErrors;
 
@@ -74,9 +103,7 @@ export const EmploymentPattern = ({ showErrors = false }) => {
 					</FormGroup>
 					<FormGroup>
 						<Field label="Occupation">
-							<Select size="large">
-								<option>Select</option>
-							</Select>
+							<OccupationSelect />
 						</Field>
 					</FormGroup>
 					<FormGroup>
@@ -196,7 +223,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Container>
 				<Form spacing="large">
-					<EmploymentPattern />
+					<EmploymentSelectFullPattern />
 				</Form>
 			</Container>
 		</Playground>
