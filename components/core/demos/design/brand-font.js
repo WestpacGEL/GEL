@@ -3,6 +3,7 @@ import { jsx, useBrand } from '@westpac/core';
 import { Fragment } from 'react';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Body } from '@westpac/body';
+import { Title } from '../../../../helpers/demos';
 
 const StyledText = ({ weight, ...rest }) => {
 	const { PACKS, TYPE } = useBrand();
@@ -50,7 +51,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 			<Body>
 				{brandFontMap[BRAND.code].map((font, i) => (
 					<Fragment key={i}>
-						<p>{font.name}</p>
+						<Title>{font.name}</Title>
 						<StyledText weight={font.weight}>
 							abcdefghijklmnopqrstuvwxyz
 							<br />
