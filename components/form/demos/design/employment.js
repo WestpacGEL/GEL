@@ -2,7 +2,7 @@
 
 import { jsx } from '@westpac/core';
 import { useState, Fragment } from 'react';
-import { Form, FormGroup, Field } from '@westpac/form';
+import { Form, FormGroup, Field, Fieldset, InputCluster, Item } from '@westpac/form';
 import { TextInput, Select } from '@westpac/text-input';
 import { Alert } from '@westpac/alert';
 import { Container } from './_utils';
@@ -88,22 +88,38 @@ export const EmploymentPattern = ({ showErrors = false }) => {
 						</Field>
 					</FormGroup>
 					<FormGroup>
-						<Field
-							label={`Length of time with this ${employment === 'self' ? 'company' : 'employer'}`}
+						<Fieldset
+							legend={`Length of time with this ${employment === 'self' ? 'company' : 'employer'}`}
+							error={error}
 						>
-							<Select
-								value={years}
-								onChange={(e) => {
-									setYears(e.target.value);
-								}}
-								width={5}
-								size="large"
-							>
-								<option>Select</option>
-								<option value="1">1 year</option>
-								<option value="2">2 years</option>
-							</Select>
-						</Field>
+							<InputCluster horizontal>
+								<Item>
+									<Field label="Years" subLabel>
+										<Select
+											value={years}
+											onChange={(e) => {
+												setYears(e.target.value);
+											}}
+											width={5}
+											size="large"
+										>
+											<option>Select</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+										</Select>
+									</Field>
+								</Item>
+								<Item>
+									<Field label="Months" subLabel>
+										<Select width={5} size="large">
+											<option>Select</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+										</Select>
+									</Field>
+								</Item>
+							</InputCluster>
+						</Fieldset>
 					</FormGroup>
 				</Fragment>
 			)}
@@ -142,17 +158,32 @@ export const EmploymentPattern = ({ showErrors = false }) => {
 						</Field>
 					</FormGroup>
 					<FormGroup>
-						<Field
-							label={`Length of time with this ${
+						<Fieldset
+							legend={`Length of time with this ${
 								prevEmployment === 'self' ? 'company' : 'employer'
 							}`}
 						>
-							<Select width={5} size="large">
-								<option>Select</option>
-								<option value="1">1 year</option>
-								<option value="2">2 years</option>
-							</Select>
-						</Field>
+							<InputCluster horizontal>
+								<Item>
+									<Field label="Years" subLabel>
+										<Select width={5} size="large">
+											<option>Select</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+										</Select>
+									</Field>
+								</Item>
+								<Item>
+									<Field label="Months" subLabel>
+										<Select width={5} size="large">
+											<option>Select</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+										</Select>
+									</Field>
+								</Item>
+							</InputCluster>
+						</Fieldset>
 					</FormGroup>
 				</Wrapper>
 			)}

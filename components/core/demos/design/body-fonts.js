@@ -3,6 +3,7 @@
 import { jsx, useBrand } from '@westpac/core';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Body } from '@westpac/body';
+import { Title } from '../../../../helpers/demos';
 
 const StyledText = (props) => {
 	const { PACKS } = useBrand();
@@ -13,7 +14,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Body>
-				<p>Sans serif system font</p>
+				<Title>Sans serif system font</Title>
 				<StyledText>
 					abcdefghijklmnopqrstuvwxyz
 					<br />

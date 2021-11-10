@@ -35,6 +35,26 @@ function Example({ brand }) {
 
 			<hr />
 
+			<h2>Selected</h2>
+
+			<h3>Preselected via value</h3>
+			<Select name="example-selectedvalue" value="2">
+				<option>Select</option>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+			</Select>
+
+			<h3>Preselected via attribute</h3>
+			<Select name="example-selectedattribute">
+				<option>Select</option>
+				<option>1</option>
+				<option selected>2</option>
+				<option>3</option>
+			</Select>
+
+			<hr />
+
 			<h2>Controlled</h2>
 			<Select name="example-controlled" value={value} onChange={handleChange}>
 				<option>Select</option>
@@ -46,6 +66,8 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Data driven</h2>
+
+			<h3>Not preselected</h3>
 			<Select
 				name="example-datadriven"
 				data={[
@@ -53,6 +75,29 @@ function Example({ brand }) {
 					{ text: '1', value: '', onClick: () => console.log('Selected 1') },
 					{ text: '2', value: '', onClick: () => console.log('Selected 2') },
 					{ text: '3', value: '', onClick: () => console.log('Selected 3') },
+				]}
+			/>
+
+			<h3>Preselected via value</h3>
+			<Select
+				name="example-datadriven-selectedvalue"
+				data={[
+					{ text: 'Select', value: '' },
+					{ text: '1', value: '1', onClick: () => console.log('Selected 1') },
+					{ text: '2', value: '2', onClick: () => console.log('Selected 2') },
+					{ text: '3', value: '3', onClick: () => console.log('Selected 3') },
+				]}
+				value="2"
+			/>
+
+			<h3>Preselected via attribute</h3>
+			<Select
+				name="example-datadriven-selectedattribute"
+				data={[
+					{ text: 'Select', value: '' },
+					{ text: '1', value: '1', onClick: () => console.log('Selected 1') },
+					{ text: '2', value: '2', onClick: () => console.log('Selected 2'), selected: true },
+					{ text: '3', value: '3', onClick: () => console.log('Selected 3') },
 				]}
 			/>
 
