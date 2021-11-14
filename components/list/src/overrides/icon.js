@@ -13,6 +13,7 @@ const Icon = ({ state: { icon: Icon, look }, ...rest }) => {
 		primary: COLORS.primary,
 		hero: COLORS.hero,
 		neutral: COLORS.neutral,
+		link: COLORS.link,
 	};
 
 	return <Icon size="small" color={colorMap[look] || COLORS.muted} {...rest} />;

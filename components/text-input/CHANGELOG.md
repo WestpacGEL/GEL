@@ -1,5 +1,11 @@
 # @westpac/text-input
 
+## 1.4.0
+
+### Minor Changes
+
+- 4abb0528: Add aria-invalid="true" if invalid prop
+
 ## 1.3.0
 
 ### Minor Changes

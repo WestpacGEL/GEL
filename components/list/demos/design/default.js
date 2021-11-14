@@ -10,25 +10,25 @@ const Demo = ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Title>Default List</Title>
 			<List>
-				<Item>Styled bullet list - primary</Item>
-				<Item>Styled bullet list - primary</Item>
+				<Item>Styled bullet list</Item>
+				<Item>Styled bullet list</Item>
 				<Item>
-					Styled bullet list - primary
+					Styled bullet list
 					<List>
-						<Item>Styled bullet list - primary</Item>
-						<Item>Styled bullet list - primary</Item>
+						<Item>Styled bullet list</Item>
+						<Item>Styled bullet list</Item>
 						<Item>
-							Styled bullet list - primary
+							Styled bullet list
 							<List>
-								<Item>Styled bullet list - primary</Item>
-								<Item>Styled bullet list - primary</Item>
-								<Item>Styled bullet list - primary</Item>
+								<Item>Styled bullet list</Item>
+								<Item>Styled bullet list</Item>
+								<Item>Styled bullet list</Item>
 							</List>
 						</Item>
-						<Item>Styled bullet list - primary</Item>
+						<Item>Styled bullet list</Item>
 					</List>
 				</Item>
-				<Item>Styled bullet list - primary</Item>
+				<Item>Styled bullet list</Item>
 			</List>
 			<br />
 			<Title>List colours</Title>

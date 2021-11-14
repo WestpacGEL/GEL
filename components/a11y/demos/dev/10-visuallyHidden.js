@@ -7,7 +7,12 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
-			<h2>Screen reader only text below</h2>
+			<p>
+				<em>
+					Note: The text found below this message is visually hidden, but will be announced by
+					screen readers
+				</em>
+			</p>
 			<VisuallyHidden>This is screen reader only text</VisuallyHidden>
 		</Playground>
 	);

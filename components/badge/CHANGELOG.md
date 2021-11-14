@@ -1,5 +1,12 @@
 # @westpac/badge
 
+## 1.1.0
+
+### Minor Changes
+
+- 1f688738: - Refactor styling
+  - Hide if empty
+
 ## 1.0.3
 
 ### Patch Changes

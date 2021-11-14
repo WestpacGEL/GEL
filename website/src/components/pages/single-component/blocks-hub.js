@@ -13,7 +13,6 @@ import reactStringReplace from 'react-string-replace';
 
 import createReactRenderer from './react-renderer';
 import { getShortCodes } from '../../../shortcodes';
-import { Separator } from '../../separator';
 
 const DynamicComponents = dynamic(() => import('./dynamic-components'), { ssr: false });
 
@@ -21,6 +20,7 @@ const Bold = (props) => <strong css={{ fontWeight: 'bold' }} {...props} />;
 const Italic = (props) => <em css={{ fontStyle: 'italic' }} {...props} />;
 const Strike = (props) => <span css={{ textDecoration: 'strike-through' }} {...props} />;
 const Under = (props) => <span css={{ textDecoration: 'underline' }} {...props} />;
+const Code = (props) => <code {...props} />;
 
 const ApplyShortCodes = ({ text }) => {
 	const { BRAND } = useBrand();
@@ -103,6 +103,8 @@ const slateRenderer = (item, _editorValue) => {
 					return <Strike key={path}>{serializeChildren(node.nodes)}</Strike>;
 				case 'underline':
 					return <Under key={path}>{serializeChildren(node.nodes)}</Under>;
+				case 'code':
+					return <Code key={path}>{serializeChildren(node.nodes)}</Code>;
 				default: {
 					console.error(`Unexpected mark '${node.type}' at ${path}`);
 				}
@@ -256,6 +258,8 @@ const textOnlySlateRenderer = (_editorValue) => {
 					return <Strike key={`strike-${path}`}>{serializeChildren(node.nodes)}</Strike>;
 				case 'underline':
 					return <Under key={`under-${path}`}>{serializeChildren(node.nodes)}</Under>;
+				case 'code':
+					return <Code key={`code-${path}`}>{serializeChildren(node.nodes)}</Code>;
 				default: {
 					console.error(`Unexpected mark '${node.type}' at ${path}`);
 				}
