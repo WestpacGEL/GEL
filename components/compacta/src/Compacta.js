@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState, useEffect } from 'react';
+import { useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultTitlePrimary } from './overrides/titlePrimary';
@@ -24,16 +24,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Compacta = ({
-	data,
-	addText,
-	onAdd,
-	onRemove,
-	onToggle,
-	children,
-	overrides: componentOverrides,
-	...rest
-}) => {
+export const Compacta = ({ addText, children, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -56,44 +47,90 @@ export const Compacta = ({
 		AddBtn: defaultAddBtn,
 	};
 
-	const [items, setItems] = useState(data);
+	const actions = {
+		ADD: 'add',
+		REMOVE: 'remove',
+		TOGGLE: 'toggle',
+		SET_TITLE: 'set title',
+	};
 
-	useEffect(() => {
-		if (!data.length) {
-			setItems([{ id: useInstanceId(), open: true }]);
+	const setTitle = (id, titleType, val) => ({
+		type: actions.SET_TITLE,
+		payload: { id, title: { [titleType]: val } },
+	});
+
+	const initialState = {
+		initial: true,
+		items: [
+			{ id: useInstanceId(), open: true, title: { primary: '', secondary: '', tertiary: '' } },
+		],
+	};
+
+	const reducer = (state, action) => {
+		switch (action.type) {
+			case actions.ADD:
+				let delay = false;
+				const items = state.items.map((item, index) => {
+					if (index === state.items.length - 1) {
+						if (item.open) {
+							delay = true;
+						}
+						return {
+							...item,
+							open: false,
+							delay: false,
+						};
+					} else {
+						return item;
+					}
+				});
+
+				items.push({
+					id: useInstanceId(),
+					open: true,
+					delay,
+					title: { primary: '', secondary: '', tertiary: '' },
+				});
+
+				return { ...state, items };
+
+			case actions.REMOVE:
+				return { ...state, items: state.items.filter((item) => item.id !== action.payload.id) };
+			case actions.TOGGLE:
+				return {
+					...state,
+					initial: false,
+					items: state.items.map((item) =>
+						item.id === action.payload.id ? { ...item, delay: false, open: !item.open } : item
+					),
+				};
+			case actions.SET_TITLE:
+				return {
+					...state,
+					items: state.items.map((item) => {
+						if (item.id === action.payload.id) {
+							return {
+								...item,
+								title: { ...item.title, ...action.payload.title },
+							};
+						} else {
+							return item;
+						}
+					}),
+				};
+			default:
+				return state;
 		}
-	}, [data]);
+	};
+
+	const [compactaState, dispatch] = useReducer(reducer, initialState);
+	const { initial, items } = compactaState;
 
 	const state = {
+		initial,
+		items,
 		overrides: componentOverrides,
 		...rest,
-	};
-
-	const handleAdd = () => {
-		if (onAdd) {
-			onAdd();
-		} else {
-			setItems((items) => [...items, { id: useInstanceId(), open: true }]);
-		}
-	};
-
-	const handleRemove = (id, index) => {
-		if (onRemove) {
-			onRemove(id, index);
-		} else {
-			const newItems = items.filter((item) => item.id !== id);
-			setItems(newItems);
-		}
-	};
-
-	const handleToggle = (id, index) => {
-		if (onToggle) {
-			onToggle(id, index);
-		} else {
-			const updatedItems = [...items];
-			updatedItems[index].open = !updatedItems[index].open;
-			setItems(updatedItems);
-		}
 	};
 
 	const {
@@ -140,38 +177,38 @@ export const Compacta = ({
 							</ItemIndex>
 							{!item.open && (
 								<Title state={state} {...titleAttributes(state)} css={titleStyles(state)}>
-									{item.title && (
+									{item.title.primary && (
 										<TitlePrimary
 											state={state}
 											{...titlePrimaryAttributes(state)}
 											css={titlePrimaryStyles(state)}
 										>
-											{item.title}
+											{item.title.primary}
 										</TitlePrimary>
 									)}
-									{item.secondaryTitle && (
+									{item.title.secondary && (
 										<TitleSecondary
 											state={state}
 											{...titleSecondaryAttributes(state)}
 											css={titleSecondaryStyles(state)}
 										>
-											{item.secondaryTitle}
+											{item.title.secondary}
 										</TitleSecondary>
 									)}
-									{item.tertiaryTitle && (
+									{item.title.tertiary && (
 										<TitleTertiary
 											state={state}
 											{...titleTertiaryAttributes(state)}
 											css={titleTertiaryStyles(state)}
 										>
-											{item.tertiaryTitle}
+											{item.title.tertiary}
 										</TitleTertiary>
 									)}
 								</Title>
 							)}
 							<Actions state={state} {...actionsAttributes(state)} css={actionsStyles(state)}>
 								<RemoveBtn
-									onClick={() => handleRemove(item.id, index)}
+									onClick={() => dispatch({ type: actions.REMOVE, payload: { id: item.id } })}
 									state={state}
 									{...removeBtnAttributes(state)}
 									css={removeBtnStyles(state)}
@@ -179,7 +216,7 @@ export const Compacta = ({
 									Remove
 								</RemoveBtn>
 								<Toggle
-									onClick={() => handleToggle(item.id, index)}
+									onClick={() => dispatch({ type: actions.TOGGLE, payload: { id: item.id } })}
 									open={item.open}
 									state={state}
 									{...toggleAttributes(state)}
@@ -188,18 +225,25 @@ export const Compacta = ({
 							</Actions>
 						</Header>
 						<Content
+							open={item.open}
+							delay={item.delay}
 							state={state}
 							{...contentAttributes(state)}
 							css={contentStyles({ ...state, open: item.open })}
 						>
-							{children}
+							{children({
+								id: item.id,
+								setPrimaryTitle: (val) => dispatch(setTitle(item.id, 'primary', val)),
+								setSecondaryTitle: (val) => dispatch(setTitle(item.id, 'secondary', val)),
+								setTertiaryTitle: (val) => dispatch(setTitle(item.id, 'tertiary', val)),
+							})}
 						</Content>
 					</Item>
 				);
 			})}
 			<Footer state={state} {...footerAttributes(state)} css={footerStyles(state)}>
 				<AddBtn
-					onClick={handleAdd}
+					onClick={() => dispatch({ type: actions.ADD })}
 					state={state}
 					{...addBtnAttributes(state)}
 					css={addBtnStyles(state)}
@@ -216,11 +260,6 @@ export const Compacta = ({
 // ==============================
 
 Compacta.propTypes = {
-	/**
-	 * Data to populate compacta header
-	 */
-	data: PropTypes.array,
-
 	/**
 	 * Component to repeat
 	 */
@@ -270,5 +309,4 @@ Compacta.propTypes = {
 
 Compacta.defaultProps = {
 	addText: 'Add another',
-	data: [],
 };
