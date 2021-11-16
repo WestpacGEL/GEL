@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
 
 // ==============================
 // Component
@@ -13,10 +13,8 @@ const Item = ({ state: _, ...rest }) => <div {...rest} />;
 // ==============================
 
 const itemStyles = () => {
-	const { COLORS } = useBrand();
 	return {
 		label: getLabel('compacta-item'),
-		backgroundColor: COLORS.light,
 		marginBottom: '0.375rem',
 	};
 };

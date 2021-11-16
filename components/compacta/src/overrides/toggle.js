@@ -30,7 +30,10 @@ const toggleStyles = () => ({
 // Attributes
 // ==============================
 
-const toggleAttributes = () => null;
+const toggleAttributes = (_, { id, open }) => ({
+	'aria-expanded': open,
+	'aria-controls': id,
+});
 
 // ==============================
 // Exports
