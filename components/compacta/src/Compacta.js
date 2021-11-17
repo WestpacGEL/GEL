@@ -26,10 +26,11 @@ import pkg from '../package.json';
 // ==============================
 
 export const Compacta = ({ addText, children, overrides: componentOverrides, ...rest }) => {
+	const brand = useBrand();
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
-	} = useBrand();
+	} = brand;
 
 	const defaultOverrides = {
 		Compacta: defaultCompacta,
@@ -251,6 +252,7 @@ export const Compacta = ({ addText, children, overrides: componentOverrides, ...
 									setPrimaryTitle: (title) => setTitle(item.id, 'primary', title),
 									setSecondaryTitle: (title) => setTitle(item.id, 'secondary', title),
 									setTertiaryTitle: (title) => setTitle(item.id, 'tertiary', title),
+									brand,
 								})}
 							</Content>
 						</Collapsible>
