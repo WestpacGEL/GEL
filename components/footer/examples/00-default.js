@@ -16,6 +16,10 @@ function Example({ brand }) {
 				<Footer srOnlyText="Go to home">
 					<Content />
 				</Footer>
+				<h3>With hidden logo</h3>
+				<Footer hideLogo>
+					<Content />
+				</Footer>
 			</Wrapper>
 		</GEL>
 	);

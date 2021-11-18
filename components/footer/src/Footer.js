@@ -20,6 +20,7 @@ export const Footer = ({
 	logoLink,
 	logoAssistiveText,
 	srOnlyText,
+	hideLogo,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -65,7 +66,7 @@ export const Footer = ({
 						{srOnlyText && (
 							<VisuallyHidden overrides={componentOverrides}>{srOnlyText}</VisuallyHidden>
 						)}
-						<Logo state={state} {...logoAttributes(state)} css={logoStyles(state)} />
+						{!hideLogo && <Logo state={state} {...logoAttributes(state)} css={logoStyles(state)} />}
 					</LogoLink>
 				</Right>
 			</Inner>
@@ -97,6 +98,11 @@ Footer.propTypes = {
 	 * Right offset for use with GEL sidebar component
 	 */
 	offsetSidebar: PropTypes.bool,
+
+	/**
+	 * Hide logo
+	 */
+	hideLogo: PropTypes.bool,
 
 	/**
 	 * Content to be put on the left side of the footer
