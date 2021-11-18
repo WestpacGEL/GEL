@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, getLabel } from '@westpac/core';
-import { useTransition, animated } from 'react-spring';
+import { useTransition, animated } from '@react-spring/web';
 
 // ==============================
 // Component
