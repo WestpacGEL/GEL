@@ -9,9 +9,17 @@ import { Button } from '@westpac/button';
 // ==============================
 
 const LeftBtn = ({ state: { leftIcon, leftOnClick, leftAssistiveText }, ...rest }) => {
-	// Can I make this cleaner
-	const Icon =
-		leftIcon === 'arrow' ? ArrowLeftIcon : leftIcon === 'hamburger' ? HamburgerMenuIcon : null;
+	const Icon = (() => {
+		switch (leftIcon) {
+			case 'arrow':
+				return ArrowLeftIcon;
+			case 'hamburger':
+				return HamburgerMenuIcon;
+			default:
+				return null;
+		}
+	})();
+
 	return (
 		<Button
 			look="link"

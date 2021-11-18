@@ -18,6 +18,7 @@ const headerStyles = (_, { fixed }) => {
 		label: getLabel('header'),
 		flex: 'none',
 		display: 'flex',
+		backgroundColor: '#fff',
 		...(fixed && { height: ['calc(3.375rem + 1px)', null, 'calc(4.0625rem + 1px)'] }),
 	})[0];
 };

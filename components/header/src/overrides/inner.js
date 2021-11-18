@@ -23,7 +23,6 @@ const innerStyles = (_, { fixed, scrolled }) => {
 		textAlign: 'left',
 		marginLeft: 'auto',
 		marginRight: 'auto',
-		marginBottom: '1px',
 		display: 'flex',
 		height: ['3.375rem', null, '4.0625rem'],
 		padding: ['0 0.75rem', null, '0 1.5rem'],
