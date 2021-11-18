@@ -1,5 +1,16 @@
 # @westpac/alert
 
+## 1.3.0
+
+### Minor Changes
+
+- 89dfb30b: Replaced peer dependency react-spring with @react-spring/web
+
+### Patch Changes
+
+- Updated dependencies [4a3282a0]
+  - @westpac/icon@1.4.0
+
 ## 1.2.2
 
 ### Patch Changes

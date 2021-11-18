@@ -1,5 +1,17 @@
 # @westpac/collapsible
 
+## 1.1.0
+
+### Minor Changes
+
+- 89dfb30b: Replaced peer dependency react-spring with @react-spring/web
+
+### Patch Changes
+
+- 86351388: Add missing Trigger propType declaration in override API
+- Updated dependencies [4a3282a0]
+  - @westpac/icon@1.4.0
+
 ## 1.0.2
 
 ### Patch Changes

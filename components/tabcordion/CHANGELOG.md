@@ -1,5 +1,17 @@
 # @westpac/tabcordion
 
+## 2.2.0
+
+### Minor Changes
+
+- 89dfb30b: Replaced peer dependency react-spring with @react-spring/web
+
+### Patch Changes
+
+- f3794130: Update Tab text prop type to node
+- Updated dependencies [4a3282a0]
+  - @westpac/icon@1.4.0
+
 ## 2.1.2
 
 ### Patch Changes

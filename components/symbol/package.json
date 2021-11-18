@@ -44,7 +44,7 @@
 		"test:all": "yarn test:integration",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open",
-		"build": "node ../../helpers/buildExports.js export symbols"
+		"build": "node ../../helpers/buildExports.js export"
 	},
 	"main": "dist/westpac-symbol.cjs.js",
 	"module": "dist/westpac-symbol.esm.js",

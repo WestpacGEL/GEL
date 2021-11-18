@@ -5,6 +5,16 @@
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/fork",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
+	"components": [
+		{
+			"name": "Fork",
+			"src": "Fork.js"
+		},
+		{
+			"name": "ForkContent",
+			"src": "ForkContent.js"
+		}
+	],
 	"scripts": {
 		"start": "PACKAGE_NAME=fork NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "start-server-and-test start http://localhost:8080 test:all",

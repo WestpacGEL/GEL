@@ -5,22 +5,34 @@ import { Form, FormGroup, Field } from '@westpac/form';
 import { TextInput } from '@westpac/text-input';
 import { Container } from './_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';
+import { Fragment } from 'react';
+
+export const NameSimplePattern = ({ showErrors = false }) => {
+	const error = showErrors ? 'Error message goes here if activated' : '';
+	const invalid = showErrors;
+
+	return (
+		<Fragment>
+			<FormGroup>
+				<Field label="Given name">
+					<TextInput size="large" width={30} autoComplete="given-name" />
+				</Field>
+			</FormGroup>
+			<FormGroup>
+				<Field label="Family name" error={error}>
+					<TextInput size="large" width={30} autoComplete="family-name" invalid={invalid} />
+				</Field>
+			</FormGroup>
+		</Fragment>
+	);
+};
 
 const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Container>
 				<Form spacing="large">
-					<FormGroup>
-						<Field label="Given name">
-							<TextInput size="large" width={30} autocomplete="given-name" />
-						</Field>
-					</FormGroup>
-					<FormGroup>
-						<Field label="Family name">
-							<TextInput size="large" width={30} autocomplete="family-name" />
-						</Field>
-					</FormGroup>
+					<NameSimplePattern />
 				</Form>
 			</Container>
 		</Playground>

@@ -21,7 +21,9 @@ const forkContentStyles = (_, { selected }) => ({
 // Attributes
 // ==============================
 
-const forkContentAttributes = () => null;
+const forkContentAttributes = (_, { selected }) => ({
+	'aria-hidden': !selected,
+});
 
 // ==============================
 // Exports
