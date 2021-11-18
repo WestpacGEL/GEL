@@ -1,5 +1,12 @@
 # @westpac/button-group
 
+## 1.3.0
+
+### Minor Changes
+
+- 69223d14: - Add new inputProps prop, object value spread on input element
+  - Update id value to include gel prefix
+
 ## 1.2.1
 
 ### Patch Changes
