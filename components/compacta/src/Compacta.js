@@ -25,7 +25,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Compacta = ({ addText, children, overrides: componentOverrides, ...rest }) => {
+export const Compacta = ({ look, addText, children, overrides: componentOverrides, ...rest }) => {
 	const brand = useBrand();
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -58,6 +58,7 @@ export const Compacta = ({ addText, children, overrides: componentOverrides, ...
 	const state = {
 		initial,
 		items,
+		look,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -186,7 +187,12 @@ export const Compacta = ({ addText, children, overrides: componentOverrides, ...
 		<Compacta {...rest} state={state} {...compactaAttributes(state)} css={compactaStyles(state)}>
 			{items.map((item, index) => {
 				return (
-					<Item key={item.id} state={state} {...itemAttributes(state)} css={itemStyles(state)}>
+					<Item
+						key={item.id}
+						state={state}
+						{...itemAttributes(state)}
+						css={itemStyles({ ...state, brand })} // look into refactoring this later
+					>
 						<HeaderJSX open={item.open} state={state}>
 							<ItemIndex state={state} {...itemIndexAttributes(state)} css={itemIndexStyles(state)}>
 								{index + 1}
@@ -279,6 +285,11 @@ export const Compacta = ({ addText, children, overrides: componentOverrides, ...
 
 Compacta.propTypes = {
 	/**
+	 * Compacta look, (temporary naming for now)
+	 */
+	look: PropTypes.oneOf(['default', 'lite']),
+
+	/**
 	 * Component to repeat
 	 */
 	children: PropTypes.func.isRequired,
@@ -327,4 +338,5 @@ Compacta.propTypes = {
 
 Compacta.defaultProps = {
 	addText: 'Add another',
+	look: 'default',
 };

@@ -12,14 +12,14 @@ const Content = ({ state: _, ...rest }) => <div {...rest} />;
 // Styles
 // ==============================
 
-const contentStyles = () => {
+const contentStyles = (_, { look }) => {
 	const mq = useMediaQuery();
 	const { COLORS } = useBrand();
 	return mq({
 		label: getLabel('compacta-content'),
 		padding: '0 1.125rem .375rem',
 		paddingLeft: [null, null, '3.375rem'],
-		backgroundColor: COLORS.light,
+		backgroundColor: look === 'default' ? COLORS.light : '#fff',
 	})[0];
 };
 

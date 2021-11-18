@@ -8,9 +8,9 @@ import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 // Component
 // ==============================
 
-const Toggle = ({ open, state: _, ...rest }) => (
+const Toggle = ({ open, state: { look }, ...rest }) => (
 	<Button
-		look="faint"
+		look={look === 'default' ? 'faint' : 'link'}
 		size="small"
 		soft
 		iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}

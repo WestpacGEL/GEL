@@ -12,7 +12,7 @@ const Header = ({ state: _, ...rest }) => <div {...rest} />;
 // Styles
 // ==============================
 
-const headerStyles = (_, { open }) => {
+const headerStyles = (_, { open, look }) => {
 	const { COLORS } = useBrand();
 	return {
 		label: getLabel('compacta-header'),
@@ -20,7 +20,7 @@ const headerStyles = (_, { open }) => {
 		padding: '0.8125rem 1.125rem',
 		fontSize: '1rem',
 		color: COLORS.text,
-		backgroundColor: open ? COLORS.light : COLORS.background,
+		backgroundColor: look === 'default' ? (open ? COLORS.light : COLORS.background) : '#fff',
 	};
 };
 
