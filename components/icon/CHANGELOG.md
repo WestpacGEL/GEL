@@ -1,5 +1,15 @@
 # @westpac/icon
 
+## 1.5.0
+
+### Minor Changes
+
+- d8b9a161: Add new PdfFileIcon
+
+### Patch Changes
+
+- 358b9d56: Update ZipFileIcon assistive text
+
 ## 1.4.0
 
 ### Minor Changes

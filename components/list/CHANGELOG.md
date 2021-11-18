@@ -1,5 +1,16 @@
 # @westpac/list
 
+## 1.2.0
+
+### Minor Changes
+
+- 5381b0c7: Add iconLink type, add link type, use for link and iconLink types
+
+### Patch Changes
+
+- Updated dependencies [15f8f3fc]
+  - @westpac/body@1.5.0
+
 ## 1.1.0
 
 ### Minor Changes
