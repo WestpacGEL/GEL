@@ -1,5 +1,11 @@
 # @westpac/text-input
 
+## 1.4.1
+
+### Patch Changes
+
+- 4337bfb4: Fix focus styling, increase focus selector specificity (a11y)
+
 ## 1.4.0
 
 ### Minor Changes
