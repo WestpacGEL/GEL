@@ -1,5 +1,11 @@
 # @westpac/body
 
+## 1.5.0
+
+### Minor Changes
+
+- 15f8f3fc: Ensure Body link styling is not applied to Link component used within Body component
+
 ## 1.4.1
 
 ### Patch Changes

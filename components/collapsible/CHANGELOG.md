@@ -1,5 +1,18 @@
 # @westpac/collapsible
 
+## 1.1.1
+
+### Patch Changes
+
+- cf1a6bff: Fix trigger aria-expanded
+- Updated dependencies [f1b9ded4]
+- Updated dependencies [15f8f3fc]
+- Updated dependencies [358b9d56]
+- Updated dependencies [d8b9a161]
+  - @westpac/hooks@2.1.0
+  - @westpac/body@1.5.0
+  - @westpac/icon@1.5.0
+
 ## 1.1.0
 
 ### Minor Changes
