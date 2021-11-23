@@ -105,7 +105,7 @@ export const getColors = (mode) => {
 			},
 			duo: {
 				outline: COLORS.hero,
-				highlight: COLORS.primary,
+				highlight: '#A8A8A6', //bespoke
 			},
 		},
 	};
