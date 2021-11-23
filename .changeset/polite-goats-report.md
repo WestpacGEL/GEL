@@ -2,4 +2,4 @@
 '@westpac/pictogram': minor
 ---
 
-Update WBG duo mapping with bespoke highlight colour
+Update WBG duo highlight colour to borderDark
