@@ -24,10 +24,7 @@ const iconStyles = (_, { before, after }) => ({
 // Attributes
 // ==============================
 
-const iconAttributes = () => ({
-	'aria-hidden': 'true',
-	assistiveText: null,
-});
+const iconAttributes = () => null;
 
 // ==============================
 // Exports

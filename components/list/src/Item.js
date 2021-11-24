@@ -4,6 +4,7 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { defaultItem } from './overrides/item';
+import { defaultContent } from './overrides/content';
 import { defaultIcon } from './overrides/icon';
 
 import { useListContext } from './List';
@@ -13,7 +14,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) => {
+export const Item = ({ look, type, href, nested, spacing, icon, children, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -21,6 +22,7 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 
 	const defaultOverrides = {
 		Item: defaultItem,
+		Content: defaultContent,
 		Icon: defaultIcon,
 	};
 
@@ -47,6 +49,7 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 	const state = {
 		look,
 		type,
+		href,
 		nested,
 		spacing,
 		icon,
@@ -56,6 +59,7 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 
 	const {
 		Item: { component: Item, styles: itemStyles, attributes: itemAttributes },
+		Content: { component: Content, styles: contentStyles, attributes: contentAttributes },
 		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
@@ -64,10 +68,12 @@ export const Item = ({ look, type, nested, spacing, icon, children, ...rest }) =
 
 	return (
 		<Item {...rest} state={state} {...itemAttributes(state)} {...(styles ? { css: styles } : {})}>
-			{(type === 'icon' || type === 'link') && icon && (
-				<Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />
-			)}
-			{children}
+			<Content state={state} {...contentAttributes(state)} css={contentStyles(state)}>
+				{(type === 'icon' || type === 'link') && icon && (
+					<Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />
+				)}
+				{children}
+			</Content>
 		</Item>
 	);
 };
@@ -86,6 +92,11 @@ Item.propTypes = {
 	 * The list style
 	 */
 	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'cross', 'unstyled', 'icon', 'ordered']),
+
+	/**
+	 * Renders `<a>` link element around the item content
+	 */
+	href: PropTypes.string,
 
 	/**
 	 * The level of nesting
@@ -112,6 +123,11 @@ Item.propTypes = {
 	 */
 	overrides: PropTypes.shape({
 		Item: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
+		Content: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,

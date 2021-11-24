@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- 5381b0c7: Add iconLink type, add link type, use for link and iconLink types
+- 5381b0c7: Add link type and ability to render a link list with custom icon
 
 ### Patch Changes
 
