@@ -1,6 +1,6 @@
 const COLORS = {
 	background: '#F3F5F6',
-	border: '#A8A8A6',
+	border: '#D3D3D3',
 	borderDark: '#91979A',
 	focus: '#E45C78',
 	heading: '#000',
@@ -8,8 +8,8 @@ const COLORS = {
 	light: '#FAFAFA',
 	link: '#DA1710',
 	muted: '#686362',
-	neutral: '#403a38',
-	pop: '#DA1710', //Primary
+	neutral: '#403A38',
+	pop: '#FF7468',
 	primary: '#DA1710',
 	text: '#000',
 
