@@ -15,17 +15,23 @@ export const PhoneSimplePattern = ({ showErrors = false }) => {
 		<Fragment>
 			<FormGroup>
 				<Field label="Home number" hint="Include the 2 digit area code">
-					<TextInput type="tel" size="large" width={20} autoComplete="tel" />
+					<TextInput type="tel" size="large" width={20} autoComplete="tel-national" />
 				</Field>
 			</FormGroup>
 			<FormGroup>
 				<Field label="Work number" hint="Include the 2 digit area code" error={error}>
-					<TextInput type="tel" size="large" width={20} autoComplete="tel" invalid={invalid} />
+					<TextInput
+						type="tel"
+						size="large"
+						width={20}
+						autoComplete="tel-national"
+						invalid={invalid}
+					/>
 				</Field>
 			</FormGroup>
 			<FormGroup>
 				<Field label="Mobile number">
-					<TextInput type="tel" size="large" width={20} autoComplete="tel" />
+					<TextInput type="tel" size="large" width={20} autoComplete="tel-national" />
 				</Field>
 			</FormGroup>
 		</Fragment>
