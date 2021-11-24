@@ -17,7 +17,7 @@ export const NameFullPattern = ({ showErrors = false }) => {
 	return (
 		<Fragment>
 			<FormGroup>
-				<Field label="Title name">
+				<Field label="Title">
 					<Select inline size="large" autoComplete="honorific-prefix">
 						<option>Select</option>
 						<option>Mrs</option>
@@ -30,17 +30,23 @@ export const NameFullPattern = ({ showErrors = false }) => {
 			</FormGroup>
 			<FormGroup>
 				<Field label="Given name">
-					<TextInput size="large" width={30} autoComplete="given-name" />
+					<TextInput size="large" width={30} spellCheck="false" autoComplete="given-name" />
 				</Field>
 			</FormGroup>
 			<FormGroup>
-				<Field label="Middle name(s) (if any)">
-					<TextInput size="large" width={30} autoComplete="additional-name" />
+				<Field label="Middle names (if any)">
+					<TextInput size="large" width={30} spellCheck="false" autoComplete="additional-name" />
 				</Field>
 			</FormGroup>
 			<FormGroup>
 				<Field label="Family name" error={error}>
-					<TextInput size="large" width={30} autoComplete="family-name" invalid={invalid} />
+					<TextInput
+						size="large"
+						width={30}
+						spellCheck="false"
+						autoComplete="family-name"
+						invalid={invalid}
+					/>
 				</Field>
 			</FormGroup>
 			<Fieldset legend="Have you ever been known by a name different to the one provided above?">

@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/hooks",
-	"version": "2.0.1",
+	"version": "2.1.0",
 	"description": "Hooks for the Westpac GEL Design System",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/hooks",

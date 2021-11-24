@@ -1,5 +1,11 @@
 # @westpac/hooks
 
+## 2.1.0
+
+### Minor Changes
+
+- f1b9ded4: Refactor useWindowSize hook
+
 ## 2.0.1
 
 ### Patch Changes

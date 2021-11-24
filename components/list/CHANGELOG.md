@@ -1,5 +1,16 @@
 # @westpac/list
 
+## 1.2.0
+
+### Minor Changes
+
+- 5381b0c7: Add link type and ability to render a link list with custom icon
+
+### Patch Changes
+
+- Updated dependencies [15f8f3fc]
+  - @westpac/body@1.5.0
+
 ## 1.1.0
 
 ### Minor Changes

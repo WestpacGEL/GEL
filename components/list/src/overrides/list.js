@@ -41,7 +41,7 @@ const BlenderList = (props) => (
 // Styles
 // ==============================
 
-const listStyles = (_, { type, look, spacing, nested }) => {
+const listStyles = (_, { type, look, spacing, nested, icon }) => {
 	const { COLORS } = useBrand();
 
 	const styleMap = {
@@ -69,7 +69,7 @@ const listStyles = (_, { type, look, spacing, nested }) => {
 				display: 'block',
 				width: '0.5rem',
 				height: '0.5rem',
-				border: `solid ${COLORS.link}`,
+				border: `solid ${COLORS[look]}`,
 				borderWidth: '0 0.125rem 0.125rem 0',
 				transform: 'rotate(-45deg)',
 				boxSizing: 'border-box',

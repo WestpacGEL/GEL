@@ -8,11 +8,11 @@ const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Heading tag="h1" size={3}>
-				Heading tag: h1 size: 3
+				Heading tag h1 size 3
 			</Heading>
 			<br />
 			<Heading tag="h2" size={5}>
-				Heading tag: h2 size: 5
+				Heading tag h2 size 5
 			</Heading>
 		</Playground>
 	);
