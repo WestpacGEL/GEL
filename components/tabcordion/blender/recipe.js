@@ -117,7 +117,7 @@ export function Docs({ brand }) {
 			subheading: 'Default',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Tabcordion instanceIdPrefix="example-tabcordion">
+					<Tabcordion instanceId="example-tabcordion">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>
@@ -129,7 +129,7 @@ export function Docs({ brand }) {
 			subheading: 'Justified',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Tabcordion justify instanceIdPrefix="example-tabcordion-justify">
+					<Tabcordion justify instanceId="example-tabcordion-justify">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>
@@ -141,7 +141,7 @@ export function Docs({ brand }) {
 			subheading: 'Lego',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Tabcordion look="lego" instanceIdPrefix="example-tabcordion-lego">
+					<Tabcordion look="lego" instanceId="example-tabcordion-lego">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>
@@ -153,7 +153,7 @@ export function Docs({ brand }) {
 			subheading: 'Lego justified',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Tabcordion look="lego" justify instanceIdPrefix="example-tabcordion-lego-justify">
+					<Tabcordion look="lego" justify instanceId="example-tabcordion-lego-justify">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>
@@ -168,7 +168,7 @@ export function Docs({ brand }) {
 			subheading: 'Default',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Tabcordion mode="tabs" instanceIdPrefix="example-tabs">
+					<Tabcordion mode="tabs" instanceId="example-tabs">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>
@@ -180,7 +180,7 @@ export function Docs({ brand }) {
 			subheading: 'Justified',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Tabcordion mode="tabs" justify instanceIdPrefix="example-tabs-justify">
+					<Tabcordion mode="tabs" justify instanceId="example-tabs-justify">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>
@@ -192,7 +192,7 @@ export function Docs({ brand }) {
 			subheading: 'Lego',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Tabcordion look="lego" mode="tabs" instanceIdPrefix="example-tabs-lego">
+					<Tabcordion look="lego" mode="tabs" instanceId="example-tabs-lego">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>
@@ -204,7 +204,7 @@ export function Docs({ brand }) {
 			subheading: 'Lego justified',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Tabcordion look="lego" mode="tabs" justify instanceIdPrefix="example-tabs-lego-justify">
+					<Tabcordion look="lego" mode="tabs" justify instanceId="example-tabs-lego-justify">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>
@@ -219,7 +219,7 @@ export function Docs({ brand }) {
 			subheading: 'Default',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Tabcordion mode="accordion" instanceIdPrefix="example-accordion">
+					<Tabcordion mode="accordion" instanceId="example-accordion">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>
@@ -231,7 +231,7 @@ export function Docs({ brand }) {
 			subheading: 'Lego',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Tabcordion look="lego" mode="accordion" instanceIdPrefix="example-accordion-lego">
+					<Tabcordion look="lego" mode="accordion" instanceId="example-accordion-lego">
 						<Tab text="Tab 1">Tab 1</Tab>
 						<Tab text="Tab 2">Tab 2</Tab>
 						<Tab text="Tab 3">Tab 3</Tab>

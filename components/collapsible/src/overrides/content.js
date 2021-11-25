@@ -50,8 +50,8 @@ const blenderStyles = (_) => contentStyles(_, { isOpen: false });
 // Attributes
 // ==============================
 
-const contentAttributes = (_, { instanceId, isOpen }) => ({
-	id: instanceId,
+const contentAttributes = (_, { id, isOpen }) => ({
+	id,
 	'aria-hidden': !isOpen,
 });
 

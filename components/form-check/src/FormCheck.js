@@ -9,7 +9,7 @@ import {
 	asArray,
 	useManagedState,
 } from '@westpac/core';
-import { useState, useEffect, useContext, createContext } from 'react';
+import { Children, useState, useContext, createContext, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFormCheck } from './overrides/formCheck';
@@ -33,6 +33,7 @@ export const useFormCheckContext = () => {
 // ==============================
 
 export const FormCheck = ({
+	instanceId,
 	type,
 	name,
 	size,
@@ -40,7 +41,6 @@ export const FormCheck = ({
 	inline,
 	disabled,
 	defaultValue,
-	instanceIdPrefix,
 	data,
 	children,
 	onChange = () => {},
@@ -61,14 +61,7 @@ export const FormCheck = ({
 	);
 
 	const [checked, setChecked] = useManagedState(valueAsArray, defaultValueAsArray, onChange);
-	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
-
-	// create the prefix for internal IDs
-	useEffect(() => {
-		if (!instanceIdPrefix) {
-			setInstanceId(`gel-form-check-${useInstanceId()}`);
-		}
-	}, [instanceIdPrefix]);
+	const [id] = useState(instanceId || `gel-form-check-${useInstanceId()}`);
 
 	const defaultOverrides = {
 		FormCheck: defaultFormCheck,
@@ -87,7 +80,7 @@ export const FormCheck = ({
 	};
 
 	const state = {
-		instanceId,
+		id,
 		type,
 		name,
 		size,
@@ -109,13 +102,17 @@ export const FormCheck = ({
 	if (data) {
 		data.map(({ text, ...rest }, index) => {
 			allChildren.push(
-				<Option key={index} {...rest}>
+				<Option key={index} index={index} {...rest}>
 					{text}
 				</Option>
 			);
 		});
 	} else {
-		allChildren = children;
+		allChildren = Children.map(children, (child, index) => {
+			return cloneElement(child, {
+				index,
+			});
+		});
 	}
 
 	return (
@@ -138,6 +135,11 @@ export const FormCheck = ({
 
 FormCheck.propTypes = {
 	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+
+	/**
 	 * Form check type
 	 */
 	type: PropTypes.oneOf(['checkbox', 'radio']).isRequired,
@@ -145,7 +147,7 @@ FormCheck.propTypes = {
 	/**
 	 * The form check input element’s name
 	 */
-	name: PropTypes.string,
+	name: PropTypes.string.isRequired,
 
 	/**
 	 * Form check size.
@@ -177,11 +179,6 @@ FormCheck.propTypes = {
 	 * The options already checked
 	 */
 	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
-
-	/**
-	 * Define an id prefix for internal elements
-	 */
-	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * A function called on change

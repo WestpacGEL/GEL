@@ -25,6 +25,7 @@ import pkg from '../package.json';
 export const Option = forwardRef(
 	(
 		{
+			index,
 			value,
 			href,
 			pictogram,
@@ -45,7 +46,7 @@ export const Option = forwardRef(
 		} = useBrand();
 
 		const {
-			instanceId,
+			id,
 			type = href ? 'link' : 'radio',
 			name,
 			iconSize,
@@ -59,7 +60,8 @@ export const Option = forwardRef(
 			overrides: ctxOverrides,
 			...restCtx
 		} = useSelectorContext();
-		const optionId = `${instanceId}-option-${useInstanceId()}`;
+		const selectorId = id || `gel-selector-${useInstanceId()}`;
+		const optionId = `${selectorId}-option-${index}`;
 		const hintId = `${optionId}-hint`;
 
 		const defaultOverrides = {
@@ -286,9 +288,9 @@ Option.propTypes = {
 	disabled: PropTypes.bool,
 
 	/**
-	 * Define an id prefix for internal elements
+	 * Define an id for internal elements
 	 */
-	instanceIdPrefix: PropTypes.string,
+	instanceId: PropTypes.string,
 
 	/**
 	 * Selector type

@@ -9,7 +9,7 @@ import {
 	asArray,
 	useManagedState,
 } from '@westpac/core';
-import { useState, useEffect, useContext, createContext } from 'react';
+import { Children, useState, useContext, createContext, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultSelector } from './overrides/selector';
@@ -33,6 +33,7 @@ export const useSelectorContext = () => {
 // ==============================
 
 export const Selector = ({
+	instanceId,
 	type,
 	name,
 	value,
@@ -41,7 +42,6 @@ export const Selector = ({
 	pictogramHeight,
 	disabled,
 	defaultValue,
-	instanceIdPrefix,
 	data,
 	children,
 	onChange = () => {},
@@ -61,15 +61,8 @@ export const Selector = ({
 		'The Selector as radio may only have one "current" item set.'
 	);
 
+	const [id] = useState(instanceId || `gel-selector-${useInstanceId()}`);
 	const [checked, setChecked] = useManagedState(valueAsArray, defaultValueAsArray, onChange);
-	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
-
-	// create the prefix for internal IDs
-	useEffect(() => {
-		if (!instanceIdPrefix) {
-			setInstanceId(`gel-selector-${useInstanceId()}`);
-		}
-	}, [instanceIdPrefix]);
 
 	const defaultOverrides = {
 		Selector: defaultSelector,
@@ -88,7 +81,7 @@ export const Selector = ({
 	};
 
 	const state = {
-		instanceId,
+		id,
 		type,
 		name,
 		iconSize,
@@ -116,12 +109,18 @@ export const Selector = ({
 				</Option>
 			);
 		});
+	} else {
+		allChildren = Children.map(children, (child, index) => {
+			return cloneElement(child, {
+				index,
+			});
+		});
 	}
 
 	return (
 		<SelectorContext.Provider value={state}>
 			<Selector {...rest} state={state} {...selectorAttributes(state)} css={selectorStyles(state)}>
-				{data ? allChildren : children}
+				{allChildren}
 			</Selector>
 		</SelectorContext.Provider>
 	);
@@ -132,6 +131,11 @@ export const Selector = ({
 // ==============================
 
 Selector.propTypes = {
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+
 	/**
 	 * Selector type
 	 */
@@ -180,11 +184,6 @@ Selector.propTypes = {
 	 * The options already checked
 	 */
 	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
-
-	/**
-	 * Define an id prefix for internal elements
-	 */
-	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * A function called on change
