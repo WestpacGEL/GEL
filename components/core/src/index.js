@@ -13,5 +13,5 @@ export { useFonts } from './useFonts';
 export { asArray } from './asArray';
 export { GEL } from './GEL';
 
-import classNames from 'classnames';
+import classNames from 'clsx';
 export { classNames };
