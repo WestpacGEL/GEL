@@ -101,6 +101,7 @@ const blenderStyles = (_, { open, size }) => {
 const modalAttributes = (_, { open }) => ({
 	'aria-modal': 'true',
 	'aria-hidden': !open,
+	'role': 'dialog',
 });
 
 const blenderAttributes = (_, { open, size }) => ({
