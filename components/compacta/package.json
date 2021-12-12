@@ -33,6 +33,7 @@
 	"devDependencies": {
 		"@react-spring/web": "^9.2.4",
 		"@westpac/form": "^2.0.0",
+		"@westpac/input-group": "^1.0.3",
 		"@westpac/text-input": "^1.3.0",
 		"cypress": "^8.0.0",
 		"react": "^17.0.2",
