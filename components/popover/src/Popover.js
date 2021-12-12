@@ -18,11 +18,11 @@ import pkg from '../package.json';
 // ==============================
 
 export const Popover = ({
+	instanceId,
 	open,
 	heading,
 	headingTag,
 	content,
-	instanceIdPrefix,
 	placement,
 	onClick = () => {},
 	children,
@@ -51,22 +51,16 @@ export const Popover = ({
 		CloseBtn: defaultCloseBtn,
 	};
 
-	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
-
-	useEffect(() => {
-		if (!instanceIdPrefix) {
-			setInstanceId(`gel-popover-${useInstanceId()}`);
-		}
-	}, [instanceIdPrefix]);
+	const [id] = useState(instanceId || `gel-popover-${useInstanceId()}`);
 
 	const state = {
+		id,
 		isOpen,
 		heading,
 		headingTag,
 		content,
 		placement,
 		position,
-		instanceId,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -165,6 +159,11 @@ export const Popover = ({
 
 Popover.propTypes = {
 	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+
+	/**
 	 * State of whether the Popover is open
 	 */
 	open: PropTypes.bool,
@@ -183,11 +182,6 @@ Popover.propTypes = {
 	 * The body of the popover
 	 */
 	content: PropTypes.string.isRequired,
-
-	/**
-	 * Define an id prefix for internal elements
-	 */
-	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * A function for the onClick event

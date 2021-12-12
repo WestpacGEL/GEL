@@ -14,10 +14,10 @@ import pkg from '../package.json';
 // ==============================
 
 export const Collapsible = ({
+	instanceId,
 	open,
 	text,
 	size,
-	instanceIdPrefix,
 	onClick = () => {},
 	children,
 	overrides: componentOverrides,
@@ -38,20 +38,14 @@ export const Collapsible = ({
 		Content: defaultContent,
 	};
 
-	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+	const [id] = useState(instanceId || `gel-collapsible-${useInstanceId()}`);
 	const [closed, setClosed] = useState(true);
 
-	useEffect(() => {
-		if (!instanceIdPrefix) {
-			setInstanceId(`gel-collapsible-${useInstanceId()}`);
-		}
-	}, [instanceIdPrefix]);
-
 	const state = {
+		id,
 		isOpen,
 		text,
 		size,
-		instanceId,
 		closed,
 		setClosed,
 		overrides: componentOverrides,
@@ -134,6 +128,11 @@ export const Collapsible = ({
 
 Collapsible.propTypes = {
 	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+
+	/**
 	 * State of whether the Collapsible is open
 	 */
 	open: PropTypes.bool,
@@ -142,11 +141,6 @@ Collapsible.propTypes = {
 	 * Button text
 	 */
 	text: PropTypes.string.isRequired,
-
-	/**
-	 * Define an id prefix for internal elements
-	 */
-	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * A function for the onClick event

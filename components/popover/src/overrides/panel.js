@@ -120,12 +120,12 @@ const blenderStyles = (_, { isOpen, position, placement }) => {
 // Attributes
 // ==============================
 
-const panelAttributes = (_, { instanceId }) => ({
-	id: instanceId,
+const panelAttributes = (_, { id }) => ({
+	id,
 });
 
-const blenderAttributes = (_, { instanceId, isOpen, placement }) => ({
-	...panelAttributes(_, { instanceId }),
+const blenderAttributes = (_, { id, isOpen, placement }) => ({
+	...panelAttributes(_, { id }),
 	'data-js': 'popover-panel__version__',
 	className: classNames({
 		[`__convert__popover-panel-open`]: isOpen,

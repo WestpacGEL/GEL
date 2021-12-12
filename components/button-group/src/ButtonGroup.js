@@ -95,6 +95,7 @@ export const ButtonGroup = ({
 			allChildren.push(
 				<ButtonGroupItem
 					key={val}
+					index={index}
 					name={name}
 					value={val}
 					onChange={handleChange}
@@ -113,6 +114,7 @@ export const ButtonGroup = ({
 			const val = child.props.value || index;
 			const checked = val === actualValue;
 			return cloneElement(child, {
+				index,
 				name,
 				value: val,
 				onChange: handleChange,

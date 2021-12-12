@@ -103,7 +103,7 @@ export function Docs({ brand }) {
 			heading: 'Radio',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Selector type="radio" name="example-radio" instanceIdPrefix="GEL">
+					<Selector type="radio" name="example-radio">
 						<Option value="1">Your option 1</Option>
 						<Option value="2" hint="Your option hint text">
 							Your option 2
@@ -119,7 +119,7 @@ export function Docs({ brand }) {
 			heading: 'Radio disabled',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Selector type="radio" name="example-radio-disabled" instanceIdPrefix="GEL">
+					<Selector type="radio" name="example-radio-disabled">
 						<Option value="1" disabled>
 							Your option 1
 						</Option>
@@ -137,7 +137,7 @@ export function Docs({ brand }) {
 			heading: 'Radio with icons',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Selector type="radio" name="example-radio-icons" instanceIdPrefix="GEL">
+					<Selector type="radio" name="example-radio-icons">
 						<Option value="1" icon={AccessibilityIcon}>
 							Your option 1
 						</Option>
@@ -161,7 +161,7 @@ export function Docs({ brand }) {
 			heading: 'Radio with pictograms',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Selector type="radio" name="example-radio-pictograms" instanceIdPrefix="GEL">
+					<Selector type="radio" name="example-radio-pictograms">
 						<Option value="1" pictogram={ChatPictogram}>
 							Your option 1
 						</Option>
@@ -181,7 +181,7 @@ export function Docs({ brand }) {
 			heading: 'Checkbox',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Selector type="checkbox" name="example-checkbox" instanceIdPrefix="GEL">
+					<Selector type="checkbox" name="example-checkbox">
 						<Option value="1">Your option 1</Option>
 						<Option value="2" hint="Your option hint text">
 							Your option 2
@@ -197,7 +197,7 @@ export function Docs({ brand }) {
 			heading: 'Checkbox disabled',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Selector type="checkbox" name="example-checkbox-disabled" instanceIdPrefix="GEL">
+					<Selector type="checkbox" name="example-checkbox-disabled">
 						<Option value="1" disabled>
 							Your option 1
 						</Option>
@@ -215,7 +215,7 @@ export function Docs({ brand }) {
 			heading: 'Checkbox with icons',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Selector type="checkbox" name="example-checkbox-icons" instanceIdPrefix="GEL">
+					<Selector type="checkbox" name="example-checkbox-icons">
 						<Option value="1" icon={AccessibilityIcon}>
 							Your option 1
 						</Option>
@@ -233,7 +233,7 @@ export function Docs({ brand }) {
 			heading: 'Checkbox with pictograms',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Selector type="checkbox" name="example-checkbox-pictograms" instanceIdPrefix="GEL">
+					<Selector type="checkbox" name="example-checkbox-pictograms">
 						<Option value="1" pictogram={ChatPictogram}>
 							Your option 1
 						</Option>
@@ -253,7 +253,7 @@ export function Docs({ brand }) {
 			heading: 'Button',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Selector type="button" name="example-button" instanceIdPrefix="GEL">
+					<Selector type="button" name="example-button">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -267,7 +267,7 @@ export function Docs({ brand }) {
 			heading: 'Link',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Selector type="link" name="example-link" instanceIdPrefix="GEL">
+					<Selector type="link" name="example-link">
 						<Option href="#">Your link 1</Option>
 						<Option href="#">Your link 2</Option>
 						<Option href="#">Your link 3</Option>

@@ -94,16 +94,17 @@ const blenderStyles = (_, { isOpen, dropdownSize }) => {
 
 	return { label, ...reconciledStyles };
 };
+
 // ==============================
 // Attributes
 // ==============================
 
-const panelAttributes = (_, { instanceId }) => ({
-	id: instanceId,
+const panelAttributes = (_, { id }) => ({
+	id,
 });
 
-const blenderAttributes = (_, { instanceId, dropdownSize }) => ({
-	id: instanceId,
+const blenderAttributes = (_, { id, dropdownSize }) => ({
+	id,
 	'data-js': 'buttonDropdown-panel__version__',
 	className: classNames({
 		[`__convert__buttonDropdown-panel-${dropdownSize}`]:

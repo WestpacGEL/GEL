@@ -20,9 +20,9 @@ const triggerStyles = () => ({});
 // Attributes
 // ==============================
 
-const triggerAttributes = (_, { instanceId, open }) => ({
-	'aria-controls': instanceId,
-	'aria-expanded': open,
+const triggerAttributes = (_, { id, isOpen }) => ({
+	'aria-controls': id,
+	'aria-expanded': isOpen,
 });
 
 const blenderAttributes = (_, props) => ({

@@ -70,7 +70,7 @@ function Example({ brand }) {
 		<GEL brand={overridesWithTokens}>
 			<h2>With overrides applied</h2>
 			<h3>Soft accordion</h3>
-			<Tabcordion mode="accordion" look="soft" instanceIdPrefix="example-default-accordion">
+			<Tabcordion mode="accordion" look="soft" instanceId="example-default-accordion">
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
@@ -116,7 +116,7 @@ function Example({ brand }) {
 			</Tabcordion>
 
 			<h3>Lego accordion</h3>
-			<Tabcordion mode="accordion" look="lego" instanceIdPrefix="example-lego-accordion">
+			<Tabcordion mode="accordion" look="lego" instanceId="example-lego-accordion">
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
@@ -162,7 +162,7 @@ function Example({ brand }) {
 			</Tabcordion>
 
 			<h3>Default tabs</h3>
-			<Tabcordion mode="tabs" instanceIdPrefix="example-default-tabs">
+			<Tabcordion mode="tabs" instanceId="example-default-tabs">
 				<Tab text="Rabbit hole">
 					‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing
 					larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t
@@ -209,7 +209,7 @@ function Example({ brand }) {
 
 			<h2>With overrides and component overrides</h2>
 			<h3>Default accordion</h3>
-			<Tabcordion mode="accordion" instanceIdPrefix="example-default-component-overrides-accordion">
+			<Tabcordion mode="accordion" instanceId="example-default-component-overrides-accordion">
 				<Tab
 					text="Rabbit hole"
 					overrides={{
@@ -350,7 +350,7 @@ function Example({ brand }) {
 			<h3>Tabs</h3>
 			<Tabcordion
 				mode="tabs"
-				instanceIdPrefix="example-default-component-overrides-tabs"
+				instanceId="example-default-component-overrides-tabs"
 				overrides={{
 					TabBtn: {
 						styles: (styles, { selected }) => ({
