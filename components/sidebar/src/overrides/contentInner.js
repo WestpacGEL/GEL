@@ -19,6 +19,7 @@ const contentInnerStyles = () => ({
 	overflowY: 'auto',
 	display: 'flex',
 	flexDirection: 'column',
+	padding: '0 1.875rem',
 });
 
 // ==============================
