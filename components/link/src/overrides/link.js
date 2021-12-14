@@ -28,7 +28,8 @@ const linkStyles = (_, { type, underline }) => {
 		label: 'link',
 		color: type === 'inline' ? COLORS.link : COLORS.text,
 		textDecoration: type === 'inline' && underline ? 'underline' : 'none',
-
+		display: 'inline-flex',
+		alignItems: type === 'standalone' ? 'center' : 'baseline',
 		':hover': {
 			textDecoration: 'underline',
 		},
