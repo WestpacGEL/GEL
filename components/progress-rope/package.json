@@ -60,7 +60,6 @@
 		"@babel/runtime": "^7.14.8",
 		"@westpac/a11y": "^1.0.3",
 		"@westpac/core": "^2.2.0",
-		"classnames": "^2.3.1",
 		"lodash.merge": "^4.6.2",
 		"prop-types": "^15.7.2",
 		"react-use-measure": "^2.0.4",

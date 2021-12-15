@@ -38,6 +38,7 @@ export const Button = forwardRef(
 			block,
 			iconAfter,
 			iconBefore,
+			iconColor,
 			justify,
 			disabled,
 			assistiveText,
@@ -74,6 +75,7 @@ export const Button = forwardRef(
 			block,
 			iconAfter,
 			iconBefore,
+			iconColor,
 			justify,
 			disabled,
 			assistiveText,
@@ -109,6 +111,7 @@ export const Button = forwardRef(
 							iconAfter={iconAfter}
 							iconBefore={iconBefore}
 							dropdown={dropdown}
+							iconColor={iconColor}
 						>
 							{children}
 						</Content>
@@ -177,6 +180,13 @@ Button.propTypes = {
 	 * Places an icon within the button, before the button’s text
 	 */
 	iconBefore: PropTypes.func,
+
+	/**
+	 * The color for the icon.
+	 *
+	 * Defaults to the current text color.
+	 */
+	iconColor: PropTypes.string,
 
 	/**
 	 * Justify align button children
