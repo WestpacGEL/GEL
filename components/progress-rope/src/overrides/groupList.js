@@ -26,11 +26,13 @@ const groupListStyles = () => ({
 // ==============================
 
 const groupListAttributes = (_, { hidden, groupListId }) => ({
+	role: 'list',
 	id: groupListId,
 	'aria-hidden': hidden,
 });
 
 const blenderAttributes = (_, { open, groupListId }) => ({
+	role: 'list',
 	id: groupListId,
 	'aria-hidden': !open,
 	className: classNames({ [`__convert__progressRope-groupList-show`]: open }),
