@@ -30,7 +30,7 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 		openGroup,
 		ropeGraph,
 		handleClick,
-		state: { id },
+		state: { id, headingsTag },
 	} = context;
 
 	const groupListId = `${id}-group-${index + 1}`;
@@ -72,6 +72,7 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 		active,
 		complete,
 		hidden,
+		headingsTag,
 		context: context.state,
 		overrides: componentOverrides,
 		...rest,

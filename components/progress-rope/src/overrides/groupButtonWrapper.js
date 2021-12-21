@@ -6,7 +6,7 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-const GroupBtnWrapper = ({ state: _, ...rest }) => <h3 {...rest} />;
+const GroupBtnWrapper = ({ state: { headingsTag: Tag }, ...rest }) => <Tag {...rest} />;
 
 // ==============================
 // Styles
