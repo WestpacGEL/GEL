@@ -1,5 +1,16 @@
 # @westpac/button-group
 
+## 1.4.0
+
+### Minor Changes
+
+- fb906d96: Pass an index to children, use for id generation
+
+### Patch Changes
+
+- Updated dependencies [7d97398b]
+  - @westpac/button@1.4.0
+
 ## 1.3.0
 
 ### Minor Changes

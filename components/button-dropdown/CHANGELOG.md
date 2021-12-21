@@ -1,5 +1,17 @@
 # @westpac/button-dropdown
 
+## 2.0.0
+
+### Major Changes
+
+- 8af8849e: - Rename instanceIdPrefix prop as instanceId
+  - Refactor internal id state to not require useEffect
+
+### Patch Changes
+
+- Updated dependencies [7d97398b]
+  - @westpac/button@1.4.0
+
 ## 1.1.3
 
 ### Patch Changes

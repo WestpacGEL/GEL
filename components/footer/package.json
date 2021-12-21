@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/footer",
-	"version": "1.0.0-beta",
+	"version": "1.0.0",
 	"description": "GEL footer component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/footer",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

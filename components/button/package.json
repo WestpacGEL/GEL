@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/button",
-	"version": "1.3.0",
+	"version": "1.4.0",
 	"description": "Styling for button controls used for actions in forms and modals, with support for multiple sizes, styles, states and more",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button",

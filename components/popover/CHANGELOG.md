@@ -1,5 +1,19 @@
 # @westpac/popover
 
+## 2.0.0
+
+### Major Changes
+
+- 8af8849e: - Rename instanceIdPrefix prop as instanceId
+  - Refactor internal id state to not require useEffect
+
+### Patch Changes
+
+- 4cb5e39f: Fix trigger aria-expanded
+- 7d97398b: Add icon color prop
+- Updated dependencies [7d97398b]
+  - @westpac/button@1.4.0
+
 ## 1.0.4
 
 ### Patch Changes

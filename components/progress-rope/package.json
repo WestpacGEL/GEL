@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/progress-rope",
-	"version": "2.2.0",
+	"version": "3.0.0",
 	"description": "Interactive indicator and navigation component used to display the progress status within a multi-page form",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/progress-rope",
@@ -71,7 +71,7 @@
 	},
 	"devDependencies": {
 		"@react-spring/web": "^9.2.4",
-		"@westpac/button": "^1.3.0",
+		"@westpac/button": "^1.4.0",
 		"@westpac/grid": "^1.0.2",
 		"cypress": "^8.0.0",
 		"react": "^17.0.2",

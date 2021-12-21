@@ -1,5 +1,14 @@
 # @westpac/list
 
+## 1.3.0
+
+### Minor Changes
+
+- 7d40b7bd: - Link list with custom icon to include the icon within the link element (a11y)
+  - Add new href prop to Item component, renders link element around item content
+  - Add new Content override component, provides the link above
+  - Ensure icon can be set at List or Item level
+
 ## 1.2.0
 
 ### Minor Changes

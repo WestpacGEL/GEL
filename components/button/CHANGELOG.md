@@ -1,5 +1,11 @@
 # @westpac/button
 
+## 1.4.0
+
+### Minor Changes
+
+- 7d97398b: Add icon color prop
+
 ## 1.3.0
 
 ### Minor Changes

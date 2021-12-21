@@ -1,5 +1,11 @@
 # @westpac/pictogram
 
+## 1.5.0
+
+### Minor Changes
+
+- bbdd6c40: Update WBG duo highlight colour to borderDark
+
 ## 1.4.2
 
 ### Patch Changes

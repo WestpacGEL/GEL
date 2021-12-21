@@ -1,5 +1,11 @@
 # @westpac/wbg
 
+## 2.2.0
+
+### Minor Changes
+
+- 027141bb: Update pop and border color tokens
+
 ## 2.1.1
 
 ### Patch Changes

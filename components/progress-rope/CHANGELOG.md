@@ -1,5 +1,18 @@
 # @westpac/progress-rope
 
+## 3.0.0
+
+### Major Changes
+
+- 8af8849e: - Rename instanceIdPrefix prop as instanceId
+  - Refactor internal id state to not require useEffect
+
+### Patch Changes
+
+- 2e8ea22c: - Add missing list role (a11y)
+  - Fix headingsTag prop functionality
+- ddd8be31: Remove duplicate dependency
+
 ## 2.2.0
 
 ### Minor Changes
