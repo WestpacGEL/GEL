@@ -4,7 +4,6 @@ const express = require('express');
 const { Keystone } = require('@keystonejs/keystone');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
-const { NextApp } = require('@keystonejs/app-next');
 const { KnexAdapter } = require('@keystonejs/adapter-knex');
 const { resolveComponents } = require('./extend-schema');
 const { getComponentSchema } = require('./schema/component');
@@ -19,7 +18,7 @@ const keystone = new Keystone({
 	adapter: new KnexAdapter({
 		dropDatabase: process.env.NODE_ENV === 'development' && process.env.DATABASE_RECREATE_TABLES,
 		knexOptions: {
-			client: 'pg',
+			client: 'postgres',
 			connection: process.env.DATABASE_URL,
 		},
 	}),
@@ -63,7 +62,6 @@ const apps = [
 		authStrategy,
 		hooks: require.resolve('./admin'),
 	}),
-	new NextApp({ dir: 'src' }),
 ];
 
 module.exports = {

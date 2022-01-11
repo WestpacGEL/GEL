@@ -24,6 +24,7 @@
 		"docs:build": "NODE_ENV=development webpack --progress --config ./helpers/example/docs.webpack.config.js && yarn docs:redirects",
 		"docs:redirects": "cp helpers/public/* docs/",
 		"start": "yarn build:dynamicblocks && cd website && yarn start",
+		"start:frontend": "yarn build:dynamicblocks && cd website && yarn start:frontend",
 		"nuke": "yarn nuke:lock && yarn nuke:node_modules",
 		"nuke:node_modules": "find ./components -type d -name 'node_modules' -exec rm -rf {} + && find ./brands -type d -name 'node_modules' -exec rm -rf {} + && rm -rf node_modules",
 		"nuke:lock": "rm yarn.lock && rm yarn-error.log ; true",
