@@ -1,5 +1,8 @@
-import { list } from '@keystone-6/core';
+import { list, graphql } from '@keystone-6/core';
 import { cloudinaryImage } from '@keystone-6/cloudinary';
+import fs from 'fs';
+import path from 'path';
+import slugify from 'slugify';
 import { Lists } from '.keystone/types';
 import {
 	text,
@@ -10,8 +13,26 @@ import {
 	image,
 	checkbox,
 	relationship,
+	json,
+	virtual,
 } from '@keystone-6/core/fields';
 import { document } from '@keystone-6/fields-document';
+
+const packages = fs
+	.readdirSync('../components')
+	// ToDo: Maybe warn if folder could not load?
+	.filter((item) => fs.existsSync(path.join(__dirname, `../components/${item}/package.json`)))
+	.map((item) => {
+		const pkg = require(path.join(__dirname, `../components/${item}/package.json`));
+		return { ...pkg, path: item };
+	});
+
+const formatPackageData = (pkgData) => {
+	return pkgData.map((pkg) => {
+		const cleanName = pkg.name.split('/').reverse()[0];
+		return { ...pkg, packageName: pkg.name, name: cleanName };
+	});
+};
 
 /* TODO test descriptions render */
 const lists = {
@@ -40,7 +61,7 @@ const lists = {
 	Setting: list({
 		fields: {
 			name: text(),
-			value: text(),
+			value: json(),
 		},
 	}),
 	Image: list({
@@ -61,10 +82,36 @@ const lists = {
 	}),
 	Page: list({
 		fields: {
-			pageTitle: text(),
+			pageTitle: text({ validation: { isRequired: true } }),
 			// TODO needs a hook
-			url: text(),
-			packageName: select(),
+			url: text({
+				hooks: {
+					resolveInput: ({ item, resolvedData }) => {
+						if (resolvedData.url) {
+							let result = resolvedData.url
+								.split('/')
+								.map((d) => slugify(d))
+								.join('/');
+							if (result.charAt(0) !== '/') {
+								result = `/${result}`;
+							}
+							return result;
+						}
+						if (item && item?.url !== '') {
+							return item.url;
+						}
+						if (resolvedData.packageName) {
+							return `/components/${slugify(resolvedData.packageName).toLowerCase()}`;
+						}
+						if (resolvedData.pageTitle) {
+							return `/components/${slugify(resolvedData.pageTitle).toLowerCase()}`;
+						}
+
+						return undefined;
+					},
+				},
+			}),
+			packageName: select({}),
 			version: virtual({
 				field: graphql.field({
 					type: graphql.String,
