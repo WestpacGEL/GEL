@@ -235,10 +235,13 @@ type Page {
   isOrphaned: Boolean
   author: String
   requires: String
+  designOld: JSON
   design: Page_design_Document
   hideAccessibilityTab: Boolean
+  accessibilityOld: JSON
   accessibility: Page_accessibility_Document
   hideCodeTab: Boolean
+  codeOld: JSON
   code: Page_code_Document
   relatedPages(
     where: PageWhereInput! = {}
@@ -247,6 +250,7 @@ type Page {
     skip: Int! = 0
   ): [Page!]
   relatedPagesCount(where: PageWhereInput! = {}): Int
+  relatedInfoOld: JSON
   relatedInfo: Page_relatedInfo_Document
 }
 
@@ -336,12 +340,16 @@ input PageUpdateInput {
   pageTitle: String
   url: String
   packageName: String
+  designOld: JSON
   design: JSON
   hideAccessibilityTab: Boolean
+  accessibilityOld: JSON
   accessibility: JSON
   hideCodeTab: Boolean
+  codeOld: JSON
   code: JSON
   relatedPages: PageRelateToManyForUpdateInput
+  relatedInfoOld: JSON
   relatedInfo: JSON
 }
 
@@ -361,12 +369,16 @@ input PageCreateInput {
   pageTitle: String
   url: String
   packageName: String
+  designOld: JSON
   design: JSON
   hideAccessibilityTab: Boolean
+  accessibilityOld: JSON
   accessibility: JSON
   hideCodeTab: Boolean
+  codeOld: JSON
   code: JSON
   relatedPages: PageRelateToManyForCreateInput
+  relatedInfoOld: JSON
   relatedInfo: JSON
 }
 
@@ -416,6 +428,9 @@ type Mutation {
     email: String!
     password: String!
   ): UserAuthenticationWithPasswordResult
+  createInitialUser(
+    data: CreateInitialUserInput!
+  ): UserAuthenticationWithPasswordSuccess!
 }
 
 union UserAuthenticationWithPasswordResult =
@@ -429,6 +444,11 @@ type UserAuthenticationWithPasswordSuccess {
 
 type UserAuthenticationWithPasswordFailure {
   message: String!
+}
+
+input CreateInitialUserInput {
+  email: String
+  password: String
 }
 
 type Query {

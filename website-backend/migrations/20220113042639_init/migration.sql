@@ -31,11 +31,15 @@ CREATE TABLE "Page" (
     "pageTitle" TEXT NOT NULL DEFAULT E'',
     "url" TEXT NOT NULL DEFAULT E'',
     "packageName" TEXT,
+    "designOld" JSONB,
     "design" JSONB NOT NULL DEFAULT E'[{"type":"paragraph","children":[{"text":""}]}]',
     "hideAccessibilityTab" BOOLEAN NOT NULL DEFAULT false,
+    "accessibilityOld" JSONB,
     "accessibility" JSONB NOT NULL DEFAULT E'[{"type":"paragraph","children":[{"text":""}]}]',
     "hideCodeTab" BOOLEAN NOT NULL DEFAULT false,
+    "codeOld" JSONB,
     "code" JSONB NOT NULL DEFAULT E'[{"type":"paragraph","children":[{"text":""}]}]',
+    "relatedInfoOld" JSONB,
     "relatedInfo" JSONB NOT NULL DEFAULT E'[{"type":"paragraph","children":[{"text":""}]}]',
 
     CONSTRAINT "Page_pkey" PRIMARY KEY ("id")

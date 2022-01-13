@@ -14,6 +14,7 @@ const { withAuth } = createAuth({
 	listKey: 'User',
 	identityField: 'email',
 	secretField: 'password',
+	initFirstItem: { fields: ['email', 'password'] },
 });
 
 // Our root Keystone config
