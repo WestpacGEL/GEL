@@ -44,9 +44,27 @@ for (const item of fs.readdirSync(path.join(cwd, '../components'))) {
 
 const packagesMap = new Map(packages.map((pkg) => [pkg.unscopedName, pkg]));
 
+const isSignedIn = ({ session }: { session: any }) => !!session;
+
+const readOnly = {
+	operation: {
+		create: isSignedIn,
+		delete: isSignedIn,
+		update: isSignedIn,
+	},
+};
+
 /* TODO test descriptions render */
 const lists: Lists = {
 	User: list({
+		access: {
+			operation: {
+				create: isSignedIn,
+				delete: isSignedIn,
+				query: isSignedIn,
+				update: isSignedIn,
+			},
+		},
 		fields: {
 			email: text({
 				validation: { isRequired: true },
@@ -68,6 +86,7 @@ const lists: Lists = {
 		},
 	}),
 	Setting: list({
+		access: readOnly,
 		fields: {
 			name: text({
 				validation: { isRequired: true },
@@ -77,6 +96,7 @@ const lists: Lists = {
 		},
 	}),
 	Image: list({
+		access: readOnly,
 		fields: {
 			image: cloudinaryImage({
 				cloudinary: {
@@ -99,6 +119,7 @@ const lists: Lists = {
 		},
 	}),
 	Page: list({
+		access: readOnly,
 		fields: {
 			pageTitle: text({ validation: { isRequired: true } }),
 			// TODO needs a hook
