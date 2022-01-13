@@ -17,12 +17,7 @@ import {
 	virtual,
 } from '@keystone-6/core/fields';
 import { document } from '@keystone-6/fields-document';
-import {
-	CLOUDINARY_CLOUD_NAME,
-	CLOUDINARY_API_KEY,
-	CLOUDINARY_API_SECRET,
-	CLOUDINARY_API_FOLDER,
-} from '../config';
+import { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '../config';
 
 const cwd = process.cwd();
 
