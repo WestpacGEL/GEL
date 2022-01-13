@@ -9,6 +9,8 @@
 		"@keystone-6/auth": "^1.0.2",
 		"@keystone-6/cloudinary": "^1.0.0",
 		"@keystone-6/core": "^1.0.1",
-		"@keystone-6/fields-document": "^1.0.1"
+		"@keystone-6/fields-document": "^1.0.1",
+		"prisma": "3.6.0",
+		"@prisma/client": "3.6.0"
 	}
 }

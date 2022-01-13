@@ -24,25 +24,28 @@ import {
 	CLOUDINARY_API_FOLDER,
 } from '../config';
 
+const cwd = process.cwd();
 
-const packages = fs
-	.readdirSync('../components')
-	// ToDo: Maybe warn if folder could not load?
-	.filter((item) => fs.existsSync(path.join(__dirname, `../components/${item}/package.json`)))
-	.map((item) => {
-		const pkg = require(path.join(__dirname, `../components/${item}/package.json`));
-		return { ...pkg, path: item };
-	});
+const packages = [];
 
-const formatPackageData = (pkgData) => {
-	return pkgData.map((pkg) => {
-		const cleanName = pkg.name.split('/').reverse()[0];
-		return { ...pkg, packageName: pkg.name, name: cleanName };
-	});
-};
+for (const item of fs.readdirSync(path.join(cwd, '../components'))) {
+	let content;
+	try {
+		content = fs.readFileSync(path.join(cwd, `../components/${item}/package.json`), 'utf-8');
+	} catch (err: any) {
+		if (err.code === 'ENOENT') {
+			continue;
+		}
+		throw err;
+	}
+	const pkg = JSON.parse(content);
+	packages.push({ ...pkg, path: item, unscopedName: pkg.name.split('/').reverse()[0] });
+}
+
+const packagesMap = new Map(packages.map((pkg) => [pkg.unscopedName, pkg]));
 
 /* TODO test descriptions render */
-const lists = {
+const lists: Lists = {
 	User: list({
 		fields: {
 			email: text({
@@ -68,7 +71,7 @@ const lists = {
 		fields: {
 			name: text({
 				validation: { isRequired: true },
-				isIndexed: 'unique'
+				isIndexed: 'unique',
 			}),
 			value: json(),
 		},
@@ -77,12 +80,12 @@ const lists = {
 		fields: {
 			image: cloudinaryImage({
 				cloudinary: {
-	        cloudName: CLOUDINARY_CLOUD_NAME,
-	        apiKey: CLOUDINARY_API_KEY,
-	        apiSecret: CLOUDINARY_API_SECRET,
-	        folder: CLOUDINARY_API_FOLDER,
-	      },
-      }),
+					cloudName: CLOUDINARY_CLOUD_NAME,
+					apiKey: CLOUDINARY_API_KEY,
+					apiSecret: CLOUDINARY_API_SECRET,
+					folder: CLOUDINARY_API_FOLDER,
+				},
+			}),
 			caption: text(),
 		},
 		ui: {
@@ -127,44 +130,57 @@ const lists = {
 					},
 				},
 			}),
-			packageName: select({}),
+			packageName: select({
+				options: packages.map((pkg) => ({
+					value: pkg.unscopedName.replace('-', '_'),
+					label: pkg.unscopedName,
+				})),
+			}),
 			version: virtual({
 				field: graphql.field({
 					type: graphql.String,
-					resolve() {
-						return 'Hello, world!';
-					},
+					resolve: (item) => packagesMap.get(item.packageName)?.version,
 				}),
 			}),
 			description: virtual({
 				field: graphql.field({
 					type: graphql.String,
-					resolve() {
-						return 'Hello, world!';
-					},
+					resolve: (item) => packagesMap.get(item.packageName)?.description,
 				}),
 			}),
 			isOrphaned: virtual({
 				field: graphql.field({
-					type: graphql.String,
-					resolve() {
-						return 'Hello, world!';
+					type: graphql.Boolean,
+					resolve(item) {
+						if (!item.packageName) {
+							return false;
+						}
+						return !packagesMap.has(item.packageName);
 					},
 				}),
 			}),
 			author: virtual({
 				field: graphql.field({
 					type: graphql.String,
-					resolve() {
-						return 'Hello, world!';
-					},
+					resolve: (item) => packagesMap.get(item.packageName)?.author,
 				}),
 			}),
 			requires: virtual({
 				field: graphql.field({
 					type: graphql.String,
-					resolve() {
-						return 'Hello, world!';
+					resolve(item) {
+						if (!item.packageName) {
+							return null;
+						}
+						const component = packagesMap.get(item.packageName);
+						if (!component?.dependencies) {
+							return null;
+						}
+						return (
+							Object.keys(component.dependencies)
+								.filter((key) => key.includes('@westpac/'))
+								.join(', ') || ''
+						);
 					},
 				}),
 			}),
@@ -173,7 +189,7 @@ const lists = {
 			accessibility: document(),
 			hideCodeTab: checkbox(),
 			code: document(),
-			relatedPages: relationship(),
+			relatedPages: relationship({ ref: 'Page', many: true }),
 			relatedInfo: document(),
 		},
 	}),
