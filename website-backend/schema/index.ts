@@ -49,6 +49,17 @@ const lists = {
 			},
 		},
 	}),
+    Page: list({
+        fields: {
+            pageTitle: text(),
+            // TODO needs a hook 
+            url: text()
+            packageName: select(),
+            version: virtual(),
+            description: virtual(),
+            isOrphaned: virtual()
+        }
+    })
 };
 
 export { lists };
