@@ -1,7 +1,17 @@
 import { list } from '@keystone-6/core';
 import { cloudinaryImage } from '@keystone-6/cloudinary';
 import { Lists } from '.keystone/types';
-import { text, password, timestamp, integer, select, image } from '@keystone-6/core/fields';
+import {
+	text,
+	password,
+	timestamp,
+	integer,
+	select,
+	image,
+	checkbox,
+	relationship,
+} from '@keystone-6/core/fields';
+import { document } from '@keystone-6/fields-document';
 
 /* TODO test descriptions render */
 const lists = {
@@ -49,17 +59,61 @@ const lists = {
 			},
 		},
 	}),
-    Page: list({
-        fields: {
-            pageTitle: text(),
-            // TODO needs a hook 
-            url: text()
-            packageName: select(),
-            version: virtual(),
-            description: virtual(),
-            isOrphaned: virtual()
-        }
-    })
+	Page: list({
+		fields: {
+			pageTitle: text(),
+			// TODO needs a hook
+			url: text(),
+			packageName: select(),
+			version: virtual({
+				field: graphql.field({
+					type: graphql.String,
+					resolve() {
+						return 'Hello, world!';
+					},
+				}),
+			}),
+			description: virtual({
+				field: graphql.field({
+					type: graphql.String,
+					resolve() {
+						return 'Hello, world!';
+					},
+				}),
+			}),
+			isOrphaned: virtual({
+				field: graphql.field({
+					type: graphql.String,
+					resolve() {
+						return 'Hello, world!';
+					},
+				}),
+			}),
+			author: virtual({
+				field: graphql.field({
+					type: graphql.String,
+					resolve() {
+						return 'Hello, world!';
+					},
+				}),
+			}),
+			requires: virtual({
+				field: graphql.field({
+					type: graphql.String,
+					resolve() {
+						return 'Hello, world!';
+					},
+				}),
+			}),
+			design: document(),
+			hideAccessibilityTab: checkbox(),
+			accessibility: document(),
+			hideCodeTab: checkbox(),
+			code: document(),
+			relatedPages: relationship(),
+			relatedInfo: document(),
+		},
+	}),
 };
 
 export { lists };
