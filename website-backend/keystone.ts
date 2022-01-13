@@ -1,26 +1,33 @@
-/*
-Welcome to Keystone! This file is what keystone uses to start the app.
-
-It looks at the default export, and expects a Keystone config object.
-
-You can find all the config options in our docs here: https://keystonejs.com/docs/apis/config
-*/
-
 import { config } from '@keystone-6/core';
-
-// Look in the schema file for how we define our lists, and how users interact with them through graphql or the Admin UI
+import { statelessSessions } from '@keystone-6/core/session';
+import { createAuth } from '@keystone-6/auth';
 import { lists } from './schema';
+import {
+	PORT,
+	DATABASE_URL,
+	SESSION_MAX_AGE,
+	SESSION_SECRET,
+} from './config';
 
-// Keystone auth is configured separately - check out the basic auth setup we are importing from our auth file.
-// import { withAuth, session } from "./auth";
-// import { insertSeedData } from "./seed-data";
+// Basic session and auth config
+const session = statelessSessions({
+  maxAge: SESSION_MAX_AGE,
+  secret: SESSION_SECRET,
+});
 
+const { withAuth } = createAuth({
+  listKey: 'User',
+  identityField: 'email',
+  secretField: 'password'
+});
+
+// Our root Keystone config
 export default withAuth(
 	config({
-		server: { port: 3001, cors: true },
+		server: { port: PORT, cors: true },
 		db: {
-			provider: 'sqlite',
-			url: 'file:./keystone.db',
+			provider: 'postgresql',
+			url: DATABASE_URL,
 			// async onConnect(context) {
 			// 	if (process.argv.includes('--seed-data')) {
 			// 		await insertSeedData(context);
@@ -34,9 +41,7 @@ export default withAuth(
 				baseUrl: '/images',
 			},
 		},
-		// This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
 		ui: {
-			// For our starter, we check that someone has session data before letting them see the Admin UI.
 			isAccessAllowed: (context) => !!context.session?.data,
 		},
 		lists,
