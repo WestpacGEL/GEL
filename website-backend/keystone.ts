@@ -2,23 +2,18 @@ import { config } from '@keystone-6/core';
 import { statelessSessions } from '@keystone-6/core/session';
 import { createAuth } from '@keystone-6/auth';
 import { lists } from './schema';
-import {
-	PORT,
-	DATABASE_URL,
-	SESSION_MAX_AGE,
-	SESSION_SECRET,
-} from './config';
+import { PORT, DATABASE_URL, SESSION_MAX_AGE, SESSION_SECRET } from './config';
 
 // Basic session and auth config
 const session = statelessSessions({
-  maxAge: SESSION_MAX_AGE,
-  secret: SESSION_SECRET,
+	maxAge: SESSION_MAX_AGE,
+	secret: SESSION_SECRET,
 });
 
 const { withAuth } = createAuth({
-  listKey: 'User',
-  identityField: 'email',
-  secretField: 'password'
+	listKey: 'User',
+	identityField: 'email',
+	secretField: 'password',
 });
 
 // Our root Keystone config

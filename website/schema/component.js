@@ -16,6 +16,22 @@ const BLOCKS_CONFIG = [
 	[DynamicComponentsBlock, { components: DYNAMIC_BLOCKS_DIR }],
 ];
 
+import fs from 'fs';
+import path from 'path';
+
+const packages = fs
+	.readdirSync('../components')
+	// ToDo: Maybe warn if folder could not load?
+	.filter((item) => fs.existsSync(path.join(__dirname, `../components/${item}/package.json`)))
+	.map((item) => {
+		const pkg = JSON.parse(
+			fs.readFileSync(path.join(__dirname, `../components/${item}/package.json`), 'utf8')
+		);
+		return { ...pkg, path: item };
+	});
+
+const packagesMap = new Map(packages.map((x) => [x.name, x]));
+
 const getResolver = (key) => async (args) => {
 	if (!args.packageName) {
 		return null;
@@ -27,9 +43,6 @@ const getResolver = (key) => async (args) => {
 	}
 	if (key === 'packageName') {
 		return component.name;
-	}
-	if (key === 'name') {
-		return component.name.split('/').slice(-1).pop();
 	}
 	return component[key];
 };
