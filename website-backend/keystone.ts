@@ -28,6 +28,7 @@ export default withAuth(
 			// 		await insertSeedData(context);
 			// 	}
 			// },
+			useMigrations: true,
 		},
 		images: {
 			upload: 'local',
