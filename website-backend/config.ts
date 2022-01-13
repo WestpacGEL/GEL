@@ -1,3 +1,4 @@
+import dotenv from 'dotenv'
 
 if (
 	!process.env.CLOUDINARY_CLOUD_NAME ||
