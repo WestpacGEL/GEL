@@ -18,6 +18,8 @@ import {
 } from '@keystone-6/core/fields';
 import { document } from '@keystone-6/fields-document';
 import { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '../config';
+import * as mainComponentBlocks from '../admin/component-blocks/main';
+import * as relatedInfoComponentBlocks from '../admin/component-blocks/related-info';
 
 const cwd = process.cwd();
 
@@ -57,6 +59,25 @@ const adminOnly = {
 		update: isSignedIn,
 	},
 };
+
+const inlineMarks = {
+	bold: true,
+	italic: true,
+	strikethrough: true,
+	underline: true,
+	code: true,
+} as const;
+
+const mainDocumentConfig = {
+	formatting: {
+		blockTypes: true,
+		listTypes: true,
+		inlineMarks,
+	},
+	componentBlocks: mainComponentBlocks.componentBlocks,
+	ui: { views: require.resolve('../admin/component-blocks/main') },
+	links: true,
+} as const;
 
 /* TODO test descriptions render */
 const lists: Lists = {
@@ -202,16 +223,25 @@ const lists: Lists = {
 				}),
 			}),
 			designOld: json(),
-			design: document(),
+			design: document(mainDocumentConfig),
 			hideAccessibilityTab: checkbox(),
 			accessibilityOld: json(),
-			accessibility: document(),
+			accessibility: document(mainDocumentConfig),
 			hideCodeTab: checkbox(),
 			codeOld: json(),
-			code: document(),
+			code: document(mainDocumentConfig),
 			relatedPages: relationship({ ref: 'Page', many: true }),
 			relatedInfoOld: json(),
-			relatedInfo: document(),
+			relatedInfo: document({
+				formatting: {
+					inlineMarks,
+				},
+				componentBlocks: relatedInfoComponentBlocks.componentBlocks,
+				ui: {
+					views: require.resolve('../admin/component-blocks/related-info'),
+				},
+				links: true,
+			}),
 		},
 	}),
 };
