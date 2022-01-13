@@ -59,7 +59,7 @@
 		"components/*",
 		"website",
 		"website/field-content",
-		"ks6-update"
+		"website-backend"
 	],
 	"field-types": {
 		"packages": [
