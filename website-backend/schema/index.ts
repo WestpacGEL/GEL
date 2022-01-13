@@ -54,17 +54,19 @@ const readOnly = {
 	},
 };
 
+const adminOnly = {
+	operation: {
+		create: isSignedIn,
+		delete: isSignedIn,
+		query: isSignedIn,
+		update: isSignedIn,
+	},
+};
+
 /* TODO test descriptions render */
 const lists: Lists = {
 	User: list({
-		access: {
-			operation: {
-				create: isSignedIn,
-				delete: isSignedIn,
-				query: isSignedIn,
-				update: isSignedIn,
-			},
-		},
+		access: adminOnly,
 		fields: {
 			email: text({
 				validation: { isRequired: true },
@@ -96,7 +98,7 @@ const lists: Lists = {
 		},
 	}),
 	Image: list({
-		access: readOnly,
+		access: adminOnly,
 		fields: {
 			image: cloudinaryImage({
 				cloudinary: {
