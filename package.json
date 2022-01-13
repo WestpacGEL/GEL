@@ -58,7 +58,8 @@
 		"brands/*",
 		"components/*",
 		"website",
-		"website/field-content"
+		"website/field-content",
+		"ks6-update"
 	],
 	"field-types": {
 		"packages": [
