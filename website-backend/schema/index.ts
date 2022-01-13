@@ -17,6 +17,13 @@ import {
 	virtual,
 } from '@keystone-6/core/fields';
 import { document } from '@keystone-6/fields-document';
+import {
+	CLOUDINARY_CLOUD_NAME,
+	CLOUDINARY_API_KEY,
+	CLOUDINARY_API_SECRET,
+	CLOUDINARY_API_FOLDER,
+} from '../config';
+
 
 const packages = fs
 	.readdirSync('../components')
@@ -41,7 +48,6 @@ const lists = {
 			email: text({
 				validation: { isRequired: true },
 				isIndexed: 'unique',
-				isFilterable: true,
 			}),
 			password: password({ validation: { isRequired: true } }),
 		},
@@ -60,13 +66,23 @@ const lists = {
 	}),
 	Setting: list({
 		fields: {
-			name: text(),
+			name: text({
+				validation: { isRequired: true },
+				isIndexed: 'unique'
+			}),
 			value: json(),
 		},
 	}),
 	Image: list({
 		fields: {
-			image: cloudinaryImage(),
+			image: cloudinaryImage({
+				cloudinary: {
+	        cloudName: CLOUDINARY_CLOUD_NAME,
+	        apiKey: CLOUDINARY_API_KEY,
+	        apiSecret: CLOUDINARY_API_SECRET,
+	        folder: CLOUDINARY_API_FOLDER,
+	      },
+      }),
 			caption: text(),
 		},
 		ui: {
