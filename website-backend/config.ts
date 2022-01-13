@@ -1,17 +1,16 @@
 import dotenv from 'dotenv'
 
+dotenv.config();
 if (
 	!process.env.CLOUDINARY_CLOUD_NAME ||
 	!process.env.CLOUDINARY_API_KEY ||
-	!process.env.CLOUDINARY_API_SECRET ||
-	!process.env.CLOUDINARY_API_FOLDER
-	) {
+	!process.env.CLOUDINARY_API_SECRET
+) {
 	throw new Error('The Cloudinary environment variables are required. See .env.example.');
 }
 export const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
 export const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY;
 export const CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET;
-export const CLOUDINARY_API_FOLDER = process.env.CLOUDINARY_API_FOLDER;
 
 // This apps uses 3001 as a defaul port
 export const PORT = parseInt(process.env.PORT || '') || 3001;

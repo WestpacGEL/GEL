@@ -4,7 +4,9 @@
 	"description": "The Westpac GEL Design system website keystone backend",
 	"private": true,
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/website",
-	"scripts": {},
+	"scripts": {
+		"dev": "keystone dev"
+	},
 	"dependencies": {
 		"@keystone-6/auth": "^1.0.2",
 		"@keystone-6/cloudinary": "^1.0.0",

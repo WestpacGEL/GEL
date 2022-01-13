@@ -83,7 +83,6 @@ const lists: Lists = {
 					cloudName: CLOUDINARY_CLOUD_NAME,
 					apiKey: CLOUDINARY_API_KEY,
 					apiSecret: CLOUDINARY_API_SECRET,
-					folder: CLOUDINARY_API_FOLDER,
 				},
 			}),
 			caption: text(),
