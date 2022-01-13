@@ -1,5 +1,5 @@
 import { list } from '@keystone-6/core';
-import { cloudinaryImage } from '0@keystone-6/cloudinary';
+import { cloudinaryImage } from '@keystone-6/cloudinary';
 import { Lists } from '.keystone/types';
 import { text, password, timestamp, integer, select, image } from '@keystone-6/core/fields';
 
