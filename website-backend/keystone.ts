@@ -39,10 +39,7 @@ export default withAuth(
 			},
 		},
 		ui: {
-			isAccessAllowed: (context) => {
-				console.log(context.session);
-				return !!context.session?.data;
-			},
+			isAccessAllowed: (context) => !!context.session?.data,
 		},
 		lists,
 		session,

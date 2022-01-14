@@ -77,6 +77,7 @@ const mainDocumentConfig = {
 	componentBlocks: mainComponentBlocks.componentBlocks,
 	ui: { views: require.resolve('../admin/component-blocks/main') },
 	links: true,
+	dividers: true,
 } as const;
 
 /* TODO test descriptions render */

@@ -1,10 +1,4 @@
-import {
-	component,
-	fields,
-	FormField,
-	NotEditable,
-} from '@keystone-6/fields-document/component-blocks';
-import {} from '@keystone-6/fields-document/primitives';
+import { component, fields, FormField } from '@keystone-6/fields-document/component-blocks';
 
 import { Select, FieldContainer, FieldLabel } from '@keystone-ui/fields';
 
@@ -21,13 +15,8 @@ const sizeOptions = [
 ] as const;
 
 export const heading = component({
-	component: ({ level, content, subText }) => {
-		return (
-			<div>
-				<level.value>{content}</level.value>
-				{subText.discriminant ? <p>{subText.value}</p> : null}
-			</div>
-		);
+	component: ({ level, content }) => {
+		return <level.value>{content}</level.value>;
 	},
 	props: {
 		content: fields.child({ kind: 'inline', placeholder: '', formatting: 'inherit' }),
@@ -42,17 +31,7 @@ export const heading = component({
 			options: sizeOptions,
 		}),
 		addTableContent: fields.checkbox({ label: 'Add to table of contents' }),
-		subText: fields.conditional(fields.checkbox({ label: 'Add sub text' }), {
-			false: fields.empty(),
-			true: fields.child({
-				kind: 'inline',
-				placeholder: 'Sub text',
-				formatting: 'inherit',
-				links: 'inherit',
-			}),
-		}),
 	},
-	// chromeless: true,
 	label: 'Heading',
 });
 

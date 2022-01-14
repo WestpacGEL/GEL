@@ -44,10 +44,17 @@ ${examples
 };
 `;
 
+const onlyDataJs = `export const data = ${JSON.stringify(examples)};
+`;
+
 try {
 	fs.writeFileSync(
 		path.normalize(`${__dirname}/../website/dynamic-blocks/dynamic-blocks-demos.js`),
 		jsBody
+	);
+	fs.writeFileSync(
+		path.normalize(`${__dirname}/../website-backend/admin/component-blocks/code-examples-data.ts`),
+		onlyDataJs
 	);
 } catch (error) {
 	console.error('🛑  Dynamic block importer failed', error);
