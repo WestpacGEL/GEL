@@ -1,20 +1,20 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@keystone-ui/core';
-import { component, fields } from '@keystone-6/fields-document/component-blocks';
+import { component, fields, NotEditable } from '@keystone-6/fields-document/component-blocks';
 import { imageField } from './image-field';
 
 export const image = component({
-	component: ({ imageCaption, image, imageAlt }) => (
-		<div>
-			{typeof image.value === 'string' && <img src={image.value} alt={imageAlt.value} />}
-			<figcaption>{imageCaption.value}</figcaption>
-		</div>
+	component: ({ caption, image, alt }) => (
+		<NotEditable>
+			{typeof image.value === 'string' && <img src={image.value} alt={alt.value} />}
+			<figcaption>{caption.value}</figcaption>
+		</NotEditable>
 	),
 	props: {
 		image: imageField({ label: 'Image' }),
-		imageAlt: fields.text({ label: 'image alt text' }),
-		imageCaption: fields.text({ label: 'image caption' }),
+		alt: fields.text({ label: 'image alt text' }),
+		caption: fields.text({ label: 'image caption' }),
 	},
 	label: 'Image',
 });

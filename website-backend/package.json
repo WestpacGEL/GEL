@@ -17,6 +17,7 @@
     "@prisma/client": "3.7.0",
     "dotenv": "^11.0.0",
     "prisma": "3.7.0",
+    "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   }
 }
