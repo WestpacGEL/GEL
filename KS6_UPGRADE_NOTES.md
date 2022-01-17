@@ -56,7 +56,7 @@ psql -d "${LOCAL_DB_NAME}" -f "${LOCAL_DUMP_FILE}"
 
 #### Set The Baseline
 
-In development, Prisma maintains a "shadow DB" that allows it to detect structual changes, generate migrations and reset your local DB if needed.
+In development, Prisma maintains a "shadow DB" that allows it to detect structural changes, generate migrations and reset your local DB if needed.
 For this to work, we need a migration that mirrors the structure of the legacy DB so our shadow DB can be initialised correctly.
 Of course, we don't want to apply this migration to the backup we've just restored; it already has the legacy schema.
 
@@ -76,5 +76,18 @@ Then, start the app as normal:
 yarn dev
 ```
 
+You should see the app successfully apply the subsequent migrations before the app comes online:
 
+```
+✨ The following migration(s) have been applied:
 
+migrations/
+  └─ 20220113000001_cuid_function/
+    └─ migration.sql
+  └─ 20220113000002_prep/
+    └─ migration.sql
+  └─ 20220113000003_create_ks6_schema/
+    └─ migration.sql
+  └─ 20220113000004_copy_data
+    └─ migration.sql
+```
