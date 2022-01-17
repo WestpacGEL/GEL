@@ -35,10 +35,10 @@ select
 	r."document"::jsonb as "relatedInfoOld"
 from
 	ks5."Page" s
-	left outer join ks5."_ContentType_Page_design" as d on (s.id = d.id)
-	left outer join ks5."_ContentType_Page_accessibility" as a on (s.id = a.id)
-	left outer join ks5."_ContentType_Page_code" as c on (s.id = c.id)
-	left outer join ks5."_ContentType_Page_relatedInfo" as r on (s.id = r.id)
+	left outer join ks5."_ContentType_Page_design" as d on (s.id = d."from")
+	left outer join ks5."_ContentType_Page_accessibility" as a on (s.id = a."from")
+	left outer join ks5."_ContentType_Page_code" as c on (s.id = c."from")
+	left outer join ks5."_ContentType_Page_relatedInfo" as r on (s.id = r."from")
 where
 	not exists (select 1 from "Page" where id = s.cuid);
 
