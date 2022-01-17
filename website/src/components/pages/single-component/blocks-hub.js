@@ -13,6 +13,7 @@ import reactStringReplace from 'react-string-replace';
 
 import createReactRenderer from './react-renderer';
 import { getShortCodes } from '../../../shortcodes';
+import { DocumentRenderer } from './document-renderer';
 
 const DynamicComponents = dynamic(() => import('./dynamic-components'), { ssr: false });
 
@@ -203,7 +204,7 @@ const slateRenderer = (item, _editorValue) => {
 export const SlateContent = ({ content, item, cssOverrides, ...props }) => {
 	return (
 		<div {...props} className="slate-container" css={cssOverrides}>
-			{slateRenderer(item, content.document)(content)}
+			<DocumentRenderer document={content.document} item={item} />
 		</div>
 	);
 };

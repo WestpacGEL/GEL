@@ -98,28 +98,28 @@ export const CodeExample = {
 		const { SPACING } = useBrand();
 		const loadCodeBlock = codeExamples[codeExample];
 		return (
-			<Cell
-				width={12}
-				css={mq({
-					marginTop: [SPACING(1), null, SPACING(2)],
-					marginBottom: [SPACING(5), null, null, null, SPACING(8)],
-					height: 'auto',
-					':last-child': { marginBottom: 0 },
-				})}
-			>
-				<Suspense fallback={<p>Loading...</p>}>
-					{loadCodeBlock && typeof window !== 'undefined' ? (
-						<ShowCodeBlock
-							loadCodeBlock={loadCodeBlock}
-							context={context}
-							showCode={showCode}
-							showDemo={showDemo}
-						/>
-					) : (
-						'Example not found.'
-					)}
-				</Suspense>
-			</Cell>
+			// <Cell
+			// 	width={12}
+			// 	css={mq({
+			// 		marginTop: [SPACING(1), null, SPACING(2)],
+			// 		marginBottom: [SPACING(5), null, null, null, SPACING(8)],
+			// 		height: 'auto',
+			// 		':last-child': { marginBottom: 0 },
+			// 	})}
+			// >
+			<Suspense fallback={<p>Loading...</p>}>
+				{loadCodeBlock && typeof window !== 'undefined' ? (
+					<ShowCodeBlock
+						loadCodeBlock={loadCodeBlock}
+						context={context}
+						showCode={showCode}
+						showDemo={showDemo}
+					/>
+				) : (
+					'Example not found.'
+				)}
+			</Suspense>
+			// </Cell>
 		);
 	},
 };

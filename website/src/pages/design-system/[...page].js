@@ -23,7 +23,7 @@ const ComponentWrapper = () => {
 	}
 	if (!data) return null;
 	let currentComponent =
-		data.allPages.find((component) => {
+		data.pages.find((component) => {
 			return component.url === `/${path}`;
 		}) || '';
 
