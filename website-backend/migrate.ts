@@ -1,7 +1,7 @@
 import fs from 'fs';
 import fetch from 'node-fetch';
 
-const data = JSON.parse(fs.readFileSync('../website/data.json', 'utf8'));
+// const data = JSON.parse(fs.readFileSync('../website/data.json', 'utf8'));
 
 function walkNode(node, visitor) {
 	if (node.children) {
@@ -226,19 +226,19 @@ const passes = [
 	(x) => x.children,
 ];
 
-for (const page of data.allPages) {
-	for (const key of ['design', 'code', 'accessibility', 'relatedInfo']) {
-		if (page[key]) {
-			let document = page[key].document;
-			for (const pass of passes) {
-				document = pass(document);
-			}
-			page[key] = document;
-		} else {
-			delete page[key];
-		}
-	}
-}
+// for (const page of data.allPages) {
+// 	for (const key of ['design', 'code', 'accessibility', 'relatedInfo']) {
+// 		if (page[key]) {
+// 			let document = page[key].document;
+// 			for (const pass of passes) {
+// 				document = pass(document);
+// 			}
+// 			page[key] = document;
+// 		} else {
+// 			delete page[key];
+// 		}
+// 	}
+// }
 
 function walkerForIntroSection(document) {
 	walkNode(document, (node) => {
@@ -266,9 +266,9 @@ function imageConverter(document) {
 		if (node.type === 'dynamic-components' && node.component === 'Image') {
 			node.type = 'component-block';
 			node.component = 'image';
-			if (!node.props.alt) {
-				node.props.alt = '';
-			}
+			node.props.alt ??= '';
+			node.props.image ??= '';
+
 			node.children = [
 				{
 					type: 'component-inline-prop',
@@ -356,24 +356,49 @@ const gql =
 				return val.data;
 			});
 
-fs.writeFileSync('output.json', JSON.stringify(data, null, 2));
+// fs.writeFileSync('output.json', JSON.stringify(data, null, 2));
 
 (async () => {
-	for (const { id, ...rest } of data.allPages) {
-		if (
-			rest.url === '/components/testing-blocks' ||
-			rest.url === '/test' ||
-			rest.url === '/components/adfgdfg'
-		) {
+	const data = await gql`
+		query {
+			pages {
+				id
+				url
+				designOld
+				codeOld
+				accessibilityOld
+				relatedInfoOld
+			}
+		}
+	`({});
+	for (const { id, url, ...rest } of data.pages) {
+		if (url === '/components/testing-blocks' || url === '/test' || url === '/components/adfgdfg') {
 			continue;
 		}
-		console.log(rest.url);
-		await gql`
-			mutation ($data: [PageCreateInput!]!) {
-				createPages(data: $data) {
-					id
+
+		console.log(url);
+		const newStuff = {};
+		for (const [key, val] of Object.entries(rest)) {
+			if (val) {
+				let document = val;
+				for (const pass of passes) {
+					document = pass(document);
 				}
+				newStuff[key.replace('Old', '')] = document;
 			}
-		`({ data: [{ ...rest, pageTitle: 'blah' }] });
+		}
+		debugger;
+		try {
+			await gql`
+				mutation ($id: ID!, $data: PageUpdateInput!) {
+					updatePage(where: { id: $id }, data: $data) {
+						id
+					}
+				}
+			`({ id, data: newStuff });
+		} catch (err) {
+			debugger;
+			throw err;
+		}
 	}
 })();
