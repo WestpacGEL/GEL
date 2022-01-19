@@ -13,7 +13,7 @@ import { blenderGroupList } from '../overrides/groupList';
 // Component
 // ==============================
 
-export const Group = ({ index, id, text, active, visited, open, children, ...rest }) => {
+export const Group = ({ index, text, active, visited, open, children, ...rest }) => {
 	const { component: Group, styles: groupStyles, attributes: groupAttributes } = blenderGroup;
 	const {
 		component: GroupBtnWrapper,
@@ -32,9 +32,11 @@ export const Group = ({ index, id, text, active, visited, open, children, ...res
 	} = blenderGroupList;
 
 	const context = useProgressRopeContext();
-	const { instancePrefix } = context;
+	const {
+		state: { id },
+	} = context;
 
-	const groupListId = `${instancePrefix}-group-${index + 1}`;
+	const groupListId = `${id}-group-${index + 1}`;
 
 	const state = {
 		id,

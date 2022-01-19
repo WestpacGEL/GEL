@@ -10,8 +10,7 @@ import { logoMap } from './_utils';
 const Logo = ({ state: { logoAssistiveText }, ...rest }) => {
 	const { BRAND } = useBrand();
 	const Logo = logoMap[BRAND.code];
-
-	return <Logo height={[21, null, 28]} assistiveText={logoAssistiveText} {...rest} />;
+	return <Logo assistiveText={logoAssistiveText} {...rest} />;
 };
 
 // ==============================

@@ -79,7 +79,7 @@ export function Docs({ brand }) {
 			heading: 'Default',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<Collapsible text="Your collapsible button text" instanceIdPrefix="collapsible-default">
+					<Collapsible text="Your collapsible button text" instanceId="collapsible-default">
 						Your collapsible content
 					</Collapsible>
 				</GEL>
@@ -94,7 +94,7 @@ export function Docs({ brand }) {
 					<Collapsible
 						text="Your open collapsible button text"
 						open
-						instanceIdPrefix="collapsible-default-open"
+						instanceId="collapsible-default-open"
 					>
 						Your open collapsible content
 					</Collapsible>
@@ -111,7 +111,7 @@ export function Docs({ brand }) {
 					<Collapsible
 						text={`Your ${size} collapsible button text`}
 						size={size}
-						instanceIdPrefix={`collapsible-${size}`}
+						instanceId={`collapsible-${size}`}
 					>
 						Your {size} collapsible content
 					</Collapsible>

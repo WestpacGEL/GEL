@@ -101,7 +101,7 @@ export function Docs({ brand }) {
 			heading: 'Checkboxes',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<FormCheck type="checkbox" name="example-checkboxes" instanceIdPrefix="GEL">
+					<FormCheck type="checkbox" name="example-checkboxes">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -115,7 +115,7 @@ export function Docs({ brand }) {
 			heading: 'Radios',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<FormCheck type="radio" name="example-radios" instanceIdPrefix="GEL">
+					<FormCheck type="radio" name="example-radios">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -130,12 +130,7 @@ export function Docs({ brand }) {
 			subheading: 'Large',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<FormCheck
-						type="checkbox"
-						name="example-large-checkboxes"
-						instanceIdPrefix="GEL"
-						size="large"
-					>
+					<FormCheck type="checkbox" name="example-large-checkboxes" size="large">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -148,7 +143,7 @@ export function Docs({ brand }) {
 			subheading: 'Large',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<FormCheck type="radio" name="example-large-radios" instanceIdPrefix="GEL" size="large">
+					<FormCheck type="radio" name="example-large-radios" size="large">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -163,7 +158,7 @@ export function Docs({ brand }) {
 			subheading: 'Checkboxes with option hints',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<FormCheck type="checkbox" name="example-checkboxes-hints" instanceIdPrefix="GEL">
+					<FormCheck type="checkbox" name="example-checkboxes-hints">
 						<Option value="1" hint="Your option 1 hint">
 							Your option 1
 						</Option>
@@ -181,12 +176,7 @@ export function Docs({ brand }) {
 			subheading: 'Large checkboxes with option hints',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<FormCheck
-						type="checkbox"
-						name="example-checkboxes-large-hints"
-						instanceIdPrefix="GEL"
-						size="large"
-					>
+					<FormCheck type="checkbox" name="example-checkboxes-large-hints" size="large">
 						<Option value="1" hint="Your option 1 hint">
 							Your option 1
 						</Option>
@@ -207,7 +197,7 @@ export function Docs({ brand }) {
 			subheading: 'Checkboxes',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<FormCheck type="checkbox" name="example-inline-checkboxes" instanceIdPrefix="GEL" inline>
+					<FormCheck type="checkbox" name="example-inline-checkboxes" inline>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -219,7 +209,7 @@ export function Docs({ brand }) {
 			subheading: 'Radios',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<FormCheck type="radio" name="example-inline-radios" instanceIdPrefix="GEL" inline>
+					<FormCheck type="radio" name="example-inline-radios" inline>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -231,13 +221,7 @@ export function Docs({ brand }) {
 			subheading: 'Large checkboxes',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<FormCheck
-						type="checkbox"
-						name="example-large-inline-checkboxes"
-						instanceIdPrefix="GEL"
-						size="large"
-						inline
-					>
+					<FormCheck type="checkbox" name="example-large-inline-checkboxes" size="large" inline>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -249,13 +233,7 @@ export function Docs({ brand }) {
 			subheading: 'Large radios',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<FormCheck
-						type="radio"
-						name="example-large-inline-radios"
-						instanceIdPrefix="GEL"
-						size="large"
-						inline
-					>
+					<FormCheck type="radio" name="example-large-inline-radios" size="large" inline>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -270,13 +248,7 @@ export function Docs({ brand }) {
 			subheading: 'Checkboxes',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<FormCheck
-						type="checkbox"
-						name="example-disabled-checkboxes"
-						instanceIdPrefix="GEL"
-						disabled
-						defaultValue="2"
-					>
+					<FormCheck type="checkbox" name="example-disabled-checkboxes" disabled defaultValue="2">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -288,13 +260,7 @@ export function Docs({ brand }) {
 			subheading: 'Radios',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<FormCheck
-						type="radio"
-						name="example-disabled-radios"
-						instanceIdPrefix="GEL"
-						disabled
-						defaultValue="2"
-					>
+					<FormCheck type="radio" name="example-disabled-radios" disabled defaultValue="2">
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>
@@ -307,12 +273,7 @@ export function Docs({ brand }) {
 			heading: 'Reveal',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<FormCheckReveal
-						type="radio"
-						name="example-reveal-radios"
-						instanceIdPrefix="GEL"
-						show={1}
-					>
+					<FormCheckReveal type="radio" name="example-reveal-radios" show={1}>
 						<Option value="1">Your option 1</Option>
 						<Option value="2">Your option 2</Option>
 						<Option value="3">Your option 3</Option>

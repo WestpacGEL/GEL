@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId, getLabel } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler, getLabel } from '@westpac/core';
 import PropTypes from 'prop-types';
 import { useState, forwardRef } from 'react';
 
@@ -17,6 +17,7 @@ import pkg from '../package.json';
 export const ButtonGroupItem = forwardRef(
 	(
 		{
+			index,
 			name,
 			value,
 			onChange,
@@ -38,7 +39,7 @@ export const ButtonGroupItem = forwardRef(
 		} = useBrand();
 
 		const context = useButtonGroupContext();
-		const [buttonGroupItemId] = useState(`gel-button-group-item-${useInstanceId()}`);
+		const [buttonGroupItemId] = useState(`gel-button-group-item-${index}`);
 
 		const defaultOverrides = {
 			Item: defaultItem,

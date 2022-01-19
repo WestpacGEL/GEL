@@ -79,12 +79,12 @@ const blenderStyles = (_, { block, size }) => {
 // Attributes
 // ==============================
 
-const switchAttributes = (_, { instanceId }) => ({
-	htmlFor: instanceId, //a11y: must use explicit association
+const switchAttributes = (_, { id }) => ({
+	htmlFor: id, //a11y: must use explicit association
 });
 
-const blenderAttributes = (_, { instanceId, block, size }) => ({
-	...switchAttributes(_, { instanceId }),
+const blenderAttributes = (_, { id, block, size }) => ({
+	...switchAttributes(_, { id }),
 	className: classNames({
 		[`__convert__switch-${size}`]: size !== defaultProps.size,
 		[`__convert__switch-block`]: block,

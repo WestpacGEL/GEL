@@ -3,13 +3,11 @@
 import { GEL, jsx } from '@westpac/core';
 import { Sidebar } from '@westpac/sidebar';
 
-const Text = (props) => <p css={{ padding: '0 1rem' }} {...props} />;
-
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<Sidebar heading="Sidebar heading" contentHeading="Sidebar content heading">
-				<Text>
+				<p>
 					In another moment down went Alice after it, never once considering how in the world she
 					was to get out again. The rabbit-hole went straight on like a tunnel for some way, and
 					then dipped suddenly down, so suddenly that Alice had not a moment to think about stopping
@@ -67,7 +65,7 @@ function Example({ brand }) {
 					would not open any of them. However, on the second time round, she came upon a low curtain
 					she had not noticed before, and behind it was a little door about fifteen inches high: she
 					tried the little golden key in the lock, and to her great delight it fitted!
-				</Text>
+				</p>
 			</Sidebar>
 		</GEL>
 	);

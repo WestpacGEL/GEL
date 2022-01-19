@@ -19,7 +19,10 @@ export const Content = () => {
 	const mq = useMediaQuery();
 	return (
 		<Fragment>
-			<PadlockIcon css={mq({ float: 'left', marginRight: ['0.375rem', null, '0.75rem'] })} />
+			<PadlockIcon
+				size={['small', null, 'medium']}
+				css={mq({ float: 'left', marginRight: ['0.375rem', null, '0.75rem'] })}
+			/>
 			<FooterText>
 				Our site and your transactions are secure. You can read our{' '}
 				<Link>security information</Link>. © 2020 Westpac Banking Corporation ABN 33 007 457 141

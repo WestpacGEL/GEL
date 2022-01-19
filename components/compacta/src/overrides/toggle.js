@@ -10,7 +10,7 @@ import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 
 const Toggle = ({ open, state: _, ...rest }) => (
 	<Button
-		look="faint"
+		look="link"
 		size="small"
 		soft
 		iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}

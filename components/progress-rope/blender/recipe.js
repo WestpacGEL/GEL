@@ -109,7 +109,7 @@ export function Docs({ brand }) {
 			subheading: 'Initial state',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<ProgressRope instanceIdPrefix="example-initial-state">
+					<ProgressRope instanceId="example-initial-state">
 						<Step onClick={() => {}} active>
 							Step 1
 						</Step>
@@ -128,7 +128,7 @@ export function Docs({ brand }) {
 			subheading: 'In-progress state',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<ProgressRope instanceIdPrefix="example-inprogress">
+					<ProgressRope instanceId="example-inprogress">
 						<Step onClick={() => {}} visited>
 							Step 1
 						</Step>
@@ -151,7 +151,7 @@ export function Docs({ brand }) {
 			subheading: 'Final state',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<ProgressRope instanceIdPrefix="example-final-state">
+					<ProgressRope instanceId="example-final-state">
 						<Step onClick={() => {}} visited>
 							Step 1
 						</Step>
@@ -172,7 +172,7 @@ export function Docs({ brand }) {
 			subheading: 'Revisited step state',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<ProgressRope instanceIdPrefix="example-revisited-step">
+					<ProgressRope instanceId="example-revisited-step">
 						<Step onClick={() => {}} visited>
 							Step 1
 						</Step>
@@ -196,7 +196,7 @@ export function Docs({ brand }) {
 			subheading: 'Initial state',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<ProgressRope instanceIdPrefix="example-group-initial-state">
+					<ProgressRope instanceId="example-group-initial-state">
 						<Group text={'Group 1'} active open>
 							<Step onClick={() => {}} active>
 								Step 1
@@ -223,7 +223,7 @@ export function Docs({ brand }) {
 			subheading: 'In-progress state',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<ProgressRope instanceIdPrefix="example-group-inprogress">
+					<ProgressRope instanceId="example-group-inprogress">
 						<Group text={'Group 1'} visited>
 							<Step onClick={() => {}} visited>
 								Step 1
@@ -256,7 +256,7 @@ export function Docs({ brand }) {
 			subheading: 'Final state',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<ProgressRope instanceIdPrefix="example-group-final-state">
+					<ProgressRope instanceId="example-group-final-state">
 						<Group text={'Group 1'} visited>
 							<Step onClick={() => {}} visited>
 								Step 1
@@ -295,7 +295,7 @@ export function Docs({ brand }) {
 			subheading: 'Revisited step state',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<ProgressRope instanceIdPrefix="example-group-revisited-step">
+					<ProgressRope instanceId="example-group-revisited-step">
 						<Group text={'Group 1'} visited>
 							<Step onClick={() => {}} visited>
 								Step 1

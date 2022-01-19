@@ -1,15 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, useInstanceId, overrideReconciler } from '@westpac/core';
-import {
-	Fragment,
-	useState,
-	useEffect,
-	useLayoutEffect,
-	useRef,
-	cloneElement,
-	Children,
-} from 'react';
+import { Fragment, useState, useLayoutEffect, useRef, cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFormCheckReveal } from './overrides/formCheckReveal';
@@ -24,8 +16,8 @@ import pkg from '../package.json';
 // ==============================
 
 export const FormCheckReveal = ({
+	instanceId,
 	show,
-	instanceIdPrefix,
 	data,
 	children,
 	overrides: componentOverrides,
@@ -36,15 +28,9 @@ export const FormCheckReveal = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [instanceId, setInstanceId] = useState(instanceIdPrefix);
+	const [id] = useState(instanceId || `gel-form-check-reveal-${useInstanceId()}`);
 	const [isOpen, setIsOpen] = useState(false);
 	const firstNewOptionRef = useRef();
-
-	useEffect(() => {
-		if (!instanceIdPrefix) {
-			setInstanceId(`gel-form-check-reveal-${useInstanceId()}`);
-		}
-	}, [instanceIdPrefix]);
 
 	const defaultOverrides = {
 		FormCheckReveal: defaultFormCheckReveal,
@@ -63,7 +49,7 @@ export const FormCheckReveal = ({
 	};
 
 	const state = {
-		instanceId,
+		id,
 		show,
 		isOpen,
 		...rest,
@@ -83,7 +69,7 @@ export const FormCheckReveal = ({
 	if (data) {
 		data.map(({ text, ...rest }, index) => {
 			allChildren.push(
-				<Option ref={index === show ? firstNewOptionRef : null} key={index} {...rest}>
+				<Option ref={index === show ? firstNewOptionRef : null} key={index} index={index} {...rest}>
 					{text}
 				</Option>
 			);
@@ -92,6 +78,7 @@ export const FormCheckReveal = ({
 		allChildren = Children.map(children, (child, index) => {
 			return cloneElement(child, {
 				ref: index === show ? firstNewOptionRef : null,
+				index,
 			});
 		});
 	}
@@ -128,14 +115,14 @@ export const FormCheckReveal = ({
 
 FormCheckReveal.propTypes = {
 	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+
+	/**
 	 * Show only the given number of Form check options, hide/show toggle the remainder
 	 */
 	show: PropTypes.number.isRequired,
-
-	/**
-	 * Define an id prefix for internal elements
-	 */
-	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * Form check item(s)
