@@ -15,3 +15,7 @@ export const indentOptions = [
 	{ label: '2', value: 2 },
 	{ label: '3', value: 3 },
 ];
+
+export const pluralize = (str, length, plural = '') => {
+	return length === 1 ? str : `${plural ? plural : `${str}s`}`;
+};

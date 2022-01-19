@@ -141,7 +141,6 @@ const lists: Lists = {
 		access: readOnly,
 		fields: {
 			pageTitle: text({ validation: { isRequired: true } }),
-			// TODO needs a hook
 			url: text({
 				hooks: {
 					resolveInput: ({ item, resolvedData }) => {

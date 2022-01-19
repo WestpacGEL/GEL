@@ -1,7 +1,5 @@
-import fs from 'fs';
+// @ts-nocheck
 import fetch from 'node-fetch';
-
-// const data = JSON.parse(fs.readFileSync('../website/data.json', 'utf8'));
 
 function walkNode(node, visitor) {
 	if (node.children) {
@@ -226,20 +224,6 @@ const passes = [
 	(x) => x.children,
 ];
 
-// for (const page of data.allPages) {
-// 	for (const key of ['design', 'code', 'accessibility', 'relatedInfo']) {
-// 		if (page[key]) {
-// 			let document = page[key].document;
-// 			for (const pass of passes) {
-// 				document = pass(document);
-// 			}
-// 			page[key] = document;
-// 		} else {
-// 			delete page[key];
-// 		}
-// 	}
-// }
-
 function walkerForIntroSection(document) {
 	walkNode(document, (node) => {
 		if (node.type === 'dynamic-components' && node.component === 'IntroSection') {
@@ -387,18 +371,12 @@ const gql =
 				newStuff[key.replace('Old', '')] = document;
 			}
 		}
-		debugger;
-		try {
-			await gql`
-				mutation ($id: ID!, $data: PageUpdateInput!) {
-					updatePage(where: { id: $id }, data: $data) {
-						id
-					}
+		await gql`
+			mutation ($id: ID!, $data: PageUpdateInput!) {
+				updatePage(where: { id: $id }, data: $data) {
+					id
 				}
-			`({ id, data: newStuff });
-		} catch (err) {
-			debugger;
-			throw err;
-		}
+			}
+		`({ id, data: newStuff });
 	}
 })();

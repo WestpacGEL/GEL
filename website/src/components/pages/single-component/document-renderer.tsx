@@ -240,11 +240,15 @@ function DocumentNode({
 				<Section>
 					<Container>
 						<Grid rowGap="0 !important">
-							{children.map((child, i) => (
-								<Cell key={i} width={[12, 11, 8, 7, 9]}>
-									{child}
-								</Cell>
-							))}
+							{children.map((child, i) =>
+								nodesForReactElements.get(child)?.component === 'CodeExample' ? (
+									child
+								) : (
+									<Cell key={i} width={[12, 11, 8, 7, 9]}>
+										{child}
+									</Cell>
+								)
+							)}
 						</Grid>
 					</Container>
 				</Section>
@@ -256,8 +260,17 @@ function DocumentNode({
 
 function addSections(nodes: Node[]) {
 	const headingIndexes: number[] = [];
+	const introSection = nodes.findIndex((x) => x.component === 'introSection');
 	for (const [idx, node] of nodes.entries()) {
-		if (node.component === 'heading' && (node.props as any).level === 'h2') {
+		if (
+			node.component === 'heading' &&
+			(node.props as any).level === 'h2' &&
+			(node.props as any).size === 6
+		) {
+			if (introSection !== -1 && headingIndexes.length === 0) {
+				headingIndexes.push(introSection + 1);
+				continue;
+			}
 			headingIndexes.push(idx);
 		}
 	}
@@ -267,8 +280,6 @@ function addSections(nodes: Node[]) {
 		const nextHeading = headingIndexes[idx + 1] ?? nodes.length;
 		newNodes.push({ type: 'section', children: nodes.slice(headingIdx, nextHeading) });
 	}
-
-	console.log(nodes, newNodes);
 
 	return newNodes;
 }
@@ -366,9 +377,12 @@ const componentBlocks: import('@keystone-6/fields-document/component-blocks').In
 	},
 	introSection({ description, showPackageInfo, showTableOfContents }) {
 		const { document, item } = useContext(WholeDocumentContext);
+		const node = nodesForReactElements.get(description as any);
 		return (
 			<dynamicComponents.IntroSection.component
-				description={description}
+				description={
+					(node.children as any).length === 1 && node.children[0].text === '' ? '' : description
+				}
 				showPackageInfo={showPackageInfo}
 				showTableOfContents={showTableOfContents}
 				document={document}
@@ -387,7 +401,7 @@ const componentBlocks: import('@keystone-6/fields-document/component-blocks').In
 	},
 };
 
-export function contentToString(node: Node) {
+export function contentToString(node: Node): string {
 	if ('text' in node && typeof node.text === 'string') {
 		return node.text;
 	}

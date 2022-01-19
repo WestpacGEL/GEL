@@ -1,4 +1,7 @@
 import { component, fields, FormField } from '@keystone-6/fields-document/component-blocks';
+import { Heading as WestpacHeading } from '@westpac/heading';
+import { GEL } from '@westpac/core';
+import brand from '@westpac/wbc';
 
 import { Select, FieldContainer, FieldLabel } from '@keystone-ui/fields';
 
@@ -15,8 +18,14 @@ const sizeOptions = [
 ] as const;
 
 export const heading = component({
-	component: ({ level, content }) => {
-		return <level.value>{content}</level.value>;
+	component: ({ level, content, size }) => {
+		return (
+			<GEL brand={brand}>
+				<WestpacHeading size={size.value} tag={level.value}>
+					{content}
+				</WestpacHeading>
+			</GEL>
+		);
 	},
 	props: {
 		content: fields.child({ kind: 'inline', placeholder: '', formatting: 'inherit' }),
