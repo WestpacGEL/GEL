@@ -26,9 +26,14 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 	} = useBrand();
 
 	const context = useProgressRopeContext();
-	const { openGroup, ropeGraph, handleClick, instancePrefix } = context;
+	const {
+		openGroup,
+		ropeGraph,
+		handleClick,
+		state: { id, headingsTag },
+	} = context;
 
-	const groupListId = `${instancePrefix}-group-${index + 1}`;
+	const groupListId = `${id}-group-${index + 1}`;
 
 	const active = ropeGraph[index].includes('visited');
 	const complete = ropeGraph[index + 1][0] === 'visited';
@@ -67,6 +72,7 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 		active,
 		complete,
 		hidden,
+		headingsTag,
 		context: context.state,
 		overrides: componentOverrides,
 		...rest,

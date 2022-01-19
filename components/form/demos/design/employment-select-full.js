@@ -97,7 +97,7 @@ export const EmploymentSelectFullPattern = ({ showErrors = false }) => {
 			{employed.includes(employment) && (
 				<Fragment>
 					<FormGroup>
-						<Field label="Industry category">
+						<Field label="Occupation category">
 							<IndustrySelect />
 						</Field>
 					</FormGroup>

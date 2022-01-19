@@ -143,13 +143,6 @@ const listStyles = (_, { type, look, spacing, nested, icon }) => {
 			paddingLeft: '1.1875rem',
 			position: 'relative',
 			...styleMap[type],
-
-			// Tweak styling if link with custom icon
-			...(type === 'link' &&
-				icon && {
-					'::before': null, //remove default link type '>' icon
-					...styleMap['icon'], //add icon type styling
-				}),
 		},
 	};
 };

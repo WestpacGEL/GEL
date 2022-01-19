@@ -31,14 +31,8 @@ export const Field = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [id, setId] = useState(instanceId);
+	const [id] = useState(instanceId || `gel-field-${useInstanceId()}`);
 	const [ariaDescribedByValue, setAriaDescribedByValue] = useState();
-
-	useEffect(() => {
-		if (!instanceId) {
-			setId(`gel-field-${useInstanceId()}`);
-		}
-	}, [instanceId]);
 
 	useEffect(() => {
 		const arr = [...(error ? [`${id}-error`] : []), ...(hint ? [`${id}-hint`] : [])];

@@ -58,6 +58,7 @@ export const Compacta = ({ addText, children, overrides: componentOverrides, ...
 	const state = {
 		initial,
 		items,
+		brand,
 		overrides: componentOverrides,
 		...rest,
 	};

@@ -14,20 +14,18 @@ const Icon = ({ icon: Icon, before, after, state: _, ...rest }) => (
 // Styles
 // ==============================
 
-const iconStyles = (_, { before, after }) => ({
+const iconStyles = (_, { type, before, after }) => ({
 	label: 'link-icon',
-	...(before ? { marginRight: '0.4em' } : null),
-	...(after ? { marginLeft: '0.4em' } : null),
+	...(before && { marginRight: '0.4em' }),
+	...(after && { marginLeft: '0.4em' }),
+	...(type === 'inline' && { alignSelf: 'center' }),
 });
 
 // ==============================
 // Attributes
 // ==============================
 
-const iconAttributes = () => ({
-	'aria-hidden': 'true',
-	assistiveText: null,
-});
+const iconAttributes = () => null;
 
 // ==============================
 // Exports

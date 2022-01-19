@@ -228,6 +228,11 @@ List.propTypes = {
 			component: PropTypes.elementType,
 			attributes: PropTypes.func,
 		}),
+		Content: PropTypes.shape({
+			styles: PropTypes.func,
+			component: PropTypes.elementType,
+			attributes: PropTypes.func,
+		}),
 		Icon: PropTypes.shape({
 			styles: PropTypes.func,
 			component: PropTypes.elementType,

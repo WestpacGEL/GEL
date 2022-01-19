@@ -32,11 +32,11 @@ export const useTabcordionContext = () => {
 // ==============================
 
 export const Tabcordion = ({
+	instanceId,
 	mode: tabcordionMode,
 	look,
 	justify,
 	openTab,
-	instanceIdPrefix,
 	onOpen = () => {},
 	onOpening = () => {},
 	onClose = () => {},
@@ -57,9 +57,7 @@ export const Tabcordion = ({
 	};
 
 	const [activeTabIndex, setActiveTabIndex] = useState(openTab);
-	const [instanceId, setInstanceId] = useState(
-		instanceIdPrefix ? instanceIdPrefix : `gel-tabcordion-${useInstanceId()}`
-	);
+	const [id] = useState(instanceId || `gel-tabcordion-${useInstanceId()}`);
 
 	const containerRef = useRef();
 	const panelRef = useRef();
@@ -73,15 +71,15 @@ export const Tabcordion = ({
 
 	useEffect(() => setActiveTabIndex(openTab), [openTab]);
 
-	const getId = (type, index) => `${instanceId}-${type}-${index + 1}`;
+	const getId = (type, index) => `${id}-${type}-${index + 1}`;
 	const tabCount = Children.count(children);
 
 	const state = {
+		id,
 		mode,
 		look,
 		justify,
 		openTab: activeTabIndex,
-		instanceId,
 		onOpen,
 		onOpening,
 		onClose,
@@ -175,6 +173,11 @@ export const Tabcordion = ({
 
 Tabcordion.propTypes = {
 	/**
+	 * Define an id for the elements e.g. for an instanceId of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc.
+	 */
+	instanceId: PropTypes.string,
+
+	/**
 	 * Lock the mode to either "accordion" or "tabs". The default is "responsive".
 	 */
 	mode: PropTypes.oneOf(['responsive', 'accordion', 'tabs']),
@@ -193,11 +196,6 @@ Tabcordion.propTypes = {
 	 * Current open tab (zero-indexed)
 	 */
 	openTab: PropTypes.number,
-
-	/**
-	 * Define an id prefix for the elements e.g. for a prefix of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc.
-	 */
-	instanceIdPrefix: PropTypes.string,
 
 	/**
 	 * Callback function run when a tab/panel is open.

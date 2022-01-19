@@ -1,10 +1,17 @@
-import { WBCLogo, WBGLogo, STGLogo, BOMLogo, BSALogo, RAMSLogo } from '@westpac/symbol';
+import {
+	WBCMultibrandLargeLogo,
+	WBGMultibrandLargeLogo,
+	STGMultibrandLargeLogo,
+	BOMMultibrandLargeLogo,
+	BSAMultibrandLargeLogo,
+	RAMSMultibrandLargeLogo,
+} from '@westpac/symbol';
 
 export const logoMap = {
-	WBC: WBCLogo,
-	WBG: WBGLogo,
-	STG: STGLogo,
-	BOM: BOMLogo,
-	BSA: BSALogo,
-	RAMS: RAMSLogo,
+	WBC: WBCMultibrandLargeLogo,
+	WBG: WBGMultibrandLargeLogo,
+	STG: STGMultibrandLargeLogo,
+	BOM: BOMMultibrandLargeLogo,
+	BSA: BSAMultibrandLargeLogo,
+	RAMS: RAMSMultibrandLargeLogo,
 };

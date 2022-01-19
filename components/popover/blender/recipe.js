@@ -90,7 +90,7 @@ export function Docs({ brand }) {
 						heading="Your heading"
 						content="Your popover content"
 						placement={placement}
-						instanceIdPrefix={`GEL-popover-${placement}`}
+						instanceId={`GEL-popover-${placement}`}
 					>
 						Your button text
 					</Popover>
@@ -106,7 +106,7 @@ export function Docs({ brand }) {
 					<Popover
 						content="Your popover content"
 						placement="top"
-						instanceIdPrefix="GEL-popover-noheading"
+						instanceId="GEL-popover-noheading"
 					>
 						Your button text
 					</Popover>

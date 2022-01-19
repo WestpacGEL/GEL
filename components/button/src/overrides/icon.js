@@ -46,8 +46,8 @@ const iconStyles = (_, { before, after, dropdown, block, hasChildren }) => {
 // Attributes
 // ==============================
 
-const iconAttributes = () => ({
-	color: 'inherit',
+const iconAttributes = (_, { iconColor }) => ({
+	color: iconColor ? iconColor : 'inherit',
 	'aria-hidden': 'true',
 	assistiveText: null,
 });

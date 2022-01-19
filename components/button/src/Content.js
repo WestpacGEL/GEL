@@ -20,6 +20,7 @@ export const Content = ({
 	block,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
+	iconColor,
 	dropdown,
 	children,
 	...rest
@@ -43,6 +44,7 @@ export const Content = ({
 		block,
 		iconBefore: IconBefore,
 		iconAfter: IconAfter,
+		iconColor,
 		dropdown,
 		hasChildren: !!children,
 		context: context.state,
@@ -127,6 +129,13 @@ Content.propTypes = {
 	 * Places an icon within the button, before the button’s text
 	 */
 	iconBefore: PropTypes.func,
+
+	/**
+	 * The color for the icon.
+	 *
+	 * Defaults to the current text color.
+	 */
+	iconColor: PropTypes.string,
 
 	/**
 	 * Enable dropdown mode

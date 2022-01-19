@@ -12,10 +12,12 @@ const Item = ({ state: _, ...rest }) => <div {...rest} />;
 // Styles
 // ==============================
 
-const itemStyles = () => {
+const itemStyles = (_, { brand }) => {
+	const { COLORS } = brand;
 	return {
 		label: getLabel('compacta-item'),
 		marginBottom: '0.375rem',
+		border: `1px solid ${COLORS.borderDark}`,
 	};
 };
 

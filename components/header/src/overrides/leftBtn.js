@@ -9,6 +9,7 @@ import { Button } from '@westpac/button';
 // ==============================
 
 const LeftBtn = ({ state: { leftIcon, leftOnClick, leftAssistiveText }, ...rest }) => {
+	const mq = useMediaQuery();
 	const Icon = (() => {
 		switch (leftIcon) {
 			case 'arrow':
@@ -27,6 +28,11 @@ const LeftBtn = ({ state: { leftIcon, leftOnClick, leftAssistiveText }, ...rest 
 			size="large"
 			onClick={leftOnClick}
 			assistiveText={leftAssistiveText}
+			overrides={{
+				Button: {
+					styles: (styles) => mq({ ...styles, height: ['2.625rem', null, '3.3125rem'] }),
+				},
+			}}
 			{...rest}
 		/>
 	);
