@@ -1,7 +1,7 @@
 {
 	"apps": [
 		{
-			"name": "gel3-website",
+			"name": "website-frontend",
 			"cwd": "website",
 			"script": "yarn",
 			"args": "start",
@@ -12,6 +12,7 @@
 			"autorestart": true,
 			"instances": 1,
 
+			// The frontend only has a few env vars; not stored on disk like the backend
 			"env": {
 				"NODE_ENV": "production",
 				"PORT": "3000"
@@ -22,6 +23,37 @@
 			"env_live": {
 				"APOLLO_CLIENT_GRAPHQL_URI": "https://gel.westpacgroup.com.au/api/graphql",
 			}
+		},
+		{
+			"name": "website-backend",
+			"cwd": "website-backend",
+			"script": "yarn",
+			"args": "start",
+			"exec_interpreter": "bash",
+			"watch": false,
+			"combine_logs": true,
+			"log_date_format": "YYYY-MM-DD HH:mm:ss.SSS Z",
+			"autorestart": true,
+			"instances": 1,
+
+			// Most env vars are loaded from disk; see /website-backend/config.ts
+			"env": { "NODE_ENV": "production" }
+		},
+		{
+			"name": "website-migrations",
+			"cwd": "website-backend",
+			"script": "yarn",
+			"args": "prisma migrate deploy",
+			"exec_interpreter": "bash",
+			"watch": false,
+			"combine_logs": true,
+			"log_date_format": "YYYY-MM-DD HH:mm:ss.SSS Z",
+			// Don't restart this; should run once per deploy
+			"autorestart": false,
+			"instances": 1,
+
+			// Most env vars are loaded from disk; see /website-backend/config.ts
+			"env": { "NODE_ENV": "production" }
 		}
 	],
 

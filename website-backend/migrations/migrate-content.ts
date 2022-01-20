@@ -1,6 +1,11 @@
 // @ts-nocheck
 import fetch from 'node-fetch';
 
+// This process retrieves the (forked) Keystone 5 content json blobs, transforms them and saves them
+// back to the Keystone 6 document fields (all via GraphQL).
+// It should be run against the live DB only once, after the initial Prisma migrations have been applied
+// and while the backend is running (API assumed to be at http://localhost:3001/api/graphql).
+
 function walkNode(node, visitor) {
 	if (node.children) {
 		for (const child of node.children) {

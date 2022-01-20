@@ -11,8 +11,11 @@ yarn install --frozen-lockfile
 # Building design system components for blender digestion
 yarn build
 
-# Production build
+# Build the Next frontend
 yarn --cwd website build
+
+# Build the Keystone 6 backend
+yarn --cwd website-backend build
 
 # Reload the app (gracefully to minimise downtime)
 pm2 startOrGracefulReload pm2-ecosystem.json

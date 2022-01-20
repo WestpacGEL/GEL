@@ -6,7 +6,9 @@
   "repository": "https://github.com/WestpacGEL/GEL/tree/master/website-backend",
   "scripts": {
     "dev": "keystone dev",
-    "migrate-content": "ts-node-transpile-only migrate.ts"
+    "build": "keystone build",
+    "start": "keystone start",
+    "migrate-content": "ts-node-transpile-only migrations/migrate-content.ts"
   },
   "dependencies": {
     "@keystone-6/auth": "^1.0.2",

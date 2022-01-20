@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 // If the app is running in NODE_ENV=production we're probably deployed
 // Check for a config.env a few dirs above the CWD, just outside the repo root
 const isProd = process.env.NODE_ENV === 'production';
-const prodConfigPath = path.resolve(process.cwd(), '../../website-back.env');
+const prodConfigPath = path.resolve(process.cwd(), '../../website-backend.env');
 const configPath =
 	isProd && fs.existsSync(prodConfigPath) ? prodConfigPath : path.resolve(process.cwd(), '.env');
 
