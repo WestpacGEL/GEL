@@ -1,4 +1,7 @@
 import { component, fields, NotEditable } from '@keystone-6/fields-document/component-blocks';
+import { ToolbarButton, ToolbarGroup } from '@keystone-6/fields-document/primitives';
+import { Tooltip } from '@keystone-ui/tooltip';
+import { Trash2Icon } from '@keystone-ui/icons/icons/Trash2Icon';
 import { GEL } from '@westpac/core';
 import brand from '@westpac/wbc';
 import { image } from './image';
@@ -16,6 +19,29 @@ import { Symbols } from '../../../website/dynamic-blocks/symbols';
 // @ts-ignore
 import { Logos } from '../../../website/dynamic-blocks/logos';
 
+const removeOnlyToolbar = ({ onRemove }: { onRemove: () => void }) => {
+	return (
+		<div>
+			<ToolbarGroup>
+				<Tooltip content="Remove" weight="subtle">
+					{(attrs) => (
+						<ToolbarButton
+							variant="destructive"
+							onMouseDown={(event) => {
+								event.preventDefault();
+								onRemove();
+							}}
+							{...attrs}
+						>
+							<Trash2Icon size="small" />
+						</ToolbarButton>
+					)}
+				</Tooltip>
+			</ToolbarGroup>
+		</div>
+	);
+};
+
 export const componentBlocks = {
 	heading,
 	icons: component({
@@ -28,6 +54,7 @@ export const componentBlocks = {
 		),
 		props: {},
 		label: 'Icons',
+		toolbar: removeOnlyToolbar,
 	}),
 	symbols: component({
 		component: () => (
@@ -39,6 +66,7 @@ export const componentBlocks = {
 		),
 		props: {},
 		label: 'Symbols',
+		toolbar: removeOnlyToolbar,
 	}),
 	logos: component({
 		component: () => (
@@ -50,6 +78,7 @@ export const componentBlocks = {
 		),
 		props: {},
 		label: 'Logos',
+		toolbar: removeOnlyToolbar,
 	}),
 	pictograms: component({
 		component: () => (
@@ -61,11 +90,13 @@ export const componentBlocks = {
 		),
 		props: {},
 		label: 'Pictograms',
+		toolbar: removeOnlyToolbar,
 	}),
 	propsTable: component({
 		component: () => <NotEditable>Preview not available</NotEditable>,
 		props: {},
 		label: 'Props table',
+		toolbar: removeOnlyToolbar,
 	}),
 	image,
 	introSection,
