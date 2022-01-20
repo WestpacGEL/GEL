@@ -311,17 +311,11 @@ function headingConverter(document) {
 					children: [{ text: node.props.heading }],
 				},
 			];
-			for (const key of [
-				'indent',
-				'indentLevel',
-				'subText',
-				'text',
-				'removeTopMargin',
-				'codeStyles',
-				'heading',
-			]) {
+			for (const key of ['indent', 'indentLevel', 'subText', 'text', 'heading']) {
 				delete node.props[key];
 			}
+			node.props.removeTopMargin ??= false;
+			node.props.codeStyles ??= false;
 		}
 	});
 	return document;

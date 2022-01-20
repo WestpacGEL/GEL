@@ -1,9 +1,13 @@
 import { component, fields, FormField } from '@keystone-6/fields-document/component-blocks';
-import { Heading as WestpacHeading } from '@westpac/heading';
-import { GEL } from '@westpac/core';
+import { Heading as GELHeading } from '@westpac/heading';
+import { GEL, useMediaQuery, useBrand } from '@westpac/core';
 import brand from '@westpac/wbc';
+// @ts-ignore
+import merge from 'lodash.merge';
+import { getTypeScaleMargin } from '../../../website/src/components/body';
 
 import { Select, FieldContainer, FieldLabel } from '@keystone-ui/fields';
+import { ReactNode } from 'react';
 
 const levelOptions = [
 	{ label: 'H2', value: 'h2' },
@@ -17,13 +21,62 @@ const sizeOptions = [
 	{ label: '10', value: 10 },
 ] as const;
 
+function Heading({
+	level,
+	codeStyles,
+	removeTopMargin,
+	size,
+	content,
+}: {
+	level: string;
+	size: number;
+	codeStyles: boolean;
+	removeTopMargin: boolean;
+	content: ReactNode;
+}) {
+	const mq = useMediaQuery();
+	const { SPACING } = useBrand();
+
+	return (
+		<GELHeading
+			tag={level}
+			size={size <= 6 ? [7, null, size] : size}
+			uppercase={size === 10}
+			overrides={{
+				Heading: {
+					styles: (styles: any) =>
+						merge({}, styles, {
+							...mq({
+								scrollMarginTop: [
+									`calc(66px + 66px + ${SPACING(7)})`,
+									null,
+									`calc(66px + 90px + ${SPACING(10)})`,
+								],
+								marginTop: !removeTopMargin && getTypeScaleMargin(size).top,
+								marginBottom: codeStyles
+									? getTypeScaleMargin(size).bottomTight
+									: getTypeScaleMargin(size).bottom,
+							})[0],
+						}),
+				},
+			}}
+		>
+			{content}
+		</GELHeading>
+	);
+}
+
 export const heading = component({
-	component: ({ level, content, size }) => {
+	component: (props) => {
 		return (
 			<GEL brand={brand}>
-				<WestpacHeading size={size.value} tag={level.value}>
-					{content}
-				</WestpacHeading>
+				<Heading
+					codeStyles={props.codeStyles.value}
+					content={props.content}
+					level={props.level.value}
+					removeTopMargin={props.removeTopMargin.value}
+					size={props.size.value}
+				/>
 			</GEL>
 		);
 	},
@@ -40,6 +93,8 @@ export const heading = component({
 			options: sizeOptions,
 		}),
 		addTableContent: fields.checkbox({ label: 'Add to table of contents' }),
+		codeStyles: fields.checkbox({ label: 'Use code example styles' }),
+		removeTopMargin: fields.checkbox({ label: 'Remove top margin' }),
 	},
 	label: 'Heading',
 });

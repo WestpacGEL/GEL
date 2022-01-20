@@ -332,7 +332,7 @@ const componentBlocks: import('@keystone-6/fields-document/component-blocks').In
 			></dynamicComponents.CodeExample.component>
 		);
 	},
-	heading({ addTableContent, content, level, size }) {
+	heading({ addTableContent, content, level, size, codeStyles, removeTopMargin }) {
 		return (
 			<dynamicComponents.Heading.component
 				headingText={contentToString(nodesForReactElements.get(content as any)!)}
@@ -340,6 +340,8 @@ const componentBlocks: import('@keystone-6/fields-document/component-blocks').In
 				addTableContent={addTableContent}
 				level={level}
 				size={size}
+				codeStyles={codeStyles}
+				removeTopMargin={removeTopMargin}
 			></dynamicComponents.Heading.component>
 		);
 	},
