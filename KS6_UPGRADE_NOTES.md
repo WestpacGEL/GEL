@@ -68,6 +68,10 @@ when we start the app, the script will still be applied to the shadow DB, bringi
 yarn prisma migrate resolve --applied "20220113000000_baseline"
 ```
 
+If you get an "access denied" error, check the `DATABASE_URL` in your `.env`.
+It you many need to specify your OS username as the database role, like this: `postgres://${USER}@localhost/gel3_website_dev`.
+You can get your current username by running `whoami` on the terminal.
+
 #### Start the App
 
 Then, start the app as normal:
