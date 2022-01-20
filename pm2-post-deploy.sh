@@ -3,6 +3,9 @@
 # Exit on error, empty vars error
 set -eu
 
+# Assume we're in prod
+export NODE_ENV=production
+
 # Install any missing npm packages
 # The `--frozen-lockfile` option is important here; it prevents "optimisations" of the lock file that break future deploys
 # See.. https://github.com/yarnpkg/yarn/issues/4379
