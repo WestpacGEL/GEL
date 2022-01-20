@@ -6,7 +6,7 @@ if (
 	!process.env.CLOUDINARY_API_KEY ||
 	!process.env.CLOUDINARY_API_SECRET
 ) {
-	throw new Error('The Cloudinary environment variables are required. See .env.example.');
+	throw new Error('The Cloudinary environment variables are required. See example.env');
 }
 export const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
 export const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY;
