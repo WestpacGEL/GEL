@@ -2,7 +2,7 @@
 
 ## TODOs and notes
 
-* Look into the dynamic block importer; see if we can simplify this (Mitchell says no)
+- Look into the dynamic block importer; see if we can simplify this (Mitchell says no)
 
 ## Dev Env Setup
 
