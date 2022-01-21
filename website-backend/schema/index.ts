@@ -111,7 +111,7 @@ const lists: Lists = {
 				validation: { isRequired: true },
 				isIndexed: 'unique',
 			}),
-			value: json(),
+			value: json({ ui: { views: require.resolve('../admin/navigation') } }),
 		},
 	}),
 	Image: list({

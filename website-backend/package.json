@@ -15,13 +15,16 @@
     "@keystone-6/cloudinary": "^1.0.0",
     "@keystone-6/core": "^1.0.1",
     "@keystone-6/fields-document": "^1.0.1",
+    "@keystone-ui/button": "^6.0.0",
     "@keystone-ui/core": "^4.0.0",
     "@keystone-ui/fields": "^6.0.0",
     "@prisma/client": "3.7.0",
     "@types/chroma-js": "^2.1.3",
+    "@types/react-beautiful-dnd": "^13.1.2",
     "chroma-js": "^2.1.2",
     "dotenv": "^11.0.0",
     "prisma": "3.7.0",
+    "react-beautiful-dnd": "^13.1.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   }
