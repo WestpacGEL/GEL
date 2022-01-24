@@ -3,8 +3,9 @@
 # Exit on error, empty vars error
 set -eu
 
-# Assume we're in prod
+# Set some env vars
 export NODE_ENV=production
+export APOLLO_CLIENT_GRAPHQL_URI="https://gel.test.do.westpac.thinkmill.cloud/api/graphql"
 
 # Install any missing npm packages
 # The `--frozen-lockfile` option is important here; it prevents "optimisations" of the lock file that break future deploys

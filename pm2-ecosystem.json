@@ -64,7 +64,7 @@
 			"path": "/srv/pm2-apps/gel3-website",
 			"ref": "origin/ks-upgrade-deployment",
 			"repo": "git@gel-repo.github.com:WestpacGEL/GEL.git",
-			"post-deploy": "./pm2-post-deploy.sh"
+			"post-deploy": "./pm2-post-deploy-staging.sh"
 		},
 		"live": {
 			"user": "deploy",
@@ -72,7 +72,7 @@
 			"path": "/srv/pm2-apps/gel3-website",
 			"ref": "origin/master",
 			"repo": "git@gel-repo.github.com:WestpacGEL/GEL.git",
-			"post-deploy": "./pm2-post-deploy.sh"
+			"post-deploy": "./pm2-post-deploy-live.sh"
 		}
 	}
 }
