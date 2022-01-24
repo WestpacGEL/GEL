@@ -47,7 +47,7 @@ These steps can be repeated to reset your local DB to previously dumped version.
 LOCAL_DB_NAME='gel3_website_dev'
 
 # Drop and recreate a clean DB to restore into
-dropdb "${LOCAL_DB_NAME}"
+dropdb --if-exists "${LOCAL_DB_NAME}"
 createdb "${LOCAL_DB_NAME}"
 
 # Restore the local dump to your local DB
