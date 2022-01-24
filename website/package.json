@@ -8,9 +8,7 @@
     "test": "yarn test:local",
     "dev": "cross-env NODE_ENV=development next dev src",
     "start": "cross-env NODE_ENV=production next start src",
-    "build": "cross-env NODE_ENV=production next build src",
-    "test:prod": "DS_SITE=https://gel.westpacgroup.com.au playwright test snapshot.spec.ts",
-    "test:local": "DS_SITE=http://localhost:3000 playwright test snapshot.spec.ts"
+    "build": "cross-env NODE_ENV=production next build src"
   },
   "keywords": [],
   "author": "",
