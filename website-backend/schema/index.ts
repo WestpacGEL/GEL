@@ -171,7 +171,7 @@ const lists: Lists = {
 						design: item.design!,
 						codeOld: item.codeOld ?? 'DbNull',
 						code: item.code!,
-						accessibilityOld: item.accessibility ?? 'DbNull',
+						accessibilityOld: item.accessibilityOld ?? 'DbNull',
 						accessibility: item.accessibility!,
 						relatedInfoOld: item.relatedInfoOld ?? 'DbNull',
 						relatedInfo: item.relatedInfo!,
@@ -229,8 +229,8 @@ const lists: Lists = {
 			resolveInput({ inputData: { revertChangesInDraftToPublished, ...inputData } }) {
 				return inputData;
 			},
-			async afterOperation({ context, item }) {
-				if (item) {
+			async afterOperation({ context, item, inputData }) {
+				if (item && inputData?.revertChangesInDraftToPublished) {
 					const relatedPages = await context.prisma.page.findMany({
 						where: { from_Page_relatedPages: { some: { id: item.id } } },
 						select: { draft: { select: { id: true } } },
@@ -246,7 +246,7 @@ const lists: Lists = {
 						design: item.design!,
 						codeOld: item.codeOld ?? 'DbNull',
 						code: item.code!,
-						accessibilityOld: item.accessibility ?? 'DbNull',
+						accessibilityOld: item.accessibilityOld ?? 'DbNull',
 						accessibility: item.accessibility!,
 						relatedInfoOld: item.relatedInfoOld ?? 'DbNull',
 						relatedInfo: item.relatedInfo!,

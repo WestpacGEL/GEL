@@ -1,5 +1,7 @@
 // @ts-nocheck
-import fetch from 'node-fetch';
+import { createSystem, initConfig } from '@keystone-6/core/system';
+import { PrismaClient } from '.prisma/client';
+import { config } from '../.keystone/admin/.next/server/pages/api/__keystone_api_build';
 
 // This process retrieves the (forked) Keystone 5 content json blobs, transforms them and saves them
 // back to the Keystone 6 document fields (all via GraphQL).
@@ -44,7 +46,10 @@ function walkerforCodeExampleLikeBlocks(document) {
 			node.type = 'component-block';
 			node.component = (node.component[0] as string).toLowerCase() + node.component.slice(1);
 			delete node.props.showDemo;
-			node.props = { codeExample: node.props.codeExample, showCode: node.props.showCode };
+			node.props = {
+				codeExample: node.props.codeExample,
+				...(node.props.showCode === undefined ? {} : { showCode: node.props.showCode }),
+			};
 			node.children = [
 				{
 					type: 'component-inline-prop',
@@ -321,61 +326,100 @@ function headingConverter(document) {
 	return document;
 }
 
-const gql =
-	([str]: TemplateStringsArray) =>
-	(variables: unknown) =>
-		fetch('http://localhost:3001/api/graphql', {
-			method: 'POST',
-			body: JSON.stringify({ query: str, variables }),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
-			.then((x) => x.json())
-			.then((val) => {
-				if (val.errors) {
-					throw new Error(`GraphQL errors:\n${val.errors.map((x) => x.message).join('\n')}`);
-				}
-				return val.data;
-			});
-
-// fs.writeFileSync('output.json', JSON.stringify(data, null, 2));
-
 (async () => {
-	const data = await gql`
-		query {
-			pages {
-				id
-				url
-				designOld
-				codeOld
-				accessibilityOld
-				relatedInfoOld
-			}
-		}
-	`({});
-	for (const { id, url, ...rest } of data.pages) {
-		if (url === '/components/testing-blocks' || url === '/test' || url === '/components/adfgdfg') {
-			continue;
-		}
+	const { getKeystone } = createSystem(initConfig(config));
+	const { connect, createContext, disconnect } = getKeystone(PrismaClient);
+	await connect();
+	const context = createContext({ sudo: true });
+	const gql =
+		([str]: TemplateStringsArray) =>
+		(variables?: Record<string, any>) =>
+			context.graphql.run({ query: str, variables });
 
-		console.log(url);
-		const newStuff = {};
-		for (const [key, val] of Object.entries(rest)) {
-			if (val) {
-				let document = val;
-				for (const pass of passes) {
-					document = pass(document);
+	try {
+		{
+			const data = await gql`
+				query {
+					pages {
+						id
+						url
+						designOld
+						codeOld
+						accessibilityOld
+						relatedInfoOld
+					}
 				}
-				newStuff[key.replace('Old', '')] = document;
+			`({});
+			for (const { id, url, ...rest } of data.pages) {
+				if (
+					url === '/components/testing-blocks' ||
+					url === '/test' ||
+					url === '/components/adfgdfg'
+				) {
+					continue;
+				}
+
+				const newStuff = {};
+				for (const [key, val] of Object.entries(rest)) {
+					if (val) {
+						let document = val;
+						for (const pass of passes) {
+							document = pass(document);
+						}
+						newStuff[key.replace('Old', '')] = document;
+					}
+				}
+				await gql`
+					mutation ($id: ID!, $data: PageUpdateInput!) {
+						updatePage(where: { id: $id }, data: $data) {
+							id
+						}
+					}
+				`({ id, data: newStuff });
 			}
 		}
-		await gql`
-			mutation ($id: ID!, $data: PageUpdateInput!) {
-				updatePage(where: { id: $id }, data: $data) {
-					id
+		{
+			const data = await gql`
+				query {
+					draftPages {
+						id
+						url
+						designOld
+						codeOld
+						accessibilityOld
+						relatedInfoOld
+					}
 				}
+			`({});
+			for (const { id, url, ...rest } of data.draftPages) {
+				if (
+					url === '/components/testing-blocks' ||
+					url === '/test' ||
+					url === '/components/adfgdfg'
+				) {
+					continue;
+				}
+
+				const newStuff = {};
+				for (const [key, val] of Object.entries(rest)) {
+					if (val) {
+						let document = val;
+						for (const pass of passes) {
+							document = pass(document);
+						}
+						newStuff[key.replace('Old', '')] = document;
+					}
+				}
+				await gql`
+					mutation ($id: ID!, $data: DraftPageUpdateInput!) {
+						updateDraftPage(where: { id: $id }, data: $data) {
+							id
+						}
+					}
+				`({ id, data: newStuff });
 			}
-		`({ id, data: newStuff });
+		}
+	} finally {
+		disconnect();
 	}
 })();
