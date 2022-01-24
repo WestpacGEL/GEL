@@ -24,7 +24,7 @@ insert into "Page" (
 )
 select
 	cuid as id,
-	"pageTitle",
+	coalesce("pageTitle", '') as "pageTitle",
 	"url",
 	"packageName",
 	coalesce("hideAccessibilityTab", false) as "hideAccessibilityTab",
