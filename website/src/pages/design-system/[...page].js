@@ -11,11 +11,12 @@ import { AccessibilityTab, CodeTab, DesignTab } from '../../components/pages/sin
 import PageHeader from '../../components/header/page-header';
 import { Gridly, Footer } from '../../components/layout';
 import { Head } from '../../components/head';
-import { ALL_PAGES } from '../../../graphql';
+import { ALL_PAGES, ALL_DRAFT_PAGES } from '../../../graphql';
 
 const ComponentWrapper = () => {
-	const { data, error } = useQuery(ALL_PAGES);
 	const router = useRouter();
+
+	const { data, error } = useQuery(router.query.draft ? ALL_DRAFT_PAGES : ALL_PAGES);
 	const path = router.query.page.join('/');
 
 	if (error) {
