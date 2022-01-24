@@ -62,7 +62,7 @@
 			"user": "deploy",
 			"host": "gel.test.do.westpac.thinkmill.cloud",
 			"path": "/srv/pm2-apps/gel3-website",
-			"ref": "origin/staging",
+			"ref": "origin/ks-upgrade-deployment",
 			"repo": "git@gel-repo.github.com:WestpacGEL/GEL.git",
 			"post-deploy": "./pm2-post-deploy.sh"
 		},
