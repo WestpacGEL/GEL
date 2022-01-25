@@ -384,16 +384,40 @@ function pageFields(listKey: string): BaseFields<Lists.Page.TypeInfo> {
 				},
 			}),
 		}),
-		designOld: json(),
+		designOld: json({
+			ui: {
+				itemView: { fieldMode: 'hidden' },
+				createView: { fieldMode: 'hidden' },
+				listView: { fieldMode: 'hidden' },
+			},
+		}),
 		design: document(mainDocumentConfig),
 		hideAccessibilityTab: checkbox(),
-		accessibilityOld: json(),
+		accessibilityOld: json({
+			ui: {
+				itemView: { fieldMode: 'hidden' },
+				createView: { fieldMode: 'hidden' },
+				listView: { fieldMode: 'hidden' },
+			},
+		}),
 		accessibility: document(mainDocumentConfig),
 		hideCodeTab: checkbox(),
-		codeOld: json(),
+		codeOld: json({
+			ui: {
+				itemView: { fieldMode: 'hidden' },
+				createView: { fieldMode: 'hidden' },
+				listView: { fieldMode: 'hidden' },
+			},
+		}),
 		code: document(mainDocumentConfig),
 		relatedPages: relationship({ ref: listKey, many: true }),
-		relatedInfoOld: json(),
+		relatedInfoOld: json({
+			ui: {
+				itemView: { fieldMode: 'hidden' },
+				createView: { fieldMode: 'hidden' },
+				listView: { fieldMode: 'hidden' },
+			},
+		}),
 		relatedInfo: document({
 			formatting: {
 				inlineMarks,
