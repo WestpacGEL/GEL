@@ -8,7 +8,7 @@
     "dev": "keystone dev",
     "build": "keystone build",
     "start": "keystone start",
-    "migrate-content": "ts-node-transpile-only migrations/migrate-content.ts"
+    "migrate-content": "yarn build && ts-node-transpile-only migrations/migrate-content.ts"
   },
   "dependencies": {
     "@keystone-6/auth": "^1.0.2",

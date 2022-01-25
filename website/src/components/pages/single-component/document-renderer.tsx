@@ -241,8 +241,7 @@ function DocumentNode({
 					<Container>
 						<Grid rowGap="0 !important">
 							{children.map((child, i) => {
-								console.log(nodesForReactElements.get(child));
-								return nodesForReactElements.get(child)?.component === 'codeExample' ? (
+								return nodesForReactElements.get(child)?.type === 'component-block' ? (
 									child
 								) : (
 									<Cell key={i} width={[12, 11, 8, 7, 9]}>
@@ -282,8 +281,19 @@ function addSections(nodes: Node[]) {
 		headingIndexes.length === 0 ? nodes : nodes.slice(0, Math.max(headingIndexes[0], 0));
 
 	for (const [idx, headingIdx] of headingIndexes.entries()) {
-		const nextHeading = headingIndexes[idx + 1] ?? nodes.length;
+		let nextHeading = headingIndexes[idx + 1] ?? nodes.length;
+
+		let propsTableFun =
+			nextHeading === nodes.length && nodes[nodes.length - 2].component === 'propsTable';
+
+		if (propsTableFun) {
+			nextHeading -= 4;
+		}
+
 		newNodes.push({ type: 'section', children: nodes.slice(headingIdx, nextHeading) });
+		if (propsTableFun) {
+			newNodes.push(...nodes.slice(nextHeading));
+		}
 	}
 
 	return newNodes;
