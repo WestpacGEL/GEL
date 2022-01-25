@@ -7,10 +7,7 @@ import { Lists } from '.keystone/types';
 import {
 	text,
 	password,
-	timestamp,
-	integer,
 	select,
-	image,
 	checkbox,
 	relationship,
 	json,
@@ -52,7 +49,7 @@ for (const item of fs.readdirSync(path.join(cwd, '../components'))) {
 const isNotNullOrUndefined = <T>(val: T): val is NonNullable<T> => val != null;
 
 const packagesMap = new Map<string | null, typeof packages[number]>(
-	packages.map((pkg) => [pkg.unscopedName, pkg])
+	packages.map((pkg) => [pkg.unscopedName.replace('-', '_'), pkg])
 );
 
 const isSignedIn = ({ session }: { session: any }) => !!session;
@@ -339,7 +336,9 @@ function pageFields(listKey: string): BaseFields<Lists.Page.TypeInfo> {
 		version: virtual({
 			field: graphql.field({
 				type: graphql.String,
-				resolve: (item) => packagesMap.get(item.packageName)?.version,
+				resolve: ({ code, design, accessibility, ...rest }) => {
+					return packagesMap.get(rest.packageName)?.version;
+				},
 			}),
 		}),
 		description: virtual({
