@@ -58,8 +58,8 @@ where not exists (select 1 from "User" where id = s.cuid);
 insert into "_Page_relatedPages" ("A", "B")
 select l.cuid as "A", r.cuid as "R"
 from ks5."Page_relatedPages_many" j
-	inner join ks5."Page" l on (j."Page_left_id" = l.id)
-	inner join ks5."Page" r on (j."Page_right_id" = r.id)
+	inner join ks5."Page" l on (j."Page_right_id" = l.id)
+	inner join ks5."Page" r on (j."Page_left_id" = r.id)
 where not exists (
 	select 1
 	from "_Page_relatedPages"
