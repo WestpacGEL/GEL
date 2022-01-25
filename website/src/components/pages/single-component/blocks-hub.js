@@ -291,7 +291,7 @@ const textOnlySlateRenderer = (_editorValue) => {
 export const TextOnlySlateContent = ({ item, content, ...rest }) => {
 	return (
 		<Body className="slate-container" {...rest}>
-			{textOnlySlateRenderer(content.document)(content)}
+			<DocumentRenderer document={content} item={item} />
 		</Body>
 	);
 };

@@ -278,7 +278,8 @@ function addSections(nodes: Node[]) {
 	if (headingIndexes.length === 0 && introSection !== -1) {
 		headingIndexes.push(introSection + 1);
 	}
-	const newNodes: Node[] = nodes.slice(0, Math.max(headingIndexes[0], 0));
+	const newNodes: Node[] =
+		headingIndexes.length === 0 ? nodes : nodes.slice(0, Math.max(headingIndexes[0], 0));
 
 	for (const [idx, headingIdx] of headingIndexes.entries()) {
 		const nextHeading = headingIndexes[idx + 1] ?? nodes.length;
