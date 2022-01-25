@@ -274,6 +274,9 @@ function addSections(nodes: Node[]) {
 			headingIndexes.push(idx);
 		}
 	}
+	if (headingIndexes.length === 0 && introSection !== -1) {
+		headingIndexes.push(introSection + 1);
+	}
 	const newNodes: Node[] = nodes.slice(0, Math.max(headingIndexes[0], 0));
 
 	for (const [idx, headingIdx] of headingIndexes.entries()) {
