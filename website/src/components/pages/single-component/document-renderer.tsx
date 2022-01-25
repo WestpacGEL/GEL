@@ -240,15 +240,16 @@ function DocumentNode({
 				<Section>
 					<Container>
 						<Grid rowGap="0 !important">
-							{children.map((child, i) =>
-								nodesForReactElements.get(child)?.component === 'CodeExample' ? (
+							{children.map((child, i) => {
+								console.log(nodesForReactElements.get(child));
+								return nodesForReactElements.get(child)?.component === 'codeExample' ? (
 									child
 								) : (
 									<Cell key={i} width={[12, 11, 8, 7, 9]}>
 										{child}
 									</Cell>
-								)
-							)}
+								);
+							})}
 						</Grid>
 					</Container>
 				</Section>
