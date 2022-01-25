@@ -360,7 +360,7 @@ const componentBlocks: import('@keystone-6/fields-document/component-blocks').In
 	doAndAvoid({ dontImage, dontAlt, dontText, doImage, doAlt, doText }) {
 		return (
 			<dynamicComponents.DoAndAvoid.component
-				dontImage={doImage}
+				dontImage={dontImage}
 				dontAlt={dontAlt}
 				dontText={dontText}
 				doImage={doImage}
