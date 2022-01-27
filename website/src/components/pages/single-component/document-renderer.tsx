@@ -1,8 +1,12 @@
+/** @jsx jsx */
 import React, { Fragment, ReactElement, ReactNode, useContext } from 'react';
 import { useBrand } from '@westpac/core';
 import dynamicComponents from '../../../../dynamic-blocks/';
 import { Section } from '../../section';
 import { Grid, Container, Cell } from '@westpac/grid';
+import { jsx } from '@westpac/core';
+import { NewWindowIcon } from '@westpac/icon/NewWindowIcon';
+
 import { List, Item } from '../../list';
 import { Body } from '../../body';
 
@@ -67,7 +71,21 @@ export const defaultRenderers: Renderers = {
 		keyboard: 'kbd',
 		strikethrough: 's',
 		italic: 'em',
-		link: 'a',
+		link: ({ href, children }) => {
+			return href.startsWith('/') ? (
+				<a href={href}>{children}</a>
+			) : (
+				<a href={href} target="_blank">
+					<span>{children}</span>
+					<NewWindowIcon
+						size="xsmall"
+						color="inherit"
+						assistiveText=", opens in a new tab"
+						css={{ position: 'relative', marginLeft: '0.3em', top: '-0.125rem' }}
+					/>
+				</a>
+			);
+		},
 		subscript: 'sub',
 		superscript: 'sup',
 		underline: 'u',
