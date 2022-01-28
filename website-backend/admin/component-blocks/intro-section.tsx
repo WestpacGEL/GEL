@@ -38,13 +38,20 @@ export const Component = ({
 								>
 									{description}
 								</p>
-								{showPackageInfo && <span>Package info preview not available</span>}
+								)
+								{showPackageInfo && (
+									<NotEditable>
+										<span>Package info preview not available</span>
+									</NotEditable>
+								)}
 							</Body>
 						</Cell>
 						{showTableOfContents && (
-							<Cell width={[12, null, 4]} left={[null, null, 9]}>
-								Table of Contents preview not available
-							</Cell>
+							<NotEditable>
+								<Cell width={[12, null, 4]} left={[null, null, 9]}>
+									Table of Contents preview not available
+								</Cell>
+							</NotEditable>
 						)}
 					</Grid>
 				</Container>

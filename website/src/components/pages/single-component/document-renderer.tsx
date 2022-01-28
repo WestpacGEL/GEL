@@ -278,8 +278,10 @@ function DocumentNode({
 
 function addSections(nodes: Node[]) {
 	const headingIndexes: number[] = [];
+	// Get the index of the introsection of the nodes in the document.
 	const introSection = nodes.findIndex((x) => x.component === 'introSection');
 	for (const [idx, node] of nodes.entries()) {
+		// iterate through the nodes to get a list of relevant headings
 		if (
 			node.component === 'heading' &&
 			(node.props as any).level === 'h2' &&
@@ -287,33 +289,47 @@ function addSections(nodes: Node[]) {
 		) {
 			if (introSection !== -1 && headingIndexes.length === 0) {
 				headingIndexes.push(introSection + 1);
-				continue;
+				// If the next heading is close by the introSection don't make this into a separate section
+				// if the next heading is **not** close by, then we turn this content into a new section.
+				// by close by we explicitly mean less than 2 nodes away.
+				if (idx <= 3) {
+					continue;
+				}
 			}
 			headingIndexes.push(idx);
 		}
 	}
+
 	if (headingIndexes.length === 0 && introSection !== -1) {
 		headingIndexes.push(introSection + 1);
 	}
+
 	const newNodes: Node[] =
 		headingIndexes.length === 0 ? nodes : nodes.slice(0, Math.max(headingIndexes[0], 0));
 
 	for (const [idx, headingIdx] of headingIndexes.entries()) {
-		let nextHeading = headingIndexes[idx + 1] ?? nodes.length;
+		let endOfSection = headingIndexes[idx + 1] ?? nodes.length;
+		// PropsTable is itself wrapped in a Section for reasons.
+		// The section is also styled differently.
+		// We check if the propsTable exists and is in the position we expect it to be
+		// For document editor reasons, this is succeeded al;ways by an empty paragraph.
+		// We ensure that these two are omitted from being wrapped in a section
+		// And append them both into the end of the newNodes list.
 
+		// if the next node is a propsTable,
+		// omit it from the list
 		let propsTableFun =
-			nextHeading === nodes.length && nodes[nodes.length - 2].component === 'propsTable';
+			endOfSection === nodes.length && nodes[nodes.length - 2].component === 'propsTable';
 
 		if (propsTableFun) {
-			nextHeading -= 4;
+			endOfSection -= 2;
 		}
 
-		newNodes.push({ type: 'section', children: nodes.slice(headingIdx, nextHeading) });
+		newNodes.push({ type: 'section', children: nodes.slice(headingIdx, endOfSection) });
 		if (propsTableFun) {
-			newNodes.push(...nodes.slice(nextHeading));
+			newNodes.push(...nodes.slice(endOfSection));
 		}
 	}
-
 	return newNodes;
 }
 
