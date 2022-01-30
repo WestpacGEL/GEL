@@ -122,7 +122,7 @@ const lists: Lists = {
 				validation: { isRequired: true },
 				isIndexed: 'unique',
 			}),
-			value: json({ ui: { views: require.resolve('../admin/navigation') } }),
+			value: (meta) => ({ ...json()(meta), views: require.resolve('../admin/navigation') }),
 		},
 	}),
 	Image: list({
