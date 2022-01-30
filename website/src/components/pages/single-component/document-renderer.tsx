@@ -445,7 +445,9 @@ const componentBlocks: import('@keystone-6/fields-document/component-blocks').In
 		return <dynamicComponents.PropsTable.component item={useContext(WholeDocumentContext).item} />;
 	},
 	visionFilters({ codeExample }) {
-		return <dynamicComponents.VisionFilters.component codeExample={codeExample} />;
+		return (
+			<dynamicComponents.VisionFilters.component context={'website'} codeExample={codeExample} />
+		);
 	},
 	image({ alt, caption, image }) {
 		return <dynamicComponents.Image.component alt={alt} caption={caption} image={image} />;
