@@ -18,10 +18,10 @@
 				"PORT": "3000"
 			},
 			"env_staging": {
-				"APOLLO_CLIENT_GRAPHQL_URI": "https://gel.test.do.westpac.thinkmill.cloud/api/graphql",
+				"APOLLO_CLIENT_GRAPHQL_URI": "https://gel.test.do.westpac.thinkmill.cloud/api/graphql"
 			},
 			"env_live": {
-				"APOLLO_CLIENT_GRAPHQL_URI": "https://gel.westpacgroup.com.au/api/graphql",
+				"APOLLO_CLIENT_GRAPHQL_URI": "https://gel.westpacgroup.com.au/api/graphql"
 			}
 		},
 		{
