@@ -222,8 +222,7 @@ const NavigationItem = memo(function NavigationItem(props: {
 		if ('children' in props.value) {
 			return (
 				<NavigationGroup
-					initialIsEditable={props.value?.initialIsEditable}
-					onChange={props.onChange}
+					onChange={props.onChange as (cb: (value: NavigationGroup) => NavigationGroup) => void}
 					value={props.value}
 					onRemove={props.onRemove}
 				/>
@@ -231,7 +230,6 @@ const NavigationItem = memo(function NavigationItem(props: {
 		} else {
 			return (
 				<NavigationLeaf
-					initialIsEditable={props.value?.initialIsEditable}
 					value={props.value}
 					onChange={props.onChange as (cb: (val: NavigationLeaf) => NavigationLeaf) => void}
 					onRemove={props.onRemove}
