@@ -43,7 +43,7 @@
 			"name": "website-migrations",
 			"cwd": "website-backend",
 			"script": "yarn",
-			"args": "prisma migrate deploy",
+			"args": "keystone prisma migrate deploy",
 			"exec_interpreter": "bash",
 			"watch": false,
 			"combine_logs": true,
@@ -62,9 +62,9 @@
 			"user": "deploy",
 			"host": "gel.test.do.westpac.thinkmill.cloud",
 			"path": "/srv/pm2-apps/gel3-website",
-			"ref": "origin/ks-upgrade-deployment",
+			"ref": "origin/staging",
 			"repo": "git@gel-repo.github.com:WestpacGEL/GEL.git",
-			"post-deploy": "./pm2-post-deploy-staging.sh"
+			"post-deploy": "APOLLO_CLIENT_GRAPHQL_URI='https://gel.test.do.westpac.thinkmill.cloud/api/graphql' ./pm2-post-deploy.sh"
 		},
 		"live": {
 			"user": "deploy",
@@ -72,7 +72,7 @@
 			"path": "/srv/pm2-apps/gel3-website",
 			"ref": "origin/master",
 			"repo": "git@gel-repo.github.com:WestpacGEL/GEL.git",
-			"post-deploy": "./pm2-post-deploy-live.sh"
+			"post-deploy": "APOLLO_CLIENT_GRAPHQL_URI='https://gel.westpacgroup.com.au/api/graphql' ./pm2-post-deploy.sh"
 		}
 	}
 }
