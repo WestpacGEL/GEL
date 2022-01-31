@@ -62,7 +62,7 @@
 			"user": "deploy",
 			"host": "gel.test.do.westpac.thinkmill.cloud",
 			"path": "/srv/pm2-apps/gel3-website",
-			"ref": "origin/ks-upgrade-deployment",
+			"ref": "origin/staging",
 			"repo": "git@gel-repo.github.com:WestpacGEL/GEL.git",
 			"post-deploy": "APOLLO_CLIENT_GRAPHQL_URI='https://gel.test.do.westpac.thinkmill.cloud/api/graphql' ./pm2-post-deploy.sh"
 		},
