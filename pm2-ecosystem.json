@@ -43,7 +43,7 @@
 			"name": "website-migrations",
 			"cwd": "website-backend",
 			"script": "yarn",
-			"args": "prisma migrate deploy",
+			"args": "keystone prisma migrate deploy",
 			"exec_interpreter": "bash",
 			"watch": false,
 			"combine_logs": true,
