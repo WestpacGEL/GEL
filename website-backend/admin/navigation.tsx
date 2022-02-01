@@ -1,9 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@keystone-ui/core';
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import { FieldProps, FieldControllerConfig, FieldController } from '@keystone-6/core/types';
-import { DropDownIcon, DropUpIcon } from '@westpac/icon';
+import { DropDownIcon } from '@westpac/icon';
 import { Box, Stack } from '@keystone-ui/core';
 import { FieldContainer, FieldLabel, TextInput } from '@keystone-ui/fields';
 import { Button } from '@keystone-ui/button';
@@ -170,7 +170,7 @@ const NavigationGroup = ({
 						},
 					}}
 				>
-					{isOpen ? <DropUpIcon /> : <DropDownIcon />}
+					<DropDownIcon css={!isOpen ? { transform: 'rotate(-90deg)' } : undefined} />
 					{isEditable ? (
 						<FieldLabel>
 							Title
