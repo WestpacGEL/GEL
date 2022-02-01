@@ -18,10 +18,10 @@
 				"PORT": "3000"
 			},
 			"env_staging": {
-				"APOLLO_CLIENT_GRAPHQL_URI": "https://gel.test.do.westpac.thinkmill.cloud/api/graphql",
+				"APOLLO_CLIENT_GRAPHQL_URI": "https://gel.test.do.westpac.thinkmill.cloud/api/graphql"
 			},
 			"env_live": {
-				"APOLLO_CLIENT_GRAPHQL_URI": "https://gel.westpacgroup.com.au/api/graphql",
+				"APOLLO_CLIENT_GRAPHQL_URI": "https://gel.westpacgroup.com.au/api/graphql"
 			}
 		},
 		{
@@ -37,7 +37,10 @@
 			"instances": 1,
 
 			// Most env vars are loaded from disk; see /website-backend/config.ts
-			"env": { "NODE_ENV": "production" }
+			"env": {
+				"NODE_ENV": "production",
+				"NODE_EXTRA_CA_CERTS": "/srv/pm2-apps/gel3-website/current/website/do-db-ca-certificate.crt"
+			}
 		},
 		{
 			"name": "website-migrations",
@@ -53,7 +56,10 @@
 			"instances": 1,
 
 			// Most env vars are loaded from disk; see /website-backend/config.ts
-			"env": { "NODE_ENV": "production" }
+			"env": {
+				"NODE_ENV": "production",
+				"NODE_EXTRA_CA_CERTS": "/srv/pm2-apps/gel3-website/current/website/do-db-ca-certificate.crt"
+			}
 		}
 	],
 
