@@ -36,7 +36,7 @@
     "new": "node ./helpers/cli.js",
     "format": "prettier --write \"**/*.{js,md,mdx,json}\"",
     "test:format": "prettier --list-different \"**/*.{js,md,mdx,json}\"",
-    "test:unit": "jest",
+    "test:unit": "jest --runInBand --ci",
     "test:unit-watch": "jest --watchAll --coverage",
     "test:integration": "node helpers/tester.js",
     "test": "yarn test:format && yarn test:unit && yarn test:integration",
