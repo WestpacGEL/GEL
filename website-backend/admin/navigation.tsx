@@ -15,13 +15,11 @@ import { memo, useCallback, useEffect, useRef, HTMLAttributes } from 'react';
 type NavigationLeaf = {
 	path: string;
 	title: string;
-	initialIsEditable?: boolean;
 };
 
 type NavigationGroup = {
 	title: string;
 	children: NavigationItem[];
-	initialIsEditable?: boolean;
 };
 
 type NavigationItem = NavigationGroup | NavigationLeaf;
@@ -34,12 +32,14 @@ function NavigationLeaf(props: {
 	value: NavigationLeaf;
 	onChange: (cb: (value: NavigationLeaf) => NavigationLeaf) => void;
 	onRemove: () => void;
-	initialIsEditable?: boolean;
 }) {
-	const [isEditable, setIsEditable] = useState(props.initialIsEditable);
+	const [isEditable, setIsEditable] = useState(itemsToStartOpen.has(props.value));
 	const toggleEdit = () => {
 		setIsEditable(!isEditable);
 	};
+	useEffect(() => {
+		itemsToStartOpen.delete(props.value);
+	});
 	if (isEditable) {
 		return (
 			<Stack
@@ -145,7 +145,10 @@ const NavigationGroup = ({
 	onRemove: () => void;
 }) => {
 	const [isEditable, setIsEditable] = useState(false);
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(itemsToStartOpen.has(value));
+	useEffect(() => {
+		itemsToStartOpen.delete(value);
+	});
 	const toggleEdit = () => {
 		setIsEditable(!isEditable);
 	};
@@ -343,28 +346,24 @@ function NavigationItems(props: {
 			<Stack across gap="small">
 				<Button
 					onClick={useCallback(() => {
-						props.onChange((prev) => [
-							...prev,
-							{
-								title: '',
-								path: '/design-system/',
-								// initialIsEditable: true,
-							},
-						]);
+						const newItem = {
+							title: '',
+							path: '/design-system/',
+						};
+						itemsToStartOpen.add(newItem);
+						props.onChange((prev) => [...prev, newItem]);
 					}, [props.onChange])}
 				>
 					Add Item
 				</Button>
 				<Button
 					onClick={useCallback(() => {
-						props.onChange((prev) => [
-							...prev,
-							{
-								title: '',
-								children: [],
-								// initialIsEditable: true,
-							},
-						]);
+						const newItem = {
+							title: '',
+							children: [],
+						};
+						itemsToStartOpen.add(newItem);
+						props.onChange((prev) => [...prev, newItem]);
 					}, [props.onChange])}
 				>
 					Add Group
@@ -373,6 +372,9 @@ function NavigationItems(props: {
 		</Stack>
 	);
 }
+
+// instantiate a WeakSet for us to keep track of newly created items.
+const itemsToStartOpen = new WeakSet();
 
 export const controller = (config: FieldControllerConfig): FieldController<NavigationItem[]> => {
 	return {
