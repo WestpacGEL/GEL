@@ -1,12 +1,5 @@
 # @westpac/switch
 
-## 2.0.0
-
-### Major Changes
-
-- 8af8849e: - Rename instanceIdPrefix prop as instanceId
-  - Refactor internal id state to not require useEffect
-
 ## 1.1.1
 
 ### Patch Changes

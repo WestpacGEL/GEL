@@ -1,22 +1,5 @@
 # @westpac/form-check
 
-## 2.0.0
-
-### Major Changes
-
-- 8af8849e: - Rename instanceIdPrefix prop as instanceId
-  - Refactor internal id state to not require useEffect
-
-### Minor Changes
-
-- fb906d96: Pass an index to children, use for id generation
-
-### Patch Changes
-
-- 4478895b: Update name propType to isRequired
-- Updated dependencies [7d97398b]
-  - @westpac/button@1.4.0
-
 ## 1.3.0
 
 ### Minor Changes

@@ -1,13 +1,5 @@
 # @westpac/selector
 
-## 2.1.0
-
-### Minor Changes
-
-- fb906d96: Pass an index to children, use for id generation
-- 887d9c53: Ensure option alone implementation receives an id
-- 0a8fe41c: Refactor internal id state to not require useEffect
-
 ## 2.0.0
 
 ### Major Changes
