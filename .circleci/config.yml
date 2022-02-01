@@ -46,7 +46,7 @@ jobs:
           command: yarn build
       - run:
           name: Run tests
-          command: yarn test
+          command: yarn test:ci
 
 workflows:
   version: 2
