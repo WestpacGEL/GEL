@@ -9,11 +9,11 @@ jobs:
 
     steps:
       - checkout
-      # - restore_cache:
-      #     keys:
-      #       - v6-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      #       - v6-dependencies-{{ .Branch }}
-      #       - v6-dependencies
+      - restore_cache:
+          keys:
+            - v6-dependencies-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v6-dependencies-{{ .Branch }}
+            - v6-dependencies
 
       # - run:
       #     name: Install tree
