@@ -3,8 +3,9 @@ export default function GEL() {
 }
 
 export const getServerSideProps = async ({ res }) => {
-	res.setHeader('location', 'https://gel.westpacgroup.com.au');
-	res.statusCode = 301;
-	res.end();
-	return { props: {} };
+	if (process.env.NODE_ENV === 'production') {
+		return { redirect: { statusCode: 301, destination: 'https://gel.westpacgroup.com.au' } };
+	} else {
+		return { redirect: { statusCode: 301, destination: '/design-system' } };
+	}
 };

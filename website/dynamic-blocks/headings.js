@@ -138,6 +138,7 @@ export const Heading = {
 
 	component: ({
 		heading,
+		headingText,
 		size,
 		level,
 		addTableContent,
@@ -150,7 +151,7 @@ export const Heading = {
 	}) => {
 		const mq = useMediaQuery();
 		const { SPACING } = useBrand();
-		const id = heading.replace(/ /g, '-').toLowerCase();
+		const id = headingText.replace(/ /g, '-').toLowerCase();
 
 		return (
 			<Fragment>

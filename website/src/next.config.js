@@ -9,11 +9,11 @@ const config = {
 
 		delete config.devtool;
 
-		if (!isServer) {
-			config.node = {
-				fs: 'empty',
-			};
-		}
+		// if (!isServer) {
+		// 	config.node = {
+		// 		fs: 'empty',
+		// 	};
+		// }
 
 		return config;
 	},

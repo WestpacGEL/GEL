@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { Fragment, useEffect, useState, useRef } from 'react'; // Needed for within Keystone
-import { jsx, Global, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { List, Item } from '@westpac/list';
 import { Heading } from '@westpac/heading';
@@ -14,6 +14,7 @@ import { Body } from '../src/components/body';
 import { Icon } from '../../components/icon/src/Icon';
 import { Section } from '../src/components/section';
 import { ExternalLinkIcon } from '../src/components/external-link-icon';
+import { contentToString } from '../src/components/pages/single-component/document-renderer';
 
 const ArrowDownRightIcon = (props) => (
 	<Icon aria-hidden="true" {...props}>
@@ -31,25 +32,38 @@ const HeadingItemLink = ({ headingId, headingText, ...rest }) => (
 	</Item>
 );
 
+function getHeading(node) {
+	if (node.component === 'heading') {
+		return node;
+	}
+	if (node.component === 'visionFilters') {
+		return { text: 'Vision impairment demonstration' };
+	}
+	if (node.component === 'propsTable') {
+		return { text: 'Props' };
+	}
+}
+
 const parseHeadings = (content) =>
-	content.nodes
+	content
 		.reduce(
 			(nodes, node) => (node.type === 'section' ? nodes.concat(node.nodes) : nodes.concat(node)),
 			[]
 		)
 		.filter(
-			(item) =>
-				item.data.component &&
-				['Heading', 'VisionFilters', 'PropsTable', 'ScreenReaderText'].includes(item.data.component)
+			(node) =>
+				(node.component === 'heading' && node.props.addTableContent) ||
+				node.component === 'visionFilters' ||
+				node.component === 'propsTable'
 		)
-		.filter((item) => item.data.props && item.data.props.addTableContent)
-		.map((item, i) => {
-			const { props } = item.data;
+		.map((node, i) => {
+			const heading = getHeading(node);
+			const content = contentToString(heading);
 			return (
 				<HeadingItemLink
 					key={`nav-${i}`}
-					headingId={props.heading.replace(/ /g, '-').toLowerCase()}
-					headingText={props.heading}
+					headingId={content.replace(/ /g, '-').toLowerCase()}
+					headingText={content}
 				/>
 			);
 		});
@@ -202,7 +216,7 @@ const PackageInfoTable = ({ item, ...rest }) => {
 	);
 };
 
-const Component = ({ description, showTableOfContents, showPackageInfo, item, _editorValue }) => {
+const Component = ({ description, showTableOfContents, showPackageInfo, item, document }) => {
 	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 
@@ -238,7 +252,7 @@ const Component = ({ description, showTableOfContents, showPackageInfo, item, _e
 						</Cell>
 						{showTableOfContents && (
 							<Cell width={[12, null, 4]} left={[null, null, 9]}>
-								<TableOfContents content={_editorValue} />
+								<TableOfContents content={document} />
 							</Cell>
 						)}
 					</Grid>

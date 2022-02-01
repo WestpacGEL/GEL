@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cypress/base:12
+      - image: cypress/base:16.13.0
         environment:
           TERM: xterm
     working_directory: ~/repo
@@ -46,7 +46,7 @@ jobs:
           command: yarn build
       - run:
           name: Run tests
-          command: yarn test
+          command: yarn test:ci
 
 workflows:
   version: 2

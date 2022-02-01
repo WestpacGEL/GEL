@@ -1,0 +1,32 @@
+{
+  "name": "@westpac/keystone",
+  "version": "1.0.0",
+  "description": "The Westpac GEL Design system website keystone backend",
+  "private": true,
+  "repository": "https://github.com/WestpacGEL/GEL/tree/master/website-backend",
+  "scripts": {
+    "dev": "keystone dev",
+    "build": "keystone build",
+    "start": "keystone start",
+    "migrate-content": "yarn build && ts-node-transpile-only migrations/migrate-content.ts"
+  },
+  "dependencies": {
+    "@keystone-6/auth": "^1.0.2",
+    "@keystone-6/cloudinary": "^1.0.0",
+    "@keystone-6/core": "^1.0.1",
+    "@keystone-6/fields-document": "^1.0.1",
+    "@keystone-ui/button": "^6.0.0",
+    "@keystone-ui/core": "^4.0.0",
+    "@keystone-ui/fields": "^6.0.0",
+    "@prisma/client": "3.7.0",
+    "@types/chroma-js": "^2.1.3",
+    "@types/react-beautiful-dnd": "^13.1.2",
+    "@westpac/icon": "^1.5.0",
+    "chroma-js": "^2.1.2",
+    "dotenv": "^11.0.0",
+    "prisma": "3.7.0",
+    "react-beautiful-dnd": "^13.1.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  }
+}
