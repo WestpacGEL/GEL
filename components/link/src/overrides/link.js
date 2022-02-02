@@ -31,7 +31,7 @@ const linkStyles = (_, { type, underline }) => {
 		display: 'inline-flex',
 		alignItems: type === 'standalone' ? 'center' : 'baseline',
 		':hover': {
-			textDecoration: type === 'inline' ? 'none' : 'underline',
+			textDecoration: type === 'inline' && underline ? 'none' : 'underline',
 		},
 	};
 };
