@@ -89,8 +89,8 @@ const Wrapper = (props) => {
 
 	let { data, error } = useQuery(
 		gql`
-			query AllSettings {
-				allSettings(where: { name: "navigation" }) {
+			query NavigationSetting {
+				setting(where: { name: "navigation" }) {
 					id
 					name
 					value
@@ -101,13 +101,13 @@ const Wrapper = (props) => {
 
 	// Handle async state...
 	if (error) return <p>There was an error fetching data for the navigation.</p>;
-	if (!data || !data.allSettings) return null;
+	if (!data?.setting) return null;
 
-	const navigation = data.allSettings[0] ? JSON.parse(data.allSettings[0].value) : [];
-
+	const navigation = data.setting.value;
 	return (
 		<GEL brand={brandOverrides(brands[brand])}>
 			<GlobalReset />
+
 			<SkipLink href="#content">Skip to main content</SkipLink>
 			<SidebarContextProvider>
 				<GridContainer>

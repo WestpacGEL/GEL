@@ -14,15 +14,11 @@ export const RelatedInformation = ({ item }) => {
 	const { relatedPages, relatedInfo } = item;
 	const hasRelatedPages = relatedPages && relatedPages.length !== 0;
 
-	function checkNode(node) {
-		return node.text || (node.nodes && node.nodes.some(checkNode));
-	}
-	let hasRelatedInfo = false;
-	try {
-		hasRelatedInfo = checkNode(JSON.parse(relatedInfo.document));
-	} catch (e) {
-		console.warn('Could not parse document data searching for Related Info');
-	}
+	let hasRelatedInfo =
+		relatedInfo.document.length > 1 ||
+		relatedInfo.document[0].type !== 'paragraph' ||
+		relatedInfo.document[0].children.length !== 1 ||
+		relatedInfo.document[0].children[0].text !== '';
 
 	if (!hasRelatedPages && !hasRelatedInfo) return null;
 
@@ -53,7 +49,7 @@ export const RelatedInformation = ({ item }) => {
 						>
 							<BlockListHeading icon={GenericFileIcon}>Articles</BlockListHeading>
 							<TextOnlySlateContent
-								content={relatedInfo}
+								content={relatedInfo.document}
 								item={item}
 								css={{
 									marginTop: SPACING(3),

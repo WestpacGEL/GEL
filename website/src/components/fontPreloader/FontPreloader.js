@@ -20,91 +20,91 @@ export const FontPreloader = ({ title = '', ...rest }) => {
 					href={`${BASE_URL}/fonts/Aller_Bd.woff2`}
 					as="font"
 					type="font/woff2"
-					crossorigin
+					crossOrigin=""
 				/>
 				<link
 					rel="preload"
 					href={`${BASE_URL}/fonts/Aller_Lt.woff2`}
 					as="font"
 					type="font/woff2"
-					crossorigin
+					crossOrigin=""
 				/>
 				<link
 					rel="preload"
 					href={`${BASE_URL}/fonts/dragonbold-bold-webfont.woff2`}
 					as="font"
 					type="font/woff2"
-					crossorigin
+					crossOrigin=""
 				/>
 				<link
 					rel="preload"
 					href={`${BASE_URL}/fonts/lineto-brown-pro-bold.woff2`}
 					as="font"
 					type="font/woff2"
-					crossorigin
+					crossOrigin=""
 				/>
 				<link
 					rel="preload"
 					href={`${BASE_URL}/fonts/lineto-brown-pro-light.woff2`}
 					as="font"
 					type="font/woff2"
-					crossorigin
+					crossOrigin=""
 				/>
 				<link
 					rel="preload"
 					href={`${BASE_URL}/fonts/lineto-brown-pro-regular.woff2`}
 					as="font"
 					type="font/woff2"
-					crossorigin
+					crossOrigin=""
 				/>
 				<link
 					rel="preload"
 					href={`${BASE_URL}/fonts/montserrat-v14-latin-300.woff2`}
 					as="font"
 					type="font/woff2"
-					crossorigin
+					crossOrigin=""
 				/>
 				<link
 					rel="preload"
 					href={`${BASE_URL}/fonts/montserrat-v14-latin-700.woff2`}
 					as="font"
 					type="font/woff2"
-					crossorigin
+					crossOrigin=""
 				/>
 				<link
 					rel="preload"
 					href={`${BASE_URL}/fonts/montserrat-v14-latin-regular.woff2`}
 					as="font"
 					type="font/woff2"
-					crossorigin
+					crossOrigin=""
 				/>
 				<link
 					rel="preload"
 					href={`${BASE_URL}/fonts/source-sans-pro-v14-latin-600.woff2`}
 					as="font"
 					type="font/woff2"
-					crossorigin
+					crossOrigin=""
 				/>
 				<link
 					rel="preload"
 					href={`${BASE_URL}/fonts/source-sans-pro-v14-latin-700.woff2`}
 					as="font"
 					type="font/woff2"
-					crossorigin
+					crossOrigin=""
 				/>
 				<link
 					rel="preload"
 					href={`${BASE_URL}/fonts/source-sans-pro-v14-latin-regular.woff2`}
 					as="font"
 					type="font/woff2"
-					crossorigin
+					crossOrigin=""
 				/>
 				<link
 					rel="preload"
 					href={`${BASE_URL}/fonts/Westpac-Bold-v2.007.woff2`}
 					as="font"
 					type="font/woff2"
-					crossorigin
+					crossOrigin=""
 				/>
 			</NextHead>
 			<Global

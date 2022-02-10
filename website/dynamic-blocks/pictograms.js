@@ -1,5 +1,5 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
-
 import React, { Fragment, useState } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { TextInput, Select } from '@westpac/text-input';
@@ -7,7 +7,7 @@ import { Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { DownloadIcon } from '@westpac/icon/DownloadIcon';
 import * as pictograms from '@westpac/pictogram';
-import { pluralize } from '../src/components/_utils';
+import { pluralize } from './_utils';
 
 const renderPictograms = (pictograms, mode) => {
 	const { COLORS } = useBrand();

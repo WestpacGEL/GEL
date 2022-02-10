@@ -1,0 +1,7 @@
+# This file (or some other file) needs to be committed for git to store the directory
+
+# Ignore everything in this directory
+*
+
+# Except this file
+!.gitignore
