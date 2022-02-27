@@ -121,13 +121,23 @@ function sanitize({ pkg, brand, assets = [], mode }) {
 	const allPkgs = ['@westpac/icon', '@westpac/symbol', '@westpac/pictogram'];
 	const allModes = ['duo', 'dark', 'light'];
 	const cleanPkg = allPkgs.includes(pkg) ? pkg : '@westpac/icon';
+	const assetArr = Array.isArray(assets) ? assets : [assets];
+	let assetList = [];
 
-	assets = Array.isArray(assets) ? assets : [assets];
+	if (assetArr.length) {
+		assetList = assetArr.filter((asset) => Object.keys(pkgs[cleanPkg]).includes(asset));
+	} else {
+		if (pkg === '@westpac/pictogram') {
+			assetList = Object.keys(pkgs[cleanPkg]).filter((asset) => !asset.startsWith('WBC')); // filtering out WBC decorative pictogram
+		} else {
+			assetList = Object.keys(pkg[cleanPkg]);
+		}
+	}
 
 	return {
 		pkg: cleanPkg,
 		brand: allBrands.includes(brand) ? brand : 'wbc',
-		assets: assets.filter((asset) => Object.keys(pkgs[cleanPkg]).includes(asset)),
+		assets: assetList,
 		mode: allModes.includes(mode) ? mode : 'duo',
 	};
 }
