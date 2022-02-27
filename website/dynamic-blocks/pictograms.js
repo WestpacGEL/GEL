@@ -177,7 +177,13 @@ const Pictogram = () => {
 								>
 									Mode
 								</label>
-								<Select id="pictogram-mode" value={mode} onChange={handleModeChange} inline>
+								<Select
+									id="pictogram-mode"
+									name="mode"
+									value={mode}
+									onChange={handleModeChange}
+									inline
+								>
 									<option value="duo">Duo</option>
 									<option value="dark">Dark</option>
 									<option value="light">Light</option>
