@@ -145,9 +145,9 @@
     "**/graphql": "15.8.0",
     "**/react": "^17.0.2",
     "**/react-dom": "^17.0.2",
-    "**/prisma": "^3.7.0",
+    "**/prisma": "3.7.0",
     "**/@apollo/client": "3.4.17",
-    "**/@prisma/client": "^3.7.0",
+    "**/@prisma/client": "3.7.0",
     "**/@types/react": "17.0.38"
   }
 }
