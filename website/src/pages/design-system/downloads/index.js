@@ -139,31 +139,32 @@ const BlenderComponentOption = ({ desc, value, ...rest }) => {
 
 	let { data, error } = useQuery(
 		gql`
-			query data {
-				allPages(where: { packageName: ${value.replace(/-/g, '_')} }) {
+			query data($packageName: String!) {
+				pages(where: { packageName: { equals: $packageName } }) {
+					id
 					pageTitle
 					url
 				}
-				allSettings(where: { name: "navigation" }) {
+				setting(where: { name: "navigation" }) {
+					id
 					value
 				}
 			}
-		`
+		`,
+		{ variables: { packageName: value.replace(/-/g, '_') } }
 	);
 
 	const description = <p>{desc}</p>;
 	let hint = description;
 	if (data && !error) {
-		const navigation = data.allSettings[0]
-			? flattenAndKeyNav(JSON.parse(data.allSettings[0].value))
-			: [];
+		const navigation = data.setting ? flattenAndKeyNav(data.setting.value) : [];
 
 		hint = (
 			<Fragment>
 				{description}
 				<p>
 					Docs:{' '}
-					{data.allPages.map(({ pageTitle, url }) =>
+					{data.pages.map(({ pageTitle, url }) =>
 						navigation[`${BASE_URL}${url}`] ? (
 							<Link
 								key={`${value}-${url}`}

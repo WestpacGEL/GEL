@@ -43,7 +43,9 @@ for (const component of components) {
 				);
 				const contents = fs.readFileSync(componentPath);
 				const parsed = reactDocs
-					.parse(contents, reactDocs.resolver.findAllExportedComponentDefinitions)
+					.parse(contents, reactDocs.resolver.findAllExportedComponentDefinitions, undefined, {
+						filename: componentPath,
+					})
 					.filter((cmp) => !/context/i.test(cmp.displayName)); // removing component context hooks
 
 				GEL.components[component.name].components.push({

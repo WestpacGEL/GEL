@@ -1,10 +1,10 @@
 {
 	"apps": [
 		{
-			"name": "gel3-website",
+			"name": "website-frontend",
 			"cwd": "website",
 			"script": "yarn",
-			"args": "start:prod",
+			"args": "start",
 			"exec_interpreter": "bash",
 			"watch": false,
 			"combine_logs": true,
@@ -12,21 +12,54 @@
 			"autorestart": true,
 			"instances": 1,
 
-			"env": { "NODE_ENV": "production" }
+			// The frontend only has a few env vars; not stored on disk like the backend
+			"env": {
+				"NODE_ENV": "production",
+				"PORT": "3000"
+			},
+			"env_staging": {
+				"APOLLO_CLIENT_GRAPHQL_URI": "https://gel.test.do.westpac.thinkmill.cloud/api/graphql"
+			},
+			"env_live": {
+				"APOLLO_CLIENT_GRAPHQL_URI": "https://gel.westpacgroup.com.au/api/graphql"
+			}
 		},
 		{
-			"name": "gel3-migrations",
-			"cwd": "website",
+			"name": "website-backend",
+			"cwd": "website-backend",
 			"script": "yarn",
-			"args": "knex migrate:latest",
+			"args": "start",
 			"exec_interpreter": "bash",
 			"watch": false,
 			"combine_logs": true,
 			"log_date_format": "YYYY-MM-DD HH:mm:ss.SSS Z",
+			"autorestart": true,
+			"instances": 1,
+
+			// Most env vars are loaded from disk; see /website-backend/config.ts
+			"env": {
+				"NODE_ENV": "production",
+				"NODE_EXTRA_CA_CERTS": "/srv/pm2-apps/gel3-website/current/website/do-db-ca-certificate.crt"
+			}
+		},
+		{
+			"name": "website-migrations",
+			"cwd": "website-backend",
+			"script": "yarn",
+			"args": "keystone prisma migrate deploy",
+			"exec_interpreter": "bash",
+			"watch": false,
+			"combine_logs": true,
+			"log_date_format": "YYYY-MM-DD HH:mm:ss.SSS Z",
+			// Don't restart this; should run once per deploy
 			"autorestart": false,
 			"instances": 1,
 
-			"env": { "NODE_ENV": "production" }
+			// Most env vars are loaded from disk; see /website-backend/config.ts
+			"env": {
+				"NODE_ENV": "production",
+				"NODE_EXTRA_CA_CERTS": "/srv/pm2-apps/gel3-website/current/website/do-db-ca-certificate.crt"
+			}
 		}
 	],
 
@@ -37,7 +70,7 @@
 			"path": "/srv/pm2-apps/gel3-website",
 			"ref": "origin/staging",
 			"repo": "git@gel-repo.github.com:WestpacGEL/GEL.git",
-			"post-deploy": "./pm2-post-deploy.sh"
+			"post-deploy": "APOLLO_CLIENT_GRAPHQL_URI='https://gel.test.do.westpac.thinkmill.cloud/api/graphql' ./pm2-post-deploy.sh"
 		},
 		"live": {
 			"user": "deploy",
@@ -45,7 +78,7 @@
 			"path": "/srv/pm2-apps/gel3-website",
 			"ref": "origin/master",
 			"repo": "git@gel-repo.github.com:WestpacGEL/GEL.git",
-			"post-deploy": "./pm2-post-deploy.sh"
+			"post-deploy": "APOLLO_CLIENT_GRAPHQL_URI='https://gel.westpacgroup.com.au/api/graphql' ./pm2-post-deploy.sh"
 		}
 	}
 }

@@ -1,21 +1,17 @@
 import gql from 'graphql-tag';
 
-const pageFragment = `
-id
+const selection = `id
 pageTitle
 url
 design {
-	id
 	document
 }
 hideAccessibilityTab
 accessibility {
-	id
 	document
 }
 hideCodeTab
 code {
-	id
 	document
 }
 packageName
@@ -32,15 +28,22 @@ relatedPages {
 	version
 }
 relatedInfo {
-	id
 	document
 }
 `;
 
 export const ALL_PAGES = gql`
 	query AllPages {
-		allPages {
-			${pageFragment}
+		pages {
+			${selection}
+		}
+	}
+`;
+
+export const ALL_DRAFT_PAGES = gql`
+	query AllDraftPages {
+		pages: draftPages {
+			${selection}
 		}
 	}
 `;

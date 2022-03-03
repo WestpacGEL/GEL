@@ -1,5 +1,5 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
-
 import React, { Fragment, useState } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { TextInput, Select } from '@westpac/text-input';
@@ -7,7 +7,7 @@ import { Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { DownloadIcon } from '@westpac/icon/DownloadIcon';
 import * as pictograms from '@westpac/pictogram';
-import { pluralize } from '../src/components/_utils';
+import { pluralize } from './_utils';
 
 const renderPictograms = (pictograms, mode) => {
 	const { COLORS } = useBrand();
@@ -177,7 +177,13 @@ const Pictogram = () => {
 								>
 									Mode
 								</label>
-								<Select id="pictogram-mode" value={mode} onChange={handleModeChange} inline>
+								<Select
+									id="pictogram-mode"
+									name="mode"
+									value={mode}
+									onChange={handleModeChange}
+									inline
+								>
 									<option value="duo">Duo</option>
 									<option value="dark">Dark</option>
 									<option value="light">Light</option>

@@ -1,18 +1,27 @@
 /** @jsx jsx */
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { jsx, useBrand, useInstanceId, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { NewWindowIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Modal, Body as ModalBody } from '@westpac/modal';
-import dynamic from 'next/dynamic';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import editorTheme from './theme';
 
+let hasHydrated = false;
+
 // Example block contains modal that is not SSR safe
-export const ExampleBlock = dynamic(() => Promise.resolve(UnSafeExampleBlock), {
-	ssr: false,
-});
+export function ExampleBlock(props) {
+	const [isClient, setIsClient] = useState(hasHydrated);
+	useEffect(() => {
+		hasHydrated = true;
+		setIsClient(true);
+	}, []);
+	if (!isClient) {
+		return null;
+	}
+	return <UnSafeExampleBlock {...props} />;
+}
 
 const ButtonIconOverride = ({ icon: Icon, left, right, color, state: _, ...rest }) => {
 	return <Icon color="primary" {...rest} />;
