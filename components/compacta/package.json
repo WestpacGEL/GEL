@@ -4,6 +4,12 @@
 	"description": "gel compacta",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/compacta",
+	"components": [
+		{
+			"name": "Compacta",
+			"src": "Compacta.js"
+		}
+	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"license": "GPL-3.0+",
 	"scripts": {
