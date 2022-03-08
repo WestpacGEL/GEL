@@ -20,7 +20,6 @@ import pkg from '../package.json';
 export const DatePicker = ({
 	id,
 	placeholder,
-	block,
 	size,
 	max,
 	min,
@@ -50,7 +49,6 @@ export const DatePicker = ({
 	const state = {
 		id,
 		placeholder,
-		block,
 		size,
 		max,
 		min,
@@ -113,13 +111,6 @@ DatePicker.propTypes = {
 	placeholder: PropTypes.string,
 
 	/**
-	 * Block mode
-	 *
-	 * Fit component width to its parent width
-	 */
-	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
-
-	/**
 	 * Component size
 	 */
 	size: textInputPropTypes.size,
@@ -173,7 +164,6 @@ DatePicker.propTypes = {
 
 export const defaultProps = {
 	placeholder: '',
-	block: false,
 	size: textInputDefaultProps.size,
 };
 

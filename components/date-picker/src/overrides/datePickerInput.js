@@ -57,7 +57,7 @@ const DatePickerInput = ({
 
 	const dateAdapter = {
 		parse(value = '', createDate) {
-			const matches = value.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+			const matches = value.match(/^(\d{1,2})\-(\d{1,2})\-(\d{4})$/);
 
 			if (matches) {
 				return createDate(matches[3], matches[2], matches[1]);
