@@ -7,6 +7,7 @@ import { Grid, Cell } from '@westpac/grid';
 import { Field } from '@westpac/form';
 import { Playground } from '../../../../website/src/components/playground/macro';
 import { Title } from '../../../../helpers/demos';
+import { DatePickerStyles } from './DatePickerStyles';
 
 const DatePickerDemo = () => {
 	const [dateFrom, setDateFrom] = useState(null);
@@ -21,6 +22,7 @@ const DatePickerDemo = () => {
 
 	return (
 		<Fragment>
+			<DatePickerStyles />
 			<Title>Selecting a date range</Title>
 
 			<Grid>
@@ -29,7 +31,6 @@ const DatePickerDemo = () => {
 						<DatePicker
 							id="example-from"
 							name="example-from"
-							block
 							max={dateTo}
 							onChange={(e) => handleChangeFrom(e)}
 						/>
@@ -41,7 +42,6 @@ const DatePickerDemo = () => {
 						<DatePicker
 							id="example-to"
 							name="example-to"
-							block
 							min={dateFrom}
 							onChange={(e) => handleChangeTo(e)}
 						/>
