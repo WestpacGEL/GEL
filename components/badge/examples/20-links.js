@@ -10,49 +10,49 @@ function Example({ brand }) {
 			<Body>
 				<p>
 					<a href="#0">
-						Default <Badge value="42" />
+						Default <Badge type="pill" value="42" />
 					</a>
 				</p>
 
 				<p>
 					<a href="#0">
-						Primary <Badge look="primary" value="13" />
+						Primary <Badge type="pill" look="primary" value="13" />
 					</a>
 				</p>
 				<p>
 					<a href="#0">
-						Hero <Badge look="hero" value="13" />
+						Hero <Badge type="pill" look="hero" value="13" />
 					</a>
 				</p>
 				<p>
 					<a href="#0">
-						Neutral <Badge look="neutral" value="13" />
+						Neutral <Badge type="pill" look="neutral" value="13" />
 					</a>
 				</p>
 				<p>
 					<a href="#0">
-						Faint <Badge look="faint" value="13" />
+						Faint <Badge type="pill" look="faint" value="13" />
 					</a>
 				</p>
 
 				<p>
 					<a href="#0">
-						Success <Badge look="success" value="71" />
+						Success <Badge type="pill" look="success" value="71" />
 					</a>
 				</p>
 				<p>
 					<a href="#0">
-						Info <Badge look="info" value="71" />
+						Info <Badge type="pill" look="info" value="71" />
 					</a>
 				</p>
 				<p>
 					<a href="#0">
-						Warning <Badge look="warning" value="71" />
+						Warning <Badge type="pill" look="warning" value="71" />
 					</a>
 				</p>
 				<p>
 					<a href="#0">
-						Danger <Badge look="danger" value="71" />
+						Danger <Badge type="pill" look="danger" value="71" />
 					</a>
 				</p>
 			</Body>
