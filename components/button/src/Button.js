@@ -13,7 +13,7 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-const ButtonContext = createContext();
+export const ButtonContext = createContext();
 
 export const useButtonContext = () => {
 	const context = useContext(ButtonContext);

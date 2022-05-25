@@ -1,7 +1,9 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useButtonContext, ButtonContext } from '@westpac/button';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
 
 import { defaultBadge } from './overrides/badge';
 import pkg from '../package.json';
@@ -10,7 +12,7 @@ import pkg from '../package.json';
 // Component
 // ==============================
 
-export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) => {
+export const Badge = ({ look, value, type, overrides: componentOverrides, ...rest }) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -20,9 +22,13 @@ export const Badge = ({ look, value, overrides: componentOverrides, ...rest }) =
 		Badge: defaultBadge,
 	};
 
+	const btnContext = useContext(ButtonContext);
+
 	const state = {
 		look,
 		value,
+		type,
+		btnContext,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -63,6 +69,10 @@ Badge.propTypes = {
 	value: PropTypes.string.isRequired,
 
 	/**
+	 * Badge type
+	 */
+	type: PropTypes.oneOf(['default', 'pill']),
+	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
@@ -76,6 +86,7 @@ Badge.propTypes = {
 
 export const defaultProps = {
 	look: 'neutral',
+	type: 'default',
 };
 
 Badge.defaultProps = defaultProps;
