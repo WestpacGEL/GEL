@@ -143,6 +143,9 @@ const lists: Lists = {
         }
       },
     },
+    ui: {
+      labelField: 'pageTitle',
+    },
     fields: {
       ...pageFields('DraftPage'),
       publish: (meta) =>
@@ -217,6 +220,9 @@ const lists: Lists = {
           });
         }
       },
+    },
+    ui: {
+      labelField: 'pageTitle',
     },
     fields: {
       ...pageFields('Page'),
