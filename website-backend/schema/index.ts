@@ -19,7 +19,7 @@ import * as mainComponentBlocks from '../admin/component-blocks/main';
 import * as relatedInfoComponentBlocks from '../admin/component-blocks/related-info';
 import { fieldType } from '@keystone-6/core/types';
 import { Prisma } from '.prisma/client';
-import { formatURL, pageFields } from './shared';
+import { defaultDocumentConfiguration, formatURL, pageFields } from './shared';
 
 const isNotNullOrUndefined = <T>(val: T): val is NonNullable<T> => val != null;
 const isSignedIn = ({ session }: { session: any }) => !!session;
@@ -249,6 +249,39 @@ const lists: Lists = {
           views: require.resolve('../admin/publish-field'),
         }),
     },
+  }),
+  Article: list({
+    access: readOnly,
+    ui: {
+      labelField: 'pageTitle',
+    },
+    fields: {
+      pageTitle: text({ validation: { isRequired: true } }),
+      author: relationship({ ref: 'User' }),
+      url: text({
+        validation: { isRequired: true },
+        hooks: {
+          resolveInput: ({ item, resolvedData }) => {
+            if (resolvedData.url) {
+              return formatURL(resolvedData.url)
+            }
+            return item.url || ''
+          }
+        }
+      }),
+
+      content: document({
+        ...defaultDocumentConfiguration,
+        // TODO
+//          componentBlocks: {},
+//          ui: { views: require.resolve('../admin/component-blocks/main') },
+      }),
+
+      cardTitle: text({ validation: { isRequired: true } }),
+      cardDescription: text({ validation: { isRequired: true } }),
+      cardDescriptionSecondary: text(), // ???
+      cardImage: text(), // TODO
+    }
   })
 };
 

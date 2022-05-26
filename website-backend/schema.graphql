@@ -551,6 +551,88 @@ input DraftPageRelateToOneForCreateInput {
   connect: DraftPageWhereUniqueInput
 }
 
+type Article {
+  id: ID!
+  pageTitle: String
+  author: User
+  url: String
+  content: Article_content_Document
+  cardTitle: String
+  cardDescription: String
+  cardDescriptionSecondary: String
+  cardImage: String
+}
+
+type Article_content_Document {
+  document(hydrateRelationships: Boolean! = false): JSON!
+}
+
+input ArticleWhereUniqueInput {
+  id: ID
+}
+
+input ArticleWhereInput {
+  AND: [ArticleWhereInput!]
+  OR: [ArticleWhereInput!]
+  NOT: [ArticleWhereInput!]
+  id: IDFilter
+  pageTitle: StringFilter
+  author: UserWhereInput
+  url: StringFilter
+  cardTitle: StringFilter
+  cardDescription: StringFilter
+  cardDescriptionSecondary: StringFilter
+  cardImage: StringFilter
+}
+
+input ArticleOrderByInput {
+  id: OrderDirection
+  pageTitle: OrderDirection
+  url: OrderDirection
+  cardTitle: OrderDirection
+  cardDescription: OrderDirection
+  cardDescriptionSecondary: OrderDirection
+  cardImage: OrderDirection
+}
+
+input ArticleUpdateInput {
+  pageTitle: String
+  author: UserRelateToOneForUpdateInput
+  url: String
+  content: JSON
+  cardTitle: String
+  cardDescription: String
+  cardDescriptionSecondary: String
+  cardImage: String
+}
+
+input UserRelateToOneForUpdateInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  disconnect: Boolean
+}
+
+input ArticleUpdateArgs {
+  where: ArticleWhereUniqueInput!
+  data: ArticleUpdateInput!
+}
+
+input ArticleCreateInput {
+  pageTitle: String
+  author: UserRelateToOneForCreateInput
+  url: String
+  content: JSON
+  cardTitle: String
+  cardDescription: String
+  cardDescriptionSecondary: String
+  cardImage: String
+}
+
+input UserRelateToOneForCreateInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -596,6 +678,15 @@ type Mutation {
   updatePages(data: [PageUpdateArgs!]!): [Page]
   deletePage(where: PageWhereUniqueInput!): Page
   deletePages(where: [PageWhereUniqueInput!]!): [Page]
+  createArticle(data: ArticleCreateInput!): Article
+  createArticles(data: [ArticleCreateInput!]!): [Article]
+  updateArticle(
+    where: ArticleWhereUniqueInput!
+    data: ArticleUpdateInput!
+  ): Article
+  updateArticles(data: [ArticleUpdateArgs!]!): [Article]
+  deleteArticle(where: ArticleWhereUniqueInput!): Article
+  deleteArticles(where: [ArticleWhereUniqueInput!]!): [Article]
   endSession: Boolean!
   authenticateUserWithPassword(
     email: String!
@@ -665,6 +756,14 @@ type Query {
   ): [Page!]
   page(where: PageWhereUniqueInput!): Page
   pagesCount(where: PageWhereInput! = {}): Int
+  articles(
+    where: ArticleWhereInput! = {}
+    orderBy: [ArticleOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [Article!]
+  article(where: ArticleWhereUniqueInput!): Article
+  articlesCount(where: ArticleWhereInput! = {}): Int
   keystone: KeystoneMeta!
   authenticatedItem: AuthenticatedItem
 }
