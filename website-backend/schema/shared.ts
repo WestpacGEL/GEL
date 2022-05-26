@@ -20,19 +20,17 @@ import * as relatedInfoComponentBlocks from '../admin/component-blocks/related-i
 import { fieldType } from '@keystone-6/core/types';
 import { Prisma } from '.prisma/client';
 
-const inlineMarks = {
-  bold: true,
-  italic: true,
-  strikethrough: true,
-  underline: true,
-  code: true,
-} as const;
-
-const mainDocumentConfig = {
+export const defaultDocumentConfiguration = {
   formatting: {
     blockTypes: true,
     listTypes: true,
-    inlineMarks,
+    inlineMarks: {
+      bold: true,
+      italic: true,
+      strikethrough: true,
+      underline: true,
+      code: true,
+    },
   },
   componentBlocks: mainComponentBlocks.componentBlocks,
   ui: { views: require.resolve('../admin/component-blocks/main') },
@@ -53,9 +51,9 @@ function preloadPackages () {
   }[] = [];
 
   for (const item of fs.readdirSync(path.join(cwd, '../components'))) {
-    let content;
+    let packageJson;
     try {
-      content = fs.readFileSync(path.join(cwd, `../components/${item}/package.json`), 'utf-8');
+      packageJson = fs.readFileSync(path.join(cwd, `../components/${item}/package.json`), 'utf-8');
     } catch (err: any) {
       if (err.code === 'ENOENT') {
       console.error('missing', item)
@@ -63,7 +61,7 @@ function preloadPackages () {
       }
       throw err;
     }
-    const pkg = JSON.parse(content);
+    const pkg = JSON.parse(packageJson);
     packages.push({ ...pkg, path: item, unscopedName: pkg.name.split('/').reverse()[0] });
   }
 
@@ -172,7 +170,7 @@ export function pageFields(listKey: string): BaseFields<Lists.Page.TypeInfo> {
           listView: { fieldMode: 'hidden' },
         },
       }),
-      design: document(mainDocumentConfig),
+      design: document(defaultDocumentConfiguration),
       hideAccessibilityTab: checkbox(),
       accessibilityOld: json({
         ui: {
@@ -181,7 +179,7 @@ export function pageFields(listKey: string): BaseFields<Lists.Page.TypeInfo> {
           listView: { fieldMode: 'hidden' },
         },
       }),
-      accessibility: document(mainDocumentConfig),
+      accessibility: document(defaultDocumentConfiguration),
       hideCodeTab: checkbox(),
       codeOld: json({
         ui: {
@@ -190,7 +188,7 @@ export function pageFields(listKey: string): BaseFields<Lists.Page.TypeInfo> {
           listView: { fieldMode: 'hidden' },
         },
       }),
-      code: document(mainDocumentConfig),
+      code: document(defaultDocumentConfiguration),
       relatedPages: relationship({ ref: listKey, many: true }),
       relatedInfoOld: json({
         ui: {
@@ -201,7 +199,7 @@ export function pageFields(listKey: string): BaseFields<Lists.Page.TypeInfo> {
       }),
       relatedInfo: document({
         formatting: {
-          inlineMarks,
+          inlineMarks: defaultDocumentConfiguration.formatting.inlineMarks,
         },
         componentBlocks: relatedInfoComponentBlocks.componentBlocks,
         ui: {
