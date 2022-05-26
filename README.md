@@ -3,23 +3,21 @@
 **<p align="center">For the docs for the design system please go to</p>**
 **<p align="center">https://gel.westpacgroup.com.au/design-system</p>**
 
-This repo consists of the following parts:
+This repository consists of the following parts:
 
-- `/brands/*` and `/components/*` The react design system components publish to npm
-- `/website/*` The website CMS and template (see the [Website README](./website/README.md) for details)
-- `/helpers/*` Some helper scripts
-- `/nginx/*` The nginx config for the server
+- `/brands/*` and `/components/*` - The react design system components (published to npm)
+- `/website` - The nextjs website
+- `/website-backend` - The keystonejs instance
+- `/helpers/*` - Some utility scripts
+- `/nginx/*` - The backend nginx configuration
 
 ## Content
-
 - [Development](#development)
 - [Design System](#design-system)
 - [Blender support](#blender-support)
 
-See also the [Website README](./website/README.md).
 
 ## Development
-
 To run this repo locally please use [yarn](https://yarnpkg.com/).
 This repo is a monorepo.
 Learn more about monorepos at https://monorepo.guide/.
@@ -86,7 +84,9 @@ This will install all dependencies for all packages in this monorepo.
 │   └── WBC/
 │       └── etc
 │
-├── website/                        # all files related to the CMS and website
+├── website/                        # files for the website
+│
+├── website-backend/                # files for the website backend
 │
 └── docs/                           # the static files for the documentation (build artifact)
 ```
