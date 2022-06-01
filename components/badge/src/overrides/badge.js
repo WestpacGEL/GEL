@@ -25,25 +25,28 @@ const BlenderBadge = ({ className, ...rest }) => (
 // Styles
 // ==============================
 
-const badgeStyles = (_, { look }) => {
+const badgeStyles = (_, { look, type, btnContext }) => {
 	const { COLORS, TYPE } = useBrand();
+
+	const invert = btnContext && !(btnContext?.state.look === 'faint' || btnContext?.state.soft);
+	console.log(btnContext?.state.look, invert);
 
 	return {
 		label: getLabel('badge'),
 		display: 'inline-block',
-		border: '1px solid',
-		borderRadius: '0.75rem',
-		fontSize: '0.875rem',
+		border: invert ? 'none' : '1px solid',
+		borderRadius: type === 'pill' ? '0.75rem' : '0.125rem',
+		fontSize: type === 'pill' ? '0.875rem' : '0.75rem',
 		lineHeight: 1,
-		minWidth: '0.625rem',
-		padding: '0.25rem 0.4375rem',
+		minWidth: '0.625rem', // double check this
+		padding: type === 'pill' ? '0.25rem 0.4375rem' : '0.1875rem 0.375rem 0.125rem',
 		textAlign: 'center',
 		verticalAlign: 'baseline',
 		whiteSpace: 'nowrap',
-		color: look === 'faint' ? COLORS.muted : '#fff',
-		backgroundColor: look === 'faint' ? '#fff' : COLORS[look],
+		color: look === 'faint' ? COLORS.muted : invert ? COLORS[look] : '#fff',
+		backgroundColor: invert || look === 'faint' ? '#fff' : COLORS[look],
 		borderColor: look === 'faint' ? COLORS.border : COLORS[look],
-		...TYPE.bodyFont[700],
+		...(type === 'pill' ? TYPE.bodyFont[700] : TYPE.bodyFont[400]),
 
 		':empty': {
 			display: 'none',
