@@ -81,7 +81,7 @@ model Article {
   cardTitle                String  @default("")
   cardDescription          String  @default("")
   cardDescriptionSecondary String  @default("")
-  cardImage                String  @default("")
+  cardImage                Json?
 
   @@index([authorId])
 }

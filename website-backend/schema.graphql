@@ -560,7 +560,7 @@ type Article {
   cardTitle: String
   cardDescription: String
   cardDescriptionSecondary: String
-  cardImage: String
+  cardImage: CloudinaryImage_File
 }
 
 type Article_content_Document {
@@ -582,7 +582,6 @@ input ArticleWhereInput {
   cardTitle: StringFilter
   cardDescription: StringFilter
   cardDescriptionSecondary: StringFilter
-  cardImage: StringFilter
 }
 
 input ArticleOrderByInput {
@@ -592,7 +591,6 @@ input ArticleOrderByInput {
   cardTitle: OrderDirection
   cardDescription: OrderDirection
   cardDescriptionSecondary: OrderDirection
-  cardImage: OrderDirection
 }
 
 input ArticleUpdateInput {
@@ -603,7 +601,7 @@ input ArticleUpdateInput {
   cardTitle: String
   cardDescription: String
   cardDescriptionSecondary: String
-  cardImage: String
+  cardImage: Upload
 }
 
 input UserRelateToOneForUpdateInput {
@@ -625,7 +623,7 @@ input ArticleCreateInput {
   cardTitle: String
   cardDescription: String
   cardDescriptionSecondary: String
-  cardImage: String
+  cardImage: Upload
 }
 
 input UserRelateToOneForCreateInput {

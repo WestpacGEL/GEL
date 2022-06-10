@@ -17,6 +17,8 @@ import { document } from '@keystone-6/fields-document';
 import { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '../config';
 import * as mainComponentBlocks from '../admin/component-blocks/main';
 import * as relatedInfoComponentBlocks from '../admin/component-blocks/related-info';
+import { componentBlocks } from '../admin/component-blocks';
+
 import { fieldType } from '@keystone-6/core/types';
 import { Prisma } from '.prisma/client';
 import { defaultDocumentConfiguration, formatURL, pageFields } from './shared';
@@ -265,22 +267,27 @@ const lists: Lists = {
             if (resolvedData.url) {
               return formatURL(resolvedData.url)
             }
-            return item.url || ''
+            return item?.url || ''
           }
         }
       }),
 
       content: document({
         ...defaultDocumentConfiguration,
-        // TODO
-//          componentBlocks: {},
-//          ui: { views: require.resolve('../admin/component-blocks/main') },
+        componentBlocks,
+        ui: { views: require.resolve('../admin/component-blocks') },
       }),
 
       cardTitle: text({ validation: { isRequired: true } }),
       cardDescription: text({ validation: { isRequired: true } }),
-      cardDescriptionSecondary: text(), // ???
-      cardImage: text(), // TODO
+      cardDescriptionSecondary: text(),
+      cardImage: cloudinaryImage({
+        cloudinary: {
+          cloudName: CLOUDINARY_CLOUD_NAME,
+          apiKey: CLOUDINARY_API_KEY,
+          apiSecret: CLOUDINARY_API_SECRET,
+        },
+      }),
     }
   })
 };

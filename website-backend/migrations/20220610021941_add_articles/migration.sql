@@ -8,7 +8,7 @@ CREATE TABLE "Article" (
     "cardTitle" TEXT NOT NULL DEFAULT E'',
     "cardDescription" TEXT NOT NULL DEFAULT E'',
     "cardDescriptionSecondary" TEXT NOT NULL DEFAULT E'',
-    "cardImage" TEXT NOT NULL DEFAULT E'',
+    "cardImage" JSONB,
 
     CONSTRAINT "Article_pkey" PRIMARY KEY ("id")
 );
