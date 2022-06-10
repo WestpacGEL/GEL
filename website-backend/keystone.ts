@@ -3,7 +3,6 @@ import { statelessSessions } from '@keystone-6/core/session';
 import { createAuth } from '@keystone-6/auth';
 import { lists } from './schema';
 import { PORT, DATABASE_URL, SESSION_MAX_AGE, SESSION_SECRET } from './config';
-import { Context } from '.keystone/types';
 
 // Basic session and auth config
 const session = statelessSessions({
@@ -25,12 +24,11 @@ export default withAuth(
 		db: {
 			provider: 'postgresql',
 			url: DATABASE_URL,
-			async onConnect(context) {
-				const _context = context as Context;
-				if (process.argv.includes('--seed-data')) {
-				_context.db.User.createOne({ data: { email: 'foo@daniel.cousens', password: 'foobar123' } })
-				}
-			},
+			// async onConnect(context) {
+			// 	if (process.argv.includes('--seed-data')) {
+			// 		await insertSeedData(context);
+			// 	}
+			// },
 			useMigrations: true,
 		},
 		images: {
