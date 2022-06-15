@@ -9,11 +9,10 @@ import throttle from 'lodash.throttle';
 import { Icon } from '../../../../components/icon/src/Icon';
 
 const UpIcon = (props) => {
-	const { COLORS } = useBrand();
 	return (
 		<Icon assistiveText="Up arrow" {...props}>
 			<path
-				fill={COLORS.primary}
+				fill="currentColor"
 				fillRule="evenodd"
 				d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8z"
 			/>
@@ -21,7 +20,7 @@ const UpIcon = (props) => {
 	);
 };
 
-export const Footer = () => {
+export const Footer = ({ type = 'design', ...props }) => {
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 	const [visible, setVisible] = useState(true);
@@ -70,7 +69,7 @@ export const Footer = () => {
 				lineHeight: 1,
 				bottom: visible ? 0 : '-3.0625rem',
 				right: 0,
-				left: [0, null, null, null, 300],
+				left: type === 'article' ? 0 : [0, null, null, null, 300],
 				backgroundColor: '#fff',
 				borderTop: `1px solid ${COLORS.border}`,
 				display: 'flex',
@@ -79,6 +78,7 @@ export const Footer = () => {
 				padding: '0.375rem 1.125rem 0.4375rem 1.5rem',
 				transition: 'bottom 0.4s ease',
 			})}
+			{...props}
 		>
 			<div css={{ display: 'flex', alignItems: 'center' }}>
 				<span
@@ -93,16 +93,19 @@ export const Footer = () => {
 					icon={EmailIcon}
 					href="mailto:gel@westpac.com.au"
 					assistiveText="Talk to us via email"
+					color={type === 'article' && '#1976D2'}
 				/>
 				<ContactIconLink
 					icon={SlackIcon}
 					href="//westpac-digital.slack.com"
 					assistiveText="Talk to us on Slack"
+					color={type === 'article' && '#1976D2'}
 				/>
 				<ContactIconLink
 					icon={GithubIcon}
 					href="//github.com/WestpacGEL"
 					assistiveText="Talk to us on GitHub"
+					color={type === 'article' && '#1976D2'}
 				/>
 			</div>
 
@@ -111,6 +114,7 @@ export const Footer = () => {
 				look="link"
 				size="large"
 				iconAfter={UpIcon}
+				iconColor={type === 'article' ? '#1976D2' : COLORS.primary}
 				assistiveText="Go to top"
 				onClick={goToTopClickHandler}
 				overrides={{
@@ -129,7 +133,7 @@ export const Footer = () => {
 	);
 };
 
-const ContactIconLink = ({ icon: Icon, href, assistiveText }) => (
+const ContactIconLink = ({ icon: Icon, color, href, assistiveText }) => (
 	<a
 		href={href}
 		target="_blank"
@@ -141,6 +145,6 @@ const ContactIconLink = ({ icon: Icon, href, assistiveText }) => (
 			},
 		}}
 	>
-		<Icon assistiveText={assistiveText} />
+		<Icon color={color} assistiveText={assistiveText} />
 	</a>
 );

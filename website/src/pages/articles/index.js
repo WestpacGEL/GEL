@@ -19,7 +19,8 @@ import { Button } from '@westpac/button';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useSpring, animated } from '@react-spring/web';
 import useMeasure from 'react-use-measure';
-
+import { PageContextProvider, usePageContext } from '../../components/providers/pageContext';
+import { Footer as StickyFooter } from '../../components/layout/footer.js';
 /* 
 TO DO
 - action-bar
@@ -572,8 +573,9 @@ const brandsMap = {
 
 const Hero = (props) => {
 	const mq = useMediaQuery();
+	const { pageHeadingRef } = usePageContext();
 	return (
-		<div css={{ backgroundColor: COLORS.primary }} {...props}>
+		<div ref={pageHeadingRef} css={{ backgroundColor: COLORS.primary }} {...props}>
 			<Container {...props}>
 				<Grid rowGap={[0, 0, 0, 0, 0]}>
 					<Cell
@@ -1039,22 +1041,26 @@ const Card = (props) => {
 // ============================================================
 // Home
 // ============================================================
+// fix main container and footer spacing
 const Home = () => {
 	return (
-		<Fragment>
-			<Hero />
-			<ActionBar />
-			<CardGrid>
-				<Card width={[12, 4]} />
-				<Card width={[12, 4]} />
-				<Card width={[12, 4]} />
-				<Card width={[12, 6]} />
-				<Card width={[12, 6]} />
-				<Card width={[12, 8]} />
-				<Card width={[12, 4]} />
-			</CardGrid>
-			<Footer />
-		</Fragment>
+		<PageContextProvider>
+			<div css={{ paddingBottom: '3.0625rem' }}>
+				<Hero />
+				<ActionBar />
+				<CardGrid>
+					<Card width={[12, 4]} />
+					<Card width={[12, 4]} />
+					<Card width={[12, 4]} />
+					<Card width={[12, 6]} />
+					<Card width={[12, 6]} />
+					<Card width={[12, 8]} />
+					<Card width={[12, 4]} />
+				</CardGrid>
+				<Footer />
+				<StickyFooter type="article" />
+			</div>
+		</PageContextProvider>
 	);
 };
 
