@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { GEL, jsx, css, Global, useBrand, useMediaQuery } from '@westpac/core';
+import wbc from '@westpac/wbc';
 import { useQuery } from '@apollo/react-hooks';
 import { SkipLink } from '@westpac/a11y';
 import { useRouter } from 'next/router';
@@ -19,12 +20,32 @@ const LoadGELFonts = () => (
 		styles={css`
 			@font-face {
 				font-family: 'graphik';
+				src: url('${BASE_URL}/fonts/Graphik-Regular-Web.eot');
+				src: url('${BASE_URL}/fonts/Graphik-Regular-Web.eot?#iefix') format('embedded-opentype'),
+					url('${BASE_URL}/fonts/Graphik-Regular-Web.woff') format('woff'),
+					url('${BASE_URL}/fonts/Graphik-Regular-Web.ttf') format('truetype'),
+					url('${BASE_URL}/fonts/Graphik-Regular-Web.svg#Graphik-Bold') format('svg');
+				font-weight: 400;
+				font-style: normal;
+			}
+			@font-face {
+				font-family: 'graphik';
 				src: url('${BASE_URL}/fonts/Graphik-Bold-Web.eot');
 				src: url('${BASE_URL}/fonts/Graphik-Bold-Web.eot?#iefix') format('embedded-opentype'),
 					url('${BASE_URL}/fonts/Graphik-Bold-Web.woff') format('woff'),
 					url('${BASE_URL}/fonts/Graphik-Bold-Web.ttf') format('truetype'),
 					url('${BASE_URL}/fonts/Graphik-Bold-Web.svg#Graphik-Bold') format('svg');
 				font-weight: 700;
+				font-style: bold;
+			}
+			@font-face {
+				font-family: 'guardian';
+				src: url('${BASE_URL}/fonts/GuardianEgyp-Light-Web.eot');
+				src: url('${BASE_URL}/fonts/GuardianEgyp-Light-Web.eot?#iefix') format('embedded-opentype'),
+					url('${BASE_URL}/fonts/GuardianEgyp-Light-Web.woff') format('woff'),
+					url('${BASE_URL}/fonts/GuardianEgyp-Light-Web.ttf') format('truetype'),
+					url('${BASE_URL}/fonts/GuardianEgyp-Light-Web.svg#Guardian Egyptian Web') format('svg');
+				font-weight: 400;
 				font-style: normal;
 			}
 			@font-face {
@@ -42,7 +63,8 @@ const LoadGELFonts = () => (
 	/>
 );
 
-const GlobalReset = () => {
+// double check this
+const GlobalReset = ({ bg = true }) => {
 	const { COLORS } = useBrand();
 
 	return (
@@ -54,7 +76,8 @@ const GlobalReset = () => {
 				}
 				body {
 					margin: 0;
-					background-color: ${COLORS.background};
+					// background-color: ${bg ? COLORS.background : '#fff'};
+					${bg && `background-color: ${COLORS.background}`}
 				}
 			`}
 		/>
@@ -119,6 +142,18 @@ const Wrapper = (props) => {
 	);
 };
 
+// MAKE THIS BETTER
+// I dont know why this bug keeps happeneing
+const ArticleWrapper = (props) => {
+	const { brands, brand } = useBrandSwitcher();
+	return (
+		<GEL brand={brandOverrides(brands['WBC'])}>
+			<GlobalReset bg={false} />
+			{props.children}
+		</GEL>
+	);
+};
+
 /*
   Styled components
 */
@@ -155,12 +190,20 @@ const MainContainer = (props) => {
 	);
 };
 
-export const Layout = (props) => (
-	<Fragment>
-		<LoadGELFonts />
-		<FontPreloader />
-		<BrandSwitcherProvider brand={props.brand}>
-			<Wrapper {...props} />
-		</BrandSwitcherProvider>
-	</Fragment>
-);
+export const Layout = (props) => {
+	const router = useRouter();
+	if (!router) return null;
+
+	const isArticle = router.pathname.startsWith('/articles');
+
+	return (
+		<Fragment>
+			<LoadGELFonts />
+			<FontPreloader />
+
+			<BrandSwitcherProvider brand={props.brand}>
+				{isArticle ? <ArticleWrapper {...props} /> : <Wrapper {...props} />}
+			</BrandSwitcherProvider>
+		</Fragment>
+	);
+};
