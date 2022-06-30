@@ -1005,7 +1005,7 @@ const CardGrid = ({ children, ...props }) => {
 	);
 };
 
-const Card = (props) => {
+const Card = ({ img, ...props }) => {
 	const { TYPE } = useBrand();
 	const mq = useMediaQuery();
 	return (
@@ -1028,7 +1028,7 @@ const Card = (props) => {
 						objectFit: 'cover',
 						transition: 'border-radius 0.2s',
 					}}
-					src={`${BASE_URL}/images/lego.png`}
+					src={`${BASE_URL}/images/${img}.png`}
 					alt=""
 				/>
 				<div
@@ -1082,13 +1082,13 @@ const Home = () => {
 				<Hero />
 				<ActionBar />
 				<CardGrid>
-					<Card width={[12, 4]} />
-					<Card width={[12, 4]} />
-					<Card width={[12, 4]} />
-					<Card width={[12, 6]} />
-					<Card width={[12, 6]} />
-					<Card width={[12, 8]} />
-					<Card width={[12, 4]} />
+					<Card width={[12, 4]} img="stream" />
+					<Card width={[12, 4]} img="stream" />
+					<Card width={[12, 4]} img="stream" />
+					<Card width={[12, 6]} img="river" />
+					<Card width={[12, 6]} img="river" />
+					<Card width={[12, 8]} img="Ocean" />
+					<Card width={[12, 4]} img="stream" />
 				</CardGrid>
 				<Footer />
 				<StickyFooter type="article" />
