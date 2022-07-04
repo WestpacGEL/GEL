@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx, Global, useBrand, useMediaQuery } from '@westpac/core';
-import { Cell, Grid, Container } from '@westpac/grid';
+import { Cell, Grid as WBCGrid, Container as WBCContainer } from '@westpac/grid';
 import wbc from '@westpac/wbc';
 import { Fragment, useState, forwardRef } from 'react';
 import {
@@ -21,6 +21,8 @@ import { useSpring, animated } from '@react-spring/web';
 import useMeasure from 'react-use-measure';
 import { PageContextProvider, usePageContext } from '../../components/providers/pageContext';
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
+import merge from 'lodash.merge';
+
 /* 
 TO DO
 - action-bar
@@ -553,26 +555,27 @@ const Wrapper = (props) => {
 	);
 };
 
+// halfway is 35px, 35
 const brandsMap = {
 	WBC: {
 		name: 'Westpac',
 		dotLogo: DotWBCLogo,
-		logo: <WBCLogo height={17} aria-hidden="true" />,
+		logo: <WBCLogo height={17} css={{ marginRight: 14 }} aria-hidden="true" />,
 	},
 	STG: {
 		name: 'St.George',
 		dotLogo: DotSTGLogo,
-		logo: <STGDragonLogo height={38} aria-hidden="true" />,
+		logo: <STGDragonLogo height={38} css={{ marginRight: 3 }} aria-hidden="true" />,
 	},
 	BOM: {
 		name: 'Bank of Melbourne',
 		dotLogo: DotBOMLogo,
-		logo: <BOMShieldLogo height={39} aria-hidden="true" />,
+		logo: <BOMShieldLogo height={39} css={{ marginRight: 22 }} aria-hidden="true" />,
 	},
 	BSA: {
 		name: 'Bank SA',
 		dotLogo: DotBSALogo,
-		logo: <BSAStackedLogo height={46} aria-hidden="true" />,
+		logo: <BSAStackedLogo height={46} css={{ marginRight: 22 }} aria-hidden="true" />,
 	},
 	WBG: {
 		name: 'Westpac Group',
@@ -586,6 +589,25 @@ const brandsMap = {
 	},
 };
 
+const Grid = (props) => <WBCGrid columnGap={[12, 18, 24]} {...props} />;
+
+const Container = (props) => {
+	const mq = useMediaQuery();
+	return (
+		<WBCContainer
+			overrides={{
+				Container: {
+					styles: (styles) =>
+						merge({}, styles, {
+							...mq({ paddingLeft: [24, 30, 36, 48, 60], paddingRight: [24, 30, 36, 48, 60] })[0],
+						}),
+				},
+			}}
+			{...props}
+		/>
+	);
+};
+
 // ============================================================
 // Hero
 // ============================================================
@@ -596,9 +618,9 @@ const Hero = (props) => {
 	return (
 		<div ref={pageHeadingRef} css={{ backgroundColor: COLORS.primary }} {...props}>
 			<Container {...props}>
-				<Grid rowGap={[0, 0, 0, 0, 0]}>
+				<Grid rowGap={[0, 0]}>
 					<Cell
-						width={10}
+						width={[11, 10]}
 						css={mq({
 							marginTop: ['1.875rem', '2.625rem', '3.375rem', '3.75rem', '4.125rem'],
 							marginBottom: ['1.5rem', '1.875rem', '2.25rem', '3.375rem'],
@@ -608,7 +630,7 @@ const Hero = (props) => {
 					</Cell>
 					<Cell
 						top={2}
-						left={[1, 2]}
+						left={[2, 3]}
 						width={[10, 9]}
 						css={mq({ marginBottom: ['2.625rem', '3.375rem', '5.25rem', '5.625rem', '6rem'] })}
 					>
@@ -711,8 +733,7 @@ const BrandListItem = ({ children, ...props }) => {
 	return (
 		<li
 			css={{
-				borderBottom: `1px solid ${COLORS.border}`,
-				':last-of-type': {
+				':last-of-type span': {
 					borderBottom: 'none',
 				},
 			}}
@@ -721,16 +742,31 @@ const BrandListItem = ({ children, ...props }) => {
 			<a
 				href="#"
 				css={mq({
+					display: 'block',
 					height: '3.75rem',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'space-between',
 					fontSize: '0.875rem',
 					color: COLORS.text,
 					textDecoration: 'none',
+					padding: ['0 1.5rem', '0 1.875rem'],
+					transition: 'background-color 0.2s',
+					':hover, :focus': {
+						backgroundColor: COLORS.background,
+					},
 				})}
 			>
-				{children}
+				<span
+					css={{
+						height: '100%',
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'space-between',
+						borderBottom: `1px solid ${COLORS.border}`,
+						position: 'relative',
+						zIndex: 1,
+					}}
+				>
+					{children}
+				</span>
 			</a>
 		</li>
 	);
@@ -763,7 +799,7 @@ const ActionBarDropdown = (props) => {
 						mq({
 							position: 'relative',
 							zIndex: 2,
-							padding: ['0 0.75rem 0.75rem', '0 1.875rem 0.75rem'],
+							padding: ['0 1.5rem 0.75rem', '0 1.875rem 0.75rem'],
 							height: '4.125rem',
 							fontSize: '1rem',
 							backgroundColor: '#fff',
@@ -786,7 +822,7 @@ const ActionBarDropdown = (props) => {
 							right: 0,
 							overflow: 'hidden',
 							backgroundColor: '#fff',
-							padding: ['0.75rem 1.5rem 1.5rem 1.5rem', '0.75rem 1.875rem 1.875rem 1.875rem'],
+							padding: ['0.75rem 0 1.5rem', '0.75rem 0 1.875rem'],
 							boxShadow: '0 8px 8px rgba(0,0,0,0.24)',
 						}),
 				},
@@ -806,7 +842,7 @@ const ActionBarDropdown = (props) => {
 };
 
 const ActionBarLogo = ({ logo: Logo, ...props }) => {
-	return <Logo css={{ height: 72, marginRight: 12 }} {...props} />;
+	return <Logo css={{ height: 72, width: 72, marginRight: 12 }} {...props} />;
 };
 
 const ActionBarDesktop = () => {
@@ -817,36 +853,34 @@ const ActionBarDesktop = () => {
 				display: 'flex',
 				alignItems: 'flex-end',
 				height: '6.375rem',
-				[`@media (max-width: ${LAYOUT.breakpoints.sm}px)`]: { display: 'none' },
+				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: { display: 'none' },
 			}}
 		>
-			<a
-				href="#"
+			<div
 				css={{
-					display: 'block',
 					height: '100%',
-					fontSize: '1rem',
-					fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-					textDecoration: 'none',
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'flex-end',
+
+					borderRight: `1px solid ${COLORS.border}`,
+					marginRight: '1.5rem',
 				}}
 			>
-				<div
+				<GELLogo css={{ marginBottom: '0.875rem' }} />
+				<p
 					css={{
-						height: '100%',
+						margin: '0 0 0.75rem',
 						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'flex-end',
-
-						borderRight: `1px solid ${COLORS.border}`,
-						marginRight: '1.5rem',
+						alignItems: 'flex-end',
+						fontSize: '1rem',
+						fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
 					}}
 				>
-					<GELLogo css={{ marginBottom: '0.875rem' }} />
-					<div css={{ display: 'flex', alignItems: 'flex-end' }}>
-						Design System <ArrowRightIcon css={{ margin: '0 1.5rem 0 1.25rem' }} />
-					</div>
-				</div>
-			</a>
+					Design System
+					<ArrowRightIcon css={{ margin: '0 1rem 0 0.75rem' }} />
+				</p>
+			</div>
 			<ul role="list" css={{ display: 'flex', paddingLeft: 0, listStyle: 'none', margin: 0 }}>
 				{Object.entries(brandsMap).map(([key, val]) => (
 					<li key={key}>
@@ -882,6 +916,7 @@ const FooterTitle = (props) => {
 				fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
 				fontSize: '1rem',
 				textTransform: 'uppercase',
+				marginTop: 0,
 				marginBottom: ['1.875rem', null, '2.625rem', '3.375rem'],
 			})}
 			{...props}
@@ -932,7 +967,7 @@ const LogoCircle = ({ logo: Logo, ...props }) => {
 	return (
 		<Logo
 			css={mq({
-				marginRight: 18,
+				marginRight: ['0.75rem', null, null, null, '1.125rem'],
 				height: [72, null, null, null, 84],
 				width: [72, null, null, null, 84],
 			})}
@@ -947,9 +982,10 @@ const Footer = (props) => {
 		<div css={{ backgroundColor: COLORS.background }} {...props}>
 			<Container>
 				<Grid
+					rowGap={[42, 54]}
 					css={mq({
 						paddingTop: ['3.375rem', '3.75rem', '4.875rem', null, '5.625rem'],
-						paddingBottom: ['3.75rem', '4.125rem', '5.25rem'],
+						paddingBottom: ['3.75rem', '4.125rem', '5.25rem', null, '6rem'],
 					})}
 				>
 					<Cell width={[12, null, 8, 7]}>
@@ -966,15 +1002,15 @@ const Footer = (props) => {
 					<Cell width={[12, null, 4]} left={[null, null, null, 9]}>
 						<FooterTitle>Tools &amp; resources</FooterTitle>
 						<FooterList>
-							<FooterItem width={12}>
+							<FooterItem width={[12, 6, 12]}>
 								<LogoCircle logo={DotFigmaLogo} />
 								<FooterItemText>Figma UI Kits</FooterItemText>
 							</FooterItem>
-							<FooterItem width={12}>
+							<FooterItem width={[12, 6, 12]}>
 								<LogoCircle logo={DotBrandGuidelineLogo} />
 								<FooterItemText>Master Brand Guidelines</FooterItemText>
 							</FooterItem>
-							<FooterItem width={12}>
+							<FooterItem width={[12, 6, 12]}>
 								<LogoCircle logo={DotSubscribeLogo} />
 								<FooterItemText>Subscribe to GEL</FooterItemText>
 							</FooterItem>
@@ -995,17 +1031,17 @@ const CardGrid = ({ children, ...props }) => {
 	return (
 		<Container
 			css={mq({
-				marginTop: ['0.375rem', '3rem', '3.375rem', '3.75rem'],
+				marginTop: ['1.875rem', '2.25rem', '3rem', '3.375rem', '3.75rem'],
 				marginBottom: ['6.4375rem', '6rem', '4.25rem', '6rem', '6.1875rem'],
 			})}
 			{...props}
 		>
-			<Grid>{children}</Grid>
+			<Grid gap={[24]}>{children}</Grid>
 		</Container>
 	);
 };
 
-const Card = (props) => {
+const Card = ({ img, ...props }) => {
 	const { TYPE } = useBrand();
 	const mq = useMediaQuery();
 	return (
@@ -1028,12 +1064,12 @@ const Card = (props) => {
 						objectFit: 'cover',
 						transition: 'border-radius 0.2s',
 					}}
-					src={`${BASE_URL}/images/lego.png`}
+					src={`${BASE_URL}/images/${img}.png`}
 					alt=""
 				/>
 				<div
 					css={mq({
-						paddingTop: '2.25rem',
+						paddingTop: ['1.5rem', '2.4375rem'],
 						paddingLeft: '0.375rem',
 						borderRight: `solid ${COLORS.border}`,
 						borderRightWidth: [0, 1],
@@ -1052,8 +1088,7 @@ const Card = (props) => {
 					</h4>
 					<p
 						css={{
-							margin: 0,
-							marginBottom: '0.75rem',
+							margin: '0 1.5rem 0.75rem 0',
 							fontSize: '1rem',
 							fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
 							lineHeight: 1.5,
@@ -1082,13 +1117,13 @@ const Home = () => {
 				<Hero />
 				<ActionBar />
 				<CardGrid>
-					<Card width={[12, 4]} />
-					<Card width={[12, 4]} />
-					<Card width={[12, 4]} />
-					<Card width={[12, 6]} />
-					<Card width={[12, 6]} />
-					<Card width={[12, 8]} />
-					<Card width={[12, 4]} />
+					<Card width={[12, 4]} img="stream" />
+					<Card width={[12, 4]} img="stream" />
+					<Card width={[12, 4]} img="stream" />
+					<Card width={[12, 6]} img="river" />
+					<Card width={[12, 6]} img="river" />
+					<Card width={[12, 8]} img="Ocean" />
+					<Card width={[12, 4]} img="stream" />
 				</CardGrid>
 				<Footer />
 				<StickyFooter type="article" />
