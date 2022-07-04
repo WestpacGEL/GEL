@@ -12,12 +12,13 @@ This repository consists of the following parts:
 - `/nginx/*` - The backend nginx configuration
 
 ## Content
+
 - [Development](#development)
 - [Design System](#design-system)
 - [Blender support](#blender-support)
 
-
 ## Development
+
 To run this repo locally please use [yarn](https://yarnpkg.com/).
 This repo is a monorepo.
 Learn more about monorepos at https://monorepo.guide/.
