@@ -1117,13 +1117,13 @@ const Home = () => {
 				<Hero />
 				<ActionBar />
 				<CardGrid>
-					<Card width={[12, 4]} img="stream" />
-					<Card width={[12, 4]} img="stream" />
-					<Card width={[12, 4]} img="stream" />
-					<Card width={[12, 6]} img="river" />
-					<Card width={[12, 6]} img="river" />
+					<Card width={[12, 4]} img="Stream" />
+					<Card width={[12, 4]} img="Stream" />
+					<Card width={[12, 4]} img="Stream" />
+					<Card width={[12, 6]} img="River" />
+					<Card width={[12, 6]} img="River" />
 					<Card width={[12, 8]} img="Ocean" />
-					<Card width={[12, 4]} img="stream" />
+					<Card width={[12, 4]} img="Stream" />
 				</CardGrid>
 				<Footer />
 				<StickyFooter type="article" />
