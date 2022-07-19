@@ -11,7 +11,6 @@ import {
 	checkbox,
 	relationship,
 	json,
-	virtual,
 } from '@keystone-6/core/fields';
 import { document } from '@keystone-6/fields-document';
 import { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '../config';
@@ -21,7 +20,7 @@ import { componentBlocks } from '../admin/component-blocks';
 
 import { fieldType } from '@keystone-6/core/types';
 import { Prisma } from '.prisma/client';
-import { defaultDocumentConfiguration, formatURL, pageFields } from './shared';
+import { defaultDocumentConfiguration, fauxCheckbox, formatURL, pageFields } from './shared';
 
 const isNotNullOrUndefined = <T>(val: T): val is NonNullable<T> => val != null;
 const isSignedIn = ({ session }: { session: any }) => !!session;
@@ -150,27 +149,7 @@ const lists: Lists = {
 		},
 		fields: {
 			...pageFields('DraftPage'),
-			publish: (meta) =>
-				fieldType({ kind: 'none' })({
-					input: {
-						create: {
-							arg: graphql.arg({ type: graphql.Boolean }),
-							// @ts-ignore
-							resolve(val) {
-								return val ?? false;
-							},
-						},
-						update: {
-							arg: graphql.arg({ type: graphql.Boolean }),
-							// @ts-ignore
-							resolve(val) {
-								return val ?? false;
-							},
-						},
-					},
-					output: graphql.field({ type: graphql.Boolean, resolve: () => false }),
-					views: require.resolve('../admin/publish-field'),
-				}),
+			publish: fauxCheckbox(),
 			published: relationship({ ref: 'Page.draft', db: { foreignKey: true } }),
 		},
 	}),
@@ -229,27 +208,7 @@ const lists: Lists = {
 		fields: {
 			...pageFields('Page'),
 			draft: relationship({ ref: 'DraftPage.published' }),
-			revertChangesInDraftToPublished: (meta) =>
-				fieldType({ kind: 'none' })({
-					input: {
-						create: {
-							arg: graphql.arg({ type: graphql.Boolean }),
-							// @ts-ignore
-							resolve(val) {
-								return val ?? false;
-							},
-						},
-						update: {
-							arg: graphql.arg({ type: graphql.Boolean }),
-							// @ts-ignore
-							resolve(val) {
-								return val ?? false;
-							},
-						},
-					},
-					output: graphql.field({ type: graphql.Boolean, resolve: () => false }),
-					views: require.resolve('../admin/publish-field'),
-				}),
+			revertChangesInDraftToPublished: fauxCheckbox(),
 		},
 	}),
 	Article: list({

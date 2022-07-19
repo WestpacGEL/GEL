@@ -208,4 +208,29 @@ export function pageFields(listKey: string): BaseFields<Lists.Page.TypeInfo> {
       links: true,
     }),
   };
+}
+
+export function fauxCheckbox () {
+  return () => {
+    return fieldType({ kind: 'none' })({
+      input: {
+        create: {
+          arg: graphql.arg({ type: graphql.Boolean }),
+          // @ts-ignore
+          resolve(val) {
+            return val ?? false;
+          },
+        },
+        update: {
+          arg: graphql.arg({ type: graphql.Boolean }),
+          // @ts-ignore
+          resolve(val) {
+            return val ?? false;
+          },
+        },
+      },
+      output: graphql.field({ type: graphql.Boolean, resolve: () => false }),
+      views: require.resolve('../admin/publish-field'),
+    })
   }
+}
