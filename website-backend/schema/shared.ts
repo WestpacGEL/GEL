@@ -85,127 +85,127 @@ export function formatURL (url: string) {
 
 export function pageFields(listKey: string): BaseFields<Lists.Page.TypeInfo> {
   const { packages, packagesMap } = preloadPackages()
-    return {
-      pageTitle: text({ validation: { isRequired: true } }),
-      url: text({
-        hooks: {
-          resolveInput: ({ item, resolvedData }) => {
-            if (resolvedData.url) {
-              return formatURL(resolvedData.url)
-            }
-            if (item && item?.url !== '') {
-              return item.url;
-            }
-            if (resolvedData.packageName) {
-              return `/components/${slugify(resolvedData.packageName).toLowerCase()}`;
-            }
-            if (resolvedData.pageTitle) {
-              return `/components/${slugify(resolvedData.pageTitle).toLowerCase()}`;
-            }
+  return {
+    pageTitle: text({ validation: { isRequired: true } }),
+    url: text({
+      hooks: {
+        resolveInput: ({ item, resolvedData }) => {
+          if (resolvedData.url) {
+            return formatURL(resolvedData.url)
+          }
+          if (item && item?.url !== '') {
+            return item.url;
+          }
+          if (resolvedData.packageName) {
+            return `/components/${slugify(resolvedData.packageName).toLowerCase()}`;
+          }
+          if (resolvedData.pageTitle) {
+            return `/components/${slugify(resolvedData.pageTitle).toLowerCase()}`;
+          }
 
-            return undefined;
-          },
+          return undefined;
+        },
+      },
+    }),
+    packageName: select({
+      options: packages.map((pkg) => ({
+        value: pkg.unscopedName.replace('-', '_'),
+        label: pkg.unscopedName,
+      })),
+    }),
+    version: virtual({
+      field: graphql.field({
+        type: graphql.String,
+        resolve: ({ code, design, accessibility, ...rest }) => {
+          return packagesMap.get(rest.packageName)?.version;
         },
       }),
-      packageName: select({
-        options: packages.map((pkg) => ({
-          value: pkg.unscopedName.replace('-', '_'),
-          label: pkg.unscopedName,
-        })),
+    }),
+    description: virtual({
+      field: graphql.field({
+        type: graphql.String,
+        resolve: (item) => packagesMap.get(item.packageName)?.description,
       }),
-      version: virtual({
-        field: graphql.field({
-          type: graphql.String,
-          resolve: ({ code, design, accessibility, ...rest }) => {
-            return packagesMap.get(rest.packageName)?.version;
-          },
-        }),
-      }),
-      description: virtual({
-        field: graphql.field({
-          type: graphql.String,
-          resolve: (item) => packagesMap.get(item.packageName)?.description,
-        }),
-      }),
-      isOrphaned: virtual({
-        field: graphql.field({
-          type: graphql.Boolean,
-          resolve(item) {
-            if (!item.packageName) {
-              return false;
-            }
-            return !packagesMap.has(item.packageName);
-          },
-        }),
-      }),
-      author: virtual({
-        field: graphql.field({
-          type: graphql.String,
-          resolve: (item) => packagesMap.get(item.packageName)?.author,
-        }),
-      }),
-      requires: virtual({
-        field: graphql.field({
-          type: graphql.String,
-          resolve(item) {
-            if (!item.packageName) {
-              return null;
-            }
-            const component = packagesMap.get(item.packageName);
-            if (!component?.dependencies) {
-              return null;
-            }
-            return (
-              Object.keys(component.dependencies)
-                .filter((key) => key.includes('@westpac/'))
-                .join(', ') || ''
-            );
-          },
-        }),
-      }),
-      designOld: json({
-        ui: {
-          itemView: { fieldMode: 'hidden' },
-          createView: { fieldMode: 'hidden' },
-          listView: { fieldMode: 'hidden' },
+    }),
+    isOrphaned: virtual({
+      field: graphql.field({
+        type: graphql.Boolean,
+        resolve(item) {
+          if (!item.packageName) {
+            return false;
+          }
+          return !packagesMap.has(item.packageName);
         },
       }),
-      design: document(defaultDocumentConfiguration),
-      hideAccessibilityTab: checkbox(),
-      accessibilityOld: json({
-        ui: {
-          itemView: { fieldMode: 'hidden' },
-          createView: { fieldMode: 'hidden' },
-          listView: { fieldMode: 'hidden' },
+    }),
+    author: virtual({
+      field: graphql.field({
+        type: graphql.String,
+        resolve: (item) => packagesMap.get(item.packageName)?.author,
+      }),
+    }),
+    requires: virtual({
+      field: graphql.field({
+        type: graphql.String,
+        resolve(item) {
+          if (!item.packageName) {
+            return null;
+          }
+          const component = packagesMap.get(item.packageName);
+          if (!component?.dependencies) {
+            return null;
+          }
+          return (
+            Object.keys(component.dependencies)
+              .filter((key) => key.includes('@westpac/'))
+              .join(', ') || ''
+          );
         },
       }),
-      accessibility: document(defaultDocumentConfiguration),
-      hideCodeTab: checkbox(),
-      codeOld: json({
-        ui: {
-          itemView: { fieldMode: 'hidden' },
-          createView: { fieldMode: 'hidden' },
-          listView: { fieldMode: 'hidden' },
-        },
-      }),
-      code: document(defaultDocumentConfiguration),
-      relatedPages: relationship({ ref: listKey, many: true }),
-      relatedInfoOld: json({
-        ui: {
-          itemView: { fieldMode: 'hidden' },
-          createView: { fieldMode: 'hidden' },
-          listView: { fieldMode: 'hidden' },
-        },
-      }),
-      relatedInfo: document({
-        formatting: {
-          inlineMarks: defaultDocumentConfiguration.formatting.inlineMarks,
-        },
-        componentBlocks: relatedInfoComponentBlocks.componentBlocks,
-        ui: {
-          views: require.resolve('../admin/component-blocks/related-info'),
-        },
-        links: true,
-      }),
-    };
+    }),
+    designOld: json({
+      ui: {
+        itemView: { fieldMode: 'hidden' },
+        createView: { fieldMode: 'hidden' },
+        listView: { fieldMode: 'hidden' },
+      },
+    }),
+    design: document(defaultDocumentConfiguration),
+    hideAccessibilityTab: checkbox(),
+    accessibilityOld: json({
+      ui: {
+        itemView: { fieldMode: 'hidden' },
+        createView: { fieldMode: 'hidden' },
+        listView: { fieldMode: 'hidden' },
+      },
+    }),
+    accessibility: document(defaultDocumentConfiguration),
+    hideCodeTab: checkbox(),
+    codeOld: json({
+      ui: {
+        itemView: { fieldMode: 'hidden' },
+        createView: { fieldMode: 'hidden' },
+        listView: { fieldMode: 'hidden' },
+      },
+    }),
+    code: document(defaultDocumentConfiguration),
+    relatedPages: relationship({ ref: listKey, many: true }),
+    relatedInfoOld: json({
+      ui: {
+        itemView: { fieldMode: 'hidden' },
+        createView: { fieldMode: 'hidden' },
+        listView: { fieldMode: 'hidden' },
+      },
+    }),
+    relatedInfo: document({
+      formatting: {
+        inlineMarks: defaultDocumentConfiguration.formatting.inlineMarks,
+      },
+      componentBlocks: relatedInfoComponentBlocks.componentBlocks,
+      ui: {
+        views: require.resolve('../admin/component-blocks/related-info'),
+      },
+      links: true,
+    }),
+  };
   }
