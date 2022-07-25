@@ -23,7 +23,7 @@ import { PageContextProvider, usePageContext } from '../../components/providers/
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
 import merge from 'lodash.merge';
 
-/* 
+/*
 TO DO
 - action-bar
     - need GEL SVG
@@ -33,7 +33,7 @@ TO DO
     - need to discuss min height stuff
 - spacing
     - double check spacing between homepage content top and bottom
-    
+
 Later
 - footer links
     - hook up to correct links
@@ -544,15 +544,6 @@ const COLORS = {
 	border: '#CFD8DC',
 	icon: '#1976D2',
 	text: '#122935',
-};
-
-const Wrapper = (props) => {
-	return (
-		<GEL brand={wbc} {...props}>
-			<Global styles={{ 'body div': { color: COLORS.text } }} />
-			<Home />
-		</GEL>
-	);
 };
 
 // halfway is 35px, 35
@@ -1129,6 +1120,15 @@ const Home = () => {
 				<StickyFooter type="article" />
 			</div>
 		</PageContextProvider>
+	);
+};
+
+const Wrapper = (props) => {
+	return (
+		<GEL brand={wbc} {...props}>
+			<Global styles={{ 'body div': { color: COLORS.text } }} />
+			<Home />
+		</GEL>
 	);
 };
 

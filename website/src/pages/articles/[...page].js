@@ -23,15 +23,6 @@ const COLORS = {
 	muted: '#575F65',
 };
 
-const Wrapper = (props) => {
-	return (
-		<GEL brand={wbc} {...props}>
-			<Global styles={{ 'body div': { color: COLORS.text } }} />
-			<Article />
-		</GEL>
-	);
-};
-
 // will have to take a prop for color to use the white or black version
 const GELLogo = (props) => (
 	<svg
@@ -235,7 +226,7 @@ const Heading = ({ level, children, ...props }) => {
 // ============================================================
 // Single Image
 // ============================================================
-const SingleImage = ({ type, caption, ...props }) => {
+const SingleImage = ({ src, type, caption, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE } = useBrand();
 	const sizeMap = {
@@ -247,7 +238,7 @@ const SingleImage = ({ type, caption, ...props }) => {
 		<Cell {...sizeMap[type]} css={mq({ marginBottom: ['2.625rem', '3.375rem'] })}>
 			<figure css={{ margin: 0 }}>
 				<img
-					src={`${BASE_URL}/images/lego.png`}
+					src={src}
 					css={{ width: '100%', height: 'auto' }}
 					{...props}
 				/>
@@ -273,6 +264,7 @@ const SingleImage = ({ type, caption, ...props }) => {
 // Double Image
 // ============================================================
 
+// TODO: remove, replace with layouts in document-editor
 const DoubleImage = ({ type, caption1, caption2, reducedSpacing, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE } = useBrand();
@@ -357,179 +349,78 @@ const Hero = ({ children, ...props }) => {
 	);
 };
 
-const Content = ({ children, ...props }) => {
+const Content = ({ children, content, ...props }) => {
 	return (
 		<div css={{ background: COLORS.background }}>
 			<Container {...props}>{children}</Container>
+      <DocumentRenderer content={content} />
 		</div>
 	);
 };
 
-const Article = (props) => {
-	// const router = useRouter();
-	// const path = router.query.page.join('/');
+// TODO: if rendering document editor, when do the relationship queries resolve?
+    // at the point of saving?
+    // or when rendering?
+
+const Article = ({ pageTitle, pageImage, content, author }) => {
 	return (
 		<PageContextProvider>
 			<HeaderBar />
 			<main css={{ paddingBottom: '3.0625rem' }}>
 				<Hero>
 					<Grid rowGap={[0, 0]}>
-						<Header title="Page title" author="Author" />
-						<SingleImage type="hero" />
+						<Header title={pageTitle} author={author.name} />
+						<SingleImage type="hero" src={pageImage} />
 					</Grid>
 				</Hero>
-				<Content>
-					<Grid rowGap={[0, 0]}>
-						<LeadText>
-							Our global visual language is shared across all our brands. We have a library of
-							carefully crafted user interface icons for use in your designs. This article explains
-							when and how to use the icons, and details our process for making icons. For
-							information about embedding and sizing icons see Design System Icons.
-						</LeadText>
-						<BodyText>
-							<p>
-								User Interface icons are designed to communicate meaning and aid navigation. They
-								can symbolise a command, file, device or directory. They’re also used to represent
-								common actions like search, print and edit.
-							</p>
-							<p>
-								Simplicity is the key design requirement for UI icons. Each icon in this library is
-								reduced to its minimal form, just enough to capture the essence of its meaning. This
-								ensures readability and clarity even at small sizes. It also optimises the vector
-								file size by limiting the number of points required to draw the graphic.
-							</p>
-						</BodyText>
-						<Heading level="h2">Heading two</Heading>
-						<BodyText>
-							<p>
-								The icon grid has been developed to facilitate consistency while also offering a
-								certain amount of flexibility. All the icons in this library have been designed and
-								crafted on a 24px grid. This allows us to use the icons at the following sizes:
-								XSmall (12px), Small (18px), Medium (24px), Large (36px) and XLarge (48px). Using
-								the icons at these pre-defined sizes will ensure that horizontal and vertical edges
-								align with the pixel grid, with the exception of the Small (18px). This results in a
-								sharper more legible graphic. If icons are not used at these intended sizes they
-								will no longer align to the pixel grid which will result in a blurred effect. Using
-								a fixed set of icon sizes also helps us to maintain consistency across all our
-								applications.
-							</p>
-						</BodyText>
-						<DoubleImage
-							type="bodyWide"
-							caption1="This is a caption"
-							caption2="This is a caption"
-						/>
-						<Heading level="h2">Heading two</Heading>
-						<BodyText>
-							<p>
-								Legibility, consistency and simplicity are key design principals for all UI icons.
-								We use simple geometric shapes to construct icons. This gives them a unified
-								symmetry and visual consistency.
-							</p>
-						</BodyText>
-						<DoubleImage type="body" caption1="This is a caption" caption2="This is a caption" />
-						<Heading level="h3">Heading three</Heading>
-						<BodyText>
-							<p>
-								Legibility, consistency and simplicity are key design principals for all UI icons.
-								We use simple geometric shapes to construct icons. This gives them a unified
-								symmetry and visual consistency.
-							</p>
-						</BodyText>
-						<DoubleImage type="body" caption1="This is a caption" caption2="This is a caption" />
-						<Heading level="h3">Heading three</Heading>
-						<BodyText>
-							<p>
-								Always use a 2px width for strokes and counter strokes. This includes curves and
-								angles, interior and exterior.
-							</p>
-						</BodyText>
-						<DoubleImage
-							type="body"
-							caption1="This is a caption"
-							caption2="This is a caption"
-							reducedSpacing
-						/>
-						<DoubleImage type="body" caption1="This is a caption" caption2="This is a caption" />
-
-						<Heading level="h2">Heading two</Heading>
-						<BodyText>
-							<p>
-								Some scenarios may call for a little ‘artistic licence’ to break these guidelines to
-								aid legibility of an icon. In spite of this it remains important to only use the
-								consistent geometric forms on which all other icons are based. Don’t skew or distort
-								the forms.
-							</p>
-						</BodyText>
-						<SingleImage type="body" caption="This is a caption" />
-						<Heading level="h2">Heading two</Heading>
-						<BodyText>
-							<p>
-								Some scenarios may call for a little ‘artistic licence’ to break these guidelines to
-								aid legibility of an icon. In spite of this it remains important to only use the
-								consistent geometric forms on which all other icons are based. Don’t skew or distort
-								the forms.
-							</p>
-						</BodyText>
-						<SingleImage type="bodyWide" caption="This is a caption" />
-						<Heading level="h2">Heading two</Heading>
-						<BodyText>
-							<p>
-								Some Some article body text, Lorem ipsum dolor sit amet, consectetur adipiscing
-								elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-								minim veniam, quis nostrud exercitation ullamco.
-							</p>
-						</BodyText>
-						<Heading level="h3">This is a heading three</Heading>
-						<BodyText>
-							<List>
-								<Item>This is the first bullet list item.</Item>
-								<Item>And this is the second bullet list item.</Item>
-							</List>
-						</BodyText>
-						<Heading level="h3">Another heading three</Heading>
-						<BodyText>
-							<List type="link">
-								<Item>This is the first link list item.</Item>
-								<Item>And this is the second link list item.</Item>
-							</List>
-						</BodyText>
-						<BodyText>
-							<p>
-								Some Some article body text, Lorem ipsum dolor sit amet, consectetur adipiscing
-								elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-								minim veniam, quis nostrud exercitation ullamco.
-							</p>
-						</BodyText>
-						<Heading level="h4">I'm a heading four</Heading>
-						<BodyText>
-							<p>
-								Some article body text, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-								do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-								veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
-								Some article body.
-							</p>
-							<p>
-								New paragraph of text, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-								do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-								veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
-							</p>
-						</BodyText>
-						<Heading level="h4">I'm another heading four</Heading>
-						<BodyText>
-							<p>
-								Some article body text, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-								do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-								veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
-								Some article body.
-							</p>
-						</BodyText>
-					</Grid>
-				</Content>
+				<Content content={content} />
 				<StickyFooter type="article" />
 			</main>
 		</PageContextProvider>
 	);
 };
+
+const Wrapper = ({ article, ...props }) => {
+	return (
+		<GEL brand={wbc} {...props}>
+			<Global styles={{ 'body div': { color: COLORS.text } }} />
+			<Article {...article} />
+		</GEL>
+	);
+};
+
+export function getStaticPaths () {
+  // TODO: apollo is undefined
+	const articles = await apollo.query({
+		query: gql`
+			query {
+				articles(where: { status: 'published' }) {
+          url
+					pageTitle
+          pageImage
+					content
+					author {
+						name
+					}
+				}
+			}
+		`,
+	});
+
+  return articles.map((article) => {
+    path: article.url,
+    props: article
+  })
+}
+
+
+// TODO: fallback should use the standard next 404 page
+
+export async function getStaticProps(props) {
+	return {
+		props: { article: props },
+		revalidate: true,
+	};
+}
 
 export default Wrapper;
