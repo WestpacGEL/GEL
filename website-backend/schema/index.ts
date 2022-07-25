@@ -221,6 +221,13 @@ const lists: Lists = {
 		},
 		fields: {
 			pageTitle: text({ validation: { isRequired: true } }),
+			pageImage: cloudinaryImage({
+				cloudinary: {
+					cloudName: CLOUDINARY_CLOUD_NAME,
+					apiKey: CLOUDINARY_API_KEY,
+					apiSecret: CLOUDINARY_API_SECRET,
+				},
+			}),
 			author: relationship({ ref: 'User' }),
 			url: text({
 				validation: { isRequired: true },
