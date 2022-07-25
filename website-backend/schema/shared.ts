@@ -17,7 +17,7 @@ import { document } from '@keystone-6/fields-document';
 import { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '../config';
 import * as mainComponentBlocks from '../admin/component-blocks/main';
 import * as relatedInfoComponentBlocks from '../admin/component-blocks/related-info';
-import { fieldType } from '@keystone-6/core/types';
+import { fieldType, BaseListTypeInfo } from '@keystone-6/core/types';
 import { Prisma } from '.prisma/client';
 
 export const defaultDocumentConfiguration = {
@@ -83,12 +83,18 @@ export function formatURL (url: string) {
   return result;
 }
 
-export function pageFields(listKey: string): BaseFields<Lists.Page.TypeInfo> {
+function fields<TypeInfo extends BaseListTypeInfo>() {
+  return function <Fields extends BaseFields<TypeInfo>>(fields: Fields) {
+    return fields;
+  };
+}
+
+export function pageFields(listKey: string) {
   const { packages, packagesMap } = preloadPackages()
-  return {
+  return fields<Lists.Page.TypeInfo>()({
     pageTitle: text({ validation: { isRequired: true } }),
     url: text({
-      hooks: {
+      hooks: { //
         resolveInput: ({ item, resolvedData }) => {
           if (resolvedData.url) {
             return formatURL(resolvedData.url)
@@ -207,7 +213,7 @@ export function pageFields(listKey: string): BaseFields<Lists.Page.TypeInfo> {
       },
       links: true,
     }),
-  };
+  });
 }
 
 export function fauxCheckbox () {

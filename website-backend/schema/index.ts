@@ -244,7 +244,7 @@ const lists: Lists = {
 			content: document({
 				...defaultDocumentConfiguration,
 				componentBlocks,
-				ui: { views: require.resolve('../admin/component-blocks') },
+				ui: { views: require.resolve('../admin/article-things') },
 			}),
 
 			cardTitle: text({ validation: { isRequired: true } }),
