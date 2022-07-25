@@ -24,11 +24,15 @@ export default withAuth(
 		db: {
 			provider: 'postgresql',
 			url: DATABASE_URL,
-			// async onConnect(context) {
-			// 	if (process.argv.includes('--seed-data')) {
-			// 		await insertSeedData(context);
-			// 	}
-			// },
+			async onConnect(context) {
+        await context.db.User.createOne({
+          data: {
+            name: 'Daniel',
+            email: 'daniel@thinkmill.com.au',
+            password: 'foobar123'
+          }
+        })
+			},
 			useMigrations: true,
 		},
 		images: {

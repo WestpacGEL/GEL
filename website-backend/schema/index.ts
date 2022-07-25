@@ -46,6 +46,9 @@ const lists: Lists = {
 	User: list({
 		access: adminOnly,
 		fields: {
+			name: text({
+				validation: { isRequired: true }
+			}),
 			email: text({
 				validation: { isRequired: true },
 				isIndexed: 'unique',

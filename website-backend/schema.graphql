@@ -3,6 +3,7 @@
 
 type User {
   id: ID!
+  name: String
   email: String
   password: PasswordState
 }
@@ -21,6 +22,7 @@ input UserWhereInput {
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
   id: IDFilter
+  name: StringFilter
   email: StringFilter
 }
 
@@ -71,6 +73,7 @@ input NestedStringFilter {
 
 input UserOrderByInput {
   id: OrderDirection
+  name: OrderDirection
   email: OrderDirection
 }
 
@@ -80,6 +83,7 @@ enum OrderDirection {
 }
 
 input UserUpdateInput {
+  name: String
   email: String
   password: String
 }
@@ -90,6 +94,7 @@ input UserUpdateArgs {
 }
 
 input UserCreateInput {
+  name: String
   email: String
   password: String
 }
