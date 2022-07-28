@@ -101,61 +101,6 @@ const lists: Lists = {
 			},
 		},
 	}),
-	DraftPage: list({
-		access: readOnly,
-		hooks: {
-			resolveInput({ inputData: { publish, ...inputData } }) {
-				return inputData;
-			},
-			async afterOperation({ context, item, inputData }) {
-				if (item && inputData?.publish) {
-					const relatedPages = await context.prisma.draftPage.findMany({
-						where: { from_DraftPage_relatedPages: { some: { id: item.id } } },
-						select: { publishedId: true },
-					});
-					const { id, publishedId, ...restItem } = item;
-
-					const data = {
-						...restItem,
-						designOld: item.designOld ?? 'DbNull',
-						design: item.design!,
-						codeOld: item.codeOld ?? 'DbNull',
-						code: item.code!,
-						accessibilityOld: item.accessibilityOld ?? 'DbNull',
-						accessibility: item.accessibility!,
-						relatedInfoOld: item.relatedInfoOld ?? 'DbNull',
-						relatedInfo: item.relatedInfo!,
-						relatedPages: {
-							connect: relatedPages
-								.map((x) => x.publishedId)
-								.filter(isNotNullOrUndefined)
-								.map((id) => ({ id })),
-						},
-					};
-					if (publishedId !== null) {
-						// update the item
-						await context.prisma.page.update({
-							where: { id: publishedId },
-							data,
-						});
-					} else {
-						// create the item
-						await context.prisma.page.create({
-							data: { ...data, draft: { connect: { id } } },
-						});
-					}
-				}
-			},
-		},
-		ui: {
-			labelField: 'pageTitle',
-		},
-		fields: {
-			...pageFields('DraftPage'),
-			publish: fauxCheckbox(),
-			published: relationship({ ref: 'Page.draft', db: { foreignKey: true } }),
-		},
-	}),
 	Page: list({
 		access: readOnly,
 		hooks: {
