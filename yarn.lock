@@ -2508,6 +2508,11 @@
   resolved "https://registry.yarnpkg.com/@keystone-6/document-renderer/-/document-renderer-1.0.0.tgz#afedf84bdfcce8130d6f33daa9e477b08d5bc40c"
   integrity sha512-mumjqZ+6+m9GhPauJTuRPRZGiZSbYOVJlqBvRmiEcndCuXiTucpyOWmANkIqDQFtPMOy0b13Elpx20mh8eUC6g==
 
+"@keystone-6/document-renderer@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@keystone-6/document-renderer/-/document-renderer-1.1.0.tgz#759f85f6a887109874af9c8638891dce030d970a"
+  integrity sha512-Y9hCZGFzxyupmTauAhhxX0cqTzu6Iqz2fwGIjZyP/9I9WIrou+5ffSyQdOO1c0VzejopPdVRfmLPvsFWO+J0lA==
+
 "@keystone-6/fields-document@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@keystone-6/fields-document/-/fields-document-1.0.1.tgz#d4ad90da33a3411100ed8d6669786f5084601c89"

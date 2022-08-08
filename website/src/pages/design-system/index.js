@@ -27,6 +27,46 @@ import {
 	TwitterLogo,
 } from '../../components/symbols';
 
+const DownloadsAndLinks = (props) => {
+	const { SPACING } = useBrand();
+	const mq = useMediaQuery();
+
+	return (
+		<Grid
+			rowGap={[24, 'normal']}
+			columnGap={[null, SPACING(5), SPACING(8), SPACING(10)]}
+			css={{ textAlign: 'left' }}
+			{...props}
+		>
+			<Cell width={[10, 6, null, 5]} left={[2, 'auto', null, 2]}>
+				<BlockListHeading>Downloads</BlockListHeading>
+				<BlockList
+					css={mq({
+						marginTop: [null, null, SPACING(2)],
+					})}
+				>
+					<BlockListItem href="/resources/design/sketch-ui-kit" logo={SketchLogo}>
+						Sketch UI Kit
+					</BlockListItem>
+				</BlockList>
+			</Cell>
+			<Cell width={[10, 6, null, 5]} left={[2, 'auto']}>
+				<BlockListHeading>Links</BlockListHeading>
+				<BlockList
+					css={mq({
+						marginTop: [null, null, SPACING(2)],
+					})}
+				>
+					<BlockListItem href="https://github.com/WestpacGEL/GEL" target="_blank" logo={GitHubLogo}>
+						Follow Westpac GEL on GitHub
+						<ExternalLinkIcon />
+					</BlockListItem>
+				</BlockList>
+			</Cell>
+		</Grid>
+	);
+};
+
 const Homepage = () => {
 	const { COLORS, SPACING } = useBrand();
 	const mq = useMediaQuery();
@@ -224,43 +264,3 @@ const Homepage = () => {
 };
 
 export default Homepage;
-
-const DownloadsAndLinks = (props) => {
-	const { SPACING } = useBrand();
-	const mq = useMediaQuery();
-
-	return (
-		<Grid
-			rowGap={[24, 'normal']}
-			columnGap={[null, SPACING(5), SPACING(8), SPACING(10)]}
-			css={{ textAlign: 'left' }}
-			{...props}
-		>
-			<Cell width={[10, 6, null, 5]} left={[2, 'auto', null, 2]}>
-				<BlockListHeading>Downloads</BlockListHeading>
-				<BlockList
-					css={mq({
-						marginTop: [null, null, SPACING(2)],
-					})}
-				>
-					<BlockListItem href="/resources/design/sketch-ui-kit" logo={SketchLogo}>
-						Sketch UI Kit
-					</BlockListItem>
-				</BlockList>
-			</Cell>
-			<Cell width={[10, 6, null, 5]} left={[2, 'auto']}>
-				<BlockListHeading>Links</BlockListHeading>
-				<BlockList
-					css={mq({
-						marginTop: [null, null, SPACING(2)],
-					})}
-				>
-					<BlockListItem href="https://github.com/WestpacGEL/GEL" target="_blank" logo={GitHubLogo}>
-						Follow Westpac GEL on GitHub
-						<ExternalLinkIcon />
-					</BlockListItem>
-				</BlockList>
-			</Cell>
-		</Grid>
-	);
-};

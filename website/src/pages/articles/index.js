@@ -1,5 +1,5 @@
 /** @jsx jsx */
-
+import { gql } from '@apollo/client';
 import { GEL, jsx, Global, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Grid as WBCGrid, Container as WBCContainer } from '@westpac/grid';
 import wbc from '@westpac/wbc';
@@ -22,6 +22,7 @@ import useMeasure from 'react-use-measure';
 import { PageContextProvider, usePageContext } from '../../components/providers/pageContext';
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
 import merge from 'lodash.merge';
+import { getApolloClient } from '../../apollo';
 
 /*
 TO DO
@@ -527,8 +528,8 @@ const GELLogo = (props) => (
 		{...props}
 	>
 		<path
-			fill-rule="evenodd"
-			clip-rule="evenodd"
+			fillRule="evenodd"
+			clipRule="evenodd"
 			d="M0 9.0977V8.90267C0 3.58565 3.9039 0 9.1501 0C13.2742 0 16.934 1.8782 17.2756 6.41472H12.3225C12.0784 4.7805 11.0288 3.92677 9.17477 3.92677C6.71035 3.92677 5.22153 5.82963 5.22153 8.9759V9.17093C5.22153 12.0004 6.27077 14.1954 9.29663 14.1954C11.7368 14.1954 12.6638 12.9509 12.7617 11.561H9.49212V8.07323H17.6905V10.2197C17.6905 14.6587 14.7869 18 9.1501 18C3.22061 18 0 14.3172 0 9.0977ZM19.1549 0.268756H31.209V4.12192H24.1327V7.12211H29.7692V10.6831H24.1327V13.8537H31.5993V17.7072H19.1549V0.268756ZM38.1393 0.268756H33.1129V17.7072H44.7278V13.8294H38.1393V0.268756Z"
 			fill="#122935"
 		/>
@@ -1101,13 +1102,15 @@ const Card = ({ img, ...props }) => {
 // Home
 // ============================================================
 // fix main container and footer spacing
-const Home = () => {
+const Home = ({articles}) => {
 	return (
 		<PageContextProvider>
 			<div css={{ paddingBottom: '3.0625rem' }}>
 				<Hero />
 				<ActionBar />
-				<CardGrid>
+				
+				{/* Singleton - render homepage articles document */}
+				{/* <CardGrid>
 					<Card width={[12, 4]} img="Stream" />
 					<Card width={[12, 4]} img="Stream" />
 					<Card width={[12, 4]} img="Stream" />
@@ -1115,7 +1118,7 @@ const Home = () => {
 					<Card width={[12, 6]} img="River" />
 					<Card width={[12, 8]} img="Ocean" />
 					<Card width={[12, 4]} img="Stream" />
-				</CardGrid>
+				</CardGrid> */}
 				<Footer />
 				<StickyFooter type="article" />
 			</div>
@@ -1123,13 +1126,52 @@ const Home = () => {
 	);
 };
 
-const Wrapper = (props) => {
+const Wrapper = ({articles}) => {
 	return (
-		<GEL brand={wbc} {...props}>
+		<GEL brand={wbc}>
 			<Global styles={{ 'body div': { color: COLORS.text } }} />
-			<Home />
+			<Home articles={articles} />
 		</GEL>
 	);
 };
+
+export async function getStaticProps() {
+	const client = getApolloClient();
+
+	// TODO: singleton - fetch homepage articles document
+	const res = await client.query({
+		query: gql`
+			query {
+				articles {
+					id
+					url
+					pageTitle
+					author {
+						name
+					}
+					pageImage {
+						id
+						filename
+						publicUrl
+					}
+					cardTitle
+					cardDescription
+					cardDescriptionSecondary
+					content {
+						document
+					}
+				}
+			}
+		`,
+	});
+
+	const articles = res.data ? res.data.articles : [];
+
+	return {
+		props: {
+			articles: articles,
+		},
+	};
+}
 
 export default Wrapper;

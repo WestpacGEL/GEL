@@ -31,50 +31,29 @@ model Image {
   caption String @default("")
 }
 
-model DraftPage {
-  id                          String      @id @default(cuid())
-  pageTitle                   String      @default("")
-  url                         String      @default("")
-  packageName                 String?
-  designOld                   Json?
-  design                      Json        @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  hideAccessibilityTab        Boolean     @default(false)
-  accessibilityOld            Json?
-  accessibility               Json        @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  hideCodeTab                 Boolean     @default(false)
-  codeOld                     Json?
-  code                        Json        @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  relatedPages                DraftPage[] @relation("DraftPage_relatedPages")
-  relatedInfoOld              Json?
-  relatedInfo                 Json        @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  published                   Page?       @relation("DraftPage_published", fields: [publishedId], references: [id])
-  publishedId                 String?     @unique @map("published")
-  from_DraftPage_relatedPages DraftPage[] @relation("DraftPage_relatedPages")
-}
-
 model Page {
-  id                     String     @id @default(cuid())
-  pageTitle              String     @default("")
-  url                    String     @default("")
+  id                     String  @id @default(cuid())
+  pageTitle              String  @default("")
+  url                    String  @default("")
   packageName            String?
   designOld              Json?
-  design                 Json       @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  hideAccessibilityTab   Boolean    @default(false)
+  design                 Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  hideAccessibilityTab   Boolean @default(false)
   accessibilityOld       Json?
-  accessibility          Json       @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  hideCodeTab            Boolean    @default(false)
+  accessibility          Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  hideCodeTab            Boolean @default(false)
   codeOld                Json?
-  code                   Json       @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  relatedPages           Page[]     @relation("Page_relatedPages")
+  code                   Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  relatedPages           Page[]  @relation("Page_relatedPages")
   relatedInfoOld         Json?
-  relatedInfo            Json       @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  draft                  DraftPage? @relation("DraftPage_published")
-  from_Page_relatedPages Page[]     @relation("Page_relatedPages")
+  relatedInfo            Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  from_Page_relatedPages Page[]  @relation("Page_relatedPages")
 }
 
 model Article {
   id                       String  @id @default(cuid())
   pageTitle                String  @default("")
+  pageImage                Json?
   author                   User?   @relation("Article_author", fields: [authorId], references: [id])
   authorId                 String? @map("author")
   url                      String  @default("")

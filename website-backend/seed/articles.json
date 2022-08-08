@@ -1,0 +1,43 @@
+[
+	{
+		"pageTitle": "Seed Article One",
+		"url": "article-one",
+		"content": {
+			"document": [
+				{
+					"type": "blockquote",
+					"children": [
+						{
+							"type": "paragraph",
+							"children": [
+								{
+									"text": "Article Content"
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "paragraph",
+					"children": [
+						{
+							"text": "hello "
+						},
+						{
+							"text": "world",
+							"bold": true
+						}
+					]
+				}
+			]
+		},
+		"cardTitle": "Seed Article One Card Title",
+		"cardDescription": "Seed Article One Card Description",
+		"cardDescriptionSecondary": "Seed Article One Card Description Secondary",
+		"author": {
+			"connect": {
+				"email": "dev@yopmail.com"
+			}
+		}
+	}
+]

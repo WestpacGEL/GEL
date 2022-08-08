@@ -1,28 +1,15 @@
 import { list, graphql, BaseFields } from '@keystone-6/core';
 import { cloudinaryImage } from '@keystone-6/cloudinary';
-import fs from 'fs';
-import path from 'path';
-import slugify from 'slugify';
 import { Lists } from '.keystone/types';
-import {
-	text,
-	password,
-	select,
-	checkbox,
-	relationship,
-	json,
-} from '@keystone-6/core/fields';
+import { text, password, select, checkbox, relationship, json } from '@keystone-6/core/fields';
 import { document } from '@keystone-6/fields-document';
 import { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '../config';
-import * as mainComponentBlocks from '../admin/component-blocks/main';
-import * as relatedInfoComponentBlocks from '../admin/component-blocks/related-info';
+// import * as mainComponentBlocks from '../admin/component-blocks/main';
+// import * as relatedInfoComponentBlocks from '../admin/component-blocks/related-info';
 import { componentBlocks } from '../admin/component-blocks';
 
-import { fieldType } from '@keystone-6/core/types';
-import { Prisma } from '.prisma/client';
-import { defaultDocumentConfiguration, fauxCheckbox, formatURL, pageFields } from './shared';
+import { defaultDocumentConfiguration, formatURL, pageFields } from './shared';
 
-const isNotNullOrUndefined = <T>(val: T): val is NonNullable<T> => val != null;
 const isSignedIn = ({ session }: { session: any }) => !!session;
 
 const readOnly = {
@@ -44,16 +31,34 @@ const adminOnly = {
 
 const lists: Lists = {
 	User: list({
-		access: adminOnly,
+		// TODO: prevent querying all users unless signedin
+		// name and email are readonly, password is adminonly
+		// changing from adminOnly to readOnly because we need this info in article.author
+		access: {
+			operation: {
+				// read is unrestricted
+				create: isSignedIn,
+				delete: isSignedIn,
+				update: isSignedIn,
+			},
+		},
 		fields: {
 			name: text({
-				validation: { isRequired: true }
+				validation: { isRequired: true },
 			}),
 			email: text({
 				validation: { isRequired: true },
 				isIndexed: 'unique',
 			}),
-			password: password({ validation: { isRequired: true } }),
+			password: password({
+				validation: { isRequired: true },
+				// password read is restricted
+				access: {
+					read: isSignedIn,
+					create: isSignedIn,
+					update: isSignedIn,
+				},
+			}),
 		},
 		ui: {
 			description:
@@ -103,60 +108,11 @@ const lists: Lists = {
 	}),
 	Page: list({
 		access: readOnly,
-		hooks: {
-			resolveInput({ inputData: { revertChangesInDraftToPublished, ...inputData } }) {
-				return inputData;
-			},
-			async afterOperation({ context, item, inputData }) {
-				if (item && inputData?.revertChangesInDraftToPublished) {
-					const relatedPages = await context.prisma.page.findMany({
-						where: { from_Page_relatedPages: { some: { id: item.id } } },
-						select: { draft: { select: { id: true } } },
-					});
-					const { id, ...restItem } = item;
-					const relatedDraftPages = relatedPages
-						.map((x) => x.draft?.id)
-						.filter(isNotNullOrUndefined)
-						.map((publishedId) => ({ publishedId }));
-					const data: Prisma.DraftPageCreateInput = {
-						...restItem,
-						designOld: item.designOld ?? 'DbNull',
-						design: item.design!,
-						codeOld: item.codeOld ?? 'DbNull',
-						code: item.code!,
-						accessibilityOld: item.accessibilityOld ?? 'DbNull',
-						accessibility: item.accessibility!,
-						relatedInfoOld: item.relatedInfoOld ?? 'DbNull',
-						relatedInfo: item.relatedInfo!,
-					};
-					await context.prisma.draftPage.upsert({
-						where: {
-							publishedId: id,
-						},
-						create: {
-							...data,
-							relatedPages: {
-								connect: relatedDraftPages,
-							},
-							published: { connect: { id } },
-						},
-						update: {
-							...data,
-							relatedPages: {
-								set: relatedDraftPages,
-							},
-						},
-					});
-				}
-			},
-		},
 		ui: {
 			labelField: 'pageTitle',
 		},
 		fields: {
 			...pageFields('Page'),
-			draft: relationship({ ref: 'DraftPage.published' }),
-			revertChangesInDraftToPublished: fauxCheckbox(),
 		},
 	}),
 	Article: list({
@@ -174,22 +130,37 @@ const lists: Lists = {
 				},
 			}),
 			author: relationship({ ref: 'User' }),
+			// TODO: Add new unique slug field
+			// 1. hide slug in adminui create - only show in adminui edit
+			// 2. slug should be set automatically based on title using slugify - using list level resolveInput hook
+			// slug: text({
+			// 	validation: { isRequired: true },
+			// 	isIndexed: 'unique',
+			// 	isFilterable: true,
+			// }),
+			
+			// make url a virtual field that prepends forward slash to slug - Eg. i-am-a-slug => /i-am-a-slug]
 			url: text({
 				validation: { isRequired: true },
 				hooks: {
 					resolveInput: ({ item, resolvedData }) => {
 						if (resolvedData.url) {
-							return formatURL(resolvedData.url)
+							return formatURL(resolvedData.url);
 						}
-						return item?.url || ''
-					}
-				}
+						return item?.url || '';
+					},
+				},
 			}),
 
 			content: document({
 				...defaultDocumentConfiguration,
 				componentBlocks,
-				ui: { views: require.resolve('../admin/article-things') },
+				// TODO: check if they need layouts - they probably don't
+				// layouts: [
+				// 	[1, 1],
+				// 	[1, 1, 1],
+				// ],
+				// ui: { views: require.resolve('../admin/article-things') },
 			}),
 
 			cardTitle: text({ validation: { isRequired: true } }),
@@ -202,8 +173,8 @@ const lists: Lists = {
 					apiSecret: CLOUDINARY_API_SECRET,
 				},
 			}),
-		}
-	})
+		},
+	}),
 };
 
 export { lists };

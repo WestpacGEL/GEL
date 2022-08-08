@@ -1,4 +1,6 @@
 /** @jsx jsx */
+import { gql } from '@apollo/client';
+import { DocumentRenderer } from '@keystone-6/document-renderer';
 import { GEL, jsx, Global, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import { Fragment } from 'react';
@@ -9,6 +11,7 @@ import { BASE_URL } from '../../config.js';
 import { List as GELList, Item } from '@westpac/list';
 import { PageContextProvider, usePageContext } from '../../components/providers/pageContext';
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
+import { getApolloClient } from '../../apollo';
 
 // ============================================================
 // Base
@@ -119,7 +122,9 @@ const Header = ({ title, author, ...props }) => {
 // ============================================================
 // Lead text
 // ============================================================
-
+// TODO: wot dis? what is it used for?
+// TODO: component block inline
+// TODO: custom renderer
 const LeadText = ({ children, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE } = useBrand();
@@ -147,6 +152,7 @@ const LeadText = ({ children, ...props }) => {
 // ============================================================
 // Look into overriding GEL Body?
 // - graphik
+// TODO: should this wrap over the entire content?
 const BodyText = ({ children, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE, SPACING } = useBrand();
@@ -189,6 +195,7 @@ const List = (props) => (
 // ============================================================
 // Heading text
 // ============================================================
+// TODO: Custom renderer for headings
 const Heading = ({ level, children, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE } = useBrand();
@@ -226,6 +233,7 @@ const Heading = ({ level, children, ...props }) => {
 // ============================================================
 // Single Image
 // ============================================================
+// TODO: Custom renderer for image
 const SingleImage = ({ src, type, caption, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE } = useBrand();
@@ -237,11 +245,7 @@ const SingleImage = ({ src, type, caption, ...props }) => {
 	return (
 		<Cell {...sizeMap[type]} css={mq({ marginBottom: ['2.625rem', '3.375rem'] })}>
 			<figure css={{ margin: 0 }}>
-				<img
-					src={src}
-					css={{ width: '100%', height: 'auto' }}
-					{...props}
-				/>
+				<img src={src} css={{ width: '100%', height: 'auto' }} {...props} />
 				{caption && (
 					<figcaption
 						css={{
@@ -334,7 +338,8 @@ const DoubleImage = ({ type, caption1, caption2, reducedSpacing, ...props }) => 
 // ============================================================
 // Content Wrappers
 // ============================================================
-
+// TODO: component block for schema
+// TODO: custom renderer for component block
 const Hero = ({ children, ...props }) => {
 	const mq = useMediaQuery();
 	return (
@@ -350,17 +355,18 @@ const Hero = ({ children, ...props }) => {
 };
 
 const Content = ({ children, content, ...props }) => {
+	if (!content.document) return null;
 	return (
 		<div css={{ background: COLORS.background }}>
-			<Container {...props}>{children}</Container>
-      <DocumentRenderer content={content} />
+			{/* <Container {...props}>{children}</Container> */}
+			<DocumentRenderer document={content.document} />
 		</div>
 	);
 };
 
 // TODO: if rendering document editor, when do the relationship queries resolve?
-    // at the point of saving?
-    // or when rendering?
+// at the point of saving?
+// or when rendering?
 
 const Article = ({ pageTitle, pageImage, content, author }) => {
 	return (
@@ -369,11 +375,11 @@ const Article = ({ pageTitle, pageImage, content, author }) => {
 			<main css={{ paddingBottom: '3.0625rem' }}>
 				<Hero>
 					<Grid rowGap={[0, 0]}>
-						<Header title={pageTitle} author={author.name} />
+						{author ? <Header title={pageTitle} author={author.name} /> : null}
 						<SingleImage type="hero" src={pageImage} />
 					</Grid>
 				</Hero>
-				<Content content={content} />
+				{content && <Content content={content} />}
 				<StickyFooter type="article" />
 			</main>
 		</PageContextProvider>
@@ -381,6 +387,10 @@ const Article = ({ pageTitle, pageImage, content, author }) => {
 };
 
 const Wrapper = ({ article, ...props }) => {
+	if (!article) {
+		return <div>Article not found</div>;
+	}
+
 	return (
 		<GEL brand={wbc} {...props}>
 			<Global styles={{ 'body div': { color: COLORS.text } }} />
@@ -389,37 +399,88 @@ const Wrapper = ({ article, ...props }) => {
 	);
 };
 
-export function getStaticPaths () {
-  // TODO: apollo is undefined
-	const articles = await apollo.query({
+export async function getStaticPaths() {
+	const client = getApolloClient();
+
+    // TODO: cleanup unnecessary fields once we figure what needs to go into og: tags
+	const res = await client.query({
 		query: gql`
 			query {
-				articles(where: { status: 'published' }) {
-          url
+				articles {
+					id
+					url
 					pageTitle
-          pageImage
-					content
 					author {
 						name
+					}
+					pageImage {
+						id
+						filename
+						publicUrl
+					}
+					cardTitle
+					cardDescription
+					cardDescriptionSecondary
+					content {
+						document
 					}
 				}
 			}
 		`,
 	});
 
-  return articles.map((article) => {
-    path: article.url,
-    props: article
-  })
+	const articles = res.data ? res.data.articles : [];
+	const paths = articles.map((a) => ({
+		// TODO: temp fix until we add slug as a field to schema
+		params: { slug: a.url.replace('/', '') },
+	}));
+
+	return {
+		paths: paths,
+		fallback: false,
+	};
 }
 
+export async function getStaticProps(context) {
+	const client = getApolloClient();
 
-// TODO: fallback should use the standard next 404 page
+	// TODO: remove this url derivation once we add slug as field type
+	const slug = context.params.slug;
+	const articleUrl = `/${slug}`;
 
-export async function getStaticProps(props) {
+	const res = await client.query({
+		query: gql`
+			query article($url: String!) {
+				articles(where: { url: { equals: $url } }) {
+					id
+					url
+					pageTitle
+					author {
+						name
+					}
+					pageImage {
+						id
+						filename
+						publicUrl
+					}
+					cardTitle
+					cardDescription
+					cardDescriptionSecondary
+					content {
+						document
+					}
+				}
+			}
+		`,
+		variables: {
+			url: articleUrl,
+		},
+	});
+
+	const articles = res.data ? res.data.articles : [];
+	const article = articles.length ? articles[0] : null;
 	return {
-		props: { article: props },
-		revalidate: true,
+		props: { article },
 	};
 }
 
