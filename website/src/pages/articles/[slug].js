@@ -1,14 +1,12 @@
 /** @jsx jsx */
 import { gql } from '@apollo/client';
-import { DocumentRenderer } from '@keystone-6/document-renderer';
 import { GEL, jsx, Global, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
 import React, { Fragment } from 'react';
 import wbc from '@westpac/wbc';
-import { useRouter } from 'next/router';
+import { CustomRenderer } from './custom-renderer';
 import { ArrowLeftIcon } from '@westpac/icon';
 import { BASE_URL } from '../../config.js';
-import { List as GELList, Item } from '@westpac/list';
 import { PageContextProvider, usePageContext } from '../../components/providers/pageContext';
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
 import { getApolloClient } from '../../apollo';
@@ -17,7 +15,7 @@ import { getApolloClient } from '../../apollo';
 // Base
 // ============================================================
 // Refactor to add into brand passed in the GEL Wrapper i.e. { ...wbc, GEL: {COLORS}}
-const COLORS = {
+export const COLORS = {
 	primary: '#C80038',
 	background: '#F3F5F6',
 	border: '#CFD8DC',
@@ -115,112 +113,6 @@ const Header = ({ title, author, ...props }) => {
 			>
 				{author}
 			</p>
-		</Cell>
-	);
-};
-
-// ============================================================
-// Lead text
-// ============================================================
-const LeadText = ({ children, ...props }) => {
-	const mq = useMediaQuery();
-	const { TYPE } = useBrand();
-	return (
-		<Cell width={[12, 10]} left={[1, 2]}>
-			<p
-				css={mq({
-					marginTop: 0,
-					marginBottom: ['2.635rem', '3.375rem'],
-					fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-					fontSize: ['1.125rem', '1.5rem'],
-					lineHeight: 1.6,
-					color: COLORS.text,
-				})}
-				{...props}
-			>
-				{children}
-			</p>
-		</Cell>
-	);
-};
-
-// ============================================================
-// Body text
-// ============================================================
-// Look into overriding GEL Body?
-// - graphik
-const BodyText = ({ children, ...props }) => {
-	const mq = useMediaQuery();
-	const { TYPE, SPACING } = useBrand();
-	return (
-		<Cell width={[12, 10, 8]} left={[1, 2, null, 3]}>
-			<div
-				css={mq({
-					marginBottom: ['2.635rem', '3.375rem'],
-					fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-					lineHeight: 2,
-					p: {
-						margin: `0 0 ${SPACING(2)}`,
-					},
-				})}
-				{...props}
-			>
-				{children}
-			</div>
-		</Cell>
-	);
-};
-
-const List = (props) => (
-	<GELList
-		overrides={{
-			List: {
-				styles: (styles, { type }) => ({
-					...styles,
-					'> li::before': {
-						...(type === 'bullet' && { backgroundColor: COLORS.icon }),
-						borderColor: COLORS.icon,
-					},
-				}),
-			},
-		}}
-		{...props}
-	/>
-);
-
-// ============================================================
-// Heading text
-// ============================================================
-const Heading = ({ level, children, ...props }) => {
-	const mq = useMediaQuery();
-	const { TYPE } = useBrand();
-	const spacingMap = {
-		h2: ['1.5rem', '1.875rem'],
-		h3: '1.125rem',
-		h4: '1.125rem',
-	};
-
-	const fontSizeMap = {
-		h2: ['1.5rem', '1.875rem'],
-		h3: ['1.125rem', '1.5rem'],
-		h4: '1.125rem',
-	};
-
-	const Level = level;
-
-	return (
-		<Cell width={[12, 10, null, 8]} left={[1, 2, null, 3]}>
-			<Level
-				css={mq({
-					fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-					fontSize: fontSizeMap[level],
-					marginTop: 0,
-					marginBottom: spacingMap[level],
-				})}
-				{...props}
-			>
-				{children}
-			</Level>
 		</Cell>
 	);
 };
@@ -347,47 +239,6 @@ const Hero = ({ children, ...props }) => {
 	);
 };
 
-/* Custom Document Renderer to render document field */
-const renderers = {
-	block: {
-		heading: ({ children, level }) => {
-			const HeadingTag = `h${level}`;
-
-			return <Heading level={HeadingTag}>{children}</Heading>;
-		},
-		paragraph({ children }) {
-			return <BodyText>{children}</BodyText>;
-		},
-		list: ({ type, children }) => {
-			// If ul and ol needs to be customised, use type prop as next line
-			// const Tag = type === 'unordered' ? 'ul' : 'ol';
-
-			return (
-				<List>
-					{React.Children.map(React.Children.toArray(children), (child, index) => {
-						return <li>{React.cloneElement(child, {})}</li>;
-					})}
-				</List>
-			);
-		},
-	},
-};
-
-const componentBlockRenderers = {
-	leadText: ({ content }) => {
-		return <LeadText>{content}</LeadText>;
-	},
-};
-
-const CustomRenderer = ({ document }) => {
-	return (
-		<DocumentRenderer
-			document={document}
-			renderers={renderers}
-			componentBlocks={componentBlockRenderers}
-		/>
-	);
-};
 
 const Content = ({ children, content, ...props }) => {
 	if (!content.document) return null;
@@ -399,10 +250,6 @@ const Content = ({ children, content, ...props }) => {
 		</div>
 	);
 };
-
-// TODO: if rendering document editor, when do the relationship queries resolve?
-// at the point of saving?
-// or when rendering?
 
 const Article = ({ pageTitle, pageImage, content, author }) => {
 	return (

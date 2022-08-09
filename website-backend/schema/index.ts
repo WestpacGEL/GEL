@@ -137,7 +137,7 @@ const lists: Lists = {
 			// 	isFilterable: true,
 			// }),
 
-			// make url a virtual field that prepends forward slash to slug - Eg. i-am-a-slug => /i-am-a-slug]
+			// make url a virtual field that prepends forward slash to slug - Eg. i-am-a-slug => /i-am-a-slug
 			url: text({
 				validation: { isRequired: true },
 				hooks: {
@@ -155,6 +155,7 @@ const lists: Lists = {
 				componentBlocks,
 				layouts: [
 					[1, 1],
+					[2, 1],
 					[1, 1, 1],
 				],
 				ui: { views: require.resolve('../admin/article-component-blocks') },

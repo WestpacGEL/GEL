@@ -19,6 +19,7 @@ import { Button } from '@westpac/button';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useSpring, animated } from '@react-spring/web';
 import useMeasure from 'react-use-measure';
+import { CustomRenderer } from './custom-renderer';
 import { PageContextProvider, usePageContext } from '../../components/providers/pageContext';
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
 import merge from 'lodash.merge';
@@ -1017,7 +1018,7 @@ const Footer = (props) => {
 // ============================================================
 // Cards
 // ============================================================
-
+// TODO: this is not used
 const CardGrid = ({ children, ...props }) => {
 	const mq = useMediaQuery();
 	return (
@@ -1033,6 +1034,7 @@ const CardGrid = ({ children, ...props }) => {
 	);
 };
 
+// TODO: this is not used - duplicate in './custom-renderer'
 const Card = ({ img, ...props }) => {
 	const { TYPE } = useBrand();
 	const mq = useMediaQuery();
@@ -1102,23 +1104,21 @@ const Card = ({ img, ...props }) => {
 // Home
 // ============================================================
 // fix main container and footer spacing
-const Home = ({articles}) => {
+const Home = ({ content }) => {
+	const mq = useMediaQuery();
 	return (
 		<PageContextProvider>
 			<div css={{ paddingBottom: '3.0625rem' }}>
 				<Hero />
 				<ActionBar />
-				
-				{/* Singleton - render homepage articles document */}
-				{/* <CardGrid>
-					<Card width={[12, 4]} img="Stream" />
-					<Card width={[12, 4]} img="Stream" />
-					<Card width={[12, 4]} img="Stream" />
-					<Card width={[12, 6]} img="River" />
-					<Card width={[12, 6]} img="River" />
-					<Card width={[12, 8]} img="Ocean" />
-					<Card width={[12, 4]} img="Stream" />
-				</CardGrid> */}
+				<Container
+					css={mq({
+						marginTop: ['1.875rem', '2.25rem', '3rem', '3.375rem', '3.75rem'],
+						marginBottom: ['6.4375rem', '6rem', '4.25rem', '6rem', '6.1875rem'],
+					})}
+				>
+					{content && content.document ? <CustomRenderer document={content.document} /> : null}
+				</Container>
 				<Footer />
 				<StickyFooter type="article" />
 			</div>
@@ -1126,11 +1126,11 @@ const Home = ({articles}) => {
 	);
 };
 
-const Wrapper = ({articles}) => {
+const Wrapper = ({ content }) => {
 	return (
 		<GEL brand={wbc}>
 			<Global styles={{ 'body div': { color: COLORS.text } }} />
-			<Home articles={articles} />
+			<Home content={content} />
 		</GEL>
 	);
 };
@@ -1138,38 +1138,29 @@ const Wrapper = ({articles}) => {
 export async function getStaticProps() {
 	const client = getApolloClient();
 
-	// TODO: singleton - fetch homepage articles document
 	const res = await client.query({
 		query: gql`
-			query {
-				articles {
+			query article($url: String!) {
+				articles(where: { url: { equals: $url } }) {
 					id
-					url
-					pageTitle
-					author {
-						name
-					}
-					pageImage {
-						id
-						filename
-						publicUrl
-					}
-					cardTitle
-					cardDescription
-					cardDescriptionSecondary
 					content {
 						document
 					}
 				}
 			}
 		`,
+		variables: {
+			url: '/home',
+		},
 	});
 
-	const articles = res.data ? res.data.articles : [];
+	const homeArticle =
+		res.data && res.data.articles && res.data.articles.length ? res.data.articles[0] : null;
 
+	const content = homeArticle && homeArticle.content ? homeArticle.content : null;
 	return {
 		props: {
-			articles: articles,
+			content: content,
 		},
 	};
 }

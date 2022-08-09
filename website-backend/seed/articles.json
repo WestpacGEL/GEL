@@ -1,7 +1,16 @@
 [
 	{
+		"url": "/kitchen-sink",
 		"pageTitle": "Kitchen Sink Article",
-		"url": "kitchen-sink",
+		"author": {
+			"connect": {
+				"email": "jane@yopmail.com"
+			}
+		},
+		"pageImage": null,
+		"cardTitle": "Kitchen Sink Article Card Title",
+		"cardDescription": "Kitchen Sink Article Card Description",
+		"cardDescriptionSecondary": "Kitchen Sink Article Card Description Secondary",
 		"content": {
 			"document": [
 				{
@@ -28,16 +37,17 @@
 				},
 				{
 					"type": "component-block",
-					"props": {},
+					"props": {
+						"content": "This is lead text"
+					},
 					"children": [
 						{
 							"type": "component-inline-prop",
 							"children": [
 								{
-									"text": "Hello I'm a lead text"
+									"text": ""
 								}
-							],
-							"propPath": ["content"]
+							]
 						}
 					],
 					"component": "leadText"
@@ -229,16 +239,118 @@
 							"text": ""
 						}
 					]
+				},
+				{
+					"type": "paragraph",
+					"children": [
+						{
+							"text": ""
+						}
+					]
 				}
 			]
-		},
-		"cardTitle": "Kitchen Sink Article Card Title",
-		"cardDescription": "Kitchen Sink Article Card Description",
-		"cardDescriptionSecondary": "Kitchen Sink Article Card Description Secondary",
+		}
+	},
+	{
+		"url": "/home",
+		"pageTitle": "Home",
 		"author": {
 			"connect": {
 				"email": "jane@yopmail.com"
 			}
+		},
+		"pageImage": null,
+		"cardTitle": "Home title",
+		"cardDescription": "Home desc",
+		"cardDescriptionSecondary": "Home desc sec",
+		"content": {
+			"document": [
+				{
+					"type": "layout",
+					"layout": [1, 1, 1],
+					"children": [
+						{
+							"type": "layout-area",
+							"children": [
+								{
+									"type": "paragraph",
+									"children": [
+										{
+											"text": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "layout-area",
+							"children": [
+								{
+									"type": "paragraph",
+									"children": [
+										{
+											"text": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "layout-area",
+							"children": [
+								{
+									"type": "paragraph",
+									"children": [
+										{
+											"text": ""
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "layout",
+					"layout": [1, 1],
+					"children": [
+						{
+							"type": "layout-area",
+							"children": [
+								{
+									"type": "paragraph",
+									"children": [
+										{
+											"text": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "layout-area",
+							"children": [
+								{
+									"type": "paragraph",
+									"children": [
+										{
+											"text": ""
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "paragraph",
+					"children": [
+						{
+							"text": ""
+						}
+					]
+				}
+			]
 		}
 	}
 ]
