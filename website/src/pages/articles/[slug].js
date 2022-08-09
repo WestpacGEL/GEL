@@ -122,9 +122,6 @@ const Header = ({ title, author, ...props }) => {
 // ============================================================
 // Lead text
 // ============================================================
-// TODO: wot dis? what is it used for?
-// TODO: component block inline
-// TODO: custom renderer
 const LeadText = ({ children, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE } = useBrand();
@@ -152,7 +149,6 @@ const LeadText = ({ children, ...props }) => {
 // ============================================================
 // Look into overriding GEL Body?
 // - graphik
-// TODO: should this wrap over the entire content or just over all paragraphs?
 const BodyText = ({ children, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE, SPACING } = useBrand();
@@ -175,7 +171,6 @@ const BodyText = ({ children, ...props }) => {
 	);
 };
 
-// TODO: custom renderer
 const List = (props) => (
 	<GELList
 		overrides={{
@@ -196,7 +191,6 @@ const List = (props) => (
 // ============================================================
 // Heading text
 // ============================================================
-// TODO: Custom renderer for headings - DONE
 const Heading = ({ level, children, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE } = useBrand();
