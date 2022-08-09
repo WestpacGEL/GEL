@@ -1,3 +1,4 @@
+import React from 'react';
 import { component, fields, FormField } from '@keystone-6/fields-document/component-blocks';
 import { Heading as GELHeading } from '@westpac/heading';
 import { GEL, useMediaQuery, useBrand } from '@westpac/core';

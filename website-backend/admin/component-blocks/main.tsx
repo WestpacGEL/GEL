@@ -1,3 +1,4 @@
+import React from 'react';
 import { component, fields, NotEditable } from '@keystone-6/fields-document/component-blocks';
 import { ToolbarButton, ToolbarGroup } from '@keystone-6/fields-document/primitives';
 import { Tooltip } from '@keystone-ui/tooltip';

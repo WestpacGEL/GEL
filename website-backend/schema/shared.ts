@@ -31,6 +31,7 @@ export const defaultDocumentConfiguration = {
       underline: true,
       code: true,
     },
+    headingLevels: [2, 3, 4],
   },
   componentBlocks: mainComponentBlocks.componentBlocks,
   ui: { views: require.resolve('../admin/component-blocks/main') },

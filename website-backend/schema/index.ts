@@ -4,9 +4,7 @@ import { Lists } from '.keystone/types';
 import { text, password, select, checkbox, relationship, json } from '@keystone-6/core/fields';
 import { document } from '@keystone-6/fields-document';
 import { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '../config';
-// import * as mainComponentBlocks from '../admin/component-blocks/main';
-// import * as relatedInfoComponentBlocks from '../admin/component-blocks/related-info';
-import { componentBlocks } from '../admin/component-blocks';
+import { componentBlocks } from '../admin/article-component-blocks';
 
 import { defaultDocumentConfiguration, formatURL, pageFields } from './shared';
 
@@ -138,7 +136,7 @@ const lists: Lists = {
 			// 	isIndexed: 'unique',
 			// 	isFilterable: true,
 			// }),
-			
+
 			// make url a virtual field that prepends forward slash to slug - Eg. i-am-a-slug => /i-am-a-slug]
 			url: text({
 				validation: { isRequired: true },
@@ -155,12 +153,11 @@ const lists: Lists = {
 			content: document({
 				...defaultDocumentConfiguration,
 				componentBlocks,
-				// TODO: check if they need layouts - they probably don't
-				// layouts: [
-				// 	[1, 1],
-				// 	[1, 1, 1],
-				// ],
-				// ui: { views: require.resolve('../admin/article-things') },
+				layouts: [
+					[1, 1],
+					[1, 1, 1],
+				],
+				ui: { views: require.resolve('../admin/article-component-blocks') },
 			}),
 
 			cardTitle: text({ validation: { isRequired: true } }),

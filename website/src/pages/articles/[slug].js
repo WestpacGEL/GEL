@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 import { DocumentRenderer } from '@keystone-6/document-renderer';
 import { GEL, jsx, Global, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Grid, Container } from '@westpac/grid';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import wbc from '@westpac/wbc';
 import { useRouter } from 'next/router';
 import { ArrowLeftIcon } from '@westpac/icon';
@@ -152,7 +152,7 @@ const LeadText = ({ children, ...props }) => {
 // ============================================================
 // Look into overriding GEL Body?
 // - graphik
-// TODO: should this wrap over the entire content?
+// TODO: should this wrap over the entire content or just over all paragraphs?
 const BodyText = ({ children, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE, SPACING } = useBrand();
@@ -175,6 +175,7 @@ const BodyText = ({ children, ...props }) => {
 	);
 };
 
+// TODO: custom renderer
 const List = (props) => (
 	<GELList
 		overrides={{
@@ -195,7 +196,7 @@ const List = (props) => (
 // ============================================================
 // Heading text
 // ============================================================
-// TODO: Custom renderer for headings
+// TODO: Custom renderer for headings - DONE
 const Heading = ({ level, children, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE } = useBrand();
@@ -233,7 +234,7 @@ const Heading = ({ level, children, ...props }) => {
 // ============================================================
 // Single Image
 // ============================================================
-// TODO: Custom renderer for image
+// TODO: Custom renderer for image - need cloudinary dev environment access to build this
 const SingleImage = ({ src, type, caption, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE } = useBrand();
@@ -338,8 +339,6 @@ const DoubleImage = ({ type, caption1, caption2, reducedSpacing, ...props }) => 
 // ============================================================
 // Content Wrappers
 // ============================================================
-// TODO: component block for schema
-// TODO: custom renderer for component block
 const Hero = ({ children, ...props }) => {
 	const mq = useMediaQuery();
 	return (
@@ -354,12 +353,55 @@ const Hero = ({ children, ...props }) => {
 	);
 };
 
+/* Custom Document Renderer to render document field */
+const renderers = {
+	block: {
+		heading: ({ children, level }) => {
+			const HeadingTag = `h${level}`;
+
+			return <Heading level={HeadingTag}>{children}</Heading>;
+		},
+		paragraph({ children }) {
+			return <BodyText>{children}</BodyText>;
+		},
+		list: ({ type, children }) => {
+			// If ul and ol needs to be customised, use type prop as next line
+			// const Tag = type === 'unordered' ? 'ul' : 'ol';
+
+			return (
+				<List>
+					{React.Children.map(React.Children.toArray(children), (child, index) => {
+						return <li>{React.cloneElement(child, {})}</li>;
+					})}
+				</List>
+			);
+		},
+	},
+};
+
+const componentBlockRenderers = {
+	leadText: ({ content }) => {
+		return <LeadText>{content}</LeadText>;
+	},
+};
+
+const CustomRenderer = ({ document }) => {
+	return (
+		<DocumentRenderer
+			document={document}
+			renderers={renderers}
+			componentBlocks={componentBlockRenderers}
+		/>
+	);
+};
+
 const Content = ({ children, content, ...props }) => {
 	if (!content.document) return null;
 	return (
 		<div css={{ background: COLORS.background }}>
-			{/* <Container {...props}>{children}</Container> */}
-			<DocumentRenderer document={content.document} />
+			<Container {...props}>
+				<CustomRenderer document={content.document} />
+			</Container>
 		</div>
 	);
 };
@@ -376,7 +418,7 @@ const Article = ({ pageTitle, pageImage, content, author }) => {
 				<Hero>
 					<Grid rowGap={[0, 0]}>
 						{author ? <Header title={pageTitle} author={author.name} /> : null}
-						<SingleImage type="hero" src={pageImage} />
+						<SingleImage type="hero" src={pageImage && pageImage.url ? pageImage.url : ''} />
 					</Grid>
 				</Hero>
 				{content && <Content content={content} />}
@@ -402,28 +444,12 @@ const Wrapper = ({ article, ...props }) => {
 export async function getStaticPaths() {
 	const client = getApolloClient();
 
-    // TODO: cleanup unnecessary fields once we figure what needs to go into og: tags
 	const res = await client.query({
 		query: gql`
 			query {
 				articles {
 					id
 					url
-					pageTitle
-					author {
-						name
-					}
-					pageImage {
-						id
-						filename
-						publicUrl
-					}
-					cardTitle
-					cardDescription
-					cardDescriptionSecondary
-					content {
-						document
-					}
 				}
 			}
 		`,
@@ -448,6 +474,7 @@ export async function getStaticProps(context) {
 	const slug = context.params.slug;
 	const articleUrl = `/${slug}`;
 
+	// TODO: cleanup unnecessary fields once we figure what needs to go into og: tags
 	const res = await client.query({
 		query: gql`
 			query article($url: String!) {
@@ -463,9 +490,6 @@ export async function getStaticProps(context) {
 						filename
 						publicUrl
 					}
-					cardTitle
-					cardDescription
-					cardDescriptionSecondary
 					content {
 						document
 					}
