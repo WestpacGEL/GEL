@@ -1,17 +1,222 @@
 [
 	{
-		"pageTitle": "Seed Article One",
-		"url": "article-one",
+		"pageTitle": "Kitchen Sink Article",
+		"url": "kitchen-sink",
 		"content": {
 			"document": [
 				{
-					"type": "blockquote",
+					"type": "paragraph",
 					"children": [
 						{
-							"type": "paragraph",
+							"text": "Block text with "
+						},
+						{
+							"bold": true,
+							"text": "bold words"
+						},
+						{
+							"text": " and "
+						},
+						{
+							"text": "italicised words",
+							"italic": true
+						},
+						{
+							"text": " "
+						}
+					]
+				},
+				{
+					"type": "component-block",
+					"props": {},
+					"children": [
+						{
+							"type": "component-inline-prop",
 							"children": [
 								{
-									"text": "Article Content"
+									"text": "Hello I'm a lead text"
+								}
+							],
+							"propPath": ["content"]
+						}
+					],
+					"component": "leadText"
+				},
+				{
+					"type": "heading",
+					"level": 2,
+					"children": [
+						{
+							"text": "This is heading 2"
+						}
+					]
+				},
+				{
+					"type": "heading",
+					"level": 3,
+					"children": [
+						{
+							"text": "This is heading 3"
+						}
+					]
+				},
+				{
+					"type": "heading",
+					"level": 4,
+					"children": [
+						{
+							"text": "This is heading 4"
+						}
+					]
+				},
+				{
+					"type": "divider",
+					"children": [
+						{
+							"text": ""
+						}
+					]
+				},
+				{
+					"type": "paragraph",
+					"children": [
+						{
+							"text": ""
+						}
+					]
+				},
+				{
+					"type": "heading",
+					"level": 4,
+					"children": [
+						{
+							"text": "unordered list:"
+						}
+					]
+				},
+				{
+					"type": "unordered-list",
+					"children": [
+						{
+							"type": "list-item",
+							"children": [
+								{
+									"type": "list-item-content",
+									"children": [
+										{
+											"text": "item 1"
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "list-item",
+							"children": [
+								{
+									"type": "list-item-content",
+									"children": [
+										{
+											"text": "item 2"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "heading",
+					"level": 4,
+					"children": [
+						{
+							"text": "ordered list:"
+						}
+					]
+				},
+				{
+					"type": "ordered-list",
+					"children": [
+						{
+							"type": "list-item",
+							"children": [
+								{
+									"type": "list-item-content",
+									"children": [
+										{
+											"text": "one"
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "list-item",
+							"children": [
+								{
+									"type": "list-item-content",
+									"children": [
+										{
+											"text": "two"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "divider",
+					"children": [
+						{
+							"text": ""
+						}
+					]
+				},
+				{
+					"type": "paragraph",
+					"children": [
+						{
+							"text": ""
+						}
+					]
+				},
+				{
+					"type": "heading",
+					"level": 4,
+					"children": [
+						{
+							"text": "[1, 1] layout example:"
+						}
+					]
+				},
+				{
+					"type": "layout",
+					"layout": [1, 1],
+					"children": [
+						{
+							"type": "layout-area",
+							"children": [
+								{
+									"type": "paragraph",
+									"children": [
+										{
+											"text": "Content on the left"
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "layout-area",
+							"children": [
+								{
+									"type": "paragraph",
+									"children": [
+										{
+											"text": "content on the right"
+										}
+									]
 								}
 							]
 						}
@@ -21,22 +226,18 @@
 					"type": "paragraph",
 					"children": [
 						{
-							"text": "hello "
-						},
-						{
-							"text": "world",
-							"bold": true
+							"text": ""
 						}
 					]
 				}
 			]
 		},
-		"cardTitle": "Seed Article One Card Title",
-		"cardDescription": "Seed Article One Card Description",
-		"cardDescriptionSecondary": "Seed Article One Card Description Secondary",
+		"cardTitle": "Kitchen Sink Article Card Title",
+		"cardDescription": "Kitchen Sink Article Card Description",
+		"cardDescriptionSecondary": "Kitchen Sink Article Card Description Secondary",
 		"author": {
 			"connect": {
-				"email": "dev@yopmail.com"
+				"email": "jane@yopmail.com"
 			}
 		}
 	}
