@@ -8,7 +8,7 @@ import brand from '@westpac/wbc';
 import { Cell } from '@westpac/grid';
 import { ReactNode } from 'react';
 
-function LeadText({ content }: { content: ReactNode }) {
+function LeadText({ content }: { content: ReactNode | string }) {
 	const mq = useMediaQuery();
 	const { TYPE, COLORS } = useBrand();
 
@@ -31,15 +31,15 @@ function LeadText({ content }: { content: ReactNode }) {
 }
 
 export const leadText = component({
-	component: (props) => {
+	preview: (props) => {
 		return (
 			<GEL brand={brand}>
-				<LeadText content={props.content} />
+				<LeadText content={props.fields.content.value} />
 			</GEL>
 		);
 	},
-	props: {
-		content: fields.child({ kind: 'inline', placeholder: '', formatting: 'inherit' }),
+	schema: {
+		content: fields.text({ label: 'LeadText', defaultValue: '' }),
 	},
 	label: 'LeadText',
 });

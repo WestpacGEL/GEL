@@ -71,22 +71,22 @@ function InnerDoAndAvoid({
 }
 
 export const doAndAvoid = component({
-	component: (props) => {
+	preview: (props) => {
 		return (
 			<GEL brand={brand}>
 				<InnerDoAndAvoid
-					doAlt={props.doAlt.value}
-					doImage={typeof props.doImage.value === 'string' ? props.doImage.value : ''}
-					doText={props.doText}
-					dontAlt={props.dontAlt.value}
-					dontImage={typeof props.dontImage.value === 'string' ? props.dontImage.value : ''}
-					dontText={props.dontText}
+					doAlt={props.fields.doAlt.value}
+					doImage={typeof props.fields.doImage.value === 'string' ? props.fields.doImage.value : ''}
+					doText={props.fields.doText.element}
+					dontAlt={props.fields.dontAlt.value}
+					dontImage={typeof props.fields.dontImage.value === 'string' ? props.fields.dontImage.value : ''}
+					dontText={props.fields.dontText.element}
 				/>
 			</GEL>
 		);
 	},
 	label: 'Do and Avoid',
-	props: {
+	schema: {
 		doText: fields.child({ kind: 'inline', placeholder: 'Do Text' }),
 		dontText: fields.child({ kind: 'inline', placeholder: 'Dont Text' }),
 		doAlt: fields.text({ label: 'Do Alt', defaultValue: '' }),

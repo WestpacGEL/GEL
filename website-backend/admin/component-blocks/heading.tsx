@@ -68,20 +68,20 @@ function Heading({
 }
 
 export const heading = component({
-	component: (props) => {
+	preview: (props) => {
 		return (
 			<GEL brand={brand}>
 				<Heading
-					codeStyles={props.codeStyles.value}
-					content={props.content}
-					level={props.level.value}
-					removeTopMargin={props.removeTopMargin.value}
-					size={props.size.value}
+					codeStyles={props.fields.codeStyles.value}
+					content={props.fields.content.element}
+					level={props.fields.level.value}
+					removeTopMargin={props.fields.removeTopMargin.value}
+					size={props.fields.size.value}
 				/>
 			</GEL>
 		);
 	},
-	props: {
+	schema: {
 		content: fields.child({ kind: 'inline', placeholder: '', formatting: 'inherit' }),
 		level: fields.select({
 			defaultValue: 'h2',

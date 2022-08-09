@@ -52,7 +52,7 @@ const Image = ({
 };
 
 export const image = component({
-	component: ({ caption, image, alt }) => (
+	preview: ({ fields: { caption, image, alt } }) => (
 		<NotEditable>
 			<GEL brand={brand}>
 				<Image
@@ -64,7 +64,7 @@ export const image = component({
 			</GEL>
 		</NotEditable>
 	),
-	props: {
+	schema: {
 		image: imageField({ label: 'Image' }),
 		alt: fields.text({ label: 'image alt text' }),
 		caption: fields.text({ label: 'image caption' }),
