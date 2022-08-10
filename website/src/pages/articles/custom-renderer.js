@@ -123,7 +123,9 @@ export const ArticleCard = ({ article }) => {
 	if (!article) return null;
 
 	// TODO: ask Jeremy what behaviour should be here
-	const imageSrc = article.pageImage?.publicUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
+	const imageSrc =
+		article.pageImage?.publicUrl ||
+		'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
 	const title = article.cardTitle || 'Default Title';
 	const description = article.cardTitle || 'Default Description';
 	const anchorURL = article.url ? `/articles${article.url}` : '#';
@@ -215,7 +217,7 @@ const renderers = {
 			return (
 				<WBCGrid
 					columnGap={[12, 18, 24]}
-                    gap={[24]}
+					gap={[24]}
 					style={{
 						display: 'grid',
 						gridTemplateColumns: layout.map((x) => `${x}fr`).join(' '),
@@ -230,7 +232,6 @@ const renderers = {
 	},
 };
 
-
 const componentBlockRenderers = {
 	article: ({ article }) => {
 		return <ArticleCard article={article?.data} />;
@@ -239,11 +240,11 @@ const componentBlockRenderers = {
 		return <LeadText>{content}</LeadText>;
 	},
 	// TODO: image?
-	image: ({ publicUrl }) => {
-		const imageSrc = publicUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
-		// TODO: use SingleImage?
-		return <img src={imageSrc}></img>
-	}
+	// image: ({ publicUrl }) => {
+	// 	const imageSrc = publicUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
+	// 	// TODO: use SingleImage?
+	// 	return <img src={imageSrc}></img>
+	// }
 };
 
 // TODO: this is used in both './[slug].js' and './index.js' - move it to a shareable dir

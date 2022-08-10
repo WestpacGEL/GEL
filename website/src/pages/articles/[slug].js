@@ -90,16 +90,18 @@ const Header = ({ title, author, ...props }) => {
 			>
 				{title}
 			</h1>
-			{author ? <p
-				css={mq({
-					fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-					color: COLORS.muted,
-					marginTop: 0,
-					marginBottom: ['2.625rem', '3rem'],
-				})}
-			>
-				{author}
-			</p> : null}
+			{author ? (
+				<p
+					css={mq({
+						fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
+						color: COLORS.muted,
+						marginTop: 0,
+						marginBottom: ['2.625rem', '3rem'],
+					})}
+				>
+					{author}
+				</p>
+			) : null}
 		</Cell>
 	);
 };
@@ -160,7 +162,8 @@ const Content = ({ document, children, ...props }) => {
 
 const Article = ({ pageTitle, pageImage, content, author }) => {
 	// TODO: ask Jeremy what behaviour should be here
-	const imageSrc = pageImage?.publicUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
+	const imageSrc =
+		pageImage?.publicUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
 
 	return (
 		<PageContextProvider>
@@ -172,7 +175,7 @@ const Article = ({ pageTitle, pageImage, content, author }) => {
 						<SingleImage type="hero" src={imageSrc} />
 					</Grid>
 				</Hero>
-				{content?.document && <Content content={content.document} />}
+				{content?.document && <Content document={content.document} />}
 				<StickyFooter type="article" />
 			</main>
 		</PageContextProvider>
