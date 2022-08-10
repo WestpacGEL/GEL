@@ -11,9 +11,6 @@ import { PageContextProvider, usePageContext } from '../../components/providers/
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
 import { getApolloClient } from '../../apollo';
 
-// ============================================================
-// Base
-// ============================================================
 // Refactor to add into brand passed in the GEL Wrapper i.e. { ...wbc, GEL: {COLORS}}
 export const COLORS = {
 	primary: '#C80038',
@@ -45,9 +42,6 @@ const GELLogo = (props) => (
 	</svg>
 );
 
-// ============================================================
-// Base
-// ============================================================
 const HeaderBar = (props) => {
 	const mq = useMediaQuery();
 	const { pageHeadingRef } = usePageContext();
@@ -79,13 +73,6 @@ const HeaderBar = (props) => {
 	);
 };
 
-// ============================================================
-// Blocks
-// ============================================================
-// ============================================================
-// Title
-// ============================================================
-//Title, byline,
 const Header = ({ title, author, ...props }) => {
 	const { TYPE } = useBrand();
 	const mq = useMediaQuery();
@@ -103,7 +90,7 @@ const Header = ({ title, author, ...props }) => {
 			>
 				{title}
 			</h1>
-			<p
+			{author ? <p
 				css={mq({
 					fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
 					color: COLORS.muted,
@@ -112,15 +99,11 @@ const Header = ({ title, author, ...props }) => {
 				})}
 			>
 				{author}
-			</p>
+			</p> : null}
 		</Cell>
 	);
 };
 
-// ============================================================
-// Single Image
-// ============================================================
-// TODO: Custom renderer for image - need cloudinary dev environment access to build this
 const SingleImage = ({ src, type, caption, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE } = useBrand();
@@ -151,80 +134,6 @@ const SingleImage = ({ src, type, caption, ...props }) => {
 	);
 };
 
-// ============================================================
-// Double Image
-// ============================================================
-
-// TODO: remove, replace with layouts in document-editor
-const DoubleImage = ({ type, caption1, caption2, reducedSpacing, ...props }) => {
-	const mq = useMediaQuery();
-	const { TYPE } = useBrand();
-	const sizeMap = {
-		bodyWide: { width: [12, 5], left: [1, 2], right: [1, 7] },
-		body: { width: [12, 5, null, 4], left: [1, 2, null, 3], right: [1, 7] },
-	};
-
-	return (
-		<Fragment>
-			<Cell
-				width={sizeMap[type].width}
-				left={sizeMap[type].left}
-				css={mq({
-					marginBottom: reducedSpacing ? ['1.375rem', '1.875rem'] : ['1.5rem', '3.375rem'],
-				})}
-			>
-				<figure css={{ margin: 0 }}>
-					<img
-						src={`${BASE_URL}/images/article-image-1.png`}
-						css={{ width: '100%', height: 'auto' }}
-						{...props}
-					/>
-					<figcaption
-						css={{
-							marginTop: '0.75rem',
-							fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-							fontSize: '0.875rem',
-							color: COLORS.muted,
-							lineHeight: 1.07,
-						}}
-					>
-						{caption1}
-					</figcaption>
-				</figure>
-			</Cell>
-			<Cell
-				width={sizeMap[type].width}
-				left={sizeMap[type].right}
-				css={mq({
-					marginBottom: reducedSpacing ? ['1.375rem', '1.875rem'] : ['2.625rem', '3.375rem'],
-				})}
-			>
-				<figure css={{ margin: 0 }}>
-					<img
-						src={`${BASE_URL}/images/article-image-2.png`}
-						css={{ width: '100%', height: 'auto' }}
-						{...props}
-					/>
-					<figcaption
-						css={{
-							marginTop: '0.75rem',
-							fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-							fontSize: '0.875rem',
-							color: COLORS.muted,
-							lineHeight: 1.07,
-						}}
-					>
-						{caption2}
-					</figcaption>
-				</figure>
-			</Cell>
-		</Fragment>
-	);
-};
-
-// ============================================================
-// Content Wrappers
-// ============================================================
 const Hero = ({ children, ...props }) => {
 	const mq = useMediaQuery();
 	return (
@@ -239,30 +148,31 @@ const Hero = ({ children, ...props }) => {
 	);
 };
 
-
-const Content = ({ children, content, ...props }) => {
-	if (!content.document) return null;
+const Content = ({ document, children, ...props }) => {
 	return (
 		<div css={{ background: COLORS.background }}>
 			<Container {...props}>
-				<CustomRenderer document={content.document} />
+				<CustomRenderer document={document} />
 			</Container>
 		</div>
 	);
 };
 
 const Article = ({ pageTitle, pageImage, content, author }) => {
+	// TODO: ask Jeremy what behaviour should be here
+	const imageSrc = pageImage?.publicUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
+
 	return (
 		<PageContextProvider>
 			<HeaderBar />
 			<main css={{ paddingBottom: '3.0625rem' }}>
 				<Hero>
 					<Grid rowGap={[0, 0]}>
-						{author ? <Header title={pageTitle} author={author.name} /> : null}
-						<SingleImage type="hero" src={pageImage && pageImage.url ? pageImage.url : ''} />
+						<Header title={pageTitle} author={author?.name} />
+						<SingleImage type="hero" src={imageSrc} />
 					</Grid>
 				</Hero>
-				{content && <Content content={content} />}
+				{content?.document && <Content content={content.document} />}
 				<StickyFooter type="article" />
 			</main>
 		</PageContextProvider>
@@ -315,7 +225,6 @@ export async function getStaticProps(context) {
 	const slug = context.params.slug;
 	const articleUrl = `/${slug}`;
 
-	// TODO: cleanup unnecessary fields once we figure what needs to go into og: tags
 	const res = await client.query({
 		query: gql`
 			query article($url: String!) {
@@ -342,8 +251,8 @@ export async function getStaticProps(context) {
 		},
 	});
 
-	const articles = res.data ? res.data.articles : [];
-	const article = articles.length ? articles[0] : null;
+	const articles = res?.data?.articles || [];
+	const article = articles[0] || null;
 	return {
 		props: { article },
 	};

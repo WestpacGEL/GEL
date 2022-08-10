@@ -537,9 +537,6 @@ const GELLogo = (props) => (
 	</svg>
 );
 
-// ============================================================
-// Base
-// ============================================================
 const COLORS = {
 	primary: '#C80038',
 	background: '#F3F5F6',
@@ -600,10 +597,6 @@ const Container = (props) => {
 		/>
 	);
 };
-
-// ============================================================
-// Hero
-// ============================================================
 
 const Hero = (props) => {
 	const mq = useMediaQuery();
@@ -1015,94 +1008,6 @@ const Footer = (props) => {
 	);
 };
 
-// ============================================================
-// Cards
-// ============================================================
-// TODO: this is not used
-const CardGrid = ({ children, ...props }) => {
-	const mq = useMediaQuery();
-	return (
-		<Container
-			css={mq({
-				marginTop: ['1.875rem', '2.25rem', '3rem', '3.375rem', '3.75rem'],
-				marginBottom: ['6.4375rem', '6rem', '4.25rem', '6rem', '6.1875rem'],
-			})}
-			{...props}
-		>
-			<Grid gap={[24]}>{children}</Grid>
-		</Container>
-	);
-};
-
-// TODO: this is not used - duplicate in './custom-renderer'
-const Card = ({ img, ...props }) => {
-	const { TYPE } = useBrand();
-	const mq = useMediaQuery();
-	return (
-		<Cell {...props}>
-			<a
-				href="#"
-				css={{
-					height: '100%',
-					display: 'flex',
-					flexDirection: 'column',
-					textDecoration: 'none',
-					':hover img': { borderRadius: 200 },
-				}}
-			>
-				<img
-					css={{
-						flexGrow: 1,
-						width: '100%',
-						minHeight: '250px',
-						objectFit: 'cover',
-						transition: 'border-radius 0.2s',
-					}}
-					src={`${BASE_URL}/images/${img}.png`}
-					alt=""
-				/>
-				<div
-					css={mq({
-						paddingTop: ['1.5rem', '2.4375rem'],
-						paddingLeft: '0.375rem',
-						borderRight: `solid ${COLORS.border}`,
-						borderRightWidth: [0, 1],
-					})}
-				>
-					<h4
-						css={{
-							margin: '0 0 0.75rem 0',
-							fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-							fontSize: '1rem',
-							textTransform: 'uppercase',
-							lineHeight: 1.12,
-						}}
-					>
-						Title goes here.
-					</h4>
-					<p
-						css={{
-							margin: '0 1.5rem 0.75rem 0',
-							fontSize: '1rem',
-							fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-							lineHeight: 1.5,
-						}}
-					>
-						Some description
-					</p>
-					<ArrowRightIcon
-						color={COLORS.icon}
-						css={mq({ display: 'block', marginLeft: 'auto', marginRight: [0, '0.375rem'] })}
-					/>
-				</div>
-			</a>
-		</Cell>
-	);
-};
-
-// ============================================================
-// Home
-// ============================================================
 // fix main container and footer spacing
 const Home = ({ content }) => {
 	const mq = useMediaQuery();
@@ -1117,7 +1022,7 @@ const Home = ({ content }) => {
 						marginBottom: ['6.4375rem', '6rem', '4.25rem', '6rem', '6.1875rem'],
 					})}
 				>
-					{content && content.document ? <CustomRenderer document={content.document} /> : null}
+					{content?.document ? <CustomRenderer document={content.document} /> : null}
 				</Container>
 				<Footer />
 				<StickyFooter type="article" />
@@ -1144,7 +1049,7 @@ export async function getStaticProps() {
 				articles(where: { url: { equals: $url } }) {
 					id
 					content {
-						document
+						document(hydrateRelationships:true)
 					}
 				}
 			}
@@ -1154,13 +1059,11 @@ export async function getStaticProps() {
 		},
 	});
 
-	const homeArticle =
-		res.data && res.data.articles && res.data.articles.length ? res.data.articles[0] : null;
-
-	const content = homeArticle && homeArticle.content ? homeArticle.content : null;
+	const homeArticle = res?.data?.articles[0] || null;
+	const content = homeArticle?.content || null;
 	return {
 		props: {
-			content: content,
+			content,
 		},
 	};
 }

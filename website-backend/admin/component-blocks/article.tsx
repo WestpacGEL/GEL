@@ -95,7 +95,7 @@ export const article = component({
 			label: 'Article',
 			listKey: 'Article',
 			many: false,
-			selection: `cardTitle cardDescription cardDescriptionSecondary pageImage { id filename publicUrl }`,
+			selection: `id url cardTitle cardDescription cardDescriptionSecondary pageImage { id filename publicUrl }`,
 		}),
 	},
 	label: 'Article',

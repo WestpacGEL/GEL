@@ -116,43 +116,14 @@ const Heading = ({ level, children, ...props }) => {
 	);
 };
 
-const useArticleQuery = (id) => {
-	const { data, error } = useQuery(
-		gql`
-			query article($id: ID!) {
-				article(where: { id: $id }) {
-					id
-					url
-					pageTitle
-					author {
-						name
-					}
-					pageImage {
-						id
-						filename
-						publicUrl
-					}
-					cardTitle
-					cardDescription
-				}
-			}
-		`,
-		{ variables: { id }, skip: !id }
-	);
-
-	return { data, error };
-};
-
 // Card - moved from './index.js'
-export const ArticleCard = ({ article = {} }) => {
+export const ArticleCard = ({ article }) => {
 	const { TYPE } = useBrand();
 	const mq = useMediaQuery();
+	if (!article) return null;
 
-	// example URL
-	const imageSrc =
-		article.pageImage && article.pageImage.publicUrl
-			? article.pageImage.publicUrl
-			: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
+	// TODO: ask Jeremy what behaviour should be here
+	const imageSrc = article.pageImage?.publicUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
 	const title = article.cardTitle || 'Default Title';
 	const description = article.cardTitle || 'Default Description';
 	const anchorURL = article.url ? `/articles${article.url}` : '#';
@@ -259,15 +230,20 @@ const renderers = {
 	},
 };
 
+
 const componentBlockRenderers = {
-	article: (props) => {
-		const id = props.article && props.article.id ? props.article.id : undefined;
-		const { data, error } = useArticleQuery(id);
-		return data && data.article ? <ArticleCard article={data.article} /> : null;
+	article: ({ article }) => {
+		return <ArticleCard article={article?.data} />;
 	},
 	leadText: ({ content }) => {
 		return <LeadText>{content}</LeadText>;
 	},
+	// TODO: image?
+	image: ({ publicUrl }) => {
+		const imageSrc = publicUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
+		// TODO: use SingleImage?
+		return <img src={imageSrc}></img>
+	}
 };
 
 // TODO: this is used in both './[slug].js' and './index.js' - move it to a shareable dir

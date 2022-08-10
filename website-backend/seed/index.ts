@@ -8,7 +8,7 @@ const seedUsers = async (context: Context) => {
 	const rawJSONData = fs.readFileSync(path.resolve(__dirname, './users.json'), 'utf-8');
 	const seedUsers = JSON.parse(rawJSONData);
 
-	for await (const user of seedUsers) {
+	for (const user of seedUsers) {
 		try {
 			const queriedUser = await query.User.findOne({
 				where: {
@@ -37,7 +37,7 @@ const seedArticles = async (context: Context) => {
 	const rawJSONData = fs.readFileSync(path.resolve(__dirname, './articles.json'), 'utf-8');
 	const seedArticles = JSON.parse(rawJSONData);
 
-	for await (const article of seedArticles) {
+	for (const article of seedArticles) {
 		try {
 			const queriedArticles = await query.Article.findMany({
 				where: {
@@ -73,7 +73,32 @@ const seedArticles = async (context: Context) => {
 	}
 };
 
+const seedThousandArticles = async (context: Context) => {
+	const { query } = context.sudo();
+
+	for (let i = 0; i < 1000; ++i) {
+		try {
+			await query.Article.createOne({
+				data: {
+					pageTitle: 'title: ' + i,
+					url: '/' + 'url' + i,
+					cardTitle: 'cardTitle: ' + i,
+					cardDescription: 'cardDescription: ' + i,
+					author: {
+						connect: {
+							email: 'dev@yopmail.com',
+						},
+					},
+				},
+			});
+		} catch (e) {
+			console.error('something went wrong');
+		}
+	}
+};
+
 export const seedDatabase = async (context: Context) => {
 	await seedUsers(context);
 	await seedArticles(context);
+	// await seedThousandArticles(context);
 };
