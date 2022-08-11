@@ -4,11 +4,16 @@ import React from 'react';
 import { gql } from '@apollo/client';
 import { useQuery } from '@apollo/react-hooks';
 import { DocumentRenderer } from '@keystone-6/document-renderer';
+import { Heading as GELHeading } from '@westpac/heading';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { ArrowRightIcon } from '@westpac/icon';
 import { Cell, Container, Grid as WBCGrid } from '@westpac/grid';
 import { List as GELList, Item as ListItem } from '@westpac/list';
+import merge from 'lodash.merge';
 import { COLORS } from './[slug]';
+import { SingleImage } from './[slug]';
+import { defaultRenderers } from '../../components/pages/single-component/document-renderer';
+import { getTypeScaleMargin } from '../../components/body';
 
 // ============================================================
 // Lead text
@@ -116,6 +121,39 @@ const Heading = ({ level, children, ...props }) => {
 	);
 };
 
+function CustomHeadingComponent({ level, codeStyles, removeTopMargin, size, content }) {
+	const mq = useMediaQuery();
+	const { SPACING } = useBrand();
+
+	return (
+		<GELHeading
+			tag={level}
+			size={size <= 6 ? [7, null, size] : size}
+			uppercase={size === 10}
+			overrides={{
+				Heading: {
+					styles: (styles) =>
+						merge({}, styles, {
+							...mq({
+								scrollMarginTop: [
+									`calc(66px + 66px + ${SPACING(7)})`,
+									null,
+									`calc(66px + 90px + ${SPACING(10)})`,
+								],
+								marginTop: !removeTopMargin && getTypeScaleMargin(size).top,
+								marginBottom: codeStyles
+									? getTypeScaleMargin(size).bottomTight
+									: getTypeScaleMargin(size).bottom,
+							})[0],
+						}),
+				},
+			}}
+		>
+			{content}
+		</GELHeading>
+	);
+}
+
 // Card - moved from './index.js'
 export const ArticleCard = ({ article }) => {
 	const { TYPE } = useBrand();
@@ -191,28 +229,30 @@ export const ArticleCard = ({ article }) => {
 	);
 };
 
-const renderers = {
+const articleRenderers = {
 	block: {
-		heading: ({ children, level }) => {
-			const HeadingTag = `h${level}`;
+		// if you wanna use a different Heading component/styles for article headings
+		// heading: ({ children, level }) => {
+		// 	const HeadingTag = `h${level}`;
 
-			return <Heading level={HeadingTag}>{children}</Heading>;
-		},
+		// 	return <Heading level={HeadingTag}>{children}</Heading>;
+		// },
 		paragraph({ children }) {
 			return <BodyText>{children}</BodyText>;
 		},
-		list: ({ type, children }) => {
-			// If ul and ol needs to be customised, use type prop as next line
-			// const Tag = type === 'unordered' ? 'ul' : 'ol';
+		// if you wanna use a different List component/styles for ul/li elements
+		// list: ({ type, children }) => {
+		// 	// If ul and ol needs to be customised, use type prop as next line
+		// 	// const Tag = type === 'unordered' ? 'ul' : 'ol';
 
-			return (
-				<List>
-					{React.Children.map(React.Children.toArray(children), (child, index) => {
-						return <ListItem>{React.cloneElement(child, {})}</ListItem>;
-					})}
-				</List>
-			);
-		},
+		// 	return (
+		// 		<List>
+		// 			{React.Children.map(React.Children.toArray(children), (child, index) => {
+		// 				return <ListItem>{React.cloneElement(child, {})}</ListItem>;
+		// 			})}
+		// 		</List>
+		// 	);
+		// },
 		layout: ({ children, layout }) => {
 			return (
 				<WBCGrid
@@ -232,23 +272,32 @@ const renderers = {
 	},
 };
 
-const componentBlockRenderers = {
+const articleComponentBlocks = {
 	article: ({ article }) => {
 		return <ArticleCard article={article?.data} />;
 	},
 	leadText: ({ content }) => {
 		return <LeadText>{content}</LeadText>;
 	},
-	// TODO: image?
-	// image: ({ publicUrl }) => {
-	// 	const imageSrc = publicUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
-	// 	// TODO: use SingleImage?
-	// 	return <img src={imageSrc}></img>
-	// }
+	image: ({ image }) => {
+		const imageSrc = image || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
+		return <SingleImage type="body" src={imageSrc} />;
+	},
+	heading({ addTableContent, content, level, size, codeStyles, removeTopMargin }) {
+		const props = { addTableContent, content, level, size, codeStyles, removeTopMargin };
+		return <CustomHeadingComponent {...props} />;
+	},
 };
 
 // TODO: this is used in both './[slug].js' and './index.js' - move it to a shareable dir
 export const CustomRenderer = ({ document }) => {
+	const renderers = {
+		inline: { ...defaultRenderers.inline, ...articleRenderers.inline },
+		block: { ...defaultRenderers.block, ...articleRenderers.block },
+	};
+
+	const componentBlockRenderers = { ...articleComponentBlocks };
+
 	return (
 		<DocumentRenderer
 			document={document}

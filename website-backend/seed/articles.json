@@ -266,47 +266,222 @@
 		"content": {
 			"document": [
 				{
-					"type": "layout",
-					"layout": [1, 1, 1],
+					"type": "paragraph",
 					"children": [
 						{
-							"type": "layout-area",
+							"text": "Block text with "
+						},
+						{
+							"bold": true,
+							"text": "bold words"
+						},
+						{
+							"text": " and "
+						},
+						{
+							"text": "italicised words",
+							"italic": true
+						},
+						{
+							"text": " "
+						}
+					]
+				},
+				{
+					"type": "component-block",
+					"props": {
+						"size": 6,
+						"level": "h2",
+						"content": null,
+						"codeStyles": false,
+						"addTableContent": false,
+						"removeTopMargin": false
+					},
+					"children": [
+						{
+							"type": "component-inline-prop",
 							"children": [
 								{
-									"type": "paragraph",
+									"text": "Custom heading component block"
+								}
+							],
+							"propPath": ["content"]
+						}
+					],
+					"component": "heading"
+				},
+				{
+					"type": "paragraph",
+					"children": [
+						{
+							"text": "Custom Image component next —"
+						}
+					]
+				},
+				{
+					"type": "component-block",
+					"props": {
+						"alt": "",
+						"image": "https://res.cloudinary.com/dineshpandiyantm/image/upload/v1660182916/cl6oe1jnx00004k3u7sge17rm.jpg",
+						"caption": ""
+					},
+					"children": [
+						{
+							"type": "component-inline-prop",
+							"children": [
+								{
+									"text": ""
+								}
+							]
+						}
+					],
+					"component": "image"
+				},
+				{
+					"type": "heading",
+					"level": 2,
+					"children": [
+						{
+							"text": "This is heading 2"
+						}
+					]
+				},
+				{
+					"type": "heading",
+					"level": 3,
+					"children": [
+						{
+							"text": "This is heading 3"
+						}
+					]
+				},
+				{
+					"type": "heading",
+					"level": 4,
+					"children": [
+						{
+							"text": "This is heading 4"
+						}
+					]
+				},
+				{
+					"type": "divider",
+					"children": [
+						{
+							"text": ""
+						}
+					]
+				},
+				{
+					"type": "paragraph",
+					"children": [
+						{
+							"text": ""
+						}
+					]
+				},
+				{
+					"type": "heading",
+					"level": 4,
+					"children": [
+						{
+							"text": "unordered list:"
+						}
+					]
+				},
+				{
+					"type": "unordered-list",
+					"children": [
+						{
+							"type": "list-item",
+							"children": [
+								{
+									"type": "list-item-content",
 									"children": [
 										{
-											"text": ""
+											"text": "item 1"
 										}
 									]
 								}
 							]
 						},
 						{
-							"type": "layout-area",
+							"type": "list-item",
 							"children": [
 								{
-									"type": "paragraph",
+									"type": "list-item-content",
 									"children": [
 										{
-											"text": ""
+											"text": "item 2"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "heading",
+					"level": 4,
+					"children": [
+						{
+							"text": "ordered list:"
+						}
+					]
+				},
+				{
+					"type": "ordered-list",
+					"children": [
+						{
+							"type": "list-item",
+							"children": [
+								{
+									"type": "list-item-content",
+									"children": [
+										{
+											"text": "one"
 										}
 									]
 								}
 							]
 						},
 						{
-							"type": "layout-area",
+							"type": "list-item",
 							"children": [
 								{
-									"type": "paragraph",
+									"type": "list-item-content",
 									"children": [
 										{
-											"text": ""
+											"text": "two"
 										}
 									]
 								}
 							]
+						}
+					]
+				},
+				{
+					"type": "divider",
+					"children": [
+						{
+							"text": ""
+						}
+					]
+				},
+				{
+					"type": "paragraph",
+					"children": [
+						{
+							"text": ""
+						}
+					]
+				},
+				{
+					"type": "heading",
+					"level": 4,
+					"children": [
+						{
+							"text": "[1, 1] layout example:"
 						}
 					]
 				},
@@ -321,7 +496,7 @@
 									"type": "paragraph",
 									"children": [
 										{
-											"text": ""
+											"text": "Content on the left"
 										}
 									]
 								}
@@ -334,11 +509,19 @@
 									"type": "paragraph",
 									"children": [
 										{
-											"text": ""
+											"text": "content on the right"
 										}
 									]
 								}
 							]
+						}
+					]
+				},
+				{
+					"type": "paragraph",
+					"children": [
+						{
+							"text": ""
 						}
 					]
 				},

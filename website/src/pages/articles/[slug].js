@@ -106,7 +106,7 @@ const Header = ({ title, author, ...props }) => {
 	);
 };
 
-const SingleImage = ({ src, type, caption, ...props }) => {
+export const SingleImage = ({ src, type, caption, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE } = useBrand();
 	const sizeMap = {
@@ -114,10 +114,12 @@ const SingleImage = ({ src, type, caption, ...props }) => {
 		bodyWide: { width: [12, 10], left: [1, 2] },
 		body: { width: [12, 10, null, 8], left: [1, 2, null, 3] },
 	};
+	const srcURL = src || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
+
 	return (
 		<Cell {...sizeMap[type]} css={mq({ marginBottom: ['2.625rem', '3.375rem'] })}>
 			<figure css={{ margin: 0 }}>
-				<img src={src} css={{ width: '100%', height: 'auto' }} {...props} />
+				<img src={srcURL} css={{ width: '100%', height: 'auto' }} {...props} />
 				{caption && (
 					<figcaption
 						css={{
@@ -161,10 +163,6 @@ const Content = ({ document, children, ...props }) => {
 };
 
 const Article = ({ pageTitle, pageImage, content, author }) => {
-	// TODO: ask Jeremy what behaviour should be here
-	const imageSrc =
-		pageImage?.publicUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
-
 	return (
 		<PageContextProvider>
 			<HeaderBar />
@@ -172,7 +170,7 @@ const Article = ({ pageTitle, pageImage, content, author }) => {
 				<Hero>
 					<Grid rowGap={[0, 0]}>
 						<Header title={pageTitle} author={author?.name} />
-						<SingleImage type="hero" src={imageSrc} />
+						<SingleImage type="hero" src={pageImage?.publicUrl} />
 					</Grid>
 				</Hero>
 				{content?.document && <Content document={content.document} />}
