@@ -1,29 +1,13 @@
 import { list, graphql, BaseFields } from '@keystone-6/core';
 import { cloudinaryImage } from '@keystone-6/cloudinary';
-import fs from 'fs';
-import path from 'path';
-import slugify from 'slugify';
 import { Lists } from '.keystone/types';
-import {
-	text,
-	password,
-	select,
-	checkbox,
-	relationship,
-	json,
-	virtual,
-} from '@keystone-6/core/fields';
+import { text, password, select, checkbox, relationship, json } from '@keystone-6/core/fields';
 import { document } from '@keystone-6/fields-document';
 import { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '../config';
-import * as mainComponentBlocks from '../admin/component-blocks/main';
-import * as relatedInfoComponentBlocks from '../admin/component-blocks/related-info';
-import { componentBlocks } from '../admin/component-blocks';
+import { componentBlocks } from '../admin/article-component-blocks';
 
-import { fieldType } from '@keystone-6/core/types';
-import { Prisma } from '.prisma/client';
 import { defaultDocumentConfiguration, formatURL, pageFields } from './shared';
 
-const isNotNullOrUndefined = <T>(val: T): val is NonNullable<T> => val != null;
 const isSignedIn = ({ session }: { session: any }) => !!session;
 
 const readOnly = {
@@ -45,13 +29,34 @@ const adminOnly = {
 
 const lists: Lists = {
 	User: list({
-		access: adminOnly,
+		// TODO: prevent querying all users unless signedin
+		// name and email are readonly, password is adminonly
+		// changing from adminOnly to readOnly because we need this info in article.author
+		access: {
+			operation: {
+				// read is unrestricted
+				create: isSignedIn,
+				delete: isSignedIn,
+				update: isSignedIn,
+			},
+		},
 		fields: {
+			name: text({
+				validation: { isRequired: true },
+			}),
 			email: text({
 				validation: { isRequired: true },
 				isIndexed: 'unique',
 			}),
-			password: password({ validation: { isRequired: true } }),
+			password: password({
+				validation: { isRequired: true },
+				// password read is restricted
+				access: {
+					read: isSignedIn,
+					create: isSignedIn,
+					update: isSignedIn,
+				},
+			}),
 		},
 		ui: {
 			description:
@@ -99,157 +104,13 @@ const lists: Lists = {
 			},
 		},
 	}),
-	DraftPage: list({
-		access: readOnly,
-		hooks: {
-			resolveInput({ inputData: { publish, ...inputData } }) {
-				return inputData;
-			},
-			async afterOperation({ context, item, inputData }) {
-				if (item && inputData?.publish) {
-					const relatedPages = await context.prisma.draftPage.findMany({
-						where: { from_DraftPage_relatedPages: { some: { id: item.id } } },
-						select: { publishedId: true },
-					});
-					const { id, publishedId, ...restItem } = item;
-
-					const data = {
-						...restItem,
-						designOld: item.designOld ?? 'DbNull',
-						design: item.design!,
-						codeOld: item.codeOld ?? 'DbNull',
-						code: item.code!,
-						accessibilityOld: item.accessibilityOld ?? 'DbNull',
-						accessibility: item.accessibility!,
-						relatedInfoOld: item.relatedInfoOld ?? 'DbNull',
-						relatedInfo: item.relatedInfo!,
-						relatedPages: {
-							connect: relatedPages
-								.map((x) => x.publishedId)
-								.filter(isNotNullOrUndefined)
-								.map((id) => ({ id })),
-						},
-					};
-					if (publishedId !== null) {
-						// update the item
-						await context.prisma.page.update({
-							where: { id: publishedId },
-							data,
-						});
-					} else {
-						// create the item
-						await context.prisma.page.create({
-							data: { ...data, draft: { connect: { id } } },
-						});
-					}
-				}
-			},
-		},
-		ui: {
-			labelField: 'pageTitle',
-		},
-		fields: {
-			...pageFields('DraftPage'),
-			publish: (meta) =>
-				fieldType({ kind: 'none' })({
-					input: {
-						create: {
-							arg: graphql.arg({ type: graphql.Boolean }),
-							// @ts-ignore
-							resolve(val) {
-								return val ?? false;
-							},
-						},
-						update: {
-							arg: graphql.arg({ type: graphql.Boolean }),
-							// @ts-ignore
-							resolve(val) {
-								return val ?? false;
-							},
-						},
-					},
-					output: graphql.field({ type: graphql.Boolean, resolve: () => false }),
-					views: require.resolve('../admin/publish-field'),
-				}),
-			published: relationship({ ref: 'Page.draft', db: { foreignKey: true } }),
-		},
-	}),
 	Page: list({
 		access: readOnly,
-		hooks: {
-			resolveInput({ inputData: { revertChangesInDraftToPublished, ...inputData } }) {
-				return inputData;
-			},
-			async afterOperation({ context, item, inputData }) {
-				if (item && inputData?.revertChangesInDraftToPublished) {
-					const relatedPages = await context.prisma.page.findMany({
-						where: { from_Page_relatedPages: { some: { id: item.id } } },
-						select: { draft: { select: { id: true } } },
-					});
-					const { id, ...restItem } = item;
-					const relatedDraftPages = relatedPages
-						.map((x) => x.draft?.id)
-						.filter(isNotNullOrUndefined)
-						.map((publishedId) => ({ publishedId }));
-					const data: Prisma.DraftPageCreateInput = {
-						...restItem,
-						designOld: item.designOld ?? 'DbNull',
-						design: item.design!,
-						codeOld: item.codeOld ?? 'DbNull',
-						code: item.code!,
-						accessibilityOld: item.accessibilityOld ?? 'DbNull',
-						accessibility: item.accessibility!,
-						relatedInfoOld: item.relatedInfoOld ?? 'DbNull',
-						relatedInfo: item.relatedInfo!,
-					};
-					await context.prisma.draftPage.upsert({
-						where: {
-							publishedId: id,
-						},
-						create: {
-							...data,
-							relatedPages: {
-								connect: relatedDraftPages,
-							},
-							published: { connect: { id } },
-						},
-						update: {
-							...data,
-							relatedPages: {
-								set: relatedDraftPages,
-							},
-						},
-					});
-				}
-			},
-		},
 		ui: {
 			labelField: 'pageTitle',
 		},
 		fields: {
 			...pageFields('Page'),
-			draft: relationship({ ref: 'DraftPage.published' }),
-			revertChangesInDraftToPublished: (meta) =>
-				fieldType({ kind: 'none' })({
-					input: {
-						create: {
-							arg: graphql.arg({ type: graphql.Boolean }),
-							// @ts-ignore
-							resolve(val) {
-								return val ?? false;
-							},
-						},
-						update: {
-							arg: graphql.arg({ type: graphql.Boolean }),
-							// @ts-ignore
-							resolve(val) {
-								return val ?? false;
-							},
-						},
-					},
-					output: graphql.field({ type: graphql.Boolean, resolve: () => false }),
-					views: require.resolve('../admin/publish-field'),
-				}),
 		},
 	}),
 	Article: list({
@@ -259,23 +120,45 @@ const lists: Lists = {
 		},
 		fields: {
 			pageTitle: text({ validation: { isRequired: true } }),
+			pageImage: cloudinaryImage({
+				cloudinary: {
+					cloudName: CLOUDINARY_CLOUD_NAME,
+					apiKey: CLOUDINARY_API_KEY,
+					apiSecret: CLOUDINARY_API_SECRET,
+				},
+			}),
 			author: relationship({ ref: 'User' }),
+			// TODO: Add new unique slug field
+			// 1. hide slug in adminui create - only show in adminui edit
+			// 2. slug should be set automatically based on title using slugify - using list level resolveInput hook
+			// slug: text({
+			// 	validation: { isRequired: true },
+			// 	isIndexed: 'unique',
+			// 	isFilterable: true,
+			// }),
+
+			// make url a virtual field that prepends forward slash to slug - Eg. i-am-a-slug => /i-am-a-slug
 			url: text({
 				validation: { isRequired: true },
 				hooks: {
 					resolveInput: ({ item, resolvedData }) => {
 						if (resolvedData.url) {
-							return formatURL(resolvedData.url)
+							return formatURL(resolvedData.url);
 						}
-						return item?.url || ''
-					}
-				}
+						return item?.url || '';
+					},
+				},
 			}),
 
 			content: document({
 				...defaultDocumentConfiguration,
 				componentBlocks,
-				ui: { views: require.resolve('../admin/component-blocks') },
+				layouts: [
+					[1, 1],
+					[2, 1],
+					[1, 1, 1],
+				],
+				ui: { views: require.resolve('../admin/article-component-blocks') },
 			}),
 
 			cardTitle: text({ validation: { isRequired: true } }),
@@ -288,8 +171,8 @@ const lists: Lists = {
 					apiSecret: CLOUDINARY_API_SECRET,
 				},
 			}),
-		}
-	})
+		},
+	}),
 };
 
 export { lists };

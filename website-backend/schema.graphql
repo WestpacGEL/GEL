@@ -3,6 +3,7 @@
 
 type User {
   id: ID!
+  name: String
   email: String
   password: PasswordState
 }
@@ -21,6 +22,7 @@ input UserWhereInput {
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
   id: IDFilter
+  name: StringFilter
   email: StringFilter
 }
 
@@ -71,6 +73,7 @@ input NestedStringFilter {
 
 input UserOrderByInput {
   id: OrderDirection
+  name: OrderDirection
   email: OrderDirection
 }
 
@@ -80,6 +83,7 @@ enum OrderDirection {
 }
 
 input UserUpdateInput {
+  name: String
   email: String
   password: String
 }
@@ -90,6 +94,7 @@ input UserUpdateArgs {
 }
 
 input UserCreateInput {
+  name: String
   email: String
   password: String
 }
@@ -225,7 +230,7 @@ input ImageCreateInput {
   caption: String
 }
 
-type DraftPage {
+type Page {
   id: ID!
   pageTitle: String
   url: String
@@ -236,58 +241,55 @@ type DraftPage {
   author: String
   requires: String
   designOld: JSON
-  design: DraftPage_design_Document
+  design: Page_design_Document
   hideAccessibilityTab: Boolean
   accessibilityOld: JSON
-  accessibility: DraftPage_accessibility_Document
+  accessibility: Page_accessibility_Document
   hideCodeTab: Boolean
   codeOld: JSON
-  code: DraftPage_code_Document
+  code: Page_code_Document
   relatedPages(
-    where: DraftPageWhereInput! = {}
-    orderBy: [DraftPageOrderByInput!]! = []
+    where: PageWhereInput! = {}
+    orderBy: [PageOrderByInput!]! = []
     take: Int
     skip: Int! = 0
-  ): [DraftPage!]
-  relatedPagesCount(where: DraftPageWhereInput! = {}): Int
+  ): [Page!]
+  relatedPagesCount(where: PageWhereInput! = {}): Int
   relatedInfoOld: JSON
-  relatedInfo: DraftPage_relatedInfo_Document
-  publish: Boolean
-  published: Page
+  relatedInfo: Page_relatedInfo_Document
 }
 
-type DraftPage_design_Document {
+type Page_design_Document {
   document(hydrateRelationships: Boolean! = false): JSON!
 }
 
-type DraftPage_accessibility_Document {
+type Page_accessibility_Document {
   document(hydrateRelationships: Boolean! = false): JSON!
 }
 
-type DraftPage_code_Document {
+type Page_code_Document {
   document(hydrateRelationships: Boolean! = false): JSON!
 }
 
-type DraftPage_relatedInfo_Document {
+type Page_relatedInfo_Document {
   document(hydrateRelationships: Boolean! = false): JSON!
 }
 
-input DraftPageWhereUniqueInput {
+input PageWhereUniqueInput {
   id: ID
 }
 
-input DraftPageWhereInput {
-  AND: [DraftPageWhereInput!]
-  OR: [DraftPageWhereInput!]
-  NOT: [DraftPageWhereInput!]
+input PageWhereInput {
+  AND: [PageWhereInput!]
+  OR: [PageWhereInput!]
+  NOT: [PageWhereInput!]
   id: IDFilter
   pageTitle: StringFilter
   url: StringFilter
   packageName: StringNullableFilter
   hideAccessibilityTab: BooleanFilter
   hideCodeTab: BooleanFilter
-  relatedPages: DraftPageManyRelationFilter
-  published: PageWhereInput
+  relatedPages: PageManyRelationFilter
 }
 
 input StringNullableFilter {
@@ -324,152 +326,6 @@ input BooleanFilter {
   not: BooleanFilter
 }
 
-input DraftPageManyRelationFilter {
-  every: DraftPageWhereInput
-  some: DraftPageWhereInput
-  none: DraftPageWhereInput
-}
-
-input DraftPageOrderByInput {
-  id: OrderDirection
-  pageTitle: OrderDirection
-  url: OrderDirection
-  packageName: OrderDirection
-  hideAccessibilityTab: OrderDirection
-  hideCodeTab: OrderDirection
-}
-
-input DraftPageUpdateInput {
-  pageTitle: String
-  url: String
-  packageName: String
-  designOld: JSON
-  design: JSON
-  hideAccessibilityTab: Boolean
-  accessibilityOld: JSON
-  accessibility: JSON
-  hideCodeTab: Boolean
-  codeOld: JSON
-  code: JSON
-  relatedPages: DraftPageRelateToManyForUpdateInput
-  relatedInfoOld: JSON
-  relatedInfo: JSON
-  publish: Boolean
-  published: PageRelateToOneForUpdateInput
-}
-
-input DraftPageRelateToManyForUpdateInput {
-  disconnect: [DraftPageWhereUniqueInput!]
-  set: [DraftPageWhereUniqueInput!]
-  create: [DraftPageCreateInput!]
-  connect: [DraftPageWhereUniqueInput!]
-}
-
-input PageRelateToOneForUpdateInput {
-  create: PageCreateInput
-  connect: PageWhereUniqueInput
-  disconnect: Boolean
-}
-
-input DraftPageUpdateArgs {
-  where: DraftPageWhereUniqueInput!
-  data: DraftPageUpdateInput!
-}
-
-input DraftPageCreateInput {
-  pageTitle: String
-  url: String
-  packageName: String
-  designOld: JSON
-  design: JSON
-  hideAccessibilityTab: Boolean
-  accessibilityOld: JSON
-  accessibility: JSON
-  hideCodeTab: Boolean
-  codeOld: JSON
-  code: JSON
-  relatedPages: DraftPageRelateToManyForCreateInput
-  relatedInfoOld: JSON
-  relatedInfo: JSON
-  publish: Boolean
-  published: PageRelateToOneForCreateInput
-}
-
-input DraftPageRelateToManyForCreateInput {
-  create: [DraftPageCreateInput!]
-  connect: [DraftPageWhereUniqueInput!]
-}
-
-input PageRelateToOneForCreateInput {
-  create: PageCreateInput
-  connect: PageWhereUniqueInput
-}
-
-type Page {
-  id: ID!
-  pageTitle: String
-  url: String
-  packageName: String
-  version: String
-  description: String
-  isOrphaned: Boolean
-  author: String
-  requires: String
-  designOld: JSON
-  design: Page_design_Document
-  hideAccessibilityTab: Boolean
-  accessibilityOld: JSON
-  accessibility: Page_accessibility_Document
-  hideCodeTab: Boolean
-  codeOld: JSON
-  code: Page_code_Document
-  relatedPages(
-    where: PageWhereInput! = {}
-    orderBy: [PageOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Page!]
-  relatedPagesCount(where: PageWhereInput! = {}): Int
-  relatedInfoOld: JSON
-  relatedInfo: Page_relatedInfo_Document
-  draft: DraftPage
-  revertChangesInDraftToPublished: Boolean
-}
-
-type Page_design_Document {
-  document(hydrateRelationships: Boolean! = false): JSON!
-}
-
-type Page_accessibility_Document {
-  document(hydrateRelationships: Boolean! = false): JSON!
-}
-
-type Page_code_Document {
-  document(hydrateRelationships: Boolean! = false): JSON!
-}
-
-type Page_relatedInfo_Document {
-  document(hydrateRelationships: Boolean! = false): JSON!
-}
-
-input PageWhereUniqueInput {
-  id: ID
-}
-
-input PageWhereInput {
-  AND: [PageWhereInput!]
-  OR: [PageWhereInput!]
-  NOT: [PageWhereInput!]
-  id: IDFilter
-  pageTitle: StringFilter
-  url: StringFilter
-  packageName: StringNullableFilter
-  hideAccessibilityTab: BooleanFilter
-  hideCodeTab: BooleanFilter
-  relatedPages: PageManyRelationFilter
-  draft: DraftPageWhereInput
-}
-
 input PageManyRelationFilter {
   every: PageWhereInput
   some: PageWhereInput
@@ -500,8 +356,6 @@ input PageUpdateInput {
   relatedPages: PageRelateToManyForUpdateInput
   relatedInfoOld: JSON
   relatedInfo: JSON
-  draft: DraftPageRelateToOneForUpdateInput
-  revertChangesInDraftToPublished: Boolean
 }
 
 input PageRelateToManyForUpdateInput {
@@ -509,12 +363,6 @@ input PageRelateToManyForUpdateInput {
   set: [PageWhereUniqueInput!]
   create: [PageCreateInput!]
   connect: [PageWhereUniqueInput!]
-}
-
-input DraftPageRelateToOneForUpdateInput {
-  create: DraftPageCreateInput
-  connect: DraftPageWhereUniqueInput
-  disconnect: Boolean
 }
 
 input PageUpdateArgs {
@@ -537,8 +385,6 @@ input PageCreateInput {
   relatedPages: PageRelateToManyForCreateInput
   relatedInfoOld: JSON
   relatedInfo: JSON
-  draft: DraftPageRelateToOneForCreateInput
-  revertChangesInDraftToPublished: Boolean
 }
 
 input PageRelateToManyForCreateInput {
@@ -546,14 +392,10 @@ input PageRelateToManyForCreateInput {
   connect: [PageWhereUniqueInput!]
 }
 
-input DraftPageRelateToOneForCreateInput {
-  create: DraftPageCreateInput
-  connect: DraftPageWhereUniqueInput
-}
-
 type Article {
   id: ID!
   pageTitle: String
+  pageImage: CloudinaryImage_File
   author: User
   url: String
   content: Article_content_Document
@@ -595,6 +437,7 @@ input ArticleOrderByInput {
 
 input ArticleUpdateInput {
   pageTitle: String
+  pageImage: Upload
   author: UserRelateToOneForUpdateInput
   url: String
   content: JSON
@@ -617,6 +460,7 @@ input ArticleUpdateArgs {
 
 input ArticleCreateInput {
   pageTitle: String
+  pageImage: Upload
   author: UserRelateToOneForCreateInput
   url: String
   content: JSON
@@ -661,15 +505,6 @@ type Mutation {
   updateImages(data: [ImageUpdateArgs!]!): [Image]
   deleteImage(where: ImageWhereUniqueInput!): Image
   deleteImages(where: [ImageWhereUniqueInput!]!): [Image]
-  createDraftPage(data: DraftPageCreateInput!): DraftPage
-  createDraftPages(data: [DraftPageCreateInput!]!): [DraftPage]
-  updateDraftPage(
-    where: DraftPageWhereUniqueInput!
-    data: DraftPageUpdateInput!
-  ): DraftPage
-  updateDraftPages(data: [DraftPageUpdateArgs!]!): [DraftPage]
-  deleteDraftPage(where: DraftPageWhereUniqueInput!): DraftPage
-  deleteDraftPages(where: [DraftPageWhereUniqueInput!]!): [DraftPage]
   createPage(data: PageCreateInput!): Page
   createPages(data: [PageCreateInput!]!): [Page]
   updatePage(where: PageWhereUniqueInput!, data: PageUpdateInput!): Page
@@ -738,14 +573,6 @@ type Query {
   ): [Image!]
   image(where: ImageWhereUniqueInput!): Image
   imagesCount(where: ImageWhereInput! = {}): Int
-  draftPages(
-    where: DraftPageWhereInput! = {}
-    orderBy: [DraftPageOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [DraftPage!]
-  draftPage(where: DraftPageWhereUniqueInput!): DraftPage
-  draftPagesCount(where: DraftPageWhereInput! = {}): Int
   pages(
     where: PageWhereInput! = {}
     orderBy: [PageOrderByInput!]! = []
@@ -801,6 +628,7 @@ type KeystoneAdminUIListMeta {
 type KeystoneAdminUIFieldMeta {
   path: String!
   label: String!
+  description: String
   isOrderable: Boolean!
   isFilterable: Boolean!
   fieldMeta: JSON

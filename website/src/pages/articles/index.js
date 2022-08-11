@@ -1,5 +1,5 @@
 /** @jsx jsx */
-
+import { gql } from '@apollo/client';
 import { GEL, jsx, Global, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Grid as WBCGrid, Container as WBCContainer } from '@westpac/grid';
 import wbc from '@westpac/wbc';
@@ -19,11 +19,13 @@ import { Button } from '@westpac/button';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useSpring, animated } from '@react-spring/web';
 import useMeasure from 'react-use-measure';
+import { CustomRenderer } from './custom-renderer';
 import { PageContextProvider, usePageContext } from '../../components/providers/pageContext';
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
 import merge from 'lodash.merge';
+import { getApolloClient } from '../../apollo';
 
-/* 
+/*
 TO DO
 - action-bar
     - need GEL SVG
@@ -33,7 +35,7 @@ TO DO
     - need to discuss min height stuff
 - spacing
     - double check spacing between homepage content top and bottom
-    
+
 Later
 - footer links
     - hook up to correct links
@@ -527,32 +529,20 @@ const GELLogo = (props) => (
 		{...props}
 	>
 		<path
-			fill-rule="evenodd"
-			clip-rule="evenodd"
+			fillRule="evenodd"
+			clipRule="evenodd"
 			d="M0 9.0977V8.90267C0 3.58565 3.9039 0 9.1501 0C13.2742 0 16.934 1.8782 17.2756 6.41472H12.3225C12.0784 4.7805 11.0288 3.92677 9.17477 3.92677C6.71035 3.92677 5.22153 5.82963 5.22153 8.9759V9.17093C5.22153 12.0004 6.27077 14.1954 9.29663 14.1954C11.7368 14.1954 12.6638 12.9509 12.7617 11.561H9.49212V8.07323H17.6905V10.2197C17.6905 14.6587 14.7869 18 9.1501 18C3.22061 18 0 14.3172 0 9.0977ZM19.1549 0.268756H31.209V4.12192H24.1327V7.12211H29.7692V10.6831H24.1327V13.8537H31.5993V17.7072H19.1549V0.268756ZM38.1393 0.268756H33.1129V17.7072H44.7278V13.8294H38.1393V0.268756Z"
 			fill="#122935"
 		/>
 	</svg>
 );
 
-// ============================================================
-// Base
-// ============================================================
 const COLORS = {
 	primary: '#C80038',
 	background: '#F3F5F6',
 	border: '#CFD8DC',
 	icon: '#1976D2',
 	text: '#122935',
-};
-
-const Wrapper = (props) => {
-	return (
-		<GEL brand={wbc} {...props}>
-			<Global styles={{ 'body div': { color: COLORS.text } }} />
-			<Home />
-		</GEL>
-	);
 };
 
 // halfway is 35px, 35
@@ -607,10 +597,6 @@ const Container = (props) => {
 		/>
 	);
 };
-
-// ============================================================
-// Hero
-// ============================================================
 
 const Hero = (props) => {
 	const mq = useMediaQuery();
@@ -1022,114 +1008,64 @@ const Footer = (props) => {
 	);
 };
 
-// ============================================================
-// Cards
-// ============================================================
-
-const CardGrid = ({ children, ...props }) => {
-	const mq = useMediaQuery();
-	return (
-		<Container
-			css={mq({
-				marginTop: ['1.875rem', '2.25rem', '3rem', '3.375rem', '3.75rem'],
-				marginBottom: ['6.4375rem', '6rem', '4.25rem', '6rem', '6.1875rem'],
-			})}
-			{...props}
-		>
-			<Grid gap={[24]}>{children}</Grid>
-		</Container>
-	);
-};
-
-const Card = ({ img, ...props }) => {
-	const { TYPE } = useBrand();
-	const mq = useMediaQuery();
-	return (
-		<Cell {...props}>
-			<a
-				href="#"
-				css={{
-					height: '100%',
-					display: 'flex',
-					flexDirection: 'column',
-					textDecoration: 'none',
-					':hover img': { borderRadius: 200 },
-				}}
-			>
-				<img
-					css={{
-						flexGrow: 1,
-						width: '100%',
-						minHeight: '250px',
-						objectFit: 'cover',
-						transition: 'border-radius 0.2s',
-					}}
-					src={`${BASE_URL}/images/${img}.png`}
-					alt=""
-				/>
-				<div
-					css={mq({
-						paddingTop: ['1.5rem', '2.4375rem'],
-						paddingLeft: '0.375rem',
-						borderRight: `solid ${COLORS.border}`,
-						borderRightWidth: [0, 1],
-					})}
-				>
-					<h4
-						css={{
-							margin: '0 0 0.75rem 0',
-							fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-							fontSize: '1rem',
-							textTransform: 'uppercase',
-							lineHeight: 1.12,
-						}}
-					>
-						Title goes here.
-					</h4>
-					<p
-						css={{
-							margin: '0 1.5rem 0.75rem 0',
-							fontSize: '1rem',
-							fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-							lineHeight: 1.5,
-						}}
-					>
-						Some description
-					</p>
-					<ArrowRightIcon
-						color={COLORS.icon}
-						css={mq({ display: 'block', marginLeft: 'auto', marginRight: [0, '0.375rem'] })}
-					/>
-				</div>
-			</a>
-		</Cell>
-	);
-};
-
-// ============================================================
-// Home
-// ============================================================
 // fix main container and footer spacing
-const Home = () => {
+const Home = ({ content }) => {
+	const mq = useMediaQuery();
 	return (
 		<PageContextProvider>
 			<div css={{ paddingBottom: '3.0625rem' }}>
 				<Hero />
 				<ActionBar />
-				<CardGrid>
-					<Card width={[12, 4]} img="Stream" />
-					<Card width={[12, 4]} img="Stream" />
-					<Card width={[12, 4]} img="Stream" />
-					<Card width={[12, 6]} img="River" />
-					<Card width={[12, 6]} img="River" />
-					<Card width={[12, 8]} img="Ocean" />
-					<Card width={[12, 4]} img="Stream" />
-				</CardGrid>
+				<Container
+					css={mq({
+						marginTop: ['1.875rem', '2.25rem', '3rem', '3.375rem', '3.75rem'],
+						marginBottom: ['6.4375rem', '6rem', '4.25rem', '6rem', '6.1875rem'],
+					})}
+				>
+					{content?.document ? <CustomRenderer document={content.document} /> : null}
+				</Container>
 				<Footer />
 				<StickyFooter type="article" />
 			</div>
 		</PageContextProvider>
 	);
 };
+
+const Wrapper = ({ content }) => {
+	return (
+		<GEL brand={wbc}>
+			<Global styles={{ 'body div': { color: COLORS.text } }} />
+			<Home content={content} />
+		</GEL>
+	);
+};
+
+export async function getStaticProps() {
+	const client = getApolloClient();
+
+	const res = await client.query({
+		query: gql`
+			query article($url: String!) {
+				articles(where: { url: { equals: $url } }) {
+					id
+					content {
+						document(hydrateRelationships:true)
+					}
+				}
+			}
+		`,
+		variables: {
+			url: '/home',
+		},
+	});
+
+	const homeArticle = res?.data?.articles[0] || null;
+	const content = homeArticle?.content || null;
+	return {
+		props: {
+			content,
+		},
+	};
+}
 
 export default Wrapper;
