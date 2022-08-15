@@ -61,17 +61,17 @@ export const Component = ({
 };
 
 export const introSection = component({
-	component: ({ description, showPackageInfo, showTableOfContents }) => (
+	preview: ({ fields: { description, showPackageInfo, showTableOfContents } }) => (
 		<GEL brand={brand}>
 			<Component
-				description={description}
+				description={description.element}
 				showPackageInfo={showPackageInfo.value}
 				showTableOfContents={showTableOfContents.value}
 			/>
 		</GEL>
 	),
 	label: 'Intro Section',
-	props: {
+	schema: {
 		description: fields.child({
 			kind: 'inline',
 			placeholder: 'Description...',

@@ -1,15 +1,18 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Cell } from '@westpac/grid';
-
-import { ArrowRightIcon } from '@westpac/icon';
-import { BASE_URL } from '../../config.js';
+import { jsx, useMediaQuery } from '@westpac/core';
 import { PageContextProvider } from '../../components/providers/pageContext';
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
 import { Wrapper, Hero, ActionBar, Footer, Container, Grid } from '../../components/article';
+import { gql } from '@apollo/client';
+import { GEL, jsx, Global, useMediaQuery } from '@westpac/core';
+import wbc from '@westpac/wbc';
+import { CustomRenderer } from './custom-renderer';
+import { PageContextProvider } from '../../components/providers/pageContext';
+import { Footer as StickyFooter } from '../../components/layout/footer.js';
+import { getApolloClient } from '../../apollo';
 
-/* 
+/*
 TO DO
 Later
 - footer links
@@ -21,118 +24,64 @@ Later
 - fix semantic html
 */
 
-// ============================================================
-// Cards
-// ============================================================
-
-const CardGrid = ({ children, ...props }) => {
+// fix main container and footer spacing
+const Home = ({ content }) => {
 	const mq = useMediaQuery();
 	return (
-		<Container
-			css={mq({
-				marginTop: ['1.875rem', '2.25rem', '3rem', '3.375rem', '3.75rem'],
-				marginBottom: ['6.4375rem', '6rem', '4.25rem', '6rem', '6.1875rem'],
-			})}
-			{...props}
-		>
-			<Grid gap={[24]}>{children}</Grid>
-		</Container>
-	);
-};
-
-const Card = ({ img, ...props }) => {
-	const {
-		TYPE,
-		GEL: { COLORS },
-	} = useBrand();
-	const mq = useMediaQuery();
-	return (
-		<Cell {...props}>
-			<a
-				href="#"
-				css={{
-					height: '100%',
-					display: 'flex',
-					flexDirection: 'column',
-					textDecoration: 'none',
-					':hover img': { borderRadius: 200 },
-				}}
-			>
-				<img
-					css={{
-						flexGrow: 1,
-						width: '100%',
-						minHeight: '250px',
-						objectFit: 'cover',
-						transition: 'border-radius 0.2s',
-					}}
-					src={`${BASE_URL}/images/${img}.png`}
-					alt=""
-				/>
-				<div
+		<PageContextProvider>
+			<div css={{ paddingBottom: '3.0625rem' }}>
+				<Hero />
+				<ActionBar />
+				<Container
 					css={mq({
-						paddingTop: ['1.5rem', '2.4375rem'],
-						paddingLeft: '0.375rem',
-						borderRight: `solid ${COLORS.border}`,
-						borderRightWidth: [0, 1],
+						marginTop: ['1.875rem', '2.25rem', '3rem', '3.375rem', '3.75rem'],
+						marginBottom: ['6.4375rem', '6rem', '4.25rem', '6rem', '6.1875rem'],
 					})}
 				>
-					<h4
-						css={{
-							margin: '0 0 0.75rem 0',
-							fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-							fontSize: '1rem',
-							textTransform: 'uppercase',
-							lineHeight: 1.12,
-						}}
-					>
-						Title goes here.
-					</h4>
-					<p
-						css={{
-							margin: '0 1.5rem 0.75rem 0',
-							fontSize: '1rem',
-							fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-							lineHeight: 1.5,
-						}}
-					>
-						Some description
-					</p>
-					<ArrowRightIcon
-						color={COLORS.icon}
-						css={mq({ display: 'block', marginLeft: 'auto', marginRight: [0, '0.375rem'] })}
-					/>
-				</div>
-			</a>
-		</Cell>
+					{content?.document ? <CustomRenderer document={content.document} /> : null}
+				</Container>
+				<Footer />
+				<StickyFooter type="article" />
+			</div>
+		</PageContextProvider>
 	);
 };
 
-// ============================================================
-// Home
-// ============================================================
-const Home = () => {
+const Wrapper = ({ content }) => {
 	return (
-		<Wrapper>
-			<PageContextProvider>
-				<div css={{ paddingBottom: '3.0625rem' }}>
-					<Hero />
-					<ActionBar />
-					<CardGrid>
-						<Card width={[12, 4]} img="Stream" />
-						<Card width={[12, 4]} img="Stream" />
-						<Card width={[12, 4]} img="Stream" />
-						<Card width={[12, 6]} img="River" />
-						<Card width={[12, 6]} img="River" />
-						<Card width={[12, 8]} img="Ocean" />
-						<Card width={[12, 4]} img="Stream" />
-					</CardGrid>
-					<Footer />
-					<StickyFooter type="article" />
-				</div>
-			</PageContextProvider>
-		</Wrapper>
+		<GEL brand={wbc}>
+			<Global styles={{ 'body div': { color: COLORS.text } }} />
+			<Home content={content} />
+		</GEL>
 	);
 };
 
-export default Home;
+export async function getStaticProps() {
+	const client = getApolloClient();
+
+	const res = await client.query({
+		query: gql`
+			query article($url: String!) {
+				articles(where: { url: { equals: $url } }) {
+					id
+					content {
+						document(hydrateRelationships: true)
+					}
+				}
+			}
+		`,
+		variables: {
+			url: '/home',
+		},
+	});
+
+	const homeArticle = res?.data?.articles[0] || null;
+	const content = homeArticle?.content || null;
+	return {
+		props: {
+			content,
+		},
+	};
+}
+
+export default Wrapper;

@@ -27,6 +27,7 @@
     "@emotion/cache": "^11.4.0",
     "@emotion/react": "^11.4.0",
     "@emotion/server": "^11.4.0",
+    "@keystone-6/document-renderer": "^1.1.0",
     "@preconstruct/next": "^3.0.1",
     "@react-spring/web": "^9.2.4",
     "@types/react-dom": "^17.0.11",
