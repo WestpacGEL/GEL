@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { useState, forwardRef } from 'react';
+import { useState, forwardRef, useRef, useEffect } from 'react';
 import { ButtonDropdown, useButtonDropdownContext } from '@westpac/button-dropdown';
 import { ArrowRightIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';
@@ -130,6 +130,33 @@ const BrandListItem = ({ children, ...props }) => {
 	);
 };
 
+const StickyHeader = (props) => {
+	const ref = useRef();
+	const [stuck, setStuck] = useState(false);
+
+	useEffect(() => {
+		const cachedRef = ref.current;
+		const observer = new IntersectionObserver(([e]) => setStuck(e.intersectionRatio < 1), {
+			rootMargin: '-1px 0px 0px 0px',
+			threshold: [1],
+		});
+		observer.observe(cachedRef);
+		return () => observer.unobserve(cachedRef);
+	}, [ref]);
+
+	return (
+		<div
+			ref={ref}
+			css={{
+				position: 'sticky',
+				top: '0',
+				...(stuck && { boxShadow: '0 8px 8px rgba(0,0,0,0.24)' }),
+			}}
+			{...props}
+		/>
+	);
+};
+
 const ActionBarDropdown = (props) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [closed, setClosed] = useState(true);
@@ -215,6 +242,7 @@ const ActionBarDesktop = () => {
 				display: 'flex',
 				alignItems: 'flex-end',
 				height: '6.375rem',
+				backgroundColor: '#fff',
 				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: { display: 'none' },
 			}}
 		>
@@ -243,7 +271,16 @@ const ActionBarDesktop = () => {
 					<ArrowRightIcon css={{ margin: '0 1rem 0 0.75rem' }} />
 				</p>
 			</div>
-			<ul role="list" css={{ display: 'flex', paddingLeft: 0, listStyle: 'none', margin: 0 }}>
+			<ul
+				role="list"
+				css={{
+					display: 'flex',
+					paddingLeft: 0,
+					listStyle: 'none',
+					margin: 0,
+					marginBottom: '0.75rem',
+				}}
+			>
 				{Object.entries(brandsMap).map(([key, val]) => (
 					<li key={key}>
 						<a href="#" css={{ display: 'flex' }}>
@@ -259,9 +296,11 @@ const ActionBarDesktop = () => {
 export const ActionBar = (props) => {
 	const mq = useMediaQuery();
 	return (
-		<div css={mq({ height: [66, null, 102] })} {...props}>
-			<ActionBarDropdown />
-			<ActionBarDesktop />
-		</div>
+		<StickyHeader>
+			<div css={mq({ height: [66, null, 102] })} {...props}>
+				<ActionBarDropdown />
+				<ActionBarDesktop />
+			</div>
+		</StickyHeader>
 	);
 };
