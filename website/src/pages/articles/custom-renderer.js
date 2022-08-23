@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import { gql } from '@apollo/client';
 import { useQuery } from '@apollo/react-hooks';
 import { DocumentRenderer } from '@keystone-6/document-renderer';
@@ -55,37 +55,37 @@ const BodyText = ({ children, ...props }) => {
 					marginBottom: ['2.635rem', '3.375rem'],
 					fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
 					lineHeight: 2,
-					p: {
-						margin: `0 0 ${SPACING(2)}`,
-					},
 				})}
 				{...props}
 			>
-				{children}
+				<p css={{ margin: `0 0 ${SPACING(2)}` }}>{children}</p>
 			</div>
 		</Cell>
 	);
 };
 
 const List = (props) => (
-	<GELList
-		overrides={{
-			List: {
-				styles: (styles, { type }) => ({
-					...styles,
-					'> li::before': {
-						...(type === 'bullet' && { backgroundColor: COLORS.icon }),
-						borderColor: COLORS.icon,
-					},
-				}),
-			},
-		}}
-		{...props}
-	/>
+	<Cell width={[12, 10, 8]} left={[1, 2, null, 3]}>
+		<GELList
+			overrides={{
+				List: {
+					styles: (styles, { type }) => ({
+						...styles,
+						'> li::before': {
+							...(type === 'bullet' && { backgroundColor: COLORS.icon }),
+							borderColor: COLORS.icon,
+						},
+					}),
+				},
+			}}
+			{...props}
+		/>
+	</Cell>
 );
 
 // ============================================================
-// Heading text
+// Inline Heading text
+// - used in toolbar
 // ============================================================
 const Heading = ({ level, children, ...props }) => {
 	const mq = useMediaQuery();
@@ -120,39 +120,6 @@ const Heading = ({ level, children, ...props }) => {
 		</Cell>
 	);
 };
-
-function CustomHeadingComponent({ level, codeStyles, removeTopMargin, size, content }) {
-	const mq = useMediaQuery();
-	const { SPACING } = useBrand();
-
-	return (
-		<GELHeading
-			tag={level}
-			size={size <= 6 ? [7, null, size] : size}
-			uppercase={size === 10}
-			overrides={{
-				Heading: {
-					styles: (styles) =>
-						merge({}, styles, {
-							...mq({
-								scrollMarginTop: [
-									`calc(66px + 66px + ${SPACING(7)})`,
-									null,
-									`calc(66px + 90px + ${SPACING(10)})`,
-								],
-								marginTop: !removeTopMargin && getTypeScaleMargin(size).top,
-								marginBottom: codeStyles
-									? getTypeScaleMargin(size).bottomTight
-									: getTypeScaleMargin(size).bottom,
-							})[0],
-						}),
-				},
-			}}
-		>
-			{content}
-		</GELHeading>
-	);
-}
 
 // Card - moved from './index.js'
 export const ArticleCard = ({ article }) => {
@@ -232,39 +199,49 @@ export const ArticleCard = ({ article }) => {
 const articleRenderers = {
 	block: {
 		// if you wanna use a different Heading component/styles for article headings
-		// heading: ({ children, level }) => {
-		// 	const HeadingTag = `h${level}`;
+		heading: ({ children, level }) => {
+			const HeadingTag = `h${level}`;
 
-		// 	return <Heading level={HeadingTag}>{children}</Heading>;
-		// },
+			return <Heading level={HeadingTag}>{children}</Heading>;
+		},
 		paragraph({ children }) {
 			return <BodyText>{children}</BodyText>;
 		},
 		// if you wanna use a different List component/styles for ul/li elements
-		// list: ({ type, children }) => {
-		// 	// If ul and ol needs to be customised, use type prop as next line
-		// 	// const Tag = type === 'unordered' ? 'ul' : 'ol';
+		list: ({ type, children }) => {
+			// If ul and ol needs to be customised, use type prop as next line
+			// const Tag = type === 'unordered' ? 'ul' : 'ol';
 
-		// 	return (
-		// 		<List>
-		// 			{React.Children.map(React.Children.toArray(children), (child, index) => {
-		// 				return <ListItem>{React.cloneElement(child, {})}</ListItem>;
-		// 			})}
-		// 		</List>
-		// 	);
-		// },
+			return (
+				<List>
+					{React.Children.map(React.Children.toArray(children), (child, index) => {
+						return <ListItem key={index}>{React.cloneElement(child, {})}</ListItem>;
+					})}
+				</List>
+			);
+		},
 		layout: ({ children, layout }) => {
+			console.log(layout);
+			// might use context to pass type of grid so children element can determine what width they need to be?
+			// pass index to child elements
+			return (
+				<Fragment>
+					{children.map((element, i) => (
+						<Fragment key={i}>{element}</Fragment>
+					))}
+				</Fragment>
+			);
 			return (
 				<WBCGrid
 					columnGap={[12, 18, 24]}
 					gap={[24]}
-					style={{
-						display: 'grid',
-						gridTemplateColumns: layout.map((x) => `${x}fr`).join(' '),
-					}}
+					// style={{
+					// 	display: 'grid',
+					// 	gridTemplateColumns: layout.map((x) => `${x}fr`).join(' '),
+					// }}
 				>
 					{children.map((element, i) => (
-						<div key={i}>{element}</div>
+						<Fragment key={i}>{element}</Fragment>
 					))}
 				</WBCGrid>
 			);
@@ -283,10 +260,10 @@ const articleComponentBlocks = {
 		const imageSrc = image || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
 		return <SingleImage type="body" src={imageSrc} />;
 	},
-	heading({ addTableContent, content, level, size, codeStyles, removeTopMargin }) {
-		const props = { addTableContent, content, level, size, codeStyles, removeTopMargin };
-		return <CustomHeadingComponent {...props} />;
-	},
+	// heading({ addTableContent, content, level, size, codeStyles, removeTopMargin }) {
+	// 	const props = { addTableContent, content, level, size, codeStyles, removeTopMargin };
+	// 	return <CustomHeadingComponent {...props} />;
+	// },
 };
 
 // TODO: this is used in both './[slug].js' and './index.js' - move it to a shareable dir

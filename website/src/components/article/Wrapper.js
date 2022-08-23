@@ -9,6 +9,7 @@ const COLORS = {
 	border: '#CFD8DC',
 	icon: '#1976D2',
 	text: '#122935',
+	muted: '#575F65',
 };
 
 export const Wrapper = ({ children, ...props }) => {
