@@ -1,61 +1,19 @@
 /** @jsx jsx */
 import { gql } from '@apollo/client';
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Cell } from '@westpac/grid';
+import { jsx } from '@westpac/core';
 import { CustomRenderer } from './custom-renderer';
-
-import { BASE_URL } from '../../config.js';
 import { PageContextProvider } from '../../components/providers/pageContext';
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
 import { getApolloClient } from '../../apollo';
-
-import { Grid, Wrapper, HeaderBar, Header, PageHero, PageContent } from '../../components/article';
-
-// Refactor to add into brand passed in the GEL Wrapper i.e. { ...wbc, GEL: {COLORS}}
-export const COLORS = {
-	primary: '#C80038',
-	background: '#F3F5F6',
-	border: '#CFD8DC',
-	icon: '#1976D2',
-	text: '#122935',
-	muted: '#575F65',
-};
-
-export const SingleImage = ({ src, type, caption, ...props }) => {
-	const mq = useMediaQuery();
-	const { TYPE } = useBrand();
-	const sizeMap = {
-		hero: { width: 12 },
-		bodyWide: { width: [12, 10], left: [1, 2] },
-		body: { width: [12, 10, null, 8], left: [1, 2, null, 3] },
-	};
-	const srcURL = src || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
-	// src={srcURL}
-	return (
-		<Cell {...sizeMap[type]} css={mq({ marginBottom: ['2.625rem', '3.375rem'] })}>
-			<figure css={{ margin: 0 }}>
-				<img
-					src={`${BASE_URL}/images/lego.png`}
-					css={{ width: '100%', height: 'auto' }}
-					{...props}
-				/>
-				{caption && (
-					<figcaption
-						css={{
-							marginTop: '0.75rem',
-							fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
-							fontSize: '0.875rem',
-							color: COLORS.muted,
-							lineHeight: 1.07,
-						}}
-					>
-						{caption}
-					</figcaption>
-				)}
-			</figure>
-		</Cell>
-	);
-};
+import {
+	Grid,
+	Wrapper,
+	HeaderBar,
+	Header,
+	HeaderImage,
+	PageHero,
+	PageContent,
+} from '../../components/article';
 
 // ============================================================
 // Article
@@ -73,7 +31,7 @@ const Article = ({ article, ...props }) => {
 					<PageHero>
 						<Grid rowGap={[0, 0]}>
 							<Header title={article.pageTitle} author={article.author?.name} />
-							<SingleImage type="hero" src={article.pageImage?.publicUrl} />
+							<HeaderImage src={article.pageImage?.publicUrl} />
 						</Grid>
 					</PageHero>
 					{article.content?.document && (

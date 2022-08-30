@@ -8,7 +8,7 @@ import { Cell } from '@westpac/grid';
 import { imageField } from '../component-blocks/image-field';
 
 const sizeOptions = [
-	{ label: 'Hero', value: 'hero' },
+	// { label: 'Hero', value: 'hero' },
 	{ label: 'Body Wide', value: 'bodyWide' },
 	{ label: 'Body', value: 'body' },
 ] as const;
@@ -18,12 +18,14 @@ export const Image = ({
 	alt,
 	caption,
 	size,
+	reducedSpacing,
 	context,
 }: {
 	image: string;
 	alt: string;
 	caption: string;
 	size: string;
+	reducedSpacing: boolean;
 	context: string;
 }) => {
 	const mq = useMediaQuery();
@@ -63,7 +65,7 @@ export const Image = ({
 };
 
 export const image = component({
-	preview: ({ fields: { caption, image, alt, size } }) => (
+	preview: ({ fields: { caption, image, alt, size, reducedSpacing } }) => (
 		<NotEditable>
 			<GEL brand={brand}>
 				<Image
@@ -71,6 +73,7 @@ export const image = component({
 					image={typeof image.value === 'string' ? image.value : ''}
 					alt={alt.value}
 					size={size.value}
+					reducedSpacing={reducedSpacing.value}
 					context="admin"
 				/>
 			</GEL>
@@ -82,10 +85,11 @@ export const image = component({
 		alt: fields.text({ label: 'Alt text' }),
 		caption: fields.text({ label: 'Caption' }),
 		size: fields.select({
-			defaultValue: 'hero',
+			defaultValue: 'body',
 			label: 'Size',
 			options: sizeOptions,
 		}),
+		reducedSpacing: fields.checkbox({ label: 'Reduced bottom spacing' }),
 	},
 	label: 'Image',
 });

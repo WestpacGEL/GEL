@@ -11,7 +11,6 @@ export const PageContent = ({ document, children, ...props }) => {
 		<div css={{ background: COLORS.background }}>
 			<Container {...props}>
 				<Grid rowGap={[0, 0]}>{children}</Grid>
-				{/* {children} */}
 			</Container>
 		</div>
 	);
