@@ -3,8 +3,6 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell } from '@westpac/grid';
 
-// Look into overriding GEL Body? need to look into this for the other body styles
-// - graphik
 export const BodyText = ({ children, ...props }) => {
 	const mq = useMediaQuery();
 	const { TYPE, SPACING } = useBrand();

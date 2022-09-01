@@ -30,13 +30,10 @@ const articleRenderers = {
 		paragraph({ children }) {
 			return <BodyText>{children}</BodyText>;
 		},
-		// if you wanna use a different List component/styles for ul/li elements
 		list: ({ type, children }) => {
-			// If ul and ol needs to be customised, use type prop as next line
-			// const Tag = type === 'unordered' ? 'ul' : 'ol';
-
+			const listType = type === 'unordered' ? 'bullet' : 'ordered';
 			return (
-				<List>
+				<List type={listType}>
 					{React.Children.map(React.Children.toArray(children), (child, index) => {
 						return <Item key={index}>{React.cloneElement(child, {})}</Item>;
 					})}
@@ -44,7 +41,6 @@ const articleRenderers = {
 			);
 		},
 		layout: ({ children, layout }) => {
-			console.log(layout);
 			return (
 				<LayoutContextProvider value={{ layout }}>
 					{children.map((element, index) => (

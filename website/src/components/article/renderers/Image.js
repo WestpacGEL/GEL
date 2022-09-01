@@ -3,8 +3,6 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell } from '@westpac/grid';
 import { useLayoutContext, useIndexContext } from './Providers';
-// temp
-import { BASE_URL } from '../../../config';
 
 export const Image = ({ src, size, caption, alt, reducedSpacing, ...props }) => {
 	const mq = useMediaQuery();
@@ -42,21 +40,17 @@ export const Image = ({ src, size, caption, alt, reducedSpacing, ...props }) => 
 		},
 	};
 
-	// TO DO: confirm spacing of this
 	let marginBottom = ['2.625rem', '3.375rem'];
 
 	if (layout == 'double') {
 		if (index === 0) {
-			['1.5rem', '3.375rem'];
+			marginBottom = ['1.5rem', '3.375rem'];
 		}
 
 		if (reducedSpacing) {
-			marginBottom = ['1.375rem', '1.875rem'];
+			marginBottom = ['1.5rem', '1.875rem'];
 		}
 	}
-
-	const srcURL = src || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
-	// src={srcURL}
 
 	return (
 		<Cell
@@ -65,12 +59,7 @@ export const Image = ({ src, size, caption, alt, reducedSpacing, ...props }) => 
 			css={mq({ marginBottom: marginBottom })}
 		>
 			<figure css={{ margin: 0 }}>
-				<img
-					src={`${BASE_URL}/images/lego.png`}
-					css={{ width: '100%', height: 'auto' }}
-					alt={alt}
-					{...props}
-				/>
+				<img src={src} css={{ width: '100%', height: 'auto' }} alt={alt} {...props} />
 				{caption && (
 					<figcaption
 						css={{

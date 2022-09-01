@@ -34,10 +34,10 @@ const FooterList = (props) => {
 	);
 };
 
-const FooterItem = ({ children, ...props }) => {
+const FooterItem = ({ link = '#', children, ...props }) => {
 	return (
 		<Cell tag="li" {...props}>
-			<a href="#" css={{ display: 'flex', textDecoration: 'none' }}>
+			<a href={link} css={{ display: 'flex', textDecoration: 'none' }}>
 				{children}
 			</a>
 		</Cell>
@@ -97,7 +97,7 @@ export const Footer = (props) => {
 						<FooterTitle>Design System</FooterTitle>
 						<FooterList>
 							{Object.entries(brandsMap).map(([key, val]) => (
-								<FooterItem key={key} width={[12, 6]}>
+								<FooterItem key={key} link={`/design-system?b=${key}`} width={[12, 6]}>
 									<LogoCircle logo={val.dotLogo} />
 									<FooterItemText>{val.name}</FooterItemText>
 								</FooterItem>

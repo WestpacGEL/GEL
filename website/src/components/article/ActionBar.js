@@ -82,7 +82,7 @@ const PanelOverride = forwardRef(({ state: { isOpen, setClosed }, children, ...r
 	);
 });
 
-const BrandListItem = ({ children, ...props }) => {
+const BrandListItem = ({ link, children, ...props }) => {
 	const {
 		GEL: { COLORS },
 	} = useBrand();
@@ -91,25 +91,23 @@ const BrandListItem = ({ children, ...props }) => {
 	return (
 		<li
 			css={{
-				':last-of-type span': {
+				':last-of-type a': {
 					borderBottom: 'none',
 				},
 			}}
 			{...props}
 		>
 			<a
-				href="#"
+				href={link}
 				css={mq({
 					display: 'block',
 					height: '3.75rem',
 					fontSize: '0.875rem',
 					color: COLORS.text,
 					textDecoration: 'none',
-					padding: ['0 1.5rem', '0 1.875rem'],
+					margin: ['0 1.5rem', '0 1.875rem'],
+					borderBottom: `1px solid ${COLORS.border}`,
 					transition: 'background-color 0.2s',
-					':hover, :focus': {
-						backgroundColor: COLORS.background,
-					},
 				})}
 			>
 				<span
@@ -118,9 +116,12 @@ const BrandListItem = ({ children, ...props }) => {
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'space-between',
-						borderBottom: `1px solid ${COLORS.border}`,
 						position: 'relative',
 						zIndex: 1,
+						paddingLeft: '0.375rem',
+						':hover, :focus': {
+							backgroundColor: COLORS.hover,
+						},
 					}}
 				>
 					{children}
@@ -216,7 +217,7 @@ const ActionBarDropdown = (props) => {
 		>
 			<ul role="list" css={{ paddingLeft: 0, listStyle: 'none', margin: 0 }}>
 				{Object.entries(brandsMap).map(([key, val]) => (
-					<BrandListItem key={key}>
+					<BrandListItem key={key} link={`/design-system?b=${key}`}>
 						{val.name}
 						{val.logo}
 					</BrandListItem>
@@ -283,7 +284,7 @@ const ActionBarDesktop = () => {
 			>
 				{Object.entries(brandsMap).map(([key, val]) => (
 					<li key={key}>
-						<a href="#" css={{ display: 'flex' }}>
+						<a href={`/design-system?b=${key}`} css={{ display: 'flex' }}>
 							<ActionBarLogo logo={val.dotLogo} />
 						</a>
 					</li>

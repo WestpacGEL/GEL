@@ -17,15 +17,8 @@ TO DO
 	- other design tweaks?
 2. Rebuild article page
 	- trello design tweaks?
-3. Hook up links
-
-Later
 - footer links
     - hook up to correct links
-- Action bar
-    - hook up to correct links
-- GEL wrapper issues at layout level
-- fix semantic htmlcvx          vx
 */
 
 // fix main container and footer spacing
@@ -34,7 +27,7 @@ const Home = ({ content }) => {
 	return (
 		<Wrapper>
 			<PageContextProvider>
-				<div css={{ paddingBottom: '3.0625rem' }}>
+				<main css={{ paddingBottom: '3.0625rem' }}>
 					<Hero />
 					<ActionBar />
 					<Container
@@ -47,7 +40,7 @@ const Home = ({ content }) => {
 					</Container>
 					<Footer />
 					<StickyFooter type="article" />
-				</div>
+				</main>
 			</PageContextProvider>
 		</Wrapper>
 	);

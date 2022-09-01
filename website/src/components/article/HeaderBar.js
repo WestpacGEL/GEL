@@ -23,8 +23,8 @@ export const HeaderBar = (props) => {
 			})}
 			{...props}
 		>
-			<a href="#">
-				<div href="#" css={mq({ height: [42, 54], display: 'flex', alignItems: 'center' })}>
+			<a href="/articles">
+				<div css={mq({ height: [42, 54], display: 'flex', alignItems: 'center' })}>
 					<ArrowLeftIcon color="#fff" css={mq({ marginLeft: ['1.25rem'] })} />
 					<GELLogo
 						white

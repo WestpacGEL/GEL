@@ -41,6 +41,6 @@ export const brandsMap = {
 	RAMS: {
 		name: 'Rams',
 		dotLogo: DotRAMSLogo,
-		logo: <RAMSLogo width={70} aria-hidden="true" />,
+		logo: <RAMSLogo width={55} aria-hidden="true" />,
 	},
 };

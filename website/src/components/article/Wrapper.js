@@ -10,6 +10,7 @@ const COLORS = {
 	icon: '#1976D2',
 	text: '#122935',
 	muted: '#575F65',
+	hover: '#F9FAFB',
 };
 
 export const Wrapper = ({ children, ...props }) => {

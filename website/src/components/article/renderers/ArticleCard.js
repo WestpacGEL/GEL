@@ -14,7 +14,6 @@ export const ArticleCard = ({ article }) => {
 	} = useBrand();
 	const mq = useMediaQuery();
 
-	// TODO: ask Jeremy what behaviour should be here
 	const imageSrc =
 		article.pageImage?.publicUrl ||
 		'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
@@ -28,14 +27,23 @@ export const ArticleCard = ({ article }) => {
 	const index = indexContext ? indexContext.index : 0;
 	const { layout } = layoutContext;
 
+	// TO DO: tweak this
+	const aspectRatioMap = {
+		four: ['484/185', '708/559'],
+		six: ['484/185', '1092/563'],
+		eight: '484/185',
+	};
 	let width = [12, 4];
+	let aspect = 'four';
 
 	if (layout.length === 2) {
 		const sum = layout.reduce((acc, val) => acc + val, 0);
 		if (sum === 2) {
 			width = [12, 6];
+			aspect = 'six';
 		} else if (sum === 3 && layout[index] == 2) {
 			width = [12, 8];
+			aspect = 'eight';
 		}
 	}
 
@@ -52,13 +60,14 @@ export const ArticleCard = ({ article }) => {
 				}}
 			>
 				<img
-					css={{
+					css={mq({
 						flexGrow: 1,
 						width: '100%',
-						minHeight: '250px',
+						// minHeight: '250px',
+						aspectRatio: aspectRatioMap[aspect],
 						objectFit: 'cover',
 						transition: 'border-radius 0.2s',
-					}}
+					})}
 					src={imageSrc}
 					alt={''}
 				/>
