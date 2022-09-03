@@ -3,8 +3,7 @@ import React, { useMemo, useEffect } from 'react';
 import cookie from 'cookie';
 import App from 'next/app';
 import { Layout as DefaultLayout } from '../components/layout';
-import {getApolloClient} from '../apollo'
-
+import { getApolloClient } from '../apollo';
 
 const GELApp = ({ Component, pageProps, apollo, brand }) => {
 	const Layout = Component.layout || DefaultLayout;
@@ -52,12 +51,11 @@ GELApp.getInitialProps = async (appContext) => {
 		ctx: { req, res },
 	} = appContext;
 
-
 	// articles and articles/slug was infinitely redirecting because of the code below
 	// so added this condition here to exit early for non /design-system urls
-	const {pathname} = router;
-	if(!pathname.startsWith('/design-system')) {
-		return appProps
+	const { pathname } = router;
+	if (!pathname.startsWith('/design-system')) {
+		return appProps;
 	}
 
 	const brandParam = router.query.b || '';

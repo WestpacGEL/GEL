@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { GEL, jsx, css, Global, useBrand, useMediaQuery } from '@westpac/core';
-import wbc from '@westpac/wbc';
 import { useQuery } from '@apollo/react-hooks';
 import { SkipLink } from '@westpac/a11y';
 import { useRouter } from 'next/router';
