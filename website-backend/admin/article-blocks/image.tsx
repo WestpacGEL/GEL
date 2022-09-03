@@ -8,7 +8,6 @@ import { Cell } from '@westpac/grid';
 import { imageField } from '../component-blocks/image-field';
 
 const sizeOptions = [
-	// { label: 'Hero', value: 'hero' },
 	{ label: 'Body Wide', value: 'bodyWide' },
 	{ label: 'Body', value: 'body' },
 ] as const;
@@ -37,15 +36,11 @@ export const Image = ({
 		body: { width: [12, 10, null, 8], left: [1, 2, null, 3] },
 	};
 	const srcURL = image || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
-	// src={srcURL}
+
 	return (
 		<Cell {...sizeMap[size]} css={mq({ marginBottom: ['2.625rem', '3.375rem'] })}>
 			<figure css={{ margin: 0, pointerEvents: context === 'admin' ? 'none' : undefined }}>
-				<img
-					src={`/design-system/images/lego.png`}
-					alt={alt}
-					css={{ width: '100%', height: 'auto' }}
-				/>
+				<img src={srcURL} alt={alt} css={{ width: '100%', height: 'auto' }} />
 				{caption && (
 					<figcaption
 						css={{
@@ -80,8 +75,8 @@ export const image = component({
 		</NotEditable>
 	),
 	schema: {
-		// image: imageField({ label: 'Image' }),
-		image: fields.text({ label: 'TEMP image text' }), // temp for dev testing since we dont support local image upload
+		image: imageField({ label: 'Image' }),
+		// image: fields.text({ label: 'TEMP image text' }), // temp for dev testing since we dont support local image upload
 		alt: fields.text({ label: 'Alt text' }),
 		caption: fields.text({ label: 'Caption' }),
 		size: fields.select({
