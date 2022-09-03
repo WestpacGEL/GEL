@@ -110,13 +110,13 @@ function ColorSwatch({ colors }: { colors: readonly string[] }) {
 }
 
 export const colorSwatch = component({
-	component: ({ colors }) => (
+	preview: ({ fields: { colors } }) => (
 		<GEL brand={brand}>
 			<ColorSwatch colors={colors.value} />
 		</GEL>
 	),
 	label: 'Color swatch',
-	props: {
+	schema: {
 		colors: fields.multiselect({
 			label: 'Colors',
 			options: Object.keys(COLORS)

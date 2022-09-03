@@ -386,10 +386,6 @@ const fontTextWBC = () => (
 			you have the correct licence in place.
 		</p>
 		<p>
-			Designers using Sketch can access brand font files within the{' '}
-			<a href="/resources/design/sketch-ui-kit/">Sketch UI Kit</a>.
-		</p>
-		<p>
 			Designers using other software can send a request for approval to{' '}
 			<a href="mailto:brand@westpac.com.au">brand@westpac.com.au</a>.
 		</p>
@@ -405,10 +401,6 @@ const fontTextSTG = () => (
 			</a>{' '}
 			to understand how to use brand fonts effectively. Never use a font without confirmation that
 			you have the correct licence in place.
-		</p>
-		<p>
-			Designers using Sketch can access brand font files within the{' '}
-			<a href="/resources/design/sketch-ui-kit/">Sketch UI Kit</a>.
 		</p>
 		<p>
 			Designers using other software can send a request for approval via{' '}
@@ -544,7 +536,6 @@ const SectionDesigners = () => {
 					<Cell left={[null, null, 9]} width={[12, null, 4]}>
 						<BlockListHeading icon={NewWindowIcon}>Design resources</BlockListHeading>
 						<BlockList>
-							<BlockListItem href="/resources/design/sketch-ui-kit/">Sketch UI Kit</BlockListItem>
 							{brandContent.guidelinesURL && (
 								<BlockListItem href={brandContent.guidelinesURL} target="_blank">
 									Masterbrand Guidelines

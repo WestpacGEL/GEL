@@ -1,3 +1,4 @@
+import React from 'react';
 import { component, fields, NotEditable } from '@keystone-6/fields-document/component-blocks';
 import { ToolbarButton, ToolbarGroup } from '@keystone-6/fields-document/primitives';
 import { Tooltip } from '@keystone-ui/tooltip';
@@ -45,56 +46,56 @@ const removeOnlyToolbar = ({ onRemove }: { onRemove: () => void }) => {
 export const componentBlocks = {
 	heading,
 	icons: component({
-		component: () => (
+		preview: () => (
 			<NotEditable>
 				<GEL brand={brand}>
 					<Icons.component />
 				</GEL>
 			</NotEditable>
 		),
-		props: {},
+		schema: {},
 		label: 'Icons',
 		toolbar: removeOnlyToolbar,
 	}),
 	symbols: component({
-		component: () => (
+		preview: () => (
 			<NotEditable>
 				<GEL brand={brand}>
 					<Symbols.component />
 				</GEL>
 			</NotEditable>
 		),
-		props: {},
+		schema: {},
 		label: 'Symbols',
 		toolbar: removeOnlyToolbar,
 	}),
 	logos: component({
-		component: () => (
+		preview: () => (
 			<NotEditable>
 				<GEL brand={brand}>
 					<Logos.component />
 				</GEL>
 			</NotEditable>
 		),
-		props: {},
+		schema: {},
 		label: 'Logos',
 		toolbar: removeOnlyToolbar,
 	}),
 	pictograms: component({
-		component: () => (
+		preview: () => (
 			<NotEditable>
 				<GEL brand={brand}>
 					<Pictograms.component />
 				</GEL>
 			</NotEditable>
 		),
-		props: {},
+		schema: {},
 		label: 'Pictograms',
 		toolbar: removeOnlyToolbar,
 	}),
 	propsTable: component({
-		component: () => <NotEditable>Preview not available</NotEditable>,
-		props: {},
+		preview: () => <NotEditable>Preview not available</NotEditable>,
+		schema: {},
 		label: 'Props table',
 		toolbar: removeOnlyToolbar,
 	}),
