@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { gql } from '@apollo/client';
 import { jsx } from '@westpac/core';
-import { CustomRenderer } from './custom-renderer';
 import { PageContextProvider } from '../../components/providers/pageContext';
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
 import { getApolloClient } from '../../apollo';
 import {
+	CustomRenderer,
 	Grid,
 	Wrapper,
 	HeaderBar,
