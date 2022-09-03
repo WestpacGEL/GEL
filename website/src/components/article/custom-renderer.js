@@ -4,7 +4,7 @@ import React from 'react';
 import { jsx } from '@westpac/core';
 import { DocumentRenderer } from '@keystone-6/document-renderer';
 import { Item } from '@westpac/list';
-import { defaultRenderers } from '../../components/pages/single-component/document-renderer';
+import { defaultRenderers } from '../pages/single-component/document-renderer';
 import {
 	Image,
 	LeadText,
@@ -14,7 +14,7 @@ import {
 	ArticleCard,
 	LayoutContextProvider,
 	IndexContextProvider,
-} from '../../components/article';
+} from '.';
 
 // ============================================================
 // Renderers
