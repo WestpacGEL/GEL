@@ -13,6 +13,7 @@ export { PageHero } from './PageHero';
 export { PageContent } from './PageContent';
 
 // Custom Renderer Components
+export { CustomRenderer } from './custom-renderer';
 export { Image } from './renderers/Image';
 export { LeadText } from './renderers/LeadText';
 export { Heading } from './renderers/Heading';

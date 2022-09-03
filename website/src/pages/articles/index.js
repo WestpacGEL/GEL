@@ -1,27 +1,22 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useMediaQuery } from '@westpac/core';
+import { jsx, useMediaQuery } from '@westpac/core';
 
-import { Wrapper, Hero, ActionBar, Footer, Container, Grid } from '../../components/article';
+import {
+	CustomRenderer,
+	Wrapper,
+	Hero,
+	ActionBar,
+	Footer,
+	Container,
+	Grid,
+} from '../../components/article';
 import { PageContextProvider } from '../../components/providers/pageContext';
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
 
-import { CustomRenderer } from './custom-renderer';
 import { getApolloClient } from '../../apollo';
 import { gql } from '@apollo/client';
 
-/*
-TO DO
-1. Rebuild homepage
-	- fix cards
-	- other design tweaks?
-2. Rebuild article page
-	- trello design tweaks?
-- footer links
-    - hook up to correct links
-*/
-
-// fix main container and footer spacing
 const Home = ({ content }) => {
 	const mq = useMediaQuery();
 	return (
