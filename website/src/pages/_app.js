@@ -1,22 +1,9 @@
-import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from '@apollo/react-hooks';
-import { ApolloClient } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
 import React, { useMemo, useEffect } from 'react';
-import fetch from 'isomorphic-unfetch';
 import cookie from 'cookie';
 import App from 'next/app';
-
 import { Layout as DefaultLayout } from '../components/layout';
-
-const getApolloClient = (initialState) =>
-	new ApolloClient({
-		link: new HttpLink({
-			fetch,
-			uri: `${process.env.APOLLO_CLIENT_GRAPHQL_URI || 'http://localhost:3001/api/graphql'}`,
-		}),
-		cache: new InMemoryCache().restore(initialState || {}),
-	});
+import { getApolloClient } from '../apollo';
 
 const GELApp = ({ Component, pageProps, apollo, brand }) => {
 	const Layout = Component.layout || DefaultLayout;
@@ -63,6 +50,13 @@ GELApp.getInitialProps = async (appContext) => {
 		router,
 		ctx: { req, res },
 	} = appContext;
+
+	// articles and articles/slug was infinitely redirecting because of the code below
+	// so added this condition here to exit early for non /design-system urls
+	const { pathname } = router;
+	if (!pathname.startsWith('/design-system')) {
+		return appProps;
+	}
 
 	const brandParam = router.query.b || '';
 	const brandsList = ['BOM', 'BSA', 'BTFG', 'STG', 'WBC', 'WBG', 'RAMS'];
