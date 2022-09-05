@@ -82,7 +82,6 @@ export const CustomRenderer = ({ document }) => {
 	};
 
 	const componentBlockRenderers = { ...articleComponentBlocks };
-	console.log(document);
 	return (
 		<DocumentRenderer
 			document={document}
