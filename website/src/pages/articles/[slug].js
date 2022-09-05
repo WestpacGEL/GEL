@@ -109,6 +109,7 @@ export async function getStaticProps(context) {
 	const article = articles[0] || null;
 	return {
 		props: { article },
+		revalidate: 10,
 	};
 }
 
