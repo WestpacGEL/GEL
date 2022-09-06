@@ -46,13 +46,16 @@ export default withAuth(
 				}
 			},
 		},
-		images: {
-			upload: 'local',
-			local: {
-				storagePath: 'public/images',
-				baseUrl: '/images',
-			},
-		},
+		// This config needs to be upgraded as part of keystone upgrade
+		// but I noticed that we're not using local images
+		// so I'm removing this config completely
+		// images: {
+		// 	upload: 'local',
+		// 	local: {
+		// 		storagePath: 'public/images',
+		// 		baseUrl: '/images',
+		// 	},
+		// },
 		ui: {
 			isAccessAllowed: (context: Context) => !!context.session?.data,
 		},

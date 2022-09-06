@@ -46,40 +46,19 @@ const Article = ({ article, ...props }) => {
 	);
 };
 
-export async function getStaticPaths() {
-	const client = getApolloClient();
+export async function getServerSideProps({ query, res }) {
+	res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59');
 
-	const res = await client.query({
-		query: gql`
-			query {
-				articles {
-					id
-					url
-				}
-			}
-		`,
-	});
-
-	const articles = res.data ? res.data.articles : [];
-	const paths = articles.map((a) => ({
-		// TODO: temp fix until we add slug as a field to schema
-		params: { slug: a.url.replace('/', '') },
-	}));
-
-	return {
-		paths: paths,
-		fallback: false,
-	};
-}
-
-export async function getStaticProps(context) {
-	const client = getApolloClient();
-
+	const slug = query?.slug;
+	if (!slug) {
+		return {
+			props: {},
+		};
+	}
 	// TODO: remove this url derivation once we add slug as field type
-	const slug = context.params.slug;
 	const articleUrl = `/${slug}`;
-
-	const res = await client.query({
+	const client = getApolloClient();
+	const queryRes = await client.query({
 		query: gql`
 			query article($url: String!) {
 				articles(where: { url: { equals: $url } }) {
@@ -105,11 +84,10 @@ export async function getStaticProps(context) {
 		},
 	});
 
-	const articles = res?.data?.articles || [];
+	const articles = queryRes?.data?.articles || [];
 	const article = articles[0] || null;
 	return {
 		props: { article },
-		revalidate: 10,
 	};
 }
 
