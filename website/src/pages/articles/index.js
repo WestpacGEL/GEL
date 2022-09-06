@@ -41,10 +41,12 @@ const Home = ({ content }) => {
 	);
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps({ req, res }) {
+	res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59');
+
 	const client = getApolloClient();
 
-	const res = await client.query({
+	const queryRes = await client.query({
 		query: gql`
 			query article($url: String!) {
 				articles(where: { url: { equals: $url } }) {
@@ -60,13 +62,12 @@ export async function getStaticProps() {
 		},
 	});
 
-	const homeArticle = res?.data?.articles[0] || null;
+	const homeArticle = queryRes?.data?.articles[0] || null;
 	const content = homeArticle?.content || null;
 	return {
 		props: {
 			content,
 		},
-		revalidate: 10,
 	};
 }
 
