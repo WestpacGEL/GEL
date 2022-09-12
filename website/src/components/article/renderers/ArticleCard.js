@@ -15,10 +15,10 @@ export const ArticleCard = ({ article }) => {
 	const mq = useMediaQuery();
 
 	const imageSrc =
-		article.pageImage?.publicUrl ||
+		article.cardImage?.publicUrl ||
 		'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
 	const title = article.cardTitle || 'Default Title';
-	const description = article.cardTitle || 'Default Description';
+	const description = article.cardDescription || 'Default Description';
 	const anchorURL = article.url ? `/articles${article.url}` : '#';
 
 	const layoutContext = useLayoutContext();

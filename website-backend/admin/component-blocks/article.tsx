@@ -18,7 +18,7 @@ const Article = ({ article }: { article: RelationshipData | null }) => {
 	if (!article) return null;
 
 	const imgURL =
-		article?.data?.pageImage?.publicUrl ||
+		article?.data?.cardImage?.publicUrl ||
 		'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=30';
 	return (
 		<Cell>
@@ -95,7 +95,7 @@ export const article = component({
 			label: 'Article',
 			listKey: 'Article',
 			many: false,
-			selection: `id url cardTitle cardDescription cardDescriptionSecondary pageImage { id filename publicUrl }`,
+			selection: `id url cardTitle cardDescription cardDescriptionSecondary cardImage { id filename publicUrl }`,
 		}),
 	},
 	label: 'Article',
