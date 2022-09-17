@@ -3,8 +3,8 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Container, Grid } from './Grid';
 import { Cell } from '@westpac/grid';
-import { DotBrandGuidelineLogo, DotFigmaLogo, DotSubscribeLogo } from './logos';
-import { brandsMap } from './_utils';
+import { FigmaLogo, PdfIcon, WritingIcon } from './logos';
+import { brandsMap, DotLogo } from './_utils';
 
 const FooterTitle = (props) => {
 	const { TYPE } = useBrand();
@@ -37,7 +37,16 @@ const FooterList = (props) => {
 const FooterItem = ({ link = '#', children, ...props }) => {
 	return (
 		<Cell tag="li" {...props}>
-			<a href={link} css={{ display: 'flex', textDecoration: 'none' }}>
+			<a
+				href={link}
+				css={{
+					display: 'flex',
+					textDecoration: 'none',
+					':hover span': {
+						outlineWidth: 2,
+					},
+				}}
+			>
 				{children}
 			</a>
 		</Cell>
@@ -64,10 +73,24 @@ const FooterItemText = (props) => {
 	);
 };
 
-const LogoCircle = ({ logo: Logo, ...props }) => {
+const LogoCircle2 = ({ logo: Logo, ...props }) => {
 	const mq = useMediaQuery();
 	return (
 		<Logo
+			css={mq({
+				marginRight: ['0.75rem', null, null, null, '1.125rem'],
+				height: [72, null, null, null, 84],
+				width: [72, null, null, null, 84],
+			})}
+			{...props}
+		/>
+	);
+};
+
+const FooterLogo = (props) => {
+	const mq = useMediaQuery();
+	return (
+		<DotLogo
 			css={mq({
 				marginRight: ['0.75rem', null, null, null, '1.125rem'],
 				height: [72, null, null, null, 84],
@@ -98,7 +121,7 @@ export const Footer = (props) => {
 						<FooterList>
 							{Object.entries(brandsMap).map(([key, val]) => (
 								<FooterItem key={key} link={`/design-system?b=${key}`} width={[12, 6]}>
-									<LogoCircle logo={val.dotLogo} />
+									<FooterLogo logo={val?.dot?.logo} size={val?.dot?.size?.footer} />
 									<FooterItemText>{val.name}</FooterItemText>
 								</FooterItem>
 							))}
@@ -108,15 +131,15 @@ export const Footer = (props) => {
 						<FooterTitle>Tools &amp; resources</FooterTitle>
 						<FooterList>
 							<FooterItem width={[12, 6, 12]}>
-								<LogoCircle logo={DotFigmaLogo} />
+								<FooterLogo logo={FigmaLogo} />
 								<FooterItemText>Figma UI Kits</FooterItemText>
 							</FooterItem>
 							<FooterItem width={[12, 6, 12]}>
-								<LogoCircle logo={DotBrandGuidelineLogo} />
+								<FooterLogo logo={PdfIcon} />
 								<FooterItemText>Master Brand Guidelines</FooterItemText>
 							</FooterItem>
 							<FooterItem width={[12, 6, 12]}>
-								<LogoCircle logo={DotSubscribeLogo} />
+								<FooterLogo logo={WritingIcon} />
 								<FooterItemText>Subscribe to GEL</FooterItemText>
 							</FooterItem>
 						</FooterList>
