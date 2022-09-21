@@ -12,7 +12,7 @@ export const PageHero = ({ children, ...props }) => {
 		<div
 			css={mq({
 				background: `linear-gradient(180deg, #FFFFFF 24.71%, ${COLORS.background} 100%)`,
-				paddingTop: ['3.375rem', '4.125rem'],
+				paddingTop: ['3rem', '3.75rem', '4.125rem'],
 			})}
 		>
 			<Container {...props}>{children}</Container>

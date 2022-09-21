@@ -9,8 +9,9 @@ import ResizeObserver from 'resize-observer-polyfill';
 import { useSpring, animated } from '@react-spring/web';
 import useMeasure from 'react-use-measure';
 import { GELLogo } from './logos';
-import { brandsMap } from './_utils';
+import { brandsMap, DotLogo } from './_utils';
 import { Container } from './Grid';
+import { StickyHeader } from './StickyHeader';
 
 const ButtonIconOverride = ({ icon: Icon, left, right, color, state: _, ...rest }) => {
 	const {
@@ -131,33 +132,6 @@ const BrandListItem = ({ link, children, ...props }) => {
 	);
 };
 
-const StickyHeader = (props) => {
-	const ref = useRef();
-	const [stuck, setStuck] = useState(false);
-
-	useEffect(() => {
-		const cachedRef = ref.current;
-		const observer = new IntersectionObserver(([e]) => setStuck(e.intersectionRatio < 1), {
-			rootMargin: '-1px 0px 0px 0px',
-			threshold: [1],
-		});
-		observer.observe(cachedRef);
-		return () => observer.unobserve(cachedRef);
-	}, [ref]);
-
-	return (
-		<div
-			ref={ref}
-			css={{
-				position: 'sticky',
-				top: '0',
-				...(stuck && { boxShadow: '0 8px 8px rgba(0,0,0,0.24)' }),
-			}}
-			{...props}
-		/>
-	);
-};
-
 const ActionBarDropdown = (props) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [closed, setClosed] = useState(true);
@@ -227,8 +201,12 @@ const ActionBarDropdown = (props) => {
 	);
 };
 
-const ActionBarLogo = ({ logo: Logo, ...props }) => {
-	return <Logo css={{ height: 72, width: 72, marginRight: 12 }} {...props} />;
+const ActionBarLogo = ({ href, ...props }) => {
+	return (
+		<a href={href}>
+			<DotLogo css={{ height: 72, width: 72, marginRight: 12 }} {...props} />
+		</a>
+	);
 };
 
 const ActionBarDesktop = () => {
@@ -237,6 +215,7 @@ const ActionBarDesktop = () => {
 		TYPE,
 		GEL: { COLORS },
 	} = useBrand();
+	const mq = useMediaQuery();
 	return (
 		<Container
 			css={{
@@ -244,6 +223,7 @@ const ActionBarDesktop = () => {
 				alignItems: 'flex-end',
 				height: '6.375rem',
 				backgroundColor: '#fff',
+				paddingBottom: '0.75rem',
 				[`@media (max-width: ${LAYOUT.breakpoints.sm - 1}px)`]: { display: 'none' },
 			}}
 		>
@@ -258,10 +238,10 @@ const ActionBarDesktop = () => {
 					marginRight: '1.5rem',
 				}}
 			>
-				<GELLogo css={{ marginBottom: '0.875rem' }} />
+				<GELLogo css={{ marginBottom: '0.75rem' }} />
 				<p
 					css={{
-						margin: '0 0 0.75rem',
+						margin: '0 0 0.375rem',
 						display: 'flex',
 						alignItems: 'flex-end',
 						fontSize: '1rem',
@@ -269,7 +249,7 @@ const ActionBarDesktop = () => {
 					}}
 				>
 					Design System
-					<ArrowRightIcon css={{ margin: '0 1rem 0 0.75rem' }} />
+					<ArrowRightIcon css={mq({ margin: [null, null, '0 0.75rem 0 0', '0 1rem 0 0.75rem'] })} />
 				</p>
 			</div>
 			<ul
@@ -279,14 +259,15 @@ const ActionBarDesktop = () => {
 					paddingLeft: 0,
 					listStyle: 'none',
 					margin: 0,
-					marginBottom: '0.75rem',
 				}}
 			>
 				{Object.entries(brandsMap).map(([key, val]) => (
 					<li key={key}>
-						<a href={`/design-system?b=${key}`} css={{ display: 'flex' }}>
-							<ActionBarLogo logo={val.dotLogo} />
-						</a>
+						<ActionBarLogo
+							href={`/design-system?b=${key}`}
+							logo={val?.dot?.logo}
+							size={val?.dot?.size?.actionBar}
+						/>
 					</li>
 				))}
 			</ul>
