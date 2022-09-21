@@ -27,11 +27,10 @@ export const ArticleCard = ({ article }) => {
 	const index = indexContext ? indexContext.index : 0;
 	const { layout } = layoutContext;
 
-	// TO DO: tweak this
 	const aspectRatioMap = {
-		four: ['484/185', '708/559'],
-		six: ['484/185', '1092/563'],
-		eight: '484/185',
+		four: ['1092/563', '708/559'],
+		six: '1092/563',
+		eight: ['1092/563', '484/185'],
 	};
 	let width = [12, 4];
 	let aspect = 'four';
@@ -61,9 +60,7 @@ export const ArticleCard = ({ article }) => {
 			>
 				<img
 					css={mq({
-						flexGrow: 1,
 						width: '100%',
-						// minHeight: '250px',
 						aspectRatio: aspectRatioMap[aspect],
 						objectFit: 'cover',
 						transition: 'border-radius 0.2s',
@@ -77,6 +74,9 @@ export const ArticleCard = ({ article }) => {
 						paddingLeft: '0.375rem',
 						borderRight: `solid ${COLORS.border}`,
 						borderRightWidth: [0, 1],
+						flexGrow: 1,
+						display: 'flex',
+						flexDirection: 'column',
 					})}
 				>
 					<h4
@@ -102,7 +102,12 @@ export const ArticleCard = ({ article }) => {
 					</p>
 					<ArrowRightIcon
 						color={COLORS.icon}
-						css={mq({ display: 'block', marginLeft: 'auto', marginRight: [0, '0.375rem'] })}
+						css={mq({
+							display: 'block',
+							marginLeft: 'auto',
+							marginRight: [0, '0.375rem'],
+							marginTop: 'auto',
+						})}
 					/>
 				</div>
 			</a>

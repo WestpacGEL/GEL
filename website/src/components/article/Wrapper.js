@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { GEL, jsx, Global } from '@westpac/core';
+import { GEL, jsx, Global, useMediaQuery } from '@westpac/core';
 import wbc from '@westpac/wbc';
 
 const COLORS = {
@@ -13,10 +13,22 @@ const COLORS = {
 	hover: '#F9FAFB',
 };
 
+const GlobalStyles = () => {
+	const mq = useMediaQuery();
+	return (
+		<Global
+			styles={mq({
+				'body div': { color: COLORS.text },
+				'.body-text + .body-text': { marginTop: ['-1.625rem', '-2.625rem'] }, // hack fix for adjacent body-text spacing
+			})}
+		/>
+	);
+};
+
 export const Wrapper = ({ children, ...props }) => {
 	return (
 		<GEL brand={{ ...wbc, GEL: { COLORS } }} {...props}>
-			<Global styles={{ 'body div': { color: COLORS.text } }} />
+			<GlobalStyles />
 			{children}
 		</GEL>
 	);

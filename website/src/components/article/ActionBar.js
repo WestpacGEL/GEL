@@ -11,6 +11,7 @@ import useMeasure from 'react-use-measure';
 import { GELLogo } from './logos';
 import { brandsMap, DotLogo } from './_utils';
 import { Container } from './Grid';
+import { StickyHeader } from './StickyHeader';
 
 const ButtonIconOverride = ({ icon: Icon, left, right, color, state: _, ...rest }) => {
 	const {
@@ -128,34 +129,6 @@ const BrandListItem = ({ link, children, ...props }) => {
 				</span>
 			</a>
 		</li>
-	);
-};
-
-const StickyHeader = (props) => {
-	const ref = useRef();
-	const [stuck, setStuck] = useState(false);
-
-	useEffect(() => {
-		const cachedRef = ref.current;
-		const observer = new IntersectionObserver(([e]) => setStuck(e.intersectionRatio < 1), {
-			rootMargin: '-1px 0px 0px 0px',
-			threshold: [1],
-		});
-		observer.observe(cachedRef);
-		return () => observer.unobserve(cachedRef);
-	}, [ref]);
-
-	return (
-		<div
-			ref={ref}
-			css={{
-				position: 'sticky',
-				top: '0',
-				transition: 'box-shadow 0.2s ease 0s',
-				...(stuck && { boxShadow: '0 8px 8px rgba(0,0,0,0.24)' }),
-			}}
-			{...props}
-		/>
 	);
 };
 

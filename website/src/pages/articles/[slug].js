@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { gql } from '@apollo/client';
-import { jsx } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { PageContextProvider } from '../../components/providers/pageContext';
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
 import { getApolloClient } from '../../apollo';
@@ -13,6 +13,7 @@ import {
 	HeaderImage,
 	PageHero,
 	PageContent,
+	ArticleMain,
 } from '../../components/article';
 
 // ============================================================
@@ -27,7 +28,7 @@ const Article = ({ article, ...props }) => {
 		<Wrapper {...props}>
 			<PageContextProvider>
 				<HeaderBar />
-				<main css={{ paddingBottom: '3.0625rem' }}>
+				<ArticleMain>
 					<PageHero>
 						<Grid rowGap={[0, 0]}>
 							<Header title={article.pageTitle} author={article.author?.name} />
@@ -40,7 +41,7 @@ const Article = ({ article, ...props }) => {
 						</PageContent>
 					)}
 					<StickyFooter type="article" />
-				</main>
+				</ArticleMain>
 			</PageContextProvider>
 		</Wrapper>
 	);
