@@ -17,7 +17,7 @@ export const Hero = (props) => {
 			<Container {...props}>
 				<Grid rowGap={[0, 0]}>
 					<Cell
-						width={[11, 10]}
+						width={[11, 9]}
 						css={mq({
 							marginTop: ['1.875rem', '2.625rem', '3.375rem', '3.75rem', '4.125rem'],
 							marginBottom: ['1.5rem', '1.875rem', '2.25rem', '3.375rem'],

@@ -13,7 +13,7 @@ export const Header = ({ title, author, ...props }) => {
 		<Cell width={12}>
 			<h1
 				css={mq({
-					margin: '0 0 1.125rem',
+					margin: ['0 0 0.75rem', '0 0 1.125rem'],
 					fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
 					fontSize: ['1.875rem', '3rem'],
 					lineHeight: 1.1,
@@ -29,7 +29,7 @@ export const Header = ({ title, author, ...props }) => {
 						fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
 						color: COLORS.muted,
 						marginTop: 0,
-						marginBottom: ['2.625rem', '3rem'],
+						marginBottom: ['1.875rem', '2.25rem', '3rem'],
 					})}
 				>
 					{author}

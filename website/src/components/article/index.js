@@ -11,6 +11,7 @@ export { Header } from './Header';
 export { HeaderImage } from './HeaderImage';
 export { PageHero } from './PageHero';
 export { PageContent } from './PageContent';
+export { ArticleMain } from './ArticleMain';
 
 // Custom Renderer Components
 export { CustomRenderer } from './custom-renderer';

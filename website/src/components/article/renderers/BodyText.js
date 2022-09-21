@@ -5,14 +5,21 @@ import { Cell } from '@westpac/grid';
 
 export const BodyText = ({ children, ...props }) => {
 	const mq = useMediaQuery();
-	const { TYPE, SPACING } = useBrand();
+	const {
+		TYPE,
+		SPACING,
+		GEL: { COLORS },
+	} = useBrand();
 	return (
-		<Cell width={[12, 10, 8]} left={[1, 2, null, 3]}>
+		<Cell className="body-text" width={[12, 10, null, 8]} left={[1, 2, null, 3]}>
 			<div
 				css={mq({
-					marginBottom: ['2.635rem', '3.375rem'],
+					marginBottom: ['2.625rem', '3.375rem'],
 					fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
 					lineHeight: 2,
+					a: {
+						color: COLORS.icon,
+					},
 				})}
 				{...props}
 			>
