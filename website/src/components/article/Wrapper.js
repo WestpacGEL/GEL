@@ -9,6 +9,7 @@ const COLORS = {
 	border: '#CFD8DC',
 	icon: '#1976D2',
 	text: '#122935',
+	link: '#1871C9',
 	muted: '#575F65',
 	hover: '#F9FAFB',
 };

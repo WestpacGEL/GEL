@@ -90,14 +90,15 @@ const LogoCircle2 = ({ logo: Logo, ...props }) => {
 const FooterLogo = (props) => {
 	const mq = useMediaQuery();
 	return (
-		<DotLogo
-			css={mq({
-				marginRight: ['0.75rem', null, null, null, '1.125rem'],
-				height: [72, null, null, null, 84],
-				width: [72, null, null, null, 84],
-			})}
-			{...props}
-		/>
+		<span css={mq({ marginRight: ['0.75rem', null, null, null, '1.125rem'] })}>
+			<DotLogo
+				css={mq({
+					height: [72, null, null, null, 84],
+					width: [72, null, null, null, 84],
+				})}
+				{...props}
+			/>
+		</span>
 	);
 };
 
