@@ -112,15 +112,17 @@ export const DotLogo = ({ logo: Logo, size = {}, ...props }) => {
 	return (
 		<span
 			css={{
-				outline: `1px solid ${COLORS.border}`,
-				transition: 'outline 0.1s',
+				border: `1px solid ${COLORS.border}`,
+				transition: 'all 0.2s cubic-bezier(0.13, 0.00, 0.11, 1.00)', // mouse out
 				borderRadius: '50%',
 				backgroundColor: '#fff',
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'center',
 				':hover': {
-					outlineWidth: 2,
+					transition: 'all 0.4s cubic-bezier(0.13, 0.00, 0.11, 1.00)', // mouse over
+					border: `4px solid ${COLORS.icon}60`,
+					margin: '-3px',
 				},
 			}}
 			{...props}

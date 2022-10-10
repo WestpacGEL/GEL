@@ -42,6 +42,7 @@ export const StickyHeader = (props) => {
 				position: 'sticky',
 				top: 0,
 				transition: 'box-shadow 0.2s ease 0s',
+				zIndex: 1,
 				...(stuck && scrolled && { boxShadow: '0 8px 8px rgba(0,0,0,0.24)' }),
 			}}
 			{...props}
