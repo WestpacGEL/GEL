@@ -55,7 +55,10 @@ export const ArticleCard = ({ article }) => {
 					display: 'flex',
 					flexDirection: 'column',
 					textDecoration: 'none',
-					':hover img': { borderRadius: 200 },
+					':hover img': {
+						transition: 'border-radius 0.3s cubic-bezier(0.13, 0.00, 0.11, 1.00)',
+						borderRadius: 200,
+					},
 				}}
 			>
 				<img
@@ -63,7 +66,7 @@ export const ArticleCard = ({ article }) => {
 						width: '100%',
 						aspectRatio: aspectRatioMap[aspect],
 						objectFit: 'cover',
-						transition: 'border-radius 0.2s',
+						transition: 'border-radius 0.2s cubic-bezier(0.13, 0.00, 0.11, 1.00)', // mouse out
 					})}
 					src={imageSrc}
 					alt={''}

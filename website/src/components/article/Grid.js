@@ -4,7 +4,7 @@ import { jsx, useMediaQuery } from '@westpac/core';
 import { Grid as WBCGrid, Container as WBCContainer } from '@westpac/grid';
 import merge from 'lodash.merge';
 
-export const Grid = (props) => <WBCGrid columnGap={[12, 18, 24]} {...props} />;
+export const Grid = (props) => <WBCGrid columnGap={[12, 18, 24]} rowGap={[24]} {...props} />;
 
 export const Container = (props) => {
 	const mq = useMediaQuery();

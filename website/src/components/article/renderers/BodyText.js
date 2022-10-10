@@ -18,7 +18,7 @@ export const BodyText = ({ children, ...props }) => {
 					fontFamily: '"graphik",' + TYPE.bodyFont.fontFamily,
 					lineHeight: 2,
 					a: {
-						color: COLORS.icon,
+						color: COLORS.link,
 					},
 				})}
 				{...props}

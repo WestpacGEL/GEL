@@ -15,8 +15,20 @@ export const Image = ({ src, size, caption, alt, reducedSpacing, ...props }) => 
 	const indexContext = useIndexContext();
 
 	const index = indexContext ? indexContext.index : 0;
-	const layout = layoutContext ? 'double' : 'single';
+	let layout = 'single';
 
+	if (layoutContext) {
+		const items = layoutContext.layout.reduce((a, b) => a + b, 0);
+		layout = 'double';
+		console.log(items);
+		// layout = items === 2 ? 'double' : 'triple';
+	}
+
+	// const layout = layoutContext ? 'double' : 'single';
+	// console.log(layoutContext && layoutContext.layout);
+
+	// need to work out the widths at body and bodywide?
+	// body only max spans 8 and bodyWide spans 10 which are not divisible by 3...
 	const sizeMap = {
 		single: {
 			bodyWide: { width: [12, 10], left: [[1, 2]] },
@@ -38,11 +50,18 @@ export const Image = ({ src, size, caption, alt, reducedSpacing, ...props }) => 
 				],
 			},
 		},
+		triple: {
+			bodyWide: {
+				width: [12, 4],
+				left: [[1, 2], [1, 6], []],
+			},
+			body: {},
+		},
 	};
 
 	let marginBottom = ['2.625rem', '3.375rem'];
 
-	if (layout == 'double') {
+	if (layout == 'double' || layout == 'triple') {
 		if (index === 0) {
 			marginBottom = ['1.5rem', '3.375rem'];
 		}

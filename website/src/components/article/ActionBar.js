@@ -203,8 +203,8 @@ const ActionBarDropdown = (props) => {
 
 const ActionBarLogo = ({ href, ...props }) => {
 	return (
-		<a href={href}>
-			<DotLogo css={{ height: 72, width: 72, marginRight: 12 }} {...props} />
+		<a href={href} css={{ display: 'inline-block', marginRight: 12 }}>
+			<DotLogo css={{ height: 72, width: 72 }} {...props} />
 		</a>
 	);
 };

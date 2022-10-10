@@ -28,7 +28,6 @@ const Home = ({ content }) => {
 					<Container
 						css={mq({
 							marginTop: ['1.875rem', '2.25rem', '3rem', '3.375rem', '3.75rem'],
-							marginBottom: ['6.4375rem', '6rem', '4.25rem', '6rem', '6.1875rem'],
 						})}
 					>
 						<Grid>{content?.document ? <CustomRenderer document={content.document} /> : null}</Grid>
