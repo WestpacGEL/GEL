@@ -59,13 +59,13 @@
 	},
 	"peerDependencies": {
 		"@react-spring/web": "^9.2.4",
-		"react": "^17.0.2"
+		"react": "^18.2.0"
 	},
 	"devDependencies": {
 		"@react-spring/web": "^9.2.4",
 		"@westpac/list": "^1.1.0",
 		"cypress": "^8.0.0",
-		"react": "^17.0.2",
+		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"
 	}
 }

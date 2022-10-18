@@ -25,7 +25,7 @@ function nestingTest({ name, Component }) {
 			expect(container).toHaveTextContent(
 				/GEL components require that you wrap your application with the <GEL \/> brand provider from @westpac\/core./i
 			);
-			expect(console.error).toHaveBeenCalledTimes(2);
+			expect(() => container.render()).toThrow();
 		});
 
 		test('Renders when the component is rendered inside of <GEL/>', () => {
