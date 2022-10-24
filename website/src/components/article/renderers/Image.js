@@ -4,7 +4,7 @@ import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell } from '@westpac/grid';
 import { useLayoutContext, useIndexContext } from './Providers';
 
-export const Image = ({ src, size, caption, alt, reducedSpacing, ...props }) => {
+export const Image = ({ src, size, caption, alt = '', reducedSpacing, ...props }) => {
 	const mq = useMediaQuery();
 	const {
 		TYPE,

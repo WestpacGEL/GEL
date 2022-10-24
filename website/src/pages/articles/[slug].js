@@ -15,6 +15,7 @@ import {
 	PageContent,
 	ArticleMain,
 } from '../../components/article';
+import { Head } from '../../components/head';
 
 // ============================================================
 // Article
@@ -26,6 +27,7 @@ const Article = ({ article, ...props }) => {
 
 	return (
 		<Wrapper {...props}>
+			<Head title={article.pageTitle} />
 			<PageContextProvider>
 				<HeaderBar />
 				<ArticleMain>
@@ -40,8 +42,8 @@ const Article = ({ article, ...props }) => {
 							<CustomRenderer document={article.content.document} />
 						</PageContent>
 					)}
-					<StickyFooter type="article" />
 				</ArticleMain>
+				<StickyFooter type="article" />
 			</PageContextProvider>
 		</Wrapper>
 	);

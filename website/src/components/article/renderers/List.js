@@ -20,9 +20,16 @@ export const List = (props) => {
 								...mq({
 									...styles,
 									marginBottom: ['2.635rem', '3.375rem'],
+									fontSize: '1rem',
+									'> li': {
+										margin: '0.75rem 0',
+									},
 									'> li::before': {
 										...(type === 'bullet' && { backgroundColor: COLORS.icon }),
 										borderColor: COLORS.icon,
+									},
+									a: {
+										color: `${COLORS.link} !important`,
 									},
 								})[0],
 							}),
