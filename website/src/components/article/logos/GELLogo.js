@@ -12,6 +12,7 @@ export const GELLogo = ({ white = false, width = 45, height = 18, ...props }) =>
 				role="img"
 				focusable="false"
 				xmlns="http://www.w3.org/2000/svg"
+				aria-label="GEL"
 			>
 				<path
 					fillRule="evenodd"

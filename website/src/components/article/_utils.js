@@ -105,7 +105,7 @@ export const brandsMap = {
 	},
 };
 
-export const DotLogo = ({ logo: Logo, size = {}, ...props }) => {
+export const DotLogo = ({ logo: Logo, hover = true, size = {}, assistiveText, ...props }) => {
 	const {
 		GEL: { COLORS },
 	} = useBrand();
@@ -119,15 +119,17 @@ export const DotLogo = ({ logo: Logo, size = {}, ...props }) => {
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'center',
-				':hover': {
-					transition: 'all 0.4s cubic-bezier(0.13, 0.00, 0.11, 1.00)', // mouse over
-					border: `4px solid ${COLORS.icon}60`,
-					margin: '-3px',
-				},
+				...(hover && {
+					':hover': {
+						transition: 'all 0.4s cubic-bezier(0.13, 0.00, 0.11, 1.00)', // mouse over
+						border: `4px solid ${COLORS.icon}60`,
+						margin: '-3px',
+					},
+				}),
 			}}
 			{...props}
 		>
-			<Logo {...size} />
+			<Logo assistiveText={assistiveText} {...size} />
 		</span>
 	);
 };

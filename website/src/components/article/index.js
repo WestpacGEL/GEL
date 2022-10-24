@@ -19,6 +19,7 @@ export { Image } from './renderers/Image';
 export { LeadText } from './renderers/LeadText';
 export { Heading } from './renderers/Heading';
 export { BodyText } from './renderers/BodyText';
+export { Blockquote } from './renderers/Blockquote';
 export { List } from './renderers/List';
 export { ArticleCard } from './renderers/ArticleCard';
 export {
