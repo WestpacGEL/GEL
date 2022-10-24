@@ -111,6 +111,7 @@ export const ArticleCard = ({ article }) => {
 							marginRight: [0, '0.375rem'],
 							marginTop: 'auto',
 						})}
+						aria-hidden={true}
 					/>
 				</div>
 			</a>
