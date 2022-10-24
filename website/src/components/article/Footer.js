@@ -35,6 +35,9 @@ const FooterList = (props) => {
 };
 
 const FooterItem = ({ link = '#', children, ...props }) => {
+	const {
+		GEL: { COLORS },
+	} = useBrand();
 	return (
 		<Cell tag="li" {...props}>
 			<a
@@ -42,8 +45,10 @@ const FooterItem = ({ link = '#', children, ...props }) => {
 				css={{
 					display: 'flex',
 					textDecoration: 'none',
-					':hover span': {
-						outlineWidth: 2,
+					':hover .dot-logo': {
+						transition: 'all 0.4s cubic-bezier(0.13, 0.00, 0.11, 1.00)', // mouse over
+						border: `4px solid ${COLORS.icon}60`,
+						margin: '-3px',
 					},
 				}}
 			>
@@ -73,29 +78,17 @@ const FooterItemText = (props) => {
 	);
 };
 
-const LogoCircle2 = ({ logo: Logo, ...props }) => {
-	const mq = useMediaQuery();
-	return (
-		<Logo
-			css={mq({
-				marginRight: ['0.75rem', null, null, null, '1.125rem'],
-				height: [72, null, null, null, 84],
-				width: [72, null, null, null, 84],
-			})}
-			{...props}
-		/>
-	);
-};
-
 const FooterLogo = (props) => {
 	const mq = useMediaQuery();
 	return (
 		<span css={mq({ marginRight: ['0.75rem', null, null, null, '1.125rem'] })}>
 			<DotLogo
+				className="dot-logo"
 				css={mq({
 					height: [72, null, null, null, 84],
 					width: [72, null, null, null, 84],
 				})}
+				aria-hidden={true}
 				{...props}
 			/>
 		</span>
@@ -122,7 +115,7 @@ export const Footer = (props) => {
 						<FooterList>
 							{Object.entries(brandsMap).map(([key, val]) => (
 								<FooterItem key={key} link={`/design-system?b=${key}`} width={[12, 6]}>
-									<FooterLogo logo={val?.dot?.logo} size={val?.dot?.size?.footer} />
+									<FooterLogo logo={val?.dot?.logo} size={val?.dot?.size?.footer} hover={false} />
 									<FooterItemText>{val.name}</FooterItemText>
 								</FooterItem>
 							))}
@@ -132,15 +125,15 @@ export const Footer = (props) => {
 						<FooterTitle>Tools &amp; resources</FooterTitle>
 						<FooterList>
 							<FooterItem width={[12, 6, 12]}>
-								<FooterLogo logo={FigmaLogo} />
+								<FooterLogo logo={FigmaLogo} hover={false} />
 								<FooterItemText>Figma UI Kits</FooterItemText>
 							</FooterItem>
 							<FooterItem width={[12, 6, 12]}>
-								<FooterLogo logo={PdfIcon} />
+								<FooterLogo logo={PdfIcon} hover={false} />
 								<FooterItemText>Master Brand Guidelines</FooterItemText>
 							</FooterItem>
 							<FooterItem width={[12, 6, 12]}>
-								<FooterLogo logo={WritingIcon} />
+								<FooterLogo logo={WritingIcon} hover={false} />
 								<FooterItemText>Subscribe to GEL</FooterItemText>
 							</FooterItem>
 						</FooterList>

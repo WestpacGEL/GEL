@@ -11,6 +11,7 @@ export const GELHeroSvg = (props) => {
 			fill="none"
 			role="img"
 			focusable="false"
+			aria-label="GEL global experience language - speak the same language"
 			css={{ width: '100%', height: 'auto' }}
 			{...props}
 		>

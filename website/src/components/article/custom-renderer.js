@@ -10,6 +10,7 @@ import {
 	LeadText,
 	Heading,
 	BodyText,
+	Blockquote,
 	List,
 	ArticleCard,
 	LayoutContextProvider,
@@ -39,6 +40,9 @@ const articleRenderers = {
 					})}
 				</List>
 			);
+		},
+		blockquote: ({ children }) => {
+			return <Blockquote>{children}</Blockquote>;
 		},
 		layout: ({ children, layout }) => {
 			return (
