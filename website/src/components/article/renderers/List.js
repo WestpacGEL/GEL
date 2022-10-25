@@ -11,7 +11,7 @@ export const List = (props) => {
 	} = useBrand();
 	const mq = useMediaQuery();
 	return (
-		<Cell width={[12, 10, 8]} left={[1, 2, null, 3]}>
+		<Cell className="body-text" width={[12, 10, 8]} left={[1, 2, null, 3]}>
 			<GELList
 				overrides={{
 					List: {
