@@ -3,7 +3,7 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Container, Grid } from './Grid';
 import { Cell } from '@westpac/grid';
-import { FigmaLogo, PdfIcon, WritingIcon } from './logos';
+import { FigmaLogo, PdfIcon, MailIcon } from './logos';
 import { brandsMap, DotLogo } from './_utils';
 
 const FooterTitle = (props) => {
@@ -108,6 +108,7 @@ export const Footer = (props) => {
 					css={mq({
 						paddingTop: ['3.375rem', '3.75rem', '4.875rem', null, '5.625rem'],
 						paddingBottom: ['3.75rem', '4.125rem', '5.25rem', null, '6rem'],
+						overflow: 'hidden',
 					})}
 				>
 					<Cell width={[12, null, 8, 7]}>
@@ -124,17 +125,20 @@ export const Footer = (props) => {
 					<Cell width={[12, null, 4]} left={[null, null, null, 9]}>
 						<FooterTitle>Tools &amp; resources</FooterTitle>
 						<FooterList>
-							<FooterItem width={[12, 6, 12]}>
+							<FooterItem width={[12, 6, 12]} link="/articles/figma-libraries">
 								<FooterLogo logo={FigmaLogo} hover={false} />
 								<FooterItemText>Figma UI Kits</FooterItemText>
 							</FooterItem>
-							<FooterItem width={[12, 6, 12]}>
+							<FooterItem
+								link="https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ"
+								width={[12, 6, 12]}
+							>
 								<FooterLogo logo={PdfIcon} hover={false} />
 								<FooterItemText>Master Brand Guidelines</FooterItemText>
 							</FooterItem>
-							<FooterItem width={[12, 6, 12]}>
-								<FooterLogo logo={WritingIcon} hover={false} />
-								<FooterItemText>Subscribe to GEL</FooterItemText>
+							<FooterItem link="mailto:gel@westpac.com.au" width={[12, 6, 12]}>
+								<FooterLogo logo={MailIcon} hover={false} />
+								<FooterItemText>Contact GEL</FooterItemText>
 							</FooterItem>
 						</FooterList>
 					</Cell>
