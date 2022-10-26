@@ -19,7 +19,7 @@ export const List = (props) => {
 							merge({}, styles, {
 								...mq({
 									...styles,
-									marginBottom: ['2.635rem', '3.375rem'],
+									marginBottom: ['3.375rem', '4.125rem'],
 									fontSize: '1rem',
 									'> li': {
 										margin: '0.75rem 0',
