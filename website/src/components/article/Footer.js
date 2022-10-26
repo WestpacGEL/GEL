@@ -108,7 +108,6 @@ export const Footer = (props) => {
 					css={mq({
 						paddingTop: ['3.375rem', '3.75rem', '4.875rem', null, '5.625rem'],
 						paddingBottom: ['3.75rem', '4.125rem', '5.25rem', null, '6rem'],
-						overflow: 'hidden',
 					})}
 				>
 					<Cell width={[12, null, 8, 7]}>
@@ -124,7 +123,7 @@ export const Footer = (props) => {
 					</Cell>
 					<Cell width={[12, null, 4]} left={[null, null, null, 9]}>
 						<FooterTitle>Tools &amp; resources</FooterTitle>
-						<FooterList>
+						<FooterList columnGap={[null, null, 12, 24]}>
 							<FooterItem width={[12, 6, 12]} link="/articles/figma-libraries">
 								<FooterLogo logo={FigmaLogo} hover={false} />
 								<FooterItemText>Figma UI Kits</FooterItemText>
