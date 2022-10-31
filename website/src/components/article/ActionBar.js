@@ -267,6 +267,7 @@ const ActionBarDesktop = () => {
 							href={`/design-system?b=${key}`}
 							logo={val?.dot?.logo}
 							size={val?.dot?.size?.actionBar}
+							assistiveText={`${val?.name} Design System`}
 						/>
 					</li>
 				))}
