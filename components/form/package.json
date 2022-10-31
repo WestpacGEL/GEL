@@ -50,7 +50,7 @@
 		"shortid": "^2.2.16"
 	},
 	"peerDependencies": {
-		"react": "^17.0.2"
+		"react": "^18.2.0"
 	},
 	"devDependencies": {
 		"@westpac/alert": "^1.2.2",
@@ -62,7 +62,7 @@
 		"@westpac/heading": "^1.0.2",
 		"@westpac/input-group": "^1.0.3",
 		"cypress": "^8.0.0",
-		"react": "^17.0.2",
+		"react": "^18.2.0",
 		"react-select": "^5.1.0",
 		"start-server-and-test": "^1.12.6"
 	}
