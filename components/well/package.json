@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/well",
-	"version": "1.0.2",
+	"version": "2.0.0",
 	"description": "Simple containers used to highlight content",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/well",
@@ -49,16 +49,16 @@
 	"module": "dist/westpac-well.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/body": "^1.4.1",
-		"@westpac/core": "^2.2.0",
+		"@westpac/body": "^2.0.0",
+		"@westpac/core": "^3.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
-		"react": "^17.0.2"
+		"react": "^18.2.0"
 	},
 	"devDependencies": {
 		"cypress": "^8.0.0",
-		"react": "^17.0.2",
+		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"
 	}
 }

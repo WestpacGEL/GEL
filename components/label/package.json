@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/label",
-	"version": "1.1.0",
+	"version": "2.0.0",
 	"description": "Small, coloured UI items used to highlight a word",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/label",
@@ -49,15 +49,15 @@
 	"module": "dist/westpac-label.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/core": "^2.2.0",
+		"@westpac/core": "^3.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
-		"react": "^17.0.2"
+		"react": "^18.2.0"
 	},
 	"devDependencies": {
 		"cypress": "^8.0.0",
-		"react": "^17.0.2",
+		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"
 	}
 }

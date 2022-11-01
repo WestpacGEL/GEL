@@ -1,5 +1,18 @@
 # @westpac/list-group
 
+## 2.0.0
+
+### Major Changes
+
+- 46182557: Update to react 18
+
+### Patch Changes
+
+- Updated dependencies [7d40b7bd]
+- Updated dependencies [46182557]
+  - @westpac/list@2.0.0
+  - @westpac/core@3.0.0
+
 ## 1.0.1
 
 ### Patch Changes

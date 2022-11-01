@@ -5,14 +5,14 @@ import ResizeObserver from 'resize-observer-polyfill';
 window.ResizeObserver = ResizeObserver;
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import { AppStart } from './components/AppStart';
 
 export default (components, packageName, pkg, version) => {
 	const rootElement = document.getElementById('root');
-	ReactDOM.render(
-		<AppStart packageName={packageName} pkg={pkg} components={components} version={version} />,
-		rootElement
+	const root = createRoot(rootElement);
+	root.render(
+		<AppStart packageName={packageName} pkg={pkg} components={components} version={version} />
 	);
 };
