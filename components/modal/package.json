@@ -11,15 +11,15 @@
 	"components": [
 		{
 			"name": "Modal",
-			"src": "Modal.js"
+			"src": "Modal.tsx"
 		},
 		{
 			"name": "Body",
-			"src": "ModalBody.js"
+			"src": "ModalBody.tsx"
 		},
 		{
 			"name": "Footer",
-			"src": "ModalFooter.js"
+			"src": "ModalFooter.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

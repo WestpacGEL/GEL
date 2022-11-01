@@ -11,11 +11,11 @@
 	"components": [
 		{
 			"name": "Tabcordion",
-			"src": "Tabcordion.js"
+			"src": "Tabcordion.tsx"
 		},
 		{
 			"name": "Tab",
-			"src": "Tab.js"
+			"src": "Tab.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

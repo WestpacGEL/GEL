@@ -10,7 +10,7 @@
 	"components": [
 		{
 			"name": "Switch",
-			"src": "Switch.js"
+			"src": "Switch.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

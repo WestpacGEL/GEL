@@ -10,15 +10,15 @@
 	"components": [
 		{
 			"name": "Container",
-			"src": "Container.js"
+			"src": "Container.tsx"
 		},
 		{
 			"name": "Grid",
-			"src": "Grid.js"
+			"src": "Grid.tsx"
 		},
 		{
 			"name": "Cell",
-			"src": "Cell.js"
+			"src": "Cell.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

@@ -8,11 +8,11 @@
 	"components": [
 		{
 			"name": "Fork",
-			"src": "Fork.js"
+			"src": "Fork.tsx"
 		},
 		{
 			"name": "ForkContent",
-			"src": "ForkContent.js"
+			"src": "ForkContent.tsx"
 		}
 	],
 	"scripts": {

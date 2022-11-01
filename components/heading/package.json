@@ -10,11 +10,11 @@
 	"components": [
 		{
 			"name": "Heading",
-			"src": "Heading.js"
+			"src": "Heading.tsx"
 		},
 		{
 			"name": "BrandHeading",
-			"src": "BrandHeading.js"
+			"src": "BrandHeading.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

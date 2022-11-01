@@ -11,7 +11,7 @@
 	"components": [
 		{
 			"name": "Popover",
-			"src": "Popover.js"
+			"src": "Popover.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

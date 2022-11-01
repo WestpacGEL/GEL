@@ -79,7 +79,9 @@ export const doAndAvoid = component({
 					doImage={typeof props.fields.doImage.value === 'string' ? props.fields.doImage.value : ''}
 					doText={props.fields.doText.element}
 					dontAlt={props.fields.dontAlt.value}
-					dontImage={typeof props.fields.dontImage.value === 'string' ? props.fields.dontImage.value : ''}
+					dontImage={
+						typeof props.fields.dontImage.value === 'string' ? props.fields.dontImage.value : ''
+					}
 					dontText={props.fields.dontText.element}
 				/>
 			</GEL>

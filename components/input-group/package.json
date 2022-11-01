@@ -10,15 +10,15 @@
 	"components": [
 		{
 			"name": "InputGroup",
-			"src": "InputGroup.js"
+			"src": "InputGroup.tsx"
 		},
 		{
 			"name": "Before",
-			"src": "Before.js"
+			"src": "Before.tsx"
 		},
 		{
 			"name": "After",
-			"src": "After.js"
+			"src": "After.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

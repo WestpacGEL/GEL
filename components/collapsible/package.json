@@ -11,7 +11,7 @@
 	"components": [
 		{
 			"name": "Collapsible",
-			"src": "Collapsible.js"
+			"src": "Collapsible.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

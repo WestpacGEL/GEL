@@ -10,11 +10,11 @@
 	"components": [
 		{
 			"name": "ButtonGroup",
-			"src": "ButtonGroup.js"
+			"src": "ButtonGroup.tsx"
 		},
 		{
 			"name": "Item",
-			"src": "ButtonGroupItem.js"
+			"src": "ButtonGroupItem.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
