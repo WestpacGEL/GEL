@@ -1,5 +1,23 @@
 # @westpac/modal
 
+## 2.0.0
+
+### Major Changes
+
+- 46182557: Update to react 18
+
+### Patch Changes
+
+- Updated dependencies [2cb88a1b]
+- Updated dependencies [7d97398b]
+- Updated dependencies [46182557]
+  - @westpac/button@2.0.0
+  - @westpac/body@2.0.0
+  - @westpac/core@3.0.0
+  - @westpac/heading@2.0.0
+  - @westpac/hooks@3.0.0
+  - @westpac/icon@2.0.0
+
 ## 1.2.0
 
 ### Minor Changes

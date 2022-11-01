@@ -1,5 +1,24 @@
 # @westpac/list
 
+## 2.0.0
+
+### Major Changes
+
+- 46182557: Update to react 18
+
+### Minor Changes
+
+- 7d40b7bd: - Link list with custom icon to include the icon within the link element (a11y)
+  - Add new href prop to Item component, renders link element around item content
+  - Add new Content override component, provides the link above
+  - Ensure icon can be set at List or Item level
+
+### Patch Changes
+
+- Updated dependencies [46182557]
+  - @westpac/body@2.0.0
+  - @westpac/core@3.0.0
+
 ## 1.2.0
 
 ### Minor Changes
