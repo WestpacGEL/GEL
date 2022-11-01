@@ -1,0 +1,49 @@
+---
+'@westpac/a11y': major
+'@westpac/alert': major
+'@westpac/autocomplete': major
+'@westpac/badge': major
+'@westpac/body': major
+'@westpac/breadcrumb': major
+'@westpac/button': major
+'@westpac/button-dropdown': major
+'@westpac/button-group': major
+'@westpac/collapsible': major
+'@westpac/compacta': major
+'@westpac/core': major
+'@westpac/date-picker': major
+'@westpac/footer': major
+'@westpac/fork': major
+'@westpac/form': major
+'@westpac/form-check': major
+'@westpac/form-pod': major
+'@westpac/grid': major
+'@westpac/header': major
+'@westpac/heading': major
+'@westpac/hooks': major
+'@westpac/icon': major
+'@westpac/input-group': major
+'@westpac/label': major
+'@westpac/link': major
+'@westpac/list': major
+'@westpac/list-group': major
+'@westpac/modal': major
+'@westpac/pagination': major
+'@westpac/panel': major
+'@westpac/pictogram': major
+'@westpac/popover': major
+'@westpac/progress-bar': major
+'@westpac/progress-rope': major
+'@westpac/repeater': major
+'@westpac/selector': major
+'@westpac/sidebar': major
+'@westpac/switch': major
+'@westpac/symbol': major
+'@westpac/tabcordion': major
+'@westpac/table': major
+'@westpac/text-input': major
+'@westpac/well': major
+'@westpac/website': major
+---
+
+Update to react 18
