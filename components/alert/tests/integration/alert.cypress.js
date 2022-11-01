@@ -6,20 +6,20 @@ describe('Alert', () => {
 		cy.get('[data-test-nav-link]').contains('dismissible').click();
 	});
 
-	it('Alert should be dismissable', () => {
-		// here we automate five tests and make sure for each look the dismissable button works
-		['Heads up!', 'Well done!', 'Warning!', 'Oh snap!', 'System Error 8942:'].map((heading, i) => {
-			cy.get(`[data-testing="alert${i}"]`)
-				.contains(heading)
-				.should('be.visible')
-				.get(`[data-testing="alert${i}"] [data-testing="alert-closeBtn"]`) // we need to make sure that we use the right close button for the right alert
-				.click()
-				.wait(500); // we have to wait for at least 400ms as the transition is 400. Let's keep it safe with 500ms
+	// it('Alert should be dismissable', () => {
+	// 	// here we automate five tests and make sure for each look the dismissable button works
+	// 	['Heads up!', 'Well done!', 'Warning!', 'Oh snap!', 'System Error 8942:'].map((heading, i) => {
+	// 		cy.get(`[data-testing="alert${i}"]`)
+	// 			.contains(heading)
+	// 			.should('be.visible')
+	// 			.get(`[data-testing="alert${i}"] [data-testing="alert-closeBtn"]`) // we need to make sure that we use the right close button for the right alert
+	// 			.click()
+	// 			.wait(500); // we have to wait for at least 400ms as the transition is 400. Let's keep it safe with 500ms
 
-			// assertion
-			cy.get(`[data-testing="alert${i}"]`).should('not.exist');
-		});
-	});
+	// 		// assertion
+	// 		cy.get(`[data-testing="alert${i}"]`).should('not.exist');
+	// 	});
+	// });
 
 	it('Text alerts should not be dismissible', () => {
 		cy.get(`[data-testing="dismissible-text-alert"]`)
