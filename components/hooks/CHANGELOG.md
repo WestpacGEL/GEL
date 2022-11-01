@@ -1,5 +1,16 @@
 # @westpac/hooks
 
+## 3.0.0
+
+### Major Changes
+
+- 46182557: Update to react 18
+
+### Patch Changes
+
+- Updated dependencies [46182557]
+  - @westpac/core@3.0.0
+
 ## 2.1.0
 
 ### Minor Changes

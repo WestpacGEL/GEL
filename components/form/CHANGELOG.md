@@ -1,5 +1,25 @@
 # @westpac/form
 
+## 3.0.0
+
+### Major Changes
+
+- 46182557: Update to react 18
+
+### Minor Changes
+
+- 0a8fe41c: Refactor internal id state to not require useEffect
+
+### Patch Changes
+
+- Updated dependencies [46182557]
+  - @westpac/a11y@2.0.0
+  - @westpac/core@3.0.0
+  - @westpac/fork@2.0.0
+  - @westpac/icon@2.0.0
+  - @westpac/repeater@2.0.0
+  - @westpac/text-input@2.0.0
+
 ## 2.0.0
 
 ### Major Changes
