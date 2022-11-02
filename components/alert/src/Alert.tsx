@@ -27,7 +27,7 @@ export const Alert = ({
 	children,
 	overrides: componentOverrides,
 	...rest
-}) => {
+}: typeof Alert.propTypes & typeof Alert.defaultProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
