@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand } from '@westpac/core';
-import { PdfFileIcon, WriteIcon } from '@westpac/icon';
+import { PdfFileIcon } from '@westpac/icon';
 
 export const PdfIcon = () => {
 	const {

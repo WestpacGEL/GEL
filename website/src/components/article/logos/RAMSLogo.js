@@ -2,7 +2,7 @@
 
 import { jsx, useMediaQuery } from '@westpac/core';
 
-export const RAMSLogo = ({ width, ...props }) => {
+export const RAMSLogo = ({ width, assistiveText, ...props }) => {
 	const mq = useMediaQuery();
 	return (
 		<span
@@ -21,6 +21,7 @@ export const RAMSLogo = ({ width, ...props }) => {
 				xmlns="http://www.w3.org/2000/svg"
 				role="img"
 				focusable="false"
+				aria-label={assistiveText}
 				{...props}
 			>
 				<path

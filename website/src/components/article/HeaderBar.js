@@ -35,7 +35,7 @@ export const HeaderBar = (props) => {
 								alignItems: 'center',
 							})}
 						>
-							<ArrowLeftIcon color="#fff" />
+							<ArrowLeftIcon color="#fff" assistiveText={null} />
 						</span>
 						<span
 							css={mq({

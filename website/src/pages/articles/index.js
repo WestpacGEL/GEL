@@ -13,6 +13,7 @@ import {
 } from '../../components/article';
 import { PageContextProvider } from '../../components/providers/pageContext';
 import { Footer as StickyFooter } from '../../components/layout/footer.js';
+import { Head } from '../../components/head';
 
 import { getApolloClient } from '../../apollo';
 import { gql } from '@apollo/client';
@@ -21,6 +22,7 @@ const Home = ({ content }) => {
 	const mq = useMediaQuery();
 	return (
 		<Wrapper>
+			<Head title="Articles" />
 			<PageContextProvider>
 				<main css={{ paddingBottom: '3.0625rem' }}>
 					<Hero />
@@ -33,8 +35,8 @@ const Home = ({ content }) => {
 						<Grid>{content?.document ? <CustomRenderer document={content.document} /> : null}</Grid>
 					</Container>
 					<Footer />
-					<StickyFooter type="article" />
 				</main>
+				<StickyFooter type="article" />
 			</PageContextProvider>
 		</Wrapper>
 	);

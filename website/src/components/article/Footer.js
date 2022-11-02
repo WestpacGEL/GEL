@@ -3,7 +3,7 @@
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Container, Grid } from './Grid';
 import { Cell } from '@westpac/grid';
-import { FigmaLogo, PdfIcon, WritingIcon } from './logos';
+import { FigmaLogo, PdfIcon, MailIcon } from './logos';
 import { brandsMap, DotLogo } from './_utils';
 
 const FooterTitle = (props) => {
@@ -35,6 +35,9 @@ const FooterList = (props) => {
 };
 
 const FooterItem = ({ link = '#', children, ...props }) => {
+	const {
+		GEL: { COLORS },
+	} = useBrand();
 	return (
 		<Cell tag="li" {...props}>
 			<a
@@ -42,8 +45,10 @@ const FooterItem = ({ link = '#', children, ...props }) => {
 				css={{
 					display: 'flex',
 					textDecoration: 'none',
-					':hover span': {
-						outlineWidth: 2,
+					':hover .dot-logo': {
+						transition: 'all 0.4s cubic-bezier(0.13, 0.00, 0.11, 1.00)', // mouse over
+						border: `4px solid ${COLORS.icon}60`,
+						margin: '-3px',
 					},
 				}}
 			>
@@ -73,29 +78,17 @@ const FooterItemText = (props) => {
 	);
 };
 
-const LogoCircle2 = ({ logo: Logo, ...props }) => {
-	const mq = useMediaQuery();
-	return (
-		<Logo
-			css={mq({
-				marginRight: ['0.75rem', null, null, null, '1.125rem'],
-				height: [72, null, null, null, 84],
-				width: [72, null, null, null, 84],
-			})}
-			{...props}
-		/>
-	);
-};
-
 const FooterLogo = (props) => {
 	const mq = useMediaQuery();
 	return (
 		<span css={mq({ marginRight: ['0.75rem', null, null, null, '1.125rem'] })}>
 			<DotLogo
+				className="dot-logo"
 				css={mq({
 					height: [72, null, null, null, 84],
 					width: [72, null, null, null, 84],
 				})}
+				aria-hidden={true}
 				{...props}
 			/>
 		</span>
@@ -122,7 +115,7 @@ export const Footer = (props) => {
 						<FooterList>
 							{Object.entries(brandsMap).map(([key, val]) => (
 								<FooterItem key={key} link={`/design-system?b=${key}`} width={[12, 6]}>
-									<FooterLogo logo={val?.dot?.logo} size={val?.dot?.size?.footer} />
+									<FooterLogo logo={val?.dot?.logo} size={val?.dot?.size?.footer} hover={false} />
 									<FooterItemText>{val.name}</FooterItemText>
 								</FooterItem>
 							))}
@@ -130,18 +123,21 @@ export const Footer = (props) => {
 					</Cell>
 					<Cell width={[12, null, 4]} left={[null, null, null, 9]}>
 						<FooterTitle>Tools &amp; resources</FooterTitle>
-						<FooterList>
-							<FooterItem width={[12, 6, 12]}>
-								<FooterLogo logo={FigmaLogo} />
+						<FooterList columnGap={[null, null, 12, 24]}>
+							<FooterItem width={[12, 6, 12]} link="/articles/figma-libraries">
+								<FooterLogo logo={FigmaLogo} hover={false} />
 								<FooterItemText>Figma UI Kits</FooterItemText>
 							</FooterItem>
-							<FooterItem width={[12, 6, 12]}>
-								<FooterLogo logo={PdfIcon} />
+							<FooterItem
+								link="https://westpacgroup.sharepoint.com/:f:/s/O365-UG-031831-GELOperatingEnvironmenttest/EnwmDFymE-dDtefynPcIwn4BdmYcqLZ2_ia2qdR6_YJcqA?e=rc10CQ"
+								width={[12, 6, 12]}
+							>
+								<FooterLogo logo={PdfIcon} hover={false} />
 								<FooterItemText>Master Brand Guidelines</FooterItemText>
 							</FooterItem>
-							<FooterItem width={[12, 6, 12]}>
-								<FooterLogo logo={WritingIcon} />
-								<FooterItemText>Subscribe to GEL</FooterItemText>
+							<FooterItem link="mailto:gel@westpac.com.au" width={[12, 6, 12]}>
+								<FooterLogo logo={MailIcon} hover={false} />
+								<FooterItemText>Contact GEL</FooterItemText>
 							</FooterItem>
 						</FooterList>
 					</Cell>
