@@ -1,0 +1,15 @@
+# Make sure source files have LF (unix) line endings, not CRLF (windows/mac) line endings
+* text eol=lf
+
+# Windows bat files should be CRLF
+*.bat text eol=crlf
+
+# Don't mess with binary files
+*.png binary
+*.eot binary
+*.ttf binary
+*.woff binary
+*.jpg binary
+*.jpeg binary
+*.crt
+
