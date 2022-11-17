@@ -1,7 +1,8 @@
 import { ApolloProvider } from '@apollo/react-hooks';
-import React, { useMemo, useEffect } from 'react';
+import React, { Fragment, useMemo, useEffect } from 'react';
 import cookie from 'cookie';
 import App from 'next/app';
+import Script from 'next/script';
 import { Layout as DefaultLayout } from '../components/layout';
 import { getApolloClient } from '../apollo';
 
@@ -36,11 +37,26 @@ const GELApp = ({ Component, pageProps, apollo, brand }) => {
 	}, []);
 
 	return (
-		<ApolloProvider client={apolloClient}>
-			<Layout {...pageProps} brand={brand}>
-				<Component {...pageProps} />
-			</Layout>
-		</ApolloProvider>
+		<Fragment>
+			<Script
+				src="https://www.googletagmanager.com/gtag/js?id=GTM-TKBQFPG"
+				strategy="afterInteractive"
+			/>
+			<Script id="google-analytics" strategy="afterInteractive">
+				{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'GTM-TKBQFPG');
+        `}
+			</Script>
+			<ApolloProvider client={apolloClient}>
+				<Layout {...pageProps} brand={brand}>
+					<Component {...pageProps} />
+				</Layout>
+			</ApolloProvider>
+		</Fragment>
 	);
 };
 
