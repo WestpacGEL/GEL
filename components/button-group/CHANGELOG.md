@@ -1,5 +1,23 @@
 # @westpac/button-group
 
+## 2.0.0
+
+### Major Changes
+
+- 46182557: Update to react 18
+
+### Minor Changes
+
+- fb906d96: Pass an index to children, use for id generation
+
+### Patch Changes
+
+- Updated dependencies [2cb88a1b]
+- Updated dependencies [7d97398b]
+- Updated dependencies [46182557]
+  - @westpac/button@2.0.0
+  - @westpac/core@3.0.0
+
 ## 1.3.0
 
 ### Minor Changes

@@ -1,5 +1,20 @@
 # @westpac/pictogram
 
+## 2.0.0
+
+### Major Changes
+
+- 46182557: Update to react 18
+
+### Minor Changes
+
+- bbdd6c40: Update WBG duo highlight colour to borderDark
+
+### Patch Changes
+
+- Updated dependencies [46182557]
+  - @westpac/core@3.0.0
+
 ## 1.4.2
 
 ### Patch Changes

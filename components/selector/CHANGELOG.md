@@ -1,5 +1,23 @@
 # @westpac/selector
 
+## 3.0.0
+
+### Major Changes
+
+- 46182557: Update to react 18
+
+### Minor Changes
+
+- fb906d96: Pass an index to children, use for id generation
+- 887d9c53: Ensure option alone implementation receives an id
+- 0a8fe41c: Refactor internal id state to not require useEffect
+
+### Patch Changes
+
+- Updated dependencies [46182557]
+  - @westpac/core@3.0.0
+  - @westpac/icon@2.0.0
+
 ## 2.0.0
 
 ### Major Changes
