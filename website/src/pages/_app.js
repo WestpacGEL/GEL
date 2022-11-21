@@ -38,7 +38,7 @@ const GELApp = ({ Component, pageProps, apollo, brand }) => {
 
 	return (
 		<Fragment>
-			<Script
+			{/* <Script
 				src="https://www.googletagmanager.com/gtag/js?id=GTM-TKBQFPG"
 				strategy="afterInteractive"
 			/>
@@ -50,7 +50,7 @@ const GELApp = ({ Component, pageProps, apollo, brand }) => {
 
           gtag('config', 'GTM-TKBQFPG');
         `}
-			</Script>
+			</Script> */}
 			<ApolloProvider client={apolloClient}>
 				<Layout {...pageProps} brand={brand}>
 					<Component {...pageProps} />
