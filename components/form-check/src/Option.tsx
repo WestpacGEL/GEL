@@ -16,7 +16,19 @@ import pkg from '../package.json';
 // ==============================
 
 export const Option = forwardRef(
-	({ index, value, checked: checkedProp, hint, className, children, overrides, ...rest }, ref) => {
+	(
+		{
+			index,
+			value,
+			checked: checkedProp,
+			hint,
+			className,
+			children,
+			overrides,
+			...rest
+		}: typeof Option.propTypes & typeof Option.defaultProps,
+		ref
+	) => {
 		const {
 			OVERRIDES: { [pkg.name]: tokenOverrides },
 			[pkg.name]: brandOverrides,
