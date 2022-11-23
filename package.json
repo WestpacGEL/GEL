@@ -72,7 +72,7 @@
   },
   "jest": {
     "displayName": "GEL3",
-    "testRegex": "\\.spec.js$",
+    "testRegex": "\\.spec.[jt]sx?$",
     "testEnvironment": "jsdom",
     "collectCoverageFrom": [
       "components/*/src/**/*.{js,jsx,ts,tsx}"
