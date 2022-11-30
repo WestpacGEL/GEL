@@ -286,6 +286,7 @@ function NavigationItemWrapper(props: {
 				return newValues;
 			});
 		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[props.onChange, props.index]
 	);
 	const onRemove = useCallback(() => {
@@ -294,6 +295,7 @@ function NavigationItemWrapper(props: {
 			newValues.splice(props.index, 1);
 			return newValues;
 		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [props.onChange, props.index]);
 
 	return (
@@ -335,7 +337,12 @@ function NavigationItems(props: {
 						>
 							{props.value.map((item, i) => {
 								return (
-									<NavigationItemWrapper index={i} onChange={props.onChange} value={props.value} />
+									<NavigationItemWrapper
+										key={item.title}
+										index={i}
+										onChange={props.onChange}
+										value={props.value}
+									/>
 								);
 							})}
 							{provided.placeholder}
@@ -352,6 +359,7 @@ function NavigationItems(props: {
 						};
 						itemsToStartOpen.add(newItem);
 						props.onChange((prev) => [...prev, newItem]);
+						// eslint-disable-next-line react-hooks/exhaustive-deps
 					}, [props.onChange])}
 				>
 					Add Item
@@ -364,6 +372,7 @@ function NavigationItems(props: {
 						};
 						itemsToStartOpen.add(newItem);
 						props.onChange((prev) => [...prev, newItem]);
+						// eslint-disable-next-line react-hooks/exhaustive-deps
 					}, [props.onChange])}
 				>
 					Add Group

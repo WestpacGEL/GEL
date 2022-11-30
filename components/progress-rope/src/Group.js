@@ -98,6 +98,7 @@ export const Group = ({ index, text, children, overrides, ...rest }) => {
 		} else {
 			setHidden(false);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [openGroup]);
 
 	const handleGroupClick = () => {

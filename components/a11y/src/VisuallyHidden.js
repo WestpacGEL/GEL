@@ -41,12 +41,13 @@ export const VisuallyHidden = ({ tag, children, overrides: componentOverrides, .
 
 	return (
 		<VisuallyHidden
-			children={children}
 			{...rest}
 			state={state}
 			{...visuallyHiddenAttributes(state)}
 			css={visuallyHiddenStyles(state)}
-		/>
+		>
+			{children}
+		</VisuallyHidden>
 	);
 };
 

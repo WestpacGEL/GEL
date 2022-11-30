@@ -34,6 +34,7 @@ const GELApp = ({ Component, pageProps, apollo, brand }) => {
 		return () => {
 			window.removeEventListener('scroll', setScrollClass);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

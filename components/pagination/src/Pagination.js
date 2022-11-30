@@ -98,7 +98,7 @@ export const Pagination = ({
 
 	useEffect(() => {
 		pageLogic.setCurrent(current);
-	}, [current]);
+	}, [current, pageLogic]);
 
 	const pageCount = allChildren.length;
 

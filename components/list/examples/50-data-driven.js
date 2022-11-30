@@ -56,6 +56,7 @@ function Example({ brand }) {
 							icon: HouseIcon,
 							items: [
 								'Icon list',
+								// eslint-disable-next-line react/jsx-key
 								<Fragment>
 									Icon list <GithubIcon />
 								</Fragment>,

@@ -19,7 +19,7 @@ const renderPictograms = (pictograms, mode) => {
 		<Fragment>
 			<Cell width={12}>
 				<p
-					aria-live="true"
+					aria-live="polite"
 					id="filter-pictograms-status"
 					css={{ textAlign: 'right', color: COLORS.muted, fontStyle: 'italic', margin: 0 }}
 				>

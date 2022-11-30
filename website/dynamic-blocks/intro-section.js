@@ -195,6 +195,7 @@ const PackageInfoTable = ({ item, ...rest }) => {
 						<a
 							href={`https://github.com/WestpacGEL/GEL/blob/master/components/${packageName}/CHANGELOG.md`}
 							target="_blank"
+							rel="noreferrer"
 						>
 							View changes
 							<ExternalLinkIcon />
@@ -275,7 +276,7 @@ export const IntroSection = {
 				showTableOfContents,
 				showPackageInfo,
 			});
-		}, [description, showTableOfContents, showPackageInfo]);
+		}, [description, showTableOfContents, showPackageInfo, onChange]);
 
 		return (
 			<Fragment>

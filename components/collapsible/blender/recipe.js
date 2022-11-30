@@ -15,6 +15,7 @@ const sizes = ['small', 'medium', 'large', 'xlarge'];
 const TriggerButton = forwardRef(({ state: { size }, ...rest }, ref) => {
 	return <Button ref={ref} look="link" size={size} iconAfter={ExpandMoreIcon} {...rest} />;
 });
+TriggerButton.displayName = 'TriggerButton';
 
 export function AllStyles({ brand }) {
 	const overridesWithTokens = { ...brand };

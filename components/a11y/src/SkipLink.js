@@ -31,13 +31,9 @@ export const SkipLink = ({ href, children, overrides: componentOverrides, ...res
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<SkipLink
-			children={children}
-			{...rest}
-			state={state}
-			{...skipLinkAttributes(state)}
-			css={skipLinkStyles(state)}
-		/>
+		<SkipLink {...rest} state={state} {...skipLinkAttributes(state)} css={skipLinkStyles(state)}>
+			{children}
+		</SkipLink>
 	);
 };
 

@@ -32,6 +32,7 @@ export function useContainerQuery(ref) {
 
 		// cleanup after ourselves
 		return () => {
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 			resizeObserver.disconnect(ref.current);
 		};
 	});

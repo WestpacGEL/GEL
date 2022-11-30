@@ -110,6 +110,7 @@ export const Tab = forwardRef(
 
 		useEffect(() => {
 			setHidden(!selected);
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 		}, [mode]);
 
 		useEffect(() => {
@@ -120,6 +121,7 @@ export const Tab = forwardRef(
 					onClose({ idx, tabId });
 				}
 			}
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 		}, [selected, tabId]);
 
 		return (
