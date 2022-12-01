@@ -7,7 +7,7 @@
 	"components": [
 		{
 			"name": "Link",
-			"src": "Link.js"
+			"src": "Link.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

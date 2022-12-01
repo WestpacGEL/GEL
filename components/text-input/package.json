@@ -10,15 +10,15 @@
 	"components": [
 		{
 			"name": "TextInput",
-			"src": "TextInput.js"
+			"src": "TextInput.tsx"
 		},
 		{
 			"name": "Select",
-			"src": "Select.js"
+			"src": "Select.tsx"
 		},
 		{
 			"name": "Textarea",
-			"src": "Textarea.js"
+			"src": "Textarea.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

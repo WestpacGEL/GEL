@@ -10,7 +10,7 @@
 	"components": [
 		{
 			"name": "Well",
-			"src": "Well.js"
+			"src": "Well.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

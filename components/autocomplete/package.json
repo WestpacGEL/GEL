@@ -8,7 +8,7 @@
 	"components": [
 		{
 			"name": "Autocomplete",
-			"src": "Autocomplete.js"
+			"src": "Autocomplete.tsx"
 		}
 	],
 	"scripts": {

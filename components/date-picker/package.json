@@ -7,7 +7,7 @@
 	"components": [
 		{
 			"name": "DatePicker",
-			"src": "DatePicker.js"
+			"src": "DatePicker.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

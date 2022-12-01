@@ -10,11 +10,11 @@
 	"components": [
 		{
 			"name": "SkipLink",
-			"src": "SkipLink.js"
+			"src": "SkipLink.tsx"
 		},
 		{
 			"name": "VisuallyHidden",
-			"src": "VisuallyHidden.js"
+			"src": "VisuallyHidden.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

@@ -7,7 +7,7 @@
 	"components": [
 		{
 			"name": "Compacta",
-			"src": "Compacta.js"
+			"src": "Compacta.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

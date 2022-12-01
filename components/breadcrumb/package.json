@@ -10,11 +10,11 @@
 	"components": [
 		{
 			"name": "Breadcrumb",
-			"src": "Breadcrumb.js"
+			"src": "Breadcrumb.tsx"
 		},
 		{
 			"name": "Crumb",
-			"src": "Crumb.js"
+			"src": "Crumb.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

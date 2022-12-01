@@ -10,7 +10,7 @@
 	"components": [
 		{
 			"name": "Badge",
-			"src": "Badge.js"
+			"src": "Badge.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

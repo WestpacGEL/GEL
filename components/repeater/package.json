@@ -8,7 +8,7 @@
 	"components": [
 		{
 			"name": "Repeater",
-			"src": "Repeater.js"
+			"src": "Repeater.tsx"
 		}
 	],
 	"scripts": {
