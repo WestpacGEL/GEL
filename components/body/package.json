@@ -10,7 +10,7 @@
 	"components": [
 		{
 			"name": "Body",
-			"src": "Body.js"
+			"src": "Body.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

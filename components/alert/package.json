@@ -11,7 +11,7 @@
 	"components": [
 		{
 			"name": "Alert",
-			"src": "Alert.js"
+			"src": "Alert.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

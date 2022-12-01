@@ -10,7 +10,7 @@
 	"components": [
 		{
 			"name": "Label",
-			"src": "Label.js"
+			"src": "Label.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

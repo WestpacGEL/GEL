@@ -10,7 +10,7 @@
 	"components": [
 		{
 			"name": "ProgressBar",
-			"src": "ProgressBar.js"
+			"src": "ProgressBar.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

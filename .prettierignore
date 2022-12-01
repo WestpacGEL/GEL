@@ -11,6 +11,7 @@ GEL.json
 components/core/blender/jquery.js
 coverage/*
 dynamic-blocks-demos.js
+website-backend/admin/component-blocks/code-examples-data.ts
 
 # Yarn manages this itself
 **/package.json

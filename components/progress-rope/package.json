@@ -11,15 +11,15 @@
 	"components": [
 		{
 			"name": "ProgressRope",
-			"src": "ProgressRope.js"
+			"src": "ProgressRope.tsx"
 		},
 		{
 			"name": "Group",
-			"src": "Group.js"
+			"src": "Group.tsx"
 		},
 		{
 			"name": "Step",
-			"src": "Step.js"
+			"src": "Step.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",

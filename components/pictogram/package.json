@@ -10,7 +10,7 @@
 	"components": [
 		{
 			"name": "Pictogram",
-			"src": "Pictogram.js"
+			"src": "Pictogram.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -41,7 +41,7 @@
 	"sideEffects": false,
 	"preconstruct": {
 		"entrypoints": [
-			"index.js",
+			"index.ts",
 			"informative/*.js",
 			"decorative/*.js"
 		]
