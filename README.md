@@ -31,55 +31,71 @@ yarn
 ```
 
 ## Development Workflow
+
 To contribute to this repo please follow the steps listed below:
 
 ### 1. Fork the repository.
+
 Fork the repo and checkout the develop branch.
 
 ### 2. Install the Dependencies.
+
 Install the project dependencies with:
+
 ```sh
 cd path/to/repo
 yarn
 ```
 
 ### 3. Implement changes.
+
 When implementing your changes please ensure that you follow modern web development best practices.
 
 ### 4. Format
+
 Format your changes with:
+
 ```sh
 yarn format
 ```
 
 ### 5. Test
+
 Run the Format, Unit and Integration Tests with:
+
 ```sh
 yarn test
 ```
 
 ### 6. Add a Changeset
+
 Any Component changes will require a [changeset](https://github.com/changesets/changesets)
 (This is how we manage versioning and changelogs).
 
 To create a changeset run:
+
 ```sh
 yarn changeset add
 ```
-Make sure to follow [SemVer](https://semver.org/) convention  and write a meaningful description of the change in the changelog.
+
+Make sure to follow [SemVer](https://semver.org/) convention and write a meaningful description of the change in the changelog.
 
 ### 7. Create a Pull Request
+
 - Create a PR and target the "develop" branch.
 - Write a meaningful title and description for your PR.
 - Ensure the PR passess the GitHub Workflow.
 
 ### 8. Review
+
 Wait for your changes to be reviewed and approved.
 
 ### 9. Merge
+
 The Maintainer will merge the Pull Request into the Develop branch.
 
 ### 10. Publish
+
 The Maintainer will publish changes to NPM.
 
 <details>
