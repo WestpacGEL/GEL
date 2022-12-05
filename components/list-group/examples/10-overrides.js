@@ -91,6 +91,7 @@ function Example({ brand }) {
 					'List item 2',
 					'List item 3',
 					'List item 4',
+					// eslint-disable-next-line react/jsx-key
 					<Fragment>
 						Send me sms reminders
 						<ButtonGroup size="small" name="example-default-1" css={styleExample}>
@@ -98,6 +99,7 @@ function Example({ brand }) {
 							<BtnGroupItem value="no">No</BtnGroupItem>
 						</ButtonGroup>
 					</Fragment>,
+					// eslint-disable-next-line react/jsx-key
 					<Fragment>
 						Call me all the time
 						<ButtonGroup size="small" name="example-default-3" css={styleExample}>
@@ -127,6 +129,7 @@ function Example({ brand }) {
 					'List item 2',
 					'List item 3',
 					'List item 4',
+					// eslint-disable-next-line react/jsx-key
 					<Fragment>
 						Send me sms reminders
 						<ButtonGroup size="small" name="example-default-1" css={styleExample}>
@@ -134,6 +137,7 @@ function Example({ brand }) {
 							<BtnGroupItem value="no">No</BtnGroupItem>
 						</ButtonGroup>
 					</Fragment>,
+					// eslint-disable-next-line react/jsx-key
 					<Fragment>
 						Call me all the time
 						<ButtonGroup size="small" name="example-default-3" css={styleExample}>

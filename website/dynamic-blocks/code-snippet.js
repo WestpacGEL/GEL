@@ -17,7 +17,7 @@ export const CodeSnippet = {
 			onChange({
 				code,
 			});
-		}, [code]);
+		}, [code, onChange]);
 
 		return (
 			<Fragment>

@@ -29,6 +29,7 @@ const PageHeaderHeading = (props) => {
 		return () => {
 			router.events.off('routeChangeStart', handleRouteChange);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.asPath]);
 
 	return BRAND.code === 'WBC' ? (

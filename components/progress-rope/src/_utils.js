@@ -10,6 +10,7 @@ export function useMeasure({ polyfill: ResizeObserver }) {
 		ro.observe(ref.current);
 
 		return () => ro.disconnect();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return [{ ref }, bounds];
 }

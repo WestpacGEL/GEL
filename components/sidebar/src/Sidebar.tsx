@@ -69,6 +69,7 @@ export const Sidebar = ({
 		if (open && width > LAYOUT.breakpoints.md) {
 			setOpen(false);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [width]);
 
 	const keyHandler = (event) => {

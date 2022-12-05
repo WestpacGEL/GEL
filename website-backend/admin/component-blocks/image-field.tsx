@@ -31,11 +31,15 @@ export function imageField({
 			const onRemoveImage = () => {
 				onChange({ kind: 'empty' });
 			};
-			const inputKey = useMemo(() => Math.random(), [value]);
+			const inputKey = useMemo(
+				() => Math.random(),
+				// eslint-disable-next-line react-hooks/exhaustive-deps
+				[value]
+			);
 			return (
 				<FieldContainer>
 					<FieldLabel>{label}</FieldLabel>
-					{typeof value === 'string' && <img height="100px" src={value} />}
+					{typeof value === 'string' && <img alt="" height="100px" src={value} />}
 					<input
 						disabled={typeof value === 'object' && value.kind === 'uploading'}
 						key={inputKey}

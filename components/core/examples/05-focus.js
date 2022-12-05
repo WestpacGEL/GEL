@@ -22,6 +22,7 @@ function Example({ brand }) {
 					<a
 						href="https://medium.com/@wilkowskidom/how-i-learned-to-stop-worrying-and-love-the-outline-7a35b3b49e7"
 						target="_blank"
+						rel="noreferrer"
 					>
 						How we handle focus
 					</a>

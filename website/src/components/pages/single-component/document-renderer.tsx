@@ -75,7 +75,7 @@ export const defaultRenderers: Renderers = {
 			return href.startsWith('/') ? (
 				<a href={href}>{children}</a>
 			) : (
-				<a href={href} target="_blank">
+				<a href={href} target="_blank" rel="noreferrer">
 					<span>{children}</span>
 					<NewWindowIcon
 						size="xsmall"
@@ -112,7 +112,7 @@ export const defaultRenderers: Renderers = {
 		divider: 'hr',
 		heading: ({ level, children, textAlign }) => {
 			let Heading = `h${level}` as 'h1';
-			return <Heading style={{ textAlign }} children={children} />;
+			return <Heading style={{ textAlign }}>{children}</Heading>;
 		},
 		code: ({ children }) => {
 			return <dynamicComponents.CodeSnippet.component code={children} />;
@@ -194,10 +194,14 @@ function DocumentNode({
 	});
 	switch (node.type as string) {
 		case 'blockquote': {
-			return <renderers.block.blockquote children={children} />;
+			return <renderers.block.blockquote>{children}</renderers.block.blockquote>;
 		}
 		case 'paragraph': {
-			return <renderers.block.paragraph textAlign={node.textAlign as any} children={children} />;
+			return (
+				<renderers.block.paragraph textAlign={node.textAlign as any}>
+					{children}
+				</renderers.block.paragraph>
+			);
 		}
 		case 'code': {
 			if (
@@ -210,18 +214,18 @@ function DocumentNode({
 			break;
 		}
 		case 'layout': {
-			return <renderers.block.layout layout={node.layout as any} children={children} />;
+			return (
+				<renderers.block.layout layout={node.layout as any}>{children}</renderers.block.layout>
+			);
 		}
 		case 'divider': {
 			return <renderers.block.divider />;
 		}
 		case 'heading': {
 			return (
-				<renderers.block.heading
-					textAlign={node.textAlign as any}
-					level={node.level as any}
-					children={children}
-				/>
+				<renderers.block.heading textAlign={node.textAlign as any} level={node.level as any}>
+					{children}
+				</renderers.block.heading>
 			);
 		}
 		case 'component-block': {
@@ -235,10 +239,9 @@ function DocumentNode({
 		case 'ordered-list':
 		case 'unordered-list': {
 			return (
-				<renderers.block.list
-					children={children}
-					type={node.type === 'ordered-list' ? 'ordered' : 'unordered'}
-				/>
+				<renderers.block.list type={node.type === 'ordered-list' ? 'ordered' : 'unordered'}>
+					{children}
+				</renderers.block.list>
 			);
 		}
 		case 'relationship': {

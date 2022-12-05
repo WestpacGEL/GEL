@@ -104,6 +104,7 @@ export const Group = ({
 		} else {
 			setHidden(false);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [openGroup]);
 
 	const handleGroupClick = () => {

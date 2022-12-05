@@ -203,6 +203,7 @@ export const ProgressRope = ({
 			dispatch({ type: 'UPDATE_STEP', payload: current });
 			dispatch({ type: 'UPDATE_GRAPH', payload: updatedGraph });
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [current]);
 
 	const handleClick = (index) => {

@@ -177,6 +177,7 @@ function extractMarkup({ Component, componentName, GEL, brand, mode }) {
 						createElement(
 							CacheProvider,
 							{ value: cache },
+							// eslint-disable-next-line react/no-children-prop
 							createElement(GEL, { brand, children: createElement(Component, { mode }) })
 						)
 					)

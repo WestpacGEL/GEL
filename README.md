@@ -176,7 +176,7 @@ The Maintainer will publish changes to NPM.
 | `yarn new [package-name]` | create a new specified empty component                |
 | `yarn dev [package-name]` | start the example server of a component               |
 | `yarn test`               | runs tests                                            |
-| `yarn format`             | runs prettier to format all code                      |
+| `lint:format:fix`         | runs prettier and eslint to format and lint all code  |
 | `yarn deploy:staging`     | deploys the site to staging from the `staging` branch |
 | `yarn deploy:live`        | deploys the site to live from the `master` branch     |
 

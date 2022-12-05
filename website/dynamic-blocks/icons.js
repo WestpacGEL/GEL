@@ -19,7 +19,7 @@ const renderIcons = (icons) => {
 		<Fragment>
 			<Cell width={12}>
 				<p
-					aria-live="true"
+					aria-live="polite"
 					id="filter-icons-status"
 					css={{
 						textAlign: 'right',

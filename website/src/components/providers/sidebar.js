@@ -23,7 +23,7 @@ const SidebarContextProvider = ({ children }) => {
 		return () => {
 			router.events.off('routeChangeStart', handleRouteChange);
 		};
-	}, [isOpen]);
+	}, [isOpen, router.events]);
 
 	const open = (ref) => {
 		setFocusOnCloseRef(ref);

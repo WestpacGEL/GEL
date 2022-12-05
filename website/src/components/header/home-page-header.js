@@ -65,6 +65,7 @@ const StickyHeader = () => {
 	// Focus the page heading
 	useLayoutEffect(() => {
 		pageHeadingRef.current.focus();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useLayoutEffect(() => {
