@@ -71,7 +71,6 @@ export const CompactaDemo = ({ error }) => {
 							error={error ? 'Error message goes here if activated' : null}
 						>
 							<InputGroup
-								name="example-text"
 								label="Total amount"
 								name={`input-tertiary-${id}`}
 								value={inputs[`input-tertiary-${id}`] || ''}

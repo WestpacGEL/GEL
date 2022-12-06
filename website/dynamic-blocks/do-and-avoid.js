@@ -69,6 +69,7 @@ const Image = (props) => {
 	const { SPACING } = useBrand();
 	return (
 		<img
+			alt=""
 			css={mq({
 				width: '100%',
 				height: 'auto',
@@ -100,7 +101,7 @@ export const DoAndAvoid = {
 				doText,
 				dontText,
 			});
-		}, [doImage, dontImage, doAlt, dontAlt, doText, dontText]);
+		}, [doImage, dontImage, doAlt, dontAlt, doText, dontText, onChange]);
 
 		let [uploadImage] = useMutation(UPLOAD_IMAGE);
 

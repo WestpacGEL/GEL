@@ -3,6 +3,7 @@ import { cloudinaryImage } from '@keystone-6/cloudinary';
 import fs from 'fs';
 import path from 'path';
 import slugify from 'slugify';
+// eslint-disable-next-line import/no-unresolved
 import { Lists } from '.keystone/types';
 import {
 	text,

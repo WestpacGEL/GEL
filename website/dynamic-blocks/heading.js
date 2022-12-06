@@ -17,7 +17,7 @@ export const Heading = {
 				level,
 				text,
 			});
-		}, [text, level]);
+		}, [text, level, onChange]);
 
 		const options = [
 			{ label: 'H2', value: 'h2' },

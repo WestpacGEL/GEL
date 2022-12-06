@@ -1,11 +1,16 @@
 {
-	"extends": "react-app",
-	"plugins": ["prettier", "import"],
+	"extends": "next/core-web-vitals",
+	"plugins": ["import"],
 	"rules": {
 		"jsx-a11y/anchor-is-valid": "off",
 		"jsx-a11y/accessible-emoji": "off",
-		"prettier/prettier": "error",
 		"import/no-unresolved": "error",
-		"import/no-extraneous-dependencies": "error"
+		"import/no-extraneous-dependencies": "off",
+		"@next/next/no-img-element": "off",
+		"@next/next/no-html-link-for-pages": "off",
+		"@next/next/no-assign-module-variable": "off",
+		"import/no-anonymous-default-export": "off",
+		"react/no-unescaped-entities": "off",
+		"react-hooks/rules-of-hooks": "off"
 	}
 }

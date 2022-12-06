@@ -38,13 +38,9 @@ export const Container = ({
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Container
-			{...rest}
-			state={state}
-			{...containerAttributes(state)}
-			css={containerStyles(state)}
-			children={children}
-		/>
+		<Container {...rest} state={state} {...containerAttributes(state)} css={containerStyles(state)}>
+			{children}
+		</Container>
 	);
 };
 

@@ -27,7 +27,6 @@ const Demo = ({ context, showCode, showDemo }) => {
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Grid
 				columns={7}
-				columns={'2fr repeat(6, 1fr)'}
 				alignContent={'center'}
 				overrides={{
 					Grid: { styles: (styles) => ({ ...styles, gridAutoRows: '1fr', alignItems: 'center' }) },

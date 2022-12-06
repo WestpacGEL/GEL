@@ -378,7 +378,7 @@ const fontTextWBC = () => (
 	<Fragment>
 		<p>
 			Check the{' '}
-			<a href={urlMap.WBC.guidelinesURL} target="_blank">
+			<a href={urlMap.WBC.guidelinesURL} target="_blank" rel="noreferrer">
 				Masterbrand Guidelines
 				<ExternalLinkIcon />
 			</a>{' '}
@@ -395,7 +395,7 @@ const fontTextSTG = () => (
 	<Fragment>
 		<p>
 			Check the{' '}
-			<a href={urlMap.STG.guidelinesURL} target="_blank">
+			<a href={urlMap.STG.guidelinesURL} target="_blank" rel="noreferrer">
 				Masterbrand Guidelines
 				<ExternalLinkIcon />
 			</a>{' '}
@@ -404,7 +404,7 @@ const fontTextSTG = () => (
 		</p>
 		<p>
 			Designers using other software can send a request for approval via{' '}
-			<a href="http://stgeorge.mybrandmachine.com" target="_blank">
+			<a href="http://stgeorge.mybrandmachine.com" target="_blank" rel="noreferrer">
 				Brand Central
 				<ExternalLinkIcon />
 			</a>
@@ -416,7 +416,7 @@ const fontTextBOM = () => (
 	<Fragment>
 		<p>
 			Check the{' '}
-			<a href={urlMap.BOM.guidelinesURL} target="_blank">
+			<a href={urlMap.BOM.guidelinesURL} target="_blank" rel="noreferrer">
 				Masterbrand Guidelines
 				<ExternalLinkIcon />
 			</a>{' '}
@@ -433,7 +433,7 @@ const fontTextBSA = () => (
 	<Fragment>
 		<p>
 			Check the{' '}
-			<a href={urlMap.BSA.guidelinesURL} target="_blank">
+			<a href={urlMap.BSA.guidelinesURL} target="_blank" rel="noreferrer">
 				Masterbrand Guidelines
 				<ExternalLinkIcon />
 			</a>{' '}
@@ -453,14 +453,14 @@ const fontTextWBG = () => (
 	<Fragment>
 		<p>
 			Check the{' '}
-			<a href={urlMap.WBG.guidelinesURL} target="_blank">
+			<a href={urlMap.WBG.guidelinesURL} target="_blank" rel="noreferrer">
 				Masterbrand Guidelines
 				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively.
 		</p>
 		<p>
-			<a href="https://fonts.google.com/specimen/Montserrat" target="_blank">
+			<a href="https://fonts.google.com/specimen/Montserrat" target="_blank" rel="noreferrer">
 				Download Montserrat
 				<ExternalLinkIcon />
 			</a>
@@ -471,14 +471,14 @@ const fontTextRAMS = () => (
 	<Fragment>
 		<p>
 			Check the{' '}
-			<a href={urlMap.RAMS.guidelinesURL} target="_blank">
+			<a href={urlMap.RAMS.guidelinesURL} target="_blank" rel="noreferrer">
 				Masterbrand Guidelines
 				<ExternalLinkIcon />
 			</a>{' '}
 			to understand how to use brand fonts effectively.
 		</p>
 		<p>
-			<a href="https://fonts.google.com/specimen/Source+Sans+Pro" target="_blank">
+			<a href="https://fonts.google.com/specimen/Source+Sans+Pro" target="_blank" rel="noreferrer">
 				Download Source Sans Pro
 				<ExternalLinkIcon />
 			</a>
@@ -570,6 +570,7 @@ const SectionDevelopers = () => {
 
 	useEffect(() => {
 		setSelectAllToggle(selected.length === supportedPkgs.length + 1 ? ['all'] : []);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [selected]);
 
 	function handleToggleChange() {

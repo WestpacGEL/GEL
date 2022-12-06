@@ -59,13 +59,9 @@ export const Grid = ({
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Grid
-			{...rest}
-			state={state}
-			{...gridAttributes(state)}
-			css={gridStyles(state)}
-			children={children}
-		/>
+		<Grid {...rest} state={state} {...gridAttributes(state)} css={gridStyles(state)}>
+			{children}
+		</Grid>
 	);
 };
 

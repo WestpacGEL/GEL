@@ -46,13 +46,9 @@ export const Cell = ({
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<Cell
-			{...rest}
-			state={state}
-			{...cellAttributes(state)}
-			css={cellStyles(state)}
-			children={children}
-		/>
+		<Cell {...rest} state={state} {...cellAttributes(state)} css={cellStyles(state)}>
+			{children}
+		</Cell>
 	);
 };
 

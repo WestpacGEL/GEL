@@ -139,6 +139,7 @@ const Image = (props: ImgHTMLAttributes<HTMLImageElement>) => {
 	const { SPACING } = useBrand();
 	return (
 		<img
+			alt=""
 			css={mq({
 				width: '100%',
 				height: 'auto',
