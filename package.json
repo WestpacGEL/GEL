@@ -45,7 +45,7 @@
     "dep:test": "manypkg check && preconstruct build || preconstruct dev",
     "dep:fix": "manypkg fix && preconstruct fix",
     "GELjson": "node helpers/ds-info.js",
-    "postinstall": "yarn dep:test && preconstruct dev && yarn GELjson && yarn build:dynamicblocks",
+    "postinstall": "yarn dep:test && preconstruct build && yarn GELjson && yarn build:dynamicblocks",
     "publish-packages": "yarn build && yarn GELjson && yarn changeset publish",
     "version-packages": "yarn changeset version",
     "deploy:staging:sync": "pm2 deploy pm2-ecosystem.json staging",
