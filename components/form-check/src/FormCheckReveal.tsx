@@ -38,7 +38,7 @@ export const FormCheckReveal = ({
 		Panel: defaultPanel,
 	};
 
-	if (typeof window !== 'undefined'){
+	if (typeof window !== 'undefined') {
 		useLayoutEffect(() => {
 			if (isOpen) {
 				firstNewOptionRef.current.focus();

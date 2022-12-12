@@ -78,7 +78,7 @@ export const Popover = ({
 		setIsOpen(open);
 	}, [open]);
 
-	if (typeof window !== 'undefined'){
+	if (typeof window !== 'undefined') {
 		useLayoutEffect(() => {
 			if (!isOpen) {
 				triggerRef.current.focus();
