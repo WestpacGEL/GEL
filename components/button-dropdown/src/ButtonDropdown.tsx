@@ -80,11 +80,13 @@ export const ButtonDropdown = ({
 		setIsOpen(open);
 	}, [open]);
 
-	useLayoutEffect(() => {
-		if (!isOpen) {
-			buttonRef.current.focus();
-		}
-	}, [isOpen]);
+	if (typeof window !== 'undefined'){
+		useLayoutEffect(() => {
+			if (!isOpen) {
+				buttonRef.current.focus();
+			}
+		}, [isOpen]);
+	}
 
 	const handleOpen = (event) => {
 		wrapHandlers(

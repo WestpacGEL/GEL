@@ -78,11 +78,13 @@ export const Popover = ({
 		setIsOpen(open);
 	}, [open]);
 
-	useLayoutEffect(() => {
-		if (!isOpen) {
-			triggerRef.current.focus();
-		}
-	}, [isOpen]);
+	if (typeof window !== 'undefined'){
+		useLayoutEffect(() => {
+			if (!isOpen) {
+				triggerRef.current.focus();
+			}
+		}, [isOpen]);
+	}
 
 	const handleOpen = (event) => {
 		wrapHandlers(
