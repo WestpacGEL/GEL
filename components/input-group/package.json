@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/input-group",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "Text inputs with add-on elements placed before or after, used to provide additional context or functionality",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/input-group",
@@ -57,10 +57,10 @@
 	"module": "dist/westpac-input-group.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/a11y": "^2.0.0",
-		"@westpac/button": "^2.0.0",
-		"@westpac/core": "^3.0.0",
-		"@westpac/text-input": "^2.0.0",
+		"@westpac/a11y": "^2.1.0",
+		"@westpac/button": "^2.1.0",
+		"@westpac/core": "^3.1.0",
+		"@westpac/text-input": "^2.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

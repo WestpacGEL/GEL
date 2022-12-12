@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/core",
-	"version": "3.0.0",
+	"version": "3.1.0",
 	"description": "Global functionality and settings essential to the framework",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/core",
@@ -76,8 +76,8 @@
 		"react": "^18.2.0"
 	},
 	"devDependencies": {
-		"@westpac/button": "^2.0.0",
-		"@westpac/text-input": "^2.0.0",
+		"@westpac/button": "^2.1.0",
+		"@westpac/text-input": "^2.1.0",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"

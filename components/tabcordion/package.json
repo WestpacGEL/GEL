@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/tabcordion",
-	"version": "3.0.0",
+	"version": "3.1.0",
 	"description": "Tablists and accordions used to group and dynamically show/hide content, includes a responsive ‘tabcordion’ mode",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/tabcordion",
@@ -54,10 +54,10 @@
 	"module": "dist/westpac-tabcordion.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/body": "^2.0.0",
-		"@westpac/core": "^3.0.0",
-		"@westpac/hooks": "^3.0.0",
-		"@westpac/icon": "^2.0.0",
+		"@westpac/body": "^2.1.0",
+		"@westpac/core": "^3.1.0",
+		"@westpac/hooks": "^3.0.1",
+		"@westpac/icon": "^2.0.1",
 		"bezier-easing": "^2.1.0",
 		"prop-types": "^15.7.2",
 		"react-use-measure": "^2.0.4",
@@ -70,7 +70,7 @@
 	},
 	"devDependencies": {
 		"@react-spring/web": "^9.2.4",
-		"@westpac/form-check": "^2.0.0",
+		"@westpac/form-check": "^2.1.0",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
