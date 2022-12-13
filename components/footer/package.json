@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/footer",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "GEL footer component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/footer",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -17,9 +17,9 @@
 	"module": "dist/westpac-footer.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/a11y": "^2.0.0",
-		"@westpac/core": "^3.0.0",
-		"@westpac/grid": "^2.0.0",
+		"@westpac/a11y": "^2.1.0",
+		"@westpac/core": "^3.1.0",
+		"@westpac/grid": "^2.1.0",
 		"@westpac/symbol": "^2.0.0",
 		"prop-types": "^15.7.2"
 	},
@@ -27,7 +27,7 @@
 		"react": "^18.2.0"
 	},
 	"devDependencies": {
-		"@westpac/icon": "^2.0.0",
+		"@westpac/icon": "^2.0.1",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"

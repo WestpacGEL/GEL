@@ -26,7 +26,7 @@ for (const component of components) {
 	if (component.isDirectory()) {
 		const pkgJsonPath = path.normalize(`${__dirname}/../components/${component.name}/package.json`);
 		if (!fs.existsSync(pkgJsonPath)) {
-			return;
+			break;
 		}
 		const pkg = require(pkgJsonPath);
 		GEL.components[component.name] = {

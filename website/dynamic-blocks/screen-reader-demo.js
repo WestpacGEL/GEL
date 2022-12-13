@@ -91,8 +91,9 @@ export const ScreenReaderText = {
 							>
 								<AccessibilityIcon color="#b6d6ed" css={{ paddingRight: SPACING(2) }} />
 							</div>
-							{text.split('\n').map((p) => (
+							{text.split('\n').map((p, index) => (
 								<p
+									key={index}
 									css={{
 										margin: `0 ${SPACING(6)} ${SPACING(6)} ${SPACING(6)}`,
 									}}

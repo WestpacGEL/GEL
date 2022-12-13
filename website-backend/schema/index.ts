@@ -1,5 +1,6 @@
 import { list, graphql, BaseFields } from '@keystone-6/core';
 import { cloudinaryImage } from '@keystone-6/cloudinary';
+// eslint-disable-next-line import/no-unresolved
 import { Lists } from '.keystone/types';
 import { text, password, select, checkbox, relationship, json } from '@keystone-6/core/fields';
 import { document } from '@keystone-6/fields-document';

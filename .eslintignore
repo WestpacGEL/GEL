@@ -1,0 +1,12 @@
+brands/**/dist/
+brands/**/CHANGELOG.md
+components/**/dist/
+website/**/dist/
+website/**/.next/
+components/**/cypress/
+components/**/CHANGELOG.md
+.docz/
+docs/
+GEL.json
+components/core/blender/jquery.js
+coverage/*

@@ -2,6 +2,7 @@ import { config } from '@keystone-6/core';
 import type { KeystoneConfig, BaseKeystoneTypeInfo } from '@keystone-6/core/types';
 import { statelessSessions } from '@keystone-6/core/session';
 import { createAuth } from '@keystone-6/auth';
+// eslint-disable-next-line import/no-unresolved
 import { Context, TypeInfo } from '.keystone/types';
 import { lists } from './schema';
 import { PORT, DATABASE_URL, SESSION_MAX_AGE, SESSION_SECRET } from './config';

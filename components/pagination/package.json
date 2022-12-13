@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/pagination",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "Horizontal set of links used to navigate a series of related pages",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/pagination",
@@ -10,11 +10,11 @@
 	"components": [
 		{
 			"name": "Pagination",
-			"src": "Pagination.js"
+			"src": "Pagination.tsx"
 		},
 		{
 			"name": "Page",
-			"src": "Page.js"
+			"src": "Page.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -53,16 +53,16 @@
 	"module": "dist/westpac-pagination.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/a11y": "^2.0.0",
-		"@westpac/core": "^3.0.0",
+		"@westpac/a11y": "^2.1.0",
+		"@westpac/core": "^3.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
 		"react": "^18.2.0"
 	},
 	"devDependencies": {
-		"@westpac/button": "^2.0.0",
-		"@westpac/icon": "^2.0.0",
+		"@westpac/button": "^2.1.0",
+		"@westpac/icon": "^2.0.1",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"
