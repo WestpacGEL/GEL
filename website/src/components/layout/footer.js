@@ -144,6 +144,7 @@ const ContactIconLink = ({ icon: Icon, color, href, assistiveText }) => (
 				marginLeft: '0.75rem',
 			},
 		}}
+		rel="noreferrer"
 	>
 		<Icon color={color} assistiveText={assistiveText} />
 	</a>

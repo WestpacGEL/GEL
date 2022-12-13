@@ -129,6 +129,7 @@ const DatePickerInput = ({
 
 			return isDisabled;
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useLayoutEffect(() => {
@@ -138,6 +139,7 @@ const DatePickerInput = ({
 	useEffect(() => {
 		ref.current.identifier = id;
 		ref.current.name = name;
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {

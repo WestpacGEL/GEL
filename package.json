@@ -34,8 +34,12 @@
     "build:dynamicblocks": "node helpers/dynamic-blocks.js",
     "fresh": "yarn nuke && yarn",
     "new": "node ./helpers/cli.js",
-    "format": "prettier --write \"**/*.{js,md,mdx,json}\"",
-    "test:format": "prettier --list-different \"**/*.{js,md,mdx,json}\"",
+    "format": "prettier --list-different \"**/*.{js,md,mdx,json,ts,tsx}\"",
+    "format:fix": "prettier --write \"**/*.{js,md,mdx,json,ts,tsx}\"",
+    "lint": "eslint **/*.{js,ts,tsx}",
+    "lint:fix": "eslint **/*.{js,ts,tsx} --fix",
+    "test:format": "yarn format && yarn lint",
+    "lint:format:fix": "yarn lint:fix && yarn format:fix",
     "test:unit": "jest",
     "test:unit:ci": "jest --runInBand --ci",
     "test:unit-watch": "jest --watchAll --coverage",
@@ -45,7 +49,7 @@
     "dep:test": "manypkg check && preconstruct build || preconstruct dev",
     "dep:fix": "manypkg fix && preconstruct fix",
     "GELjson": "node helpers/ds-info.js",
-    "postinstall": "yarn dep:test && preconstruct dev && yarn GELjson && yarn build:dynamicblocks",
+    "postinstall": "yarn dep:test && preconstruct build && yarn GELjson && yarn build:dynamicblocks",
     "publish-packages": "yarn build && yarn GELjson && yarn changeset publish",
     "version-packages": "yarn changeset version",
     "deploy:staging:sync": "pm2 deploy pm2-ecosystem.json staging",
@@ -72,16 +76,16 @@
   },
   "jest": {
     "displayName": "GEL3",
-    "testRegex": "\\.spec.js$",
+    "testRegex": "\\.spec.[jt]sx?$",
     "testEnvironment": "jsdom",
     "collectCoverageFrom": [
-      "components/*/src/**/*.js"
+      "components/*/src/**/*.{js,jsx,ts,tsx}"
     ],
     "setupFilesAfterEnv": [
       "./helpers/tests/jest-extended.js"
     ],
     "transformIgnorePatterns": [
-      "/node_modules/(?!@westpac/*).+\\.js$"
+      "/node_modules/(?!@westpac/*).+\\.{js,jsx,ts,tsx}$"
     ]
   },
   "dependencies": {
@@ -97,10 +101,11 @@
     "@emotion/react": "^11.4.0",
     "@emotion/weak-memoize": "^0.2.5",
     "@manypkg/cli": "^0.18.0",
-    "@preconstruct/cli": "^2.1.0",
+    "@preconstruct/cli": "^2.2.2",
     "@react-spring/web": "^9.2.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@types/prop-types": "^15.7.5",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.2",
@@ -113,6 +118,8 @@
     "copy-webpack-plugin": "^9.0.1",
     "core-js": "^3.15.2",
     "cypress": "^8.0.0",
+    "eslint": "^8.28.0",
+    "eslint-config-next": "^13.0.5",
     "facepaint": "^1.2.1",
     "get-workspaces": "^1.0.3",
     "html-webpack-plugin": "^5.3.2",

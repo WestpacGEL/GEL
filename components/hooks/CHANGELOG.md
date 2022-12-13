@@ -1,5 +1,14 @@
 # @westpac/hooks
 
+## 3.0.1
+
+### Patch Changes
+
+- 8d3f5b3d: ESLint implementation
+- Updated dependencies [39e90efa]
+- Updated dependencies [8d3f5b3d]
+  - @westpac/core@3.1.0
+
 ## 3.0.0
 
 ### Major Changes

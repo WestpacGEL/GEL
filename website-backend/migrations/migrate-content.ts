@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { createSystem, initConfig } from '@keystone-6/core/system';
 import { PrismaClient } from '.prisma/client';
+// eslint-disable-next-line import/no-unresolved
 import { config } from '../.keystone/admin/.next/server/pages/api/__keystone_api_build';
 
 // This process retrieves the (forked) Keystone 5 content json blobs, transforms them and saves them

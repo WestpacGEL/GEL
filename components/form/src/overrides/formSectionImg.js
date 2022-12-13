@@ -6,7 +6,7 @@ import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const FormSectionImg = ({ state: _, ...rest }) => <img {...rest} />;
+const FormSectionImg = ({ state: _, ...rest }) => <img alt="Form section image" {...rest} />;
 
 // ==============================
 // Styles

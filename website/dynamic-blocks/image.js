@@ -43,7 +43,7 @@ export const Image = {
 				image,
 				removeMargin,
 			});
-		}, [alt, caption, image, removeMargin]);
+		}, [alt, caption, image, removeMargin, onChange]);
 
 		let [uploadImage] = useMutation(UPLOAD_IMAGE);
 

@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/table",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "Styling for tables, including two visual styles and row/cell highlighting, used for displaying tabular data",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/table",
@@ -10,35 +10,35 @@
 	"components": [
 		{
 			"name": "Table",
-			"src": "Table.js"
+			"src": "Table.tsx"
 		},
 		{
 			"name": "Td",
-			"src": "Td.js"
+			"src": "Td.tsx"
 		},
 		{
 			"name": "Tr",
-			"src": "Tr.js"
+			"src": "Tr.tsx"
 		},
 		{
 			"name": "Caption",
-			"src": "Caption.js"
+			"src": "Caption.tsx"
 		},
 		{
 			"name": "Thead",
-			"src": "Thead.js"
+			"src": "Thead.tsx"
 		},
 		{
 			"name": "Th",
-			"src": "Th.js"
+			"src": "Th.tsx"
 		},
 		{
 			"name": "Tbody",
-			"src": "Tbody.js"
+			"src": "Tbody.tsx"
 		},
 		{
 			"name": "Tfoot",
-			"src": "Tfoot.js"
+			"src": "Tfoot.tsx"
 		}
 	],
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -77,8 +77,8 @@
 	"module": "dist/westpac-table.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/body": "^2.0.0",
-		"@westpac/core": "^3.0.0",
+		"@westpac/body": "^2.1.0",
+		"@westpac/core": "^3.1.0",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {

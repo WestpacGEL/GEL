@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+// eslint-disable-next-line import/no-unresolved
 import { Context } from '.keystone/types';
 
 // 1
