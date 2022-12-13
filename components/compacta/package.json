@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/compacta",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "gel compacta",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/compacta",
@@ -24,9 +24,9 @@
 	"module": "dist/westpac-compacta.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/button": "^2.0.0",
-		"@westpac/core": "^3.0.0",
-		"@westpac/icon": "^2.0.0",
+		"@westpac/button": "^2.1.0",
+		"@westpac/core": "^3.1.0",
+		"@westpac/icon": "^2.0.1",
 		"bezier-easing": "^2.1.0",
 		"prop-types": "^15.7.2",
 		"react-use-measure": "^2.0.4",
@@ -38,9 +38,9 @@
 	},
 	"devDependencies": {
 		"@react-spring/web": "^9.2.4",
-		"@westpac/form": "^3.0.0",
-		"@westpac/input-group": "^2.0.0",
-		"@westpac/text-input": "^2.0.0",
+		"@westpac/form": "^3.1.0",
+		"@westpac/input-group": "^2.1.0",
+		"@westpac/text-input": "^2.1.0",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"

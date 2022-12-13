@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/button",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "Styling for button controls used for actions in forms and modals, with support for multiple sizes, styles, states and more",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button",
@@ -49,9 +49,9 @@
 	"module": "dist/westpac-button.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/core": "^3.0.0",
-		"@westpac/hooks": "^3.0.0",
-		"@westpac/icon": "^2.0.0",
+		"@westpac/core": "^3.1.0",
+		"@westpac/hooks": "^3.0.1",
+		"@westpac/icon": "^2.0.1",
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
