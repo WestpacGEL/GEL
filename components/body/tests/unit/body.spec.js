@@ -20,19 +20,19 @@ nestingTest({
 	Component: (props) => <Body {...props} />,
 });
 
-describe('Body specific tests', () => {
-	test('Body renders its content', () => {
+describe('Body component', () => {
+	test('should render its content', () => {
 		const text = 'Hello';
-		const content = <span>{text}</span>;
+		const content = <span data-testid="my-span">{text}</span>;
 		const SimpleBody = () => (
 			<GEL brand={wbc}>
 				<Body>{content}</Body>
 			</GEL>
 		);
 
-		const { container } = render(<SimpleBody />);
+		const { container, getByTestId } = render(<SimpleBody />);
 
 		expect(container).toHaveTextContent(text);
-		expect(container).toContainHTML('span');
+		expect(getByTestId('my-span')).toBeInTheDocument();
 	});
 });
