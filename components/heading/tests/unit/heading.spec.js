@@ -12,7 +12,11 @@ import wbc from '@westpac/wbc';
 overridesTest({
 	name: 'heading', // the name has to be the package name without '@westpac/' scope
 	overrides: ['Heading'], // every single override root key
-	Component: (props) => <Heading size={1} {...props}>Heading content</Heading>, // the component with all components rendered
+	Component: (props) => (
+		<Heading size={1} {...props}>
+			Heading content
+		</Heading>
+	), // the component with all components rendered
 });
 
 // another default test to check that the component errors when outside of GEL and renders when inside
