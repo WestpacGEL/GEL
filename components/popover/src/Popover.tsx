@@ -1,9 +1,8 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId, wrapHandlers } from '@westpac/core';
-import { useState, useEffect, useLayoutEffect, useRef } from 'react';
-import { usePopoverPosition } from '@westpac/hooks';
-import PropTypes from 'prop-types';
+import { useState, useEffect, useRef } from 'react';
+import { usePopoverPosition, useIsomorphicLayoutEffect } from '@westpac/hooks';
 
 import { defaultPopover } from './overrides/popover';
 import { defaultTrigger } from './overrides/trigger';
@@ -78,7 +77,7 @@ export const Popover = ({
 		setIsOpen(open);
 	}, [open]);
 
-	useLayoutEffect(() => {
+	useIsomorphicLayoutEffect(() => {
 		if (!isOpen) {
 			triggerRef.current.focus();
 		}

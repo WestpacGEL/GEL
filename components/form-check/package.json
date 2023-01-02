@@ -52,6 +52,7 @@
 		"@westpac/body": "^2.1.0",
 		"@westpac/button": "^2.1.0",
 		"@westpac/core": "^3.1.0",
+		"@westpac/hooks": "^3.0.1",
 		"@westpac/icon": "^2.0.1",
 		"prop-types": "^15.7.2"
 	},

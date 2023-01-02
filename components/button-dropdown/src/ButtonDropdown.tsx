@@ -1,8 +1,8 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, useInstanceId, wrapHandlers } from '@westpac/core';
-import { createContext, useContext, useState, useEffect, useLayoutEffect, useRef } from 'react';
-import { useOutsideClick } from '@westpac/hooks';
+import { createContext, useContext, useState, useEffect, useRef } from 'react';
+import { useOutsideClick, useIsomorphicLayoutEffect } from '@westpac/hooks';
 import { Button } from '@westpac/button';
 import PropTypes from 'prop-types';
 
@@ -80,7 +80,7 @@ export const ButtonDropdown = ({
 		setIsOpen(open);
 	}, [open]);
 
-	useLayoutEffect(() => {
+	useIsomorphicLayoutEffect(() => {
 		if (!isOpen) {
 			buttonRef.current.focus();
 		}
