@@ -107,8 +107,8 @@ export const Modal = ({
 	};
 
 	// on escape close modal
-	const keyHandler = (event) => {
-		if (dismissible && open && event.keyCode === 27) handleClose();
+	const keyHandler = (e) => {
+		if (dismissible && open && e.keyCode === 27) handleClose();
 	};
 
 	// bind key events
@@ -117,7 +117,7 @@ export const Modal = ({
 		return () => {
 			window.document.removeEventListener('keydown', keyHandler);
 		};
-	});
+	}, []);
 
 	if (typeof window !== 'undefined') {
 		return ReactDOM.createPortal(

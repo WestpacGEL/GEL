@@ -1,7 +1,8 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, useInstanceId, overrideReconciler } from '@westpac/core';
-import { Fragment, useState, useLayoutEffect, useRef, cloneElement, Children } from 'react';
+import { Fragment, useState, useRef, cloneElement, Children } from 'react';
+import { useIsomorphicLayoutEffect } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
 import { defaultFormCheckReveal } from './overrides/formCheckReveal';
@@ -38,7 +39,7 @@ export const FormCheckReveal = ({
 		Panel: defaultPanel,
 	};
 
-	useLayoutEffect(() => {
+	useIsomorphicLayoutEffect(() => {
 		if (isOpen) {
 			firstNewOptionRef.current.focus();
 		}
