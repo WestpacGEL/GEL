@@ -22,6 +22,7 @@
 	"license": "GPL-3.0+",
 	"main": "dist/westpac-wbg.cjs.js",
 	"module": "dist/westpac-wbg.esm.js",
+	"types": "./src/index.d.ts",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8"
 	}
