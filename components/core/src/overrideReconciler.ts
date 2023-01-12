@@ -33,35 +33,35 @@ export function overrideReconciler<
 	);
 
 	for (let [key] of Object.entries(overrides)) {
-		defaultOverrides[key] = defaultOverrides[key] || {};
-		if (typeof defaultOverrides[key].styles !== 'function') {
+		let defaultOverride = defaultOverrides[key] as TdefaultOverrides;
+		if (typeof defaultOverride.styles !== 'function') {
 			defaultOverrides[key].styles = (s: unknown) => s;
 		}
-		if (typeof defaultOverrides[key].attributes !== 'function') {
+		if (typeof defaultOverride.attributes !== 'function') {
 			defaultOverrides[key].attributes = (a: unknown) => a;
 		}
 
-		tokenOverrides[key] = tokenOverrides[key] || {};
-		if (typeof tokenOverrides[key].styles !== 'function') {
+		let tokenOverride = tokenOverrides[key] as TtokenOverrides;
+		if (typeof tokenOverride.styles !== 'function') {
 			tokenOverrides[key].styles = (s: unknown) => s;
 		}
-		if (typeof tokenOverrides[key].attributes !== 'function') {
+		if (typeof tokenOverride.attributes !== 'function') {
 			tokenOverrides[key].attributes = (a: unknown) => a;
 		}
 
-		brandOverrides[key] = brandOverrides[key] || {};
-		if (typeof brandOverrides[key].styles !== 'function') {
+		let brandOverride = brandOverrides[key] as TbrandOverrides;
+		if (typeof brandOverride.styles !== 'function') {
 			brandOverrides[key].styles = (s: unknown) => s;
 		}
-		if (typeof brandOverrides[key].attributes !== 'function') {
+		if (typeof brandOverride.attributes !== 'function') {
 			brandOverrides[key].attributes = (a: unknown) => a;
 		}
 
-		componentOverrides[key] = componentOverrides[key] || {};
-		if (typeof componentOverrides[key].styles !== 'function') {
+		let componentOverride = componentOverrides[key] as TcomponentOverrides;
+		if (typeof componentOverride.styles !== 'function') {
 			componentOverrides[key].styles = (s: unknown) => s;
 		}
-		if (typeof componentOverrides[key].attributes !== 'function') {
+		if (typeof componentOverride.attributes !== 'function') {
 			componentOverrides[key].attributes = (a: unknown) => a;
 		}
 
