@@ -1,5 +1,5 @@
-export function getLabel(name, props = {}) {
-	let label = name;
+export function getLabel(name: string, props: Record<string, unknown> = {}): string {
+	let label: string = name;
 
 	Object.entries(props)
 		.sort(([a], [b]) => (a.toLowerCase() < b.toLowerCase() ? -1 : 1))
@@ -17,7 +17,7 @@ export function getLabel(name, props = {}) {
 					label += `-${name}_${String(value).replace(/-/g, '_')}`;
 					break;
 				case 'function':
-					label += `-${value.displayName || value.name}`;
+					label += `-${value.name}`;
 					break;
 				default:
 					label += `-${name}_${JSON.stringify(value)
@@ -30,7 +30,7 @@ export function getLabel(name, props = {}) {
 	return cleanClassName(label);
 }
 
-export function cleanClassName(name) {
+export function cleanClassName(name: string): string {
 	return name
 		.replace(/ /g, '_') // we transform spaces into underscores
 		.replace(/\./g, '_') // we transform dots into underscores

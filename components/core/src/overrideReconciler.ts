@@ -12,55 +12,60 @@ import { mergeWith } from './mergeWith';
  *
  * @return {object}                    - All overrides merged with a folded styles function
  */
-export function overrideReconciler(
-	defaultOverrides = {},
-	tokenOverrides = {},
-	brandOverrides = {},
-	componentOverrides = {}
+export function overrideReconciler<
+	TdefaultOverrides extends { [key: string]: any },
+	TtokenOverrides extends { [key: string]: any },
+	TbrandOverrides extends { [key: string]: any },
+	TcomponentOverrides extends { [key: string]: any }
+>(
+	defaultOverrides: TdefaultOverrides,
+	tokenOverrides: TtokenOverrides,
+	brandOverrides: TbrandOverrides,
+	componentOverrides: TcomponentOverrides
 ) {
 	const overrides = mergeWith(
-		{},
+		{} as any,
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
 		componentOverrides,
-		(_, item) => (isValidElementType(item) ? item : undefined)
+		(_: unknown, item: unknown) => (isValidElementType(item) ? item : undefined)
 	);
 
 	for (let [key] of Object.entries(overrides)) {
 		defaultOverrides[key] = defaultOverrides[key] || {};
 		if (typeof defaultOverrides[key].styles !== 'function') {
-			defaultOverrides[key].styles = (s) => s;
+			defaultOverrides[key].styles = (s: unknown) => s;
 		}
 		if (typeof defaultOverrides[key].attributes !== 'function') {
-			defaultOverrides[key].attributes = (a) => a;
+			defaultOverrides[key].attributes = (a: unknown) => a;
 		}
 
 		tokenOverrides[key] = tokenOverrides[key] || {};
 		if (typeof tokenOverrides[key].styles !== 'function') {
-			tokenOverrides[key].styles = (s) => s;
+			tokenOverrides[key].styles = (s: unknown) => s;
 		}
 		if (typeof tokenOverrides[key].attributes !== 'function') {
-			tokenOverrides[key].attributes = (a) => a;
+			tokenOverrides[key].attributes = (a: unknown) => a;
 		}
 
 		brandOverrides[key] = brandOverrides[key] || {};
 		if (typeof brandOverrides[key].styles !== 'function') {
-			brandOverrides[key].styles = (s) => s;
+			brandOverrides[key].styles = (s: unknown) => s;
 		}
 		if (typeof brandOverrides[key].attributes !== 'function') {
-			brandOverrides[key].attributes = (a) => a;
+			brandOverrides[key].attributes = (a: unknown) => a;
 		}
 
 		componentOverrides[key] = componentOverrides[key] || {};
 		if (typeof componentOverrides[key].styles !== 'function') {
-			componentOverrides[key].styles = (s) => s;
+			componentOverrides[key].styles = (s: unknown) => s;
 		}
 		if (typeof componentOverrides[key].attributes !== 'function') {
-			componentOverrides[key].attributes = (a) => a;
+			componentOverrides[key].attributes = (a: unknown) => a;
 		}
 
-		overrides[key].styles = (state) =>
+		overrides[key].styles = (state: unknown) =>
 			componentOverrides[key].styles(
 				brandOverrides[key].styles(
 					tokenOverrides[key].styles(defaultOverrides[key].styles(null, state), state),
@@ -69,7 +74,7 @@ export function overrideReconciler(
 				state
 			);
 
-		overrides[key].attributes = (state) =>
+		overrides[key].attributes = (state: unknown) =>
 			componentOverrides[key].attributes(
 				brandOverrides[key].attributes(
 					tokenOverrides[key].attributes(defaultOverrides[key].attributes(null, state), state),
