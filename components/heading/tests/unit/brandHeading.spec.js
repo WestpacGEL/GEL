@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading } from '@westpac/heading';
+import { BrandHeading } from '@westpac/heading';
 import { render } from '@testing-library/react';
 
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
@@ -10,31 +10,31 @@ import wbc from '@westpac/wbc';
 // The default tests every component should run
 overridesTest({
 	name: 'heading', // the name has to be the package name without '@westpac/' scope
-	overrides: ['Heading'], // every single override root key
+	overrides: ['BrandHeading'], // every single override root key
 	Component: (props) => (
-		<Heading size={1} {...props}>
+		<BrandHeading size={1} {...props}>
 			Heading content
-		</Heading>
+		</BrandHeading>
 	), // the component with all components rendered
 });
 
 // another default test to check that the component errors when outside of GEL and renders when inside
 nestingTest({
-	name: 'heading',
-	Component: (props) => <Heading size={1} {...props} />,
+	name: 'brandHeading',
+	Component: (props) => <BrandHeading size={1} {...props} />,
 });
 
 describe('Heading component', () => {
 	test('should render its content', () => {
 		const text = 'Hello';
 		const content = <span data-testid="my-span">{text}</span>;
-		const SimpleHeading = () => (
+		const SimpleBrandHeading = () => (
 			<GEL brand={wbc}>
-				<Heading size={1}>{content}</Heading>
+				<BrandHeading size={1}>{content}</BrandHeading>
 			</GEL>
 		);
 
-		const { container, getByTestId } = render(<SimpleHeading />);
+		const { container, getByTestId } = render(<SimpleBrandHeading />);
 
 		expect(container).toHaveTextContent(text);
 		expect(getByTestId('my-span')).toBeInTheDocument();
