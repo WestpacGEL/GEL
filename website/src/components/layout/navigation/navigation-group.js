@@ -1,8 +1,8 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useInstanceId } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { AddIcon, RemoveIcon } from '@westpac/icon';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useId } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useSpring, animated } from '@react-spring/web';
 import useMeasure from 'react-use-measure';
@@ -24,7 +24,7 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 	};
 
 	useEffect(() => {
-		setInstanceId(`nav-group-${useInstanceId()}`);
+		setInstanceId(`nav-group-${useId()}`);
 	}, []);
 
 	const animate = useSpring({

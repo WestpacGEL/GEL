@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, wrapHandlers, useInstanceId, overrideReconciler } from '@westpac/core';
-import { useState, Children, createContext, useContext } from 'react';
+import { jsx, useBrand, wrapHandlers, overrideReconciler } from '@westpac/core';
+import { useState, Children, createContext, useContext, useId, useMemo, useCallback } from 'react';
 import { ButtonGroup, Item } from '@westpac/button-group';
 import PropTypes from 'prop-types';
 
@@ -47,7 +47,8 @@ export const Fork = ({
 		Fork: defaultFork,
 	};
 
-	const [id] = useState(instanceId || `gel-fork-${useInstanceId()}`);
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-fork-${_id}`, [_id, instanceId]);
 	const [activeForkIndex, setActiveForkIndex] = useState(defaultValue);
 
 	const state = {
@@ -63,12 +64,15 @@ export const Fork = ({
 		Fork: { component: Fork, styles: forkStyles, attributes: forkAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	const handleChange = (event, val) => {
-		wrapHandlers(
-			() => onChange(event, val),
-			() => setActiveForkIndex(val)
-		)(event);
-	};
+	const handleChange = useCallback(
+		(event: Event, val: any) => {
+			wrapHandlers(
+				() => onChange(event, val),
+				() => setActiveForkIndex(val)
+			)(event);
+		},
+		[onChange]
+	);
 
 	return (
 		<ForkContext.Provider value={{ state }}>

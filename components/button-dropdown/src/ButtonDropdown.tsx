@@ -1,7 +1,17 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId, wrapHandlers } from '@westpac/core';
-import { createContext, useContext, useState, useEffect, useRef } from 'react';
+import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
+import {
+	createContext,
+	useContext,
+	useState,
+	useEffect,
+	useRef,
+	useId,
+	useCallback,
+	KeyboardEvent,
+	useMemo,
+} from 'react';
 import { useOutsideClick, useIsomorphicLayoutEffect } from '@westpac/hooks';
 import { Button } from '@westpac/button';
 import PropTypes from 'prop-types';
@@ -46,8 +56,10 @@ export const ButtonDropdown = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [isOpen, setIsOpen] = useState(open);
-	const [id] = useState(instanceId || `gel-button-dropdown-${useInstanceId()}`);
+	const [isOpen, setIsOpen] = useState<boolean>(open);
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-button-dropdown-${_id}`, [_id, instanceId]);
+
 	const panelRef = useRef();
 	const buttonRef = useRef();
 
@@ -86,14 +98,17 @@ export const ButtonDropdown = ({
 		}
 	}, [isOpen]);
 
-	const handleOpen = (event) => {
-		wrapHandlers(
-			() => onClick(),
-			() => {
-				setIsOpen((currentState) => !currentState);
-			}
-		)(event);
-	};
+	const handleOpen = useCallback(
+		(event: globalThis.KeyboardEvent) => {
+			wrapHandlers(
+				() => onClick(),
+				() => {
+					setIsOpen((currentState) => !currentState);
+				}
+			)(event);
+		},
+		[onClick]
+	);
 
 	useOutsideClick({
 		handler: () => {
@@ -104,17 +119,21 @@ export const ButtonDropdown = ({
 	});
 
 	// on escape close
-	const keyHandler = (event) => {
-		if (isOpen && event.keyCode === 27) handleOpen(event);
-	};
+	const keyHandler = useCallback(
+		(event: globalThis.KeyboardEvent) => {
+			if (isOpen && event.keyCode === 27) handleOpen(event);
+		},
+		[handleOpen, isOpen]
+	);
 
 	// bind key events
 	useEffect(() => {
-		window.document.addEventListener('keydown', keyHandler);
+		window.document.addEventListener('keydown', (event) => {});
 		return () => {
 			window.document.removeEventListener('keydown', keyHandler);
 		};
-	});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<ButtonDropdownContext.Provider value={{ state }}>

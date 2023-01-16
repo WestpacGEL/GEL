@@ -1,7 +1,17 @@
 /** @jsx jsx */
 
-import { createContext, useContext, Children, useEffect, useRef, useState } from 'react';
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import {
+	createContext,
+	useContext,
+	Children,
+	useEffect,
+	useRef,
+	useState,
+	useId,
+	useMemo,
+	useCallback,
+} from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
@@ -56,8 +66,9 @@ export const Tabcordion = ({
 		TabRow: defaultTabRow,
 	};
 
-	const [activeTabIndex, setActiveTabIndex] = useState(openTab);
-	const [id] = useState(instanceId || `gel-tabcordion-${useInstanceId()}`);
+	const [activeTabIndex, setActiveTabIndex] = useState<number>(openTab);
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-tabcordion-${_id}`, [_id, instanceId]);
 
 	const containerRef = useRef();
 	const panelRef = useRef();
@@ -67,11 +78,11 @@ export const Tabcordion = ({
 	const mode =
 		tabcordionMode !== 'responsive' ? tabcordionMode : width < 768 ? 'accordion' : 'tabs';
 
-	const setActive = (idx) => () => setActiveTabIndex(idx);
+	const setActive = useCallback((idx: number) => () => setActiveTabIndex(idx), []);
 
 	useEffect(() => setActiveTabIndex(openTab), [openTab]);
 
-	const getId = (type, index) => `${id}-${type}-${index + 1}`;
+	const getId = useCallback((type: string, index: number) => `${id}-${type}-${index + 1}`, [id]);
 	const tabCount = Children.count(children);
 
 	const state = {
