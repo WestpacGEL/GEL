@@ -1,6 +1,9 @@
 {
   "name": "gel",
   "version": "0.0.0",
+  "engines": {
+    "yarn": "1.22"
+  },
   "description": "The Westpac GEL Design System components, brand tokens and website monorepo",
   "repository": "https://github.com/WestpacGEL/GEL",
   "author": "Westpac GEL Team <gel@westpac.com.au>",
