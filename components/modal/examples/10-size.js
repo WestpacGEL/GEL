@@ -27,9 +27,9 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<p>
+			<div>
 				<Button onClick={() => updateModal('default', true)}>Open default modal</Button>
-			</p>
+			</div>
 			<Modal
 				heading="Modal heading"
 				open={state.default.open}
@@ -50,9 +50,9 @@ function Example({ brand }) {
 				</Footer>
 			</Modal>
 
-			<p>
+			<div>
 				<Button onClick={() => updateModal('small', true)}>Open small modal</Button>
-			</p>
+			</div>
 			<Modal
 				heading="Modal heading Modal heading Modal heading Modal heading Modal heading Modal heading"
 				open={state.small.open}
@@ -85,9 +85,9 @@ function Example({ brand }) {
 				</Footer>
 			</Modal>
 
-			<p>
+			<div>
 				<Button onClick={() => updateModal('large', true)}>Open large modal</Button>
-			</p>
+			</div>
 			<Modal
 				heading="Modal heading"
 				open={state.large.open}

@@ -30,6 +30,7 @@
     "nuke:node_modules": "find ./components -type d -name 'node_modules' -exec rm -rf {} + && find ./brands -type d -name 'node_modules' -exec rm -rf {} + && rm -rf node_modules",
     "nuke:lock": "rm yarn.lock && rm yarn-error.log ; true",
     "build": "yarn build:dynamicblocks && preconstruct build",
+    "build:watch": "preconstruct watch",
     "build:dev": "preconstruct dev",
     "build:dynamicblocks": "node helpers/dynamic-blocks.js",
     "fresh": "yarn nuke && yarn",
