@@ -153,5 +153,9 @@
   },
   "resolutions": {
     "ansi-styles": "^3.2.0"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1"
   }
 }
