@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useMemo, useState } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { NewWindowIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
@@ -57,7 +57,9 @@ const ExampleButton = ({ onClick, children, ...rest }) => {
 const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 	const [codeIsOpen, setCodeOpen] = useState(true);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [id] = useState(`code-block-${useId()}`);
+
+	const _id = useId();
+	const id = useMemo(() => `code-block-${_id}`, [_id]);
 	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 
