@@ -1,14 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
-import {
-	useState,
-	useEffect,
-	useRef,
-	useId,
-	useMemo,
-	useCallback,
-} from 'react';
+import { useState, useEffect, useRef, useId, useMemo, useCallback } from 'react';
 import { usePopoverPosition, useIsomorphicLayoutEffect } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 

@@ -69,7 +69,7 @@ function preloadPackages() {
 
 	return {
 		packages,
-		packagesMap: new Map<string | null, typeof packages[number]>(
+		packagesMap: new Map<string | null, (typeof packages)[number]>(
 			packages.map((pkg) => [pkg.unscopedName.replace('-', '_'), pkg])
 		),
 	};

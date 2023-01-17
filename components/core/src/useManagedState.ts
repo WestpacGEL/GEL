@@ -1,8 +1,12 @@
-import { ChangeEvent, useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { devWarning } from './devWarning';
 
-export function useManagedState<ControlledValue = any, DefaultValue = any, OnChange = (value: any, event: Event) => any>(controlledValue?: ControlledValue, defaultValue?: DefaultValue, onChange?: OnChange) {
+export function useManagedState<
+	ControlledValue = any,
+	DefaultValue = any,
+	OnChange = (value: any, event: Event) => any
+>(controlledValue?: ControlledValue, defaultValue?: DefaultValue, onChange?: OnChange) {
 	const { current: isControlled } = useRef(controlledValue !== undefined);
 	const [internalValue, setInternalValue] = useState(defaultValue);
 
@@ -17,13 +21,16 @@ export function useManagedState<ControlledValue = any, DefaultValue = any, OnCha
 	);
 
 	// handle value changes (both internal, and controlled)
-	const setValue = useCallback((value: DefaultValue, event: Event) => {
-		if (typeof onChange === 'function') {
-			onChange(value, event);
-		}
+	const setValue = useCallback(
+		(value: DefaultValue, event: Event) => {
+			if (typeof onChange === 'function') {
+				onChange(value, event);
+			}
 
-		setInternalValue(value);
-	}, [onChange]);
+			setInternalValue(value);
+		},
+		[onChange]
+	);
 
 	// determine which value to pass on
 	const value = controlledValue !== undefined ? controlledValue : internalValue;
