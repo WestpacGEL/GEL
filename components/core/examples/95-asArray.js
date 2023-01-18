@@ -8,11 +8,11 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<Code>{`asArray([ 1, 2, 3])`}</Code>
-			=>
+			=&gt;
 			<Code>{JSON.stringify(asArray([1, 2, 3]))}</Code>
 			<hr />
 			<Code>{`asArray(1)`}</Code>
-			=>
+			=&gt;
 			<Code>{JSON.stringify(asArray(1))}</Code>
 		</GEL>
 	);

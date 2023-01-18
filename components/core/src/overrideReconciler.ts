@@ -13,15 +13,15 @@ import { mergeWith } from './mergeWith';
  * @return {object}                    - All overrides merged with a folded styles function
  */
 export function overrideReconciler<
-	TdefaultOverrides extends { [key: string]: any },
-	TtokenOverrides extends { [key: string]: any },
-	TbrandOverrides extends { [key: string]: any },
-	TcomponentOverrides extends { [key: string]: any }
+	TdefaultOverrides extends { [key: string]: any; styles: any; attributes: any },
+	TtokenOverrides extends { [key: string]: any; styles: any; attributes: any },
+	TbrandOverrides extends { [key: string]: any; styles: any; attributes: any },
+	TcomponentOverrides extends { [key: string]: any; styles: any; attributes: any }
 >(
-	defaultOverrides: TdefaultOverrides,
-	tokenOverrides: TtokenOverrides,
-	brandOverrides: TbrandOverrides,
-	componentOverrides: TcomponentOverrides
+	defaultOverrides: TdefaultOverrides = {} as TdefaultOverrides,
+	tokenOverrides: TtokenOverrides = {} as TtokenOverrides,
+	brandOverrides: TbrandOverrides = {} as TbrandOverrides,
+	componentOverrides: TcomponentOverrides = {} as TcomponentOverrides
 ) {
 	const overrides = mergeWith(
 		{} as any,
@@ -33,51 +33,55 @@ export function overrideReconciler<
 	);
 
 	for (let [key] of Object.entries(overrides)) {
-		let defaultOverride = defaultOverrides[key] as TdefaultOverrides;
+		let defaultOverride: TdefaultOverrides =
+			(defaultOverrides[key] as TdefaultOverrides) || ({} as TdefaultOverrides);
 		if (typeof defaultOverride.styles !== 'function') {
-			defaultOverrides[key].styles = (s: unknown) => s;
+			defaultOverride.styles = (styles: any) => styles;
 		}
 		if (typeof defaultOverride.attributes !== 'function') {
-			defaultOverrides[key].attributes = (a: unknown) => a;
+			defaultOverride.attributes = (attributes: any) => attributes;
 		}
 
-		let tokenOverride = tokenOverrides[key] as TtokenOverrides;
+		let tokenOverride: TtokenOverrides =
+			(tokenOverrides[key] as TtokenOverrides) || ({} as TtokenOverrides);
 		if (typeof tokenOverride.styles !== 'function') {
-			tokenOverrides[key].styles = (s: unknown) => s;
+			tokenOverride.styles = (styles: any) => styles;
 		}
 		if (typeof tokenOverride.attributes !== 'function') {
-			tokenOverrides[key].attributes = (a: unknown) => a;
+			tokenOverride.attributes = (attributes: any) => attributes;
 		}
 
-		let brandOverride = brandOverrides[key] as TbrandOverrides;
+		let brandOverride: TbrandOverrides =
+			(brandOverrides[key] as TbrandOverrides) || ({} as TbrandOverrides);
 		if (typeof brandOverride.styles !== 'function') {
-			brandOverrides[key].styles = (s: unknown) => s;
+			brandOverride.styles = (styles: any) => styles;
 		}
 		if (typeof brandOverride.attributes !== 'function') {
-			brandOverrides[key].attributes = (a: unknown) => a;
+			brandOverride.attributes = (attributes: any) => attributes;
 		}
 
-		let componentOverride = componentOverrides[key] as TcomponentOverrides;
+		let componentOverride: TcomponentOverrides =
+			(componentOverrides[key] as TcomponentOverrides) || ({} as TcomponentOverrides);
 		if (typeof componentOverride.styles !== 'function') {
-			componentOverrides[key].styles = (s: unknown) => s;
+			componentOverride.styles = (styles: any) => styles;
 		}
 		if (typeof componentOverride.attributes !== 'function') {
-			componentOverrides[key].attributes = (a: unknown) => a;
+			componentOverride.attributes = (attributes: any) => attributes;
 		}
 
 		overrides[key].styles = (state: unknown) =>
-			componentOverrides[key].styles(
-				brandOverrides[key].styles(
-					tokenOverrides[key].styles(defaultOverrides[key].styles(null, state), state),
+			componentOverride.styles(
+				brandOverride.styles(
+					tokenOverride.styles(defaultOverride.styles(null, state), state),
 					state
 				),
 				state
 			);
 
 		overrides[key].attributes = (state: unknown) =>
-			componentOverrides[key].attributes(
-				brandOverrides[key].attributes(
-					tokenOverrides[key].attributes(defaultOverrides[key].attributes(null, state), state),
+			componentOverride.attributes(
+				brandOverride.attributes(
+					tokenOverride.attributes(defaultOverride.attributes(null, state), state),
 					state
 				),
 				state

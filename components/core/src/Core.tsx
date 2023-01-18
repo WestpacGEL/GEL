@@ -11,7 +11,7 @@ export interface CoreProps {
 }
 
 export const Core = ({ normalize, children }: CoreProps) => {
-	const { COLORS, TYPE, PACKS } = useBrand();
+	const { COLORS, TYPE, PACKS }: { COLORS: any; TYPE: any; PACKS: any } = useBrand();
 
 	return (
 		<Fragment>

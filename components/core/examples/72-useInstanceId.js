@@ -12,8 +12,8 @@ function Example({ brand }) {
 			<Button onClick={() => setInstanceId(useInstanceId())}>Get instance id</Button>
 			<h2>{instanceId}</h2>
 			<Code>useInstanceId();</Code>
-			=>
-			<Code>> Get an id for component instances.</Code>
+			=&gt;
+			<Code>&gt; Get an id for component instances.</Code>
 		</GEL>
 	);
 }
