@@ -1,7 +1,15 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Fragment, createContext, useContext, useState, useEffect, useRef } from 'react';
+import { jsx, GEL, useBrand, overrideReconciler } from '@westpac/core';
+import {
+	Fragment,
+	createContext,
+	useContext,
+	useState,
+	useEffect,
+	useRef,
+	useCallback,
+} from 'react';
 import { FocusOn, AutoFocusInside } from 'react-focus-on';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
@@ -98,18 +106,21 @@ export const Modal = ({
 		setOpen(isOpen);
 	}, [isOpen]);
 
-	const handleClose = () => {
+	const handleClose = useCallback(() => {
 		if (onClose) {
 			onClose();
 		} else {
 			setOpen(false);
 		}
-	};
+	}, [onClose]);
 
 	// on escape close modal
-	const keyHandler = (e) => {
-		if (dismissible && open && e.keyCode === 27) handleClose();
-	};
+	const keyHandler = useCallback(
+		(e: KeyboardEvent) => {
+			if (dismissible && open && e.keyCode === 27) handleClose();
+		},
+		[dismissible, handleClose, open]
+	);
 
 	// bind key events
 	useEffect(() => {
@@ -117,6 +128,7 @@ export const Modal = ({
 		return () => {
 			window.document.removeEventListener('keydown', keyHandler);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	if (typeof window !== 'undefined') {
@@ -126,7 +138,7 @@ export const Modal = ({
 					<FocusOn enabled={open}>
 						<Modal
 							ref={modalRef}
-							onClick={(e) => {
+							onClick={(e: MouseEvent) => {
 								if (e.target !== e.currentTarget) return;
 								if (dismissible) {
 									handleClose();
