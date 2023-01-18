@@ -60,6 +60,7 @@ const UnSafeExampleBlock = ({ code, showCode, showDemo, showError }) => {
 
 	const _id = useId();
 	const id = useMemo(() => `code-block-${_id}`, [_id]);
+
 	const { SPACING } = useBrand();
 	const mq = useMediaQuery();
 

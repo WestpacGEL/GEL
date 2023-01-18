@@ -125,6 +125,8 @@
     "cypress": "^8.0.0",
     "eslint": "^8.28.0",
     "eslint-config-next": "^13.0.5",
+		"eslint-config-prettier": "^8.6.0",
+		"eslint-plugin-prettier": "^4.2.1",
     "facepaint": "^1.2.1",
     "get-workspaces": "^1.0.3",
     "html-webpack-plugin": "^5.3.2",
@@ -154,9 +156,5 @@
   },
   "resolutions": {
     "ansi-styles": "^3.2.0"
-  },
-  "devDependencies": {
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-prettier": "^4.2.1"
   }
 }
