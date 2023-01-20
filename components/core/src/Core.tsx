@@ -18,11 +18,6 @@ export const Core = ({ normalize, children }: CoreProps) => {
 			<Global styles={normalize && normalizeCSS} />
 			<div
 				css={{
-					...(isMouseMode && {
-						'*:focus': {
-							outline: 'none !important',
-						},
-					}),
 					label: 'core',
 					lineHeight: 1.428571429,
 					color: COLORS.text,
@@ -31,11 +26,17 @@ export const Core = ({ normalize, children }: CoreProps) => {
 
 					'*:focus': {
 						...PACKS.focus,
+						...(isMouseMode && {
+							outline: 'none !important',
+						}),
 					},
 					// Also apply to the following selectors to increase specificity (against normalize reset)
 					'button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring':
 						{
 							...PACKS.focus,
+							...(isMouseMode && {
+								outline: 'none !important',
+							}),
 						},
 					'[tabindex="-1"]:focus': {
 						outline: '0 !important',
