@@ -11,13 +11,18 @@ export interface CoreProps {
 }
 
 export const Core = ({ normalize, children }: CoreProps) => {
-	const { COLORS, TYPE, PACKS } = useBrand();
+	const { COLORS, TYPE, PACKS, isMouseMode } = useBrand();
 
 	return (
 		<Fragment>
 			<Global styles={normalize && normalizeCSS} />
 			<div
 				css={{
+					...(isMouseMode && {
+						'*:focus': {
+							outline: 'none !important',
+						},
+					}),
 					label: 'core',
 					lineHeight: 1.428571429,
 					color: COLORS.text,
