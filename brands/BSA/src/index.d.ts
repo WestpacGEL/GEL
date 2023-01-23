@@ -342,7 +342,12 @@ declare module '@westpac/bsa' {
 			outlineOffset: string;
 		};
 	};
-	type Overrides = (tokens: string) => void;
+	type Overide = {
+		stypes: any;
+		component: any;
+		attributes: any;
+	};
+	type Overrides = Record<string, Overide>;
 	type Spacing = {
 		major: string;
 		minor: string;
