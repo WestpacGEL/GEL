@@ -2,10 +2,10 @@ import { useCallback, useRef, useState } from 'react';
 
 import { devWarning } from './devWarning';
 
-export function useManagedState<TValue = any, TOnChange = (value: any, event: Event) => any>(
+export function useManagedState<TValue>(
 	controlledValue: TValue,
-	defaultValue?: TValue,
-	onChange?: TOnChange
+	defaultValue: TValue,
+	onChange: (value: any, event: Event) => any
 ) {
 	const { current: isControlled } = useRef(controlledValue !== undefined);
 	const [internalValue, setInternalValue] = useState(defaultValue);

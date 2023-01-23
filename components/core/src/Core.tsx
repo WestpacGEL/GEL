@@ -5,13 +5,12 @@ import { Fragment } from 'react';
 import { useBrand } from './Brand';
 import { normalize as normalizeCSS } from './normalize';
 
-export interface ICoreProps {
+export interface CoreProps {
 	normalize: SerializedStyles;
 	children: React.ReactNode;
 }
-
-export const Core = ({ normalize, children }: ICoreProps) => {
-	const { COLORS, TYPE, PACKS }: { COLORS: any; TYPE: any; PACKS: any } = useBrand();
+export const Core = ({ normalize, children }: CoreProps) => {
+	const { COLORS, TYPE, PACKS }: any = useBrand();
 
 	return (
 		<Fragment>
