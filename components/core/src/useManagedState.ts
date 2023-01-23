@@ -5,7 +5,7 @@ import { devWarning } from './devWarning';
 export function useManagedState<Tvalue>(
 	controlledValue: Tvalue,
 	defaultValue: Tvalue,
-	onChange: Function
+	onChange: (value: any, event: Event) => any
 ) {
 	const { current: isControlled } = useRef(controlledValue !== undefined);
 	const [internalValue, setInternalValue] = useState(defaultValue);
