@@ -13,7 +13,7 @@ function Example({ brand }) {
 	{ c: { three: 3 } }, // brandOverrides
 	{ a: { four: 4 } }   // componentOverrides
 );`}</Code>
-			=>
+			=&gt;
 			<Code>
 				{JSON.stringify(
 					overrideReconciler(
@@ -32,7 +32,7 @@ function Example({ brand }) {
 	{ a: { styles: style => ({ a: 3 + '' + style.a, b: 3 + '' + style.b }) } },
 	{ a: { styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) } }
 ).a.styles();`}</Code>
-			=>
+			=&gt;
 			<Code>
 				{JSON.stringify(
 					overrideReconciler(
@@ -50,7 +50,7 @@ function Example({ brand }) {
 	undefined,
 	{ a: { styles: style => ({ a: 4 + '' + style.a, b: 4 + '' + style.b }) } }
 ).a.styles();`}</Code>
-			=>
+			=&gt;
 			<Code>
 				{JSON.stringify(
 					overrideReconciler({ a: { styles: () => ({ a: 1, b: 1 }) } }, undefined, undefined, {
@@ -68,7 +68,7 @@ function Example({ brand }) {
 ).Test.styles();
 			`}
 			</Code>
-			=>
+			=&gt;
 			<Code>
 				{JSON.stringify(
 					overrideReconciler(

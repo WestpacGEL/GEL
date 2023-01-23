@@ -17,7 +17,10 @@ import set from 'lodash.set';
  *
  * @return {array}				- nested array of paths e.g. [['key1'], ['key2'], ['level1', 'level2'], ['level1', 'level2', 'level3']]
  */
-function recurseStyles(base, modified, diff = []) {
+function recurseStyles<
+	Tbase extends { [key: string]: any },
+	Tmodified extends { [key: string]: any }
+>(base: Tbase, modified: Tmodified, diff: string[] = []): string[] {
 	const curr = [...diff];
 
 	Object.keys(modified).forEach((key) => {
@@ -28,7 +31,7 @@ function recurseStyles(base, modified, diff = []) {
 
 			if (nested.length) diff.push(...nested);
 		} else if (modified[key] !== base[key]) {
-			diff.push([...curr, key]);
+			diff.push([...curr, key] as unknown as string);
 		}
 	});
 
@@ -43,9 +46,12 @@ function recurseStyles(base, modified, diff = []) {
  *
  * @return {object}					- style object
  */
-export function styleReconciler(base, modified) {
-	const diff = recurseStyles(base, modified);
-	const styles = diff.reduce((acc, curr) => {
+export function styleReconciler<
+	Tbase extends { [key: string]: any },
+	Tmodified extends { [key: string]: any }
+>(base: Tbase, modified: Tmodified) {
+	const diff: string[] = recurseStyles(base, modified);
+	const styles: unknown = diff.reduce((acc, curr) => {
 		set(acc, curr, get(modified, curr));
 		return acc;
 	}, {});
@@ -61,7 +67,10 @@ export function styleReconciler(base, modified) {
  *
  * @return {array}					- unique passed props
  */
-export function getModifier(defaultProps, props) {
+export function getModifier<
+	TdefaultProps extends { [key: string]: any },
+	Tprops extends { [key: string]: any }
+>(defaultProps: TdefaultProps, props: Tprops): string[] {
 	return Object.keys(props).filter((m) => props[m] !== defaultProps[m]);
 }
 
@@ -72,9 +81,9 @@ export function getModifier(defaultProps, props) {
  *
  * @return {string}				- formatted className
  */
-export const formatClassName = (className) => {
-	const formattedName = className.split(' ');
-	formattedName.unshift(formattedName.pop());
+export const formatClassName = (className: string): string => {
+	const formattedName: string[] = className.split(' ');
+	formattedName.unshift(formattedName.pop()!);
 	return formattedName.join(' ').trim();
 };
 
@@ -85,7 +94,7 @@ export const formatClassName = (className) => {
  *
  * @return {string}			- text in title case
  */
-export const titleCase = (str) =>
+export const titleCase = (str: string): string =>
 	str
 		.toLowerCase()
 		.split(' ')

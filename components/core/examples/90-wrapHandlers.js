@@ -33,8 +33,8 @@ function two() {
 
 wrapHandlers( one, two );`}
 			</Code>
-			=>
-			<Code>> one called! > two called!</Code>
+			=&gt;
+			<Code>&gt; one called! &gt; two called!</Code>
 			<hr />
 			<button onClick={wrapHandlers(three, () => console.log('button clicked'))} type="button">
 				Click me!

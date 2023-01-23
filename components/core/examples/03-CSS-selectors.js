@@ -113,17 +113,17 @@ function Example({ brand }) {
 				<p css={{ '.parentClass &': { color: 'green' } }}>.parentClass &: This is green</p>
 			</div>
 
-			<h3>Child selector (>)</h3>
+			<h3>Child selector (&gt;)</h3>
 			<div css={{ 'p > span': { color: 'green' } }}>
 				<p>
-					<span>p > span: This is green</span>
+					<span>p &gt; span: This is green</span>
 				</p>
 			</div>
 			<div>
-				<p css={{ 'div > &': { color: 'green' } }}>div > &: This is green</p>
+				<p css={{ 'div > &': { color: 'green' } }}>div &gt; &: This is green</p>
 			</div>
 			<div css={{ '& > &': { color: 'green' } }}>
-				<p css={{ '& > &': { color: 'green' } }}>& > &: This is green</p>
+				<p css={{ '& > &': { color: 'green' } }}>& &gt; &: This is green</p>
 			</div>
 
 			<h3>Adjacent sibling selector (+)</h3>

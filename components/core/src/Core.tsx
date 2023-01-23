@@ -1,12 +1,17 @@
 /** @jsx jsx */
 
-import { jsx, Global } from '@emotion/react';
+import { jsx, Global, SerializedStyles } from '@emotion/react';
 import { Fragment } from 'react';
 import { useBrand } from './Brand';
 import { normalize as normalizeCSS } from './normalize';
 
-export const Core = ({ normalize, children }) => {
-	const { COLORS, TYPE, PACKS } = useBrand();
+export interface ICoreProps {
+	normalize: SerializedStyles;
+	children: React.ReactNode;
+}
+
+export const Core = ({ normalize, children }: ICoreProps) => {
+	const { COLORS, TYPE, PACKS }: { COLORS: any; TYPE: any; PACKS: any } = useBrand();
 
 	return (
 		<Fragment>
