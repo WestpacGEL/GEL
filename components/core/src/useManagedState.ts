@@ -26,7 +26,6 @@ export function useManagedState<TValue = any, TOnChange = (value: any, event: Ev
 			if (typeof onChange === 'function') {
 				onChange(value, event);
 			}
-
 			setInternalValue(value);
 		},
 		[onChange]
