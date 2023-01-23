@@ -10,12 +10,8 @@ const paint = weakMemo(<Tbreakpoints>(breakpoints: Tbreakpoints) =>
 	facepaint(Object.entries(breakpoints).map(mapBreakpoints))
 );
 
-interface Layout {
-	breakpoints: Object;
-}
-
 export const useMediaQuery = () => {
-	const { LAYOUT }: { LAYOUT: Layout } = useBrand();
+	const { LAYOUT }: { LAYOUT: any } = useBrand();
 
 	return paint(LAYOUT.breakpoints);
 };
