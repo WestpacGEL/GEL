@@ -19,7 +19,7 @@ export function overrideReconciler(
 	componentOverrides: Record<string, any> = {}
 ) {
 	const overrides = mergeWith(
-		{},
+		{} as any,
 		defaultOverrides,
 		tokenOverrides,
 		brandOverrides,
