@@ -11,18 +11,19 @@ const DEFAULT_OPTIONS = [
 	{ value: 'deadlift', label: 'Deadlift' },
 ];
 
+// TODO: OverridesTest doesn't work properly since the sub-component doesn't show up if the user doesn't type anything.
 // The default tests every component should run
 // overridesTest({
 // 	name: 'autocomplete', // the name has to be the package name without '@westpac/' scope
 // 	overrides: [
-// 		// 'Control',
-// 		// 'IndicatorsContainer',
-// 		// 'ClearIndicator',
-// 		// 'Menu',
-// 		// 'Option',
-// 		// 'ValueContainer',
+// 		'Control',
+// 		'IndicatorsContainer',
+// 		'ClearIndicator',
+// 		'Menu',
+// 		'Option',
+// 		'ValueContainer',
 // 		'Footer',
-// 		// 'NoOptionsMessage',
+// 		'NoOptionsMessage',
 // 	], // every single override root key
 // 	beforeValidate: () => {
 // 		fireEvent('click');
