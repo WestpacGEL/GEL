@@ -25,10 +25,6 @@ const DEFAULT_OPTIONS = [
 // 		'Footer',
 // 		'NoOptionsMessage',
 // 	], // every single override root key
-// 	beforeValidate: () => {
-// 		fireEvent('click');
-// 		fireEvent('type', 's');
-// 	},
 // 	Component: (props) => <Autocomplete {...props} footer={FooterTest} options={DEFAULT_OPTIONS} />, // the component with all components rendered
 // });
 
