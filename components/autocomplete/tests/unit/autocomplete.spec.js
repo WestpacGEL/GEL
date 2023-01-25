@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { render, fireEvent, keyboard } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 import { Autocomplete } from '@westpac/autocomplete';
 import { GEL } from '@westpac/core';
