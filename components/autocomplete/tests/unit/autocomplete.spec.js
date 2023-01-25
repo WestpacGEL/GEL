@@ -103,4 +103,10 @@ describe('Autocomplete component', () => {
 		);
 		expect(consoleErrorSpy).not.toHaveBeenCalled();
 	});
+
+	test('The isDisabled property should not allow user to type', () => {
+		const { container } = render(<SimpleAutocomplete isDisabled />);
+		const input = container.querySelector('input');
+		expect(input.disabled).toBe(true);
+	});
 });
