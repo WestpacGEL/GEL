@@ -1,8 +1,8 @@
 /** @jsx jsx */
 
-import { jsx, css } from '@emotion/react';
+import { css, SerializedStyles } from '@emotion/react';
 
-export const normalize = css`
+export const normalize: SerializedStyles = css`
 	/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 	/* Document

@@ -11,8 +11,8 @@ function Example({ brand }) {
 			<Code>
 				devWarning( true, 'Warn consumer about a thing but ignore the warning in production!' );
 			</Code>
-			=>
-			<Code>> Warning: Warn consumer about a thing but ignore the warning in production!</Code>
+			=&gt;
+			<Code>&gt; Warning: Warn consumer about a thing but ignore the warning in production!</Code>
 		</GEL>
 	);
 }

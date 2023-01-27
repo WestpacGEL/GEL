@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 
-export const BrandContext = createContext();
+export const BrandContext = createContext(null);
 
 export const useBrand = () => {
 	const brandObject = useContext(BrandContext);

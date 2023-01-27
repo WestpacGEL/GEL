@@ -1,8 +1,12 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { devWarning } from './devWarning';
 
-export function useManagedState(controlledValue, defaultValue, onChange) {
+export function useManagedState<Tvalue>(
+	controlledValue: Tvalue,
+	defaultValue: Tvalue,
+	onChange: (value: any, event: Event) => any
+) {
 	const { current: isControlled } = useRef(controlledValue !== undefined);
 	const [internalValue, setInternalValue] = useState(defaultValue);
 
@@ -17,7 +21,7 @@ export function useManagedState(controlledValue, defaultValue, onChange) {
 	);
 
 	// handle value changes (both internal, and controlled)
-	const setValue = (value, event) => {
+	const setValue = (value: Tvalue, event: Event) => {
 		if (typeof onChange === 'function') {
 			onChange(value, event);
 		}
@@ -26,7 +30,7 @@ export function useManagedState(controlledValue, defaultValue, onChange) {
 	};
 
 	// determine which value to pass on
-	const value = controlledValue !== undefined ? controlledValue : internalValue;
+	const value: Tvalue = controlledValue !== undefined ? controlledValue : internalValue;
 
 	return [value, setValue];
 }
