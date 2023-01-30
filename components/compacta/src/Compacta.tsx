@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState } from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useCallback, useId, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultTitleSecondary } from './overrides/titleSecondary';
@@ -20,6 +20,7 @@ import { defaultToggle } from './overrides/toggle';
 import { defaultTitle } from './overrides/title';
 import { defaultItem } from './overrides/item';
 import pkg from '../package.json';
+import { generateID } from '@westpac/core';
 
 // ==============================
 // Component
@@ -56,8 +57,9 @@ export const Compacta = ({
 	};
 
 	const [initial, setInitial] = useState(true);
+	const id = useId();
 	const [items, setItems] = useState([
-		{ id: useInstanceId(), open: true, title: { primary: '', secondary: '', tertiary: '' } },
+		{ id, open: true, delay: false, title: { primary: '', secondary: '', tertiary: '' } },
 	]);
 
 	const state = {
@@ -68,7 +70,7 @@ export const Compacta = ({
 		...rest,
 	};
 
-	const handleAdd = () => {
+	const handleAdd = useCallback(() => {
 		let delay = false;
 
 		const newItems = items.map((item, index) => {
@@ -81,33 +83,36 @@ export const Compacta = ({
 					open: false,
 					delay: false,
 				};
-			} else {
-				return item;
 			}
+			return item;
 		});
 
-		newItems.push({
-			id: useInstanceId(),
-			open: true,
-			delay,
-			title: { primary: '', secondary: '', tertiary: '' },
-		});
+		setItems([
+			...newItems,
+			{
+				id: `${id}-${generateID()}`,
+				open: true,
+				delay,
+				title: { primary: '', secondary: '', tertiary: '' },
+			},
+		]);
+	}, [id, items]);
 
-		setItems(newItems);
-	};
-
-	const handleRemove = (id) => {
+	const handleRemove = useCallback((id: string) => {
 		setItems((items) => items.filter((item) => item.id !== id));
-	};
+	}, []);
 
-	const handleToggle = (id) => {
-		if (initial) setInitial(false);
-		setItems((items) =>
-			items.map((item) => (item.id === id ? { ...item, delay: false, open: !item.open } : item))
-		);
-	};
+	const handleToggle = useCallback(
+		(id: string) => {
+			if (initial) setInitial(false);
+			setItems((items) =>
+				items.map((item) => (item.id === id ? { ...item, delay: false, open: !item.open } : item))
+			);
+		},
+		[initial]
+	);
 
-	const setTitle = (id, titleType, title) => {
+	const setTitle = useCallback((id: string, titleType: string, title: string) => {
 		setItems((items) =>
 			items.map((item) => {
 				if (item.id === id) {
@@ -120,7 +125,7 @@ export const Compacta = ({
 				}
 			})
 		);
-	};
+	}, []);
 
 	const {
 		Compacta: { component: Compacta, styles: compactaStyles, attributes: compactaAttributes },
@@ -255,9 +260,9 @@ export const Compacta = ({
 							>
 								{children({
 									id: item.id,
-									setPrimaryTitle: (title) => setTitle(item.id, 'primary', title),
-									setSecondaryTitle: (title) => setTitle(item.id, 'secondary', title),
-									setTertiaryTitle: (title) => setTitle(item.id, 'tertiary', title),
+									setPrimaryTitle: (title: string) => setTitle(item.id, 'primary', title),
+									setSecondaryTitle: (title: string) => setTitle(item.id, 'secondary', title),
+									setTertiaryTitle: (title: string) => setTitle(item.id, 'tertiary', title),
 									brand,
 								})}
 							</Content>

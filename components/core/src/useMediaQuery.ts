@@ -6,7 +6,7 @@ const minWidth = (width: number) => `@media (min-width: ${width}px)`;
 const mapBreakpoints = ([key, value]: number[]) => minWidth(value);
 
 // NOTE: `breakpoints` come through context from the brand via <GEL brand={brand} />
-const paint = weakMemo(<Tbreakpoints>(breakpoints: Tbreakpoints) =>
+const paint = weakMemo(<TBreakpoints extends Record<string, any>>(breakpoints: TBreakpoints) =>
 	facepaint(Object.entries(breakpoints).map(mapBreakpoints))
 );
 

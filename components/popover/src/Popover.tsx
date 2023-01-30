@@ -1,8 +1,11 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId, wrapHandlers } from '@westpac/core';
-import { useState, useEffect, useRef } from 'react';
+import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
+
+import { useState, useEffect, useRef, useId, useMemo, useCallback } from 'react';
+
 import { usePopoverPosition, useIsomorphicLayoutEffect } from '@westpac/hooks';
+import PropTypes from 'prop-types';
 
 import { defaultPopover } from './overrides/popover';
 import { defaultTrigger } from './overrides/trigger';
@@ -33,13 +36,20 @@ export const Popover = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [isOpen, setIsOpen] = useState(open);
-	const [position, setPosition] = useState({
+	const [isOpen, setIsOpen] = useState<boolean>(open);
+	const [position, setPosition] = useState<{
+		empty?: boolean;
+		placement: string;
+		offset?: string;
+		top?: number;
+		left?: number;
+		center?: number;
+	}>({
 		placement: placement ? placement : 'top',
 		empty: !placement,
 	});
-	const triggerRef = useRef();
-	const popoverRef = useRef();
+	const triggerRef = useRef<HTMLDivElement>(null);
+	const popoverRef = useRef<HTMLDivElement>(null);
 
 	const defaultOverrides = {
 		Popover: defaultPopover,
@@ -50,7 +60,8 @@ export const Popover = ({
 		CloseBtn: defaultCloseBtn,
 	};
 
-	const [id] = useState(instanceId || `gel-popover-${useInstanceId()}`);
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-popover-${_id}`, [_id, instanceId]);
 
 	const state = {
 		id,
@@ -79,23 +90,26 @@ export const Popover = ({
 
 	useIsomorphicLayoutEffect(() => {
 		if (!isOpen) {
-			triggerRef.current.focus();
+			triggerRef.current?.focus();
 		}
 	}, [isOpen]);
 
-	const handleOpen = (event) => {
-		wrapHandlers(
-			() => onClick(),
-			() => {
-				setIsOpen((currentState) => !currentState);
-			}
-		)(event);
-	};
+	const handleOpen = useCallback(
+		(event: Event) => {
+			wrapHandlers(
+				() => onClick(),
+				() => {
+					setIsOpen((currentState) => !currentState);
+				}
+			)(event);
+		},
+		[onClick]
+	);
 
 	useEffect(() => {
 		if (isOpen) {
 			if (placement) {
-				setPosition({ placement });
+				setPosition({ ...position, placement });
 			} else {
 				setPosition(usePopoverPosition(triggerRef, popoverRef));
 			}
@@ -103,15 +117,19 @@ export const Popover = ({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isOpen]);
 
-	const keyHandler = (event) => {
-		if (
-			isOpen &&
-			event.keyCode === 27 &&
-			(popoverRef.current.contains(event.target) || triggerRef.current.contains(event.target))
-		) {
-			handleOpen(event);
-		}
-	};
+	const keyHandler = useCallback(
+		(event: KeyboardEvent) => {
+			if (
+				isOpen &&
+				event.keyCode === 27 &&
+				event.target instanceof Element &&
+				(popoverRef.current?.contains(event.target) || triggerRef.current?.contains(event.target))
+			) {
+				handleOpen(event);
+			}
+		},
+		[handleOpen, isOpen]
+	);
 
 	// bind key events
 	useEffect(() => {

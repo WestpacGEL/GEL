@@ -1,7 +1,16 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useInstanceId, overrideReconciler } from '@westpac/core';
-import { Fragment, useState, useRef, cloneElement, Children } from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import {
+	Fragment,
+	useState,
+	useRef,
+	cloneElement,
+	Children,
+	useId,
+	useMemo,
+	useCallback,
+} from 'react';
 import { useIsomorphicLayoutEffect } from '@westpac/hooks';
 import PropTypes from 'prop-types';
 
@@ -29,9 +38,11 @@ export const FormCheckReveal = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [id] = useState(instanceId || `gel-form-check-reveal-${useInstanceId()}`);
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-form-check-reveal-${_id}`, [_id, instanceId]);
+
 	const [isOpen, setIsOpen] = useState(false);
-	const firstNewOptionRef = useRef();
+	const firstNewOptionRef = useRef<HTMLDivElement>(null);
 
 	const defaultOverrides = {
 		FormCheckReveal: defaultFormCheckReveal,
@@ -41,13 +52,13 @@ export const FormCheckReveal = ({
 
 	useIsomorphicLayoutEffect(() => {
 		if (isOpen) {
-			firstNewOptionRef.current.focus();
+			firstNewOptionRef.current?.focus();
 		}
 	}, [isOpen]);
 
-	const handleOpen = (event) => {
+	const handleOpen = useCallback(() => {
 		setIsOpen((currentState) => !currentState);
-	};
+	}, []);
 
 	const state = {
 		id,

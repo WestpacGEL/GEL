@@ -13,15 +13,15 @@ import { mergeWith } from './mergeWith';
  * @return {object}                    - All overrides merged with a folded styles function
  */
 export function overrideReconciler<
-	TdefaultOverrides extends { [key: string]: any; styles: any; attributes: any },
-	TtokenOverrides extends { [key: string]: any; styles: any; attributes: any },
-	TbrandOverrides extends { [key: string]: any; styles: any; attributes: any },
-	TcomponentOverrides extends { [key: string]: any; styles: any; attributes: any }
+	TDefaultOverrides extends { [key: string]: any; styles: any; attributes: any },
+	TTokenOverrides extends { [key: string]: any; styles: any; attributes: any },
+	TBrandOverrides extends { [key: string]: any; styles: any; attributes: any },
+	TComponentOverrides extends { [key: string]: any; styles: any; attributes: any }
 >(
-	defaultOverrides: TdefaultOverrides = {} as TdefaultOverrides,
-	tokenOverrides: TtokenOverrides = {} as TtokenOverrides,
-	brandOverrides: TbrandOverrides = {} as TbrandOverrides,
-	componentOverrides: TcomponentOverrides = {} as TcomponentOverrides
+	defaultOverrides: TDefaultOverrides = {} as TDefaultOverrides,
+	tokenOverrides: TTokenOverrides = {} as TTokenOverrides,
+	brandOverrides: TBrandOverrides = {} as TBrandOverrides,
+	componentOverrides: TComponentOverrides = {} as TComponentOverrides
 ) {
 	const overrides = mergeWith(
 		{} as any,
@@ -33,8 +33,8 @@ export function overrideReconciler<
 	);
 
 	for (let [key] of Object.entries(overrides)) {
-		let defaultOverride: TdefaultOverrides =
-			(defaultOverrides[key] as TdefaultOverrides) || ({} as TdefaultOverrides);
+		let defaultOverride: TDefaultOverrides =
+			(defaultOverrides[key] as TDefaultOverrides) || ({} as TDefaultOverrides);
 		if (typeof defaultOverride.styles !== 'function') {
 			defaultOverride.styles = (styles: any) => styles;
 		}
@@ -42,8 +42,8 @@ export function overrideReconciler<
 			defaultOverride.attributes = (attributes: any) => attributes;
 		}
 
-		let tokenOverride: TtokenOverrides =
-			(tokenOverrides[key] as TtokenOverrides) || ({} as TtokenOverrides);
+		let tokenOverride: TTokenOverrides =
+			(tokenOverrides[key] as TTokenOverrides) || ({} as TTokenOverrides);
 		if (typeof tokenOverride.styles !== 'function') {
 			tokenOverride.styles = (styles: any) => styles;
 		}
@@ -51,8 +51,8 @@ export function overrideReconciler<
 			tokenOverride.attributes = (attributes: any) => attributes;
 		}
 
-		let brandOverride: TbrandOverrides =
-			(brandOverrides[key] as TbrandOverrides) || ({} as TbrandOverrides);
+		let brandOverride: TBrandOverrides =
+			(brandOverrides[key] as TBrandOverrides) || ({} as TBrandOverrides);
 		if (typeof brandOverride.styles !== 'function') {
 			brandOverride.styles = (styles: any) => styles;
 		}
@@ -60,8 +60,8 @@ export function overrideReconciler<
 			brandOverride.attributes = (attributes: any) => attributes;
 		}
 
-		let componentOverride: TcomponentOverrides =
-			(componentOverrides[key] as TcomponentOverrides) || ({} as TcomponentOverrides);
+		let componentOverride: TComponentOverrides =
+			(componentOverrides[key] as TComponentOverrides) || ({} as TComponentOverrides);
 		if (typeof componentOverride.styles !== 'function') {
 			componentOverride.styles = (styles: any) => styles;
 		}

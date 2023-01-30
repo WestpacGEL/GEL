@@ -108,6 +108,11 @@ ErrorMessage.propTypes = {
 	/**
 	 * Error message item(s) text
 	 */
+	id: PropTypes.string,
+
+	/**
+	 * Error message item(s) text
+	 */
 	message: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
 
 	/**
