@@ -37,10 +37,9 @@ describe('Date Picker', () => {
 		// Min value: 2021-06-28
 		defaultPage.minValueDatePicker.datePickerInput.type('28-06-2021');
 		defaultPage.minValueDatePicker.dateToggleButton.click();
-		const dateButton = defaultPage.minValueDatePicker.datePickerDialog
-			.find('.duet-date__table')
-			.contains('27');
-		dateButton.should('have.attr', 'disabled');
+		const twentySeventhOfJuneButton = defaultPage.minValueDatePicker.datePickerDialog
+			.find('.duet-date__table tr:nth-child(4) > td:nth-child(7) > button');
+		twentySeventhOfJuneButton.should('have.attr', 'disabled');
 	});
 
 	it('Max value should block all dates after that specific date', () => {
@@ -48,10 +47,10 @@ describe('Date Picker', () => {
 		// Max date: 2021-06-30
 		defaultPage.maxValueDatePicker.datePickerInput.type('30-06-2021');
 		defaultPage.maxValueDatePicker.dateToggleButton.click();
-		const dateButton = defaultPage.maxValueDatePicker.datePickerDialog
-			.find('.duet-date__table')
-			.contains('1 July');
-		dateButton.should('have.attr', 'disabled');
+		// '1 July' button
+		const firstJulyButton = defaultPage.maxValueDatePicker.datePickerDialog
+			.find('.duet-date__table tr:nth-child(5) > td:nth-child(4) > button');
+		firstJulyButton.should('have.attr', 'disabled');
 	});
 
 	it('using Disable dates should disable the specific week days', () => {
