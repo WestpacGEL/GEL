@@ -37,8 +37,9 @@ describe('Date Picker', () => {
 		// Min value: 2021-06-28
 		defaultPage.minValueDatePicker.datePickerInput.type('28-06-2021');
 		defaultPage.minValueDatePicker.dateToggleButton.click();
-		const twentySeventhOfJuneButton = defaultPage.minValueDatePicker.datePickerDialog
-			.find('.duet-date__table tr:nth-child(4) > td:nth-child(7) > button');
+		const twentySeventhOfJuneButton = defaultPage.minValueDatePicker.datePickerDialog.find(
+			'.duet-date__table tr:nth-child(4) > td:nth-child(7) > button'
+		);
 		twentySeventhOfJuneButton.should('have.attr', 'disabled');
 	});
 
@@ -48,8 +49,9 @@ describe('Date Picker', () => {
 		defaultPage.maxValueDatePicker.datePickerInput.type('30-06-2021');
 		defaultPage.maxValueDatePicker.dateToggleButton.click();
 		// '1 July' button
-		const firstJulyButton = defaultPage.maxValueDatePicker.datePickerDialog
-			.find('.duet-date__table tr:nth-child(5) > td:nth-child(4) > button');
+		const firstJulyButton = defaultPage.maxValueDatePicker.datePickerDialog.find(
+			'.duet-date__table tr:nth-child(5) > td:nth-child(4) > button'
+		);
 		firstJulyButton.should('have.attr', 'disabled');
 	});
 
