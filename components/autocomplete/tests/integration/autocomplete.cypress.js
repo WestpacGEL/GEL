@@ -6,6 +6,8 @@ describe('Autocomplete', () => {
 		defaultPage.visit();
 	});
 	it('should contain a red border when there is a prop invalid', () => {
-		defaultPage.invalidAutocomplete.get('[class$="Control"]').should('have.css', 'border', '1px solid rgb(147, 144, 162)');
+		defaultPage.invalidAutocomplete
+			.get('[class$="Control"]')
+			.should('have.css', 'border', '1px solid rgb(147, 144, 162)');
 	});
 });
