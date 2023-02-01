@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useInstanceId } from '@westpac/core';
-import { useState } from 'react';
+import { GEL, jsx } from '@westpac/core';
+import { useId } from 'react';
 import { Repeater } from '@westpac/repeater';
 
 const Repeat = (props) => {
-	const [id] = useState(useInstanceId());
+	const id = useId();
 	return (
 		<div id={id} css={{ marginBottom: '2rem' }} {...props}>
 			Repeater

@@ -20,7 +20,6 @@
 		}
 	],
 	"license": "GPL-3.0+",
-	"scripts": {},
 	"main": "dist/westpac-bom.cjs.js",
 	"module": "dist/westpac-bom.esm.js",
 	"types": "./src/index.d.ts",

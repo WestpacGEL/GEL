@@ -4,12 +4,20 @@ import {
 	jsx,
 	useBrand,
 	overrideReconciler,
-	useInstanceId,
 	devWarning,
 	asArray,
 	useManagedState,
 } from '@westpac/core';
-import { Children, useState, useContext, createContext, cloneElement } from 'react';
+import {
+	Children,
+	useState,
+	useContext,
+	createContext,
+	cloneElement,
+	useId,
+	useMemo,
+	useCallback,
+} from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFormCheck } from './overrides/formCheck';
@@ -61,23 +69,27 @@ export const FormCheck = ({
 	);
 
 	const [checked, setChecked] = useManagedState(valueAsArray, defaultValueAsArray, onChange);
-	const [id] = useState(instanceId || `gel-form-check-${useInstanceId()}`);
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-form-check-${_id}`, [_id, instanceId]);
 
 	const defaultOverrides = {
 		FormCheck: defaultFormCheck,
 	};
 
-	const handleChange = (event, value, wasChecked) => {
-		if (type === 'radio') {
-			setChecked(asArray(value));
-		} else {
-			if (wasChecked) {
-				setChecked(checked.filter((item) => item !== value));
+	const handleChange = useCallback(
+		(_: any, value: any, wasChecked: boolean) => {
+			if (type === 'radio') {
+				setChecked(asArray(value));
 			} else {
-				setChecked([...checked, value]);
+				if (wasChecked) {
+					setChecked(checked.filter((item: any) => item !== value));
+				} else {
+					setChecked([...checked, value]);
+				}
 			}
-		}
-	};
+		},
+		[checked, setChecked, type]
+	);
 
 	const state = {
 		id,

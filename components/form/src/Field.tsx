@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState, useEffect, Children, cloneElement } from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useState, useEffect, Children, cloneElement, useId, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultField } from './overrides/field';
@@ -31,8 +31,9 @@ export const Field = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [id] = useState(instanceId || `gel-field-${useInstanceId()}`);
-	const [ariaDescribedByValue, setAriaDescribedByValue] = useState();
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-field-${_id}`, [_id, instanceId]);
+	const [ariaDescribedByValue, setAriaDescribedByValue] = useState<string>();
 
 	useEffect(() => {
 		const arr = [...(error ? [`${id}-error`] : []), ...(hint ? [`${id}-hint`] : [])];
@@ -73,7 +74,7 @@ export const Field = ({
 				</Hint>
 			)}
 			{error && <ErrorMessage id={`${id}-error`} message={error} overrides={componentOverrides} />}
-			{Children.map(children, (child) => cloneElement(child, { ...inputProps }))}
+			{Children.map(children, (child) => cloneElement(child, { ...inputProps, id }))}
 		</Field>
 	);
 };

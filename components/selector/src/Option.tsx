@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, getLabel, overrideReconciler, useInstanceId } from '@westpac/core';
-import { forwardRef } from 'react';
+import { jsx, useBrand, getLabel, overrideReconciler } from '@westpac/core';
+import { forwardRef, useId, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultOptionBtn } from './overrides/optionBtn';
@@ -60,9 +60,11 @@ export const Option = forwardRef(
 			overrides: ctxOverrides,
 			...restCtx
 		} = useSelectorContext();
-		const selectorId = id || `gel-selector-${useInstanceId()}`;
-		const optionId = `${selectorId}-option-${index}`;
-		const hintId = `${optionId}-hint`;
+
+		const _id = useId();
+		const selectorId = useMemo(() => id || `gel-selector-${_id}`, [_id, id]);
+		const optionId = useMemo(() => `${selectorId}-option-${index}`, [index, selectorId]);
+		const hintId = useMemo(() => `${optionId}-hint`, [optionId]);
 
 		const defaultOverrides = {
 			Option: defaultOption,

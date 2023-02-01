@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState } from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultRemoveBtn } from './overrides/removeBtn';
@@ -11,6 +11,7 @@ import { defaultList } from './overrides/list';
 import { defaultItem } from './overrides/item';
 import { defaultRepeater } from './overrides/repeater';
 import pkg from '../package.json';
+import { generateID } from '@westpac/core';
 
 // ==============================
 // Component
@@ -36,7 +37,7 @@ export const Repeater = ({
 		RemoveBtn: defaultRemoveBtn,
 	};
 
-	const [items, setItems] = useState([{ id: useInstanceId() }]);
+	const [items, setItems] = useState([{ id: generateID() }]);
 
 	const state = {
 		addText,
@@ -44,14 +45,17 @@ export const Repeater = ({
 		...rest,
 	};
 
-	const handleAdd = () => {
-		setItems([...items, { id: useInstanceId() }]);
-	};
+	const handleAdd = useCallback(() => {
+		setItems([...items, { id: generateID() }]);
+	}, [items]);
 
-	const handleRemove = (id) => {
-		const newItems = items.filter((item) => item.id !== id);
-		setItems(newItems);
-	};
+	const handleRemove = useCallback(
+		(id: string) => {
+			const newItems = items.filter((item) => item.id !== id);
+			setItems(newItems);
+		},
+		[items]
+	);
 
 	const {
 		Repeater: { component: Repeater, styles: repeaterStyles, attributes: repeaterAttributes },

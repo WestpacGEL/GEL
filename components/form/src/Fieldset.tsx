@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState, useEffect } from 'react';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useState, useEffect, useId, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultFieldset } from './overrides/fieldset';
@@ -31,8 +31,9 @@ export const Fieldset = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [id] = useState(instanceId || `gel-fieldset-${useInstanceId()}`);
-	const [ariaDescribedByValue, setAriaDescribedByValue] = useState();
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-fieldset-${_id}`, [_id, instanceId]);
+	const [ariaDescribedByValue, setAriaDescribedByValue] = useState<string>();
 
 	useEffect(() => {
 		const arr = [...(error ? [`${id}-error`] : []), ...(hint ? [`${id}-hint`] : [])];
