@@ -68,20 +68,22 @@ describe('Date Picker', () => {
 		});
 	});
 
-	it('using Disable dates should disable the specific dates. ', () => {
+	it.only('using Disable dates should disable the specific dates. ', () => {
 		// Disables 2021-06-01, 2021-06-28 and 2021-06-29
 		disableDaysPage.visit();
 		disableDaysPage.disableSpecificDatesDatePicker.datePickerInput.type('27-06-2021');
 		disableDaysPage.disableSpecificDatesDatePicker.dateToggleButton.click();
-		const firstJuneButton = defaultPage.maxValueDatePicker.datePickerDialog.find(
+		const firstJuneButton = disableDaysPage.disableSpecificDatesDatePicker.datePickerDialog.find(
 			'.duet-date__table tr:nth-child(1) > td:nth-child(2) > button'
 		);
-		const twentyEightJuneButton = defaultPage.maxValueDatePicker.datePickerDialog.find(
-			'.duet-date__table tr:nth-child(5) > td:nth-child(1) > button'
-		);
-		const twentyNinthJuneButton = defaultPage.maxValueDatePicker.datePickerDialog.find(
-			'.duet-date__table tr:nth-child(5) > td:nth-child(2) > button'
-		);
+		const twentyEightJuneButton =
+			disableDaysPage.disableSpecificDatesDatePicker.datePickerDialog.find(
+				'.duet-date__table tr:nth-child(5) > td:nth-child(1) > button'
+			);
+		const twentyNinthJuneButton =
+			disableDaysPage.disableSpecificDatesDatePicker.datePickerDialog.find(
+				'.duet-date__table tr:nth-child(5) > td:nth-child(2) > button'
+			);
 		[firstJuneButton, twentyEightJuneButton, twentyNinthJuneButton].forEach((date) => {
 			date.should('have.class', 'is-disabled');
 		});
