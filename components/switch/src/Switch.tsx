@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, wrapHandlers, useInstanceId } from '@westpac/core';
-import { useState, useEffect, forwardRef } from 'react';
+import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
+import { useState, useEffect, forwardRef, useId, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultSwitch } from './overrides/switch';
@@ -35,7 +35,8 @@ export const Switch = forwardRef(
 		} = useBrand();
 
 		const [checked, setChecked] = useState(isChecked);
-		const [id] = useState(instanceId || `gel-switch-${useInstanceId()}`);
+		const _id = useId();
+		const id = useMemo(() => instanceId || `gel-switch-${_id}`, [_id, instanceId]);
 
 		const defaultOverrides = {
 			Switch: defaultSwitch,
@@ -75,7 +76,7 @@ export const Switch = forwardRef(
 					ref={ref}
 					type="checkbox"
 					id={id}
-					onChange={handleChange(name)}
+					onChange={handleChange}
 					name={name}
 					checked={checked}
 					disabled={disabled}

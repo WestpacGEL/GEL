@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import {
 	Children,
 	cloneElement,
@@ -8,7 +8,9 @@ import {
 	useReducer,
 	useEffect,
 	useContext,
-	useState,
+	useId,
+	useCallback,
+	useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
 
@@ -39,69 +41,89 @@ export const useProgressRopeContext = () => {
 // Utils
 // ==============================
 
-const createRopeGraph = (current, data, children) => {
-	const ropeGraph = [];
-	let grouped = false;
-	let completed = current;
+const createRopeGraph = useCallback(
+	(current: number, data: { type: string; steps: any[] }[], children: any[]) => {
+		const ropeGraph: any[] = [];
+		let grouped = false;
+		let completed = current;
 
-	if (data) {
-		// generate graph from data
-		data.forEach((progress, i) => {
-			if (progress.type && progress.type === 'group') {
-				grouped = true;
-				const stepCount = progress.steps.length;
+		if (data) {
+			// generate graph from data
+			data.forEach((progress, i) => {
+				if (progress.type && progress.type === 'group') {
+					grouped = true;
+					const stepCount = progress.steps.length;
 
-				if (completed >= stepCount) {
-					ropeGraph.push(Array(stepCount).fill('visited'));
-					completed -= stepCount;
+					if (completed >= stepCount) {
+						ropeGraph.push(Array(stepCount).fill('visited'));
+						completed -= stepCount;
+					} else {
+						const steps = Array(stepCount).fill('unvisited');
+						steps.forEach((step, i) => {
+							if (completed > i) {
+								steps[i] = 'visited';
+								completed--;
+							}
+						});
+						ropeGraph.push(steps);
+					}
 				} else {
-					const steps = Array(stepCount).fill('unvisited');
-					steps.forEach((step, i) => {
-						if (completed > i) {
-							steps[i] = 'visited';
-							completed--;
-						}
-					});
-					ropeGraph.push(steps);
+					if (current <= i) {
+						ropeGraph.push(['unvisited']);
+					} else {
+						ropeGraph.push(['visited']);
+					}
 				}
-			} else {
-				if (current <= i) {
-					ropeGraph.push(['unvisited']);
-				} else {
-					ropeGraph.push(['visited']);
-				}
-			}
-		});
-	} else {
-		Children.forEach(children, (child, i) => {
-			if (child.type === Group) {
-				grouped = true;
-				const stepCount = Children.count(child.props.children);
+			});
+		} else {
+			Children.forEach(children, (child, i) => {
+				if (child.type === Group) {
+					grouped = true;
+					const stepCount = Children.count(child.props.children);
 
-				if (completed >= stepCount) {
-					ropeGraph.push(Array(stepCount).fill('visited'));
-					completed -= stepCount;
+					if (completed >= stepCount) {
+						ropeGraph.push(Array(stepCount).fill('visited'));
+						completed -= stepCount;
+					} else {
+						const steps = Array(stepCount).fill('unvisited');
+						steps.forEach((step, i) => {
+							if (completed > i) {
+								steps[i] = 'visited';
+								completed--;
+							}
+						});
+						ropeGraph.push(steps);
+					}
 				} else {
-					const steps = Array(stepCount).fill('unvisited');
-					steps.forEach((step, i) => {
-						if (completed > i) {
-							steps[i] = 'visited';
-							completed--;
-						}
-					});
-					ropeGraph.push(steps);
+					if (current <= i) {
+						ropeGraph.push(['unvisited']);
+					} else {
+						ropeGraph.push(['visited']);
+					}
 				}
-			} else {
-				if (current <= i) {
-					ropeGraph.push(['unvisited']);
-				} else {
-					ropeGraph.push(['visited']);
-				}
-			}
-		});
+			});
+		}
+
+		return { ropeGraph, grouped };
+	},
+	[]
+);
+
+const progressReducer = (state, action) => {
+	switch (action.type) {
+		case 'UPDATE_STEP':
+			return { ...state, currStep: action.payload };
+		case 'UPDATE_GROUP':
+			return { ...state, currGroup: action.payload };
+		case 'UPDATE_OPEN_GROUP':
+			return { ...state, openGroup: action.payload };
+		case 'UPDATE_GROUPED':
+			return { ...state, grouped: action.payload };
+		case 'UPDATE_GRAPH':
+			return { ...state, ropeGraph: action.payload };
+		default:
+			return state;
 	}
-
-	return { ropeGraph, grouped };
 };
 
 // ==============================
@@ -123,7 +145,8 @@ export const ProgressRope = ({
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [id] = useState(instanceId || `gel-progress-rope-${useInstanceId()}`);
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-progress-rope-${_id}`, [_id, instanceId]);
 
 	const defaultOverrides = {
 		ProgressRope: defaultProgressRope,
@@ -149,29 +172,15 @@ export const ProgressRope = ({
 		List: { component: List, styles: listStyles, attributes: listAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	const initialState = {
-		currStep: current,
-		currGroup: 0,
-		openGroup: 0,
-		...createRopeGraph(current, data, children),
-	};
-
-	const progressReducer = (state, action) => {
-		switch (action.type) {
-			case 'UPDATE_STEP':
-				return { ...state, currStep: action.payload };
-			case 'UPDATE_GROUP':
-				return { ...state, currGroup: action.payload };
-			case 'UPDATE_OPEN_GROUP':
-				return { ...state, openGroup: action.payload };
-			case 'UPDATE_GROUPED':
-				return { ...state, grouped: action.payload };
-			case 'UPDATE_GRAPH':
-				return { ...state, ropeGraph: action.payload };
-			default:
-				return state;
-		}
-	};
+	const initialState = useMemo(
+		() => ({
+			currStep: current,
+			currGroup: 0,
+			openGroup: 0,
+			...createRopeGraph(current, data, children),
+		}),
+		[children, current, data]
+	);
 
 	const [progState, dispatch] = useReducer(progressReducer, initialState);
 
@@ -206,9 +215,15 @@ export const ProgressRope = ({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [current]);
 
-	const handleClick = (index) => {
-		dispatch({ type: 'UPDATE_OPEN_GROUP', payload: index !== progState.openGroup ? index : null });
-	};
+	const handleClick = useCallback(
+		(index) => {
+			dispatch({
+				type: 'UPDATE_OPEN_GROUP',
+				payload: index !== progState.openGroup ? index : null,
+			});
+		},
+		[progState.openGroup]
+	);
 
 	let allChildren = [];
 	if (data) {

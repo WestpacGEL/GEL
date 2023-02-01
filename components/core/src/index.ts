@@ -5,7 +5,7 @@ export { getLabel, cleanClassName } from './getLabel';
 export { useManagedState } from './useManagedState';
 export { BrandContext, useBrand } from './Brand'; // We need to export the context object for class components
 export { useMediaQuery } from './useMediaQuery';
-export { useInstanceId } from './useInstanceId';
+export { generateID } from './generateId';
 export { wrapHandlers } from './wrapHandlers';
 export { devWarning } from './devWarning';
 export { mergeWith } from './mergeWith';

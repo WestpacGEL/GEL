@@ -9,9 +9,8 @@ export interface ICoreProps {
 	normalize: SerializedStyles;
 	children: React.ReactNode;
 }
-
 export const Core = ({ normalize, children }: ICoreProps) => {
-	const { COLORS, TYPE, PACKS }: { COLORS: any; TYPE: any; PACKS: any } = useBrand();
+	const { COLORS, TYPE, PACKS }: any = useBrand();
 
 	return (
 		<Fragment>

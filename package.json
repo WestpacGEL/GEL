@@ -1,6 +1,9 @@
 {
   "name": "gel",
   "version": "0.0.0",
+  "engines": {
+    "yarn": "1.22"
+  },
   "description": "The Westpac GEL Design System components, brand tokens and website monorepo",
   "repository": "https://github.com/WestpacGEL/GEL",
   "author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -150,14 +153,6 @@
     "webpack-dev-server": "^4.0.0"
   },
   "resolutions": {
-    "ansi-styles": "^3.2.0",
-    "**/graphql": "15.8.0",
-    "**/react": "^18.2.0",
-    "**/react-dom": "^18.2.0",
-    "**/prisma": "3.7.0",
-    "**/@apollo/client": "3.4.17",
-    "**/@prisma/client": "3.7.0",
-    "**/@types/react": "18.0.21",
-    "**/@types/react-transition-group": "4.4.5"
+    "ansi-styles": "^3.2.0"
   }
 }
