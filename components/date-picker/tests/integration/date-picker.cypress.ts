@@ -1,5 +1,5 @@
-import DefaultPage from '../../cypress/pages/default.page';
-import DisabledDaysPage from '../../cypress/pages/disabled-days.page';
+import DefaultPage from './pages/default.page';
+import DisabledDaysPage from './pages/disabled-days.page';
 
 describe('Date Picker', () => {
 	const defaultPage = new DefaultPage();
