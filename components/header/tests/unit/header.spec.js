@@ -173,4 +173,16 @@ describe('Heading component', () => {
 		expect(childElementClone).toBeInTheDocument();
 		expect(childElement === childElementClone);
 	});
+
+	test('should get rendered fixed to the top of the window', () => {
+		const SimpleHeader = () => (
+			<GEL brand={wbc}>
+				<Header fixed></Header>
+			</GEL>
+		);
+		const { container } = render(<SimpleHeader />);
+		const innerElement = container.querySelector('div[class*=header-inner]');
+
+		expect(innerElement).toHaveStyle('position: fixed')
+	})
 });
