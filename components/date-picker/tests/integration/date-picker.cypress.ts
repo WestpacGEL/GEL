@@ -73,11 +73,17 @@ describe('Date Picker', () => {
 		disableDaysPage.visit();
 		disableDaysPage.disableSpecificDatesDatePicker.datePickerInput.type('27-06-2021');
 		disableDaysPage.disableSpecificDatesDatePicker.dateToggleButton.click();
-		['1 June', '28 June', '29 June'].forEach((date) => {
-			disableDaysPage.disableSpecificDatesDatePicker.datePickerDialog
-				.find('.duet-date__table')
-				.contains(date)
-				.should('have.class', 'is-disabled');
+		const firstJuneButton = defaultPage.maxValueDatePicker.datePickerDialog.find(
+			'.duet-date__table tr:nth-child(1) > td:nth-child(2) > button'
+		);
+		const twentyEightJuneButton = defaultPage.maxValueDatePicker.datePickerDialog.find(
+			'.duet-date__table tr:nth-child(5) > td:nth-child(1) > button'
+		);
+		const twentyNinthJuneButton = defaultPage.maxValueDatePicker.datePickerDialog.find(
+			'.duet-date__table tr:nth-child(5) > td:nth-child(2) > button'
+		);
+		[firstJuneButton, twentyEightJuneButton, twentyNinthJuneButton].forEach((date) => {
+			date.should('have.class', 'is-disabled');
 		});
 	});
 });
