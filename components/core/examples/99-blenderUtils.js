@@ -8,7 +8,7 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<h2>Get modifier prop</h2>
 			<Code>{`getModifier({look: 'primary', size: 'medium'}, {look: 'hero', size: 'medium'})`}</Code>
-			=>
+			=&gt;
 			<Code>
 				{JSON.stringify(
 					getModifier({ look: 'primary', size: 'medium' }, { look: 'hero', size: 'medium' })
@@ -26,7 +26,7 @@ function Example({ brand }) {
         border: '1px solid blue',
         ':hover': { color: 'purple', borderColor: 'orange' },
     })`}</Code>
-			=>
+			=&gt;
 			<Code>
 				{JSON.stringify(
 					styleReconciler(

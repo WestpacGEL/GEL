@@ -1,8 +1,7 @@
 {
-	"extends": ["next/core-web-vitals", "prettier"],
-	"plugins": ["import", "prettier"],
+	"extends": "next/core-web-vitals",
+	"plugins": ["import"],
 	"rules": {
-		"prettier/prettier": ["error"],
 		"jsx-a11y/anchor-is-valid": "off",
 		"jsx-a11y/accessible-emoji": "off",
 		"import/no-unresolved": "error",

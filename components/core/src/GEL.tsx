@@ -7,7 +7,7 @@ import { BrandContext } from './Brand';
 import { useFocus } from './useFocus';
 import { Core } from './Core';
 
-export const GEL = ({
+export const GEL: any = ({
 	brand,
 	normalize,
 	children,

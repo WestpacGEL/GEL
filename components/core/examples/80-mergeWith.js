@@ -14,7 +14,7 @@ function Example({ brand }) {
 				const other = {JSON.stringify(other, null, 2)};{<br css={{ margin: '1rem' }} />}
 				mergeWith(object, other);
 			</Code>
-			=>
+			=&gt;
 			<Code>{JSON.stringify(mergeWith(object, other), null, 2)}</Code>
 		</GEL>
 	);
