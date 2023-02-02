@@ -11,7 +11,7 @@ export interface ICoreProps {
 }
 
 export const Core = ({ normalize, children }: ICoreProps) => {
-	const { COLORS, TYPE, PACKS }: any = useBrand();
+	const { COLORS, TYPE, PACKS, isMouseMode }: any = useBrand();
 
 	return (
 		<Fragment>
