@@ -24,7 +24,7 @@ nestingTest({
 	Component: (props) => <Header {...props} />,
 });
 
-describe('Heading component', () => {
+describe('Header component', () => {
 	const originalError = console.error;
 	beforeEach(() => {
 		console.error = jest.fn();
@@ -183,6 +183,6 @@ describe('Heading component', () => {
 		const { container } = render(<SimpleHeader />);
 		const innerElement = container.querySelector('div[class*=header-inner]');
 
-		expect(innerElement).toHaveStyle('position: fixed')
-	})
+		expect(innerElement).toHaveStyle('position: fixed');
+	});
 });
