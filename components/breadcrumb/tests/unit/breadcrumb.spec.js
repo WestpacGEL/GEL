@@ -26,7 +26,7 @@ const SimpleBreadcrumb = (props) => (
 );
 
 // Component specific tests
-describe('Autocomplete component', () => {
+describe('Breadcrumb component', () => {
 	test('The assistiveText should insert aria-label to a nav tag', async () => {
 		const assistiveText = 'Page transitions and the such';
 		const { container } = render(
