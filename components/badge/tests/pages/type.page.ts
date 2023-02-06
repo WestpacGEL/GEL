@@ -7,8 +7,7 @@ class TypePage extends CommonPage {
 		super('http://localhost:8080/badge/type');
 	}
 	get getPrimaryPill() {
-		return cy
-			.get(`[data-cy="primary-pill-type"]`)
+		return cy.get(`[data-cy="primary-pill-type"]`);
 	}
 }
 
