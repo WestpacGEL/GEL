@@ -24,7 +24,7 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<h2>Default</h2>
-			<Collapsible text="Toggle collapsible" open={true}>
+			<Collapsible data-cy="open-collapsible" text="Toggle collapsible" open={true}>
 				<ExampleContent />
 			</Collapsible>
 
