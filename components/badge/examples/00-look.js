@@ -7,15 +7,19 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<p>
-				<Badge value="Default" />
+				<Badge data-cy="badge-default" value="Default" />
 			</p>
 			<p>
-				<Badge look="primary" value="Primary" /> <Badge look="hero" value="Hero" />{' '}
-				<Badge look="neutral" value="Neutral" /> <Badge look="faint" value="Faint" />
+				<Badge data-cy="badge-primary" look="primary" value="Primary" />{' '}
+				<Badge data-cy="badge-hero" look="hero" value="Hero" />{' '}
+				<Badge data-cy="badge-neutral" look="neutral" value="Neutral" />{' '}
+				<Badge data-cy="badge-faint" look="faint" value="Faint" />
 			</p>
 			<p>
-				<Badge look="success" value="Success" /> <Badge look="info" value="Info" />{' '}
-				<Badge look="warning" value="Warning" /> <Badge look="danger" value="Danger" />
+				<Badge data-cy="badge-success" look="success" value="Success" />{' '}
+				<Badge data-cy="badge-info" look="info" value="Info" />{' '}
+				<Badge data-cy="badge-warning" look="warning" value="Warning" />{' '}
+				<Badge data-cy="badge-danger" look="danger" value="Danger" />
 			</p>
 		</GEL>
 	);
