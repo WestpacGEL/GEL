@@ -27,7 +27,7 @@ To run this repo locally please use [yarn](https://yarnpkg.com/).
 
 ```sh
 cd path/to/repo
-yarn
+yarn && yarn prepare
 ```
 
 ## Development Workflow
