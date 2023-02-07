@@ -64,7 +64,8 @@
     "deploy:live:sync": "pm2 deploy pm2-ecosystem.json live",
     "deploy:live:restart": "ssh deploy@128.199.200.220 forever restart /srv/blender/server/server.js",
     "deploy:live:msg": "echo \"If you made changes to the nginx config follow below steps:\n\n1. Log into the server: \\x1b[33mssh deploy@128.199.200.220\\x1b[0m\n2. Copy the file: \\x1b[33msudo cp /srv/pm2-apps/gel3-website/source/nginx/gel3-keystone-routes.conf /etc/nginx/snippets/gel3-keystone-routes.conf\\x1b[0m\n3. Test the new config: \\x1b[33msudo nginx -t\\x1b[0m\n4. If there are errors correct them in this repo and start again from scratch by running \\x1b[33myarn deploy:live\\x1b[0m\n5. If all is well run \\x1b[33msudo nginx -s reload\\x1b[0m\n6. ✨ Done\n\"",
-    "deploy:live": "yarn deploy:live:sync && yarn deploy:live:restart && yarn deploy:live:msg"
+    "deploy:live": "yarn deploy:live:sync && yarn deploy:live:restart && yarn deploy:live:msg",
+    "prepare": "husky install"
   },
   "workspaces": [
     "brands/*",
@@ -128,6 +129,7 @@
     "facepaint": "^1.2.1",
     "get-workspaces": "^1.0.3",
     "html-webpack-plugin": "^5.3.2",
+    "husky": "^8.0.3",
     "jest": "^27.0.6",
     "jest-cli": "^27.0.6",
     "lodash.clonedeep": "^4.5.0",
