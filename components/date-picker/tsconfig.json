@@ -15,7 +15,7 @@
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "react-jsx",
-		"types": ["@emotion/core"]
+		"types": ["@emotion/core", "cypress"]
 	},
 	"exclude": ["**/dist", "**/node_modules"]
 }
