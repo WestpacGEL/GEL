@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import { defaultCloseBtn } from './overrides/closeBtn';
@@ -30,8 +30,10 @@ export const Alert = ({
 }: typeof Alert.propTypes & typeof Alert.defaultProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
+		// TODO: when this value is going to come? how is the interface for that? What is structure of the B
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
 	const [open, setOpen] = useState(isOpen);
 
 	const defaultOverrides = {
@@ -67,38 +69,35 @@ export const Alert = ({
 		setOpen(isOpen);
 	}, [isOpen]);
 
-	const handleClose = (event) => {
-		wrapHandlers(
-			() => onClose(),
-			() => setOpen(false)
-		)(event);
-	};
-
-	const HeadingJSX = () => (
-		<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
-			{heading}
-		</Heading>
-	);
-
-	const IconJSX = () => <Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />;
-
-	const CloseBtnJSX = () => (
-		<CloseBtn
-			onClose={(event) => handleClose(event)}
-			state={state}
-			{...closeBtnAttributes(state)}
-			css={closeBtnStyles(state)}
-		/>
+	const handleClose = useCallback(
+		(event: MouseEvent) => {
+			wrapHandlers(
+				() => onClose(),
+				() => setOpen(false)
+			)(event);
+		},
+		[onClose]
 	);
 
 	return (
 		<Alert state={state} {...rest} {...alertAttributes(state)} css={alertStyles(state)}>
-			{Icon && <IconJSX />}
+			{Icon && <Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />}
 			<Body state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
-				{heading && <HeadingJSX />}
+				{heading && (
+					<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
+						{heading}
+					</Heading>
+				)}
 				{children}
 			</Body>
-			{dismissible && mode !== 'text' && <CloseBtnJSX />}
+			{dismissible && mode !== 'text' && (
+				<CloseBtn
+					onClose={(event: MouseEvent) => handleClose(event)}
+					state={state}
+					{...closeBtnAttributes(state)}
+					css={closeBtnStyles(state)}
+				/>
+			)}
 		</Alert>
 	);
 };
