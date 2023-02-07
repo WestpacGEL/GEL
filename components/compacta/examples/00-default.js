@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { GEL, jsx } from '@westpac/core';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Compacta } from '@westpac/compacta';
 import { Form, FormGroup, Field } from '@westpac/form';
 import { TextInput } from '@westpac/text-input';
@@ -9,14 +9,14 @@ import { TextInput } from '@westpac/text-input';
 function Example({ brand }) {
 	const [inputs, setInputs] = useState({});
 
-	const handleChange = (e) => {
+	const handleChange = useCallback((e) => {
 		setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-	};
+	}, []);
 
 	return (
 		<GEL brand={brand}>
 			<h3>Default</h3>
-			<Compacta>
+			<Compacta data-cy="default-compacta">
 				{({ id, setPrimaryTitle, setSecondaryTitle, setTertiaryTitle }) => (
 					<Form spacing="large">
 						<FormGroup>
