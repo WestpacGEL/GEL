@@ -9,8 +9,9 @@ export interface ICoreProps {
 	normalize: SerializedStyles;
 	children: React.ReactNode;
 }
+
 export const Core = ({ normalize, children }: ICoreProps) => {
-	const { COLORS, TYPE, PACKS }: any = useBrand();
+	const { COLORS, TYPE, PACKS, isMouseMode }: any = useBrand();
 
 	return (
 		<Fragment>
@@ -25,11 +26,17 @@ export const Core = ({ normalize, children }: ICoreProps) => {
 
 					'*:focus': {
 						...PACKS.focus,
+						...(isMouseMode && {
+							outline: 'none !important',
+						}),
 					},
 					// Also apply to the following selectors to increase specificity (against normalize reset)
 					'button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring':
 						{
 							...PACKS.focus,
+							...(isMouseMode && {
+								outline: 'none !important',
+							}),
 						},
 					'[tabindex="-1"]:focus': {
 						outline: '0 !important',
