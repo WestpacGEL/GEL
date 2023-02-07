@@ -13,10 +13,10 @@ export const GEL: any = ({
 	children,
 	...props
 }: typeof GEL.propTypes & typeof GEL.defaultProps) => {
-	useFocus();
+	const { isMouseMode } = useFocus();
 
 	return (
-		<BrandContext.Provider value={brand} {...props}>
+		<BrandContext.Provider value={{ ...brand, isMouseMode }} {...props}>
 			<Core normalize={normalize}>{children}</Core>
 		</BrandContext.Provider>
 	);
