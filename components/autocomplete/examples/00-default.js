@@ -22,8 +22,10 @@ function Example({ brand }) {
 			<Autocomplete options={options} />
 			<h2>Controlled</h2>
 			<Autocomplete options={options} value={option} onChange={handleChange} />
-			<h2>Invalid</h2>
-			<Autocomplete options={options} invalid />
+			<div data-cy="invalid-autocomplete">
+				<h2>Invalid</h2>
+				<Autocomplete options={options} invalid />
+			</div>
 			<h2>Disabled</h2>
 			<Autocomplete options={options} isDisabled />
 		</GEL>
