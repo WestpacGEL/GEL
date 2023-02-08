@@ -324,7 +324,7 @@ declare module '@westpac/bsa' {
 		};
 		lead: {
 			marginBottom: string;
-			fontSize: sting[];
+			fontSize: string[];
 			fontWeight: number;
 			lineHeight: number;
 		};
