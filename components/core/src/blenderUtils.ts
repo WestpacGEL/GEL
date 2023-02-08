@@ -65,7 +65,7 @@ export function styleReconciler<
  * @param {object} defaultProps		- components default props
  * @param {object} props 			- passed props
  *
- * @return {array}					- unique passed props
+ * @return {string[]}					- unique passed props
  */
 export function getModifier<
 	TdefaultProps extends { [key: string]: any },
