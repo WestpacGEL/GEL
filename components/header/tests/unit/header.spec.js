@@ -84,7 +84,7 @@ describe('Header component', () => {
 		const logSpy = jest.spyOn(console, 'error');
 		const text = 'Hello';
 		const content = <span data-testid="my-span">{text}</span>;
-		render(<SimpleHeader leftIcon="cherry">{ content }</SimpleHeader>);
+		render(<SimpleHeader leftIcon="cherry">{content}</SimpleHeader>);
 		const expectedPartOfErrorMessage =
 			'Invalid prop `leftIcon` of value `cherry` supplied to `Header`, expected one of ["arrow","hamburger"]';
 		const expectedPartOfErrorMessageIsPresent =
@@ -106,7 +106,7 @@ describe('Header component', () => {
 		const text = 'Hello';
 		const content = <span data-testid="my-span">{text}</span>;
 
-		const { container } = render(<SimpleHeader>{content}</SimpleHeader> );
+		const { container } = render(<SimpleHeader>{content}</SimpleHeader>);
 		const leftElement = container.querySelector('div[class*=header-Left]');
 		expect(leftElement).not.toBeInTheDocument();
 	});
