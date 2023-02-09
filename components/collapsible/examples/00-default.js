@@ -24,7 +24,7 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<h2>Default</h2>
-			<Collapsible text="Toggle collapsible">
+			<Collapsible data-cy="default-collapsible" text="Toggle collapsible">
 				<ExampleContent />
 			</Collapsible>
 
@@ -33,22 +33,22 @@ function Example({ brand }) {
 			<h2>Sizes</h2>
 
 			<h3>Small</h3>
-			<Collapsible text="Toggle collapsible" size="small">
+			<Collapsible data-cy="small-collapsible" text="Toggle collapsible" size="small">
 				<ExampleContent />
 			</Collapsible>
 
 			<h3>Medium</h3>
-			<Collapsible text="Toggle collapsible" size="medium">
+			<Collapsible data-cy="medium-collapsible" text="Toggle collapsible" size="medium">
 				<ExampleContent />
 			</Collapsible>
 
 			<h3>Large</h3>
-			<Collapsible text="Toggle collapsible" size="large">
+			<Collapsible data-cy="large-collapsible" text="Toggle collapsible" size="large">
 				<ExampleContent />
 			</Collapsible>
 
 			<h3>Xlarge</h3>
-			<Collapsible text="Toggle collapsible" size="xlarge">
+			<Collapsible data-cy="xlarge-collapsible" text="Toggle collapsible" size="xlarge">
 				<ExampleContent />
 			</Collapsible>
 		</GEL>
