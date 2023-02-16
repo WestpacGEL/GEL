@@ -324,7 +324,7 @@ declare module '@westpac/wbg' {
 		};
 		lead: {
 			marginBottom: string;
-			fontSize: sting[];
+			fontSize: string[];
 			fontWeight: number;
 			lineHeight: number;
 		};

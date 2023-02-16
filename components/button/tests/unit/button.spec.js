@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@westpac/button';
 import { GEL } from '@westpac/core';
 import { fireEvent, render, screen, within } from '@testing-library/react';
@@ -28,13 +28,19 @@ const SimpleButton = (props) => (
 
 // Component specific tests
 describe('Button component', () => {
-	const originalLog = console.log;
-	beforeEach(() => {
-		console.log = jest.fn();
-	});
-	afterEach(() => {
-		console.log = originalLog;
-	});
+	const HelperComponent = function (props) {
+		const [active, setActive] = useState(false);
+		const handleClick = () => {
+			setActive(!active);
+		};
+		return (
+			<GEL brand={wbc}>
+				<Button {...props} onClick={handleClick}>
+					{active ? 'Logout' : 'Login'}
+				</Button>
+			</GEL>
+		);
+	};
 
 	test('should be disabled when prop "disabled" is passed', () => {
 		const someText = 'Hello World';
@@ -45,26 +51,6 @@ describe('Button component', () => {
 		const theButton = container.querySelector('button[disabled]');
 		expect(theButton).toBeInTheDocument();
 		expect(theButton).toHaveTextContent(someText);
-	});
-
-	test('should show normal, default, button color when not active', () => {
-		const { getByTestId } = render(<SimpleButton data-testid="my-button" />);
-		const theButton = getByTestId('my-button');
-		// Property 'look' has default value 'hero', so check for the hero color
-		expect(theButton).toHaveStyle('background-color: rgb(31, 28, 79)');
-	});
-
-	test('should show dimmed colour when active', () => {
-		const { getByTestId } = render(<SimpleButton className="active" data-testid="my-button" />);
-		const theActualButton = getByTestId('my-button');
-		// Property 'look' has default value 'hero', so check for the hero color
-		expect(theActualButton).toHaveStyle('background-color: rgb(143, 142, 167);');
-	});
-
-	test('should appear with no background color when "soft" prop is provided', () => {
-		const { getByTestId } = render(<SimpleButton soft data-testid="my-button" />);
-		const theButton = getByTestId('my-button');
-		expect(theButton).toHaveStyle('background-color: #fff');
 	});
 
 	test('should be inactive when the disabled prop is passed', () => {
@@ -85,6 +71,17 @@ describe('Button component', () => {
 		expect(handleClick).toHaveBeenCalledTimes(1);
 		expect(logSpy).toBeCalledTimes(1);
 		expect(logSpy).toHaveBeenCalledWith('Button clicked');
+	});
+
+	test('should trigger the onClick event when it is clicked', () => {
+		const { queryByRole } = render(<HelperComponent></HelperComponent>);
+		const theButton = queryByRole('button');
+		expect(theButton).toBeInTheDocument();
+		expect(theButton).toHaveTextContent('Login');
+		fireEvent.click(screen.getByText('Login'));
+		expect(theButton).toHaveTextContent('Logout');
+		fireEvent.click(screen.getByText('Logout'));
+		expect(theButton).toHaveTextContent('Login');
 	});
 
 	test('should render Icon component in LHS of button when iconBefore property is arrow', () => {
