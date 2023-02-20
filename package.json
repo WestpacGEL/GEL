@@ -22,6 +22,7 @@
   "license": "GPL-3.0+",
   "private": true,
   "scripts": {
+    "prop-types": "ts-node --project tsconfig.example.json --esm ./helpers/generateProptypes.ts",
     "dev": "/bin/sh -c 'cd components/${1:-$0} && yarn start'",
     "dev:frontend": "yarn build && yarn --cwd website dev",
     "dev:backend": "yarn build && yarn --cwd website-backend dev",
@@ -156,5 +157,9 @@
   },
   "resolutions": {
     "ansi-styles": "^3.2.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript-to-proptypes": "^2.2.1"
   }
 }
