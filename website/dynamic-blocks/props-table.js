@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import React, { Fragment } from 'react'; // Needed for within Keystone
 import { Table, Thead, Tr, Th, Tbody, Td, Caption } from '@westpac/table';
 import { jsx, useBrand } from '@westpac/core';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	getLabel,
@@ -29,6 +27,7 @@ const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 
 	return transition((style, item) => item && <animated.div ref={ref} style={style} {...rest} />);
 });
+Modal.displayName = 'Modal';
 
 const BlenderModal = forwardRef(({ state, className, ...rest }, ref) => (
 	<Fragment>
@@ -40,7 +39,7 @@ const BlenderModal = forwardRef(({ state, className, ...rest }, ref) => (
 		<div ref={ref} className={formatClassName(className)} {...rest} />
 	</Fragment>
 ));
-
+BlenderModal.displayName = 'BlenderModal';
 // ==============================
 // Styles
 // ==============================

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 import { forwardRef } from 'react';
@@ -11,6 +9,7 @@ import { forwardRef } from 'react';
 const ModalHeading = forwardRef(({ state: _, ...rest }, ref) => (
 	<Heading ref={ref} tag="h1" size={8} {...rest} />
 ));
+ModalHeading.displayName = 'ModalHeading';
 
 const BlenderModalHeading = forwardRef((props, ref) => (
 	<ModalHeading
@@ -27,7 +26,7 @@ const BlenderModalHeading = forwardRef((props, ref) => (
 		{...props}
 	/>
 ));
-
+BlenderModalHeading.displayName = 'BlenderModalHeading';
 // ==============================
 // Styles
 // ==============================

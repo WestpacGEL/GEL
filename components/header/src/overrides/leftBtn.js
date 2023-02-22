@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, getLabel, useMediaQuery } from '@westpac/core';
 import { ArrowLeftIcon, HamburgerMenuIcon } from '@westpac/icon';
 import { Button } from '@westpac/button';

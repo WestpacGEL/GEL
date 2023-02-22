@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import React, { Fragment } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { AccessibilityIcon } from '@westpac/icon';

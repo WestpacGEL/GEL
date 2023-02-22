@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 

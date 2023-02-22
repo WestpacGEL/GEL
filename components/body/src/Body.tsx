@@ -1,7 +1,5 @@
-/** @jsx jsx */
-
 import React, { forwardRef, ReactNode } from 'react';
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { defaultBody } from './overrides/body';
@@ -68,6 +66,7 @@ export const Body = forwardRef(
 		);
 	}
 );
+Body.displayName = 'Body';
 
 // ==============================
 // Types

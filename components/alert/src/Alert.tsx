@@ -13,7 +13,7 @@ import pkg from '../package.json';
 
 // ==============================
 // Types
-// ==============================
+// ==============================x
 
 export interface OverrideProps {
 	styles?: (...args: unknown[]) => unknown;

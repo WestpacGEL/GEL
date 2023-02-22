@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useMediaQuery } from '@westpac/core';
 
 export const GELLogo = ({ white = false, width = 45, height = 18, ...props }) => {

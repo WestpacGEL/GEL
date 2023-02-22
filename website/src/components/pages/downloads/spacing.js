@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { Fragment, useState } from 'react';
 
 import { jsx, useBrand } from '@westpac/core';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { useState, Fragment } from 'react';
 import { Autocomplete } from '@westpac/autocomplete';

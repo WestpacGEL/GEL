@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Alert } from '@westpac/alert';
 import { HelpIcon } from '@westpac/icon';

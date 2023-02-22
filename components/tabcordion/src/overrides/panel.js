@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, getLabel, classNames, getModifier, formatClassName } from '@westpac/core';
 import { useSpring, animated } from '@react-spring/web';
 import BezierEasing from 'bezier-easing';
@@ -83,10 +81,12 @@ const Panel = forwardRef(
 		}
 	}
 );
+Panel.displayName = 'Panel';
 
 const BlenderPanel = forwardRef(({ state: _, className, ...rest }, ref) => (
 	<div ref={ref} className={formatClassName(className)} {...rest} />
 ));
+BlenderPanel.displayName = 'BlenderPanel';
 
 // ==============================
 // Styles

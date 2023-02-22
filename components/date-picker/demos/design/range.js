@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { useState, Fragment } from 'react';
 import { jsx } from '@westpac/core';
 import { DatePicker } from '@westpac/date-picker';

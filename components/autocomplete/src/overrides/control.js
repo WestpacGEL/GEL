@@ -1,6 +1,4 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { useBrand } from '@westpac/core';
 import { sizeMap } from '../_utils';
 
 // ==============================

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { DatePicker } from '@westpac/date-picker';
 import { Field } from '@westpac/form';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
 // ==============================
@@ -7,6 +5,7 @@ import { forwardRef } from 'react';
 // ==============================
 
 const ContentInner = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+ContentInner.displayName = 'ContentInner';
 
 // ==============================
 // Styles

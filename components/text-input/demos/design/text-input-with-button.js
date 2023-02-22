@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { TextInputWithButton } from '@westpac/text-input';
 import { Title, Container } from '../../../../helpers/demos';

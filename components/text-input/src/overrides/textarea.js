@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -19,6 +17,7 @@ import { forwardRef } from 'react';
 // ==============================
 
 const Textarea = forwardRef(({ state: _, ...rest }, ref) => <textarea ref={ref} {...rest} />);
+Textarea.displayName = 'Textarea';
 
 const BlenderTextarea = ({ className, ...rest }) => (
 	<Textarea className={formatClassName(className)} {...rest} />

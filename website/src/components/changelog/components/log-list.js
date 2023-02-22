@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import React from 'react';
 import { jsx } from '@westpac/core';
 import ReactMarkdown from 'react-markdown';

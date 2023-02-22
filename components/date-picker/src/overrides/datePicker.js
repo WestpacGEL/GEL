@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { Fragment } from 'react';
 import { Global, jsx, css, useBrand } from '@westpac/core';
 import { sizeMap as textInputSizeMap, getHeight, getMaxWidth } from '@westpac/text-input';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Selector, Option } from '@westpac/selector';
 import { SettingsIcon, WatchIcon, EmailIcon } from '@westpac/icon';

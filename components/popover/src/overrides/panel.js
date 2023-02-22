@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -17,10 +15,12 @@ import { defaultProps } from '../Popover';
 // ==============================
 
 const Panel = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+Panel.displayName = 'Panel';
 
 const BlenderPanel = forwardRef(({ state: _, className, ...rest }, ref) => (
 	<div ref={ref} className={formatClassName(className)} {...rest} />
 ));
+BlenderPanel.displayName = 'BlenderPanel';
 
 // ==============================
 // Styles

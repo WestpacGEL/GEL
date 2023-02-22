@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-
 import { jsx } from '@keystone-ui/core';
 import { component, fields, RelationshipData } from '@keystone-6/fields-document/component-blocks';
 // @ts-ignore

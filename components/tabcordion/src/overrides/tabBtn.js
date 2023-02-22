@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { forwardRef } from 'react';
 import {
 	jsx,
@@ -20,10 +18,12 @@ import { defaultProps } from '../blender/Tabcordion';
 const TabBtn = forwardRef(({ state: _, ...rest }, ref) => {
 	return <button type="button" ref={ref} {...rest} />;
 });
+TabBtn.displayName = 'TabBtn';
 
 const BlenderTabBtn = forwardRef(({ state: _, className, ...rest }, ref) => {
 	return <button type="button" ref={ref} className={formatClassName(className)} {...rest} />;
 });
+BlenderTabBtn.displayName = 'BlenderTabBtn';
 
 // ==============================
 // Styles

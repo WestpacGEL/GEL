@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, getLabel, getModifier, styleReconciler } from '@westpac/core';
 import { Body } from '@westpac/body';
 import { sizeMap } from '../_utils';

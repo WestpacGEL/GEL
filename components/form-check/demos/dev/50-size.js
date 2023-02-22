@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { FormCheck, Option } from '@westpac/form-check';
 import { Grid, Cell } from '@westpac/grid';

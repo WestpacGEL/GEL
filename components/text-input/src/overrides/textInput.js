@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -19,6 +17,7 @@ import { forwardRef } from 'react';
 // ==============================
 
 const TextInput = forwardRef(({ state: _, ...rest }, ref) => <input ref={ref} {...rest} />);
+TextInput.displayName = 'TextInput';
 
 const BlenderTextInput = ({ className, ...rest }) => (
 	<TextInput className={formatClassName(className)} {...rest} />

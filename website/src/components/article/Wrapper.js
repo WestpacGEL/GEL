@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx, Global, useMediaQuery } from '@westpac/core';
 import wbc from '@westpac/wbc';
 

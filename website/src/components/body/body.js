@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Body as GELBody } from '@westpac/body';
 import merge from 'lodash.merge';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -20,6 +18,7 @@ import { forwardRef } from 'react';
 // ==============================
 
 const Select = forwardRef(({ state: _, ...rest }, ref) => <select ref={ref} {...rest} />);
+Select.displayName = 'Select';
 
 const BlenderSelect = ({ className, ...rest }) => (
 	<Select className={formatClassName(className)} {...rest} />

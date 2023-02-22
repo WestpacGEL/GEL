@@ -18,7 +18,7 @@ export interface HeaderProps {
 	/**
 	 * The potato comment
 	 */
-	 potato?: string;
+	potato?: string;
 	/**
 	 * The link to redirect to on logo click
 	 */
@@ -302,6 +302,10 @@ Header.propTypes = {
 			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * The potato comment
+	 */
+	potato: PropTypes.string,
 	/**
 	 * Text content for skip link
 	 */

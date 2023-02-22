@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx, Global, useBrand } from '@westpac/core';
 import { FormPod, Panel, PanelBody, Actions, ActionsText } from '@westpac/form-pod';
 import { Button } from '@westpac/button';

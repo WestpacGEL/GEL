@@ -45,8 +45,9 @@
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
-		"react": "^18.2.0"
-	},
+    "react": "^18.2.0",
+    "@emotion/react": "^11.10.6" 	
+  },
 	"devDependencies": {
 		"@westpac/button": "^2.1.0",
 		"@westpac/button-group": "^2.1.0",

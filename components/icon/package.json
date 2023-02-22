@@ -67,8 +67,9 @@
 		"prop-types": "^15.7.2"
 	},
 	"peerDependencies": {
-		"react": "^18.2.0"
-	},
+    "react": "^18.2.0",
+    "@emotion/react": "^11.10.6" 	
+  },
 	"devDependencies": {
 		"@westpac/grid": "^2.1.0",
 		"cypress": "^8.0.0",

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, getLabel, getModifier, classNames, formatClassName } from '@westpac/core';
 import { defaultProps } from '../FormCheck';
 

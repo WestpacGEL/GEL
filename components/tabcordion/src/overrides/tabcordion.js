@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { forwardRef } from 'react';
 import {
 	jsx,
@@ -19,10 +17,12 @@ import { tabBtnLegoStyles } from './tabBtn';
 // ==============================
 
 const Tabcordion = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+Tabcordion.displayName = 'Tabcordion';
 
 const BlenderTabcordion = forwardRef(({ state: _, className, ...rest }, ref) => (
 	<div ref={ref} className={formatClassName(className)} {...rest} />
 ));
+BlenderTabcordion.displayName = 'BlenderTabcordion';
 
 // ==============================
 // Styles

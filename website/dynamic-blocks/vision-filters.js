@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import React, { Suspense, Fragment } from 'react';
 import Select from '@arch-ui/select';
 

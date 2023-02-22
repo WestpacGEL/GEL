@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, classNames, getModifier } from '@westpac/core';
 import { stepButtonStyles } from './stepButton';
 import { defaultProps } from '../blender/Step';

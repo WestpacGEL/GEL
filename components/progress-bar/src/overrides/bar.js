@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, getLabel, getModifier, styleReconciler } from '@westpac/core';
 import { defaultProps } from '../ProgressBar';
 

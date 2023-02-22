@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, getLabel, classNames } from '@westpac/core';
 import { Select as SelectInput } from '@westpac/text-input';
 

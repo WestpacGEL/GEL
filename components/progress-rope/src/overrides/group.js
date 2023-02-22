@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, classNames, getModifier, styleReconciler } from '@westpac/core';
 import { defaultProps } from '../blender/Group';
 import { getStyles } from './_utils';

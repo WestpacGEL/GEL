@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import PropTypes from 'prop-types';
 import { jsx, SerializedStyles } from '@emotion/react';
 
@@ -34,5 +33,13 @@ GEL.propTypes = {
 	// ----------------------------------------------------------------------
 	brand: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 	children: PropTypes.node,
-	normalize: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+	normalize: PropTypes.oneOfType([
+		PropTypes.shape({
+			map: PropTypes.string,
+			name: PropTypes.string.isRequired,
+			next: PropTypes.object,
+			styles: PropTypes.string.isRequired,
+		}),
+		PropTypes.bool,
+	]),
 };

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -20,10 +18,12 @@ import { defaultProps } from '../Button';
 // ==============================
 
 const Button = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={ref} {...rest} />);
+Button.displayName = 'Button';
 
 const BlenderButton = forwardRef(({ state: { tag: Tag }, className, ...rest }, ref) => (
 	<Tag ref={ref} className={formatClassName(className)} {...rest} />
 ));
+BlenderButton.displayName = 'BlenderButton';
 
 // ==============================
 // Styles
