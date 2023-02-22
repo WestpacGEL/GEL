@@ -26,7 +26,8 @@
     "@emotion/react": "^11.10.6"
 	},
 	"devDependencies": {
-		"cypress": "^7.4.0",
+    "@emotion/react": "^11.10.6",
+    "cypress": "^7.4.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.3"
 	}

@@ -4,16 +4,7 @@
 	"description": "Small content popup panels triggered by a button, containing contextual supporting information",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/popover",
-	"blender": {
-		"recipe": "blender/recipe.js",
-		"js": "blender/script.js"
-	},
-	"components": [
-		{
-			"name": "Popover",
-			"src": "Popover.tsx"
-		}
-	],
+	"license": "GPL-3.0+",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -37,17 +28,16 @@
 			"url": "http://florelaforge.com/"
 		}
 	],
-	"license": "GPL-3.0+",
+	"main": "dist/westpac-popover.cjs.js",
+	"module": "dist/westpac-popover.esm.js",
 	"scripts": {
 		"start": "PACKAGE_NAME=popover NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
-		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
+		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/westpac-popover.cjs.js",
-	"module": "dist/westpac-popover.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
 		"@westpac/body": "^2.1.0",
@@ -58,16 +48,27 @@
 		"@westpac/icon": "^2.0.1",
 		"prop-types": "^15.7.2"
 	},
-	"peerDependencies": {
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.6"
-	},
 	"devDependencies": {
+		"@emotion/react": "^11.10.6",
 		"@westpac/form": "^3.1.0",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"start-server-and-test": "^1.12.6"
-	}
+	},
+	"peerDependencies": {
+		"@emotion/react": "^11.10.6",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"blender": {
+		"recipe": "blender/recipe.js",
+		"js": "blender/script.js"
+	},
+	"components": [
+		{
+			"name": "Popover",
+			"src": "Popover.tsx"
+		}
+	]
 }

@@ -4,6 +4,7 @@
 	"description": "Hooks for the Westpac GEL Design System",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/hooks",
+	"license": "GPL-3.0+",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -27,31 +28,31 @@
 			"url": "https://www.jeremyortiz.io/"
 		}
 	],
-	"license": "GPL-3.0+",
+	"main": "dist/westpac-hooks.cjs.js",
+	"module": "dist/westpac-hooks.esm.js",
 	"scripts": {
 		"start": "PACKAGE_NAME=hooks NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
-		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
+		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/westpac-hooks.cjs.js",
-	"module": "dist/westpac-hooks.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
 		"@westpac/core": "^3.1.0",
 		"prop-types": "^15.7.2",
 		"resize-observer-polyfill": "^1.5.1"
 	},
-	"peerDependencies": {
-    "react": "^18.2.0",
-    "@emotion/react": "^11.10.6" 	
-  },
 	"devDependencies": {
+		"@emotion/react": "^11.10.6",
 		"@westpac/button": "^2.1.0",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"
+	},
+	"peerDependencies": {
+		"@emotion/react": "^11.10.6",
+		"react": "^18.2.0"
 	}
 }

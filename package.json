@@ -1,12 +1,10 @@
 {
   "name": "gel",
   "version": "0.0.0",
-  "engines": {
-    "node": "16.x"
-  },
-  "packageManager": "yarn@1.22.19",
+  "private": true,
   "description": "The Westpac GEL Design System components, brand tokens and website monorepo",
   "repository": "https://github.com/WestpacGEL/GEL",
+  "license": "GPL-3.0+",
   "author": "Westpac GEL Team <gel@westpac.com.au>",
   "contributors": [
     {
@@ -20,55 +18,6 @@
       "url": "http://jossmackison.me"
     }
   ],
-  "license": "GPL-3.0+",
-  "private": true,
-  "scripts": {
-    "prop-types": "ts-node --project tsconfig.example.json --esm ./helpers/generateProptypes.ts",
-    "dev": "/bin/sh -c 'cd components/${1:-$0} && yarn start'",
-    "dev:frontend": "yarn build && yarn --cwd website dev",
-    "dev:backend": "yarn build && yarn --cwd website-backend dev",
-    "docs": "NODE_ENV=development webpack server --progress --config ./helpers/example/docs.webpack.config.js",
-    "docs:build": "NODE_ENV=development webpack --progress --config ./helpers/example/docs.webpack.config.js && yarn docs:redirects",
-    "docs:redirects": "cp helpers/public/* docs/",
-    "start": "yarn build:dynamicblocks && (trap 'kill 0' SIGINT; yarn --cwd website dev & yarn --cwd website-backend dev ; wait)",
-    "nuke": "yarn nuke:lock && yarn nuke:node_modules",
-    "nuke:node_modules": "find ./components -type d -name 'node_modules' -exec rm -rf {} + && find ./brands -type d -name 'node_modules' -exec rm -rf {} + && rm -rf node_modules",
-    "nuke:lock": "rm yarn.lock && rm yarn-error.log ; true",
-    "build": "yarn build:dynamicblocks && preconstruct build",
-    "build:watch": "preconstruct watch",
-    "build:dev": "preconstruct dev",
-    "build:dynamicblocks": "node helpers/dynamic-blocks.js",
-    "fresh": "yarn nuke && yarn",
-    "new": "node ./helpers/cli.js",
-    "format": "prettier --list-different \"**/*.{js,md,mdx,json,ts,tsx}\"",
-    "format:fix": "prettier --write \"**/*.{js,md,mdx,json,ts,tsx}\"",
-    "lint": "eslint '**/*.{js,ts,tsx}'",
-    "lint:fix": "eslint '**/*.{js,ts,tsx}' --fix",
-    "lint:format:fix": "yarn lint:fix && yarn format:fix",
-    "test:types": "/bin/sh -c 'cd components/${1:-$0} && tsc'",
-    "test:format": "yarn format && yarn lint",
-    "test:unit": "jest",
-    "test:unit:ci": "jest --runInBand --ci",
-    "test:unit-watch": "jest --watchAll --coverage",
-    "test:integration": "node helpers/tester.js",
-    "test": "yarn test:format && yarn test:unit && yarn test:integration",
-    "test:ci": "yarn test:format && yarn test:unit:ci && yarn test:integration",
-    "dep:test": "manypkg check && preconstruct build",
-    "dep:fix": "manypkg fix && preconstruct fix",
-    "GELjson": "node helpers/ds-info.js",
-    "postinstall": "yarn dep:test && preconstruct build && yarn GELjson && yarn build:dynamicblocks",
-    "publish-packages": "yarn build && yarn GELjson && yarn changeset publish",
-    "version-packages": "yarn changeset version",
-    "deploy:staging:sync": "pm2 deploy pm2-ecosystem.json staging",
-    "deploy:staging:restart": "ssh deploy@165.22.110.244 forever restart /srv/blender/server/server.js",
-    "deploy:staging:msg": "echo \"If you made changes to the nginx config follow below steps:\n\n1. Log into the server: \\x1b[33mssh deploy@165.22.110.244\\x1b[0m\n2. Copy the file: \\x1b[33msudo cp /srv/pm2-apps/gel3-website/source/nginx/gel3-keystone-routes.conf /etc/nginx/snippets/gel3-keystone-routes.conf\\x1b[0m\n3. Test the new config: \\x1b[33msudo nginx -t\\x1b[0m\n4. If there are errors correct them in this repo and start again from scratch by running \\x1b[33myarn deploy:staging\\x1b[0m\n5. If all is well run \\x1b[33msudo nginx -s reload\\x1b[0m\n6. ✨ Done\n\"",
-    "deploy:staging": "yarn deploy:staging:sync && yarn deploy:staging:restart && yarn deploy:staging:msg",
-    "deploy:live:sync": "pm2 deploy pm2-ecosystem.json live",
-    "deploy:live:restart": "ssh deploy@128.199.200.220 forever restart /srv/blender/server/server.js",
-    "deploy:live:msg": "echo \"If you made changes to the nginx config follow below steps:\n\n1. Log into the server: \\x1b[33mssh deploy@128.199.200.220\\x1b[0m\n2. Copy the file: \\x1b[33msudo cp /srv/pm2-apps/gel3-website/source/nginx/gel3-keystone-routes.conf /etc/nginx/snippets/gel3-keystone-routes.conf\\x1b[0m\n3. Test the new config: \\x1b[33msudo nginx -t\\x1b[0m\n4. If there are errors correct them in this repo and start again from scratch by running \\x1b[33myarn deploy:live\\x1b[0m\n5. If all is well run \\x1b[33msudo nginx -s reload\\x1b[0m\n6. ✨ Done\n\"",
-    "deploy:live": "yarn deploy:live:sync && yarn deploy:live:restart && yarn deploy:live:msg",
-    "prepare": "husky install"
-  },
   "workspaces": [
     "brands/*",
     "components/*",
@@ -76,25 +25,69 @@
     "website/field-content",
     "website-backend"
   ],
-  "preconstruct": {
-    "packages": [
-      "components/*",
-      "brands/*"
-    ]
+  "scripts": {
+    "GELjson": "node helpers/ds-info.js",
+    "build": "yarn build:dynamicblocks && preconstruct build",
+    "build:dev": "preconstruct dev",
+    "build:dynamicblocks": "node helpers/dynamic-blocks.js",
+    "build:watch": "preconstruct watch",
+    "dep:fix": "manypkg fix && preconstruct fix",
+    "dep:test": "manypkg check && preconstruct build",
+    "deploy:live": "yarn deploy:live:sync && yarn deploy:live:restart && yarn deploy:live:msg",
+    "deploy:live:msg": "echo \"If you made changes to the nginx config follow below steps:\n\n1. Log into the server: \\x1b[33mssh deploy@128.199.200.220\\x1b[0m\n2. Copy the file: \\x1b[33msudo cp /srv/pm2-apps/gel3-website/source/nginx/gel3-keystone-routes.conf /etc/nginx/snippets/gel3-keystone-routes.conf\\x1b[0m\n3. Test the new config: \\x1b[33msudo nginx -t\\x1b[0m\n4. If there are errors correct them in this repo and start again from scratch by running \\x1b[33myarn deploy:live\\x1b[0m\n5. If all is well run \\x1b[33msudo nginx -s reload\\x1b[0m\n6. ✨ Done\n\"",
+    "deploy:live:restart": "ssh deploy@128.199.200.220 forever restart /srv/blender/server/server.js",
+    "deploy:live:sync": "pm2 deploy pm2-ecosystem.json live",
+    "deploy:staging": "yarn deploy:staging:sync && yarn deploy:staging:restart && yarn deploy:staging:msg",
+    "deploy:staging:msg": "echo \"If you made changes to the nginx config follow below steps:\n\n1. Log into the server: \\x1b[33mssh deploy@165.22.110.244\\x1b[0m\n2. Copy the file: \\x1b[33msudo cp /srv/pm2-apps/gel3-website/source/nginx/gel3-keystone-routes.conf /etc/nginx/snippets/gel3-keystone-routes.conf\\x1b[0m\n3. Test the new config: \\x1b[33msudo nginx -t\\x1b[0m\n4. If there are errors correct them in this repo and start again from scratch by running \\x1b[33myarn deploy:staging\\x1b[0m\n5. If all is well run \\x1b[33msudo nginx -s reload\\x1b[0m\n6. ✨ Done\n\"",
+    "deploy:staging:restart": "ssh deploy@165.22.110.244 forever restart /srv/blender/server/server.js",
+    "deploy:staging:sync": "pm2 deploy pm2-ecosystem.json staging",
+    "dev": "/bin/sh -c 'cd components/${1:-$0} && yarn start'",
+    "dev:backend": "yarn build && yarn --cwd website-backend dev",
+    "dev:frontend": "yarn build && yarn --cwd website dev",
+    "docs": "NODE_ENV=development webpack server --progress --config ./helpers/example/docs.webpack.config.js",
+    "docs:build": "NODE_ENV=development webpack --progress --config ./helpers/example/docs.webpack.config.js && yarn docs:redirects",
+    "docs:redirects": "cp helpers/public/* docs/",
+    "format": "prettier --list-different \"**/*.{js,md,mdx,json,ts,tsx}\"",
+    "format:fix": "prettier --write \"**/*.{js,md,mdx,json,ts,tsx}\"",
+    "fresh": "yarn nuke && yarn",
+    "postinstall": "yarn dep:test && preconstruct build && yarn GELjson && yarn build:dynamicblocks",
+    "lint": "eslint '**/*.{js,ts,tsx}'",
+    "lint:fix": "eslint '**/*.{js,ts,tsx}' --fix",
+    "lint:format:fix": "yarn lint:fix && yarn format:fix",
+    "new": "node ./helpers/cli.js",
+    "nuke": "yarn nuke:lock && yarn nuke:node_modules",
+    "nuke:lock": "rm yarn.lock && rm yarn-error.log ; true",
+    "nuke:node_modules": "find ./components -type d -name 'node_modules' -exec rm -rf {} + && find ./brands -type d -name 'node_modules' -exec rm -rf {} + && rm -rf node_modules",
+    "prepare": "husky install",
+    "prop-types": "ts-node --project tsconfig.example.json --esm ./helpers/generateProptypes.ts",
+    "publish-packages": "yarn build && yarn GELjson && yarn changeset publish",
+    "start": "yarn build:dynamicblocks && (trap 'kill 0' SIGINT; yarn --cwd website dev & yarn --cwd website-backend dev ; wait)",
+    "test": "yarn test:format && yarn test:unit && yarn test:integration",
+    "test:ci": "yarn test:format && yarn test:unit:ci && yarn test:integration",
+    "test:format": "yarn format && yarn lint",
+    "test:integration": "node helpers/tester.js",
+    "test:types": "/bin/sh -c 'cd components/${1:-$0} && tsc'",
+    "test:unit": "jest",
+    "test:unit-watch": "jest --watchAll --coverage",
+    "test:unit:ci": "jest --runInBand --ci",
+    "version-packages": "yarn changeset version"
   },
   "jest": {
-    "displayName": "GEL3",
-    "testRegex": "\\.spec.[jt]sx?$",
-    "testEnvironment": "jsdom",
     "collectCoverageFrom": [
       "components/*/src/**/*.{js,jsx,ts,tsx}"
     ],
+    "displayName": "GEL3",
     "setupFilesAfterEnv": [
       "./helpers/tests/jest-extended.js"
     ],
+    "testEnvironment": "jsdom",
+    "testRegex": "\\.spec.[jt]sx?$",
     "transformIgnorePatterns": [
       "/node_modules/(?!@westpac/*).+\\.{js,jsx,ts,tsx}$"
     ]
+  },
+  "resolutions": {
+    "ansi-styles": "^3.2.0"
   },
   "dependencies": {
     "@babel/cli": "^7.14.8",
@@ -106,7 +99,7 @@
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.14.8",
     "@changesets/cli": "^2.16.0",
-    "@emotion/react": "^11.4.0",
+    "@emotion/react": "^11.10.6",
     "@emotion/weak-memoize": "^0.2.5",
     "@manypkg/cli": "^0.18.0",
     "@preconstruct/cli": "^2.2.2",
@@ -128,6 +121,8 @@
     "cypress": "^8.0.0",
     "eslint": "^8.28.0",
     "eslint-config-next": "^13.0.5",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "facepaint": "^1.2.1",
     "get-workspaces": "^1.0.3",
     "html-webpack-plugin": "^5.3.2",
@@ -152,17 +147,20 @@
     "shortid": "^2.2.16",
     "start-server-and-test": "^1.12.6",
     "tmp": "^0.2.1",
+    "ts-node": "^10.4.0",
+    "typescript-to-proptypes": "^2.2.1",
     "webpack": "^5.45.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^4.0.0"
   },
-  "resolutions": {
-    "ansi-styles": "^3.2.0"
+  "packageManager": "yarn@1.22.19",
+  "engines": {
+    "node": "16.x"
   },
-  "devDependencies": {
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "ts-node": "^10.4.0",
-    "typescript-to-proptypes": "^2.2.1"
+  "preconstruct": {
+    "packages": [
+      "components/*",
+      "brands/*"
+    ]
   }
 }

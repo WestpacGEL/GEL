@@ -4,24 +4,7 @@
 	"description": "Configurable dialog panels to provide singular focus to important content, used for lightboxes, user notifications and more",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/modal",
-	"blender": {
-		"recipe": "blender/recipe.js",
-		"js": "blender/script.js"
-	},
-	"components": [
-		{
-			"name": "Modal",
-			"src": "Modal.tsx"
-		},
-		{
-			"name": "Body",
-			"src": "ModalBody.tsx"
-		},
-		{
-			"name": "Footer",
-			"src": "ModalFooter.tsx"
-		}
-	],
+	"license": "GPL-3.0+",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
 		{
@@ -40,17 +23,16 @@
 			"url": "https://www.jeremyortiz.io/"
 		}
 	],
-	"license": "GPL-3.0+",
+	"main": "dist/westpac-modal.cjs.js",
+	"module": "dist/westpac-modal.esm.js",
 	"scripts": {
 		"start": "PACKAGE_NAME=modal NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
-		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:all": "yarn test:integration",
+		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
 		"test:integration": "cypress run",
 		"test:test-dev": "cypress open"
 	},
-	"main": "dist/westpac-modal.cjs.js",
-	"module": "dist/westpac-modal.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
 		"@westpac/body": "^2.1.0",
@@ -64,17 +46,36 @@
 		"react-focus-on": "^3.5.2",
 		"react-merge-refs": "^1.1.0"
 	},
-	"peerDependencies": {
-		"@react-spring/web": "^9.2.4",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-    "@emotion/react": "^11.10.6"
-	},
 	"devDependencies": {
+		"@emotion/react": "^11.10.6",
 		"@react-spring/web": "^9.2.4",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"start-server-and-test": "^1.12.6"
-	}
+	},
+	"peerDependencies": {
+		"@emotion/react": "^11.10.6",
+		"@react-spring/web": "^9.2.4",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"blender": {
+		"recipe": "blender/recipe.js",
+		"js": "blender/script.js"
+	},
+	"components": [
+		{
+			"name": "Modal",
+			"src": "Modal.tsx"
+		},
+		{
+			"name": "Body",
+			"src": "ModalBody.tsx"
+		},
+		{
+			"name": "Footer",
+			"src": "ModalFooter.tsx"
+		}
+	]
 }
