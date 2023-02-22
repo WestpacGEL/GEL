@@ -167,7 +167,7 @@ The Maintainer will publish changes to NPM.
 | script                    | description                                                 |
 | ------------------------- | ----------------------------------------------------------- |
 | `yarn`                    | install all dependencies                                    |
-| `yarn prop-types`         | generates the prop-types according to the interface created |            
+| `yarn prop-types`         | generates the prop-types according to the interface created |
 | `yarn nuke`               | removes all `node_modules` for fresh start                  |
 | `yarn fresh`              | removes all `node_modules` and reinstalls them              |
 | `yarn build`              | build all dist folders for production                       |
