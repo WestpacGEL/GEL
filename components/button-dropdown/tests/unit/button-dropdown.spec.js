@@ -11,7 +11,7 @@ import { ArrowLeftIcon } from '@westpac/icon';
 // The default tests every component should run
 overridesTest({
 	name: 'button-dropdown', // the name has to be the package name without '@westpac/' scope
-	overrides: ['ButtonDropdown','Panel'], // every single override root key
+	overrides: ['ButtonDropdown', 'Panel'], // every single override root key
 	Component: (props) => (
 		<ButtonDropdown {...props} text="Default Dropdown" open={true}>
 			ButtonDropdown content
@@ -27,24 +27,24 @@ nestingTest({
 
 const SimpleButtonDropdown = (props) => (
 	<GEL brand={wbc}>
-		<ButtonDropdown {...props} text="Default Dropdown">{props.children}</ButtonDropdown>
+		<ButtonDropdown {...props} text="Default Dropdown">
+			{props.children}
+		</ButtonDropdown>
 	</GEL>
 );
 
 // Component specific tests
 describe('Button component', () => {
-
 	test('should display dropdown items when clicked', () => {
 		render(
-			<SimpleButtonDropdown data-testid="my-button" text='Click Me'>
+			<SimpleButtonDropdown data-testid="my-button" text="Click Me">
 				<p>I am opened</p>
 			</SimpleButtonDropdown>
 		);
 		const childInDropDown = screen.getByText(/I am opened/i);
-		expect(childInDropDown).not.toBeVisible()
-		
+		expect(childInDropDown).not.toBeVisible();
+
 		fireEvent.click(screen.queryByRole('button'));
 		expect(childInDropDown).toBeVisible();
 	});
-
 });
