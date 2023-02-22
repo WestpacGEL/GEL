@@ -51,12 +51,12 @@ yarn
 
 When implementing your changes please ensure that you follow modern web development best practices.
 
-### 4. Format
+### 4. Format & Generate prop-types
 
-Format your changes with:
+Format your changes and Generate your Prop-Types for documentation:
 
 ```sh
-yarn format
+yarn prop-types && yarn format
 ```
 
 ### 5. Test
@@ -164,21 +164,22 @@ The Maintainer will publish changes to NPM.
 <details>
 <summary>👉 npm scripts</summary>
 
-| script                    | description                                           |
-| ------------------------- | ----------------------------------------------------- |
-| `yarn`                    | install all dependencies                              |
-| `yarn nuke`               | removes all `node_modules` for fresh start            |
-| `yarn fresh`              | removes all `node_modules` and reinstalls them        |
-| `yarn build`              | build all dist folders for production                 |
-| `yarn build:dev`          | build all dist for local consumption                  |
-| `yarn docs`               | build docs for all components and run server          |
-| `yarn docs:build`         | build docs for all components to `./docs/` folder     |
-| `yarn new [package-name]` | create a new specified empty component                |
-| `yarn dev [package-name]` | start the example server of a component               |
-| `yarn test`               | runs tests                                            |
-| `lint:format:fix`         | runs prettier and eslint to format and lint all code  |
-| `yarn deploy:staging`     | deploys the site to staging from the `staging` branch |
-| `yarn deploy:live`        | deploys the site to live from the `master` branch     |
+| script                    | description                                                 |
+| ------------------------- | ----------------------------------------------------------- |
+| `yarn`                    | install all dependencies                                    |
+| `yarn prop-types`         | generates the prop-types according to the interface created |            
+| `yarn nuke`               | removes all `node_modules` for fresh start                  |
+| `yarn fresh`              | removes all `node_modules` and reinstalls them              |
+| `yarn build`              | build all dist folders for production                       |
+| `yarn build:dev`          | build all dist for local consumption                        |
+| `yarn docs`               | build docs for all components and run server                |
+| `yarn docs:build`         | build docs for all components to `./docs/` folder           |
+| `yarn new [package-name]` | create a new specified empty component                      |
+| `yarn dev [package-name]` | start the example server of a component                     |
+| `yarn test`               | runs tests                                                  |
+| `lint:format:fix`         | runs prettier and eslint to format and lint all code        |
+| `yarn deploy:staging`     | deploys the site to staging from the `staging` branch       |
+| `yarn deploy:live`        | deploys the site to live from the `master` branch           |
 
 See the [Website README](./website/README.md#deployment) for details on it's deployment.
 
