@@ -1,22 +1,34 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultItem } from './overrides/item';
 
 import { useListGroupContext } from './ListGroup';
 import pkg from '../package.json';
 
+export interface ItemProps {
+	/**
+	 * The content for this list group item
+	 */
+	children: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Item?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
-export const Item = ({
-	children,
-	overrides,
-	...rest
-}: typeof Item.propTypes & typeof Item.defaultProps) => {
+export const Item = ({ children, overrides, ...rest }: ItemProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -46,26 +58,25 @@ export const Item = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
+Item.defaultProps = {};
 
 Item.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * The content for this list group item
 	 */
-	children: PropTypes.node.isRequired,
-
+	children: PropTypes.node,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Item: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
-
-Item.defaultProps = {};

@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const TaxDocumentPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -39,4 +39,4 @@ TaxDocumentPictogram.defaultProps = {
 	assistiveText: 'Tax document',
 	copyrightYear: '2021',
 };
-TaxDocumentPictogram.propTypes = propTypes;
+TaxDocumentPictogram.propTypes = Pictogram.propTypes;

@@ -1,10 +1,26 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultFormSection } from './overrides/formSection';
 import pkg from '../package.json';
+
+interface FormSectionProps {
+	/**
+	 * Remove section padding
+	 */
+	noPadding?: boolean;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		FormSection?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -14,7 +30,7 @@ export const FormSection = ({
 	noPadding,
 	overrides: componentOverrides,
 	...rest
-}: typeof FormSection.propTypes & typeof FormSection.defaultProps) => {
+}: FormSectionProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -48,28 +64,27 @@ export const FormSection = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
+FormSection.defaultProps = {
+	noPadding: false,
+};
 
 FormSection.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Remove section padding
 	 */
 	noPadding: PropTypes.bool,
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		FormSection: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
-};
-
-FormSection.defaultProps = {
-	noPadding: false,
 };

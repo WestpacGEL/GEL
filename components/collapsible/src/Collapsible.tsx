@@ -1,13 +1,59 @@
-/** @jsx jsx */
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
 import { useState, useEffect, useRef, useId, useMemo, useCallback } from 'react';
-import PropTypes from 'prop-types';
 
 import { defaultCollapsible } from './overrides/collapsible';
 import { defaultTrigger } from './overrides/trigger';
 import { defaultContent } from './overrides/content';
 import pkg from '../package.json';
+
+export interface CollapsibleProps {
+	/**
+	 * size
+	 */
+	size?: string[] | 'small' | 'medium' | 'large' | 'xlarge';
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId?: string;
+	/**
+	 * State of whether the Collapsible is open
+	 */
+	open?: boolean;
+	/**
+	 * Button text
+	 */
+	text: string;
+	/**
+	 * A function for the onClick event
+	 */
+	onClick?: (...args: unknown[]) => unknown;
+	/**
+	 * Trigger element to open the collapsible
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Collapsible?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Trigger?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Content?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -15,14 +61,14 @@ import pkg from '../package.json';
 
 export const Collapsible = ({
 	instanceId,
-	open,
+	open = false,
 	text,
 	size,
 	onClick = () => {},
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Collapsible.propTypes & typeof Collapsible.defaultProps) => {
+}: CollapsibleProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -77,7 +123,7 @@ export const Collapsible = ({
 				}
 			)(event);
 		},
-		[isOpen, onClick]
+		[isOpen, onClick, triggerRef]
 	);
 
 	const keyHandler = useCallback(
@@ -94,7 +140,7 @@ export const Collapsible = ({
 				handleOpen(event);
 			}
 		},
-		[handleOpen, isOpen]
+		[collapsibleRef, handleOpen, isOpen, triggerRef]
 	);
 
 	// bind key events
@@ -133,60 +179,62 @@ export const Collapsible = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
-Collapsible.propTypes = {
-	/**
-	 * Define an id for internal elements
-	 */
-	instanceId: PropTypes.string,
-
-	/**
-	 * State of whether the Collapsible is open
-	 */
-	open: PropTypes.bool,
-
-	/**
-	 * Button text
-	 */
-	text: PropTypes.string.isRequired,
-
-	/**
-	 * A function for the onClick event
-	 */
-	onClick: PropTypes.func,
-
-	/**
-	 * Trigger element to open the collapsible
-	 */
-	children: PropTypes.node,
-
-	/**
-	 * The override API
-	 */
-	overrides: PropTypes.shape({
-		Collapsible: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Trigger: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Content: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
-};
-
 export const defaultProps = {
 	open: false,
 };
 
 Collapsible.defaultProps = defaultProps;
+
+Collapsible.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Trigger element to open the collapsible
+	 */
+	children: PropTypes.node,
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+	/**
+	 * A function for the onClick event
+	 */
+	onClick: PropTypes.func,
+	/**
+	 * State of whether the Collapsible is open
+	 */
+	open: PropTypes.bool,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Collapsible: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Content: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Trigger: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
+	/**
+	 * size
+	 */
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.string),
+	]),
+	/**
+	 * Button text
+	 */
+	text: PropTypes.string.isRequired,
+};

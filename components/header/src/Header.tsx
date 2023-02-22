@@ -1,10 +1,9 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useBrand, overrideReconciler } from '@westpac/core';
 import { useState, useEffect } from 'react';
 import { SkipLink } from '@westpac/a11y';
 import throttle from 'lodash.throttle';
-import PropTypes from 'prop-types';
 
 import { defaultLeftBtn } from './overrides/leftBtn';
 import { defaultLogoLink } from './overrides/logoLink';
@@ -15,12 +14,105 @@ import { defaultLogo } from './overrides/logo';
 import { defaultHeader } from './overrides/header';
 import pkg from '../package.json';
 
+export interface HeaderProps {
+	/**
+	 * The potato comment
+	 */
+	 potato?: string;
+	/**
+	 * The link to redirect to on logo click
+	 */
+	logoLink?: string;
+	/**
+	 * On click handler for logo
+	 */
+	logoOnClick?: (...args: unknown[]) => unknown;
+	/**
+	 * Center logo at xs breakpoint
+	 */
+	logoCenter?: boolean;
+	/**
+	 * Aria-label for the logo
+	 */
+	logoAssistiveText?: string;
+	/**
+	 * Icon type for left button either 'arrow' or 'hamburger'
+	 */
+	leftIcon?: 'arrow' | 'hamburger';
+	/**
+	 * On click handler for left button
+	 */
+	leftOnClick?: (...args: unknown[]) => unknown;
+	/**
+	 * Visually hidden text for left button
+	 */
+	leftAssistiveText?: string;
+	/**
+	 * Enable fixed header
+	 */
+	fixed?: boolean;
+	/**
+	 * The id to the pages main content
+	 */
+	skipToContentId?: string;
+	/**
+	 * Text content for skip link
+	 */
+	skipLinkContent?: string;
+	/**
+	 * Content to be put on the right side of the header
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Header?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Inner?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Left?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		LeftButton?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		LogoLink?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Logo?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Right?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const Header = ({
-	logoLink,
+	potato = '#',
+	logoLink = '#',
+	skipLinkContent = 'Skip to main content',
 	logoOnClick,
 	logoCenter,
 	logoAssistiveText,
@@ -29,11 +121,10 @@ export const Header = ({
 	leftAssistiveText,
 	fixed,
 	skipToContentId,
-	skipLinkContent,
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Header.propTypes & typeof Header.defaultProps) => {
+}: HeaderProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -125,109 +216,98 @@ export const Header = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
+Header.defaultProps = {
+	logoLink: '#',
+	skipLinkContent: 'Skip to main content',
+};
 
 Header.propTypes = {
-	/**
-	 * The link to redirect to on logo click
-	 */
-	logoLink: PropTypes.string,
-
-	/**
-	 * On click handler for logo
-	 */
-	logoOnClick: PropTypes.func,
-
-	/**
-	 * Center logo at xs breakpoint
-	 */
-	logoCenter: PropTypes.bool,
-
-	/**
-	 * Aria-label for the logo
-	 */
-	logoAssistiveText: PropTypes.string,
-
-	/**
-	 * Icon type for left button either 'arrow' or 'hamburger'
-	 */
-	leftIcon: PropTypes.oneOf(['arrow', 'hamburger']),
-
-	/**
-	 * On click handler for left button
-	 */
-	leftOnClick: PropTypes.func,
-
-	/**
-	 * Visually hidden text for left button
-	 */
-	leftAssistiveText: PropTypes.string,
-
-	/**
-	 * Enable fixed header
-	 */
-	fixed: PropTypes.bool,
-
-	/**
-	 * The id to the pages main content
-	 */
-	skipToContentId: PropTypes.string,
-
-	/**
-	 * Text content for skip link
-	 */
-	skipLinkContent: PropTypes.string,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Content to be put on the right side of the header
 	 */
 	children: PropTypes.node,
-
+	/**
+	 * Enable fixed header
+	 */
+	fixed: PropTypes.bool,
+	/**
+	 * Visually hidden text for left button
+	 */
+	leftAssistiveText: PropTypes.string,
+	/**
+	 * Icon type for left button either 'arrow' or 'hamburger'
+	 */
+	leftIcon: PropTypes.oneOf(['arrow', 'hamburger']),
+	/**
+	 * On click handler for left button
+	 */
+	leftOnClick: PropTypes.func,
+	/**
+	 * Aria-label for the logo
+	 */
+	logoAssistiveText: PropTypes.string,
+	/**
+	 * Center logo at xs breakpoint
+	 */
+	logoCenter: PropTypes.bool,
+	/**
+	 * The link to redirect to on logo click
+	 */
+	logoLink: PropTypes.string,
+	/**
+	 * On click handler for logo
+	 */
+	logoOnClick: PropTypes.func,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Header: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Inner: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Left: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		LeftButton: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		LogoLink: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			styles: PropTypes.func,
 		}),
 		Logo: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		LogoLink: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Right: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
-};
-
-Header.defaultProps = {
-	logoLink: '#',
-	skipLinkContent: 'Skip to main content',
+	/**
+	 * Text content for skip link
+	 */
+	skipLinkContent: PropTypes.string,
+	/**
+	 * The id to the pages main content
+	 */
+	skipToContentId: PropTypes.string,
 };

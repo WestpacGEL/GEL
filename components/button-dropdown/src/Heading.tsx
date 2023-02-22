@@ -1,23 +1,39 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultHeading } from './overrides/heading';
 
 import { useButtonDropdownContext } from './ButtonDropdown';
 import pkg from '../package.json';
+import { ReactNode } from 'react';
+
+export interface HeadingProps {
+	/**
+	 * The tag of the heading element for semantic reasons
+	 */
+	tag?: ((...args: unknown[]) => unknown) | string;
+	/**
+	 * children
+	 */
+	children?: ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Heading?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
 // ==============================
 
-export const Heading = ({
-	tag,
-	children,
-	overrides,
-	...rest
-}: typeof Heading.propTypes & typeof Heading.defaultProps) => {
+export const Heading = ({ tag = 'h3', children, overrides, ...rest }: HeadingProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -50,28 +66,31 @@ export const Heading = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
+Heading.defaultProps = {
+	tag: 'h3',
+};
 
 Heading.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
-	 * The tag of the heading element for semantic reasons
+	 * children
 	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
-
+	children: PropTypes.node,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Heading: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
-};
-
-Heading.defaultProps = {
-	tag: 'h3',
+	/**
+	 * The tag of the heading element for semantic reasons
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };

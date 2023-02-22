@@ -1,12 +1,12 @@
-/** @jsx jsx */
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import { jsx, Global, SerializedStyles } from '@emotion/react';
 import { Fragment } from 'react';
 import { useBrand } from './Brand';
 import { normalize as normalizeCSS } from './normalize';
 
 export interface ICoreProps {
-	normalize: SerializedStyles;
+	normalize?: SerializedStyles | boolean;
 	children: React.ReactNode;
 }
 
@@ -50,4 +50,21 @@ export const Core = ({ normalize, children }: ICoreProps) => {
 			</div>
 		</Fragment>
 	);
+};
+
+Core.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
+	children: PropTypes.node,
+	normalize: PropTypes.oneOfType([
+		PropTypes.shape({
+			map: PropTypes.string,
+			name: PropTypes.string.isRequired,
+			next: PropTypes.object,
+			styles: PropTypes.string.isRequired,
+		}),
+		PropTypes.bool,
+	]),
 };

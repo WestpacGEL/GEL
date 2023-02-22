@@ -1,21 +1,35 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { useFormContext } from './Form';
 import { defaultFormGroup } from './overrides/formGroup';
 import pkg from '../package.json';
 
+export interface FormGroupProps {
+	/**
+	 * Primary mode.
+	 *
+	 * Used exclusively to render the ‘Fork’ pattern.
+	 */
+	primary?: boolean;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		FormGroup?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
-export const FormGroup = ({
-	primary,
-	overrides,
-	...rest
-}: typeof FormGroup.propTypes & typeof FormGroup.defaultProps) => {
+export const FormGroup = ({ primary = false, overrides, ...rest }: FormGroupProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -54,30 +68,29 @@ export const FormGroup = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
+FormGroup.defaultProps = {
+	primary: false,
+};
 
 FormGroup.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		FormGroup: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
 	/**
 	 * Primary mode.
 	 *
 	 * Used exclusively to render the ‘Fork’ pattern.
 	 */
 	primary: PropTypes.bool,
-
-	/**
-	 * The override API
-	 */
-	overrides: PropTypes.shape({
-		FormGroup: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
-};
-
-FormGroup.defaultProps = {
-	primary: false,
 };

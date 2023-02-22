@@ -1,8 +1,6 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React, { createContext, ReactNode, useContext } from 'react';
 
 import { defaultPanel } from './overrides/panel';
 import { defaultHeader } from './overrides/header';
@@ -13,7 +11,7 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-const PanelContext = createContext(null);
+const PanelContext = createContext<any>(null);
 
 export const usePanelContext = () => {
 	const context = useContext(PanelContext);
@@ -24,6 +22,45 @@ export const usePanelContext = () => {
 
 	return context;
 };
+
+export interface PanelProps {
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * Panel look
+	 */
+	look: 'hero' | 'faint';
+	/**
+	 * Panel heading text
+	 */
+	heading: string;
+	/**
+	 * Panel heading tag
+	 */
+	headingTag: ((...args: unknown[]) => unknown) | string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Panel?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Header?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Heading?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -36,7 +73,7 @@ export const Panel = ({
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Panel.propTypes & typeof Panel.defaultProps) => {
+}: PanelProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -76,51 +113,52 @@ export const Panel = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
-Panel.propTypes = {
-	/**
-	 * Panel look
-	 */
-	look: PropTypes.oneOf(['hero', 'faint']).isRequired,
-
-	/**
-	 * Panel heading text
-	 */
-	heading: PropTypes.string.isRequired,
-
-	/**
-	 * Panel heading tag
-	 */
-	headingTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
-
-	/**
-	 * The override API
-	 */
-	overrides: PropTypes.shape({
-		Panel: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Header: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Heading: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
-};
-
 export const defaultProps = {
 	look: 'hero',
 	headingTag: 'h1',
 };
 
 Panel.defaultProps = defaultProps;
+
+Panel.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
+	/**
+	 * Panel heading text
+	 */
+	heading: PropTypes.string.isRequired,
+	/**
+	 * Panel heading tag
+	 */
+	headingTag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+	/**
+	 * Panel look
+	 */
+	look: PropTypes.oneOf(['faint', 'hero']).isRequired,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Header: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Heading: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Panel: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
+};

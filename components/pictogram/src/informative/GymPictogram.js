@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const GymPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -36,4 +36,4 @@ GymPictogram.defaultProps = {
 	assistiveText: 'Gym',
 	copyrightYear: '2021',
 };
-GymPictogram.propTypes = propTypes;
+GymPictogram.propTypes = Pictogram.propTypes;

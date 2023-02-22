@@ -1,24 +1,54 @@
-/** @jsx jsx */
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { RefreshIcon } from '@westpac/icon';
-import PropTypes from 'prop-types';
 
 import { defaultIndicatorText } from './overrides/indicatorText';
 import { defaultIndicatorIcon } from './overrides/indicatorIcon';
 import { defaultIndicator } from './overrides/indicator';
 import pkg from '../package.json';
 
+export interface FormPodIndicatorProps {
+	/**
+	 * Indicator icon
+	 */
+	icon?: (...args: unknown[]) => unknown;
+	/**
+	 * Indicator text
+	 */
+	text?: string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Indicator?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		IndicatorText?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		IndicatorIcon?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const FormPodIndicator = ({
-	icon,
-	text,
+	icon = RefreshIcon,
+	text = 'Saving',
 	overrides: componentOverrides,
 	...rest
-}: typeof FormPodIndicator.propTypes & typeof FormPodIndicator.defaultProps) => {
+}: FormPodIndicatorProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -73,44 +103,42 @@ export const FormPodIndicator = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
+FormPodIndicator.defaultProps = {
+	icon: RefreshIcon,
+	text: 'Saving',
+};
 
 FormPodIndicator.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Indicator icon
 	 */
 	icon: PropTypes.func,
-
-	/**
-	 * Indicator text
-	 */
-	text: PropTypes.string,
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Indicator: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		IndicatorText: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			styles: PropTypes.func,
 		}),
 		IndicatorIcon: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		IndicatorText: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
-};
-
-FormPodIndicator.defaultProps = {
-	icon: RefreshIcon,
-	text: 'Saving',
+	/**
+	 * Indicator text
+	 */
+	text: PropTypes.string,
 };

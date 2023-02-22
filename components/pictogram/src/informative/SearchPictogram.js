@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const SearchPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -32,4 +32,4 @@ SearchPictogram.defaultProps = {
 	assistiveText: 'Search',
 	copyrightYear: '2021',
 };
-SearchPictogram.propTypes = propTypes;
+SearchPictogram.propTypes = Pictogram.propTypes;

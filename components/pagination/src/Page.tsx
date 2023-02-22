@@ -1,13 +1,67 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultPage } from './overrides/page';
 import { defaultLink } from './overrides/link';
 
 import { usePaginationContext } from './Pagination';
 import pkg from '../package.json';
+
+export interface PageProps {
+	/**
+	 * Index of page
+	 */
+	index?: number;
+	/**
+	 * Index of next page
+	 */
+	nextIndex?: number;
+	/**
+	 * Page text
+	 */
+	text?: string;
+	/**
+	 * Indicates first item in list which is the back button
+	 */
+	first?: boolean;
+	/**
+	 * Indicates first item in list which is the next button
+	 */
+	last?: boolean;
+	/**
+	 * If page is disabled
+	 */
+	disabled?: boolean;
+	/**
+	 * Text to use as the `aria-label` for the page
+	 */
+	assistiveText?: string;
+	/**
+	 * An on click function
+	 */
+	onClick?: (...args: unknown[]) => unknown;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Pagination?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Page?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Link?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -24,7 +78,7 @@ export const Page = ({
 	onClick,
 	overrides,
 	...rest
-}: typeof Page.propTypes & typeof Page.defaultProps) => {
+}: PageProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -70,73 +124,65 @@ export const Page = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
+Page.defaultProps = {
+	disabled: false,
+};
 
 Page.propTypes = {
-	/**
-	 * Index of page
-	 */
-	index: PropTypes.number,
-
-	/**
-	 * Index of next page
-	 */
-	nextIndex: PropTypes.number,
-
-	/**
-	 * Page text
-	 */
-	text: PropTypes.string,
-
-	/**
-	 * Indicates first item in list which is the back button
-	 */
-	first: PropTypes.bool,
-
-	/**
-	 * Indicates first item in list which is the next button
-	 */
-	last: PropTypes.bool,
-
-	/**
-	 * If page is disabled
-	 */
-	disabled: PropTypes.bool,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Text to use as the `aria-label` for the page
 	 */
 	assistiveText: PropTypes.string,
-
+	/**
+	 * If page is disabled
+	 */
+	disabled: PropTypes.bool,
+	/**
+	 * Indicates first item in list which is the back button
+	 */
+	first: PropTypes.bool,
+	/**
+	 * Index of page
+	 */
+	index: PropTypes.number,
+	/**
+	 * Indicates first item in list which is the next button
+	 */
+	last: PropTypes.bool,
+	/**
+	 * Index of next page
+	 */
+	nextIndex: PropTypes.number,
 	/**
 	 * An on click function
 	 */
 	onClick: PropTypes.func,
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Pagination: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		Link: PropTypes.shape({
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Page: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
-		Link: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		Pagination: PropTypes.shape({
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
-};
-
-Page.defaultProps = {
-	disabled: false,
+	/**
+	 * Page text
+	 */
+	text: PropTypes.string,
 };

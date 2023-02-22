@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const AccessibilityPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -28,4 +28,4 @@ AccessibilityPictogram.defaultProps = {
 	assistiveText: 'Accessibility',
 	copyrightYear: '2020',
 };
-AccessibilityPictogram.propTypes = propTypes;
+AccessibilityPictogram.propTypes = Pictogram.propTypes;

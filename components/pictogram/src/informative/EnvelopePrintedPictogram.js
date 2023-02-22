@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const EnvelopePrintedPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -36,4 +36,4 @@ EnvelopePrintedPictogram.defaultProps = {
 	assistiveText: 'Printed envelope',
 	copyrightYear: '2021',
 };
-EnvelopePrintedPictogram.propTypes = propTypes;
+EnvelopePrintedPictogram.propTypes = Pictogram.propTypes;

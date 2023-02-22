@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const AustraliaPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -28,4 +28,4 @@ AustraliaPictogram.defaultProps = {
 	assistiveText: 'Australia',
 	copyrightYear: '2021',
 };
-AustraliaPictogram.propTypes = propTypes;
+AustraliaPictogram.propTypes = Pictogram.propTypes;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const WearablesPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -28,4 +28,4 @@ WearablesPictogram.defaultProps = {
 	assistiveText: 'Wearables',
 	copyrightYear: '2021',
 };
-WearablesPictogram.propTypes = propTypes;
+WearablesPictogram.propTypes = Pictogram.propTypes;

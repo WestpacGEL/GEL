@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useState, useEffect, Children, cloneElement, useId, useMemo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useState, useEffect, Children, cloneElement, useId, useMemo, ReactNode } from 'react';
 
 import { defaultField } from './overrides/field';
 import { ErrorMessage } from './ErrorMessage';
@@ -10,6 +9,62 @@ import { FormLabel } from './FormLabel';
 import { Hint } from './Hint';
 
 import pkg from '../package.json';
+
+export interface FieldProps {
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId?: string;
+	/**
+	 * Label text
+	 */
+	label?: string;
+	/**
+	 * Visually hide label
+	 */
+	hideLabel?: boolean;
+	/**
+	 * Sub-label mode (smaller label text size)
+	 */
+	subLabel?: boolean;
+	/**
+	 * Hint text
+	 */
+	hint?: ((...args: unknown[]) => unknown) | string;
+	/**
+	 * Error message text
+	 */
+	error?: string;
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Field?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		FormLabel?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Hint?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		ErrorMessage?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -25,7 +80,7 @@ export const Field = ({
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Field.propTypes & typeof Field.defaultProps) => {
+}: FieldProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -33,7 +88,7 @@ export const Field = ({
 
 	const _id = useId();
 	const id = useMemo(() => instanceId || `gel-field-${_id}`, [_id, instanceId]);
-	const [ariaDescribedByValue, setAriaDescribedByValue] = useState<string>();
+	const [ariaDescribedByValue, setAriaDescribedByValue] = useState<string>('');
 
 	useEffect(() => {
 		const arr = [...(error ? [`${id}-error`] : []), ...(hint ? [`${id}-hint`] : [])];
@@ -79,66 +134,64 @@ export const Field = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
+Field.defaultProps = {};
 
 Field.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
-	 * Define an id for internal elements
+	 * Children
 	 */
-	instanceId: PropTypes.string,
-
-	/**
-	 * Label text
-	 */
-	label: PropTypes.string,
-
-	/**
-	 * Visually hide label
-	 */
-	hideLabel: PropTypes.bool,
-
-	/**
-	 * Sub-label mode (smaller label text size)
-	 */
-	subLabel: PropTypes.bool,
-
-	/**
-	 * Hint text
-	 */
-	hint: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-
+	children: PropTypes.node,
 	/**
 	 * Error message text
 	 */
 	error: PropTypes.string,
-
+	/**
+	 * Visually hide label
+	 */
+	hideLabel: PropTypes.bool,
+	/**
+	 * Hint text
+	 */
+	hint: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+	/**
+	 * Label text
+	 */
+	label: PropTypes.string,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Field: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		ErrorMessage: PropTypes.shape({
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Field: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		FormLabel: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Hint: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		ErrorMessage: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Sub-label mode (smaller label text size)
+	 */
+	subLabel: PropTypes.bool,
 };
-
-Field.defaultProps = {};

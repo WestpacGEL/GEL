@@ -1,5 +1,6 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
+import { useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
 import { useState, useEffect, useCallback, ReactNode } from 'react';
 
 export const defaultProps = {};
@@ -14,13 +15,12 @@ import pkg from '../package.json';
 // Types
 // ==============================
 
-interface OverrideProps {
-	styles: (props: any) => any;
-	component: string;
-	attributes: (props: any) => any;
+export interface OverrideProps {
+	styles?: (...args: unknown[]) => unknown;
+	component?: React.ElementType;
+	attributes?: (...args: unknown[]) => unknown;
 }
-
-interface AlertProps {
+export interface AlertProps {
 	/**
 	 * Manually signal an open or close state of this alert
 	 */
@@ -33,54 +33,54 @@ interface AlertProps {
 	/**
 	 * Alert look
 	 */
-	look: 'info' | 'success' | 'warning' | 'danger' | 'system';
+	look?: 'info' | 'success' | 'warning' | 'danger' | 'system';
 
 	/**
 	 * Alert box style
 	 */
-	mode: 'box' | 'text';
+	mode?: 'box' | 'text';
 
 	/**
 	 * Enable dismissible mode
 	 */
-	dismissible: boolean;
+	dismissible?: boolean;
 
 	/**
 	 * onClose function for dismissible mode
 	 */
-	onClose: () => any;
+	onClose?: () => any;
 
 	/**
 	 * Alert icon.
 	 *
 	 * The alert icon is automatically rendered based on look. The icon can be overriden via this prop, for info look alerts only.
 	 */
-	icon: () => any;
+	icon?: () => any;
 
 	/**
 	 * The alert heading
 	 */
-	heading: string;
+	heading?: string;
 
 	/**
 	 * The alert heading tag is automatically defined, but may be overridden via this prop if required for semantic reasons.
 	 */
-	headingTag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+	headingTag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 	/**
 	 * Alert children
 	 */
-	children: ReactNode;
+	children?: ReactNode;
 
 	/**
 	 * The override API
 	 */
-	overrides: {
-		Alert: OverrideProps,
-		Body: OverrideProps,
-		CloseBtn: OverrideProps,
-		Icon: OverrideProps,
-		Heading: OverrideProps,
+	overrides?: {
+		Alert?: OverrideProps;
+		Body?: OverrideProps;
+		CloseBtn?: OverrideProps;
+		Icon?: OverrideProps;
+		Heading?: OverrideProps;
 	};
 }
 
@@ -193,33 +193,33 @@ Alert.propTypes = {
 	/**
 	 * Enable dismissible mode
 	 */
-	dismissible: PropTypes.bool.isRequired,
+	dismissible: PropTypes.bool,
 	/**
 	 * The alert heading
 	 */
-	heading: PropTypes.string.isRequired,
+	heading: PropTypes.string,
 	/**
 	 * The alert heading tag is automatically defined, but may be overridden via this prop if required for semantic reasons.
 	 */
-	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
+	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
 	/**
 	 * Alert icon.
 	 *
 	 * The alert icon is automatically rendered based on look. The icon can be overriden via this prop, for info look alerts only.
 	 */
-	icon: PropTypes.func.isRequired,
+	icon: PropTypes.func,
 	/**
 	 * Alert look
 	 */
-	look: PropTypes.oneOf(['danger', 'info', 'success', 'system', 'warning']).isRequired,
+	look: PropTypes.oneOf(['danger', 'info', 'success', 'system', 'warning']),
 	/**
 	 * Alert box style
 	 */
-	mode: PropTypes.oneOf(['box', 'text']).isRequired,
+	mode: PropTypes.oneOf(['box', 'text']),
 	/**
 	 * onClose function for dismissible mode
 	 */
-	onClose: PropTypes.func.isRequired,
+	onClose: PropTypes.func,
 	/**
 	 * Manually signal an open or close state of this alert
 	 */
@@ -229,29 +229,29 @@ Alert.propTypes = {
 	 */
 	overrides: PropTypes.shape({
 		Alert: PropTypes.shape({
-			attributes: PropTypes.func.isRequired,
-			component: PropTypes.string.isRequired,
-			styles: PropTypes.func.isRequired,
-		}).isRequired,
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
 		Body: PropTypes.shape({
-			attributes: PropTypes.func.isRequired,
-			component: PropTypes.string.isRequired,
-			styles: PropTypes.func.isRequired,
-		}).isRequired,
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
 		CloseBtn: PropTypes.shape({
-			attributes: PropTypes.func.isRequired,
-			component: PropTypes.string.isRequired,
-			styles: PropTypes.func.isRequired,
-		}).isRequired,
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
 		Heading: PropTypes.shape({
-			attributes: PropTypes.func.isRequired,
-			component: PropTypes.string.isRequired,
-			styles: PropTypes.func.isRequired,
-		}).isRequired,
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
 		Icon: PropTypes.shape({
-			attributes: PropTypes.func.isRequired,
-			component: PropTypes.string.isRequired,
-			styles: PropTypes.func.isRequired,
-		}).isRequired,
-	}).isRequired,
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
 };

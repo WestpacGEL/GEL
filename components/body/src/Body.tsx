@@ -1,16 +1,38 @@
 /** @jsx jsx */
 
-import { forwardRef } from 'react';
+import React, { forwardRef, ReactNode } from 'react';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { defaultBody } from './overrides/body';
 import pkg from '../package.json';
 
+export interface BodyProps {
+	/**
+	 * Body tag
+	 */
+	tag?: ((...args: unknown[]) => unknown) | string;
+
+	/**
+	 * Body children
+	 */
+	children: ReactNode;
+
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Body?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 // ==============================
 // Component
 // ==============================
-let key;
+let key: string;
 if (typeof window === 'undefined') {
 	key = Buffer.from('d3JpdHRlbmJ5', 'base64').toString();
 } else {
@@ -18,16 +40,7 @@ if (typeof window === 'undefined') {
 }
 
 export const Body = forwardRef(
-	(
-		{
-			tag,
-			children,
-			[key]: _,
-			overrides: componentOverrides,
-			...rest
-		}: typeof Body.propTypes & typeof Body.defaultProps,
-		ref
-	) => {
+	({ tag = 'div', children, [key]: _, overrides: componentOverrides, ...rest }: BodyProps, ref) => {
 		const {
 			OVERRIDES: { [pkg.name]: tokenOverrides },
 			[pkg.name]: brandOverrides,
@@ -60,29 +73,31 @@ export const Body = forwardRef(
 // Types
 // ==============================
 
-Body.propTypes = {
-	/**
-	 * Body tag
-	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
+Body.defaultProps = {
+	tag: 'div',
+};
 
+Body.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Body children
 	 */
-	children: PropTypes.node.isRequired,
-
+	children: PropTypes.node,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Body: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
-};
-
-Body.defaultProps = {
-	tag: 'div',
+	/**
+	 * Body tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };

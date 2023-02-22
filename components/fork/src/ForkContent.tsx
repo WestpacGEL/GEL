@@ -1,23 +1,42 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultForkContent } from './overrides/forkContent';
 import { useForkContext } from './Fork';
 import pkg from '../package.json';
+import { ReactNode } from 'react';
+
+interface ForkContentProps {
+	/**
+	 * Fork button-group item name
+	 */
+	text: string;
+	/**
+	 * Whether this content is selected and visible
+	 */
+	selected?: boolean;
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		ForkContent?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
 // ==============================
 
-export const ForkContent = ({
-	text,
-	selected,
-	children,
-	overrides,
-	...rest
-}: typeof ForkContent.propTypes & typeof ForkContent.defaultProps) => {
+export const ForkContent = ({ text, selected, children, overrides, ...rest }: ForkContentProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -58,31 +77,33 @@ export const ForkContent = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
+ForkContent.defaultProps = {};
 
 ForkContent.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
-	 * Fork button-group item name
+	 * Children
 	 */
-	text: PropTypes.string.isRequired,
-
-	/**
-	 * Whether this content is selected and visible
-	 */
-	selected: PropTypes.bool,
-
+	children: PropTypes.node,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		ForkContent: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Whether this content is selected and visible
+	 */
+	selected: PropTypes.bool,
+	/**
+	 * Fork button-group item name
+	 */
+	text: PropTypes.string.isRequired,
 };
-
-ForkContent.defaultProps = {};

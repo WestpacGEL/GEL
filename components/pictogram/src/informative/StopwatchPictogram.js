@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const StopwatchPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -32,4 +32,4 @@ StopwatchPictogram.defaultProps = {
 	assistiveText: 'Stopwatch',
 	copyrightYear: '2020',
 };
-StopwatchPictogram.propTypes = propTypes;
+StopwatchPictogram.propTypes = Pictogram.propTypes;

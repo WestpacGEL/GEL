@@ -1,17 +1,85 @@
-/** @jsx jsx */
-
+import PropTypes from 'prop-types';
 import React from 'react';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import PropTypes from 'prop-types';
 
 import { defaultDatePicker } from './overrides/datePicker';
 import { defaultDatePickerInput } from './overrides/datePickerInput';
 
-import {
-	propTypes as textInputPropTypes,
-	defaultProps as textInputDefaultProps,
-} from '@westpac/text-input';
+import { defaultProps as textInputDefaultProps } from '@westpac/text-input';
 import pkg from '../package.json';
+
+interface DatePickerProps {
+	/**
+	 * The component input's `id` attribute
+	 */
+	id?: string;
+	/**
+	 * The component input's `placeholder` attribute
+	 */
+	placeholder?: string;
+	/**
+	 * Component size
+	 */
+	size?: unknown;
+	/**
+	 * Maximum date allowed to be picked. Must be in IS0-8601 format: YYYY-MM-DD.
+	 */
+	max?: string;
+	/**
+	 * Minimum date allowed to be picked. Must be in IS0-8601 format: YYYY-MM-DD.
+	 */
+	min?: string;
+	/*
+	 * Name of the date picker input
+	 */
+	name?: string;
+	/*
+	 * Date picker input value. Must be in IS0-8601 format: YYYY-MM-DD
+	 */
+	value?: string;
+	/*
+	 * Disable specific dates. Must be in IS0-8601 format: YYYY-MM-DD
+	 */
+	disableDates?: string | string[];
+	/*
+	 * Disable days of the week. 0 for Sunday, 1 for Monday, etc.
+	 */
+	disableDaysOfWeek?: number | number[];
+	/*
+	 * Disable weekend days
+	 */
+	disableWeekends?: boolean;
+	/*
+	 * onChange
+	 */
+	onChange?: (...args: unknown[]) => unknown;
+	/*
+	 * onFocus
+	 */
+	onFocus?: (...args: unknown[]) => unknown;
+	/*
+	 * onBlur
+	 */
+	onBlur?: (...args: unknown[]) => unknown;
+	/*
+	 * onOpen
+	 */
+	onOpen?: (...args: unknown[]) => unknown;
+	/*
+	 * onClose
+	 */
+	onClose?: (...args: unknown[]) => unknown;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		DatePicker?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -19,8 +87,6 @@ import pkg from '../package.json';
 
 export const DatePicker = ({
 	id,
-	placeholder,
-	size,
 	max,
 	min,
 	name,
@@ -33,9 +99,11 @@ export const DatePicker = ({
 	onBlur,
 	onOpen,
 	onClose,
+	placeholder = '',
+	size = textInputDefaultProps.size,
 	overrides: componentOverrides,
 	...rest
-}: typeof DatePicker.propTypes & typeof DatePicker.defaultProps) => {
+}: DatePickerProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -95,76 +163,56 @@ export const DatePicker = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
-DatePicker.propTypes = {
-	/**
-	 * The component input's `id` attribute
-	 */
-	id: PropTypes.string,
-
-	/**
-	 * The component input's `placeholder` attribute
-	 */
-	placeholder: PropTypes.string,
-
-	/**
-	 * Component size
-	 */
-	size: textInputPropTypes.size,
-
-	/**
-	 * Maximum date allowed to be picked. Must be in IS0-8601 format: YYYY-MM-DD.
-	 */
-	max: PropTypes.string,
-
-	/**
-	 * Minimum date allowed to be picked. Must be in IS0-8601 format: YYYY-MM-DD.
-	 */
-	min: PropTypes.string,
-
-	/*
-	 * Name of the date picker input
-	 */
-	name: PropTypes.string,
-
-	/*
-	 * Date picker input value. Must be in IS0-8601 format: YYYY-MM-DD
-	 */
-	value: PropTypes.string,
-
-	/*
-	 * Disable specific dates. Must be in IS0-8601 format: YYYY-MM-DD
-	 */
-	disableDates: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-
-	/*
-	 * Disable days of the week. 0 for Sunday, 1 for Monday, etc.
-	 */
-	disableDaysOfWeek: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
-
-	/*
-	 * Disable weekend days
-	 */
-	disableWeekends: PropTypes.bool,
-
-	/**
-	 * The override API
-	 */
-	overrides: PropTypes.shape({
-		DatePicker: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
-};
-
 export const defaultProps = {
 	placeholder: '',
 	size: textInputDefaultProps.size,
 };
 
 DatePicker.defaultProps = defaultProps;
+
+DatePicker.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
+	disableDates: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+	disableDaysOfWeek: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+	disableWeekends: PropTypes.bool,
+	/**
+	 * The component input's `id` attribute
+	 */
+	id: PropTypes.string,
+	/**
+	 * Maximum date allowed to be picked. Must be in IS0-8601 format: YYYY-MM-DD.
+	 */
+	max: PropTypes.string,
+	/**
+	 * Minimum date allowed to be picked. Must be in IS0-8601 format: YYYY-MM-DD.
+	 */
+	min: PropTypes.string,
+	name: PropTypes.string,
+	onBlur: PropTypes.func,
+	onChange: PropTypes.func,
+	onClose: PropTypes.func,
+	onFocus: PropTypes.func,
+	onOpen: PropTypes.func,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		DatePicker: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
+	/**
+	 * The component input's `placeholder` attribute
+	 */
+	placeholder: PropTypes.string,
+	/**
+	 * Component size
+	 */
+	size: PropTypes.any,
+	value: PropTypes.string,
+};

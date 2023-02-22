@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const NoodlesPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -32,4 +32,4 @@ NoodlesPictogram.defaultProps = {
 	assistiveText: 'Noodles',
 	copyrightYear: '2021',
 };
-NoodlesPictogram.propTypes = propTypes;
+NoodlesPictogram.propTypes = Pictogram.propTypes;

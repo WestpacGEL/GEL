@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const DriversLicencePictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -32,4 +32,4 @@ DriversLicencePictogram.defaultProps = {
 	assistiveText: 'Drivers licence',
 	copyrightYear: '2020',
 };
-DriversLicencePictogram.propTypes = propTypes;
+DriversLicencePictogram.propTypes = Pictogram.propTypes;

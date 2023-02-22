@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const LoopPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -29,4 +29,4 @@ LoopPictogram.defaultProps = {
 	assistiveText: 'Loop',
 	copyrightYear: '2021',
 };
-LoopPictogram.propTypes = propTypes;
+LoopPictogram.propTypes = Pictogram.propTypes;

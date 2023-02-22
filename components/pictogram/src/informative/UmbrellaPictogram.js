@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const UmbrellaPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -28,4 +28,4 @@ UmbrellaPictogram.defaultProps = {
 	assistiveText: 'Umbrella',
 	copyrightYear: '2021',
 };
-UmbrellaPictogram.propTypes = propTypes;
+UmbrellaPictogram.propTypes = Pictogram.propTypes;

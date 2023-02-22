@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const CalendarPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -28,4 +28,4 @@ CalendarPictogram.defaultProps = {
 	assistiveText: 'Calendar',
 	copyrightYear: '2020',
 };
-CalendarPictogram.propTypes = propTypes;
+CalendarPictogram.propTypes = Pictogram.propTypes;

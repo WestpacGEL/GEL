@@ -5,14 +5,10 @@ import glob from 'glob';
 import prettier from 'prettier';
 import * as ttp from 'typescript-to-proptypes';
 
-
 const prettierConfig = prettier.resolveConfig.sync(path.join(__dirname, '../.prettierrc'));
 
-const componentFiles = glob.sync('components/a11y/src/*.{ts,tsx}', { absolute: true });
-const program = ttp.createProgram(
-	componentFiles,
-	ttp.loadConfig('tsconfig.example.json')
-);
+const componentFiles = glob.sync('components/**/src/*.tsx', { absolute: true });
+const program = ttp.createProgram(componentFiles, ttp.loadConfig('tsconfig.example.json'));
 
 for (const componentFile of componentFiles) {
 	const extname = path.extname(componentFile);
@@ -36,7 +32,7 @@ for (const componentFile of componentFiles) {
 	if (componentFile.endsWith('.d.ts')) {
 		try {
 			inputSource = fs.readFileSync(inputJS, 'utf8');
-		} catch (error) { }
+		} catch (error) {}
 	} else {
 		// inputSource = fs.readFileSync(testCase, 'utf8')
 		inputSource = ttp.ts.transpileModule(fs.readFileSync(componentFile, 'utf8'), {
@@ -78,7 +74,7 @@ for (const componentFile of componentFiles) {
 						.replace(/\s/g, '') === generated.replace(/\s/g, '')
 				) {
 					throw new Error(
-						`Unused \`@typescript-to-proptypes-ignore\` directive for prop '${prop.name}'.`,
+						`Unused \`@typescript-to-proptypes-ignore\` directive for prop '${prop.name}'.`
 					);
 				}
 
@@ -101,32 +97,37 @@ for (const componentFile of componentFiles) {
 	//#region Check generated and/or injected proptypes
 	const propTypes = prettier.format(result, {
 		...prettierConfig,
+		parser: 'typescript',
 		filepath: outputPath,
 	});
 
 	newAST.body.forEach(({ name }) => {
-    const regexpForPropTypes = new RegExp(`${name}\.propTypes(.|\n)+?,\n};\n`);
+		const regexpForPropTypes = new RegExp(`${name}\.propTypes(.|\n)+?,\n};\n`);
 		const newPropTypes = propTypes.match(regexpForPropTypes)?.[0];
 		const source = prettier.format(fs.readFileSync(componentFile, 'utf8'), {
-      ...prettierConfig || {},
-    });
-    let newFile = `${source}`;
+			parser: 'typescript',
+			...(prettierConfig || {}),
+		});
+		let newFile = source;
 
-    const propTypesFromSource = newFile.match(regexpForPropTypes)?.[0];
-	if (propTypesFromSource) {
-      newFile = newFile.replace(regexpForPropTypes, '');
-    }
-		if(newPropTypes){
+		const propTypesFromSource = newFile.match(regexpForPropTypes)?.[0];
+		if (propTypesFromSource) {
+			newFile = newFile.replace(regexpForPropTypes, '');
+		}
+		if (newPropTypes) {
 			newFile = `${newFile}\n\n${newPropTypes}`;
 		}
-    
-    const matchPropTypes = source.match('import PropTypes from \'prop-types\';');
-    if(!matchPropTypes){
-      newFile = `import PropTypes from \'prop-types\';\n${newFile}`
-    }
-		fs.writeFileSync(componentFile, prettier.format(newFile, {
-      ...prettierConfig || {},
-    }));
+
+		const matchPropTypes = newFile.match("import PropTypes from 'prop-types';");
+		if (!matchPropTypes) {
+			newFile = `import PropTypes from \'prop-types\';\n${newFile}`;
+		}
+		fs.writeFileSync(
+			componentFile,
+			prettier.format(newFile, {
+				parser: 'typescript',
+				...(prettierConfig || {}),
+			})
+		);
 	});
-	fs.writeFileSync(outputPath, propTypes);
 }

@@ -1,9 +1,7 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler, wrapHandlers, mergeWith } from '@westpac/core';
-import { useEffect, Children, createContext, useContext } from 'react';
-import { VisuallyHidden } from '@westpac/a11y';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler, wrapHandlers, mergeWith } from '@westpac/core';
+import React, { useEffect, Children, createContext, useContext } from 'react';
+import { VisuallyHidden } from '@westpac/a11y';
 
 import { defaultPagination } from './overrides/pagination';
 import { defaultList } from './overrides/list';
@@ -16,7 +14,7 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-const PaginationContext = createContext(null);
+const PaginationContext = createContext<any>(null);
 
 export const usePaginationContext = () => {
 	const context = useContext(PaginationContext);
@@ -27,6 +25,71 @@ export const usePaginationContext = () => {
 
 	return context;
 };
+
+interface PaginationProps {
+	/**
+	 * Index of current active page (zero-indexed)
+	 */
+	current: number;
+	/**
+	 * Infinite option
+	 */
+	infinite?: boolean;
+	/**
+	 * Back button options
+	 */
+	back?: {
+		text?: string;
+		visible?: boolean;
+		assistiveText?: (...args: unknown[]) => unknown;
+		onClick?: (...args: unknown[]) => unknown;
+	};
+	/**
+	 * Next button options
+	 */
+	next?: {
+		text?: string;
+		visible?: boolean;
+		assistiveText?: (...args: unknown[]) => unknown;
+		onClick?: (...args: unknown[]) => unknown;
+	};
+	/**
+	 * Alternative to children
+	 */
+	data?: {
+		text: string;
+		onClick(...args: unknown[]): unknown;
+	}[];
+	/**
+	 * Any renderable child
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Pagination?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		List?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Page?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Link?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -41,7 +104,7 @@ export const Pagination = ({
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Pagination.propTypes & typeof Pagination.defaultProps) => {
+}: PaginationProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -74,13 +137,13 @@ export const Pagination = ({
 	const backDefault = {
 		text: 'Back',
 		visible: true,
-		assistiveText: (page) => null,
+		assistiveText: (page: any) => null,
 	};
 
 	const nextDefault = {
 		text: 'Next',
 		visible: true,
-		assistiveText: (page) => null,
+		assistiveText: (page: any) => null,
 	};
 
 	const back = mergeWith(backDefault, backProps);
@@ -90,7 +153,7 @@ export const Pagination = ({
 
 	if (!data) {
 		allChildren = Children.map(children, (child) => ({
-			...child.props,
+			...child?.props,
 		}));
 	}
 
@@ -100,10 +163,10 @@ export const Pagination = ({
 		pageLogic.setCurrent(current);
 	}, [current, pageLogic]);
 
-	const pageCount = allChildren.length;
+	const pageCount = allChildren?.length;
 
 	let nextIndex = pageLogic.current + 1;
-	if (nextIndex > pageCount - 1) {
+	if (pageCount && nextIndex > pageCount - 1) {
 		if (infinite) {
 			nextIndex = 0;
 		} else {
@@ -129,7 +192,7 @@ export const Pagination = ({
 				css={paginationStyles(state)}
 			>
 				<List state={state} {...listAttributes(state)} css={listStyles(state)}>
-					{back.visible && (
+					{back?.visible && (
 						<Page
 							first
 							text={back.text}
@@ -142,7 +205,7 @@ export const Pagination = ({
 							)}
 						/>
 					)}
-					{allChildren.map((page, index) => (
+					{allChildren?.map((page, index) => (
 						<Page
 							key={index}
 							index={index}
@@ -150,7 +213,7 @@ export const Pagination = ({
 							onClick={(event) => pageLogic.setPage(event, allChildren, index)}
 						/>
 					))}
-					{next.visible && (
+					{next?.visible && (
 						<Page
 							last
 							text={next.text}
@@ -170,83 +233,77 @@ export const Pagination = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
+Pagination.defaultProps = {
+	current: 0,
+};
 
 Pagination.propTypes = {
-	/**
-	 * Index of current active page (zero-indexed)
-	 */
-	current: PropTypes.number.isRequired,
-
-	/**
-	 * Infinite option
-	 */
-	infinite: PropTypes.bool,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Back button options
 	 */
 	back: PropTypes.shape({
-		text: PropTypes.string,
-		visible: PropTypes.bool,
 		assistiveText: PropTypes.func,
 		onClick: PropTypes.func,
+		text: PropTypes.string,
+		visible: PropTypes.bool,
 	}),
-
 	/**
-	 * Next button options
+	 * Any renderable child
 	 */
-	next: PropTypes.shape({
-		text: PropTypes.string,
-		visible: PropTypes.bool,
-		assistiveText: PropTypes.func,
-		onClick: PropTypes.func,
-	}),
-
+	children: PropTypes.node,
+	/**
+	 * Index of current active page (zero-indexed)
+	 */
+	current: PropTypes.number.isRequired,
 	/**
 	 * Alternative to children
 	 */
 	data: PropTypes.arrayOf(
 		PropTypes.shape({
-			text: PropTypes.string.isRequired,
 			onClick: PropTypes.func.isRequired,
+			text: PropTypes.string.isRequired,
 		})
 	),
-
 	/**
-	 * Any renderable child
+	 * Infinite option
 	 */
-	children: PropTypes.node,
-
+	infinite: PropTypes.bool,
+	/**
+	 * Next button options
+	 */
+	next: PropTypes.shape({
+		assistiveText: PropTypes.func,
+		onClick: PropTypes.func,
+		text: PropTypes.string,
+		visible: PropTypes.bool,
+	}),
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Pagination: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		Link: PropTypes.shape({
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		List: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Page: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
-		Link: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		Pagination: PropTypes.shape({
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
-};
-
-Pagination.defaultProps = {
-	current: 0,
 };

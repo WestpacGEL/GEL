@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const ChatPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -31,4 +31,4 @@ ChatPictogram.defaultProps = {
 	assistiveText: 'Chat',
 	copyrightYear: '2020',
 };
-ChatPictogram.propTypes = propTypes;
+ChatPictogram.propTypes = Pictogram.propTypes;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 /**
  * Converts a value into an Array.
  *

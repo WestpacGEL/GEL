@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const FingerMotionPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -28,4 +28,4 @@ FingerMotionPictogram.defaultProps = {
 	assistiveText: 'Hand with finger raised',
 	copyrightYear: '2021',
 };
-FingerMotionPictogram.propTypes = propTypes;
+FingerMotionPictogram.propTypes = Pictogram.propTypes;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const HeadsetPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -28,4 +28,4 @@ HeadsetPictogram.defaultProps = {
 	assistiveText: 'Headset',
 	copyrightYear: '2021',
 };
-HeadsetPictogram.propTypes = propTypes;
+HeadsetPictogram.propTypes = Pictogram.propTypes;

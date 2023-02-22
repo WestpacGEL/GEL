@@ -1,20 +1,29 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { useInputClusterContext } from './InputCluster';
 import { defaultInputClusterItem } from './overrides/inputClusterItem';
 import pkg from '../package.json';
 
+interface InputClusterItemProps {
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		InputClusterItem?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
-export const InputClusterItem = ({
-	overrides,
-	...rest
-}: typeof InputClusterItem.propTypes & typeof InputClusterItem.defaultProps) => {
+export const InputClusterItem = ({ overrides, ...rest }: InputClusterItemProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -53,21 +62,21 @@ export const InputClusterItem = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
+InputClusterItem.defaultProps = {};
 
 InputClusterItem.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		InputClusterItem: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
-
-InputClusterItem.defaultProps = {};

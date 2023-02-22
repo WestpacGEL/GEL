@@ -1,8 +1,6 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React, { createContext, ReactNode, useContext } from 'react';
 
 import { defaultWrapper } from './overrides/wrapper';
 import { defaultTable } from './overrides/table';
@@ -12,10 +10,10 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-const TableContext = createContext(null);
+const TableContext = createContext<any>(null);
 
 export const useTableContext = () => {
-	const context = useContext(TableContext);
+	const context = useContext<any>(TableContext);
 
 	if (!context) {
 		throw new Error('Table sub-components should be wrapped in a <Table>.');
@@ -23,6 +21,66 @@ export const useTableContext = () => {
 
 	return context;
 };
+
+interface TableProps {
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * Striped mode
+	 */
+	striped?: boolean;
+	/**
+	 * Bordered mode
+	 */
+	bordered?: boolean;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Table?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Caption?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Tbody?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Td?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Tfoot?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Th?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Thead?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Tr?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -34,7 +92,7 @@ export const Table = ({
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Table.propTypes & typeof Table.defaultProps) => {
+}: TableProps) => {
 	const context = useContext(TableContext);
 	bordered = (context && context.bordered) || bordered;
 
@@ -77,70 +135,73 @@ export const Table = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
-Table.propTypes = {
-	/**
-	 * Striped mode
-	 */
-	striped: PropTypes.bool,
-	/**
-	 * Bordered mode
-	 */
-	bordered: PropTypes.bool,
-
-	/**
-	 * The override API
-	 */
-	overrides: PropTypes.shape({
-		Table: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Caption: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Tbody: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Td: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Tfoot: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Th: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Thead: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Tr: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
-};
-
 export const defaultProps = {
 	bordered: false,
 	striped: false,
 };
 
 Table.defaultProps = defaultProps;
+
+Table.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Bordered mode
+	 */
+	bordered: PropTypes.bool,
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Caption: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Table: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Tbody: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Td: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Tfoot: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Th: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Thead: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Tr: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
+	/**
+	 * Striped mode
+	 */
+	striped: PropTypes.bool,
+};

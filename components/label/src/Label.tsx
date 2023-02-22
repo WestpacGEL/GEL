@@ -1,21 +1,41 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultLabel } from './overrides/label';
 import pkg from '../package.json';
+
+export interface LabelProps {
+	/**
+	 * Label look
+	 */
+	look: 'primary' | 'hero' | 'neutral' | 'faint' | 'success' | 'info' | 'warning' | 'danger';
+	/**
+	 * Label text
+	 */
+	value: string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Label?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
 // ==============================
 
 export const Label = ({
-	look,
+	look = 'primary',
 	value,
 	overrides: componentOverrides,
 	...rest
-}: typeof Label.propTypes & typeof Label.defaultProps) => {
+}: LabelProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -43,44 +63,42 @@ export const Label = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
-Label.propTypes = {
-	/**
-	 * Label look
-	 */
-	look: PropTypes.oneOf([
-		'primary',
-		'hero',
-		'neutral',
-		'faint',
-		'success',
-		'info',
-		'warning',
-		'danger',
-	]).isRequired,
-
-	/**
-	 * Label text
-	 */
-	value: PropTypes.string.isRequired,
-
-	/**
-	 * The override API
-	 */
-	overrides: PropTypes.shape({
-		Label: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
-};
-
 export const defaultProps = {
 	look: 'primary',
 };
 
 Label.defaultProps = defaultProps;
+
+Label.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Label look
+	 */
+	look: PropTypes.oneOf([
+		'danger',
+		'faint',
+		'hero',
+		'info',
+		'neutral',
+		'primary',
+		'success',
+		'warning',
+	]).isRequired,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Label: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
+	/**
+	 * Label text
+	 */
+	value: PropTypes.string.isRequired,
+};

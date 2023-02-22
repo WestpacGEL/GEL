@@ -46,7 +46,7 @@
     "lint:format:fix": "yarn lint:fix && yarn format:fix",
     "test:types": "/bin/sh -c 'cd components/${1:-$0} && tsc'",
     "test:format": "yarn format && yarn lint",
-    "test:unit": "jest",
+    "test:unit": "jest -t 'Overrides test for header'",
     "test:unit:ci": "jest --runInBand --ci",
     "test:unit-watch": "jest --watchAll --coverage",
     "test:integration": "node helpers/tester.js",

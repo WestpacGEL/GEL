@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
-import PropTypes from 'prop-types';
 
 import { defaultLogoLink } from './overrides/logoLink';
 import { defaultFooter } from './overrides/footer';
@@ -11,6 +10,68 @@ import { defaultRight } from './overrides/right';
 import { defaultLogo } from './overrides/logo';
 import { defaultLeft } from './overrides/left';
 import pkg from '../package.json';
+
+export interface FooterProps {
+	/**
+	 * The link to redirect to on logo click
+	 */
+	logoLink?: string;
+	/**
+	 * Aria-label for the logo
+	 */
+	logoAssistiveText?: string;
+	/**
+	 * Visually hidden text for logo link
+	 */
+	srOnlyText?: string;
+	/**
+	 * Right offset for use with GEL sidebar component
+	 */
+	offsetSidebar?: boolean;
+	/**
+	 * Hide logo
+	 */
+	hideLogo?: boolean;
+	/**
+	 * Content to be put on the left side of the footer
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Footer?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Inner?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Left?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		LogoLink?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Logo?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Right?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -24,7 +85,7 @@ export const Footer = ({
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Footer.propTypes & typeof Footer.defaultProps) => {
+}: FooterProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -74,78 +135,68 @@ export const Footer = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
+Footer.defaultProps = {
+	logoLink: '#',
+};
 
 Footer.propTypes = {
-	/**
-	 * The link to redirect to on logo click
-	 */
-	logoLink: PropTypes.string,
-
-	/**
-	 * Aria-label for the logo
-	 */
-	logoAssistiveText: PropTypes.string,
-
-	/**
-	 * Visually hidden text for logo link
-	 */
-	srOnlyText: PropTypes.string,
-
-	/**
-	 * Right offset for use with GEL sidebar component
-	 */
-	offsetSidebar: PropTypes.bool,
-
-	/**
-	 * Hide logo
-	 */
-	hideLogo: PropTypes.bool,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Content to be put on the left side of the footer
 	 */
 	children: PropTypes.node,
-
+	/**
+	 * Hide logo
+	 */
+	hideLogo: PropTypes.bool,
+	/**
+	 * Aria-label for the logo
+	 */
+	logoAssistiveText: PropTypes.string,
+	/**
+	 * The link to redirect to on logo click
+	 */
+	logoLink: PropTypes.string,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Footer: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Inner: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Left: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		LogoLink: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			styles: PropTypes.func,
 		}),
 		Logo: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		LogoLink: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Right: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
-};
-
-Footer.defaultProps = {
-	logoLink: '#',
+	/**
+	 * Visually hidden text for logo link
+	 */
+	srOnlyText: PropTypes.string,
 };

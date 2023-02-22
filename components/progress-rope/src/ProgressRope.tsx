@@ -1,7 +1,6 @@
-/** @jsx jsx */
-
+import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import {
+import React, {
 	Children,
 	cloneElement,
 	createContext,
@@ -11,8 +10,8 @@ import {
 	useId,
 	useCallback,
 	useMemo,
+	ReactNode,
 } from 'react';
-import PropTypes from 'prop-types';
 
 import { defaultProgressRope } from './overrides/progressRope';
 import { defaultList } from './overrides/list';
@@ -25,7 +24,7 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-const ProgressRopeContext = createContext(null);
+const ProgressRopeContext = createContext<any>(null);
 
 export const useProgressRopeContext = () => {
 	const context = useContext(ProgressRopeContext);
@@ -109,7 +108,7 @@ const createRopeGraph = useCallback(
 	[]
 );
 
-const progressReducer = (state, action) => {
+const progressReducer = (state: any, action: any) => {
 	switch (action.type) {
 		case 'UPDATE_STEP':
 			return { ...state, currStep: action.payload };
@@ -126,6 +125,79 @@ const progressReducer = (state, action) => {
 	}
 };
 
+export interface ProgressRopeProps {
+	/**
+	 * Data
+	 */
+	data?: {
+		type: any;
+		text: any;
+		onClick: any;
+		steps: any;
+		[key: string]: any;
+	}[];
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * Define an id for the group step elements e.g. for an instanceId of "progress-rope" --> "progress-rope-group-1" etc.
+	 */
+	instanceId?: string;
+	/**
+	 * Current active step (zero-indexed)
+	 */
+	current: number;
+	/**
+	 * The tag of the heading elements wrapping group toggles for semantic reasons
+	 */
+	headingsTag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+	/**
+	 * Text to use as the `aria-label` for the progress rope
+	 */
+	assistiveText: string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		ProgressRope?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Group?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		GroupText?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		GroupList?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		List?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Step?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		StepButton?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
@@ -139,7 +211,7 @@ export const ProgressRope = ({
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof ProgressRope.propTypes & typeof ProgressRope.defaultProps) => {
+}: ProgressRopeProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -189,7 +261,7 @@ export const ProgressRope = ({
 		const updatedGraph = progState.ropeGraph.map((group) => [...group]); // deep copy
 
 		if (progState.grouped) {
-			progState.ropeGraph.forEach((group, i) => {
+			progState.ropeGraph.forEach((group: any, i: number) => {
 				if (current >= stepCount) {
 					stepCount += group.length;
 					if (current < stepCount) {
@@ -216,7 +288,7 @@ export const ProgressRope = ({
 	}, [current]);
 
 	const handleClick = useCallback(
-		(index) => {
+		(index: number) => {
 			dispatch({
 				type: 'UPDATE_OPEN_GROUP',
 				payload: index !== progState.openGroup ? index : null,
@@ -231,7 +303,7 @@ export const ProgressRope = ({
 			if (type && type === 'group') {
 				allChildren.push(
 					<Group key={idx} index={idx} text={text} overrides={componentOverrides}>
-						{steps.map((step, stepIndex) => (
+						{steps.map((step: any, stepIndex: number) => (
 							<Step
 								key={stepIndex}
 								index={stepIndex}
@@ -281,75 +353,86 @@ export const ProgressRope = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
-ProgressRope.propTypes = {
-	/**
-	 * Define an id for the group step elements e.g. for an instanceId of "progress-rope" --> "progress-rope-group-1" etc.
-	 */
-	instanceId: PropTypes.string,
-
-	/**
-	 * Current active step (zero-indexed)
-	 */
-	current: PropTypes.number.isRequired,
-
-	/**
-	 * The tag of the heading elements wrapping group toggles for semantic reasons
-	 */
-	headingsTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
-
-	/**
-	 * Text to use as the `aria-label` for the progress rope
-	 */
-	assistiveText: PropTypes.string.isRequired,
-
-	/**
-	 * The override API
-	 */
-	overrides: PropTypes.shape({
-		ProgressRope: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Group: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		GroupText: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		GroupList: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		List: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Step: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		StepButton: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
-};
-
 ProgressRope.defaultProps = {
 	current: 0,
 	headingsTag: 'h3',
 	assistiveText: 'In this form',
+};
+
+ProgressRope.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Text to use as the `aria-label` for the progress rope
+	 */
+	assistiveText: PropTypes.string.isRequired,
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
+	/**
+	 * Current active step (zero-indexed)
+	 */
+	current: PropTypes.number.isRequired,
+	/**
+	 * Data
+	 */
+	data: PropTypes.arrayOf(
+		PropTypes.shape({
+			onClick: PropTypes.any.isRequired,
+			steps: PropTypes.any.isRequired,
+			text: PropTypes.any.isRequired,
+			type: PropTypes.any.isRequired,
+		})
+	),
+	/**
+	 * The tag of the heading elements wrapping group toggles for semantic reasons
+	 */
+	headingsTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
+	/**
+	 * Define an id for the group step elements e.g. for an instanceId of "progress-rope" --> "progress-rope-group-1" etc.
+	 */
+	instanceId: PropTypes.string,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Group: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		GroupList: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		GroupText: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		List: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		ProgressRope: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Step: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		StepButton: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
 };

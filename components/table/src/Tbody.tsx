@@ -1,22 +1,34 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultTBody } from './overrides/tbody';
 
 import { useTableContext } from './Table';
 import pkg from '../package.json';
+import React, { ReactNode } from 'react';
+
+export interface TbodyProps {
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Tbody?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
 // ==============================
 
-export const Tbody = ({
-	children,
-	overrides,
-	...rest
-}: typeof Tbody.propTypes & typeof Tbody.defaultProps) => {
+export const Tbody = ({ children, overrides, ...rest }: TbodyProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -47,19 +59,23 @@ export const Tbody = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Tbody.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Tbody: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };

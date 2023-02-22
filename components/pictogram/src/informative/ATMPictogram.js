@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const ATMPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -28,4 +28,4 @@ ATMPictogram.defaultProps = {
 	assistiveText: 'ATM',
 	copyrightYear: '2020',
 };
-ATMPictogram.propTypes = propTypes;
+ATMPictogram.propTypes = Pictogram.propTypes;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const WBCBankCardPictogram = (props) => {
 	return (
@@ -49,4 +49,4 @@ WBCBankCardPictogram.defaultProps = {
 	assistiveText: 'Bank card',
 	copyrightYear: '2020',
 };
-WBCBankCardPictogram.propTypes = propTypes;
+WBCBankCardPictogram.propTypes = Pictogram.propTypes;

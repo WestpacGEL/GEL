@@ -1,17 +1,15 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultVisuallyHidden } from './overrides/visuallyHidden';
 import pkg from '../package.json';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 // ==============================
 // Types
 // ==============================
 
-interface VisuallyHiddenProps {
+export interface VisuallyHiddenProps {
 	/**
 	 * Component tag
 	 */
@@ -26,11 +24,11 @@ interface VisuallyHiddenProps {
 	 * The override API
 	 */
 	overrides?: {
-		VisuallyHidden: {
-			styles?: ((props: any) => any) | string,
-			component?: string,
-			attributes?: ((props: any) => any) | string,
-		},
+		VisuallyHidden?: {
+			styles?: ((props: any) => any) | string;
+			component?: string;
+			attributes?: ((props: any) => any) | string;
+		};
 	};
 }
 
@@ -82,4 +80,29 @@ export const VisuallyHidden = ({
 			{children}
 		</VisuallyHidden>
 	);
+};
+
+VisuallyHidden.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Component content
+	 */
+	children: PropTypes.node,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		VisuallyHidden: PropTypes.shape({
+			attributes: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+			component: PropTypes.string,
+			styles: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+		}),
+	}),
+	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };

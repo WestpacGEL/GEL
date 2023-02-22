@@ -1,5 +1,5 @@
-/** @jsx jsx */
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
 import {
 	createContext,
@@ -11,10 +11,10 @@ import {
 	useCallback,
 	KeyboardEvent,
 	useMemo,
+	ReactNode,
 } from 'react';
 import { useOutsideClick, useIsomorphicLayoutEffect } from '@westpac/hooks';
 import { Button } from '@westpac/button';
-import PropTypes from 'prop-types';
 
 import { defaultButtonDropdown } from './overrides/buttonDropdown';
 import { defaultPanel } from './overrides/panel';
@@ -24,7 +24,7 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-const ButtonDropdownContext = createContext();
+const ButtonDropdownContext = createContext<any>(null);
 
 export const useButtonDropdownContext = () => {
 	const context = useContext(ButtonDropdownContext);
@@ -36,21 +36,74 @@ export const useButtonDropdownContext = () => {
 	return context;
 };
 
+interface ButtonDropdownProps {
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId?: string;
+	/**
+	 * State of whether the Popover is open
+	 */
+	open?: boolean;
+	/**
+	 * Button text
+	 */
+	text: string;
+	/**
+	 * Dropdown size
+	 */
+	dropdownSize?: 'small' | 'medium' | 'large' | 'small' | 'medium' | 'large'[];
+	/**
+	 * Block mode.
+	 *
+	 * Fit button width to its parent width.
+	 */
+	block?: boolean | boolean[];
+	/**
+	 * A function for the onClick event
+	 */
+	onClick?: (...args: unknown[]) => unknown;
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		ButtonDropdown?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Panel?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Heading?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const ButtonDropdown = ({
 	instanceId,
-	open,
 	text,
-	dropdownSize,
-	block,
 	onClick = () => {},
 	children,
 	overrides: componentOverrides,
+	open = false,
+	dropdownSize = 'medium',
+	block = false,
 	...rest
-}: typeof ButtonDropdown.propTypes & typeof ButtonDropdown.defaultProps) => {
+}: ButtonDropdownProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -60,8 +113,8 @@ export const ButtonDropdown = ({
 	const _id = useId();
 	const id = useMemo(() => instanceId || `gel-button-dropdown-${_id}`, [_id, instanceId]);
 
-	const panelRef = useRef();
-	const buttonRef = useRef();
+	const panelRef = useRef<HTMLDivElement>();
+	const buttonRef = useRef<HTMLDivElement>();
 
 	const defaultOverrides = {
 		ButtonDropdown: defaultButtonDropdown,
@@ -94,12 +147,12 @@ export const ButtonDropdown = ({
 
 	useIsomorphicLayoutEffect(() => {
 		if (!isOpen) {
-			buttonRef.current.focus();
+			buttonRef.current?.focus();
 		}
 	}, [isOpen]);
 
 	const handleOpen = useCallback(
-		(event: globalThis.KeyboardEvent) => {
+		(event: any) => {
 			wrapHandlers(
 				() => onClick(),
 				() => {
@@ -163,68 +216,6 @@ export const ButtonDropdown = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
-ButtonDropdown.propTypes = {
-	/**
-	 * Define an id for internal elements
-	 */
-	instanceId: PropTypes.string,
-
-	/**
-	 * State of whether the Popover is open
-	 */
-	open: PropTypes.bool,
-
-	/**
-	 * Button text
-	 */
-	text: PropTypes.string.isRequired,
-
-	/**
-	 * Dropdown size
-	 */
-	dropdownSize: PropTypes.oneOfType([
-		PropTypes.oneOf(['small', 'medium', 'large']),
-		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large'])),
-	]),
-
-	/**
-	 * Block mode.
-	 *
-	 * Fit button width to its parent width.
-	 */
-	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
-
-	/**
-	 * A function for the onClick event
-	 */
-	onClick: PropTypes.func,
-
-	/**
-	 * The override API
-	 */
-	overrides: PropTypes.shape({
-		ButtonDropdown: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Panel: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Heading: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
-};
-
 export const defaultProps = {
 	open: false,
 	dropdownSize: 'medium',
@@ -232,3 +223,63 @@ export const defaultProps = {
 };
 
 ButtonDropdown.defaultProps = defaultProps;
+
+ButtonDropdown.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Block mode.
+	 *
+	 * Fit button width to its parent width.
+	 */
+	block: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.bool), PropTypes.bool]),
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
+	/**
+	 * Dropdown size
+	 */
+	dropdownSize: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small']),
+		PropTypes.arrayOf(PropTypes.oneOf(['large'])),
+	]),
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+	/**
+	 * A function for the onClick event
+	 */
+	onClick: PropTypes.func,
+	/**
+	 * State of whether the Popover is open
+	 */
+	open: PropTypes.bool,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		ButtonDropdown: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Heading: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Panel: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
+	/**
+	 * Button text
+	 */
+	text: PropTypes.string.isRequired,
+};

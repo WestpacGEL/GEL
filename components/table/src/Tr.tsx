@@ -1,8 +1,6 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React, { Children, cloneElement, ReactNode } from 'react';
 
 import { defaultTr } from './overrides/tr';
 
@@ -13,7 +11,7 @@ import pkg from '../package.json';
 // Utils
 // ==============================
 
-const generateHighlightMap = (highlighted, tdCount) => {
+const generateHighlightMap = (highlighted: any[], tdCount: number) => {
 	const map = Array(tdCount).fill(false);
 
 	highlighted.forEach((highlight) => {
@@ -27,17 +25,36 @@ const generateHighlightMap = (highlighted, tdCount) => {
 	return map;
 };
 
+export interface TrProps {
+	/**
+	 * striped
+	 */
+	striped?: any;
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * Highlighted mode
+	 */
+	highlighted?: boolean | unknown[];
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Tr?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
-export const Tr = ({
-	striped,
-	highlighted,
-	children,
-	overrides,
-	...rest
-}: typeof Tr.propTypes & typeof Tr.defaultProps) => {
+export const Tr = ({ striped, highlighted = false, children, overrides, ...rest }: TrProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -89,30 +106,37 @@ export const Tr = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
-Tr.propTypes = {
-	/**
-	 * Highlighted mode
-	 */
-	highlighted: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
-
-	/**
-	 * The override API
-	 */
-	overrides: PropTypes.shape({
-		Tr: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
-};
-
 export const defaultProps = {
 	highlighted: false,
 };
 
 Tr.defaultProps = defaultProps;
+
+Tr.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
+	/**
+	 * Highlighted mode
+	 */
+	highlighted: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Tr: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
+	/**
+	 * striped
+	 */
+	striped: PropTypes.any,
+};

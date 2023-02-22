@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { forwardRef, createContext, useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { forwardRef, createContext, useContext, ReactNode, ButtonHTMLAttributes } from 'react';
 
 import { defaultButton } from './overrides/button';
 
@@ -13,7 +12,7 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-export const ButtonContext = createContext(null);
+export const ButtonContext = createContext<any>(null);
 
 export const useButtonContext = () => {
 	const context = useContext(ButtonContext);
@@ -25,6 +24,122 @@ export const useButtonContext = () => {
 	return context;
 };
 
+export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+	/**
+	 * Button look
+	 */
+	look?: 'primary' | 'hero' | 'faint' | 'link' | 'unstyled';
+
+	/**
+	 * Button size
+	 */
+	size?: 'small' | 'medium' | 'large' | 'xlarge' | ('small' | 'medium' | 'large' | 'xlarge')[];
+
+	/**
+	 * Button tag
+	 */
+	tag?: ((...args: unknown[]) => unknown) | string;
+
+	/**
+	 * Button type.
+	 *
+	 * Default type of 'button' if tag is 'button'.
+	 */
+	type?: string;
+
+	/**
+	 * Soft mode.
+	 *
+	 * Removes background colour and adjusts text colour.
+	 */
+	soft?: boolean;
+
+	/**
+	 * Button disabled
+	 */
+	disabled?: boolean;
+
+	/**
+	 * Block mode.
+	 *
+	 * Fit button width to its parent width.
+	 */
+	block?: boolean | boolean[];
+
+	/**
+	 * Places an icon within the button, after the button’s text
+	 */
+	iconAfter?: (...args: unknown[]) => unknown;
+
+	/**
+	 * Places an icon within the button, before the button’s text
+	 */
+	iconBefore?: (...args: unknown[]) => unknown;
+
+	/**
+	 * The color for the icon.
+	 *
+	 * Defaults to the current text color.
+	 */
+	iconColor?: string;
+
+	/**
+	 * Justify align button children
+	 */
+	justify?: boolean;
+
+	/**
+	 * Text to use as the `aria-label` for the button
+	 */
+	assistiveText?: string;
+
+	/**
+	 * Enable dropdown mode
+	 */
+	dropdown?: boolean;
+
+	/**
+	 * Handler to be called on click
+	 */
+	onClick?: (...args: unknown[]) => unknown;
+
+	/**
+	 * Button text
+	 */
+	children?: ReactNode;
+
+	/**
+	 * Href
+	 */
+	href?: string;
+
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Button?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Content?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Text?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Icon?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
@@ -32,24 +147,24 @@ export const useButtonContext = () => {
 export const Button = forwardRef(
 	(
 		{
-			look,
-			size,
-			soft,
-			block,
 			iconAfter,
 			iconBefore,
 			iconColor,
-			justify,
-			disabled,
 			assistiveText,
-			tag,
 			type,
 			dropdown,
 			onClick,
 			children,
 			overrides: componentOverrides,
+			look = 'hero',
+			size = 'medium',
+			tag = 'button',
+			soft = false,
+			block = false,
+			justify = false,
+			disabled = false,
 			...rest
-		}: typeof Button.propTypes & typeof Button.defaultProps,
+		}: ButtonProps,
 		ref
 	) => {
 		const {
@@ -122,123 +237,11 @@ export const Button = forwardRef(
 	}
 );
 
+Button.displayName = 'Button';
+
 // ==============================
 // Types
 // ==============================
-
-Button.propTypes = {
-	/**
-	 * Button look
-	 */
-	look: PropTypes.oneOf(['primary', 'hero', 'faint', 'link', 'unstyled']).isRequired,
-
-	/**
-	 * Button size
-	 */
-	size: PropTypes.oneOfType([
-		PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
-		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
-	]).isRequired,
-
-	/**
-	 * Button tag
-	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
-
-	/**
-	 * Button type.
-	 *
-	 * Default type of 'button' if tag is 'button'.
-	 */
-	type: PropTypes.string,
-
-	/**
-	 * Soft mode.
-	 *
-	 * Removes background colour and adjusts text colour.
-	 */
-	soft: PropTypes.bool,
-
-	/**
-	 * Button disabled
-	 */
-	disabled: PropTypes.bool.isRequired,
-
-	/**
-	 * Block mode.
-	 *
-	 * Fit button width to its parent width.
-	 */
-	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
-
-	/**
-	 * Places an icon within the button, after the button’s text
-	 */
-	iconAfter: PropTypes.func,
-
-	/**
-	 * Places an icon within the button, before the button’s text
-	 */
-	iconBefore: PropTypes.func,
-
-	/**
-	 * The color for the icon.
-	 *
-	 * Defaults to the current text color.
-	 */
-	iconColor: PropTypes.string,
-
-	/**
-	 * Justify align button children
-	 */
-	justify: PropTypes.bool,
-
-	/**
-	 * Text to use as the `aria-label` for the button
-	 */
-	assistiveText: PropTypes.string,
-
-	/**
-	 * Enable dropdown mode
-	 */
-	dropdown: PropTypes.bool,
-
-	/**
-	 * Handler to be called on click
-	 */
-	onClick: PropTypes.func,
-
-	/**
-	 * Button text
-	 */
-	children: PropTypes.node,
-
-	/**
-	 * The override API
-	 */
-	overrides: PropTypes.shape({
-		Button: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Content: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Text: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Icon: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
-};
 
 export const defaultProps = {
 	look: 'hero',
@@ -250,4 +253,109 @@ export const defaultProps = {
 	disabled: false,
 };
 
-Button.defaultProps = defaultProps;
+Button.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Text to use as the `aria-label` for the button
+	 */
+	assistiveText: PropTypes.string,
+	/**
+	 * Block mode.
+	 *
+	 * Fit button width to its parent width.
+	 */
+	block: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.bool), PropTypes.bool]),
+	/**
+	 * Button text
+	 */
+	children: PropTypes.node,
+	/**
+	 * Button disabled
+	 */
+	disabled: PropTypes.bool,
+	/**
+	 * Enable dropdown mode
+	 */
+	dropdown: PropTypes.bool,
+	/**
+	 * Href
+	 */
+	href: PropTypes.string,
+	/**
+	 * Places an icon within the button, after the button’s text
+	 */
+	iconAfter: PropTypes.func,
+	/**
+	 * Places an icon within the button, before the button’s text
+	 */
+	iconBefore: PropTypes.func,
+	/**
+	 * The color for the icon.
+	 *
+	 * Defaults to the current text color.
+	 */
+	iconColor: PropTypes.string,
+	/**
+	 * Justify align button children
+	 */
+	justify: PropTypes.bool,
+	/**
+	 * Button look
+	 */
+	look: PropTypes.oneOf(['faint', 'hero', 'link', 'primary', 'unstyled']),
+	/**
+	 * Handler to be called on click
+	 */
+	onClick: PropTypes.func,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Button: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Content: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Icon: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Text: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
+	/**
+	 * Button size
+	 */
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge'])),
+	]),
+	/**
+	 * Soft mode.
+	 *
+	 * Removes background colour and adjusts text colour.
+	 */
+	soft: PropTypes.bool,
+	/**
+	 * Button tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+	/**
+	 * Button type.
+	 *
+	 * Default type of 'button' if tag is 'button'.
+	 */
+	type: PropTypes.string,
+};

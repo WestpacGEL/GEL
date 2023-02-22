@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const DesktopComputerPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -32,4 +32,4 @@ DesktopComputerPictogram.defaultProps = {
 	assistiveText: 'Desktop computer',
 	copyrightYear: '2020',
 };
-DesktopComputerPictogram.propTypes = propTypes;
+DesktopComputerPictogram.propTypes = Pictogram.propTypes;

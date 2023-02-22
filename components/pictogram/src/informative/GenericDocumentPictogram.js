@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const GenericDocumentPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -37,4 +37,4 @@ GenericDocumentPictogram.defaultProps = {
 	assistiveText: 'Generic document',
 	copyrightYear: '2020',
 };
-GenericDocumentPictogram.propTypes = propTypes;
+GenericDocumentPictogram.propTypes = Pictogram.propTypes;

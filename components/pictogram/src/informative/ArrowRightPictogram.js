@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const ArrowRightPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -28,4 +28,4 @@ ArrowRightPictogram.defaultProps = {
 	assistiveText: 'Arrow right',
 	copyrightYear: '2021',
 };
-ArrowRightPictogram.propTypes = propTypes;
+ArrowRightPictogram.propTypes = Pictogram.propTypes;

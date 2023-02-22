@@ -1,22 +1,34 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultBody } from './overrides/body';
 
 import { useModalContext } from './Modal';
 import pkg from '../package.json';
 
+export interface ModalBodyProps {
+	/**
+	 * Modal body content
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Body?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
-export const ModalBody = ({
-	children,
-	overrides,
-	...rest
-}: typeof ModalBody.propTypes & typeof ModalBody.defaultProps) => {
+export const ModalBody = ({ children, overrides, ...rest }: ModalBodyProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -47,24 +59,23 @@ export const ModalBody = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 ModalBody.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Modal body content
 	 */
 	children: PropTypes.node,
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Body: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };

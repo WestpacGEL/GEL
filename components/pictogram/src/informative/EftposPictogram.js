@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const EftposPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -32,4 +32,4 @@ EftposPictogram.defaultProps = {
 	assistiveText: 'Eftpos',
 	copyrightYear: '2020',
 };
-EftposPictogram.propTypes = propTypes;
+EftposPictogram.propTypes = Pictogram.propTypes;

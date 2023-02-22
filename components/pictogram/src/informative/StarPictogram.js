@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const StarPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -28,4 +28,4 @@ StarPictogram.defaultProps = {
 	assistiveText: 'Star',
 	copyrightYear: '2020',
 };
-StarPictogram.propTypes = propTypes;
+StarPictogram.propTypes = Pictogram.propTypes;

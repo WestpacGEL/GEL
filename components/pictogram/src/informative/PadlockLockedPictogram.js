@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const PadlockLockedPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -28,4 +28,4 @@ PadlockLockedPictogram.defaultProps = {
 	assistiveText: 'Locked padlock',
 	copyrightYear: '2020',
 };
-PadlockLockedPictogram.propTypes = propTypes;
+PadlockLockedPictogram.propTypes = Pictogram.propTypes;

@@ -1,8 +1,6 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
-import { createContext, useContext, isValidElement } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
+import React, { createContext, useContext, isValidElement } from 'react';
 
 import { defaultList } from './overrides/list';
 
@@ -13,7 +11,7 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-const ListContext = createContext(null);
+const ListContext = createContext<any>(null);
 
 export const useListContext = () => useContext(ListContext);
 
@@ -21,7 +19,7 @@ export const useListContext = () => useContext(ListContext);
 // Utilities - makeItems
 // ==============================
 
-const makeItems = (data) => {
+const makeItems = (data: any) => {
 	if (!Array.isArray(data)) {
 		return null;
 	}
@@ -76,6 +74,69 @@ const makeItems = (data) => {
 	return result;
 };
 
+export interface ListProps {
+	/**
+	 * The type of the bullet
+	 * note: none is only used for blender
+	 */
+	type?: 'bullet' | 'link' | 'tick' | 'cross' | 'unstyled' | 'icon' | 'ordered' | 'none';
+	/**
+	 * The look of the bullet, icon, tick and cross lists
+	 */
+	look?: 'primary' | 'hero' | 'neutral' | 'success' | 'danger' | 'link';
+	/**
+	 * The size of space between list elements
+	 */
+	spacing?: 'medium' | 'large';
+	/**
+	 * The level of nesting
+	 */
+	nested?: number;
+	/**
+	 * The icon for list
+	 */
+	icon?: (...args: unknown[]) => unknown;
+	/**
+	 * Visually hidden text to use for the list.
+	 *
+	 * Tick list default value: "The following items are ticked"
+	 */
+	assistiveText?: string;
+	/**
+	 * Any renderable child
+	 */
+	children?: React.ReactNode;
+	/**
+	 * Data for the crumbs
+	 */
+	data?: string | React.ReactNode | object | unknown[][];
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		List?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Item?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Content?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Icon?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
@@ -91,7 +152,7 @@ export const List = ({
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof List.propTypes & typeof List.defaultProps) => {
+}: ListProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -99,7 +160,7 @@ export const List = ({
 
 	devWarning(type === 'icon' && !icon, 'The icon prop is required for all type="icon" lists!');
 	devWarning(!children && !data, 'Either children or data is required');
-	devWarning(data && !Array.isArray(data), 'The data prop must be an array');
+	devWarning(!!(data && !Array.isArray(data)), 'The data prop must be an array');
 
 	const defaultOverrides = {
 		List: defaultList,
@@ -159,79 +220,79 @@ export const List = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 List.propTypes = {
-	/**
-	 * The type of the bullet
-	 * note: none is only used for blender
-	 */
-	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'cross', 'unstyled', 'icon', 'ordered', 'none']),
-
-	/**
-	 * The look of the bullet, icon, tick and cross lists
-	 */
-	look: PropTypes.oneOf(['primary', 'hero', 'neutral', 'success', 'danger', 'link']),
-
-	/**
-	 * The size of space between list elements
-	 */
-	spacing: PropTypes.oneOf(['medium', 'large']),
-
-	/**
-	 * The level of nesting
-	 */
-	nested: PropTypes.number,
-
-	/**
-	 * The icon for list
-	 */
-	icon: PropTypes.func,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Visually hidden text to use for the list.
 	 *
 	 * Tick list default value: "The following items are ticked"
 	 */
 	assistiveText: PropTypes.string,
-
 	/**
 	 * Any renderable child
 	 */
 	children: PropTypes.node,
-
 	/**
 	 * Data for the crumbs
 	 */
-	data: PropTypes.arrayOf(
-		PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object, PropTypes.array])
-	),
-
+	data: PropTypes.oneOfType([
+		PropTypes.arrayOf(PropTypes.array),
+		PropTypes.element,
+		PropTypes.number,
+		PropTypes.object,
+		PropTypes.shape({
+			'__@iterator': PropTypes.func.isRequired,
+		}),
+		PropTypes.string,
+		PropTypes.bool,
+	]),
+	/**
+	 * The icon for list
+	 */
+	icon: PropTypes.func,
+	/**
+	 * The look of the bullet, icon, tick and cross lists
+	 */
+	look: PropTypes.oneOf(['danger', 'hero', 'link', 'neutral', 'primary', 'success']),
+	/**
+	 * The level of nesting
+	 */
+	nested: PropTypes.number,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		List: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Item: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		Content: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Icon: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Item: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		List: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * The size of space between list elements
+	 */
+	spacing: PropTypes.oneOf(['large', 'medium']),
+	/**
+	 * The type of the bullet
+	 * note: none is only used for blender
+	 */
+	type: PropTypes.oneOf(['bullet', 'cross', 'icon', 'link', 'none', 'ordered', 'tick', 'unstyled']),
 };

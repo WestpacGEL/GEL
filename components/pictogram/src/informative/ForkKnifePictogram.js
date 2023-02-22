@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const ForkKnifePictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -28,4 +28,4 @@ ForkKnifePictogram.defaultProps = {
 	assistiveText: 'Fork and knife',
 	copyrightYear: '2021',
 };
-ForkKnifePictogram.propTypes = propTypes;
+ForkKnifePictogram.propTypes = Pictogram.propTypes;

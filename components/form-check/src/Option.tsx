@@ -1,8 +1,6 @@
-/** @jsx jsx */
-
-import { forwardRef } from 'react';
-import { jsx, useBrand, getLabel, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+import React, { forwardRef, ReactNode } from 'react';
+import { jsx, useBrand, getLabel, overrideReconciler } from '@westpac/core';
 
 import { defaultOption } from './overrides/option';
 import { defaultLabel } from './overrides/label';
@@ -11,6 +9,91 @@ import { defaultHint } from './overrides/hint';
 import { useFormCheckContext } from './FormCheck';
 import pkg from '../package.json';
 
+export interface OptionProps {
+	/**
+	 * index
+	 */
+	index?: number;
+	/**
+	 * className
+	 */
+	className?: string;
+	/**
+	 * Form check option id
+	 */
+	id?: string;
+
+	/**
+	 * Form check option value
+	 */
+	value?: string;
+
+	/**
+	 * Check the Form check option
+	 */
+	checked?: boolean;
+
+	/**
+	 * Disable the Form check option
+	 */
+	disabled?: boolean;
+
+	/**
+	 * Define an id prefix for internal elements
+	 */
+	instanceId?: string;
+
+	/**
+	 * Form check type
+	 */
+	type?: 'checkbox' | 'radio';
+
+	/**
+	 * The form check input element’s name
+	 */
+	name?: string;
+
+	/**
+	 * Form check size.
+	 */
+	size?: 'medium' | 'large';
+
+	/**
+	 * To inline the element
+	 */
+	inline?: boolean;
+
+	/**
+	 * Hint text
+	 */
+	hint?: ReactNode;
+
+	/**
+	 * A function called on change
+	 */
+	onChange?: (...args: unknown[]) => unknown;
+
+	/**
+	 * Form check option label text
+	 */
+	children: ReactNode;
+
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Option?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Label?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 // ==============================
 // Component
 // ==============================
@@ -26,7 +109,7 @@ export const Option = forwardRef(
 			children,
 			overrides,
 			...rest
-		}: typeof Option.propTypes & typeof Option.defaultProps,
+		}: OptionProps,
 		ref
 	) => {
 		const {
@@ -133,87 +216,56 @@ export const Option = forwardRef(
 		);
 	}
 );
+Option.displayName = 'Option';
 
 // ==============================
 // Types
 // ==============================
 
+Option.defaultProps = {};
+
 Option.propTypes = {
-	/**
-	 * Form check option id
-	 */
-	id: PropTypes.string,
-
-	/**
-	 * Form check option value
-	 */
-	value: PropTypes.string,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Check the Form check option
 	 */
 	checked: PropTypes.bool,
-
 	/**
-	 * Disable the Form check option
+	 * Form check option label text
 	 */
-	disabled: PropTypes.bool,
-
+	children: PropTypes.node,
 	/**
-	 * Define an id prefix for internal elements
+	 * className
 	 */
-	instanceId: PropTypes.string,
-
-	/**
-	 * Form check type
-	 */
-	type: PropTypes.oneOf(['checkbox', 'radio']),
-
-	/**
-	 * The form check input element’s name
-	 */
-	name: PropTypes.string,
-
-	/**
-	 * Form check size.
-	 */
-	size: PropTypes.oneOf(['medium', 'large']),
-
-	/**
-	 * To inline the element
-	 */
-	inline: PropTypes.bool,
-
+	className: PropTypes.string,
 	/**
 	 * Hint text
 	 */
 	hint: PropTypes.node,
-
 	/**
-	 * A function called on change
+	 * index
 	 */
-	onChange: PropTypes.func,
-
-	/**
-	 * Form check option label text
-	 */
-	children: PropTypes.node.isRequired,
-
+	index: PropTypes.number,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Option: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		Label: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Option: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Form check option value
+	 */
+	value: PropTypes.string,
 };
-
-Option.defaultProps = {};

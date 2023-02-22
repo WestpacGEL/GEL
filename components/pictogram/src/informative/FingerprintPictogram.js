@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { defaultProps, Pictogram } from '../Pictogram';
 
 export const FingerprintPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -28,4 +28,4 @@ FingerprintPictogram.defaultProps = {
 	assistiveText: 'Fingerprint',
 	copyrightYear: '2021',
 };
-FingerprintPictogram.propTypes = propTypes;
+FingerprintPictogram.propTypes = Pictogram.propTypes;

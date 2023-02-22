@@ -1,15 +1,15 @@
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultSkipLink } from './overrides/skipLink';
 import pkg from '../package.json';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 // ==============================
 // Types
 // ==============================
 
-interface SkipLinkProps {
+export interface SkipLinkProps {
 	/**
 	 * href attribute
 	 */
@@ -23,12 +23,12 @@ interface SkipLinkProps {
 	/**
 	 * The override API
 	 */
-	overrides: {
+	overrides?: {
 		SkipLink: {
-			styles: any,
-			component: string,
-			attributes: any,
-		},
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
 	};
 }
 
@@ -95,9 +95,9 @@ SkipLink.propTypes = {
 	 */
 	overrides: PropTypes.shape({
 		SkipLink: PropTypes.shape({
-			attributes: PropTypes.any.isRequired,
-			component: PropTypes.string.isRequired,
-			styles: PropTypes.any.isRequired,
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}).isRequired,
-	}).isRequired,
+	}),
 };
