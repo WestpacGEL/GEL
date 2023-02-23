@@ -66,10 +66,6 @@ export const Text = ({ block = false, children, ...rest }: TextProps) => {
 	);
 };
 
-Text.defaultProps = {
-	block: false,
-};
-
 Text.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -86,3 +82,5 @@ Text.propTypes = {
 	 */
 	children: PropTypes.node,
 };
+
+Text.defaultProps = { block: false };

@@ -1,5 +1,4 @@
-import { jsx, useBrand } from '@westpac/core';
-import { Cell, Grid } from '../src';
+import { useBrand } from '@westpac/core';
 
 export const Box = (props) => {
 	const { COLORS } = useBrand();

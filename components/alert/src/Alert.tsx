@@ -25,10 +25,6 @@ export interface AlertProps {
 	 * Manually signal an open or close state of this alert
 	 */
 	open?: boolean;
-	/**
-	 * Manually signal an open or close state of this alert
-	 */
-	anotherOne?: boolean;
 
 	/**
 	 * Alert look
@@ -254,4 +250,13 @@ Alert.propTypes = {
 			styles: PropTypes.func,
 		}),
 	}),
+};
+
+Alert.defaultProps = {
+	dismissible: false,
+	headingTag: 'h2',
+	look: 'info',
+	mode: 'box',
+	onClose: () => {},
+	open: true,
 };

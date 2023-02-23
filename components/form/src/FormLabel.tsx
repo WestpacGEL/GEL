@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { forwardRef } from 'react';
+import { forwardRef, ReactNode } from 'react';
 
 import { defaultFormLabel } from './overrides/formLabel';
 import { useFormContext } from './Form';
@@ -28,6 +28,10 @@ interface FormLabelProps {
 	 */
 	srOnly?: boolean;
 	overrides?: any;
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
 }
 
 // ==============================
@@ -86,11 +90,6 @@ FormLabel.displayName = 'FormLabel';
 // Types
 // ==============================
 
-FormLabel.defaultProps = {
-	subLabel: false,
-	tag: 'label',
-};
-
 FormLabel.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -114,3 +113,5 @@ FormLabel.propTypes = {
 	 */
 	tag: PropTypes.oneOf(['label', 'legend']),
 };
+
+FormLabel.defaultProps = { subLabel: false, tag: 'label' };

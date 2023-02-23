@@ -72,10 +72,6 @@ Body.displayName = 'Body';
 // Types
 // ==============================
 
-Body.defaultProps = {
-	tag: 'div',
-};
-
 Body.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

@@ -27,6 +27,10 @@ interface TextInputFieldProps {
 	 */
 	instanceId?: string;
 	/**
+	 * Size
+	 */
+	size?: string;
+	/**
 	 * The override API
 	 */
 	overrides?: {
@@ -48,6 +52,7 @@ export const TextInputField = ({
 	before,
 	after,
 	overrides,
+	size = 'medium',
 	...rest
 }: TextInputFieldProps) => {
 	const {
@@ -70,6 +75,7 @@ export const TextInputField = ({
 		after,
 		context: context.state,
 		overrides: componentOverrides,
+		size,
 		...rest,
 	};
 
@@ -86,16 +92,13 @@ export const TextInputField = ({
 			)}
 			<TextInput
 				{...rest}
+				size={size}
 				state={state}
 				{...textInputAttributes(state)}
 				css={textInputStyles(state)}
 			/>
 		</Fragment>
 	);
-};
-
-TextInputField.defaultProps = {
-	size: 'medium',
 };
 
 TextInputField.propTypes = {
@@ -129,4 +132,10 @@ TextInputField.propTypes = {
 			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Size
+	 */
+	size: PropTypes.string,
 };
+
+TextInputField.defaultProps = { size: 'medium' };

@@ -129,12 +129,6 @@ export const Link = ({
 	);
 };
 
-Link.defaultProps = {
-	type: 'standalone',
-	iconSize: 'small',
-	underline: true,
-};
-
 Link.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -184,3 +178,5 @@ Link.propTypes = {
 	 */
 	underline: PropTypes.bool,
 };
+
+Link.defaultProps = { iconSize: 'small', type: 'standalone', underline: true };

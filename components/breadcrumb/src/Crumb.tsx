@@ -62,7 +62,15 @@ export interface CrumbProps {
 // Component
 // ==============================
 
-export const Crumb = ({ current, href, text, tag, onClick, overrides, ...rest }: CrumbProps) => {
+export const Crumb = ({
+	current,
+	href = '#0',
+	text,
+	tag,
+	onClick,
+	overrides,
+	...rest
+}: CrumbProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -109,10 +117,6 @@ export const Crumb = ({ current, href, text, tag, onClick, overrides, ...rest }:
 			{!current && <Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />}
 		</Crumb>
 	);
-};
-
-Crumb.defaultProps = {
-	href: '#0',
 };
 
 Crumb.propTypes = {
@@ -163,3 +167,5 @@ Crumb.propTypes = {
 	 */
 	text: PropTypes.string.isRequired,
 };
+
+Crumb.defaultProps = { href: '#0' };

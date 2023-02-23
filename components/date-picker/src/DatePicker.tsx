@@ -168,8 +168,6 @@ export const defaultProps = {
 	size: textInputDefaultProps.size,
 };
 
-DatePicker.defaultProps = defaultProps;
-
 DatePicker.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

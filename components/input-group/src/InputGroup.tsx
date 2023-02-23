@@ -296,12 +296,6 @@ export const InputGroup = ({
 	);
 };
 
-InputGroup.defaultProps = {
-	size: 'medium',
-	invalid: false,
-	disabled: false,
-};
-
 InputGroup.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -389,3 +383,5 @@ InputGroup.propTypes = {
 	 */
 	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
 };
+
+InputGroup.defaultProps = { disabled: false, invalid: false, size: 'medium' };

@@ -134,8 +134,6 @@ export const Field = ({
 	);
 };
 
-Field.defaultProps = {};
-
 Field.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

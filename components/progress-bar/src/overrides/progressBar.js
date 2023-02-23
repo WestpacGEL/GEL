@@ -8,7 +8,8 @@ import {
 	formatClassName,
 } from '@westpac/core';
 
-import { defaultProps } from '../ProgressBar';
+import { ProgressBar as MainProgressBar } from '../ProgressBar';
+const defaultProps = MainProgressBar.defaultProps || {};
 import { nestedBarStyles } from './bar';
 
 // ==============================

@@ -44,7 +44,7 @@ export interface FormPodIndicatorProps {
 // ==============================
 
 export const FormPodIndicator = ({
-	icon = RefreshIcon,
+	icon,
 	text = 'Saving',
 	overrides: componentOverrides,
 	...rest
@@ -61,7 +61,7 @@ export const FormPodIndicator = ({
 	};
 
 	const state = {
-		icon,
+		icon: icon || RefreshIcon,
 		text,
 		overrides: componentOverrides,
 		...rest,
@@ -103,11 +103,6 @@ export const FormPodIndicator = ({
 	);
 };
 
-FormPodIndicator.defaultProps = {
-	icon: RefreshIcon,
-	text: 'Saving',
-};
-
 FormPodIndicator.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -142,3 +137,5 @@ FormPodIndicator.propTypes = {
 	 */
 	text: PropTypes.string,
 };
+
+FormPodIndicator.defaultProps = { text: 'Saving' };

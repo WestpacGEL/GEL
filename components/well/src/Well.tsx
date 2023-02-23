@@ -62,10 +62,6 @@ export const Well = ({
 	);
 };
 
-Well.defaultProps = {
-	tag: 'div',
-};
-
 Well.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -90,3 +86,5 @@ Well.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
+
+Well.defaultProps = { tag: 'div' };

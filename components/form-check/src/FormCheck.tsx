@@ -110,11 +110,11 @@ export interface FormCheckProps {
 
 export const FormCheck = ({
 	instanceId,
-	type,
+	type = 'checkbox',
 	name,
-	size,
+	size = 'medium',
 	value,
-	inline,
+	inline = false,
 	disabled,
 	defaultValue,
 	data,
@@ -215,8 +215,6 @@ export const defaultProps = {
 	size: 'medium',
 };
 
-FormCheck.defaultProps = defaultProps;
-
 FormCheck.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -311,3 +309,5 @@ FormCheck.propTypes = {
 		PropTypes.bool,
 	]),
 };
+
+FormCheck.defaultProps = { inline: false, onChange: () => {}, size: 'medium', type: 'checkbox' };

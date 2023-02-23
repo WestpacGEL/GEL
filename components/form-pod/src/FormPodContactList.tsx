@@ -57,7 +57,7 @@ export interface FormPodContactListProps {
 // ==============================
 
 export const FormPodContactList = ({
-	items,
+	items = [],
 	overrides: componentOverrides,
 	...rest
 }: FormPodContactListProps) => {
@@ -135,10 +135,6 @@ export const FormPodContactList = ({
 	);
 };
 
-FormPodContactList.defaultProps = {
-	items: [],
-};
-
 FormPodContactList.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -187,3 +183,5 @@ FormPodContactList.propTypes = {
 		}),
 	}),
 };
+
+FormPodContactList.defaultProps = { items: [] };

@@ -59,8 +59,6 @@ export const FormSectionImg = ({ overrides: componentOverrides, ...rest }: FormS
 	);
 };
 
-FormSectionImg.defaultProps = {};
-
 FormSectionImg.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

@@ -67,8 +67,6 @@ export const defaultProps = {
 	look: 'primary',
 };
 
-Label.defaultProps = defaultProps;
-
 Label.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -102,3 +100,5 @@ Label.propTypes = {
 	 */
 	value: PropTypes.string.isRequired,
 };
+
+Label.defaultProps = { look: 'primary' };

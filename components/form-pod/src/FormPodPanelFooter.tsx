@@ -92,8 +92,6 @@ export const FormPodPanelFooter = ({
 	);
 };
 
-FormPodPanelFooter.defaultProps = {};
-
 FormPodPanelFooter.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

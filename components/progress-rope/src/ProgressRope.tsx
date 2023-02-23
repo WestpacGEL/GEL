@@ -203,10 +203,10 @@ export interface ProgressRopeProps {
 // ==============================
 
 export const ProgressRope = ({
+	current = 0,
+	headingsTag = 'h3',
+	assistiveText = 'In this form',
 	instanceId,
-	current,
-	headingsTag,
-	assistiveText,
 	data,
 	children,
 	overrides: componentOverrides,
@@ -353,12 +353,6 @@ export const ProgressRope = ({
 	);
 };
 
-ProgressRope.defaultProps = {
-	current: 0,
-	headingsTag: 'h3',
-	assistiveText: 'In this form',
-};
-
 ProgressRope.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -436,3 +430,5 @@ ProgressRope.propTypes = {
 		}),
 	}),
 };
+
+ProgressRope.defaultProps = { assistiveText: 'In this form', current: 0, headingsTag: 'h3' };

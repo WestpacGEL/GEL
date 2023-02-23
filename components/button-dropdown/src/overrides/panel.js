@@ -11,7 +11,8 @@ import {
 } from '@westpac/core';
 import { forwardRef } from 'react';
 
-import { defaultProps } from '../ButtonDropdown';
+import { ButtonDropdown as MainButtonDropdown } from '../ButtonDropdown';
+const defaultProps = MainButtonDropdown.defaultProps || {};
 
 // ==============================
 // Component

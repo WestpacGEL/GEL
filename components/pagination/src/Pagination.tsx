@@ -96,7 +96,7 @@ interface PaginationProps {
 // ==============================
 
 export const Pagination = ({
-	current,
+	current = 0,
 	infinite,
 	back: backProps,
 	next: nextProps,
@@ -233,10 +233,6 @@ export const Pagination = ({
 	);
 };
 
-Pagination.defaultProps = {
-	current: 0,
-};
-
 Pagination.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -307,3 +303,5 @@ Pagination.propTypes = {
 		}),
 	}),
 };
+
+Pagination.defaultProps = { current: 0 };

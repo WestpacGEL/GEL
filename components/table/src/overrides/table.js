@@ -9,7 +9,8 @@ import {
 } from '@westpac/core';
 import { Body } from '@westpac/body';
 
-import { defaultProps } from '../Table';
+import { Table as MainTable } from '../Table';
+const defaultProps = MainTable.defaultProps || {};
 import { nestedTdStyles } from './td';
 import { nestedTfootStyles } from './tfoot';
 import { nestedThStyles } from './th';

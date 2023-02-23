@@ -46,10 +46,10 @@ export interface TextareaProps {
 // ==============================
 
 export const Textarea = ({
-	size,
 	width,
-	inline,
-	invalid,
+	size = 'medium',
+	inline = false,
+	invalid = false,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -86,8 +86,6 @@ export const defaultProps = {
 	inline: false,
 	invalid: false,
 };
-
-Textarea.defaultProps = defaultProps;
 
 Textarea.propTypes = {
 	// ----------------------------- Warning --------------------------------
@@ -127,3 +125,5 @@ Textarea.propTypes = {
 	 */
 	width: PropTypes.oneOf([2, 3, 4, 5, 10, 20, 30]),
 };
+
+Textarea.defaultProps = { inline: false, invalid: false, size: 'medium' };

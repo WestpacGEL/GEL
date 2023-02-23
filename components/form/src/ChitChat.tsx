@@ -30,7 +30,7 @@ interface ChitChatProps {
 // Component
 // ==============================
 
-export const ChitChat = ({ tag, overrides: componentOverrides, ...rest }: ChitChatProps) => {
+export const ChitChat = ({ tag = 'p', overrides: componentOverrides, ...rest }: ChitChatProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -55,10 +55,6 @@ export const ChitChat = ({ tag, overrides: componentOverrides, ...rest }: ChitCh
 	);
 };
 
-ChitChat.defaultProps = {
-	tag: 'p',
-};
-
 ChitChat.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -79,3 +75,5 @@ ChitChat.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
+
+ChitChat.defaultProps = { tag: 'p' };

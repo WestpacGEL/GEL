@@ -110,8 +110,6 @@ export const defaultProps = {
 	highlighted: false,
 };
 
-Tr.defaultProps = defaultProps;
-
 Tr.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -140,3 +138,5 @@ Tr.propTypes = {
 	 */
 	striped: PropTypes.any,
 };
+
+Tr.defaultProps = { highlighted: false };

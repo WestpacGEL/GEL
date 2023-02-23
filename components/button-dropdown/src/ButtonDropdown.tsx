@@ -222,8 +222,6 @@ export const defaultProps = {
 	block: false,
 };
 
-ButtonDropdown.defaultProps = defaultProps;
-
 ButtonDropdown.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -282,4 +280,11 @@ ButtonDropdown.propTypes = {
 	 * Button text
 	 */
 	text: PropTypes.string.isRequired,
+};
+
+ButtonDropdown.defaultProps = {
+	block: false,
+	dropdownSize: 'medium',
+	onClick: () => {},
+	open: false,
 };

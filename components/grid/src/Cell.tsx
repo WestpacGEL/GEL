@@ -92,12 +92,6 @@ export const Cell = ({
 	);
 };
 
-Cell.defaultProps = {
-	height: 1,
-	tag: 'div',
-	width: 1,
-};
-
 Cell.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -158,3 +152,5 @@ Cell.propTypes = {
 		PropTypes.string,
 	]).isRequired,
 };
+
+Cell.defaultProps = { height: 1, tag: 'div', width: 1 };

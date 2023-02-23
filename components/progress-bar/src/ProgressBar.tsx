@@ -113,8 +113,6 @@ export const defaultProps = {
 	noLabel: false,
 };
 
-ProgressBar.defaultProps = defaultProps;
-
 ProgressBar.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -153,3 +151,5 @@ ProgressBar.propTypes = {
 	 */
 	value: PropTypes.number.isRequired,
 };
+
+ProgressBar.defaultProps = { look: 'default', noLabel: false, value: 0 };

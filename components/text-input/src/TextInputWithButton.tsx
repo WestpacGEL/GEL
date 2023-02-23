@@ -129,8 +129,6 @@ export const TextInputWithButton = ({
 
 export const defaultProps = {};
 
-TextInputWithButton.defaultProps = defaultProps;
-
 TextInputWithButton.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

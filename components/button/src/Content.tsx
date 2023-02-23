@@ -149,11 +149,6 @@ export const Content = ({
 	);
 };
 
-Content.defaultProps = {
-	size: 'medium',
-	block: false,
-};
-
 Content.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -195,3 +190,5 @@ Content.propTypes = {
 		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge'])),
 	]).isRequired,
 };
+
+Content.defaultProps = { block: false, size: 'medium' };

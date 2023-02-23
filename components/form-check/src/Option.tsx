@@ -222,8 +222,6 @@ Option.displayName = 'Option';
 // Types
 // ==============================
 
-Option.defaultProps = {};
-
 Option.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

@@ -268,8 +268,6 @@ export const defaultProps = {
 	dismissible: true,
 };
 
-Modal.defaultProps = defaultProps;
-
 Modal.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -342,3 +340,5 @@ Modal.propTypes = {
 	 */
 	size: PropTypes.oneOf(['large', 'medium', 'small']).isRequired,
 };
+
+Modal.defaultProps = { dismissible: true, open: false, size: 'medium' };

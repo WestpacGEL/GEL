@@ -110,7 +110,7 @@ export interface SidebarProps {
 // ==============================
 
 export const Sidebar = ({
-	open: isOpen,
+	open: isOpen = false,
 	heading,
 	contentHeading,
 	offsetTop,
@@ -300,10 +300,6 @@ export const Sidebar = ({
 	);
 };
 
-Sidebar.defaultProps = {
-	open: false,
-};
-
 Sidebar.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -393,3 +389,5 @@ Sidebar.propTypes = {
 	 */
 	skipToContentId: PropTypes.string,
 };
+
+Sidebar.defaultProps = { open: false };

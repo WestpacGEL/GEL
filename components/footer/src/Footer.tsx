@@ -78,11 +78,11 @@ export interface FooterProps {
 // ==============================
 
 export const Footer = ({
-	logoLink,
 	logoAssistiveText,
 	srOnlyText,
 	hideLogo,
 	children,
+	logoLink = '#',
 	overrides: componentOverrides,
 	...rest
 }: FooterProps) => {
@@ -133,10 +133,6 @@ export const Footer = ({
 			</Inner>
 		</Footer>
 	);
-};
-
-Footer.defaultProps = {
-	logoLink: '#',
 };
 
 Footer.propTypes = {
@@ -200,3 +196,5 @@ Footer.propTypes = {
 	 */
 	srOnlyText: PropTypes.string,
 };
+
+Footer.defaultProps = { logoLink: '#' };

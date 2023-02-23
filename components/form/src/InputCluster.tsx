@@ -47,7 +47,7 @@ export interface InputClusterProps {
 // ==============================
 
 export const InputCluster = ({
-	horizontal,
+	horizontal = false,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -83,10 +83,6 @@ export const InputCluster = ({
 	);
 };
 
-InputCluster.defaultProps = {
-	horizontal: false,
-};
-
 InputCluster.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -111,3 +107,5 @@ InputCluster.propTypes = {
 		}),
 	}),
 };
+
+InputCluster.defaultProps = { horizontal: false };

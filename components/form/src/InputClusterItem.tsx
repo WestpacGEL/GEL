@@ -62,8 +62,6 @@ export const InputClusterItem = ({ overrides, ...rest }: InputClusterItemProps) 
 	);
 };
 
-InputClusterItem.defaultProps = {};
-
 InputClusterItem.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

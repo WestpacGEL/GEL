@@ -11,7 +11,8 @@ import {
 import { forwardRef } from 'react';
 import { sizeMap } from '../_utils';
 
-import { defaultProps } from '../Button';
+import { Button as MainButton } from '../Button';
+const defaultProps = MainButton.defaultProps || {};
 
 // ==============================
 // Component

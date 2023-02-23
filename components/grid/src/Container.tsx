@@ -68,11 +68,6 @@ export const Container = ({
 	);
 };
 
-Container.defaultProps = {
-	fixed: false,
-	tag: 'div',
-};
-
 Container.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -101,3 +96,5 @@ Container.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
+
+Container.defaultProps = { fixed: false, tag: 'div' };

@@ -101,27 +101,76 @@ for (const componentFile of componentFiles) {
 		filepath: outputPath,
 	});
 
-	newAST.body.forEach(({ name }) => {
+	newAST.body.forEach(({ name, types }) => {
 		const regexpForPropTypes = new RegExp(`${name}\.propTypes(.|\n)+?,\n};\n`);
+		const regexpForDefaultProps = new RegExp(`${name}\.defaultProps(.|\n)+?};`);
 		const newPropTypes = propTypes.match(regexpForPropTypes)?.[0];
 		const source = prettier.format(fs.readFileSync(componentFile, 'utf8'), {
 			parser: 'typescript',
 			...(prettierConfig || {}),
 		});
-		let newFile = source;
 
-		const propTypesFromSource = newFile.match(regexpForPropTypes)?.[0];
-		if (propTypesFromSource) {
-			newFile = newFile.replace(regexpForPropTypes, '');
-		}
+		let newFile = source;
+		// Removing propTypes and defaultProps
+		newFile = newFile.replace(regexpForPropTypes, '');
+		newFile = newFile.replace(regexpForDefaultProps, '');
+
 		if (newPropTypes) {
 			newFile = `${newFile}\n\n${newPropTypes}`;
 		}
 
+		// Generating the defaultProps
+		const regexpForFunctionComponentProps = new RegExp(`${name}\\(\{((.|\n)+?)\}\: ${name}Props`);
+		const regexpForConstComponentProps = new RegExp(
+			`${name}\\s\=\\s\\(\{((.|\n)+?)\}\: ${name}Props`
+		);
+		const regexpForConstForwardComponentProps = new RegExp(
+			`${name}\\s\\=\\sforwardRef(.|\n)+{((.|\n)+)}:\\s${name}Props`
+		);
+
+		const regexpForComponentPropsPiece =
+			newFile.match(regexpForFunctionComponentProps)?.[1] ||
+			newFile.match(regexpForConstForwardComponentProps)?.[2] ||
+			newFile.match(regexpForConstComponentProps)?.[1];
+
+		const __REPLACE_BY_ARROW_FUNCTION__ = '__REPLACE_BY_ARROW_FUNCTION__';
+		if (regexpForComponentPropsPiece) {
+			const parsedString = regexpForComponentPropsPiece.replace(/\:\s\w+\s\=\s/g, ' = ');
+			const defaultValues = types.reduce((acc: Record<string, any>, { name }) => {
+				const x = `
+					const {${parsedString}} = {};
+					return ${name};
+				`;
+				try {
+					const defaultValue = new Function(x)();
+					return typeof defaultValue !== 'undefined'
+						? {
+								...acc,
+								[name]:
+									typeof defaultValue === 'function' ? __REPLACE_BY_ARROW_FUNCTION__ : defaultValue,
+						  }
+						: acc;
+				} catch {
+					return acc;
+				}
+			}, {});
+			if (Object.keys(defaultValues).length > 0) {
+				// Replace the functions values with the defaulArrowFunction
+				const defaultPropObjectAsString = JSON.stringify(defaultValues).replace(
+					new RegExp(`"${__REPLACE_BY_ARROW_FUNCTION__}"`, 'gi'),
+					'() => {}'
+				);
+				const defaultPropsString = `${name}.defaultProps = ${defaultPropObjectAsString};`;
+				newFile = `${newFile}\n\n${defaultPropsString}`;
+			}
+		}
+
+		// Adding proptypes in case there is no import
 		const matchPropTypes = newFile.match("import PropTypes from 'prop-types';");
 		if (!matchPropTypes) {
 			newFile = `import PropTypes from \'prop-types\';\n${newFile}`;
 		}
+
 		fs.writeFileSync(
 			componentFile,
 			prettier.format(newFile, {

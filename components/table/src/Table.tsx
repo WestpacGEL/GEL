@@ -87,8 +87,8 @@ interface TableProps {
 // ==============================
 
 export const Table = ({
-	striped,
-	bordered,
+	striped = false,
+	bordered = false,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -139,8 +139,6 @@ export const defaultProps = {
 	bordered: false,
 	striped: false,
 };
-
-Table.defaultProps = defaultProps;
 
 Table.propTypes = {
 	// ----------------------------- Warning --------------------------------
@@ -205,3 +203,5 @@ Table.propTypes = {
 	 */
 	striped: PropTypes.bool,
 };
+
+Table.defaultProps = { bordered: false, striped: false };

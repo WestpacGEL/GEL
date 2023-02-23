@@ -1,5 +1,6 @@
 import { jsx, classNames } from '@westpac/core';
-import { defaultProps } from '../blender/Group';
+import { Group as MainGroup } from '../blender/Group';
+const defaultProps = MainGroup.defaultProps || {};
 
 // ==============================
 // Component

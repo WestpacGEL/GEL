@@ -66,10 +66,6 @@ export const Heading = ({ tag = 'h3', children, overrides, ...rest }: HeadingPro
 	);
 };
 
-Heading.defaultProps = {
-	tag: 'h3',
-};
-
 Heading.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -94,3 +90,5 @@ Heading.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
+
+Heading.defaultProps = { tag: 'h3' };

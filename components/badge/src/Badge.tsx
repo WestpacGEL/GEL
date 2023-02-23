@@ -37,9 +37,9 @@ export interface BadgeProps {
 // ==============================
 
 export const Badge = ({
-	look,
 	value,
-	type,
+	look = 'neutral',
+	type = 'default',
 	overrides: componentOverrides,
 	...rest
 }: BadgeProps) => {
@@ -73,13 +73,6 @@ export const Badge = ({
 		</Badge>
 	);
 };
-
-export const defaultProps = {
-	look: 'neutral',
-	type: 'default',
-};
-
-Badge.defaultProps = defaultProps;
 
 Badge.propTypes = {
 	// ----------------------------- Warning --------------------------------
@@ -118,3 +111,5 @@ Badge.propTypes = {
 	 */
 	value: PropTypes.string.isRequired,
 };
+
+Badge.defaultProps = { look: 'neutral', type: 'default' };

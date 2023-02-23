@@ -60,10 +60,6 @@ export const Before = ({
 	return <Component position="before" overrides={componentOverrides} size={size} {...rest} />;
 };
 
-Before.defaultProps = {
-	size: 'medium',
-};
-
 Before.displayName = 'Before';
 
 Before.propTypes = {
@@ -84,3 +80,5 @@ Before.propTypes = {
 	 */
 	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']).isRequired,
 };
+
+Before.defaultProps = { size: 'medium' };

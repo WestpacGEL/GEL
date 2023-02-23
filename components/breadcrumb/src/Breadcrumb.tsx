@@ -80,7 +80,7 @@ export interface BreadcrumbProps {
 
 export const Breadcrumb = ({
 	data,
-	assistiveText,
+	assistiveText = 'Breadcrumb',
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -149,10 +149,6 @@ export const Breadcrumb = ({
 	);
 };
 
-Breadcrumb.defaultProps = {
-	assistiveText: 'Breadcrumb',
-};
-
 Breadcrumb.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -207,3 +203,5 @@ Breadcrumb.propTypes = {
 		}),
 	}),
 };
+
+Breadcrumb.defaultProps = { assistiveText: 'Breadcrumb' };

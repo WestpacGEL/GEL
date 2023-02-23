@@ -96,8 +96,6 @@ export const ListGroup = ({ children, overrides: componentOverrides, ...rest }: 
 	);
 };
 
-ListGroup.defaultProps = {};
-
 ListGroup.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

@@ -118,10 +118,6 @@ export const FormPodActions = ({
 	);
 };
 
-FormPodActions.defaultProps = {
-	reverse: false,
-};
-
 FormPodActions.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -166,3 +162,5 @@ FormPodActions.propTypes = {
 	 */
 	secondary: PropTypes.node,
 };
+
+FormPodActions.defaultProps = { reverse: false };

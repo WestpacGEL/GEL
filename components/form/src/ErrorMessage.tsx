@@ -138,11 +138,6 @@ export const ErrorMessage = ({
 	);
 };
 
-ErrorMessage.defaultProps = {
-	message: 'Invalid input',
-	tag: 'div',
-};
-
 ErrorMessage.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -181,3 +176,5 @@ ErrorMessage.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
+
+ErrorMessage.defaultProps = { message: 'Invalid input', tag: 'div' };

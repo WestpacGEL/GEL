@@ -1,5 +1,6 @@
 import { jsx, getLabel, getModifier, styleReconciler } from '@westpac/core';
-import { defaultProps } from '../FormCheck';
+import { FormCheck as MainFormCheck } from '../FormCheck';
+const defaultProps = MainFormCheck.defaultProps || {};
 
 // ==============================
 // Component

@@ -307,3 +307,5 @@ ButtonGroupItem.propTypes = {
 	 */
 	value: PropTypes.any,
 };
+
+ButtonGroupItem.defaultProps = { checked: false };

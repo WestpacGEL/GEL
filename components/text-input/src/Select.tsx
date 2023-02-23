@@ -111,8 +111,6 @@ export const defaultProps = {
 	invalid: false,
 };
 
-Select.defaultProps = defaultProps;
-
 Select.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -161,3 +159,5 @@ Select.propTypes = {
 	 */
 	width: PropTypes.oneOf([2, 3, 4, 5, 10, 20, 30]),
 };
+
+Select.defaultProps = { inline: false, invalid: false, size: 'medium' };

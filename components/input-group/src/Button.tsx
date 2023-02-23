@@ -84,11 +84,6 @@ export const Button = ({
 	);
 };
 
-Button.defaultProps = {
-	look: 'hero', // button look to be spread to Button
-	size: 'medium',
-};
-
 Button.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -125,3 +120,5 @@ Button.propTypes = {
 	 */
 	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']).isRequired,
 };
+
+Button.defaultProps = { look: 'hero', size: 'medium' };

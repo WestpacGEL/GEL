@@ -57,10 +57,6 @@ export const Hint = ({ tag = 'p', overrides, ...rest }: HintProps) => {
 	return <Hint {...rest} state={state} {...hintAttributes(state)} css={hintStyles(state)} />;
 };
 
-Hint.defaultProps = {
-	tag: 'p',
-};
-
 Hint.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -81,3 +77,5 @@ Hint.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
+
+Hint.defaultProps = { tag: 'p' };

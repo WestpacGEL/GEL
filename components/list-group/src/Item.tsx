@@ -58,8 +58,6 @@ export const Item = ({ children, overrides, ...rest }: ItemProps) => {
 	);
 };
 
-Item.defaultProps = {};
-
 Item.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

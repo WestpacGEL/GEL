@@ -140,8 +140,6 @@ export const Pictogram = ({
 
 export const defaultProps = {};
 
-Pictogram.defaultProps = defaultProps;
-
 Pictogram.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

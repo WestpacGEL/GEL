@@ -359,3 +359,13 @@ Button.propTypes = {
 	 */
 	type: PropTypes.string,
 };
+
+Button.defaultProps = {
+	block: false,
+	disabled: false,
+	justify: false,
+	look: 'hero',
+	size: 'medium',
+	soft: false,
+	tag: 'button',
+};

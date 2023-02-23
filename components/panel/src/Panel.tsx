@@ -67,9 +67,9 @@ export interface PanelProps {
 // ==============================
 
 export const Panel = ({
-	look,
 	heading,
-	headingTag,
+	look = 'hero',
+	headingTag = 'h1',
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -118,8 +118,6 @@ export const defaultProps = {
 	headingTag: 'h1',
 };
 
-Panel.defaultProps = defaultProps;
-
 Panel.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -162,3 +160,5 @@ Panel.propTypes = {
 		}),
 	}),
 };
+
+Panel.defaultProps = { headingTag: 'h1', look: 'hero' };

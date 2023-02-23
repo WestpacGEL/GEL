@@ -183,8 +183,6 @@ export const defaultProps = {
 	open: false,
 };
 
-Collapsible.defaultProps = defaultProps;
-
 Collapsible.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -238,3 +236,5 @@ Collapsible.propTypes = {
 	 */
 	text: PropTypes.string.isRequired,
 };
+
+Collapsible.defaultProps = { onClick: () => {}, open: false };

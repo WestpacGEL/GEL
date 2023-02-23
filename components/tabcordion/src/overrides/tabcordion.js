@@ -9,7 +9,8 @@ import {
 } from '@westpac/core';
 
 import { accordionBtnLegoStyles } from './accordionBtn';
-import { defaultProps } from '../blender/Tabcordion';
+import { Tabcordion as MainTabcordion } from '../blender/Tabcordion';
+const defaultProps = MainTabcordion.defaultProps || {};
 import { tabBtnLegoStyles } from './tabBtn';
 
 // ==============================

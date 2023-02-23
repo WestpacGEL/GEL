@@ -8,7 +8,8 @@ import {
 	formatClassName,
 	styleReconciler,
 } from '@westpac/core';
-import { defaultProps } from '../Symbol';
+import { Symbol as MainSymbol } from '../Symbol';
+const defaultProps = MainSymbol.defaultProps || {};
 
 // ==============================
 // Component

@@ -33,7 +33,7 @@ export interface FormPodPanelProps {
 // ==============================
 
 export const FormPodPanel = ({
-	borderTop,
+	borderTop = true,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -64,10 +64,6 @@ export const FormPodPanel = ({
 	);
 };
 
-FormPodPanel.defaultProps = {
-	borderTop: true,
-};
-
 FormPodPanel.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -94,3 +90,5 @@ FormPodPanel.propTypes = {
 		}),
 	}),
 };
+
+FormPodPanel.defaultProps = { borderTop: true };

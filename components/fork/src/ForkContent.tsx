@@ -77,8 +77,6 @@ export const ForkContent = ({ text, selected, children, overrides, ...rest }: Fo
 	);
 };
 
-ForkContent.defaultProps = {};
-
 ForkContent.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

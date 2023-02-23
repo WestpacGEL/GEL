@@ -264,13 +264,6 @@ export const Tabcordion = ({
 	);
 };
 
-Tabcordion.defaultProps = {
-	look: 'soft',
-	openTab: 0,
-	justify: false,
-	mode: 'responsive',
-};
-
 Tabcordion.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -361,4 +354,15 @@ Tabcordion.propTypes = {
 			styles: PropTypes.func,
 		}),
 	}),
+};
+
+Tabcordion.defaultProps = {
+	justify: false,
+	look: 'soft',
+	mode: 'responsive',
+	onClose: () => {},
+	onClosing: () => {},
+	onOpen: () => {},
+	onOpening: () => {},
+	openTab: 0,
 };

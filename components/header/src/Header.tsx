@@ -16,10 +16,6 @@ import pkg from '../package.json';
 
 export interface HeaderProps {
 	/**
-	 * The potato comment
-	 */
-	potato?: string;
-	/**
 	 * The link to redirect to on logo click
 	 */
 	logoLink?: string;
@@ -110,7 +106,6 @@ export interface HeaderProps {
 // ==============================
 
 export const Header = ({
-	potato = '#',
 	logoLink = '#',
 	skipLinkContent = 'Skip to main content',
 	logoOnClick,
@@ -216,11 +211,6 @@ export const Header = ({
 	);
 };
 
-Header.defaultProps = {
-	logoLink: '#',
-	skipLinkContent: 'Skip to main content',
-};
-
 Header.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -303,10 +293,6 @@ Header.propTypes = {
 		}),
 	}),
 	/**
-	 * The potato comment
-	 */
-	potato: PropTypes.string,
-	/**
 	 * Text content for skip link
 	 */
 	skipLinkContent: PropTypes.string,
@@ -315,3 +301,5 @@ Header.propTypes = {
 	 */
 	skipToContentId: PropTypes.string,
 };
+
+Header.defaultProps = { logoLink: '#', skipLinkContent: 'Skip to main content' };

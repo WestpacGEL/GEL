@@ -63,7 +63,7 @@ export interface RepeaterProps {
 // ==============================
 
 export const Repeater = ({
-	addText,
+	addText = 'Add another item',
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -150,10 +150,6 @@ export const Repeater = ({
 	);
 };
 
-Repeater.defaultProps = {
-	addText: 'Add another item',
-};
-
 Repeater.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -203,3 +199,5 @@ Repeater.propTypes = {
 		}),
 	}),
 };
+
+Repeater.defaultProps = { addText: 'Add another item' };

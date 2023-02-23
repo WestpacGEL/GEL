@@ -65,8 +65,6 @@ export const FormPodActionsText = ({
 	);
 };
 
-FormPodActionsText.defaultProps = {};
-
 FormPodActionsText.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

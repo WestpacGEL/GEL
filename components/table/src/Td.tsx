@@ -41,8 +41,8 @@ export interface TdProps {
 // ==============================
 
 export const Td = ({
-	highlighted,
-	highlightStart,
+	highlighted = false,
+	highlightStart = false,
 	bordered,
 	children,
 	overrides,
@@ -87,8 +87,6 @@ export const defaultProps = {
 	highlightStart: false,
 };
 
-Td.defaultProps = defaultProps;
-
 Td.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -121,3 +119,5 @@ Td.propTypes = {
 		}),
 	}),
 };
+
+Td.defaultProps = { highlighted: false, highlightStart: false };

@@ -73,7 +73,7 @@ export const Page = ({
 	text,
 	first,
 	last,
-	disabled,
+	disabled = false,
 	assistiveText,
 	onClick,
 	overrides,
@@ -122,10 +122,6 @@ export const Page = ({
 			</Link>
 		</Page>
 	);
-};
-
-Page.defaultProps = {
-	disabled: false,
 };
 
 Page.propTypes = {
@@ -186,3 +182,5 @@ Page.propTypes = {
 	 */
 	text: PropTypes.string,
 };
+
+Page.defaultProps = { disabled: false };

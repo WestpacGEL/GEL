@@ -72,7 +72,7 @@ interface CompactaProps {
 // ==============================
 
 export const Compacta = ({
-	addText,
+	addText = 'Add another',
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -329,10 +329,6 @@ export const Compacta = ({
 	);
 };
 
-Compacta.defaultProps = {
-	addText: 'Add another',
-};
-
 Compacta.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -382,3 +378,5 @@ Compacta.propTypes = {
 		}),
 	}),
 };
+
+Compacta.defaultProps = { addText: 'Add another' };

@@ -6,7 +6,8 @@ import {
 	styleReconciler,
 	getLabel,
 } from '@westpac/core';
-import { defaultProps } from '../Panel';
+import { Panel as MainPanel } from '../Panel';
+const defaultProps = MainPanel.defaultProps || {};
 
 // ==============================
 // Component

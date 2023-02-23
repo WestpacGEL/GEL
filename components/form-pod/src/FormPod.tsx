@@ -135,8 +135,6 @@ export const FormPod = ({
 	);
 };
 
-FormPod.defaultProps = {};
-
 FormPod.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

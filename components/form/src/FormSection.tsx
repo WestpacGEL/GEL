@@ -27,7 +27,7 @@ interface FormSectionProps {
 // ==============================
 
 export const FormSection = ({
-	noPadding,
+	noPadding = false,
 	overrides: componentOverrides,
 	...rest
 }: FormSectionProps) => {
@@ -64,10 +64,6 @@ export const FormSection = ({
 	);
 };
 
-FormSection.defaultProps = {
-	noPadding: false,
-};
-
 FormSection.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -88,3 +84,5 @@ FormSection.propTypes = {
 		}),
 	}),
 };
+
+FormSection.defaultProps = { noPadding: false };

@@ -53,7 +53,7 @@ export interface StepProps {
 export const Step = ({
 	index,
 	groupIndex,
-	end,
+	end = false,
 	onClick,
 	children,
 	overrides,
@@ -144,10 +144,6 @@ export const Step = ({
 	);
 };
 
-Step.defaultProps = {
-	end: false,
-};
-
 Step.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -189,3 +185,5 @@ Step.propTypes = {
 		}),
 	}),
 };
+
+Step.defaultProps = { end: false };

@@ -95,10 +95,6 @@ export const SelectField = ({
 	);
 };
 
-SelectField.defaultProps = {
-	size: 'medium',
-};
-
 SelectField.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -138,3 +134,5 @@ SelectField.propTypes = {
 		PropTypes.arrayOf(PropTypes.string),
 	]),
 };
+
+SelectField.defaultProps = { size: 'medium' };

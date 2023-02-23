@@ -10,7 +10,8 @@ import {
 import { forwardRef, Fragment } from 'react';
 import { useTransition, animated } from '@react-spring/web';
 
-import { defaultProps } from '../Modal';
+import { Modal as MainModal } from '../Modal';
+const defaultProps = MainModal.defaultProps || {};
 import { nestedStyles } from './modalDialog';
 
 // ==============================

@@ -217,8 +217,6 @@ export const defaultProps = {
 	disabled: false,
 };
 
-ButtonGroup.defaultProps = defaultProps;
-
 ButtonGroup.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -287,4 +285,13 @@ ButtonGroup.propTypes = {
 	 * Control the value, if numeric an index is assumed. Requires `onChange`
 	 */
 	value: PropTypes.any,
+};
+
+ButtonGroup.defaultProps = {
+	block: false,
+	defaultValue: -1,
+	disabled: false,
+	look: 'hero',
+	onChange: () => {},
+	size: 'medium',
 };

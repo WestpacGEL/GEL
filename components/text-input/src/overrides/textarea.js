@@ -9,7 +9,8 @@ import {
 	formatClassName,
 } from '@westpac/core';
 import { sizeMap, getMaxWidth } from '../_utils';
-import { defaultProps } from '../Textarea';
+import { Textarea as MainTextarea } from '../Textarea';
+const defaultProps = MainTextarea.defaultProps || {};
 import { forwardRef } from 'react';
 
 // ==============================

@@ -8,7 +8,8 @@ import {
 	formatClassName,
 } from '@westpac/core';
 import { forwardRef } from 'react';
-import { defaultProps } from '../Popover';
+import { Popover as MainPopover } from '../Popover';
+const defaultProps = MainPopover.defaultProps || {};
 
 // ==============================
 // Component

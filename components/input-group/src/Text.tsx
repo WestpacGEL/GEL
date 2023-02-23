@@ -41,7 +41,14 @@ export interface TextProps {
 // Component
 // ==============================
 
-export const Text = ({ instanceId, position, size, data, overrides, ...rest }: TextProps) => {
+export const Text = ({
+	instanceId,
+	position,
+	size = 'medium',
+	data,
+	overrides,
+	...rest
+}: TextProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -79,8 +86,6 @@ export const defaultProps = {
 	size: 'medium',
 };
 
-Text.defaultProps = defaultProps;
-
 Text.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -114,3 +119,5 @@ Text.propTypes = {
 	 */
 	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']).isRequired,
 };
+
+Text.defaultProps = { size: 'medium' };

@@ -31,7 +31,7 @@ export interface FormPodPanelBodyProps {
 // ==============================
 
 export const FormPodPanelBody = ({
-	expanded,
+	expanded = false,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -62,10 +62,6 @@ export const FormPodPanelBody = ({
 	);
 };
 
-FormPodPanelBody.defaultProps = {
-	expanded: false,
-};
-
 FormPodPanelBody.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -90,3 +86,5 @@ FormPodPanelBody.propTypes = {
 		}),
 	}),
 };
+
+FormPodPanelBody.defaultProps = { expanded: false };

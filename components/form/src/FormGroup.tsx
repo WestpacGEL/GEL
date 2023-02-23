@@ -68,10 +68,6 @@ export const FormGroup = ({ primary = false, overrides, ...rest }: FormGroupProp
 	);
 };
 
-FormGroup.defaultProps = {
-	primary: false,
-};
-
 FormGroup.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -94,3 +90,5 @@ FormGroup.propTypes = {
 	 */
 	primary: PropTypes.bool,
 };
+
+FormGroup.defaultProps = { primary: false };

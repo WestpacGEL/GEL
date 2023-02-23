@@ -22,10 +22,6 @@ export const GEL = ({ brand, normalize = false, children, ...props }: GELProps) 
 	);
 };
 
-GEL.defaultProps = {
-	normalize: false,
-};
-
 GEL.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -43,3 +39,5 @@ GEL.propTypes = {
 		PropTypes.bool,
 	]),
 };
+
+GEL.defaultProps = { normalize: false };

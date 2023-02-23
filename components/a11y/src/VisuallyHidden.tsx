@@ -106,3 +106,5 @@ VisuallyHidden.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
+
+VisuallyHidden.defaultProps = { tag: 'span' };

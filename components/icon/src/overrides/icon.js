@@ -9,7 +9,8 @@ import {
 	getLabel,
 	formatClassName,
 } from '@westpac/core';
-import { defaultProps } from '../Icon';
+import { Icon as MainIcon } from '../Icon';
+const defaultProps = MainIcon.defaultProps || {};
 
 // ==============================
 // Component

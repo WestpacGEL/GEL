@@ -154,10 +154,10 @@ interface SelectorProps {
 
 export const Selector = ({
 	instanceId,
-	type,
+	type = 'radio',
+	iconSize = 'medium',
 	name,
 	value,
-	iconSize,
 	pictogramWidth,
 	pictogramHeight,
 	disabled,
@@ -254,8 +254,6 @@ export const defaultProps = {
 	type: 'radio',
 	iconSize: 'medium',
 };
-
-Selector.defaultProps = defaultProps;
 
 Selector.propTypes = {
 	// ----------------------------- Warning --------------------------------
@@ -386,3 +384,5 @@ Selector.propTypes = {
 	 */
 	value: PropTypes.any,
 };
+
+Selector.defaultProps = { iconSize: 'medium', onChange: () => {}, type: 'radio' };

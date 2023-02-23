@@ -44,7 +44,12 @@ export interface AfterProps {
 // Component
 // ==============================
 
-export const After = ({ inputType, overrides: componentOverrides, ...rest }: AfterProps) => {
+export const After = ({
+	inputType,
+	overrides: componentOverrides,
+	size = 'medium',
+	...rest
+}: AfterProps) => {
 	const componentMap = {
 		text: Text,
 		button: Button,
@@ -52,11 +57,7 @@ export const After = ({ inputType, overrides: componentOverrides, ...rest }: Aft
 	};
 	const Component = componentMap[inputType];
 
-	return <Component position="after" overrides={componentOverrides} {...rest} />;
-};
-
-After.defaultProps = {
-	size: 'medium',
+	return <Component position="after" overrides={componentOverrides} size={size} {...rest} />;
 };
 
 After.displayName = 'After';
@@ -74,4 +75,10 @@ After.propTypes = {
 	 * The override API
 	 */
 	overrides: PropTypes.object,
+	/**
+	 * What size the button-group is
+	 */
+	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']).isRequired,
 };
+
+After.defaultProps = { size: 'medium' };

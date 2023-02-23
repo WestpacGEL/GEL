@@ -20,13 +20,13 @@ export interface FormProps {
 	 *
 	 * This prop is available to children components via `FormContext`.
 	 */
-	size?: unknown[];
+	size?: unknown[] | string;
 	/**
 	 * Vertical spacing of children components.
 	 *
 	 * This prop is available to children components via `FormContext`.
 	 */
-	spacing?: unknown[];
+	spacing?: unknown[] | string;
 	/**
 	 * Inline children mode (SM+).
 	 *
@@ -54,10 +54,10 @@ export interface FormProps {
 // ==============================
 
 export const Form = ({
-	size,
-	spacing,
-	inline,
-	tag,
+	size = 'medium',
+	spacing = 'medium',
+	inline = false,
+	tag = 'form',
 	overrides: componentOverrides,
 	...rest
 }: FormProps) => {
@@ -106,8 +106,6 @@ export const defaultProps = {
 	tag: 'form',
 };
 
-Form.defaultProps = defaultProps;
-
 Form.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -134,15 +132,17 @@ Form.propTypes = {
 	 *
 	 * This prop is available to children components via `FormContext`.
 	 */
-	size: PropTypes.array,
+	size: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 	/**
 	 * Vertical spacing of children components.
 	 *
 	 * This prop is available to children components via `FormContext`.
 	 */
-	spacing: PropTypes.array,
+	spacing: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 	/**
 	 * Component tag
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
+
+Form.defaultProps = { inline: false, size: 'medium', spacing: 'medium', tag: 'form' };
