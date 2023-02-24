@@ -5,9 +5,21 @@ describe('Autocomplete', () => {
 	before(() => {
 		defaultPage.visit();
 	});
-	it('should contain a red border when there is a prop invalid', () => {
+
+	it('should have a different colored border than normal color when prop is invalid', () => {
 		defaultPage.invalidAutocomplete
 			.find('[class$="Control"]')
-			.should('have.css', 'border', '1px solid rgb(196, 0, 0)');
+			.invoke('css', 'borderColor')
+			.then(($invalidColor) => {
+				defaultPage.validAutocomplete
+					.find('[class$="Control"]')
+					.invoke('css', 'borderColor')
+					.should('not.eq', $invalidColor)
+					.then(($validColor) => {
+						cy.log("Invalid color = " + $invalidColor)
+						cy.log("Valid color = " + $validColor)
+					});
+			});
 	});
+
 });

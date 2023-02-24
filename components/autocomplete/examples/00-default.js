@@ -18,8 +18,10 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<h2>Default</h2>
-			<Autocomplete options={options} />
+			<div data-cy="valid-autocomplete">
+				<h2>Default</h2>
+				<Autocomplete options={options} />
+			</div>
 			<h2>Controlled</h2>
 			<Autocomplete options={options} value={option} onChange={handleChange} />
 			<div data-cy="invalid-autocomplete">
