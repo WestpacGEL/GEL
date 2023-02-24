@@ -10,7 +10,7 @@ import {
 } from '@westpac/core';
 import { sizeMap } from './_utils';
 import { Switch as MainSwitch } from '../Switch';
-const defaultProps = MainSwitch.defaultProps || {};
+const defaultProps = MainSwitch?.defaultProps || {};
 
 // ==============================
 // Component

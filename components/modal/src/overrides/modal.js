@@ -11,7 +11,7 @@ import { forwardRef, Fragment } from 'react';
 import { useTransition, animated } from '@react-spring/web';
 
 import { Modal as MainModal } from '../Modal';
-const defaultProps = MainModal.defaultProps || {};
+const defaultProps = MainModal?.defaultProps || {};
 import { nestedStyles } from './modalDialog';
 
 // ==============================

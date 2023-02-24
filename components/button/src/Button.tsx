@@ -243,16 +243,6 @@ Button.displayName = 'Button';
 // Types
 // ==============================
 
-export const defaultProps = {
-	look: 'hero',
-	size: 'medium',
-	tag: 'button',
-	soft: false,
-	block: false,
-	justify: false,
-	disabled: false,
-};
-
 Button.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

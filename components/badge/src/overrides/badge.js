@@ -8,7 +8,7 @@ import {
 	getLabel,
 } from '@westpac/core';
 import { Badge as MainBadge } from '../Badge';
-const defaultProps = MainBadge.defaultProps || {};
+const defaultProps = MainBadge?.defaultProps || {};
 
 // ==============================
 // Component

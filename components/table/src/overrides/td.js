@@ -8,7 +8,7 @@ import {
 	formatClassName,
 } from '@westpac/core';
 import { Td as MainTd } from '../Td';
-const defaultProps = MainTd.defaultProps || {};
+const defaultProps = MainTd?.defaultProps || {};
 
 // ==============================
 // Component

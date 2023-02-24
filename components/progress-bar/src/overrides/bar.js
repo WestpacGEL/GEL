@@ -1,6 +1,6 @@
 import { jsx, useBrand, getLabel, getModifier, styleReconciler } from '@westpac/core';
 import { ProgressBar as MainProgressBar } from '../ProgressBar';
-const defaultProps = MainProgressBar.defaultProps || {};
+const defaultProps = MainProgressBar?.defaultProps || {};
 
 // ==============================
 // Component

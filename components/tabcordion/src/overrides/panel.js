@@ -4,7 +4,7 @@ import BezierEasing from 'bezier-easing';
 import { forwardRef } from 'react';
 
 import { Tabcordion as MainTabcordion } from '../blender/Tabcordion';
-const defaultProps = MainTabcordion.defaultProps || {};
+const defaultProps = MainTabcordion?.defaultProps || {};
 import { usePrevious } from '../_utils';
 
 // ==============================

@@ -2,7 +2,7 @@ import { jsx, getLabel, classNames, getModifier, formatClassName } from '@westpa
 import { forwardRef } from 'react';
 
 import { Tabcordion as MainTabcordion } from '../blender/Tabcordion';
-const defaultProps = MainTabcordion.defaultProps || {};
+const defaultProps = MainTabcordion?.defaultProps || {};
 // ==============================
 // Component
 // ==============================

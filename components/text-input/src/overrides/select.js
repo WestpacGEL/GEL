@@ -11,7 +11,7 @@ import {
 import svgToTinyDataURI from 'mini-svg-data-uri';
 import { sizeMap, getHeight, getMaxWidth } from '../_utils';
 import { Select as MainSelect } from '../Select';
-const defaultProps = MainSelect.defaultProps || {};
+const defaultProps = MainSelect?.defaultProps || {};
 import { forwardRef } from 'react';
 
 // ==============================

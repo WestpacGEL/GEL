@@ -1,7 +1,7 @@
 import { jsx, useBrand, classNames, getModifier } from '@westpac/core';
 import { stepButtonStyles } from './stepButton';
 import { Step as MainStep } from '../blender/Step';
-const defaultProps = MainStep.defaultProps || {};
+const defaultProps = MainStep?.defaultProps || {};
 import { getStyles } from './_utils';
 
 // ==============================

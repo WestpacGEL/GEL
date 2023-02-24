@@ -10,7 +10,7 @@ import {
 import { Body } from '@westpac/body';
 
 import { Table as MainTable } from '../Table';
-const defaultProps = MainTable.defaultProps || {};
+const defaultProps = MainTable?.defaultProps || {};
 import { nestedTdStyles } from './td';
 import { nestedTfootStyles } from './tfoot';
 import { nestedThStyles } from './th';

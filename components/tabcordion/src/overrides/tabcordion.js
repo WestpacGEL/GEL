@@ -10,7 +10,7 @@ import {
 
 import { accordionBtnLegoStyles } from './accordionBtn';
 import { Tabcordion as MainTabcordion } from '../blender/Tabcordion';
-const defaultProps = MainTabcordion.defaultProps || {};
+const defaultProps = MainTabcordion?.defaultProps || {};
 import { tabBtnLegoStyles } from './tabBtn';
 
 // ==============================

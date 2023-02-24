@@ -3,7 +3,7 @@ import { Body } from '@westpac/body';
 import { sizeMap } from '../_utils';
 
 import { FormCheck as MainFormCheck } from '../FormCheck';
-const defaultProps = MainFormCheck.defaultProps || {};
+const defaultProps = MainFormCheck?.defaultProps || {};
 
 // ==============================
 // Component

@@ -18,10 +18,12 @@ const defaultProps = MainButton?.defaultProps || {};
 // Component
 // ==============================
 
-const Button = forwardRef(({ state: { tag: Tag }, ...rest }, ref) => <Tag ref={ref} {...rest} />);
+const Button = forwardRef(({ state: { tag: Tag }, ...rest }: any, ref) => (
+	<Tag ref={ref} {...rest} />
+));
 Button.displayName = 'Button';
 
-const BlenderButton = forwardRef(({ state: { tag: Tag }, className, ...rest }, ref) => (
+const BlenderButton = forwardRef(({ state: { tag: Tag }, className, ...rest }: any, ref) => (
 	<Tag ref={ref} className={formatClassName(className)} {...rest} />
 ));
 BlenderButton.displayName = 'BlenderButton';
@@ -30,7 +32,7 @@ BlenderButton.displayName = 'BlenderButton';
 // Styles
 // ==============================
 
-const buttonStyles = (_, { tag, type, look, size, soft, block, justify, disabled }) => {
+const buttonStyles = (_: any, { tag, type, look, size, soft, block, justify, disabled }: any) => {
 	const mq = useMediaQuery();
 	const { COLORS, TYPE } = useBrand();
 
@@ -238,7 +240,7 @@ const buttonStyles = (_, { tag, type, look, size, soft, block, justify, disabled
 // Blender Styles
 // ==============================
 
-const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
+const blenderStyles = (_: any, { look, size, soft, block, justify, disabled }: any) => {
 	const props = { look, size, soft, block, justify, disabled };
 	const baseStyles = buttonStyles(_, defaultProps);
 	let modifiers = getModifier(defaultProps, props);
@@ -246,9 +248,9 @@ const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 
 	const modifierStyles = buttonStyles(_, props);
 	const reconciledStyles = styleReconciler(baseStyles, modifierStyles);
-	let brandStyles = {};
+	let brandStyles: any = {};
 
-	let label = baseStyles.label;
+	let label: any = baseStyles.label;
 	let modifier;
 
 	if (modifiers.length > 1 && modifiers.includes('soft')) {
@@ -281,9 +283,9 @@ const blenderStyles = (_, { look, size, soft, block, justify, disabled }) => {
 // Attributes
 // ==============================
 
-const buttonAttributes = (_, { assistiveText }) => ({ 'aria-label': assistiveText });
+const buttonAttributes = (_: any, { assistiveText }: any) => ({ 'aria-label': assistiveText });
 
-const blenderAttributes = (_, { look, soft, size, block, justify, assistiveText }) => ({
+const blenderAttributes = (_: any, { look, soft, size, block, justify, assistiveText }: any) => ({
 	...buttonAttributes(_, { assistiveText }),
 	className: classNames({
 		[`__convert__button-${look}`]: look && look !== defaultProps.look && !soft,

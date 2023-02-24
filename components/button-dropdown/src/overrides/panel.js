@@ -12,7 +12,7 @@ import {
 import { forwardRef } from 'react';
 
 import { ButtonDropdown as MainButtonDropdown } from '../ButtonDropdown';
-const defaultProps = MainButtonDropdown.defaultProps || {};
+const defaultProps = MainButtonDropdown?.defaultProps || {};
 
 // ==============================
 // Component

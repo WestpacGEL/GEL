@@ -8,7 +8,7 @@ import {
 	formatClassName,
 } from '@westpac/core';
 import { Label as MainLabel } from '../Label';
-const defaultProps = MainLabel.defaultProps || {};
+const defaultProps = MainLabel?.defaultProps || {};
 
 // ==============================
 // Component

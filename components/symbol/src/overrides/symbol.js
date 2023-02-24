@@ -9,7 +9,7 @@ import {
 	styleReconciler,
 } from '@westpac/core';
 import { Symbol as MainSymbol } from '../Symbol';
-const defaultProps = MainSymbol.defaultProps || {};
+const defaultProps = MainSymbol?.defaultProps || {};
 
 // ==============================
 // Component

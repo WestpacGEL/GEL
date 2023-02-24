@@ -11,7 +11,7 @@ import {
 import { useTransition, animated } from '@react-spring/web';
 
 import { Alert as MainAlert } from '../Alert';
-const defaultProps = MainAlert.defaultProps || {};
+const defaultProps = MainAlert?.defaultProps || {};
 
 // ==============================
 // Component

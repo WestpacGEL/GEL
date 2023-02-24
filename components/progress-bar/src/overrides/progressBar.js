@@ -9,7 +9,7 @@ import {
 } from '@westpac/core';
 
 import { ProgressBar as MainProgressBar } from '../ProgressBar';
-const defaultProps = MainProgressBar.defaultProps || {};
+const defaultProps = MainProgressBar?.defaultProps || {};
 import { nestedBarStyles } from './bar';
 
 // ==============================

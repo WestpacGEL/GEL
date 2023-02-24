@@ -9,7 +9,7 @@ import {
 } from '@westpac/core';
 import { forwardRef } from 'react';
 import { Popover as MainPopover } from '../Popover';
-const defaultProps = MainPopover.defaultProps || {};
+const defaultProps = MainPopover?.defaultProps || {};
 
 // ==============================
 // Component

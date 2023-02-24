@@ -9,7 +9,7 @@ import {
 } from '@westpac/core';
 
 import { Text as MainText } from '../Text';
-const defaultProps = MainText.defaultProps || {};
+const defaultProps = MainText?.defaultProps || {};
 
 // ==============================
 // Component

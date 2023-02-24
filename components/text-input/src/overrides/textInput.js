@@ -9,7 +9,7 @@ import {
 	formatClassName,
 } from '@westpac/core';
 import { TextInput as MainTextInput } from '../TextInput';
-const defaultProps = MainTextInput.defaultProps || {};
+const defaultProps = MainTextInput?.defaultProps || {};
 import { sizeMap, getHeight, getMaxWidth } from '../_utils';
 import { forwardRef } from 'react';
 

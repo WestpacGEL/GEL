@@ -9,7 +9,7 @@ import {
 	formatClassName,
 } from '@westpac/core';
 import { ButtonGroup as MainButtonGroup } from '../ButtonGroup';
-const defaultProps = MainButtonGroup.defaultProps || {};
+const defaultProps = MainButtonGroup?.defaultProps || {};
 // ==============================
 // Component
 // ==============================

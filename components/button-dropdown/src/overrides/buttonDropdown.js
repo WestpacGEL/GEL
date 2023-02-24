@@ -7,7 +7,7 @@ import {
 	formatClassName,
 } from '@westpac/core';
 import { ButtonDropdown as MainButtonDropdown } from '../ButtonDropdown';
-const defaultProps = MainButtonDropdown.defaultProps || {};
+const defaultProps = MainButtonDropdown?.defaultProps || {};
 
 // ==============================
 // Component

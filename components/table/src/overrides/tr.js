@@ -8,7 +8,7 @@ import {
 	formatClassName,
 } from '@westpac/core';
 import { Tr as MainTr } from '../Tr';
-const defaultProps = MainTr.defaultProps || {};
+const defaultProps = MainTr?.defaultProps || {};
 
 // ==============================
 // Component
