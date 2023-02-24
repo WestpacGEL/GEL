@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const BankPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -23,7 +23,7 @@ export const BankPictogram = ({ mode, ...rest }) => {
 };
 
 BankPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Bank',

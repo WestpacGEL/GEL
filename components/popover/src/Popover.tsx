@@ -236,11 +236,6 @@ export const Popover = ({
 	);
 };
 
-export const defaultProps = {
-	open: false,
-	headingTag: 'h4',
-};
-
 Popover.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

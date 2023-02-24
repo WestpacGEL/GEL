@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const HeadsetPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -22,7 +22,7 @@ export const HeadsetPictogram = ({ mode, ...rest }) => {
 };
 
 HeadsetPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Headset',

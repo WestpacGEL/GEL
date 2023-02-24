@@ -71,8 +71,6 @@ export const PasswordInput = ({
 	);
 };
 
-export const defaultProps = {};
-
 PasswordInput.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

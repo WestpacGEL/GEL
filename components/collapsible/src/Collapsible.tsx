@@ -179,10 +179,6 @@ export const Collapsible = ({
 	);
 };
 
-export const defaultProps = {
-	open: false,
-};
-
 Collapsible.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

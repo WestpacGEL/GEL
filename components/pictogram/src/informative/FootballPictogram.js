@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const FootballPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -32,7 +32,7 @@ export const FootballPictogram = ({ mode, ...rest }) => {
 };
 
 FootballPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Football',

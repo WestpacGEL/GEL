@@ -106,10 +106,6 @@ export const Tr = ({ striped, highlighted = false, children, overrides, ...rest 
 	);
 };
 
-export const defaultProps = {
-	highlighted: false,
-};
-
 Tr.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

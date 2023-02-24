@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const GlobeAustraliaPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -26,7 +26,7 @@ export const GlobeAustraliaPictogram = ({ mode, ...rest }) => {
 };
 
 GlobeAustraliaPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Globe showing Australia',

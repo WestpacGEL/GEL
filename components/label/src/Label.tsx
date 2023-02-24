@@ -63,10 +63,6 @@ export const Label = ({
 	);
 };
 
-export const defaultProps = {
-	look: 'primary',
-};
-
 Label.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

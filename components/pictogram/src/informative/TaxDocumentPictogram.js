@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const TaxDocumentPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -33,7 +33,7 @@ export const TaxDocumentPictogram = ({ mode, ...rest }) => {
 };
 
 TaxDocumentPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Tax document',

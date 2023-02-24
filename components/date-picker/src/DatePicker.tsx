@@ -163,11 +163,6 @@ export const DatePicker = ({
 	);
 };
 
-export const defaultProps = {
-	placeholder: '',
-	size: textInputDefaultProps.size,
-};
-
 DatePicker.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

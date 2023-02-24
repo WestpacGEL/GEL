@@ -81,12 +81,6 @@ export const Textarea = ({
 	);
 };
 
-export const defaultProps = {
-	size: 'medium',
-	inline: false,
-	invalid: false,
-};
-
 Textarea.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

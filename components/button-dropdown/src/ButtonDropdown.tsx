@@ -216,12 +216,6 @@ export const ButtonDropdown = ({
 	);
 };
 
-export const defaultProps = {
-	open: false,
-	dropdownSize: 'medium',
-	block: false,
-};
-
 ButtonDropdown.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

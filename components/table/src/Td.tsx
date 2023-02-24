@@ -82,11 +82,6 @@ export const Td = ({
 	);
 };
 
-export const defaultProps = {
-	highlighted: false,
-	highlightStart: false,
-};
-
 Td.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

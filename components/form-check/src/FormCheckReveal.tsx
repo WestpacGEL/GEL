@@ -185,13 +185,6 @@ export const FormCheckReveal = ({
 	);
 };
 
-export const defaultProps = {
-	type: 'checkbox',
-	inline: false,
-	size: 'medium',
-	show: -1,
-};
-
 FormCheckReveal.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

@@ -94,18 +94,6 @@ export const Form = ({
 // Types
 // ==============================
 
-const options = {
-	size: ['small', 'medium', 'large', 'xlarge'],
-	spacing: ['medium', 'large'],
-};
-
-export const defaultProps = {
-	size: 'medium',
-	spacing: 'medium',
-	inline: false,
-	tag: 'form',
-};
-
 Form.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

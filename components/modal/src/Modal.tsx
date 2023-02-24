@@ -262,12 +262,6 @@ export const Modal = ({
 	return <Fragment />;
 };
 
-export const defaultProps = {
-	open: false,
-	size: 'medium',
-	dismissible: true,
-};
-
 Modal.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

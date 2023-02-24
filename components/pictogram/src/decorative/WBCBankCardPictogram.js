@@ -1,5 +1,5 @@
 import React from 'react';
-import { defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const WBCBankCardPictogram = (props) => {
 	return (
@@ -43,7 +43,7 @@ export const WBCBankCardPictogram = (props) => {
 };
 
 WBCBankCardPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 200,
 	viewBoxHeight: 200,
 	assistiveText: 'Bank card',

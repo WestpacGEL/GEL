@@ -154,12 +154,6 @@ Switch.displayName = 'Switch';
 // Types
 // ==============================
 
-export const defaultProps = {
-	size: 'medium',
-	checked: false,
-	block: false,
-};
-
 Switch.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

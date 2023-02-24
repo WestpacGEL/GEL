@@ -82,10 +82,6 @@ export const Text = ({
 	);
 };
 
-export const defaultProps = {
-	size: 'medium',
-};
-
 Text.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

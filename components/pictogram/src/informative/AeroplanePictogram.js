@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const AeroplanePictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -25,7 +25,7 @@ export const AeroplanePictogram = ({ mode, ...rest }) => {
 };
 
 AeroplanePictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Aeroplane',

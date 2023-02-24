@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
 import { useState, useEffect, useCallback, ReactNode } from 'react';
 
-export const defaultProps = {};
 import { defaultCloseBtn } from './overrides/closeBtn';
 import { defaultHeading } from './overrides/heading';
 import { defaultAlert } from './overrides/alert';

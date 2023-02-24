@@ -100,13 +100,6 @@ export const TextInput = ({
 // Types
 // ==============================
 
-export const defaultProps = {
-	size: 'medium',
-	inline: false,
-	invalid: false,
-	type: 'text',
-};
-
 TextInput.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

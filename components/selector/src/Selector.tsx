@@ -250,11 +250,6 @@ export const Selector = ({
 	);
 };
 
-export const defaultProps = {
-	type: 'radio',
-	iconSize: 'medium',
-};
-
 Selector.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

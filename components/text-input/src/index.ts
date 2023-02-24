@@ -1,6 +1,6 @@
 export { Textarea } from './Textarea';
 export { Select } from './Select';
-export { TextInput, defaultProps } from './TextInput';
+export { TextInput } from './TextInput';
 export { TextInputWithButton } from './TextInputWithButton';
 
 export { blenderTextInput } from './overrides/textInput';

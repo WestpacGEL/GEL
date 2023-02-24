@@ -209,12 +209,6 @@ export const FormCheck = ({
 	);
 };
 
-export const defaultProps = {
-	type: 'checkbox',
-	inline: false,
-	size: 'medium',
-};
-
 FormCheck.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

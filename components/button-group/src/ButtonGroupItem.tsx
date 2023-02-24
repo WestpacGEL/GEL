@@ -236,10 +236,6 @@ ButtonGroupItem.displayName = 'ButtonGroupItem';
 // Types
 // ==============================
 
-export const defaultProps = {
-	checked: false,
-};
-
 ButtonGroupItem.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

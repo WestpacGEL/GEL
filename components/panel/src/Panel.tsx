@@ -113,11 +113,6 @@ export const Panel = ({
 	);
 };
 
-export const defaultProps = {
-	look: 'hero',
-	headingTag: 'h1',
-};
-
 Panel.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

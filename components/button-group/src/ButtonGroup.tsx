@@ -31,7 +31,7 @@ interface ButtonGroupProps {
 	/**
 	 * Control the value, if numeric an index is assumed. Requires `onChange`
 	 */
-	value?: unknown;
+	value?: number | string;
 	/**
 	 * Default value of this component
 	 */
@@ -207,16 +207,6 @@ export const ButtonGroup = ({
 // Types
 // ==============================
 
-const ValueType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
-
-export const defaultProps = {
-	defaultValue: -1,
-	look: 'hero',
-	size: 'medium',
-	block: false,
-	disabled: false,
-};
-
 ButtonGroup.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -284,7 +274,7 @@ ButtonGroup.propTypes = {
 	/**
 	 * Control the value, if numeric an index is assumed. Requires `onChange`
 	 */
-	value: PropTypes.any,
+	value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 ButtonGroup.defaultProps = {

@@ -135,11 +135,6 @@ export const Table = ({
 	);
 };
 
-export const defaultProps = {
-	bordered: false,
-	striped: false,
-};
-
 Table.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |

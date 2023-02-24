@@ -105,12 +105,6 @@ export const Select = ({
 	);
 };
 
-export const defaultProps = {
-	size: 'medium',
-	inline: false,
-	invalid: false,
-};
-
 Select.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
