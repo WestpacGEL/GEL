@@ -5,7 +5,7 @@ import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { defaultDatePicker } from './overrides/datePicker';
 import { defaultDatePickerInput } from './overrides/datePickerInput';
 
-import { defaultProps as textInputDefaultProps } from '@westpac/text-input';
+import { TextInput } from '@westpac/text-input';
 import pkg from '../package.json';
 
 interface DatePickerProps {
@@ -100,7 +100,7 @@ export const DatePicker = ({
 	onOpen,
 	onClose,
 	placeholder = '',
-	size = textInputDefaultProps.size,
+	size = TextInput.defaultProps.size,
 	overrides: componentOverrides,
 	...rest
 }: DatePickerProps) => {
