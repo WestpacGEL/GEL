@@ -16,10 +16,9 @@ describe('Autocomplete', () => {
 					.invoke('css', 'borderColor')
 					.should('not.eq', $invalidColor)
 					.then(($validColor) => {
-						cy.log("Invalid color = " + $invalidColor)
-						cy.log("Valid color = " + $validColor)
+						cy.log('Invalid color = ' + $invalidColor);
+						cy.log('Valid color = ' + $validColor);
 					});
 			});
 	});
-
 });
