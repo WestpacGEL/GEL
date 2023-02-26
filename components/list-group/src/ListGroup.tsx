@@ -99,7 +99,7 @@ export const ListGroup = ({ children, overrides: componentOverrides, ...rest }: 
 ListGroup.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
-	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
 	/**
 	 * The content for this list group

@@ -141,7 +141,7 @@ export const Pictogram = ({
 Pictogram.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
-	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
 	/**
 	 * String to use as the `aria-label` for the pictogram. Set to an empty string if you

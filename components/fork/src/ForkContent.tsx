@@ -80,7 +80,7 @@ export const ForkContent = ({ text, selected, children, overrides, ...rest }: Fo
 ForkContent.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
-	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
 	/**
 	 * Children

@@ -223,7 +223,7 @@ export const List = ({
 List.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
-	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
 	/**
 	 * Visually hidden text to use for the list.

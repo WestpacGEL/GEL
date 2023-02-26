@@ -166,7 +166,7 @@ export const DatePicker = ({
 DatePicker.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
-	// |     To update them edit TypeScript types and run "yarn proptypes"  |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
 	disableDates: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
 	disableDaysOfWeek: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
