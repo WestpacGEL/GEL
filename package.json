@@ -59,7 +59,7 @@
     "nuke:lock": "rm yarn.lock && rm yarn-error.log ; true",
     "nuke:node_modules": "find ./components -type d -name 'node_modules' -exec rm -rf {} + && find ./brands -type d -name 'node_modules' -exec rm -rf {} + && rm -rf node_modules",
     "prepare": "husky install",
-    "prop-types": "ts-node --project tsconfig.example.json --esm ./helpers/generateProptypes.ts",
+    "prop-types": "ts-node --project tsconfig.prop-types.json --esm ./helpers/generateProptypes.ts",
     "publish-packages": "yarn build && yarn GELjson && yarn changeset publish",
     "start": "yarn build:dynamicblocks && (trap 'kill 0' SIGINT; yarn --cwd website dev & yarn --cwd website-backend dev ; wait)",
     "test": "yarn test:format && yarn test:unit && yarn test:integration",

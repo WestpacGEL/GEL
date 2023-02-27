@@ -8,7 +8,7 @@ import * as ttp from 'typescript-to-proptypes';
 const prettierConfig = prettier.resolveConfig.sync(path.join(__dirname, '../.prettierrc'));
 
 const componentFiles = glob.sync('components/**/src/*.tsx', { absolute: true });
-const program = ttp.createProgram(componentFiles, ttp.loadConfig('tsconfig.example.json'));
+const program = ttp.createProgram(componentFiles, ttp.loadConfig('tsconfig.prop-types.json'));
 
 for (const componentFile of componentFiles) {
 	const extname = path.extname(componentFile);
