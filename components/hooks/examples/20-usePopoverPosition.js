@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { usePopoverPosition } from '@westpac/hooks';
 import { useRef, useState, useEffect } from 'react';

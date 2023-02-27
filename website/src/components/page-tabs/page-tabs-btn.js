@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 
 export const PageTabsBtn = ({ href, active, onClick, ...rest }) => {

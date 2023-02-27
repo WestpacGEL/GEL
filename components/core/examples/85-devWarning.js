@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx, devWarning } from '@westpac/core';
 import { Code } from './_utils';
 

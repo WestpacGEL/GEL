@@ -14,7 +14,7 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
-		"jsx": "react-jsx",
+		"jsx": "react",
 		"types": ["@emotion/core", "cypress"]
 	},
 	"exclude": ["**/dist", "**/node_modules"]

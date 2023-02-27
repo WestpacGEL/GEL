@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Panel, Body } from '@westpac/panel';
 import { Table, Tr, Td, Tbody } from '@westpac/table';

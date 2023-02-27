@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useMediaQuery,
@@ -13,17 +11,20 @@ import {
 } from '@westpac/core';
 import { forwardRef } from 'react';
 
-import { defaultProps } from '../ButtonDropdown';
+import { ButtonDropdown as MainButtonDropdown } from '../ButtonDropdown';
+const defaultProps = MainButtonDropdown?.defaultProps || {};
 
 // ==============================
 // Component
 // ==============================
 
 const Panel = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+Panel.displayName = 'Panel';
 
 const BlenderPanel = forwardRef(({ state: _, className, ...rest }, ref) => (
 	<div ref={ref} className={formatClassName(className)} {...rest} />
 ));
+BlenderPanel.displayName = 'BlenderPanel';
 
 // ==============================
 // Styles

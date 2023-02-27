@@ -1,6 +1,5 @@
-/** @jsx jsx */
-
-import {
+import PropTypes from 'prop-types';
+import React, {
 	createContext,
 	useContext,
 	Children,
@@ -13,7 +12,6 @@ import {
 } from 'react';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { useContainerQuery } from '@westpac/hooks';
-import PropTypes from 'prop-types';
 
 import { defaultTabcordion } from './overrides/tabcordion';
 import { defaultTabBtn } from './overrides/tabBtn';
@@ -25,7 +23,7 @@ import { Tab } from './Tab';
 // Context and Consumer Hook
 // ==============================
 
-const TabcordionContext = createContext(null);
+const TabcordionContext = createContext<any>(null);
 
 export const useTabcordionContext = () => {
 	const context = useContext(TabcordionContext);
@@ -37,16 +35,104 @@ export const useTabcordionContext = () => {
 	return context;
 };
 
+interface TabcordionProps {
+	/**
+	 * Define an id for the elements e.g. for an instanceId of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc.
+	 */
+	instanceId?: string;
+	/**
+	 * Lock the mode to either "accordion" or "tabs". The default is "responsive".
+	 */
+	mode?: 'responsive' | 'accordion' | 'tabs';
+	/**
+	 * The look of the tabs
+	 */
+	look?: 'soft' | 'lego';
+	/**
+	 * Whether or not tabs should stretch full width
+	 */
+	justify?: boolean;
+	/**
+	 * Current open tab (zero-indexed)
+	 */
+	openTab?: number;
+	/**
+	 * Callback function run when a tab/panel is open.
+	 */
+	onOpen?: (...args: unknown[]) => unknown;
+	/**
+	 * Callback function run when a tab/panel is opening.
+	 */
+	onOpening?: (...args: unknown[]) => unknown;
+	/**
+	 * Callback function run when a tab/panel is closed.
+	 */
+	onClose?: (...args: unknown[]) => unknown;
+	/**
+	 * Callback function run when a tab/panel is closing.
+	 */
+	onClosing?: (...args: unknown[]) => unknown;
+	/**
+	 * An array of Tab components that can be navigated through
+	 */
+	children: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Tabcordion?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		TabBtn?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		TabRow?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Item?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		AccordionBtn?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		AccordionIcon?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Panel?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		PanelBody?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const Tabcordion = ({
 	instanceId,
-	mode: tabcordionMode,
-	look,
-	justify,
-	openTab,
+	mode: tabcordionMode = 'responsive',
+	look = 'soft',
+	openTab = 0,
+	justify = false,
 	onOpen = () => {},
 	onOpening = () => {},
 	onClose = () => {},
@@ -54,7 +140,7 @@ export const Tabcordion = ({
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Tabcordion.propTypes & typeof Tabcordion.defaultProps) => {
+}: TabcordionProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -66,7 +152,7 @@ export const Tabcordion = ({
 		TabRow: defaultTabRow,
 	};
 
-	const [activeTabIndex, setActiveTabIndex] = useState<number>(openTab);
+	const [activeTabIndex, setActiveTabIndex] = useState<number | undefined>(openTab);
 	const _id = useId();
 	const id = useMemo(() => instanceId || `gel-tabcordion-${_id}`, [_id, instanceId]);
 
@@ -119,7 +205,7 @@ export const Tabcordion = ({
 
 				return (
 					<TabBtn
-						key={child.props.text}
+						key={child?.props.text}
 						onClick={setActive(idx)}
 						state={state}
 						{...tabBtnAttributes({
@@ -132,7 +218,7 @@ export const Tabcordion = ({
 						})}
 						css={tabBtnStyles({ ...state, selected, first, last })}
 					>
-						{child.props.text}
+						{child?.props.text}
 					</TabBtn>
 				);
 			})}
@@ -154,8 +240,8 @@ export const Tabcordion = ({
 					const selected = activeTabIndex === idx;
 					return (
 						<Tab
-							{...child.props}
-							key={child.props.text}
+							{...child?.props}
+							key={child?.props.text}
 							ref={selected ? panelRef : null}
 							look={look}
 							first={idx === 0}
@@ -178,111 +264,105 @@ export const Tabcordion = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Tabcordion.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * An array of Tab components that can be navigated through
+	 */
+	children: PropTypes.node,
 	/**
 	 * Define an id for the elements e.g. for an instanceId of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc.
 	 */
 	instanceId: PropTypes.string,
-
-	/**
-	 * Lock the mode to either "accordion" or "tabs". The default is "responsive".
-	 */
-	mode: PropTypes.oneOf(['responsive', 'accordion', 'tabs']),
-
-	/**
-	 * The look of the tabs
-	 */
-	look: PropTypes.oneOf(['soft', 'lego']),
-
 	/**
 	 * Whether or not tabs should stretch full width
 	 */
 	justify: PropTypes.bool,
-
 	/**
-	 * Current open tab (zero-indexed)
+	 * The look of the tabs
 	 */
-	openTab: PropTypes.number,
-
+	look: PropTypes.oneOf(['lego', 'soft']),
 	/**
-	 * Callback function run when a tab/panel is open.
+	 * Lock the mode to either "accordion" or "tabs". The default is "responsive".
 	 */
-	onOpen: PropTypes.func,
-
-	/**
-	 * Callback function run when a tab/panel is opening.
-	 */
-	onOpening: PropTypes.func,
-
+	mode: PropTypes.oneOf(['accordion', 'responsive', 'tabs']),
 	/**
 	 * Callback function run when a tab/panel is closed.
 	 */
 	onClose: PropTypes.func,
-
 	/**
 	 * Callback function run when a tab/panel is closing.
 	 */
 	onClosing: PropTypes.func,
-
 	/**
-	 * An array of Tab components that can be navigated through
+	 * Callback function run when a tab/panel is open.
 	 */
-	children: PropTypes.node.isRequired,
-
+	onOpen: PropTypes.func,
+	/**
+	 * Callback function run when a tab/panel is opening.
+	 */
+	onOpening: PropTypes.func,
+	/**
+	 * Current open tab (zero-indexed)
+	 */
+	openTab: PropTypes.number,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Tabcordion: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		TabBtn: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		TabRow: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Item: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		AccordionBtn: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		AccordionIcon: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Item: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Panel: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		PanelBody: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		TabBtn: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Tabcordion: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		TabRow: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
 
 Tabcordion.defaultProps = {
-	look: 'soft',
-	openTab: 0,
 	justify: false,
+	look: 'soft',
 	mode: 'responsive',
+	onClose: () => {},
+	onClosing: () => {},
+	onOpen: () => {},
+	onOpening: () => {},
+	openTab: 0,
 };

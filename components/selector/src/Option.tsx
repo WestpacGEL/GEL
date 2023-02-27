@@ -1,8 +1,6 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, getLabel, overrideReconciler } from '@westpac/core';
-import { forwardRef, useId, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, getLabel, overrideReconciler } from '@westpac/core';
+import React, { forwardRef, ReactNode, useId, useMemo } from 'react';
 
 import { defaultOptionBtn } from './overrides/optionBtn';
 import { defaultOption } from './overrides/option';
@@ -17,6 +15,139 @@ import { defaultIndicatorCheck } from './overrides/indicatorCheck';
 
 import { useSelectorContext } from './Selector';
 import pkg from '../package.json';
+
+export interface OptionProps {
+	/**
+	 * index
+	 */
+	index?: number;
+	/**
+	 * className
+	 */
+	className?: string;
+	/**
+	 * Seletor option id
+	 */
+	id?: string;
+
+	/**
+	 * Selector option value
+	 */
+	value?: string;
+
+	/**
+	 * Selector href value
+	 */
+	href?: string;
+
+	/**
+	 * Pictogram graphic
+	 */
+	pictogram?: (...args: unknown[]) => unknown;
+
+	/**
+	 * Icon graphic
+	 */
+	icon?: (...args: unknown[]) => unknown;
+
+	/**
+	 * Secondary label text
+	 */
+	secondaryLabel?: ReactNode;
+
+	/**
+	 * Check the Selector option
+	 */
+	checked?: boolean;
+
+	/**
+	 * Disable the Selector option
+	 */
+	disabled?: boolean;
+
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId?: string;
+
+	/**
+	 * Selector type
+	 */
+	type?: 'radio' | 'checkbox';
+
+	/**
+	 * The Selector input element’s name
+	 */
+	name?: string;
+
+	/**
+	 * Hint text
+	 */
+	hint?: ReactNode;
+
+	/**
+	 * A function called on change
+	 */
+	onChange?: (...args: unknown[]) => unknown;
+
+	/**
+	 * Selector option label text
+	 */
+	children: ReactNode;
+
+	overrides?: {
+		Option?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		OptionBtn?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Pictogram?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Icon?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Text?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Label?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		LabelSecondary?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Hint?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		IndicatorCheck?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		IndicatorNext?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -37,7 +168,7 @@ export const Option = forwardRef(
 			children,
 			overrides,
 			...rest
-		}: typeof Option.propTypes & typeof Option.defaultProps,
+		}: OptionProps,
 		ref
 	) => {
 		const {
@@ -243,134 +374,106 @@ export const Option = forwardRef(
 		);
 	}
 );
-
+Option.displayName = 'Option';
 // ==============================
 // Types
 // ==============================
 
 Option.propTypes = {
-	/**
-	 * Seletor option id
-	 */
-	id: PropTypes.string,
-
-	/**
-	 * Selector option value
-	 */
-	value: PropTypes.string,
-
-	/**
-	 * Selector href value
-	 */
-	href: PropTypes.string,
-
-	/**
-	 * Pictogram graphic
-	 */
-	pictogram: PropTypes.func,
-
-	/**
-	 * Icon graphic
-	 */
-	icon: PropTypes.func,
-
-	/**
-	 * Secondary label text
-	 */
-	secondaryLabel: PropTypes.node,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Check the Selector option
 	 */
 	checked: PropTypes.bool,
-
 	/**
-	 * Disable the Selector option
+	 * Selector option label text
 	 */
-	disabled: PropTypes.bool,
-
+	children: PropTypes.node,
 	/**
-	 * Define an id for internal elements
+	 * className
 	 */
-	instanceId: PropTypes.string,
-
-	/**
-	 * Selector type
-	 */
-	type: PropTypes.oneOf(['radio', 'checkbox']),
-
-	/**
-	 * The Selector input element’s name
-	 */
-	name: PropTypes.string,
-
+	className: PropTypes.string,
 	/**
 	 * Hint text
 	 */
 	hint: PropTypes.node,
-
 	/**
-	 * A function called on change
+	 * Selector href value
 	 */
-	onChange: PropTypes.func,
-
+	href: PropTypes.string,
 	/**
-	 * Selector option label text
+	 * Icon graphic
 	 */
-	children: PropTypes.node.isRequired,
-
+	icon: PropTypes.func,
+	/**
+	 * index
+	 */
+	index: PropTypes.number,
 	overrides: PropTypes.shape({
-		Option: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		Hint: PropTypes.shape({
 			attributes: PropTypes.func,
-		}),
-		OptionBtn: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Pictogram: PropTypes.shape({
 			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
 		}),
 		Icon: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		Text: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Label: PropTypes.shape({
 			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		LabelSecondary: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Hint: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
 		}),
 		IndicatorCheck: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		IndicatorNext: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Label: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		LabelSecondary: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Option: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		OptionBtn: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Pictogram: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Text: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Pictogram graphic
+	 */
+	pictogram: PropTypes.func,
+	/**
+	 * Secondary label text
+	 */
+	secondaryLabel: PropTypes.node,
+	/**
+	 * Selector option value
+	 */
+	value: PropTypes.string,
 };
-
-Option.defaultProps = {};

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { Fragment, useState, forwardRef } from 'react';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
@@ -98,6 +96,7 @@ export const Tab = forwardRef(
 		);
 	}
 );
+Tab.displayName = 'Tab';
 
 // ==============================
 // Types

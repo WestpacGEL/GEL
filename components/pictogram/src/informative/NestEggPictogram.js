@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const NestEggPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -22,10 +22,10 @@ export const NestEggPictogram = ({ mode, ...rest }) => {
 };
 
 NestEggPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Nest egg',
 	copyrightYear: '2021',
 };
-NestEggPictogram.propTypes = propTypes;
+NestEggPictogram.propTypes = Pictogram.propTypes;

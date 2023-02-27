@@ -1,7 +1,6 @@
-/** @jsx jsx */
-
 import { jsx, getLabel, getModifier, styleReconciler } from '@westpac/core';
-import { defaultProps } from '../Switch';
+import { Switch as MainSwitch } from '../Switch';
+const defaultProps = MainSwitch?.defaultProps || {};
 
 // ==============================
 // Component

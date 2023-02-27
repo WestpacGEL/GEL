@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
 import { useSpring, animated } from '@react-spring/web';
@@ -27,8 +25,10 @@ const Content = forwardRef(({ state: { isOpen, setClosed }, ...rest }, ref) => {
 
 	return <animated.div ref={ref} style={fade} {...rest} />;
 });
+Content.displayName = 'Content';
 
 const BlenderContent = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+BlenderContent.displayName = 'BlenderContent';
 
 // ==============================
 // Styles

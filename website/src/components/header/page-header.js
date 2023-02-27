@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import React, { useLayoutEffect } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Heading, BrandHeading } from '@westpac/heading';

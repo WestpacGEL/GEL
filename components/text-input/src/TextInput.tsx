@@ -1,24 +1,69 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { defaultTextInput } from './overrides/textInput';
 import pkg from '../package.json';
+import React, { ReactNode } from 'react';
+
+export interface TextInputProps {
+	/**
+	 * Component size
+	 */
+	size: 'small' | 'medium' | 'large' | 'xlarge';
+
+	/**
+	 * Component width (in chars).
+	 *
+	 * This prop sets a fixed width, measured in characters.
+	 */
+	width?: 2 | 3 | 4 | 5 | 10 | 20 | 30;
+
+	/**
+	 * Inline mode
+	 */
+	inline: boolean;
+
+	/**
+	 * Invalid input mode
+	 */
+	invalid: boolean;
+
+	/**
+	 * ReactNode
+	 */
+	children: ReactNode;
+
+	/**
+	 * Type
+	 */
+	type?: string;
+
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		TextInput?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
 // ==============================
 
 export const TextInput = ({
-	size,
 	width,
-	inline,
-	invalid,
 	children,
 	overrides: componentOverrides,
+	size = 'medium',
+	inline = false,
+	invalid = false,
+	type = 'text',
 	...rest
-}: typeof TextInput.propTypes & typeof TextInput.defaultProps) => {
+}: TextInputProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -55,47 +100,47 @@ export const TextInput = ({
 // Types
 // ==============================
 
-export const propTypes = {
+TextInput.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * ReactNode
+	 */
+	children: PropTypes.node,
+	/**
+	 * Inline mode
+	 */
+	inline: PropTypes.bool.isRequired,
+	/**
+	 * Invalid input mode
+	 */
+	invalid: PropTypes.bool.isRequired,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		TextInput: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
 	/**
 	 * Component size
 	 */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
-
+	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']).isRequired,
+	/**
+	 * Type
+	 */
+	type: PropTypes.string,
 	/**
 	 * Component width (in chars).
 	 *
 	 * This prop sets a fixed width, measured in characters.
 	 */
 	width: PropTypes.oneOf([2, 3, 4, 5, 10, 20, 30]),
-
-	/**
-	 * Inline mode
-	 */
-	inline: PropTypes.bool.isRequired,
-
-	/**
-	 * Invalid input mode
-	 */
-	invalid: PropTypes.bool.isRequired,
-
-	/**
-	 * The override API
-	 */
-	overrides: PropTypes.shape({
-		TextInput: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
-};
-TextInput.propTypes = propTypes;
-
-export const defaultProps = {
-	size: 'medium',
-	inline: false,
-	invalid: false,
-	type: 'text',
 };
 
-TextInput.defaultProps = defaultProps;
+TextInput.defaultProps = { inline: false, invalid: false, size: 'medium', type: 'text' };

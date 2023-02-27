@@ -1,7 +1,6 @@
-/** @jsx jsx */
-
 import { jsx, classNames, getModifier, styleReconciler } from '@westpac/core';
-import { defaultProps } from '../blender/Group';
+import { Group as MainGroup } from '../blender/Group';
+const defaultProps = MainGroup?.defaultProps || {};
 import { getStyles } from './_utils';
 
 // sub-component style functions

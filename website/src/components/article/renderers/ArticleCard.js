@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell } from '@westpac/grid';
 import { ArrowRightIcon } from '@westpac/icon';

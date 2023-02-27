@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import React from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { useBrandSwitcher } from '../providers/brand-switcher';

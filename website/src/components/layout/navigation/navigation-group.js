@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand } from '@westpac/core';
 import { AddIcon, RemoveIcon } from '@westpac/icon';
 import { useState, useEffect, useId, useMemo } from 'react';

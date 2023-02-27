@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import React, { Fragment, ReactElement, ReactNode, useContext } from 'react';
 import { useBrand } from '@westpac/core';
 import dynamicComponents from '../../../../dynamic-blocks/';

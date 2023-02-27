@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -9,7 +7,8 @@ import {
 	formatClassName,
 	getLabel,
 } from '@westpac/core';
-import { defaultProps } from '../Badge';
+import { Badge as MainBadge } from '../Badge';
+const defaultProps = MainBadge?.defaultProps || {};
 
 // ==============================
 // Component

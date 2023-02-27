@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { forwardRef } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Tab, Tabcordion } from '@westpac/tabcordion';

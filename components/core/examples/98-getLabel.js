@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx, getLabel } from '@westpac/core';
 import { createElement } from 'react';
 import { Code } from './_utils';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { usePagination } from '@westpac/pagination';
 import { Button } from '@westpac/button';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, getLabel } from '@westpac/core';
 
 const Svg = ({ state: _, ...rest }) => <svg {...rest} />;

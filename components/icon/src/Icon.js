@@ -1,6 +1,4 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
 
 import { defaultIcon } from './overrides/icon';

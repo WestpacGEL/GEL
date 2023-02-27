@@ -1,10 +1,36 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultVisuallyHidden } from './overrides/visuallyHidden';
 import pkg from '../package.json';
+import React, { ReactNode } from 'react';
+
+// ==============================
+// Types
+// ==============================
+
+export interface VisuallyHiddenProps {
+	/**
+	 * Component tag
+	 */
+	tag?: ((props: any) => any) | string;
+
+	/**
+	 * Component content
+	 */
+	children: ReactNode;
+
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		VisuallyHidden?: {
+			styles?: ((props: any) => any) | string;
+			component?: string;
+			attributes?: ((props: any) => any) | string;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -16,11 +42,11 @@ import pkg from '../package.json';
 // ==============================
 
 export const VisuallyHidden = ({
-	tag,
+	tag = 'span',
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof VisuallyHidden.propTypes & typeof VisuallyHidden.defaultProps) => {
+}: VisuallyHiddenProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -56,33 +82,29 @@ export const VisuallyHidden = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 VisuallyHidden.propTypes = {
-	/**
-	 * Component tag
-	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Component content
 	 */
-	children: PropTypes.node.isRequired,
-
+	children: PropTypes.node,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		VisuallyHidden: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			attributes: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+			component: PropTypes.string,
+			styles: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 		}),
 	}),
+	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 
-VisuallyHidden.defaultProps = {
-	tag: 'span',
-};
+VisuallyHidden.defaultProps = { tag: 'span' };

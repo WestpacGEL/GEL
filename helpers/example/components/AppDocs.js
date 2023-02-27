@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Fragment, useState, StrictMode } from 'react';
 

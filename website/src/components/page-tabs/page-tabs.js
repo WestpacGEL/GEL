@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { Children, useState, useEffect } from 'react';
 import { jsx, useMediaQuery, useBrand } from '@westpac/core';
 import { PageTabsBtn } from './page-tabs-btn';

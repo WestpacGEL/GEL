@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Form, FormGroup, Field, Fieldset, InputCluster, Item } from '@westpac/form';
 import { Select } from '@westpac/text-input';

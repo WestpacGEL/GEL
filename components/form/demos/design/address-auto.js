@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Fragment, useState, useLayoutEffect, useRef } from 'react';
 import { components } from 'react-select';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { Table, Caption, Thead, Tr, Th, Tbody, Td, Tfoot } from '@westpac/table';
 

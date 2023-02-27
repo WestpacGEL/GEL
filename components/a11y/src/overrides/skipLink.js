@@ -1,6 +1,4 @@
-/** @jsx jsx */
-
-import { jsx, getLabel, useBrand } from '@westpac/core';
+import { getLabel, useBrand } from '@westpac/core';
 
 const SkipLink = ({ state: _, ...rest }) => <a {...rest} />;
 

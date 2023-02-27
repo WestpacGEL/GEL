@@ -1,22 +1,46 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultContainer } from './overrides/container';
 import pkg from '../package.json';
+import React, { ReactNode } from 'react';
+
+export interface ContainerProps {
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * Enable fixed width container mode. In this mode the container width is fixed at each breakpoint.
+	 */
+	fixed: boolean;
+	/**
+	 * Component tag
+	 */
+	tag?: ((...args: unknown[]) => unknown) | string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Container?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
 // ==============================
 
 export const Container = ({
-	fixed,
-	tag,
+	fixed = false,
+	tag = 'div',
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Container.propTypes & typeof Container.defaultProps) => {
+}: ContainerProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -44,34 +68,33 @@ export const Container = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Container.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
 	/**
 	 * Enable fixed width container mode. In this mode the container width is fixed at each breakpoint.
 	 */
 	fixed: PropTypes.bool.isRequired,
-
-	/**
-	 * Component tag
-	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Container: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 
-Container.defaultProps = {
-	fixed: false,
-	tag: 'div',
-};
+Container.defaultProps = { fixed: false, tag: 'div' };

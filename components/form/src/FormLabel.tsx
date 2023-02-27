@@ -1,12 +1,38 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { forwardRef, ReactNode } from 'react';
 
 import { defaultFormLabel } from './overrides/formLabel';
 import { useFormContext } from './Form';
 import pkg from '../package.json';
+
+interface FormLabelProps {
+	/**
+	 * Sub-label mode (smaller label text size)
+	 */
+	subLabel?: boolean;
+
+	/**
+	 * Component tag
+	 */
+	tag?: 'label' | 'legend';
+
+	/**
+	 * Label `for` attribute.
+	 *
+	 */
+	htmlFor?: string;
+
+	/**
+	 * Enable ‘screen reader only’ mode
+	 */
+	srOnly?: boolean;
+	overrides?: any;
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+}
 
 // ==============================
 // Component
@@ -14,14 +40,7 @@ import pkg from '../package.json';
 
 export const FormLabel = forwardRef(
 	(
-		{
-			tag,
-			subLabel,
-			htmlFor,
-			srOnly,
-			overrides,
-			...rest
-		}: typeof FormLabel.propTypes & typeof FormLabel.defaultProps,
+		{ htmlFor, srOnly, subLabel = false, tag = 'label', overrides, ...rest }: FormLabelProps,
 		ref
 	) => {
 		const {
@@ -35,7 +54,7 @@ export const FormLabel = forwardRef(
 			FormLabel: defaultFormLabel,
 		};
 
-		const componentOverrides = overrides || context?.state?.overrides;
+		const componentOverrides: any = overrides || context?.state?.overrides;
 		const spacing = context?.state?.spacing || 'medium';
 
 		const state = {
@@ -65,34 +84,34 @@ export const FormLabel = forwardRef(
 	}
 );
 
+FormLabel.displayName = 'FormLabel';
+
 // ==============================
 // Types
 // ==============================
 
 FormLabel.propTypes = {
-	/**
-	 * Sub-label mode (smaller label text size)
-	 */
-	subLabel: PropTypes.bool,
-
-	/**
-	 * Component tag
-	 */
-	tag: PropTypes.oneOf(['label', 'legend']),
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Label `for` attribute.
-	 *
 	 */
 	htmlFor: PropTypes.string,
-
+	overrides: PropTypes.any,
 	/**
 	 * Enable ‘screen reader only’ mode
 	 */
 	srOnly: PropTypes.bool,
+	/**
+	 * Sub-label mode (smaller label text size)
+	 */
+	subLabel: PropTypes.bool,
+	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOf(['label', 'legend']),
 };
 
-FormLabel.defaultProps = {
-	subLabel: false,
-	tag: 'label',
-};
+FormLabel.defaultProps = { subLabel: false, tag: 'label' };

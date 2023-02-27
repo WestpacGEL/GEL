@@ -1,7 +1,6 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultItem } from './overrides/item';
 import { defaultContent } from './overrides/content';
@@ -10,20 +9,62 @@ import { defaultIcon } from './overrides/icon';
 import { useListContext } from './List';
 import pkg from '../package.json';
 
+export interface ItemProps {
+	/**
+	 * The look of the bullet, icon, tick and cross lists
+	 */
+	look?: 'primary' | 'hero' | 'neutral' | 'success' | 'danger';
+	/**
+	 * The list style
+	 */
+	type?: 'bullet' | 'link' | 'tick' | 'cross' | 'unstyled' | 'icon' | 'ordered';
+	/**
+	 * Renders `<a>` link element around the item content
+	 */
+	href?: string;
+	/**
+	 * The level of nesting
+	 */
+	nested?: number;
+	/**
+	 * The size of space between list elements
+	 */
+	spacing?: 'medium' | 'large';
+	/**
+	 * The icon for list item
+	 */
+	icon?: (...args: unknown[]) => unknown;
+	/**
+	 * Any renderable content
+	 */
+	children: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Item?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Content?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Icon?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
-export const Item = ({
-	look,
-	type,
-	href,
-	nested,
-	spacing,
-	icon,
-	children,
-	...rest
-}: typeof Item.propTypes & typeof Item.defaultProps) => {
+export const Item = ({ look, type, href, nested, spacing, icon, children, ...rest }: ItemProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -87,64 +128,37 @@ export const Item = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Item.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
-	 * The look of the bullet, icon, tick and cross lists
+	 * Any renderable content
 	 */
-	look: PropTypes.oneOf(['primary', 'hero', 'neutral', 'success', 'danger']),
-
-	/**
-	 * The list style
-	 */
-	type: PropTypes.oneOf(['bullet', 'link', 'tick', 'cross', 'unstyled', 'icon', 'ordered']),
-
+	children: PropTypes.node,
 	/**
 	 * Renders `<a>` link element around the item content
 	 */
 	href: PropTypes.string,
-
-	/**
-	 * The level of nesting
-	 */
-	nested: PropTypes.number,
-
-	/**
-	 * The size of space between list elements
-	 */
-	spacing: PropTypes.oneOf(['medium', 'large']),
-
 	/**
 	 * The icon for list item
 	 */
 	icon: PropTypes.func,
-
 	/**
-	 * Any renderable content
+	 * The look of the bullet, icon, tick and cross lists
 	 */
-	children: PropTypes.node.isRequired,
-
+	look: PropTypes.oneOf(['danger', 'hero', 'neutral', 'primary', 'success']),
 	/**
-	 * The override API
+	 * The level of nesting
 	 */
-	overrides: PropTypes.shape({
-		Item: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Content: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Icon: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
+	nested: PropTypes.number,
+	/**
+	 * The size of space between list elements
+	 */
+	spacing: PropTypes.oneOf(['large', 'medium']),
+	/**
+	 * The list style
+	 */
+	type: PropTypes.oneOf(['bullet', 'cross', 'icon', 'link', 'ordered', 'tick', 'unstyled']),
 };

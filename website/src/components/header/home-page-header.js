@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import React, { useLayoutEffect, useState, useRef, Fragment } from 'react';
 import { Cell, Container, Grid } from '@westpac/grid';

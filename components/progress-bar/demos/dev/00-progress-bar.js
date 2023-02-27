@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { ProgressBar } from '@westpac/progress-bar';
 import { Button } from '@westpac/button';

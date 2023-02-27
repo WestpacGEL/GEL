@@ -1,25 +1,53 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultTd } from './overrides/td';
 
 import { useTableContext } from './Table';
 import pkg from '../package.json';
+import React, { ReactNode } from 'react';
+
+export interface TdProps {
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * Whether or not the cell is highlighted
+	 */
+	highlighted?: boolean;
+	/**
+	 * Whether or not the start of the highlighted cells
+	 */
+	highlightStart?: boolean;
+	/**
+	 * Bordered mode
+	 */
+	bordered?: boolean;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Td?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
 // ==============================
 
 export const Td = ({
-	highlighted,
-	highlightStart,
+	highlighted = false,
+	highlightStart = false,
 	bordered,
 	children,
 	overrides,
 	...rest
-}: typeof Td.propTypes & typeof Td.defaultProps) => {
+}: TdProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -54,41 +82,37 @@ export const Td = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Td.propTypes = {
-	/**
-	 * Whether or not the cell is highlighted
-	 */
-	highlighted: PropTypes.bool,
-
-	/**
-	 * Whether or not the start of the highlighted cells
-	 */
-	highlightStart: PropTypes.bool,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Bordered mode
 	 */
 	bordered: PropTypes.bool,
-
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
+	/**
+	 * Whether or not the cell is highlighted
+	 */
+	highlighted: PropTypes.bool,
+	/**
+	 * Whether or not the start of the highlighted cells
+	 */
+	highlightStart: PropTypes.bool,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Td: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
 
-export const defaultProps = {
-	highlighted: false,
-	highlightStart: false,
-};
-
-Td.defaultProps = defaultProps;
+Td.defaultProps = { highlighted: false, highlightStart: false };

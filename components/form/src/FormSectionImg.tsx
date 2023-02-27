@@ -1,19 +1,32 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultFormSectionImg } from './overrides/formSectionImg';
 import pkg from '../package.json';
+
+export interface FormSectionImgProps {
+	/**
+	 * Component img src
+	 */
+	src: string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		FormSectionImg?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
 // ==============================
 
-export const FormSectionImg = ({
-	overrides: componentOverrides,
-	...rest
-}: typeof FormSectionImg.propTypes & typeof FormSectionImg.defaultProps) => {
+export const FormSectionImg = ({ overrides: componentOverrides, ...rest }: FormSectionImgProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -46,26 +59,19 @@ export const FormSectionImg = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 FormSectionImg.propTypes = {
-	/**
-	 * Component img src
-	 */
-	src: PropTypes.string.isRequired,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		FormSectionImg: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
-
-FormSectionImg.defaultProps = {};

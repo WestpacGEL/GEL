@@ -1,21 +1,41 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultBody } from './overrides/body';
 import pkg from '../package.json';
+import React, { ReactNode } from 'react';
+
+export interface FormPodPanelBodyProps {
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * Expanded body mode (less horizontal padding)
+	 */
+	expanded?: boolean;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Body?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
 // ==============================
 
 export const FormPodPanelBody = ({
-	expanded,
+	expanded = false,
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof FormPodPanelBody.propTypes & typeof FormPodPanelBody.defaultProps) => {
+}: FormPodPanelBodyProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -42,28 +62,29 @@ export const FormPodPanelBody = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 FormPodPanelBody.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
 	/**
 	 * Expanded body mode (less horizontal padding)
 	 */
 	expanded: PropTypes.bool,
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Body: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
 
-FormPodPanelBody.defaultProps = {
-	expanded: false,
-};
+FormPodPanelBody.defaultProps = { expanded: false };
