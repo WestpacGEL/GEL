@@ -8,6 +8,8 @@ import { defaultAddBtn } from './overrides/addBtn';
 import { defaultFooter } from './overrides/footer';
 import { defaultList } from './overrides/list';
 import { defaultItem } from './overrides/item';
+import { defaultItemIndex } from './overrides/itemIndex';
+import { defaultContent } from './overrides/content';
 import { defaultRepeater } from './overrides/repeater';
 import pkg from '../package.json';
 import { generateID } from '@westpac/core';
@@ -21,6 +23,10 @@ export interface RepeaterProps {
 	 * Text for repeater
 	 */
 	addText?: string;
+	/**
+	 * Enable separator version
+	 */
+	separator?: boolean;
 	/**
 	 * The override API
 	 */
@@ -63,6 +69,7 @@ export interface RepeaterProps {
 // ==============================
 
 export const Repeater = ({
+	separator,
 	addText = 'Add another item',
 	children,
 	overrides: componentOverrides,
@@ -77,6 +84,8 @@ export const Repeater = ({
 		Repeater: defaultRepeater,
 		List: defaultList,
 		Item: defaultItem,
+		ItemIndex: defaultItemIndex,
+		Content: defaultContent,
 		Footer: defaultFooter,
 		AddBtn: defaultAddBtn,
 		RemoveBtn: defaultRemoveBtn,
@@ -85,6 +94,7 @@ export const Repeater = ({
 	const [items, setItems] = useState([{ id: generateID() }]);
 
 	const state = {
+		separator,
 		addText,
 		overrides: componentOverrides,
 		...rest,
@@ -106,6 +116,8 @@ export const Repeater = ({
 		Repeater: { component: Repeater, styles: repeaterStyles, attributes: repeaterAttributes },
 		List: { component: List, styles: listStyles, attributes: listAttributes },
 		Item: { component: Item, styles: itemStyles, attributes: itemAttributes },
+		ItemIndex: { component: ItemIndex, styles: itemIndexStyles, attributes: itemIndexAttributes },
+		Content: { component: Content, styles: contentStyles, attributes: contentAttributes },
 		Footer: { component: Footer, styles: footerStyles, attributes: footerAttributes },
 		AddBtn: { component: AddBtn, styles: addBtnStyles, attributes: addBtnAttributes },
 		RemoveBtn: { component: RemoveBtn, styles: RemoveBtnStyles, attributes: RemoveBtnAttributes },
@@ -115,22 +127,36 @@ export const Repeater = ({
 		<Repeater {...rest} state={state} {...repeaterAttributes(state)} css={repeaterStyles(state)}>
 			<List state={state} {...listAttributes(state)} css={listStyles(state)}>
 				{items.map((item, index) => {
+					const last = items.length - 1 === index;
 					return (
 						<Item
 							key={item.id}
 							index={index}
 							state={state}
 							{...itemAttributes(state)}
-							css={itemStyles(state)}
+							css={itemStyles({ ...state, last })}
 						>
-							{children}
+							{separator && (
+								<ItemIndex
+									state={state}
+									{...itemIndexAttributes(state)}
+									css={itemIndexStyles(state)}
+								>
+									{index + 1}.
+								</ItemIndex>
+							)}
+							<Content state={state} {...contentAttributes(state)} css={contentStyles(state)}>
+								{children}
+							</Content>
 							{items.length > 1 && (
 								<RemoveBtn
 									onClick={() => handleRemove(item.id)}
 									state={state}
 									{...RemoveBtnAttributes(state)}
 									css={RemoveBtnStyles(state)}
-								/>
+								>
+									Remove
+								</RemoveBtn>
 							)}
 						</Item>
 					);
@@ -198,6 +224,10 @@ Repeater.propTypes = {
 			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Enable separator version
+	 */
+	separator: PropTypes.bool,
 };
 
 Repeater.defaultProps = { addText: 'Add another item' };
