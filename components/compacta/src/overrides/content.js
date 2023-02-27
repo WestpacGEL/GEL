@@ -14,7 +14,7 @@ const contentStyles = () => {
 	const mq = useMediaQuery();
 	return mq({
 		label: getLabel('compacta-content'),
-		padding: '0 1.125rem .375rem',
+		padding: '0 1.125rem 1.875rem',
 		paddingLeft: [null, null, '3.375rem'],
 		backgroundColor: '#fff',
 	})[0];
