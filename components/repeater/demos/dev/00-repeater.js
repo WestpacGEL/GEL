@@ -4,7 +4,7 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 
 const Repeat = (props) => {
 	return (
-		<div css={{ marginBottom: '2rem' }} {...props}>
+		<div css={{ marginBottom: '1.875rem' }} {...props}>
 			Repeater
 		</div>
 	);
