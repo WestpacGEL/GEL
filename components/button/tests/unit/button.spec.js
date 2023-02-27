@@ -71,7 +71,7 @@ describe('Button component', () => {
 	});
 
 	test('should trigger the onClick event when it is clicked', () => {
-		const { queryByRole } = render(<HelperComponent/>);
+		const { queryByRole } = render(<HelperComponent />);
 		const theButton = queryByRole('button');
 		expect(theButton).toBeInTheDocument();
 		expect(theButton).toHaveTextContent('Login');
