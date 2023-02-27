@@ -16,7 +16,7 @@ export interface StepProps {
 	/**
 	 * The index of this step's group
 	 */
-	groupIndex: number;
+	groupIndex?: number;
 	/**
 	 * Whether or not a end step
 	 */
@@ -52,7 +52,7 @@ export interface StepProps {
 
 export const Step = ({
 	index,
-	groupIndex,
+	groupIndex = 0,
 	end = false,
 	onClick,
 	children,
@@ -75,7 +75,7 @@ export const Step = ({
 	const componentOverrides = overrides || context.state.overrides;
 
 	const visited =
-		(grouped && !end && ropeGraph[groupIndex][index] === 'visited') ||
+		(grouped && !end && ropeGraph[groupIndex]?.[index] === 'visited') ||
 		((!grouped || end) && ropeGraph[index][0] === 'visited');
 
 	const active =
@@ -87,10 +87,10 @@ export const Step = ({
 
 	if (visited) {
 		if (grouped && !end) {
-			if (ropeGraph[groupIndex][index + 1] && ropeGraph[groupIndex][index + 1] === 'unvisited') {
+			if (ropeGraph[groupIndex]?.[index + 1] && ropeGraph[groupIndex][index + 1] === 'unvisited') {
 				furthest = true;
 			} else if (
-				!ropeGraph[groupIndex][index + 1] &&
+				!ropeGraph[groupIndex]?.[index + 1] &&
 				ropeGraph[groupIndex + 1] &&
 				ropeGraph[groupIndex + 1][0] === 'unvisited'
 			) {

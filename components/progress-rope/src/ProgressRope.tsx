@@ -40,73 +40,74 @@ export const useProgressRopeContext = () => {
 // Utils
 // ==============================
 
-const createRopeGraph = useCallback(
-	(current: number, data: { type: string; steps: any[] }[], children: any[]) => {
-		const ropeGraph: any[] = [];
-		let grouped = false;
-		let completed = current;
+const createRopeGraph = (
+	current: number,
+	data: { type: string; steps: any[] }[],
+	children: any[]
+) => {
+	const ropeGraph: any[] = [];
+	let grouped = false;
+	let completed = current;
 
-		if (data) {
-			// generate graph from data
-			data.forEach((progress, i) => {
-				if (progress.type && progress.type === 'group') {
-					grouped = true;
-					const stepCount = progress.steps.length;
+	if (data) {
+		// generate graph from data
+		data.forEach((progress, i) => {
+			if (progress.type && progress.type === 'group') {
+				grouped = true;
+				const stepCount = progress.steps.length;
 
-					if (completed >= stepCount) {
-						ropeGraph.push(Array(stepCount).fill('visited'));
-						completed -= stepCount;
-					} else {
-						const steps = Array(stepCount).fill('unvisited');
-						steps.forEach((step, i) => {
-							if (completed > i) {
-								steps[i] = 'visited';
-								completed--;
-							}
-						});
-						ropeGraph.push(steps);
-					}
+				if (completed >= stepCount) {
+					ropeGraph.push(Array(stepCount).fill('visited'));
+					completed -= stepCount;
 				} else {
-					if (current <= i) {
-						ropeGraph.push(['unvisited']);
-					} else {
-						ropeGraph.push(['visited']);
-					}
+					const steps = Array(stepCount).fill('unvisited');
+					steps.forEach((step, i) => {
+						if (completed > i) {
+							steps[i] = 'visited';
+							completed--;
+						}
+					});
+					ropeGraph.push(steps);
 				}
-			});
-		} else {
-			Children.forEach(children, (child, i) => {
-				if (child.type === Group) {
-					grouped = true;
-					const stepCount = Children.count(child.props.children);
-
-					if (completed >= stepCount) {
-						ropeGraph.push(Array(stepCount).fill('visited'));
-						completed -= stepCount;
-					} else {
-						const steps = Array(stepCount).fill('unvisited');
-						steps.forEach((step, i) => {
-							if (completed > i) {
-								steps[i] = 'visited';
-								completed--;
-							}
-						});
-						ropeGraph.push(steps);
-					}
+			} else {
+				if (current <= i) {
+					ropeGraph.push(['unvisited']);
 				} else {
-					if (current <= i) {
-						ropeGraph.push(['unvisited']);
-					} else {
-						ropeGraph.push(['visited']);
-					}
+					ropeGraph.push(['visited']);
 				}
-			});
-		}
+			}
+		});
+	} else {
+		Children.forEach(children, (child, i) => {
+			if (child.type === Group) {
+				grouped = true;
+				const stepCount = Children.count(child.props.children);
 
-		return { ropeGraph, grouped };
-	},
-	[]
-);
+				if (completed >= stepCount) {
+					ropeGraph.push(Array(stepCount).fill('visited'));
+					completed -= stepCount;
+				} else {
+					const steps = Array(stepCount).fill('unvisited');
+					steps.forEach((step, i) => {
+						if (completed > i) {
+							steps[i] = 'visited';
+							completed--;
+						}
+					});
+					ropeGraph.push(steps);
+				}
+			} else {
+				if (current <= i) {
+					ropeGraph.push(['unvisited']);
+				} else {
+					ropeGraph.push(['visited']);
+				}
+			}
+		});
+	}
+
+	return { ropeGraph, grouped };
+};
 
 const progressReducer = (state: any, action: any) => {
 	switch (action.type) {
@@ -297,26 +298,26 @@ export const ProgressRope = ({
 		[progState.openGroup]
 	);
 
-	let allChildren = [];
-	if (data) {
-		data.forEach(({ type, text, onClick, steps }, idx) => {
-			if (type && type === 'group') {
-				allChildren.push(
-					<Group key={idx} index={idx} text={text} overrides={componentOverrides}>
-						{steps.map((step: any, stepIndex: number) => (
-							<Step
-								key={stepIndex}
-								index={stepIndex}
-								onClick={step.onClick}
-								overrides={componentOverrides}
-							>
-								{step.text}
-							</Step>
-						))}
-					</Group>
-				);
-			} else {
-				allChildren.push(
+	const allChildren = useMemo(() => {
+		if (data) {
+			return data.map(({ type, text, onClick, steps }, idx) => {
+				if (type && type === 'group') {
+					return (
+						<Group key={idx} index={idx} text={text} overrides={componentOverrides}>
+							{steps.map((step: any, stepIndex: number) => (
+								<Step
+									key={stepIndex}
+									index={stepIndex}
+									onClick={step.onClick}
+									overrides={componentOverrides}
+								>
+									{step.text}
+								</Step>
+							))}
+						</Group>
+					);
+				}
+				return (
 					<Step
 						key={idx}
 						index={idx}
@@ -327,15 +328,14 @@ export const ProgressRope = ({
 						{text}
 					</Step>
 				);
-			}
-		});
-	} else {
-		allChildren = Children.map(children, (child, idx) =>
+			});
+		}
+		return Children.map(children, (child, idx) =>
 			cloneElement(child, {
 				index: idx,
 			})
 		);
-	}
+	}, [children, componentOverrides, data]);
 
 	return (
 		<ProgressRopeContext.Provider value={{ ...progState, state, handleClick }}>
