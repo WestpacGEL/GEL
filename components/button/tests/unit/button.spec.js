@@ -43,14 +43,14 @@ describe('Button component', () => {
 	};
 
 	test('should be disabled when prop "disabled" is passed', () => {
-		const someText = 'Hello World';
-		const someContent = <span data-testid="my-span">{someText}</span>;
-		const { container, getByRole } = render(<SimpleButton disabled>{someContent}</SimpleButton>);
-		expect(getByRole('button')).toBeInTheDocument();
-		expect(getByRole('button')).toHaveAttribute('disabled');
-		const theButton = container.querySelector('button[disabled]');
-		expect(theButton).toBeInTheDocument();
-		expect(theButton).toHaveTextContent(someText);
+		const handleClick = jest.fn(() => console.log('Button clicked'));
+		render(
+			<SimpleButton data-testid="my-button" disabled onClick={handleClick}>
+				Click Me
+			</SimpleButton>
+		);
+		fireEvent.click(screen.getByText(/click me/i));
+		expect(handleClick).toHaveBeenCalledTimes(0);
 	});
 
 	test('should be inactive when the disabled prop is passed', () => {
@@ -60,8 +60,7 @@ describe('Button component', () => {
 	});
 
 	test('should respond to a click', () => {
-		const handleClick = jest.fn(() => console.log('Button clicked'));
-		const logSpy = jest.spyOn(console, 'log');
+		const handleClick = jest.fn(() => {});
 		render(
 			<SimpleButton data-testid="my-button" className="active" onClick={handleClick}>
 				Click Me
@@ -69,18 +68,16 @@ describe('Button component', () => {
 		);
 		fireEvent.click(screen.getByText(/click me/i));
 		expect(handleClick).toHaveBeenCalledTimes(1);
-		expect(logSpy).toBeCalledTimes(1);
-		expect(logSpy).toHaveBeenCalledWith('Button clicked');
 	});
 
 	test('should trigger the onClick event when it is clicked', () => {
-		const { queryByRole } = render(<HelperComponent></HelperComponent>);
+		const { queryByRole } = render(<HelperComponent/>);
 		const theButton = queryByRole('button');
 		expect(theButton).toBeInTheDocument();
 		expect(theButton).toHaveTextContent('Login');
-		fireEvent.click(screen.getByText('Login'));
+		fireEvent.click(theButton);
 		expect(theButton).toHaveTextContent('Logout');
-		fireEvent.click(screen.getByText('Logout'));
+		fireEvent.click(theButton);
 		expect(theButton).toHaveTextContent('Login');
 	});
 
@@ -92,7 +89,6 @@ describe('Button component', () => {
 		const leftIconElement = container.querySelector('span[class$=button-icon-before]');
 		expect(theButtonElement).toBeInTheDocument();
 		expect(leftIconElement).toBeInTheDocument();
-		// const theSvgElement = within(leftIconElement).getByRole('img'); // not able to getByRole
 		const theSvgElement = container.querySelector('svg[class$=icon-svg]');
 		const theSvgElementClone = container.querySelector('svg');
 		expect(theSvgElement).toBeInTheDocument();
