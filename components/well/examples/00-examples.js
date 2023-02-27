@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { Well } from '@westpac/well';
 import { blenderWell } from '../src/overrides/well';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { Fragment } from 'react';
 import { Heading as GELHeading } from '@westpac/heading';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';

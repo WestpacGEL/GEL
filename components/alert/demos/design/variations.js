@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { PhoneIcon } from '@westpac/icon';
 import { Alert } from '@westpac/alert';

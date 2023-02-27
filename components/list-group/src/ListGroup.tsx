@@ -1,8 +1,6 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler, GEL } from '@westpac/core';
-import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler, GEL } from '@westpac/core';
+import React, { createContext, useContext } from 'react';
 
 import { defaultListGroup } from './overrides/listGroup';
 import pkg from '../package.json';
@@ -11,7 +9,7 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-const ListGroupContext = createContext(null);
+const ListGroupContext = createContext<any>(null);
 
 export const useListGroupContext = () => {
 	const context = useContext(ListGroupContext);
@@ -23,15 +21,37 @@ export const useListGroupContext = () => {
 	return context;
 };
 
+interface ListGroupProps {
+	/**
+	 * The content for this list group
+	 */
+	children?: React.ReactNode;
+	/**
+	 * Data for the crumbs
+	 */
+	data?: string | React.ReactNode[];
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		ListGroup?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Item?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
-export const ListGroup = ({
-	children,
-	overrides: componentOverrides,
-	...rest
-}: typeof ListGroup.propTypes & typeof ListGroup.defaultProps) => {
+export const ListGroup = ({ children, overrides: componentOverrides, ...rest }: ListGroupProps) => {
 	const brand = useBrand();
 	const tokenOverrides = brand.OVERRIDES[pkg.name];
 	const brandOverrides = brand[pkg.name];
@@ -76,36 +96,28 @@ export const ListGroup = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 ListGroup.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * The content for this list group
 	 */
 	children: PropTypes.node,
-
-	/**
-	 * Data for the crumbs
-	 */
-	data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.node])),
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		ListGroup: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		Item: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		ListGroup: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
-
-ListGroup.defaultProps = {};

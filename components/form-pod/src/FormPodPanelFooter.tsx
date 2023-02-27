@@ -1,11 +1,36 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultFooterItem } from './overrides/footerItem';
 import { defaultFooter } from './overrides/footer';
 import pkg from '../package.json';
+
+export interface FormPodPanelFooterProps {
+	/**
+	 * Left component.
+	 */
+	left?: React.ReactNode;
+	/**
+	 * Right component.
+	 */
+	right?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Footer?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		FooterItem?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -16,7 +41,7 @@ export const FormPodPanelFooter = ({
 	right,
 	overrides: componentOverrides,
 	...rest
-}: typeof FormPodPanelFooter.propTypes & typeof FormPodPanelFooter.defaultProps) => {
+}: FormPodPanelFooterProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -67,36 +92,32 @@ export const FormPodPanelFooter = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 FormPodPanelFooter.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Left component.
 	 */
 	left: PropTypes.node,
-
-	/**
-	 * Right component.
-	 */
-	right: PropTypes.node,
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Footer: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		FooterItem: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Right component.
+	 */
+	right: PropTypes.node,
 };
-
-FormPodPanelFooter.defaultProps = {};

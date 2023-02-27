@@ -1,8 +1,6 @@
-/** @jsx jsx */
-
+import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import { VisuallyHidden } from '@westpac/a11y';
 
@@ -10,6 +8,39 @@ import { defaultSelect } from './overrides/select';
 
 import { useInputGroupContext } from './InputGroup';
 import pkg from '../package.json';
+
+export interface SelectFieldProps {
+	/**
+	 * Size
+	 */
+	size?: string[] | 'small' | 'medium' | 'large' | 'xlarge';
+	/**
+	 * The instance ID for the label and select
+	 */
+	instanceId: string;
+	/**
+	 * What position this component is at
+	 */
+	position: 'before' | 'after';
+	/**
+	 * The visually hidden label text for the select
+	 */
+	label: string;
+	/**
+	 * The content of the component
+	 */
+	data: unknown[];
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		SelectField?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -21,8 +52,9 @@ export const SelectField = ({
 	label,
 	data,
 	overrides,
+	size = 'medium',
 	...rest
-}: typeof SelectField.propTypes & typeof SelectField.defaultProps) => {
+}: SelectFieldProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -43,6 +75,7 @@ export const SelectField = ({
 		data,
 		context: context.state,
 		overrides: componentOverrides,
+		size,
 		...rest,
 	};
 
@@ -62,43 +95,44 @@ export const SelectField = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 SelectField.propTypes = {
-	/**
-	 * The instance ID for the label and select
-	 */
-	instanceId: PropTypes.string.isRequired,
-
-	/**
-	 * What position this component is at
-	 */
-	position: PropTypes.oneOf(['before', 'after']).isRequired,
-
-	/**
-	 * The visually hidden label text for the select
-	 */
-	label: PropTypes.string.isRequired,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * The content of the component
 	 */
 	data: PropTypes.array.isRequired,
-
+	/**
+	 * The instance ID for the label and select
+	 */
+	instanceId: PropTypes.string.isRequired,
+	/**
+	 * The visually hidden label text for the select
+	 */
+	label: PropTypes.string.isRequired,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		SelectField: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * What position this component is at
+	 */
+	position: PropTypes.oneOf(['after', 'before']).isRequired,
+	/**
+	 * Size
+	 */
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.string),
+	]),
 };
 
-SelectField.defaultProps = {
-	size: 'medium',
-};
+SelectField.defaultProps = { size: 'medium' };

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { css, SerializedStyles } from '@emotion/react';
 
 export const normalize: SerializedStyles = css`

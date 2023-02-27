@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Fragment } from 'react';
 import { PadlockIcon } from '@westpac/icon';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const BankCardLockedPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -30,10 +30,10 @@ export const BankCardLockedPictogram = ({ mode, ...rest }) => {
 };
 
 BankCardLockedPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Locked bank card',
 	copyrightYear: '2020',
 };
-BankCardLockedPictogram.propTypes = propTypes;
+BankCardLockedPictogram.propTypes = Pictogram.propTypes;

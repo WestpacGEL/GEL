@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx, useBrand } from '@westpac/core';
 import * as components from '@westpac/symbol';
 import { LogoSmall } from '@westpac/symbol';

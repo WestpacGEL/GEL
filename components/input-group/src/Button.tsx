@@ -1,11 +1,43 @@
-/** @jsx jsx */
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { useInputGroupContext } from './InputGroup';
-import PropTypes from 'prop-types';
 
 import { defaultButton } from './overrides/button';
 import pkg from '../package.json';
+
+export interface ButtonProps {
+	/**
+	 * The button color
+	 */
+	look?: 'primary' | 'hero' | 'neutral' | 'success' | 'danger';
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId?: string;
+	/**
+	 * What position this component is at
+	 */
+	position: 'before' | 'after';
+	/**
+	 * What size the button-group is
+	 */
+	size: 'small' | 'medium' | 'large' | 'xlarge';
+	/**
+	 * The content of the component
+	 */
+	data?: string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Button?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -14,11 +46,12 @@ import pkg from '../package.json';
 export const Button = ({
 	instanceId,
 	position,
-	size,
 	data,
 	overrides,
+	look = 'hero',
+	size = 'medium',
 	...rest
-}: typeof Button.propTypes & typeof Button.defaultProps) => {
+}: ButtonProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -51,39 +84,41 @@ export const Button = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Button.propTypes = {
-	/**
-	 * What position this component is at
-	 */
-	position: PropTypes.oneOf(['before', 'after']).isRequired,
-
-	/**
-	 * What size the button-group is
-	 */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * The content of the component
 	 */
 	data: PropTypes.string,
-
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+	/**
+	 * The button color
+	 */
+	look: PropTypes.oneOf(['danger', 'hero', 'neutral', 'primary', 'success']),
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Button: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * What position this component is at
+	 */
+	position: PropTypes.oneOf(['after', 'before']).isRequired,
+	/**
+	 * What size the button-group is
+	 */
+	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']).isRequired,
 };
 
-Button.defaultProps = {
-	look: 'hero', // button look to be spread to Button
-	size: 'medium',
-};
+Button.defaultProps = { look: 'hero', size: 'medium' };

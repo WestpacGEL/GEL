@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { createContext, useContext, cloneElement, Children } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { createContext, useContext, cloneElement, Children, ReactNode } from 'react';
 
 import { defaultBreadcrumb } from './overrides/breadcrumb';
 import { defaultList } from './overrides/list';
@@ -26,17 +25,66 @@ export const useBreadcrumbContext = () => {
 	return context;
 };
 
+export interface BreadcrumbProps {
+	/**
+	 * Data for the crumbs
+	 */
+	data?: {
+		text: string;
+		href?: string;
+		onClick?: (...args: unknown[]) => unknown;
+	}[];
+	/**
+	 * Text to use as the `aria-label` for the breadcrumb
+	 */
+	assistiveText: string;
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Breadcrumb?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		List?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Crumb?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Link?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Icon?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const Breadcrumb = ({
 	data,
-	assistiveText,
+	assistiveText = 'Breadcrumb',
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Breadcrumb.propTypes & typeof Breadcrumb.defaultProps) => {
+}: BreadcrumbProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -101,59 +149,59 @@ export const Breadcrumb = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Breadcrumb.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Text to use as the `aria-label` for the breadcrumb
+	 */
+	assistiveText: PropTypes.string.isRequired,
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
 	/**
 	 * Data for the crumbs
 	 */
 	data: PropTypes.arrayOf(
 		PropTypes.shape({
-			text: PropTypes.string.isRequired,
 			href: PropTypes.string,
 			onClick: PropTypes.func,
+			text: PropTypes.string.isRequired,
 		})
 	),
-
-	/**
-	 * Text to use as the `aria-label` for the breadcrumb
-	 */
-	assistiveText: PropTypes.string.isRequired,
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Breadcrumb: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		List: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			styles: PropTypes.func,
 		}),
 		Crumb: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		Link: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			styles: PropTypes.func,
 		}),
 		Icon: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Link: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		List: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
 
-Breadcrumb.defaultProps = {
-	assistiveText: 'Breadcrumb',
-};
+Breadcrumb.defaultProps = { assistiveText: 'Breadcrumb' };

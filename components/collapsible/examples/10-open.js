@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { Collapsible } from '@westpac/collapsible';
 import { Body } from '@westpac/body';

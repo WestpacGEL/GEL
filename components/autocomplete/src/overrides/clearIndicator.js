@@ -1,6 +1,3 @@
-/** @jsx jsx */
-
-import { jsx } from '@westpac/core';
 import { ClearIcon } from '@westpac/icon';
 
 // ==============================

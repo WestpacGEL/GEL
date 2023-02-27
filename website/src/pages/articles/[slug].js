@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { gql } from '@apollo/client';
 import { jsx, useBrand } from '@westpac/core';
 import { PageContextProvider } from '../../components/providers/pageContext';

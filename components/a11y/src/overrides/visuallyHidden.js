@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, getLabel } from '@westpac/core';
 
 const VisuallyHidden = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;

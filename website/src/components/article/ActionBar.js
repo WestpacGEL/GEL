@@ -1,6 +1,4 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { useBrand, useMediaQuery } from '@westpac/core';
 import { useState, forwardRef, useRef, useEffect } from 'react';
 import { ButtonDropdown, useButtonDropdownContext } from '@westpac/button-dropdown';
 import { ArrowRightIcon, ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
@@ -60,6 +58,7 @@ const ButtonOverride = forwardRef(({ closed, setClosed, state: _, children, ...r
 		</Button>
 	);
 });
+ButtonOverride.displayName = 'ButtonOverride';
 
 const PanelOverride = forwardRef(({ state: { isOpen, setClosed }, children, ...rest }, ref) => {
 	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
@@ -82,6 +81,7 @@ const PanelOverride = forwardRef(({ state: { isOpen, setClosed }, children, ...r
 		</animated.div>
 	);
 });
+PanelOverride.displayName = 'PanelOverride';
 
 const BrandListItem = ({ link, children, ...props }) => {
 	const {

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { Container, Cell, Grid } from '@westpac/grid';
 import { useContainerQuery } from '@westpac/hooks';

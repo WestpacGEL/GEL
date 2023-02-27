@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { useRef } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { useOutsideClick } from '@westpac/hooks';

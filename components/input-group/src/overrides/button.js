@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, getLabel, classNames } from '@westpac/core';
 import { Button as ButtonInput } from '@westpac/button';
 

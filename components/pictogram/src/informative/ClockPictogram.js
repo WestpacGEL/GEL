@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const ClockPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -26,10 +26,10 @@ export const ClockPictogram = ({ mode, ...rest }) => {
 };
 
 ClockPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Clock',
 	copyrightYear: '2020',
 };
-ClockPictogram.propTypes = propTypes;
+ClockPictogram.propTypes = Pictogram.propTypes;

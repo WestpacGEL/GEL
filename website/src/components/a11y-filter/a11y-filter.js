@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import React, { useState, Fragment, useId, useMemo } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Select } from '@westpac/text-input';

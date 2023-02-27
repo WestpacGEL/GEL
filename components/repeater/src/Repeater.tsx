@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { useCallback, useState } from 'react';
-import PropTypes from 'prop-types';
 
 import { defaultRemoveBtn } from './overrides/removeBtn';
 import { defaultAddBtn } from './overrides/addBtn';
@@ -13,16 +12,62 @@ import { defaultRepeater } from './overrides/repeater';
 import pkg from '../package.json';
 import { generateID } from '@westpac/core';
 
+export interface RepeaterProps {
+	/**
+	 * Component to repeat
+	 */
+	children: React.ReactNode;
+	/**
+	 * Text for repeater
+	 */
+	addText?: string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Repeater?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		List?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Item?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Footer?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		AddBtn?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		RemoveBtn?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const Repeater = ({
-	addText,
+	addText = 'Add another item',
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Repeater.propTypes & typeof Repeater.defaultProps) => {
+}: RepeaterProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -105,57 +150,54 @@ export const Repeater = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Repeater.propTypes = {
-	/**
-	 * Component to repeat
-	 */
-	children: PropTypes.node.isRequired,
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Text for repeater
 	 */
 	addText: PropTypes.string,
-
+	/**
+	 * Component to repeat
+	 */
+	children: PropTypes.node,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Repeater: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		AddBtn: PropTypes.shape({
 			attributes: PropTypes.func,
-		}),
-		List: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Item: PropTypes.shape({
 			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
 		}),
 		Footer: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
-		AddBtn: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		Item: PropTypes.shape({
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		List: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		RemoveBtn: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Repeater: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
 
-Repeater.defaultProps = {
-	addText: 'Add another item',
-};
+Repeater.defaultProps = { addText: 'Add another item' };

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx, useMediaQuery, Global } from '@westpac/core';
 
 function Example({ brand }) {

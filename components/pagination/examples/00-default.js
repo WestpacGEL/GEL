@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Pagination, Page } from '@westpac/pagination';

@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-
 import { jsx } from '@keystone-ui/core';
 import { component, fields } from '@keystone-6/fields-document/component-blocks';
 import { GEL, useMediaQuery, useBrand } from '@westpac/core';

@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-
 import { jsx, useTheme } from '@keystone-ui/core';
 import { Checkbox, FieldContainer, FieldLabel } from '@keystone-ui/fields';
 import {

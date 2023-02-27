@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, Global, useBrand, useMediaQuery } from '@westpac/core';
 import { Fragment } from 'react';
 import { useBrandSwitcher } from '../providers/brand-switcher';

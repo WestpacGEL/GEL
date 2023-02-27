@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { Fragment } from 'react';
 import { jsx } from '@westpac/core';
 import { useQuery } from '@apollo/react-hooks';

@@ -1,25 +1,67 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultSelect } from './overrides/select';
 import pkg from '../package.json';
+
+export interface SelectProps {
+	/**
+	 * Component size
+	 */
+	size: 'small' | 'medium' | 'large' | 'xlarge';
+	/**
+	 * Component width (in chars).
+	 *
+	 * This prop sets a fixed width, measured in characters.
+	 */
+	width?: 2 | 3 | 4 | 5 | 10 | 20 | 30;
+	/**
+	 * Inline mode
+	 */
+	inline: boolean;
+	/**
+	 * Invalid input mode
+	 */
+	invalid: boolean;
+	/**
+	 * Data drive this component
+	 */
+	data?: {
+		text: string;
+	}[];
+	/**
+	 * Component children.
+	 *
+	 * Note: Only `select` type inputs render children.
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Select?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
 // ==============================
 
 export const Select = ({
-	size,
+	size = 'medium',
+	inline = false,
+	invalid = false,
 	width,
-	inline,
-	invalid,
 	data,
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Select.propTypes & typeof Select.defaultProps) => {
+}: SelectProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -63,33 +105,17 @@ export const Select = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Select.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
-	 * Component size
-	 */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
-
-	/**
-	 * Component width (in chars).
+	 * Component children.
 	 *
-	 * This prop sets a fixed width, measured in characters.
+	 * Note: Only `select` type inputs render children.
 	 */
-	width: PropTypes.oneOf([2, 3, 4, 5, 10, 20, 30]),
-
-	/**
-	 * Inline mode
-	 */
-	inline: PropTypes.bool.isRequired,
-
-	/**
-	 * Invalid input mode
-	 */
-	invalid: PropTypes.bool.isRequired,
-
+	children: PropTypes.node,
 	/**
 	 * Data drive this component
 	 */
@@ -98,30 +124,34 @@ Select.propTypes = {
 			text: PropTypes.string.isRequired,
 		})
 	),
-
 	/**
-	 * Component children.
-	 *
-	 * Note: Only `select` type inputs render children.
+	 * Inline mode
 	 */
-	children: PropTypes.node,
-
+	inline: PropTypes.bool.isRequired,
+	/**
+	 * Invalid input mode
+	 */
+	invalid: PropTypes.bool.isRequired,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Select: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Component size
+	 */
+	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']).isRequired,
+	/**
+	 * Component width (in chars).
+	 *
+	 * This prop sets a fixed width, measured in characters.
+	 */
+	width: PropTypes.oneOf([2, 3, 4, 5, 10, 20, 30]),
 };
 
-export const defaultProps = {
-	size: 'medium',
-	inline: false,
-	invalid: false,
-};
-
-Select.defaultProps = defaultProps;
+Select.defaultProps = { inline: false, invalid: false, size: 'medium' };

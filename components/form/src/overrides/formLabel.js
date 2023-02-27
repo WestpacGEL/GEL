@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, getLabel } from '@westpac/core';
 import { forwardRef } from 'react';
 import { VisuallyHidden } from '@westpac/a11y';
@@ -12,6 +10,7 @@ const FormLabel = forwardRef(({ state: { tag, srOnly }, ...rest }, ref) => {
 	const Tag = srOnly ? VisuallyHidden : tag;
 	return <Tag ref={ref} tag={srOnly ? 'label' : undefined} {...rest} />;
 });
+FormLabel.displayName = 'FormLabel';
 
 // ==============================
 // Styles

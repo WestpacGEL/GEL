@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx, useBrand } from '@westpac/core';
 import { SkipLink } from '@westpac/a11y';
 import { Body } from '@westpac/body';

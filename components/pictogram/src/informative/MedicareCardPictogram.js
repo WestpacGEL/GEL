@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const MedicareCardPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -24,10 +24,10 @@ export const MedicareCardPictogram = ({ mode, ...rest }) => {
 };
 
 MedicareCardPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Medicare card',
 	copyrightYear: '2020',
 };
-MedicareCardPictogram.propTypes = propTypes;
+MedicareCardPictogram.propTypes = Pictogram.propTypes;

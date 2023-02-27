@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import React from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';

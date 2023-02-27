@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const MobileDevicePictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -26,10 +26,10 @@ export const MobileDevicePictogram = ({ mode, ...rest }) => {
 };
 
 MobileDevicePictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Mobile device',
 	copyrightYear: '2020',
 };
-MobileDevicePictogram.propTypes = propTypes;
+MobileDevicePictogram.propTypes = Pictogram.propTypes;

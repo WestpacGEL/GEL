@@ -1,5 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { jsx, useMediaQuery, useBrand } from '@westpac/core';
 import PropTypes from 'prop-types';
 

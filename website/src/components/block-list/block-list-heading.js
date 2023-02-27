@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { jsx, useBrand } from '@westpac/core';
 import { Heading } from '@westpac/heading';
 

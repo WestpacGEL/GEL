@@ -240,8 +240,8 @@ function walkerForIntroSection(document) {
 		if (node.type === 'dynamic-components' && node.component === 'IntroSection') {
 			node.type = 'component-block';
 			node.component = 'introSection';
-			node.props.showPackageInfo ??= false;
-			node.props.showTableOfContents ??= false;
+			node.props.showPackageInfo = false;
+			node.props.showTableOfContents = false;
 			let { description } = node.props;
 			node.children = [
 				{
@@ -261,8 +261,8 @@ function imageConverter(document) {
 		if (node.type === 'dynamic-components' && node.component === 'Image') {
 			node.type = 'component-block';
 			node.component = 'image';
-			node.props.alt ??= '';
-			node.props.image ??= '';
+			node.props.alt = '';
+			node.props.image = '';
 
 			node.children = [
 				{
@@ -281,10 +281,10 @@ function doAndAdvoidConverter(document) {
 			node.type = 'component-block';
 			node.component = 'doAndAvoid';
 			let { doText, dontText } = node.props;
-			node.props.doAlt ??= '';
-			node.props.dontAlt ??= '';
-			node.props.doImage ??= '';
-			node.props.dontImage ??= '';
+			node.props.doAlt = '';
+			node.props.dontAlt = '';
+			node.props.doImage = '';
+			node.props.dontImage = '';
 			node.children = [
 				{
 					type: 'component-inline-prop',
@@ -320,8 +320,8 @@ function headingConverter(document) {
 			for (const key of ['indent', 'indentLevel', 'subText', 'text', 'heading']) {
 				delete node.props[key];
 			}
-			node.props.removeTopMargin ??= false;
-			node.props.codeStyles ??= false;
+			node.props.removeTopMargin = false;
+			node.props.codeStyles = false;
 		}
 	});
 	return document;

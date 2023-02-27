@@ -1,12 +1,58 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultTextInputWithButton } from './overrides/textInputWithButton';
 import { defaultTextInputWithButtonTextInput } from './overrides/textInputWithButtonTextInput';
 import { defaultTextInputWithButtonBtn } from './overrides/textInputWithButtonBtn';
 import pkg from '../package.json';
+import React, { ReactNode } from 'react';
+
+export interface TextInputWithButtonProps {
+	/**
+	 * btnAssistiveText
+	 */
+	btnAssistiveText?: any;
+	/**
+	 * btnAriaPressed
+	 */
+	btnAriaPressed?: any;
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * Input button icon
+	 */
+	btnIcon(...args: unknown[]): unknown;
+	/**
+	 * Handler to be called on button click
+	 */
+	btnOnClick?: (...args: unknown[]) => unknown;
+	/**
+	 * Text to use as the `aria-label` for the button
+	 */
+	assistiveText?: string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		TextInputWithButton?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		TextInput?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Button?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -20,7 +66,7 @@ export const TextInputWithButton = ({
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof TextInputWithButton.propTypes & typeof TextInputWithButton.defaultProps) => {
+}: TextInputWithButtonProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -81,48 +127,49 @@ export const TextInputWithButton = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 TextInputWithButton.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * btnAriaPressed
+	 */
+	btnAriaPressed: PropTypes.any,
+	/**
+	 * btnAssistiveText
+	 */
+	btnAssistiveText: PropTypes.any,
 	/**
 	 * Input button icon
 	 */
 	btnIcon: PropTypes.func.isRequired,
-
 	/**
 	 * Handler to be called on button click
 	 */
 	btnOnClick: PropTypes.func,
-
 	/**
-	 * Text to use as the `aria-label` for the button
+	 * Children
 	 */
-	assistiveText: PropTypes.string,
-
+	children: PropTypes.node,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		TextInputWithButton: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		Button: PropTypes.shape({
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		TextInput: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
-		Button: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		TextInputWithButton: PropTypes.shape({
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
-
-export const defaultProps = {};
-
-TextInputWithButton.defaultProps = defaultProps;
