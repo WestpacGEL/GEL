@@ -22,6 +22,7 @@ const Toggle = ({ open, state: _, ...rest }) => (
 
 const toggleStyles = () => ({
 	label: getLabel('compacta-toggle'),
+	marginLeft: 'auto',
 });
 
 // ==============================

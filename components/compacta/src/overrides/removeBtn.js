@@ -6,21 +6,10 @@ import { RemoveCircleIcon } from '@westpac/icon';
 // Component
 // ==============================
 
+const Icon = (props) => <RemoveCircleIcon {...props} size="xsmall" />;
+
 const RemoveBtn = ({ state: _, ...rest }) => {
-	const mq = useMediaQuery();
-	return (
-		<Button
-			look="faint"
-			size="small"
-			soft
-			iconAfter={RemoveCircleIcon}
-			overrides={{
-				Text: { styles: (styles) => mq({ ...styles, display: ['none', null, 'block'] }) },
-				Icon: { styles: (styles) => mq({ ...styles, marginLeft: ['0px', null, '0.4em'] }) },
-			}}
-			{...rest}
-		/>
-	);
+	return <Button look="link" size="small" soft iconBefore={Icon} {...rest} />;
 };
 
 // ==============================
@@ -29,7 +18,10 @@ const RemoveBtn = ({ state: _, ...rest }) => {
 
 const removeBtnStyles = () => ({
 	label: getLabel('compacta-removeBtn'),
-	marginRight: '0.75rem',
+	marginTop: '0.875rem',
+	padding: 0,
+	height: 'auto',
+	textDecoration: 'none',
 });
 
 // ==============================

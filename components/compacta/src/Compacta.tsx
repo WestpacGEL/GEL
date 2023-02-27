@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { useCallback, useId, useState } from 'react';
 
+import { defaultHeaderSecondary } from './overrides/headerSecondary';
 import { defaultTitleSecondary } from './overrides/titleSecondary';
 import { defaultTitleTertiary } from './overrides/titleTertiary';
 import { defaultTitlePrimary } from './overrides/titlePrimary';
 import { defaultCollapsible } from './overrides/collapsible';
+import { defaultHeaderTitle } from './overrides/headerTitle';
 import { defaultRemoveBtn } from './overrides/removeBtn';
 import { defaultItemIndex } from './overrides/itemIndex';
 import { defaultCompacta } from './overrides/compacta';
 import { defaultContent } from './overrides/content';
-import { defaultActions } from './overrides/actions';
 import { defaultHeader } from './overrides/header';
 import { defaultAddBtn } from './overrides/addBtn';
 import { defaultFooter } from './overrides/footer';
 import { defaultToggle } from './overrides/toggle';
-import { defaultTitle } from './overrides/title';
 import { defaultItem } from './overrides/item';
 import pkg from '../package.json';
 import { generateID } from '@westpac/core';
@@ -88,11 +88,11 @@ export const Compacta = ({
 		Item: defaultItem,
 		Header: defaultHeader,
 		ItemIndex: defaultItemIndex,
-		Title: defaultTitle,
+		HeaderTitle: defaultHeaderTitle,
+		HeaderSecondary: defaultHeaderSecondary,
 		TitlePrimary: defaultTitlePrimary,
 		TitleSecondary: defaultTitleSecondary,
 		TitleTertiary: defaultTitleTertiary,
-		Actions: defaultActions,
 		RemoveBtn: defaultRemoveBtn,
 		Toggle: defaultToggle,
 		Collapsible: defaultCollapsible,
@@ -177,7 +177,16 @@ export const Compacta = ({
 		Item: { component: Item, styles: itemStyles, attributes: itemAttributes },
 		Header: { component: Header, styles: headerStyles, attributes: headerAttributes },
 		ItemIndex: { component: ItemIndex, styles: itemIndexStyles, attributes: itemIndexAttributes },
-		Title: { component: Title, styles: titleStyles, attributes: titleAttributes },
+		HeaderTitle: {
+			component: HeaderTitle,
+			styles: headerTitleStyles,
+			attributes: headerTitleAttributes,
+		},
+		HeaderSecondary: {
+			component: HeaderSecondary,
+			styles: headerSecondaryStyles,
+			attributes: headerSecondaryAttributes,
+		},
 		TitlePrimary: {
 			component: TitlePrimary,
 			styles: titlePrimaryStyles,
@@ -193,7 +202,6 @@ export const Compacta = ({
 			styles: titleTertiaryStyles,
 			attributes: titleTertiaryAttributes,
 		},
-		Actions: { component: Actions, styles: actionsStyles, attributes: actionsAttributes },
 		RemoveBtn: { component: RemoveBtn, styles: removeBtnStyles, attributes: removeBtnAttributes },
 		Toggle: { component: Toggle, styles: toggleStyles, attributes: toggleAttributes },
 		Collapsible: {
@@ -244,38 +252,26 @@ export const Compacta = ({
 				return (
 					<Item key={item.id} state={state} {...itemAttributes(state)} css={itemStyles(state)}>
 						<HeaderJSX open={item.open} state={state}>
-							<ItemIndex state={state} {...itemIndexAttributes(state)} css={itemIndexStyles(state)}>
-								{index + 1}
-							</ItemIndex>
-							{!item.open && (
-								<Title state={state} {...titleAttributes(state)} css={titleStyles(state)}>
-									{item.title.primary && (
-										<TitlePrimary
-											state={state}
-											{...titlePrimaryAttributes(state)}
-											css={titlePrimaryStyles(state)}
-										>
-											{item.title.primary}
-										</TitlePrimary>
-									)}
-									{item.title.secondary && (
-										<TitleSecondaryJSX>{item.title.secondary}</TitleSecondaryJSX>
-									)}
-									{item.title.tertiary && (
-										<TitleTertiaryJSX>{item.title.tertiary}</TitleTertiaryJSX>
-									)}
-								</Title>
-							)}
-							<Actions state={state} {...actionsAttributes(state)} css={actionsStyles(state)}>
-								{item.open && (
-									<RemoveBtn
-										onClick={() => handleRemove(item.id)}
+							<HeaderTitle
+								state={state}
+								{...headerTitleAttributes(state)}
+								css={headerTitleStyles(state)}
+							>
+								<ItemIndex
+									state={state}
+									{...itemIndexAttributes(state)}
+									css={itemIndexStyles(state)}
+								>
+									{index + 1}.
+								</ItemIndex>
+								{!item.open && item.title.primary && (
+									<TitlePrimary
 										state={state}
-										{...removeBtnAttributes(state)}
-										css={removeBtnStyles(state)}
+										{...titlePrimaryAttributes(state)}
+										css={titlePrimaryStyles(state)}
 									>
-										Remove
-									</RemoveBtn>
+										{item.title.primary}
+									</TitlePrimary>
 								)}
 								<Toggle
 									onClick={() => handleToggle(item.id)}
@@ -288,7 +284,21 @@ export const Compacta = ({
 									})}
 									css={toggleStyles(state)}
 								/>
-							</Actions>
+							</HeaderTitle>
+							{!item.open && (
+								<HeaderSecondary
+									state={state}
+									{...headerSecondaryAttributes(state)}
+									css={headerSecondaryStyles(state)}
+								>
+									{item.title.secondary && (
+										<TitleSecondaryJSX>{item.title.secondary}</TitleSecondaryJSX>
+									)}
+									{item.title.tertiary && (
+										<TitleTertiaryJSX>{item.title.tertiary}</TitleTertiaryJSX>
+									)}
+								</HeaderSecondary>
+							)}
 						</HeaderJSX>
 						<Collapsible
 							open={item.open}
@@ -310,6 +320,16 @@ export const Compacta = ({
 									setTertiaryTitle: (title: string) => setTitle(item.id, 'tertiary', title),
 									brand,
 								})}
+								{item.open && (
+									<RemoveBtn
+										onClick={() => handleRemove(item.id)}
+										state={state}
+										{...removeBtnAttributes(state)}
+										css={removeBtnStyles(state)}
+									>
+										Remove
+									</RemoveBtn>
+								)}
 							</Content>
 						</Collapsible>
 					</Item>

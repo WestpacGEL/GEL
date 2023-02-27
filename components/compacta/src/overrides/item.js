@@ -14,8 +14,9 @@ const itemStyles = (_, { brand }) => {
 	const { COLORS } = brand;
 	return {
 		label: getLabel('compacta-item'),
-		marginBottom: '0.375rem',
+		marginBottom: '0.75rem',
 		border: `1px solid ${COLORS.borderDark}`,
+		borderRadius: '0.1875rem',
 	};
 };
 
