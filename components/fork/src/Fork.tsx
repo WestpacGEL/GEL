@@ -41,7 +41,7 @@ export interface ForkProps {
 	/**
 	 * Name to be used for radio inputs
 	 */
-	name: string;
+	name?: string;
 	/**
 	 * Default fork index
 	 */
@@ -168,7 +168,7 @@ Fork.propTypes = {
 	/**
 	 * Name to be used for radio inputs
 	 */
-	name: PropTypes.string.isRequired,
+	name: PropTypes.string,
 	/**
 	 * Change the value. Requires `value`
 	 */

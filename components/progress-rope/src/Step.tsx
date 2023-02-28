@@ -12,7 +12,7 @@ export interface StepProps {
 	/**
 	 * The index of this step
 	 */
-	index: number;
+	index?: number;
 	/**
 	 * The index of this step's group
 	 */
@@ -51,7 +51,7 @@ export interface StepProps {
 // ==============================
 
 export const Step = ({
-	index,
+	index = 0,
 	groupIndex = 0,
 	end = false,
 	onClick,
@@ -160,11 +160,11 @@ Step.propTypes = {
 	/**
 	 * The index of this step's group
 	 */
-	groupIndex: PropTypes.number.isRequired,
+	groupIndex: PropTypes.number,
 	/**
 	 * The index of this step
 	 */
-	index: PropTypes.number.isRequired,
+	index: PropTypes.number,
 	/**
 	 * Handler to be called on click
 	 */
@@ -186,4 +186,4 @@ Step.propTypes = {
 	}),
 };
 
-Step.defaultProps = { end: false };
+Step.defaultProps = { end: false, groupIndex: 0, index: 0 };
