@@ -4,7 +4,7 @@ import { VisuallyHidden, SkipLink } from '@westpac/a11y';
 import wbc from '@westpac/wbc';
 
 // Component specific tests
-describe('Accessbility helper component', () => {
+describe('Accessibility helper component', () => {
 	const SimpleVisuallyHidden = () => (
 		<GEL brand={wbc}>
 			<VisuallyHidden>This is screen reader only text</VisuallyHidden>
