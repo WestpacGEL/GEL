@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { useState, useRef, useEffect } from 'react';
 import throttle from 'lodash.throttle';

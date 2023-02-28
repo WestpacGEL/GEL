@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand } from '@westpac/core';
 import { forwardRef, useState, useEffect } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
@@ -57,6 +55,7 @@ const ButtonOverride = forwardRef(({ closed, setClosed, state: _, ...rest }, ref
 		/>
 	);
 });
+ButtonOverride.displayName = 'ButtonOverride';
 
 const PanelOverride = forwardRef(({ state: { isOpen, setClosed }, children, ...rest }, ref) => {
 	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
@@ -79,6 +78,7 @@ const PanelOverride = forwardRef(({ state: { isOpen, setClosed }, children, ...r
 		</animated.div>
 	);
 });
+PanelOverride.displayName = 'PanelOverride';
 
 export const BrandDropdown = () => {
 	const [isOpen, setIsOpen] = useState(false);

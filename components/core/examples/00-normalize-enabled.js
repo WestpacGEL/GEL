@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { NormalizeHtml } from './_utils';
 

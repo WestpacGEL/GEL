@@ -1,11 +1,43 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React, { forwardRef, ReactNode } from 'react';
 
 import { defaultHeading } from './overrides/heading';
 import pkg from '../package.json';
+
+export interface HeadingProps {
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * Component tag
+	 */
+	tag?: ((...args: unknown[]) => unknown) | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+	/**
+	 * The visual size of the heading
+	 */
+	size: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | (1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10)[];
+
+	/**
+	 * Use upper case.
+	 *
+	 * This mode will also adjust line-height to suit.
+	 */
+	uppercase?: boolean;
+
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Heading?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -13,14 +45,7 @@ import pkg from '../package.json';
 
 export const Heading = forwardRef(
 	(
-		{
-			tag,
-			size,
-			uppercase,
-			children,
-			overrides: componentOverrides,
-			...rest
-		}: typeof Heading.propTypes & typeof Heading.defaultProps,
+		{ tag, size, uppercase, children, overrides: componentOverrides, ...rest }: HeadingProps,
 		ref
 	) => {
 		const {
@@ -58,16 +83,31 @@ export const Heading = forwardRef(
 	}
 );
 
+Heading.displayName = 'Heading';
+
 // ==============================
 // Types
 // ==============================
 
 Heading.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
-	 * Component tag
+	 * Children
 	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])]),
-
+	children: PropTypes.node,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Heading: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
 	/**
 	 * The visual size of the heading
 	 */
@@ -75,22 +115,14 @@ Heading.propTypes = {
 		PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
 		PropTypes.arrayOf(PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])),
 	]).isRequired,
-
+	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']), PropTypes.func]),
 	/**
 	 * Use upper case.
 	 *
 	 * This mode will also adjust line-height to suit.
 	 */
 	uppercase: PropTypes.bool,
-
-	/**
-	 * The override API
-	 */
-	overrides: PropTypes.shape({
-		Heading: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
 };

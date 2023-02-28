@@ -1,7 +1,3 @@
-/** @jsx jsx */
-
-import { jsx, useBrand } from '@westpac/core';
-
 // ==============================
 // Component
 // ==============================

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import React, { useRef } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Button } from '@westpac/button';

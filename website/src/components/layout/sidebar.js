@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { CloseIcon } from '@westpac/icon';
@@ -118,3 +117,5 @@ const CloseBtn = forwardRef((props, ref) => {
 		/>
 	);
 });
+
+CloseBtn.displayName = 'CloseBtn';

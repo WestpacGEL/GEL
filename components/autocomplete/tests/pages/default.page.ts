@@ -9,6 +9,9 @@ class DefaultPage extends CommonPage {
 	get invalidAutocomplete() {
 		return cy.get('[data-cy="invalid-autocomplete"]');
 	}
+	get validAutocomplete() {
+		return cy.get('[data-cy="valid-autocomplete"]');
+	}
 }
 
 export default DefaultPage;

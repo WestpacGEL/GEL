@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const PercentSignPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -22,10 +22,10 @@ export const PercentSignPictogram = ({ mode, ...rest }) => {
 };
 
 PercentSignPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Percent sign',
 	copyrightYear: '2020',
 };
-PercentSignPictogram.propTypes = propTypes;
+PercentSignPictogram.propTypes = Pictogram.propTypes;

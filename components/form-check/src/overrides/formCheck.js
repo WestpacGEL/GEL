@@ -1,7 +1,6 @@
-/** @jsx jsx */
-
 import { jsx, getLabel, getModifier, classNames, formatClassName } from '@westpac/core';
-import { defaultProps } from '../FormCheck';
+import { FormCheck as MainFormCheck } from '../FormCheck';
+const defaultProps = MainFormCheck?.defaultProps || {};
 
 import { nestedOptionStyles } from './option';
 import { nestedLabelStyles } from './label';

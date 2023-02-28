@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand } from '@westpac/core';
 import { Fragment } from 'react';
 import { VisuallyHidden } from '@westpac/a11y';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { TextInput, Textarea, Select, TextInputWithButton } from '@westpac/text-input';
 

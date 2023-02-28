@@ -1,18 +1,19 @@
-/** @jsx jsx */
-
 import { jsx, getLabel, classNames, getModifier, formatClassName } from '@westpac/core';
 import { forwardRef } from 'react';
 
-import { defaultProps } from '../blender/Tabcordion';
+import { Tabcordion as MainTabcordion } from '../blender/Tabcordion';
+const defaultProps = MainTabcordion?.defaultProps || {};
 // ==============================
 // Component
 // ==============================
 
 const TabRow = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+TabRow.displayName = 'TabRow';
 
 const BlenderTabRow = forwardRef(({ state: _, className, ...rest }, ref) => (
 	<div ref={ref} className={formatClassName(className)} {...rest} />
 ));
+BlenderTabRow.displayName = 'BlenderTabRow';
 
 // ==============================
 // Styles

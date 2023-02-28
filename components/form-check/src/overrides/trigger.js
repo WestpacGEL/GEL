@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, getLabel, useBrand } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { ExpandMoreIcon } from '@westpac/icon';
@@ -41,6 +39,7 @@ const Trigger = forwardRef(({ state: { revealCount }, ...rest }, ref) => {
 		</Button>
 	);
 });
+Trigger.displayName = 'Trigger';
 
 // Moved icon styling to button to avoid clashing icon class names
 const BlenderTrigger = forwardRef(({ state: { revealCount }, ...rest }, ref) => {
@@ -73,6 +72,7 @@ const BlenderTrigger = forwardRef(({ state: { revealCount }, ...rest }, ref) => 
 		</Button>
 	);
 });
+BlenderTrigger.displayName = 'BlenderTrigger';
 
 // ==============================
 // Styles

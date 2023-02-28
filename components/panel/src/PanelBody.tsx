@@ -1,22 +1,34 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultBody } from './overrides/body';
 
 import { usePanelContext } from './Panel';
 import pkg from '../package.json';
 
+export interface PanelBodyProps {
+	/**
+	 * Panel body content
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Body?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
-export const PanelBody = ({
-	children,
-	overrides,
-	...rest
-}: typeof PanelBody.propTypes & typeof PanelBody.defaultProps) => {
+export const PanelBody = ({ children, overrides, ...rest }: PanelBodyProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -47,24 +59,23 @@ export const PanelBody = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 PanelBody.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Panel body content
 	 */
 	children: PropTypes.node,
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Body: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };

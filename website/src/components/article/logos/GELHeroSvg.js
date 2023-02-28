@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 
 export const GELHeroSvg = (props) => {

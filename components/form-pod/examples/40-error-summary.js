@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx, Global, useBrand } from '@westpac/core';
 import {
 	FormPod,

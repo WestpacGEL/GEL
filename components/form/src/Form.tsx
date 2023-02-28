@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { createContext, useContext } from 'react';
-import PropTypes from 'prop-types';
 
 import { defaultForm } from './overrides/form';
 import pkg from '../package.json';
@@ -11,22 +10,57 @@ import pkg from '../package.json';
 // Context and consumer hook
 // ==============================
 
-const FormContext = createContext(null);
+const FormContext = createContext<any>(null);
 
 export const useFormContext = () => useContext(FormContext);
+
+export interface FormProps {
+	/**
+	 * Size of children components.
+	 *
+	 * This prop is available to children components via `FormContext`.
+	 */
+	size?: unknown[] | string;
+	/**
+	 * Vertical spacing of children components.
+	 *
+	 * This prop is available to children components via `FormContext`.
+	 */
+	spacing?: unknown[] | string;
+	/**
+	 * Inline children mode (SM+).
+	 *
+	 * This prop is available to children components via `FormContext`.
+	 */
+	inline?: boolean;
+	/**
+	 * Component tag
+	 */
+	tag?: ((...args: unknown[]) => unknown) | string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Form?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
 // ==============================
 
 export const Form = ({
-	size,
-	spacing,
-	inline,
-	tag,
+	size = 'medium',
+	spacing = 'medium',
+	inline = false,
+	tag = 'form',
 	overrides: componentOverrides,
 	...rest
-}: typeof Form.propTypes & typeof Form.defaultProps) => {
+}: FormProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -60,55 +94,43 @@ export const Form = ({
 // Types
 // ==============================
 
-const options = {
-	size: ['small', 'medium', 'large', 'xlarge'],
-	spacing: ['medium', 'large'],
-};
-
 Form.propTypes = {
-	/**
-	 * Size of children components.
-	 *
-	 * This prop is available to children components via `FormContext`.
-	 */
-	size: PropTypes.oneOf(options.size),
-
-	/**
-	 * Vertical spacing of children components.
-	 *
-	 * This prop is available to children components via `FormContext`.
-	 */
-	spacing: PropTypes.oneOf(options.spacing),
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Inline children mode (SM+).
 	 *
 	 * This prop is available to children components via `FormContext`.
 	 */
 	inline: PropTypes.bool,
-
-	/**
-	 * Component tag
-	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Form: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Size of children components.
+	 *
+	 * This prop is available to children components via `FormContext`.
+	 */
+	size: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+	/**
+	 * Vertical spacing of children components.
+	 *
+	 * This prop is available to children components via `FormContext`.
+	 */
+	spacing: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 
-export const defaultProps = {
-	size: 'medium',
-	spacing: 'medium',
-	inline: false,
-	tag: 'form',
-};
-
-Form.defaultProps = defaultProps;
+Form.defaultProps = { inline: false, size: 'medium', spacing: 'medium', tag: 'form' };

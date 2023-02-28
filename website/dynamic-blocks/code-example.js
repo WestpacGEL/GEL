@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { CheckboxPrimitive } from '@arch-ui/controls';
 import React, { Suspense, Fragment } from 'react';
 import Select from '@arch-ui/select';

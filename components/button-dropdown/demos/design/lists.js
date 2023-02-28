@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { ButtonDropdown, Heading } from '@westpac/button-dropdown';
 import { List, Item } from '@westpac/list';

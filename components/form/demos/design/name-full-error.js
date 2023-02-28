@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useMediaQuery } from '@westpac/core';
 import { Form } from '@westpac/form';
 import { Container } from './_utils';

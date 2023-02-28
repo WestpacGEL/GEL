@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { jsx } from '@westpac/core';
 
 const BackToGelSvg = (props) => {

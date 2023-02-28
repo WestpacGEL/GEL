@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, getLabel } from '@westpac/core';
 import { useSpring, animated } from '@react-spring/web';
 import ResizeObserver from 'resize-observer-polyfill';

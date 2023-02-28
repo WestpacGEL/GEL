@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { useId, useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
 import { Button } from '@westpac/button';

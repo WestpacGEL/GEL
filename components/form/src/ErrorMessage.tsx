@@ -1,12 +1,50 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultErrorMessageContent } from './overrides/errorMessageContent';
 import { defaultErrorMessageItem } from './overrides/errorMessageItem';
 import { defaultErrorMessage } from './overrides/errorMessage';
 import pkg from '../package.json';
+
+export interface ErrorMessageProps {
+	/**
+	 * Error message item(s) text
+	 */
+	id?: string;
+	/**
+	 * Error message item(s) text
+	 */
+	message?: string | string[];
+	/**
+	 * Error message item(s) icon
+	 */
+	icon?: (...args: unknown[]) => unknown;
+	/**
+	 * Component tag
+	 */
+	tag?: ((...args: unknown[]) => unknown) | string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		ErrorMessage?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		ErrorMessageItem?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		ErrorMessageContent?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Utility
@@ -17,12 +55,12 @@ import pkg from '../package.json';
 // ==============================
 
 export const ErrorMessage = ({
-	message,
 	icon,
-	tag,
+	message = 'Invalid input',
+	tag = 'div',
 	overrides: componentOverrides,
 	...rest
-}: typeof ErrorMessage.propTypes & typeof ErrorMessage.defaultProps) => {
+}: ErrorMessageProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -100,54 +138,43 @@ export const ErrorMessage = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 ErrorMessage.propTypes = {
-	/**
-	 * Error message item(s) text
-	 */
-	id: PropTypes.string,
-
-	/**
-	 * Error message item(s) text
-	 */
-	message: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Error message item(s) icon
 	 */
 	icon: PropTypes.func,
-
 	/**
-	 * Component tag
+	 * Error message item(s) text
 	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-
+	message: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		ErrorMessage: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		ErrorMessageItem: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			styles: PropTypes.func,
 		}),
 		ErrorMessageContent: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		ErrorMessageItem: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 
-ErrorMessage.defaultProps = {
-	message: 'Invalid input',
-	tag: 'div',
-};
+ErrorMessage.defaultProps = { message: 'Invalid input', tag: 'div' };

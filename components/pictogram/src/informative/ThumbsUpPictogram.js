@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const ThumbsUpPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -22,10 +22,10 @@ export const ThumbsUpPictogram = ({ mode, ...rest }) => {
 };
 
 ThumbsUpPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Thumbs up',
 	copyrightYear: '2020',
 };
-ThumbsUpPictogram.propTypes = propTypes;
+ThumbsUpPictogram.propTypes = Pictogram.propTypes;

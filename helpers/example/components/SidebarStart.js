@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand } from '@westpac/core';
 import { ExpandMoreIcon, ExpandLessIcon } from '@westpac/icon';
 import { Select } from '@westpac/text-input';

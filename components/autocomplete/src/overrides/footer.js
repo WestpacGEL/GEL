@@ -1,6 +1,4 @@
-/** @jsx jsx */
-
-import { jsx, useBrand } from '@westpac/core';
+import { useBrand } from '@westpac/core';
 
 // ==============================
 // Component

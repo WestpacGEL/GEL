@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	getLabel,
@@ -12,7 +10,8 @@ import {
 import { forwardRef, Fragment } from 'react';
 import { useTransition, animated } from '@react-spring/web';
 
-import { defaultProps } from '../Modal';
+import { Modal as MainModal } from '../Modal';
+const defaultProps = MainModal?.defaultProps || {};
 import { nestedStyles } from './modalDialog';
 
 // ==============================
@@ -29,6 +28,7 @@ const Modal = forwardRef(({ state: { open }, ...rest }, ref) => {
 
 	return transition((style, item) => item && <animated.div ref={ref} style={style} {...rest} />);
 });
+Modal.displayName = 'Modal';
 
 const BlenderModal = forwardRef(({ state, className, ...rest }, ref) => (
 	<Fragment>
@@ -40,7 +40,7 @@ const BlenderModal = forwardRef(({ state, className, ...rest }, ref) => (
 		<div ref={ref} className={formatClassName(className)} {...rest} />
 	</Fragment>
 ));
-
+BlenderModal.displayName = 'BlenderModal';
 // ==============================
 // Styles
 // ==============================

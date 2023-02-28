@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import react, { Fragment } from 'react';
 import { useTransition, animated } from '@react-spring/web';
 

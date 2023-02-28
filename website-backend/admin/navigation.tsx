@@ -1,5 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { jsx } from '@keystone-ui/core';
 import { useState } from 'react';
 import { FieldProps, FieldControllerConfig, FieldController } from '@keystone-6/core/types';

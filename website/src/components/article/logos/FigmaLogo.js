@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useMediaQuery } from '@westpac/core';
 
 export const FigmaLogo = (props) => {

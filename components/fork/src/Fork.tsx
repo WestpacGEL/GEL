@@ -1,9 +1,17 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, wrapHandlers, overrideReconciler } from '@westpac/core';
-import { useState, Children, createContext, useContext, useId, useMemo, useCallback } from 'react';
-import { ButtonGroup, Item } from '@westpac/button-group';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, wrapHandlers, overrideReconciler } from '@westpac/core';
+import {
+	useState,
+	Children,
+	createContext,
+	useContext,
+	useId,
+	useMemo,
+	useCallback,
+	ReactNode,
+} from 'react';
+import { ButtonGroup, Item } from '@westpac/button-group';
 
 import { defaultFork } from './overrides/fork';
 import { ForkContent } from './ForkContent';
@@ -25,6 +33,39 @@ export const useForkContext = () => {
 	return context;
 };
 
+export interface ForkProps {
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId?: string;
+	/**
+	 * Name to be used for radio inputs
+	 */
+	name: string;
+	/**
+	 * Default fork index
+	 */
+	defaultValue?: number;
+	/**
+	 * Change the value. Requires `value`
+	 */
+	onChange?: (...args: unknown[]) => unknown;
+	/**
+	 * children
+	 */
+	children?: ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Fork?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
@@ -37,7 +78,7 @@ export const Fork = ({
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Fork.propTypes & typeof Fork.defaultProps) => {
+}: ForkProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -65,7 +106,7 @@ export const Fork = ({
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	const handleChange = useCallback(
-		(event: Event, val: any) => {
+		(event: any, val: any) => {
 			wrapHandlers(
 				() => onChange(event, val),
 				() => setActiveForkIndex(val)
@@ -88,60 +129,60 @@ export const Fork = ({
 						const selected = activeForkIndex === index;
 						return (
 							<Item
-								key={child.props.text}
+								key={child?.props.text}
 								inputProps={{
 									'aria-expanded': selected,
 								}}
 							>
-								{child.props.text}
+								{child?.props.text}
 							</Item>
 						);
 					})}
 				</ButtonGroup>
 				{Children.map(children, (child, index) => {
 					const selected = activeForkIndex === index;
-					return <ForkContent {...child.props} key={child.props.text} selected={selected} />;
+					return <ForkContent {...child?.props} key={child?.props.text} selected={selected} />;
 				})}
 			</Fork>
 		</ForkContext.Provider>
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Fork.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
-	 * Define an id for internal elements
+	 * children
 	 */
-	instanceId: PropTypes.string,
-
-	/**
-	 * Name to be used for radio inputs
-	 */
-	name: PropTypes.string.isRequired,
-
+	children: PropTypes.node,
 	/**
 	 * Default fork index
 	 */
 	defaultValue: PropTypes.number,
-
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+	/**
+	 * Name to be used for radio inputs
+	 */
+	name: PropTypes.string.isRequired,
 	/**
 	 * Change the value. Requires `value`
 	 */
 	onChange: PropTypes.func,
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Fork: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
 
-Fork.defaultProps = {};
+Fork.defaultProps = { onChange: () => {} };

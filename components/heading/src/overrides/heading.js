@@ -1,7 +1,4 @@
-/** @jsx jsx */
-
 import {
-	jsx,
 	useBrand,
 	useMediaQuery,
 	asArray,
@@ -36,6 +33,7 @@ const Heading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) => {
 
 	return <Tag ref={ref} {...rest} />;
 });
+Heading.displayName = 'Heading';
 
 const BlenderHeading = ({ className, ...rest }) => (
 	<Heading className={className.trim()} {...rest} />

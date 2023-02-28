@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand } from '@westpac/core';
 import { Fragment, useState } from 'react';
 import { Form, Field, FormGroup } from '@westpac/form';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand } from '@westpac/core';
 import { EmailIcon } from '@westpac/icon';
 

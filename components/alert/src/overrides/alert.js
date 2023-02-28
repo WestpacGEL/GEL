@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -12,7 +10,8 @@ import {
 } from '@westpac/core';
 import { useTransition, animated } from '@react-spring/web';
 
-import { defaultProps } from '../Alert';
+import { Alert as MainAlert } from '../Alert';
+const defaultProps = MainAlert?.defaultProps || {};
 
 // ==============================
 // Component

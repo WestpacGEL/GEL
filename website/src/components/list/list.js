@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { List as GELList } from '@westpac/list';
 import { Body } from '../body';

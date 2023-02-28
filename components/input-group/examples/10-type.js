@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { InputGroup, Before, After } from '@westpac/input-group';
 import { AddIcon, RemoveIcon } from '@westpac/icon';

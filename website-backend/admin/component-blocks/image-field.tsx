@@ -1,5 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { jsx } from '@keystone-ui/core';
 import { gql, useMutation } from '@keystone-6/core/admin-ui/apollo';
 import { Button } from '@keystone-ui/button';

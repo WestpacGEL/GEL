@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import React from 'react';
 import { jsx } from '@westpac/core';
 import { DocumentRenderer } from '@keystone-6/document-renderer';

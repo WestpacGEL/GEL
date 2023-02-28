@@ -1,5 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { component, fields, NotEditable } from '@keystone-6/fields-document/component-blocks';
 // @ts-ignore
 import { COLORS } from '@westpac/wbc/tokens/colors';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Container, Grid } from '@westpac/grid';
 import { Cell } from '../_utils';

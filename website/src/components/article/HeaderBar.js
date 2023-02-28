@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { usePageContext } from '../providers/pageContext';
 import { ArrowLeftIcon } from '@westpac/icon';

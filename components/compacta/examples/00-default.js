@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { useCallback, useState } from 'react';
 import { Compacta } from '@westpac/compacta';

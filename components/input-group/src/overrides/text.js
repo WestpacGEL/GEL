@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -10,7 +8,8 @@ import {
 	formatClassName,
 } from '@westpac/core';
 
-import { defaultProps } from '../Text';
+import { Text as MainText } from '../Text';
+const defaultProps = MainText?.defaultProps || {};
 
 // ==============================
 // Component

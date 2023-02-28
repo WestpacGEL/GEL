@@ -1,6 +1,3 @@
-/** @jsx jsx */
-
-import { jsx } from '@westpac/core';
 import { Autocomplete } from '@westpac/autocomplete';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
