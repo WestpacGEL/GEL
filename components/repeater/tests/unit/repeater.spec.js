@@ -27,6 +27,7 @@ describe('Repeater component', () => {
 			createObjectURL: () => new Blob(),
 			revokeObjectURL: () => {},
 		};
-		render(<SimpleRepeater />);
+		const { container } = render(<SimpleRepeater />);
+		expect(container).toBeInTheDocument();
 	});
 });

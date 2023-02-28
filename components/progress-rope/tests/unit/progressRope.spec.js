@@ -28,6 +28,7 @@ describe('ProgressRope component', () => {
 	};
 
 	test('It should render Simple ProgressRope', () => {
-		render(<SimpleProgressRope />);
+		const { container } = render(<SimpleProgressRope />);
+		expect(container).toBeInTheDocument();
 	});
 });

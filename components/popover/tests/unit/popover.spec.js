@@ -19,6 +19,7 @@ describe('Popover component', () => {
 	);
 
 	test('It should render Popover', () => {
-		render(<SimplePopover />);
+		const { container } = render(<SimplePopover />);
+		expect(container).toBeInTheDocument();
 	});
 });

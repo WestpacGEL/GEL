@@ -66,6 +66,7 @@ describe('Compacta component', () => {
 	};
 
 	test('It should render Compacta', () => {
-		render(<SimpleCompacta />);
+		const { container } = render(<SimpleCompacta />);
+		expect(container).toBeInTheDocument();
 	});
 });

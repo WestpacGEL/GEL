@@ -11,6 +11,7 @@ describe('Progress Bar component', () => {
 	);
 
 	test('It should render Progress Bar', () => {
-		render(<SimpleProgressBar />);
+		const { container } = render(<SimpleProgressBar />);
+		expect(container).toBeInTheDocument();
 	});
 });

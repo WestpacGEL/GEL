@@ -16,6 +16,7 @@ describe('Pagination component', () => {
 	);
 
 	test('It should render Pagination', () => {
-		render(<SimplePagination />);
+		const { container } = render(<SimplePagination />);
+		expect(container).toBeInTheDocument();
 	});
 });

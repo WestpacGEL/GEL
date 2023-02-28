@@ -17,6 +17,7 @@ describe('List Group component', () => {
 	);
 
 	test('It should render List Group', () => {
-		render(<SimpleInputGroup />);
+		const { container } = render(<SimpleInputGroup />);
+		expect(container).toBeInTheDocument();
 	});
 });

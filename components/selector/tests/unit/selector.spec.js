@@ -16,6 +16,7 @@ describe('Selector component', () => {
 	);
 
 	test('It should render Simple Selector', () => {
-		render(<SimpleSelector />);
+		const { container } = render(<SimpleSelector />);
+		expect(container).toBeInTheDocument();
 	});
 });

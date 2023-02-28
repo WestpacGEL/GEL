@@ -39,6 +39,7 @@ describe('Modal component', () => {
 	);
 
 	test('It should render Modal', () => {
-		render(<SimpleModal />);
+		const { container } = render(<SimpleModal />);
+		expect(container).toBeInTheDocument();
 	});
 });

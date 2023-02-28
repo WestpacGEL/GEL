@@ -12,6 +12,7 @@ describe('Switch component', () => {
 	);
 
 	test('It should render Switch', () => {
-		render(<SimpleSwitch />);
+		const { container } = render(<SimpleSwitch />);
+		expect(container).toBeInTheDocument();
 	});
 });

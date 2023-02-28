@@ -15,6 +15,7 @@ describe('Footer component', () => {
 	);
 
 	test('It should render Footer', () => {
-		render(<SimpleFooter />);
+		const { container } = render(<SimpleFooter />);
+		expect(container).toBeInTheDocument();
 	});
 });

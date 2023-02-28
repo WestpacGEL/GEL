@@ -14,6 +14,7 @@ describe('Input Group component', () => {
 	);
 
 	test('It should render Input Group', () => {
-		render(<SimpleInputGroup />);
+		const { container } = render(<SimpleInputGroup />);
+		expect(container).toBeInTheDocument();
 	});
 });

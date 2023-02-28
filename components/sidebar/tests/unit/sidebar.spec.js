@@ -14,6 +14,7 @@ describe('Sidebar component', () => {
 	);
 
 	test('It should render Simple Selector', () => {
-		render(<SimpleSidebar />);
+		const { container } = render(<SimpleSidebar />);
+		expect(container).toBeInTheDocument();
 	});
 });

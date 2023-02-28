@@ -30,6 +30,7 @@ describe('Collapsible component', () => {
 	);
 
 	test('It should render Simple Collapsible', () => {
-		render(<SimpleCollapsible />);
+		const { container } = render(<SimpleCollapsible />);
+		expect(container).toBeInTheDocument();
 	});
 });

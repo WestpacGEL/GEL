@@ -12,6 +12,7 @@ describe('TextInput component', () => {
 	);
 
 	test('It should render TextInput', () => {
-		render(<SimpleTextInput />);
+		const { container } = render(<SimpleTextInput />);
+		expect(container).toBeInTheDocument();
 	});
 });

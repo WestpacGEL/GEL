@@ -20,6 +20,7 @@ describe('Fork component', () => {
 	);
 
 	test('It should render Fork', () => {
-		render(<SimpleFork />);
+		const { container } = render(<SimpleFork />);
+		expect(container).toBeInTheDocument();
 	});
 });

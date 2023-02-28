@@ -73,6 +73,7 @@ describe('Form component', () => {
 	);
 
 	test('It should render Form', () => {
-		render(<SimpleForm />);
+		const { container } = render(<SimpleForm />);
+		expect(container).toBeInTheDocument();
 	});
 });

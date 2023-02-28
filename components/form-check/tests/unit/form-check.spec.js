@@ -16,6 +16,7 @@ describe('FormCheck component', () => {
 	);
 
 	test('It should render FormCheck', () => {
-		render(<SimpleFormCheck />);
+		const { container } = render(<SimpleFormCheck />);
+		expect(container).toBeInTheDocument();
 	});
 });

@@ -49,6 +49,7 @@ describe('Grid component', () => {
 	);
 
 	test('It should render Grid', () => {
-		render(<SimpleGrid />);
+		const { container } = render(<SimpleGrid />);
+		expect(container).toBeInTheDocument();
 	});
 });

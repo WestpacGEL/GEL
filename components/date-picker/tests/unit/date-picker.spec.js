@@ -11,7 +11,8 @@ describe('DatePicker component', () => {
 		</GEL>
 	);
 
-	test('It should render Compacta', () => {
-		render(<SimpleDatePicker />);
+	test('It should render DatePicker', () => {
+		const { container } = render(<SimpleDatePicker />);
+		expect(container).toBeInTheDocument();
 	});
 });

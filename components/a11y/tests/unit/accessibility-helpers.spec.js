@@ -16,9 +16,11 @@ describe('Accessibility helper component', () => {
 		</GEL>
 	);
 	test('It should render Visually Hidden', () => {
-		render(<SimpleVisuallyHidden />);
+		const { container } = render(<SimpleVisuallyHidden />);
+		expect(container).toBeInTheDocument();
 	});
 	test('It should render Skip Link', () => {
-		render(<SimpleSkipLink />);
+		const { container } = render(<SimpleSkipLink />);
+		expect(container).toBeInTheDocument();
 	});
 });
