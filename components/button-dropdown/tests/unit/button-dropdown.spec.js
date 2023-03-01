@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { ButtonDropdown } from '@westpac/button-dropdown';
-import { Button } from '@westpac/button';
 import { GEL } from '@westpac/core';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import wbc from '@westpac/wbc';
-import { ArrowLeftIcon } from '@westpac/icon';
 
 // The default tests every component should run
 overridesTest({
 	name: 'button-dropdown', // the name has to be the package name without '@westpac/' scope
-	overrides: ['ButtonDropdown', 'Panel'], // every single override root key
+	overrides: ['ButtonDropdown'], // every single override root key
 	Component: (props) => (
 		<ButtonDropdown {...props} text="Default Dropdown" open={true}>
 			ButtonDropdown content
@@ -22,7 +20,7 @@ overridesTest({
 // another default test to check that the component errors when outside of GEL and renders when inside
 nestingTest({
 	name: 'button-dropdown',
-	Component: (props) => <Button {...props} />,
+	Component: (props) => <ButtonDropdown {...props} />,
 });
 
 const SimpleButtonDropdown = (props) => (
