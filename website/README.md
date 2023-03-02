@@ -13,7 +13,7 @@ The GEL Website runs [Keystone](https://www.keystonejs.com/) as CMS.
 To setup a development environment you'll need:
 
 - [PostgreSQL](https://www.postgresql.org/) (tested on v12)
-- [Node.js](https://nodejs.org/), with [`yarn`](https://yarnpkg.com/) (tested on v12 and v1.12, respectively)
+- [Node.js](https://nodejs.org/), with [`yarn`](https://yarnpkg.com/) (tested on v16 and v1.12, respectively)
 
 First thing, double check you install the dependencies for the monorepo.
 Do this by running `yarn` at the root of the repo or, from the website dir:
@@ -22,11 +22,11 @@ Do this by running `yarn` at the root of the repo or, from the website dir:
 yarn --cwd ..
 ```
 
-_(💡 All commands below are given relative to the `website` directory (not the root))_
+_(💡 All commands below are given relative to the `website-backend` directory (not the root))_
 
 ### Environment Variables
 
-The app loads variables from a `.env` file in the `website` directory.
+The app loads variables from a `.env` file in the `website-backend` directory.
 An example file has been provided so you can probably just run:
 
 ```sh
@@ -55,18 +55,14 @@ or
 psql -h localhost -c 'create database "gel3_website_dev";'
 ```
 
-You'll then need to run migrations to create the DB structure:
-
-```sh
-yarn knex migrate:latest
-```
-
 A single users will be created with the login: `admin@localhost`, password: `development`.
 No other content will be created.
 
 ### Sync data live -> local
 
 You may prefer to restore a copy of the DB from the live environment.
+
+If you have SSH access to the live server these commands will download a copy directly from there (~12 MB):
 
 ```sh
 # If you have an existing DB you may need to drop it first
@@ -76,18 +72,49 @@ You may prefer to restore a copy of the DB from the live environment.
 psql -h localhost -c 'create database "gel3_website_dev";'
 
 # Configure our source and target DB URI
-SOURCE='postgres://gel3_website_live@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/gel3_website_live?ssl=true'
-TARGET='postgres://localhost/gel3_website_dev'
+SOURCE_DB_URL='postgres://gel3_website_live@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/gel3_website_live?ssl=true'
+LOCAL_DUMP_FILE="data/$(date -u +%y%m%dT%H%Mz)-gel3_website_live.sql"
 
-# Dump the source DB and pipe to psql to restore locally
-ssh deploy@gel.live.do.westpac.thinkmill.cloud pg_dump --no-owner ${SOURCE} | psql ${TARGET}
+# Connect to the server over ssh and dump the DB to a file on your local machine
+ssh deploy@gel.live.do.westpac.thinkmill.cloud pg_dump --no-owner "${SOURCE_DB_URL}" > "${LOCAL_DUMP_FILE}"
 ```
 
 _(💡 Note that sometimes you get errors like "Database [username] does not exist" which you can solve with `createdb [username]`)_
 
-_(💡 This will require ssh access to the live server)_
+_(💡 This will require ssh access to the live server, if you do not have access reach out to the GEL team who will be able to give you a copy and substitute it's path for `LOCAL_DUMP_FILE` in the next step.)_
 
-### Sync data
+#### Restore the Backup
+
+Once you have the DB dump, restore it to your local DB.
+These steps can be repeated to reset your local DB to previously dumped version.
+
+```sh
+# Set to whatever your dev database is called
+LOCAL_DB_NAME='gel3_website_dev'
+
+# Drop and recreate a clean DB to restore into
+dropdb --if-exists "${LOCAL_DB_NAME}"
+createdb "${LOCAL_DB_NAME}"
+
+# Restore the local dump to your local DB
+psql -d "${LOCAL_DB_NAME}" -f "${LOCAL_DUMP_FILE}"
+```
+
+### Start App
+
+The app can then be started with:
+
+```sh
+yarn start
+```
+
+If you get an "access denied" error, check the `DATABASE_URL` in your `.env`.
+It you many need to specify your OS username as the database role, like this: `postgres://${USER}@localhost/gel3_website_dev`.
+You can get your current username by running `whoami` on the terminal.
+
+## Maintenance
+
+### Sync data between environments
 
 What you will need is three passwords for three different database accounts:
 
@@ -143,20 +170,6 @@ SOURCE_DB_URL='postgres://gel3_website_live@westpacgel3-do-user-1058923-0.a.db.o
 TARGET_DB_URL='postgres://gel3_website_staging@westpacgel3-do-user-1058923-0.a.db.ondigitalocean.com:25060/gel3_website_staging?ssl=true'
 pg_dump --no-owner ${SOURCE_DB_URL} | psql ${TARGET_DB_URL}
 # You will be asked for the live password
-```
-
-### App
-
-If you're updated your working copy, you should run any outstanding migrations before starting the app:
-
-```sh
-yarn knex migrate:latest
-```
-
-Then, the app can be started with:
-
-```sh
-yarn start
 ```
 
 ### Migrations
