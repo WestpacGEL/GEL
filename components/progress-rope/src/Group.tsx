@@ -1,11 +1,9 @@
-/** @jsx jsx */
-
+import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Children, cloneElement, useState, useEffect } from 'react';
+import React, { Children, cloneElement, useState, useEffect, ReactNode } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useSpring, animated } from '@react-spring/web';
 import useMeasure from 'react-use-measure';
-import PropTypes from 'prop-types';
 
 import { defaultGroup } from './overrides/group';
 import { defaultGroupBtnWrapper } from './overrides/groupButtonWrapper';
@@ -15,17 +13,46 @@ import { defaultGroupList } from './overrides/groupList';
 import { useProgressRopeContext } from './ProgressRope';
 import pkg from '../package.json';
 
+export interface GroupProps {
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * The index of this step
+	 */
+	index: number;
+	/**
+	 * Group text
+	 */
+	text: string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Group?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		GroupBtn?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		GroupList?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
-export const Group = ({
-	index,
-	text,
-	children,
-	overrides,
-	...rest
-}: typeof Group.propTypes & typeof Group.defaultProps) => {
+export const Group = ({ index, text, children, overrides, ...rest }: GroupProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -144,39 +171,41 @@ export const Group = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Group.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
 	/**
 	 * The index of this step
 	 */
-	index: PropTypes.number,
-
-	/**
-	 * Group text
-	 */
-	text: PropTypes.string.isRequired,
-
+	index: PropTypes.number.isRequired,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Group: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		GroupBtn: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		GroupList: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Group text
+	 */
+	text: PropTypes.string.isRequired,
 };

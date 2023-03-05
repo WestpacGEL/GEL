@@ -1,10 +1,20 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler, useInstanceId, wrapHandlers } from '@westpac/core';
-import { createContext, useContext, useState, useEffect, useLayoutEffect, useRef } from 'react';
-import { useOutsideClick } from '@westpac/hooks';
-import { Button } from '@westpac/button';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
+import {
+	createContext,
+	useContext,
+	useState,
+	useEffect,
+	useRef,
+	useId,
+	useCallback,
+	KeyboardEvent,
+	useMemo,
+	ReactNode,
+} from 'react';
+import { useOutsideClick, useIsomorphicLayoutEffect } from '@westpac/hooks';
+import { Button } from '@westpac/button';
 
 import { defaultButtonDropdown } from './overrides/buttonDropdown';
 import { defaultPanel } from './overrides/panel';
@@ -14,7 +24,7 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-const ButtonDropdownContext = createContext();
+const ButtonDropdownContext = createContext<any>(null);
 
 export const useButtonDropdownContext = () => {
 	const context = useContext(ButtonDropdownContext);
@@ -26,30 +36,85 @@ export const useButtonDropdownContext = () => {
 	return context;
 };
 
+interface ButtonDropdownProps {
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId?: string;
+	/**
+	 * State of whether the Popover is open
+	 */
+	open?: boolean;
+	/**
+	 * Button text
+	 */
+	text: string;
+	/**
+	 * Dropdown size
+	 */
+	dropdownSize?: 'small' | 'medium' | 'large' | 'small' | 'medium' | 'large'[];
+	/**
+	 * Block mode.
+	 *
+	 * Fit button width to its parent width.
+	 */
+	block?: boolean | boolean[];
+	/**
+	 * A function for the onClick event
+	 */
+	onClick?: (...args: unknown[]) => unknown;
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		ButtonDropdown?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Panel?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Heading?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const ButtonDropdown = ({
 	instanceId,
-	open,
 	text,
-	dropdownSize,
-	block,
 	onClick = () => {},
 	children,
 	overrides: componentOverrides,
+	open = false,
+	dropdownSize = 'medium',
+	block = false,
 	...rest
-}: typeof ButtonDropdown.propTypes & typeof ButtonDropdown.defaultProps) => {
+}: ButtonDropdownProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [isOpen, setIsOpen] = useState(open);
-	const [id] = useState(instanceId || `gel-button-dropdown-${useInstanceId()}`);
-	const panelRef = useRef();
-	const buttonRef = useRef();
+	const [isOpen, setIsOpen] = useState<boolean>(open);
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-button-dropdown-${_id}`, [_id, instanceId]);
+
+	const panelRef = useRef<HTMLDivElement>();
+	const buttonRef = useRef<HTMLDivElement>();
 
 	const defaultOverrides = {
 		ButtonDropdown: defaultButtonDropdown,
@@ -80,20 +145,23 @@ export const ButtonDropdown = ({
 		setIsOpen(open);
 	}, [open]);
 
-	useLayoutEffect(() => {
+	useIsomorphicLayoutEffect(() => {
 		if (!isOpen) {
-			buttonRef.current.focus();
+			buttonRef.current?.focus();
 		}
 	}, [isOpen]);
 
-	const handleOpen = (event) => {
-		wrapHandlers(
-			() => onClick(),
-			() => {
-				setIsOpen((currentState) => !currentState);
-			}
-		)(event);
-	};
+	const handleOpen = useCallback(
+		(event: any) => {
+			wrapHandlers(
+				() => onClick(),
+				() => {
+					setIsOpen((currentState) => !currentState);
+				}
+			)(event);
+		},
+		[onClick]
+	);
 
 	useOutsideClick({
 		handler: () => {
@@ -104,17 +172,21 @@ export const ButtonDropdown = ({
 	});
 
 	// on escape close
-	const keyHandler = (event) => {
-		if (isOpen && event.keyCode === 27) handleOpen(event);
-	};
+	const keyHandler = useCallback(
+		(event: globalThis.KeyboardEvent) => {
+			if (isOpen && event.keyCode === 27) handleOpen(event);
+		},
+		[handleOpen, isOpen]
+	);
 
 	// bind key events
 	useEffect(() => {
-		window.document.addEventListener('keydown', keyHandler);
+		window.document.addEventListener('keydown', (event) => {});
 		return () => {
 			window.document.removeEventListener('keydown', keyHandler);
 		};
-	});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<ButtonDropdownContext.Provider value={{ state }}>
@@ -144,72 +216,69 @@ export const ButtonDropdown = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 ButtonDropdown.propTypes = {
-	/**
-	 * Define an id for internal elements
-	 */
-	instanceId: PropTypes.string,
-
-	/**
-	 * State of whether the Popover is open
-	 */
-	open: PropTypes.bool,
-
-	/**
-	 * Button text
-	 */
-	text: PropTypes.string.isRequired,
-
-	/**
-	 * Dropdown size
-	 */
-	dropdownSize: PropTypes.oneOfType([
-		PropTypes.oneOf(['small', 'medium', 'large']),
-		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large'])),
-	]),
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Block mode.
 	 *
 	 * Fit button width to its parent width.
 	 */
-	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
-
+	block: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.bool), PropTypes.bool]),
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
+	/**
+	 * Dropdown size
+	 */
+	dropdownSize: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small']),
+		PropTypes.arrayOf(PropTypes.oneOf(['large'])),
+	]),
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
 	/**
 	 * A function for the onClick event
 	 */
 	onClick: PropTypes.func,
-
+	/**
+	 * State of whether the Popover is open
+	 */
+	open: PropTypes.bool,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		ButtonDropdown: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		Panel: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			styles: PropTypes.func,
 		}),
 		Heading: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Panel: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Button text
+	 */
+	text: PropTypes.string.isRequired,
 };
 
-export const defaultProps = {
-	open: false,
-	dropdownSize: 'medium',
+ButtonDropdown.defaultProps = {
 	block: false,
+	dropdownSize: 'medium',
+	onClick: () => {},
+	open: false,
 };
-
-ButtonDropdown.defaultProps = defaultProps;

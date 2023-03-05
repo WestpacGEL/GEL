@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx, useFonts, useBrand } from '@westpac/core';
 import { Code } from './_utils';
 
@@ -33,13 +31,13 @@ function Example({ brand }) {
 			<Code>
 				useFonts({'{'} path: 'path/to/my/fonts/' {'}'})
 			</Code>
-			=>
+			=&gt;
 			<Code>{JSON.stringify(useFonts({ path: 'path/to/my/fonts/' }), null, 2)}</Code>
 			<hr />
 			<Code>
 				useFonts({'{'} path: 'path/to/my/fonts/', fontDisplay: 'swap', fontWeight: 900 {'}'})
 			</Code>
-			=>
+			=&gt;
 			<Code>
 				{JSON.stringify(
 					useFonts({ path: 'path/to/my/fonts/', fontDisplay: 'swap', fontWeight: 900 }),

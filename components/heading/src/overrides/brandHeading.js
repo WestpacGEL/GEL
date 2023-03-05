@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -36,6 +34,7 @@ const BrandHeading = forwardRef(({ state: { tag: Tag, size }, ...rest }, ref) =>
 
 	return <Tag ref={ref} {...rest} />;
 });
+BrandHeading.displayName = 'BrandHeading';
 
 const BlenderBrandHeading = ({ className, ...rest }) => (
 	<BrandHeading className={className.trim()} {...rest} />

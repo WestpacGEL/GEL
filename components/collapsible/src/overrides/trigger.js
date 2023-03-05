@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
@@ -39,10 +37,12 @@ const Trigger = forwardRef(({ state: { isOpen, size }, ...rest }, ref) => {
 		/>
 	);
 });
+Trigger.displayName = 'Trigger';
 
 const BlenderTrigger = forwardRef((props, ref) => {
 	return <button ref={ref} {...props} />;
 });
+BlenderTrigger.displayName = 'BlenderTrigger';
 
 // ==============================
 // Styles

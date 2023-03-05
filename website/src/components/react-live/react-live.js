@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { jsx, useBrand } from '@westpac/core';
 
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';

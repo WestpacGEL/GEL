@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -11,7 +9,8 @@ import {
 	formatClassName,
 } from '@westpac/core';
 import { sizeMap, getMaxWidth } from '../_utils';
-import { defaultProps } from '../Textarea';
+import { Textarea as MainTextarea } from '../Textarea';
+const defaultProps = MainTextarea?.defaultProps || {};
 import { forwardRef } from 'react';
 
 // ==============================
@@ -19,6 +18,7 @@ import { forwardRef } from 'react';
 // ==============================
 
 const Textarea = forwardRef(({ state: _, ...rest }, ref) => <textarea ref={ref} {...rest} />);
+Textarea.displayName = 'Textarea';
 
 const BlenderTextarea = ({ className, ...rest }) => (
 	<Textarea className={formatClassName(className)} {...rest} />

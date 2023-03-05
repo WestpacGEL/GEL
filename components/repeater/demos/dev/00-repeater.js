@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Repeater } from '@westpac/repeater';
 import { Playground } from '../../../../website/src/components/playground/macro';

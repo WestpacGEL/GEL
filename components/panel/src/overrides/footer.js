@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, useMediaQuery, getLabel } from '@westpac/core';
 
 // ==============================

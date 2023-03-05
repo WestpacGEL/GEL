@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand } from '@westpac/core';
 import { Select } from '@westpac/text-input';
 import { VisuallyHidden } from '@westpac/a11y';

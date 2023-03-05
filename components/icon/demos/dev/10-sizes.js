@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { WalkIcon, AndroidIcon, FaceHappyIcon, HeadsetIcon, WatchIcon } from '@westpac/icon';
 import { Playground } from '../../../../website/src/components/playground/macro';

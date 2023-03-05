@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useMediaQuery } from '@westpac/core';
 import { Form, Fieldset } from '@westpac/form';
 import { Fork, Content } from '@westpac/fork';

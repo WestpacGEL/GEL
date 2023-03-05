@@ -1,5 +1,23 @@
 # @westpac/form-check
 
+## 2.2.0
+
+### Minor Changes
+
+- 20f9f31f: Proptypes created using typescript and type fixes
+
+### Patch Changes
+
+- e9d5db29: Fixed some React 18 Hydration Errors.
+- Updated dependencies [bf4dc0e5]
+- Updated dependencies [e9d5db29]
+- Updated dependencies [20f9f31f]
+  - @westpac/core@3.2.0
+  - @westpac/hooks@3.1.0
+  - @westpac/button@2.2.0
+  - @westpac/body@2.2.0
+  - @westpac/icon@2.1.0
+
 ## 2.1.0
 
 ### Minor Changes

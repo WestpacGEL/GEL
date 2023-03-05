@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { Fragment, useState, useEffect } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell } from '@westpac/grid';

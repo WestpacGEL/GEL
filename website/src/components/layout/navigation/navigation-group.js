@@ -1,8 +1,6 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, useInstanceId } from '@westpac/core';
+import { jsx, useBrand } from '@westpac/core';
 import { AddIcon, RemoveIcon } from '@westpac/icon';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useId, useMemo } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useSpring, animated } from '@react-spring/web';
 import useMeasure from 'react-use-measure';
@@ -14,7 +12,9 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 	const [isClosed, setIsClosed] = useState(true);
 	const [measureRef, { height }] = useMeasure({ polyfill: ResizeObserver });
 	const [initial, setInitial] = useState(true);
-	const [instanceId, setInstanceId] = useState();
+
+	const id = useId();
+	const instanceId = useMemo(() => `nav-group-${id}`, [id]);
 
 	const handleButtonClick = () => {
 		if (initial) {
@@ -22,10 +22,6 @@ export const NavigationGroup = ({ title, isBlockOpen, level, children }) => {
 		}
 		setIsOpen((currentState) => !currentState);
 	};
-
-	useEffect(() => {
-		setInstanceId(`nav-group-${useInstanceId()}`);
-	}, []);
 
 	const animate = useSpring({
 		to: {

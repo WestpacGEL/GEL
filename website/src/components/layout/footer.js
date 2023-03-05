@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { useState, useLayoutEffect } from 'react';
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';

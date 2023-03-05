@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx, useFonts } from '@westpac/core';
 import { Heading, BrandHeading } from '@westpac/heading';
 

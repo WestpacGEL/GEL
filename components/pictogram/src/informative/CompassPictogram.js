@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const CompassPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -26,10 +26,10 @@ export const CompassPictogram = ({ mode, ...rest }) => {
 };
 
 CompassPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Compass',
 	copyrightYear: '2021',
 };
-CompassPictogram.propTypes = propTypes;
+CompassPictogram.propTypes = Pictogram.propTypes;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const Number2Pictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -22,10 +22,10 @@ export const Number2Pictogram = ({ mode, ...rest }) => {
 };
 
 Number2Pictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Number 2',
 	copyrightYear: '2021',
 };
-Number2Pictogram.propTypes = propTypes;
+Number2Pictogram.propTypes = Pictogram.propTypes;

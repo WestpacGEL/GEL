@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -10,7 +8,8 @@ import {
 	formatClassName,
 } from '@westpac/core';
 
-import { defaultProps } from '../blender/Tabcordion';
+import { Tabcordion as MainTabcordion } from '../blender/Tabcordion';
+const defaultProps = MainTabcordion?.defaultProps || {};
 
 // ==============================
 // Component

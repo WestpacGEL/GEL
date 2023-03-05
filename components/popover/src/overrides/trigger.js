@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { forwardRef } from 'react';
@@ -9,6 +7,7 @@ import { forwardRef } from 'react';
 // ==============================
 
 const Trigger = forwardRef(({ state: _, ...rest }, ref) => <Button ref={ref} {...rest} />);
+Trigger.displayName = 'Trigger';
 
 // ==============================
 // Styles

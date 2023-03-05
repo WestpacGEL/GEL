@@ -1,5 +1,5 @@
 import React from 'react';
-import { Item } from '../src/Item';
+import { Item } from '@westpac/list';
 
 export const listGenerator = (text, num) => {
 	let list = [];

@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
 import { Cell, Container, Grid } from '@westpac/grid';
 import { TextInput } from '@westpac/text-input';

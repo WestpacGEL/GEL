@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { DropDownIcon } from '@westpac/icon';
-import PropTypes from 'prop-types';
 
 import { defaultContent } from './overrides/content';
 import { defaultIcon } from './overrides/icon';
@@ -11,20 +10,70 @@ import { useButtonContext } from './Button';
 import { Text } from './Text';
 import pkg from '../package.json';
 
+interface ContentProps {
+	/**
+	 * Button size
+	 */
+	size: 'small' | 'medium' | 'large' | 'xlarge' | ('small' | 'medium' | 'large' | 'xlarge')[];
+	/**
+	 * Block mode.
+	 *
+	 * Fit button width to its parent width.
+	 */
+	block: boolean | boolean[];
+	/**
+	 * Places an icon within the button, after the button’s text
+	 */
+	iconAfter?: (...args: unknown[]) => unknown;
+	/**
+	 * Places an icon within the button, before the button’s text
+	 */
+	iconBefore?: (...args: unknown[]) => unknown;
+	/**
+	 * The color for the icon.
+	 *
+	 * Defaults to the current text color.
+	 */
+	iconColor?: string;
+	/**
+	 * Enable dropdown mode
+	 */
+	dropdown?: boolean;
+	/**
+	 * Button text
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Content?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Icon?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const Content = ({
-	size,
-	block,
+	size = 'medium',
+	block = false,
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
 	iconColor,
 	dropdown,
 	children,
 	...rest
-}: typeof Content.propTypes & typeof Content.defaultProps) => {
+}: ContentProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -70,7 +119,7 @@ export const Content = ({
 		<Content {...rest} state={state} {...contentAttributes(state)} css={contentStyles(state)}>
 			{IconBefore && (
 				<Icon
-					size={iconSizeMap[size]}
+					size={!Array.isArray(size) && iconSizeMap[size]}
 					icon={IconBefore}
 					state={state}
 					{...iconAttributes(state)}
@@ -80,7 +129,7 @@ export const Content = ({
 			{children && <Text block={block}>{children}</Text>}
 			{IconAfter && (
 				<Icon
-					size={iconSizeMap[size]}
+					size={!Array.isArray(size) && iconSizeMap[size]}
 					icon={IconAfter}
 					state={state}
 					{...iconAttributes(state)}
@@ -89,7 +138,7 @@ export const Content = ({
 			)}
 			{dropdown && (
 				<Icon
-					size={iconSizeMap[size]}
+					size={!Array.isArray(size) && iconSizeMap[size]}
 					icon={DropDownIcon}
 					state={state}
 					{...iconAttributes(state)}
@@ -100,71 +149,46 @@ export const Content = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Content.propTypes = {
-	/**
-	 * Button size
-	 */
-	size: PropTypes.oneOfType([
-		PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
-		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
-	]).isRequired,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Block mode.
 	 *
 	 * Fit button width to its parent width.
 	 */
-	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]).isRequired,
-
+	block: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.bool), PropTypes.bool]).isRequired,
+	/**
+	 * Button text
+	 */
+	children: PropTypes.node,
+	/**
+	 * Enable dropdown mode
+	 */
+	dropdown: PropTypes.bool,
 	/**
 	 * Places an icon within the button, after the button’s text
 	 */
 	iconAfter: PropTypes.func,
-
 	/**
 	 * Places an icon within the button, before the button’s text
 	 */
 	iconBefore: PropTypes.func,
-
 	/**
 	 * The color for the icon.
 	 *
 	 * Defaults to the current text color.
 	 */
 	iconColor: PropTypes.string,
-
 	/**
-	 * Enable dropdown mode
+	 * Button size
 	 */
-	dropdown: PropTypes.bool,
-
-	/**
-	 * Button text
-	 */
-	children: PropTypes.node,
-
-	/**
-	 * The override API
-	 */
-	overrides: PropTypes.shape({
-		Content: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Icon: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-	}),
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge'])),
+	]).isRequired,
 };
 
-Content.defaultProps = {
-	size: 'medium',
-	block: false,
-};
+Content.defaultProps = { block: false, size: 'medium' };

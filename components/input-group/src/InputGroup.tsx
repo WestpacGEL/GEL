@@ -1,8 +1,6 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler, useInstanceId, devWarning } from '@westpac/core';
-import { Children, cloneElement, useState, useContext, createContext } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
+import React, { Children, cloneElement, useContext, createContext, useId, useMemo } from 'react';
 
 import { defaultInputGroup } from './overrides/inputGroup';
 
@@ -15,7 +13,7 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-const InputGroupContext = createContext(null);
+const InputGroupContext = createContext<any>(null);
 
 export const useInputGroupContext = () => {
 	const context = useContext(InputGroupContext);
@@ -27,6 +25,90 @@ export const useInputGroupContext = () => {
 	return context;
 };
 
+export interface InputGroupProps {
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId?: string;
+	/**
+	 * The name of the input field
+	 */
+	name?: string;
+	/**
+	 * The label text for the input field
+	 */
+	label?: string;
+	/**
+	 * InputGroup size
+	 */
+	size?: 'small' | 'medium' | 'large' | 'xlarge';
+	/**
+	 * The look of the component
+	 */
+	look?: 'primary' | 'hero' | 'faint';
+	/**
+	 * Data driven
+	 */
+	data?: {
+		before?: {
+			inputType: 'text' | 'button' | 'select';
+			data?: unknown[] | string;
+			onClick?: (...args: unknown[]) => unknown;
+		};
+		after?: {
+			inputType: 'text' | 'button' | 'select';
+			data?: unknown[] | string;
+			onClick?: (...args: unknown[]) => unknown;
+		};
+	};
+	/**
+	 * Invalid input mode
+	 */
+	invalid?: boolean;
+	/**
+	 * Disabled input mode
+	 */
+	disabled?: boolean;
+	/**
+	 * Read only mode
+	 */
+	readOnly?: boolean;
+	/**
+	 * InputGroup children
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		InputGroup?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Text?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		TextInput?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Select?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Button?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
@@ -35,16 +117,16 @@ export const InputGroup = ({
 	instanceId,
 	name,
 	label,
-	size,
 	look,
-	invalid,
-	disabled,
 	readOnly,
+	size = 'medium',
+	invalid = false,
+	disabled = false,
 	data,
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof InputGroup.propTypes & typeof InputGroup.defaultProps) => {
+}: InputGroupProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -54,7 +136,8 @@ export const InputGroup = ({
 		InputGroup: defaultInputGroup,
 	};
 
-	const [id] = useState(instanceId || `gel-input-group-${useInstanceId()}`);
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-input-group-${_id}`, [_id, instanceId]);
 
 	const state = {
 		id,
@@ -213,101 +296,92 @@ export const InputGroup = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 InputGroup.propTypes = {
-	/**
-	 * The name of the input field
-	 */
-	name: PropTypes.string,
-
-	/**
-	 * The label text for the input field
-	 */
-	label: PropTypes.string,
-
-	/**
-	 * InputGroup size
-	 */
-	size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']).isRequired,
-
-	/**
-	 * The look of the component
-	 */
-	look: PropTypes.oneOf(['primary', 'hero', 'faint']),
-
-	/**
-	 * Data driven
-	 */
-	data: PropTypes.shape({
-		before: PropTypes.shape({
-			inputType: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
-			data: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
-			onClick: PropTypes.func,
-		}),
-		after: PropTypes.shape({
-			inputType: PropTypes.oneOf(['text', 'button', 'select']).isRequired,
-			data: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
-			onClick: PropTypes.func,
-		}),
-	}),
-
-	/**
-	 * Invalid input mode
-	 */
-	invalid: PropTypes.bool.isRequired,
-
-	/**
-	 * Disabled input mode
-	 */
-	disabled: PropTypes.bool.isRequired,
-
-	/**
-	 * Read only mode
-	 */
-	readOnly: PropTypes.bool,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * InputGroup children
 	 */
 	children: PropTypes.node,
-
+	/**
+	 * Data driven
+	 */
+	data: PropTypes.shape({
+		after: PropTypes.shape({
+			data: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+			inputType: PropTypes.oneOf(['button', 'select', 'text']).isRequired,
+			onClick: PropTypes.func,
+		}),
+		before: PropTypes.shape({
+			data: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+			inputType: PropTypes.oneOf(['button', 'select', 'text']).isRequired,
+			onClick: PropTypes.func,
+		}),
+	}),
+	/**
+	 * Disabled input mode
+	 */
+	disabled: PropTypes.bool,
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+	/**
+	 * Invalid input mode
+	 */
+	invalid: PropTypes.bool,
+	/**
+	 * The label text for the input field
+	 */
+	label: PropTypes.string,
+	/**
+	 * The look of the component
+	 */
+	look: PropTypes.oneOf(['faint', 'hero', 'primary']),
+	/**
+	 * The name of the input field
+	 */
+	name: PropTypes.string,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
+		Button: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
 		InputGroup: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		Text: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		TextInput: PropTypes.shape({
 			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
 		}),
 		Select: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
-		Button: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		Text: PropTypes.shape({
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		TextInput: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Read only mode
+	 */
+	readOnly: PropTypes.bool,
+	/**
+	 * InputGroup size
+	 */
+	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
 };
 
-InputGroup.defaultProps = {
-	size: 'medium',
-	invalid: false,
-	disabled: false,
-};
+InputGroup.defaultProps = { disabled: false, invalid: false, size: 'medium' };

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { ProgressRope, Group, Step } from '@westpac/progress-rope';
 import { Button } from '@westpac/button';

@@ -1,6 +1,4 @@
-/** @jsx jsx */
-
-import { GEL, jsx } from '@westpac/core';
+import { GEL } from '@westpac/core';
 import { Fragment } from 'react';
 import { Autocomplete } from '@westpac/autocomplete';
 

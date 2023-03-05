@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { ButtonDropdown } from '@westpac/button-dropdown';
 import { AndroidIcon, AppleIcon } from '@westpac/icon';

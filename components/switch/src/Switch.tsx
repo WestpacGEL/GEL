@@ -1,32 +1,85 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler, wrapHandlers, useInstanceId } from '@westpac/core';
-import { useState, useEffect, forwardRef } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
+import React, { useState, useEffect, forwardRef, useId, useMemo } from 'react';
 
 import { defaultSwitch } from './overrides/switch';
 import { defaultToggle } from './overrides/toggle';
 import { defaultLabel } from './overrides/label';
 import pkg from '../package.json';
 
+export interface SwitchProps {
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId?: string;
+	/**
+	 * Switch input element name
+	 */
+	name?: string;
+	/**
+	 * Switch label text
+	 */
+	label: string;
+	/**
+	 * Switch on/off state
+	 */
+	checked?: boolean;
+	/**
+	 * The onChange handler for this switch
+	 */
+	onChange?(...args: unknown[]): unknown;
+	/**
+	 * Switch size
+	 */
+	size?: 'small' | 'medium' | 'large' | 'xlarge' | 'small' | 'medium' | 'large' | 'xlarge'[];
+	/**
+	 * Block mode
+	 */
+	block?: boolean;
+	/**
+	 * Disable the switch
+	 */
+	disabled?: boolean;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Switch?: {
+			styles?(...args: unknown[]): unknown;
+			component?: React.ElementType;
+			attributes?(...args: unknown[]): unknown;
+		};
+		Label?: {
+			styles?(...args: unknown[]): unknown;
+			component?: React.ElementType;
+			attributes?(...args: unknown[]): unknown;
+		};
+		Toggle?: {
+			styles?(...args: unknown[]): unknown;
+			component?: React.ElementType;
+			attributes?(...args: unknown[]): unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
-export const Switch = forwardRef(
+export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
 	(
 		{
+			size = 'medium',
+			block = false,
 			instanceId,
 			name,
 			label,
-			checked: isChecked,
-			onChange,
-			size,
-			block,
+			checked: isChecked = false,
+			onChange = () => {},
 			disabled,
 			overrides: componentOverrides,
 			...rest
-		}: typeof Switch.propTypes & typeof Switch.defaultProps,
+		},
 		ref
 	) => {
 		const {
@@ -35,7 +88,8 @@ export const Switch = forwardRef(
 		} = useBrand();
 
 		const [checked, setChecked] = useState(isChecked);
-		const [id] = useState(instanceId || `gel-switch-${useInstanceId()}`);
+		const _id = useId();
+		const id = useMemo(() => instanceId || `gel-switch-${_id}`, [_id, instanceId]);
 
 		const defaultOverrides = {
 			Switch: defaultSwitch,
@@ -75,7 +129,7 @@ export const Switch = forwardRef(
 					ref={ref}
 					type="checkbox"
 					id={id}
-					onChange={handleChange(name)}
+					onChange={handleChange}
 					name={name}
 					checked={checked}
 					disabled={disabled}
@@ -94,80 +148,70 @@ export const Switch = forwardRef(
 	}
 );
 
+Switch.displayName = 'Switch';
+
 // ==============================
 // Types
 // ==============================
 
 Switch.propTypes = {
-	/**
-	 * Define an id for internal elements
-	 */
-	instanceId: PropTypes.string,
-
-	/**
-	 * Switch input element name
-	 */
-	name: PropTypes.string,
-
-	/**
-	 * Switch label text
-	 */
-	label: PropTypes.string.isRequired,
-
-	/**
-	 * Switch on/off state
-	 */
-	checked: PropTypes.bool,
-
-	/**
-	 * The onChange handler for this switch
-	 */
-	onChange: PropTypes.func,
-
-	/**
-	 * Switch size
-	 */
-	size: PropTypes.oneOfType([
-		PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
-		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
-	]),
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Block mode
 	 */
 	block: PropTypes.bool,
-
+	/**
+	 * Switch on/off state
+	 */
+	checked: PropTypes.bool,
 	/**
 	 * Disable the switch
 	 */
 	disabled: PropTypes.bool,
-
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+	/**
+	 * Switch label text
+	 */
+	label: PropTypes.string.isRequired,
+	/**
+	 * Switch input element name
+	 */
+	name: PropTypes.string,
+	/**
+	 * The onChange handler for this switch
+	 */
+	onChange: PropTypes.func,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Switch: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		Label: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Switch: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Toggle: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Switch size
+	 */
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.oneOf(['xlarge'])),
+	]),
 };
-
-export const defaultProps = {
-	size: 'medium',
-	checked: false,
-	block: false,
-};
-
-Switch.defaultProps = defaultProps;

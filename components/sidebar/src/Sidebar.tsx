@@ -1,12 +1,10 @@
-/** @jsx jsx */
-
+import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { FocusOn, AutoFocusInside } from 'react-focus-on';
-import { useState, useEffect, useRef, Fragment } from 'react';
+import React, { useState, useEffect, useRef, Fragment } from 'react';
 import { useWindowSize } from '@westpac/hooks';
 import { SkipLink } from '@westpac/a11y';
 import throttle from 'lodash.throttle';
-import PropTypes from 'prop-types';
 
 import { defaultSidebarHeading } from './overrides/sidebarHeading';
 import { defaultContentHeader } from './overrides/contentHeader';
@@ -21,12 +19,98 @@ import { defaultSidebar } from './overrides/sidebar';
 import { defaultHeader } from './overrides/header';
 import pkg from '../package.json';
 
+export interface SidebarProps {
+	/**
+	 * State of whether the sidebar is open
+	 */
+	open?: boolean;
+	/**
+	 * Sidebar header text (only visible < md breakpoint)
+	 */
+	heading?: string;
+	/**
+	 * Sidebar content header text (only visible < md breakpoint)
+	 */
+	contentHeading?: string;
+	/**
+	 * Top margin offset (default offset for use with GEL header component)
+	 */
+	offsetTop?: string | number | unknown[];
+	/**
+	 * The id to the pages main content
+	 */
+	skipToContentId?: string;
+	/**
+	 * Text content for skip link
+	 */
+	skipLinkContent?: string;
+	/**
+	 * Sidebar content
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Sidebar?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		CloseBtn?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Content?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		ContentHeader?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		ContentInner?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Header?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		HeaderRight?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		HeaderLeft?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		HeaderBtn?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Backdrop?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const Sidebar = ({
-	open: isOpen,
+	open: isOpen = false,
 	heading,
 	contentHeading,
 	offsetTop,
@@ -35,7 +119,7 @@ export const Sidebar = ({
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Sidebar.propTypes & typeof Sidebar.defaultProps) => {
+}: SidebarProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -84,10 +168,10 @@ export const Sidebar = ({
 	});
 
 	const [scrolled, setScrolled] = useState(false);
-	const ref = useRef();
+	const ref = useRef<HTMLDivElement>();
 
 	const handleScroll = throttle(() => {
-		const scroll = ref.current.scrollTop;
+		const scroll = ref.current?.scrollTop || 0;
 		setScrolled(scroll > 0);
 	}, 10);
 
@@ -216,103 +300,94 @@ export const Sidebar = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Sidebar.propTypes = {
-	/**
-	 * State of whether the sidebar is open
-	 */
-	open: PropTypes.bool,
-
-	/**
-	 * Sidebar header text (only visible < md breakpoint)
-	 */
-	heading: PropTypes.string,
-
-	/**
-	 * Sidebar content header text (only visible < md breakpoint)
-	 */
-	contentHeading: PropTypes.string,
-
-	/**
-	 * Top margin offset (default offset for use with GEL header component)
-	 */
-	offsetTop: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-
-	/**
-	 * The id to the pages main content
-	 */
-	skipToContentId: PropTypes.string,
-
-	/**
-	 * Text content for skip link
-	 */
-	skipLinkContent: PropTypes.string,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Sidebar content
 	 */
 	children: PropTypes.node,
-
+	/**
+	 * Sidebar content header text (only visible < md breakpoint)
+	 */
+	contentHeading: PropTypes.string,
+	/**
+	 * Sidebar header text (only visible < md breakpoint)
+	 */
+	heading: PropTypes.string,
+	/**
+	 * Top margin offset (default offset for use with GEL header component)
+	 */
+	offsetTop: PropTypes.oneOfType([PropTypes.array, PropTypes.number, PropTypes.string]),
+	/**
+	 * State of whether the sidebar is open
+	 */
+	open: PropTypes.bool,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Sidebar: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		Backdrop: PropTypes.shape({
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		CloseBtn: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Content: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		ContentHeader: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		ContentInner: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Header: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		HeaderRight: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		HeaderLeft: PropTypes.shape({
 			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
 		}),
 		HeaderBtn: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
-		Backdrop: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		HeaderLeft: PropTypes.shape({
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		HeaderRight: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Sidebar: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Text content for skip link
+	 */
+	skipLinkContent: PropTypes.string,
+	/**
+	 * The id to the pages main content
+	 */
+	skipToContentId: PropTypes.string,
 };
 
-Sidebar.defaultProps = {
-	open: false,
-};
+Sidebar.defaultProps = { open: false };

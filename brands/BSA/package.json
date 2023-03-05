@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/bsa",
-	"version": "2.1.1",
+	"version": "2.2.0",
 	"description": "BSA brand component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/brands/BSA",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -20,9 +20,9 @@
 		}
 	],
 	"license": "GPL-3.0+",
-	"scripts": {},
 	"main": "dist/westpac-bsa.cjs.js",
 	"module": "dist/westpac-bsa.esm.js",
+	"types": "./src/index.d.ts",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8"
 	}

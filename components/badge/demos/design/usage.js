@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Badge } from '@westpac/badge';
 import { Body } from '@westpac/body';

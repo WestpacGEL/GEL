@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler, useInstanceId } from '@westpac/core';
-import { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useCallback, useId, useState } from 'react';
 
 import { defaultTitleSecondary } from './overrides/titleSecondary';
 import { defaultTitleTertiary } from './overrides/titleTertiary';
@@ -20,17 +19,64 @@ import { defaultToggle } from './overrides/toggle';
 import { defaultTitle } from './overrides/title';
 import { defaultItem } from './overrides/item';
 import pkg from '../package.json';
+import { generateID } from '@westpac/core';
+
+interface CompactaProps {
+	/**
+	 * Component to repeat
+	 */
+	children(...args: unknown[]): unknown;
+	/**
+	 * Text for compacta
+	 */
+	addText?: string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Compacta?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		List?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Item?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Footer?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		AddBtn?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		RemoveBtn?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
 // ==============================
 
 export const Compacta = ({
-	addText,
+	addText = 'Add another',
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Compacta.propTypes & typeof Compacta.defaultProps) => {
+}: CompactaProps) => {
 	const brand = useBrand();
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -56,8 +102,9 @@ export const Compacta = ({
 	};
 
 	const [initial, setInitial] = useState(true);
+	const id = useId();
 	const [items, setItems] = useState([
-		{ id: useInstanceId(), open: true, title: { primary: '', secondary: '', tertiary: '' } },
+		{ id, open: true, delay: false, title: { primary: '', secondary: '', tertiary: '' } },
 	]);
 
 	const state = {
@@ -68,7 +115,7 @@ export const Compacta = ({
 		...rest,
 	};
 
-	const handleAdd = () => {
+	const handleAdd = useCallback(() => {
 		let delay = false;
 
 		const newItems = items.map((item, index) => {
@@ -81,33 +128,36 @@ export const Compacta = ({
 					open: false,
 					delay: false,
 				};
-			} else {
-				return item;
 			}
+			return item;
 		});
 
-		newItems.push({
-			id: useInstanceId(),
-			open: true,
-			delay,
-			title: { primary: '', secondary: '', tertiary: '' },
-		});
+		setItems([
+			...newItems,
+			{
+				id: `${id}-${generateID()}`,
+				open: true,
+				delay,
+				title: { primary: '', secondary: '', tertiary: '' },
+			},
+		]);
+	}, [id, items]);
 
-		setItems(newItems);
-	};
-
-	const handleRemove = (id) => {
+	const handleRemove = useCallback((id: string) => {
 		setItems((items) => items.filter((item) => item.id !== id));
-	};
+	}, []);
 
-	const handleToggle = (id) => {
-		if (initial) setInitial(false);
-		setItems((items) =>
-			items.map((item) => (item.id === id ? { ...item, delay: false, open: !item.open } : item))
-		);
-	};
+	const handleToggle = useCallback(
+		(id: string) => {
+			if (initial) setInitial(false);
+			setItems((items) =>
+				items.map((item) => (item.id === id ? { ...item, delay: false, open: !item.open } : item))
+			);
+		},
+		[initial]
+	);
 
-	const setTitle = (id, titleType, title) => {
+	const setTitle = useCallback((id: string, titleType: string, title: string) => {
 		setItems((items) =>
 			items.map((item) => {
 				if (item.id === id) {
@@ -120,7 +170,7 @@ export const Compacta = ({
 				}
 			})
 		);
-	};
+	}, []);
 
 	const {
 		Compacta: { component: Compacta, styles: compactaStyles, attributes: compactaAttributes },
@@ -157,7 +207,7 @@ export const Compacta = ({
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	// pre-building JSX for these components since we can't call hooks in loops
-	const HeaderJSX = ({ open, ...rest }) => (
+	const HeaderJSX = ({ open, ...rest }: any) => (
 		<Header
 			state={state}
 			{...headerAttributes(state)}
@@ -166,7 +216,7 @@ export const Compacta = ({
 		/>
 	);
 
-	const TitleSecondaryJSX = (props) => (
+	const TitleSecondaryJSX = (props: any) => (
 		<TitleSecondary
 			state={state}
 			{...titleSecondaryAttributes(state)}
@@ -175,7 +225,7 @@ export const Compacta = ({
 		/>
 	);
 
-	const TitleTertiaryJSX = (props) => (
+	const TitleTertiaryJSX = (props: any) => (
 		<TitleTertiary
 			state={state}
 			{...titleTertiaryAttributes(state)}
@@ -255,9 +305,9 @@ export const Compacta = ({
 							>
 								{children({
 									id: item.id,
-									setPrimaryTitle: (title) => setTitle(item.id, 'primary', title),
-									setSecondaryTitle: (title) => setTitle(item.id, 'secondary', title),
-									setTertiaryTitle: (title) => setTitle(item.id, 'tertiary', title),
+									setPrimaryTitle: (title: string) => setTitle(item.id, 'primary', title),
+									setSecondaryTitle: (title: string) => setTitle(item.id, 'secondary', title),
+									setTertiaryTitle: (title: string) => setTitle(item.id, 'tertiary', title),
 									brand,
 								})}
 							</Content>
@@ -279,58 +329,54 @@ export const Compacta = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Compacta.propTypes = {
-	/**
-	 * Component to repeat
-	 */
-	children: PropTypes.func.isRequired,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Text for compacta
 	 */
 	addText: PropTypes.string,
-
+	/**
+	 * Component to repeat
+	 */
+	children: PropTypes.func.isRequired,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
+		AddBtn: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
 		Compacta: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		List: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Item: PropTypes.shape({
 			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
 		}),
 		Footer: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
-		AddBtn: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		Item: PropTypes.shape({
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		List: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		RemoveBtn: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
 
-Compacta.defaultProps = {
-	addText: 'Add another',
-};
+Compacta.defaultProps = { addText: 'Add another' };

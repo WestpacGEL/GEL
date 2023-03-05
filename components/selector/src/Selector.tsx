@@ -1,16 +1,21 @@
-/** @jsx jsx */
-
+import PropTypes from 'prop-types';
 import {
 	jsx,
 	useBrand,
 	overrideReconciler,
-	useInstanceId,
 	devWarning,
 	asArray,
 	useManagedState,
 } from '@westpac/core';
-import { Children, useState, useContext, createContext, cloneElement } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+	Children,
+	useContext,
+	createContext,
+	cloneElement,
+	useId,
+	useMemo,
+	useCallback,
+} from 'react';
 
 import { defaultSelector } from './overrides/selector';
 
@@ -21,12 +26,127 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-const SelectorContext = createContext(null);
+const SelectorContext = createContext<any>({});
 
 export const useSelectorContext = () => {
-	const context = useContext(SelectorContext) || {};
+	const context = useContext(SelectorContext);
 	return context;
 };
+
+interface SelectorProps {
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId?: string;
+	/**
+	 * Selector type
+	 */
+	type: 'radio' | 'checkbox' | 'button' | 'link';
+	/**
+	 * The Selector input element’s name
+	 */
+	name?: string;
+	/**
+	 * Pictogram graphic width
+	 */
+	pictogramWidth?: number | number[];
+	/**
+	 * Pictogram graphic height
+	 */
+	pictogramHeight?: number | number[];
+	/**
+	 * Icon graphic size
+	 */
+	iconSize?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | unknown;
+	/**
+	 * Disable all Selector options
+	 */
+	disabled?: boolean;
+	/**
+	 * The data prop shape
+	 */
+	data?: {
+		value?: React.ReactNode;
+		text?: string;
+		hint?: React.ReactNode;
+	}[];
+	/**
+	 * value
+	 */
+	value?: any;
+	/**
+	 * The options already checked
+	 */
+	defaultValue?: React.ReactNode | unknown[];
+	/**
+	 * A function called on change
+	 */
+	onChange?: (...args: unknown[]) => unknown;
+	/**
+	 * Selector item(s)
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Selector?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Option?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		OptionBtn?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Pictogram?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Icon?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Text?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Label?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		LabelSecondary?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Hint?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		IndicatorCheck?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		IndicatorNext?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -34,10 +154,10 @@ export const useSelectorContext = () => {
 
 export const Selector = ({
 	instanceId,
-	type,
+	type = 'radio',
+	iconSize = 'medium',
 	name,
 	value,
-	iconSize,
 	pictogramWidth,
 	pictogramHeight,
 	disabled,
@@ -47,7 +167,7 @@ export const Selector = ({
 	onChange = () => {},
 	overrides: componentOverrides,
 	...rest
-}: typeof Selector.propTypes & typeof Selector.defaultProps) => {
+}: SelectorProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -61,24 +181,28 @@ export const Selector = ({
 		'The Selector as radio may only have one "current" item set.'
 	);
 
-	const [id] = useState(instanceId || `gel-selector-${useInstanceId()}`);
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-selector-${_id}`, [_id, instanceId]);
 	const [checked, setChecked] = useManagedState(valueAsArray, defaultValueAsArray, onChange);
 
 	const defaultOverrides = {
 		Selector: defaultSelector,
 	};
 
-	const handleChange = (event, value, wasChecked) => {
-		if (type === 'radio' || type === 'button') {
-			setChecked(asArray(value));
-		} else {
-			if (wasChecked) {
-				setChecked(checked.filter((item) => item !== value));
+	const handleChange = useCallback(
+		(event: any, value: any, wasChecked: boolean) => {
+			if (type === 'radio' || type === 'button') {
+				setChecked(asArray(value));
 			} else {
-				setChecked([...checked, value]);
+				if (wasChecked) {
+					setChecked(checked.filter((item) => item !== value));
+				} else {
+					setChecked([...checked, value]);
+				}
 			}
-		}
-	};
+		},
+		[checked, setChecked, type]
+	);
 
 	const state = {
 		id,
@@ -126,140 +250,134 @@ export const Selector = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Selector.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
-	 * Define an id for internal elements
+	 * Selector item(s)
 	 */
-	instanceId: PropTypes.string,
-
-	/**
-	 * Selector type
-	 */
-	type: PropTypes.oneOf(['radio', 'checkbox', 'button', 'link']).isRequired,
-
-	/**
-	 * The Selector input element’s name
-	 */
-	name: PropTypes.string,
-
-	/**
-	 * Pictogram graphic width
-	 */
-	pictogramWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
-
-	/**
-	 * Pictogram graphic height
-	 */
-	pictogramHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
-
-	/**
-	 * Icon graphic size
-	 */
-	iconSize: PropTypes.oneOfType([
-		PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge']),
-		PropTypes.arrayOf(PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge'])).isRequired,
-	]),
-
-	/**
-	 * Disable all Selector options
-	 */
-	disabled: PropTypes.bool,
-
+	children: PropTypes.node,
 	/**
 	 * The data prop shape
 	 */
 	data: PropTypes.arrayOf(
 		PropTypes.shape({
-			value: PropTypes.node,
-			text: PropTypes.string,
 			hint: PropTypes.node,
+			text: PropTypes.string,
+			value: PropTypes.node,
 		})
 	),
-
 	/**
 	 * The options already checked
 	 */
-	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
-
+	defaultValue: PropTypes.oneOfType([
+		PropTypes.array,
+		PropTypes.element,
+		PropTypes.number,
+		PropTypes.shape({
+			'__@iterator': PropTypes.func.isRequired,
+		}),
+		PropTypes.string,
+		PropTypes.bool,
+	]),
+	/**
+	 * Disable all Selector options
+	 */
+	disabled: PropTypes.bool,
+	/**
+	 * Icon graphic size
+	 */
+	iconSize: PropTypes.any,
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+	/**
+	 * The Selector input element’s name
+	 */
+	name: PropTypes.string,
 	/**
 	 * A function called on change
 	 */
 	onChange: PropTypes.func,
-
-	/**
-	 * Selector item(s)
-	 */
-	children: PropTypes.node,
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Selector: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
+		Hint: PropTypes.shape({
 			attributes: PropTypes.func,
-		}),
-		Option: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		OptionBtn: PropTypes.shape({
 			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Pictogram: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
 		}),
 		Icon: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		Text: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Label: PropTypes.shape({
 			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		LabelSecondary: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Hint: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
 		}),
 		IndicatorCheck: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		IndicatorNext: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Label: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		LabelSecondary: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Option: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		OptionBtn: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Pictogram: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Selector: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Text: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Pictogram graphic height
+	 */
+	pictogramHeight: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+	/**
+	 * Pictogram graphic width
+	 */
+	pictogramWidth: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+	/**
+	 * Selector type
+	 */
+	type: PropTypes.oneOf(['button', 'checkbox', 'link', 'radio']).isRequired,
+	/**
+	 * value
+	 */
+	value: PropTypes.any,
 };
 
-export const defaultProps = {
-	type: 'radio',
-	iconSize: 'medium',
-};
-
-Selector.defaultProps = defaultProps;
+Selector.defaultProps = { iconSize: 'medium', onChange: () => {}, type: 'radio' };

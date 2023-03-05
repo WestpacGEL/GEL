@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	asArray,
@@ -10,7 +8,8 @@ import {
 	classNames,
 	formatClassName,
 } from '@westpac/core';
-import { defaultProps } from '../ButtonGroup';
+import { ButtonGroup as MainButtonGroup } from '../ButtonGroup';
+const defaultProps = MainButtonGroup?.defaultProps || {};
 // ==============================
 // Component
 // ==============================

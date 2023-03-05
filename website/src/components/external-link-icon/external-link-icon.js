@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { NewWindowIcon } from '@westpac/icon/NewWindowIcon';
 

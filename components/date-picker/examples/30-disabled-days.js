@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { DatePicker } from '@westpac/date-picker';
 
@@ -13,21 +11,25 @@ function Example({ brand }) {
 
 			<h2>Disable days of week</h2>
 			<p>Disables Mondays (1), Wednesdays (3) and Fridays (5)</p>
-			<DatePicker
-				id="example-disable-days-of-week"
-				name="example-disable-days-of-week"
-				disableDaysOfWeek={[1, 3, 5]}
-			/>
+			<div data-cy="disable-weeks-datepicker-wrapper">
+				<DatePicker
+					id="example-disable-days-of-week"
+					name="example-disable-days-of-week"
+					disableDaysOfWeek={[1, 3, 5]}
+				/>
+			</div>
 
 			<hr />
 
 			<h2>Disable specific dates</h2>
 			<p>Disables 2021-06-01, 2021-06-28 and 2021-06-29 </p>
-			<DatePicker
-				id="example-disable-dates"
-				name="example-disable-dates"
-				disableDates={['2021-06-01', '2021-06-28', '2021-06-29']}
-			/>
+			<div data-cy="disable-specific-dates-datepicker-wrapper">
+				<DatePicker
+					id="example-disable-dates"
+					name="example-disable-dates"
+					disableDates={['2021-06-01', '2021-06-28', '2021-06-29']}
+				/>
+			</div>
 
 			<hr />
 

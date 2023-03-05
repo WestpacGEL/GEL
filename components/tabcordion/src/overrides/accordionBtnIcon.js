@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Fragment } from 'react';

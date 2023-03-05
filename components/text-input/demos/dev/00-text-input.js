@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { TextInput, Select, Textarea } from '@westpac/text-input';
 import { Playground } from '../../../../website/src/components/playground/macro';

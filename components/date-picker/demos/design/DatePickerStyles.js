@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, Global, css } from '@westpac/core';
 
 // This is a temp fix since for some reason Duet Date Picker doesn't re-add the styles to the page on mount/unmount when switching between tabs in keystone

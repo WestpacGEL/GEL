@@ -1,8 +1,6 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useState, forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React, { useState, forwardRef, useEffect } from 'react';
 
 import { defaultAccordionBtnIcon } from './overrides/accordionBtnIcon';
 import { defaultAccordionBtn } from './overrides/accordionBtn';
@@ -15,7 +13,98 @@ import pkg from '../package.json';
 // ==============================
 // Component
 // ==============================
-
+export interface TabProps {
+	/**
+	 * Idx
+	 */
+	idx?: string;
+	/**
+	 * The look of the tabs
+	 */
+	look?: 'soft' | 'lego';
+	/**
+	 * Indicator if this is the first tab
+	 */
+	first?: boolean;
+	/**
+	 * Indicator if this is the last tab
+	 */
+	last?: boolean;
+	/**
+	 * Whether this tab/panel is selected/expanded
+	 */
+	selected?: boolean;
+	/**
+	 * The text label for this tab
+	 */
+	text: React.ReactNode;
+	/**
+	 * Render as either an accordion or tabs
+	 */
+	mode?: 'accordion' | 'tabs';
+	/**
+	 * The id for this tab's panel
+	 */
+	panelId?: string;
+	/**
+	 * The id for the tab
+	 */
+	tabId?: string;
+	/**
+	 * The onClick handler for the accordion button
+	 */
+	onClick?(...args: unknown[]): unknown;
+	/**
+	 * Callback function run when a tab/panel is open.
+	 */
+	onOpen?(...args: unknown[]): unknown;
+	/**
+	 * Callback function run when a tab/panel is opening.
+	 */
+	onOpening?(...args: unknown[]): unknown;
+	/**
+	 * Callback function run when a tab/panel is closed.
+	 */
+	onClose?(...args: unknown[]): unknown;
+	/**
+	 * Callback function run when a tab/panel is closing.
+	 */
+	onClosing?(...args: unknown[]): unknown;
+	/**
+	 * The panel content for this tab
+	 */
+	children: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Item?: {
+			styles?(...args: unknown[]): unknown;
+			component?: React.ElementType;
+			attributes?(...args: unknown[]): unknown;
+		};
+		AccordionBtn?: {
+			styles?(...args: unknown[]): unknown;
+			component?: React.ElementType;
+			attributes?(...args: unknown[]): unknown;
+		};
+		AccordionBtnIcon?: {
+			styles?(...args: unknown[]): unknown;
+			component?: React.ElementType;
+			attributes?(...args: unknown[]): unknown;
+		};
+		Panel?: {
+			styles?(...args: unknown[]): unknown;
+			component?: React.ElementType;
+			attributes?(...args: unknown[]): unknown;
+		};
+		PanelBody?: {
+			styles?(...args: unknown[]): unknown;
+			component?: React.ElementType;
+			attributes?(...args: unknown[]): unknown;
+		};
+	};
+}
 export const Tab = forwardRef(
 	(
 		{
@@ -27,16 +116,16 @@ export const Tab = forwardRef(
 			mode,
 			panelId,
 			tabId,
-			onClick,
+			onClick = () => {},
 			onOpening,
-			onOpen,
+			onOpen = () => {},
 			onClosing,
-			onClose,
+			onClose = () => {},
 			idx,
 			children,
 			overrides,
 			...rest
-		}: typeof Tab.propTypes & typeof Tab.defaultProps,
+		}: TabProps,
 		ref
 	) => {
 		const {
@@ -156,110 +245,105 @@ export const Tab = forwardRef(
 		);
 	}
 );
+Tab.displayName = 'Tab';
 
 // ==============================
 // Types
 // ==============================
 
 Tab.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
-	 * The look of the tabs
+	 * The panel content for this tab
 	 */
-	look: PropTypes.oneOf(['soft', 'lego']),
-
+	children: PropTypes.node,
 	/**
 	 * Indicator if this is the first tab
 	 */
 	first: PropTypes.bool,
-
+	/**
+	 * Idx
+	 */
+	idx: PropTypes.string,
 	/**
 	 * Indicator if this is the last tab
 	 */
 	last: PropTypes.bool,
-
 	/**
-	 * Whether this tab/panel is selected/expanded
+	 * The look of the tabs
 	 */
-	selected: PropTypes.bool,
-
-	/**
-	 * The text label for this tab
-	 */
-	text: PropTypes.node.isRequired,
-
+	look: PropTypes.oneOf(['lego', 'soft']),
 	/**
 	 * Render as either an accordion or tabs
 	 */
 	mode: PropTypes.oneOf(['accordion', 'tabs']),
-
-	/**
-	 * The id for this tab's panel
-	 */
-	panelId: PropTypes.string,
-
-	/**
-	 * The id for the tab
-	 */
-	tabId: PropTypes.string,
-
 	/**
 	 * The onClick handler for the accordion button
 	 */
 	onClick: PropTypes.func,
-
-	/**
-	 * Callback function run when a tab/panel is open.
-	 */
-	onOpen: PropTypes.func,
-
-	/**
-	 * Callback function run when a tab/panel is opening.
-	 */
-	onOpening: PropTypes.func,
-
 	/**
 	 * Callback function run when a tab/panel is closed.
 	 */
 	onClose: PropTypes.func,
-
 	/**
 	 * Callback function run when a tab/panel is closing.
 	 */
 	onClosing: PropTypes.func,
-
 	/**
-	 * The panel content for this tab
+	 * Callback function run when a tab/panel is open.
 	 */
-	children: PropTypes.node.isRequired,
-
+	onOpen: PropTypes.func,
+	/**
+	 * Callback function run when a tab/panel is opening.
+	 */
+	onOpening: PropTypes.func,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Item: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		AccordionBtn: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		AccordionBtnIcon: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Item: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Panel: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		PanelBody: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * The id for this tab's panel
+	 */
+	panelId: PropTypes.string,
+	/**
+	 * Whether this tab/panel is selected/expanded
+	 */
+	selected: PropTypes.bool,
+	/**
+	 * The id for the tab
+	 */
+	tabId: PropTypes.string,
+	/**
+	 * The text label for this tab
+	 */
+	text: PropTypes.node,
 };

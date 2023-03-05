@@ -1,20 +1,36 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultChitChat } from './overrides/chitChat';
 import pkg from '../package.json';
+
+interface ChitChatProps {
+	/**
+	 * Component tag
+	 */
+	tag?: ((...args: unknown[]) => unknown) | string;
+	/**
+	 * Component text
+	 */
+	children: string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		ChitChat?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
 // ==============================
 
-export const ChitChat = ({
-	tag,
-	overrides: componentOverrides,
-	...rest
-}: typeof ChitChat.propTypes & typeof ChitChat.defaultProps) => {
+export const ChitChat = ({ tag = 'p', overrides: componentOverrides, ...rest }: ChitChatProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -39,33 +55,25 @@ export const ChitChat = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 ChitChat.propTypes = {
-	/**
-	 * Component tag
-	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-
-	/**
-	 * Component text
-	 */
-	children: PropTypes.string.isRequired,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		ChitChat: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Component tag
+	 */
+	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 
-ChitChat.defaultProps = {
-	tag: 'p',
-};
+ChitChat.defaultProps = { tag: 'p' };

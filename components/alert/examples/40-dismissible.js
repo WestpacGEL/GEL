@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { Alert } from '@westpac/alert';
 import { Button } from '@westpac/button';

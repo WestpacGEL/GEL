@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const PassportPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -24,10 +24,10 @@ export const PassportPictogram = ({ mode, ...rest }) => {
 };
 
 PassportPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Passport',
 	copyrightYear: '2020',
 };
-PassportPictogram.propTypes = propTypes;
+PassportPictogram.propTypes = Pictogram.propTypes;

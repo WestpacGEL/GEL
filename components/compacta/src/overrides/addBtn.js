@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { AddCircleIcon } from '@westpac/icon';

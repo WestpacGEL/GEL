@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const TelephoneCallPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -26,10 +26,10 @@ export const TelephoneCallPictogram = ({ mode, ...rest }) => {
 };
 
 TelephoneCallPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Telephone call',
 	copyrightYear: '2021',
 };
-TelephoneCallPictogram.propTypes = propTypes;
+TelephoneCallPictogram.propTypes = Pictogram.propTypes;

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Wrapper, Cell } from '../_utils';
 import { Playground } from '../../../../website/src/components/playground/macro';

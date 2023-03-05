@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useMediaQuery, getLabel } from '@westpac/core';
 import { TextInput } from '../TextInput';
 import { sizeMap, getMaxWidth, textInputWithButtonBtnWidth as btnWidth } from '../_utils';

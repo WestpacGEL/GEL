@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { Fragment, useState } from 'react';
 import { Selector, Option } from '@westpac/selector';

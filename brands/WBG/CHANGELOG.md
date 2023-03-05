@@ -1,5 +1,11 @@
 # @westpac/wbg
 
+## 2.3.0
+
+### Minor Changes
+
+- 20f9f31f: Proptypes created using typescript and type fixes
+
 ## 2.2.0
 
 ### Minor Changes

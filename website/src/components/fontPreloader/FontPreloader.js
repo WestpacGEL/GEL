@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, Global, css } from '@westpac/core';
 import { Fragment } from 'react';
 import NextHead from 'next/head';

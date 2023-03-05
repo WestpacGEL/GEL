@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useMediaQuery,
@@ -10,7 +8,8 @@ import {
 	formatClassName,
 } from '@westpac/core';
 
-import { defaultProps } from '../Switch';
+import { Switch as MainSwitch } from '../Switch';
+const defaultProps = MainSwitch?.defaultProps || {};
 import { nestedToggleStyles } from './toggle';
 import { nestedLabelStyles } from './label';
 

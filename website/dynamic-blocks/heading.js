@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Fragment, useEffect, useState } from 'react';
 import { Heading as WestpacHeading } from '@westpac/heading';

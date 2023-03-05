@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import { jsx, asArray } from '@westpac/core';
 import { printAusDate, parseISODate, isEqual } from '../_utils';

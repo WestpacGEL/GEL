@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { InputGroup, Before, After } from '@westpac/input-group';
 import { Playground } from '../../../../website/src/components/playground/macro';
