@@ -1,5 +1,11 @@
 # @westpac/wbc
 
+## 3.1.0
+
+### Minor Changes
+
+- 20f9f31f: Proptypes created using typescript and type fixes
+
 ## 3.0.1
 
 ### Patch Changes

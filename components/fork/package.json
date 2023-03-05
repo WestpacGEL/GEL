@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/fork",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"description": "Westpac GEL fork component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/fork",
 	"license": "GPL-3.0+",
@@ -17,8 +17,8 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/button-group": "^2.1.0",
-		"@westpac/core": "^3.1.0",
+		"@westpac/button-group": "^2.2.0",
+		"@westpac/core": "^3.2.0",
 		"prop-types": "^15.7.2"
 	},
 	"devDependencies": {
