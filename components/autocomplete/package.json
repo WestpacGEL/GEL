@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/autocomplete",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"description": "autocomplete",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/autocomplete",
 	"license": "GPL-3.0+",
@@ -17,9 +17,9 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/core": "^3.1.0",
-		"@westpac/icon": "^2.0.1",
-		"@westpac/text-input": "^2.1.0",
+		"@westpac/core": "^3.2.0",
+		"@westpac/icon": "^2.1.0",
+		"@westpac/text-input": "^2.2.0",
 		"prop-types": "^15.7.2",
 		"react-select": "^5.1.0"
 	},

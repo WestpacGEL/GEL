@@ -1,5 +1,20 @@
 # @westpac/footer
 
+## 1.2.0
+
+### Minor Changes
+
+- 20f9f31f: Proptypes created using typescript and type fixes
+
+### Patch Changes
+
+- Updated dependencies [bf4dc0e5]
+- Updated dependencies [20f9f31f]
+  - @westpac/core@3.2.0
+  - @westpac/symbol@2.1.0
+  - @westpac/a11y@2.2.0
+  - @westpac/grid@2.2.0
+
 ## 1.1.0
 
 ### Minor Changes
