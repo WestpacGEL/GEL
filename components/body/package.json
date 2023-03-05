@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/body",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"description": "Styling for areas of text content including typography elements such as headings, paragraphs, links, strong, emphasis etc.",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/body",
@@ -40,16 +40,16 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/core": "^3.1.0",
+		"@westpac/core": "^3.2.0",
 		"prop-types": "^15.7.2"
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.10.6",
-		"@westpac/button": "^2.1.0",
-		"@westpac/heading": "^2.1.0",
-		"@westpac/icon": "^2.0.1",
-		"@westpac/list": "^2.1.0",
-		"@westpac/text-input": "^2.1.0",
+		"@westpac/button": "^2.2.0",
+		"@westpac/heading": "^2.2.0",
+		"@westpac/icon": "^2.1.0",
+		"@westpac/list": "^2.2.0",
+		"@westpac/text-input": "^2.2.0",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"
