@@ -1,0 +1,57 @@
+---
+'@westpac/button-dropdown': minor
+'@westpac/progress-rope': minor
+'@westpac/autocomplete': minor
+'@westpac/button-group': minor
+'@westpac/progress-bar': minor
+'@westpac/collapsible': minor
+'@westpac/date-picker': minor
+'@westpac/input-group': minor
+'@westpac/breadcrumb': minor
+'@westpac/form-check': minor
+'@westpac/list-group': minor
+'@westpac/pagination': minor
+'@westpac/tabcordion': minor
+'@westpac/text-input': minor
+'@westpac/pictogram': minor
+'@westpac/compacta': minor
+'@westpac/form-pod': minor
+'@westpac/repeater': minor
+'@westpac/selector': minor
+'@westpac/heading': minor
+'@westpac/popover': minor
+'@westpac/sidebar': minor
+'@westpac/button': minor
+'@westpac/footer': minor
+'@westpac/header': minor
+'@westpac/switch': minor
+'@westpac/symbol': minor
+'@westpac/alert': minor
+'@westpac/badge': minor
+'@westpac/hooks': minor
+'@westpac/label': minor
+'@westpac/modal': minor
+'@westpac/panel': minor
+'@westpac/table': minor
+'@westpac/a11y': minor
+'@westpac/body': minor
+'@westpac/core': minor
+'@westpac/fork': minor
+'@westpac/form': minor
+'@westpac/grid': minor
+'@westpac/icon': minor
+'@westpac/link': minor
+'@westpac/list': minor
+'@westpac/well': minor
+'@westpac/keystone': minor
+'@westpac/btfg': minor
+'@westpac/rams': minor
+'@westpac/bom': minor
+'@westpac/bsa': minor
+'@westpac/stg': minor
+'@westpac/wbc': minor
+'@westpac/wbg': minor
+'@westpac/website': minor
+---
+
+Proptypes created using typescript and type fixes
