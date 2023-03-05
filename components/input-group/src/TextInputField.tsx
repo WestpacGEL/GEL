@@ -1,8 +1,6 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React, { Fragment, ReactNode } from 'react';
 
 import { defaultTextInput } from './overrides/textInput';
 
@@ -10,6 +8,39 @@ import { VisuallyHidden } from '@westpac/a11y';
 
 import { useInputGroupContext } from './InputGroup';
 import pkg from '../package.json';
+
+interface TextInputFieldProps {
+	/**
+	 * label
+	 */
+	label?: ReactNode;
+	/**
+	 * before
+	 */
+	before?: boolean | ReactNode;
+	/**
+	 * after
+	 */
+	after?: boolean | ReactNode;
+	/**
+	 * The instance ID for the label and text input
+	 */
+	instanceId?: string;
+	/**
+	 * Size
+	 */
+	size?: string;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		TextInputField?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -21,8 +52,9 @@ export const TextInputField = ({
 	before,
 	after,
 	overrides,
+	size = 'medium',
 	...rest
-}: typeof TextInputField.propTypes & typeof TextInputField.defaultProps) => {
+}: TextInputFieldProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -43,6 +75,7 @@ export const TextInputField = ({
 		after,
 		context: context.state,
 		overrides: componentOverrides,
+		size,
 		...rest,
 	};
 
@@ -59,6 +92,7 @@ export const TextInputField = ({
 			)}
 			<TextInput
 				{...rest}
+				size={size}
 				state={state}
 				{...textInputAttributes(state)}
 				css={textInputStyles(state)}
@@ -67,28 +101,41 @@ export const TextInputField = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 TextInputField.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * after
+	 */
+	after: PropTypes.node,
+	/**
+	 * before
+	 */
+	before: PropTypes.node,
 	/**
 	 * The instance ID for the label and text input
 	 */
-	instanceId: PropTypes.string.isRequired,
-
+	instanceId: PropTypes.string,
+	/**
+	 * label
+	 */
+	label: PropTypes.node,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		TextInputField: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Size
+	 */
+	size: PropTypes.string,
 };
 
-TextInputField.defaultProps = {
-	size: 'medium',
-};
+TextInputField.defaultProps = { size: 'medium' };

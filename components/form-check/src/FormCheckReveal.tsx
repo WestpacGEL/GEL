@@ -1,8 +1,16 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, useInstanceId, overrideReconciler } from '@westpac/core';
-import { Fragment, useState, useLayoutEffect, useRef, cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React, {
+	Fragment,
+	useState,
+	useRef,
+	cloneElement,
+	Children,
+	useId,
+	useMemo,
+	useCallback,
+} from 'react';
+import { useIsomorphicLayoutEffect } from '@westpac/hooks';
 
 import { defaultFormCheckReveal } from './overrides/formCheckReveal';
 import { defaultTrigger } from './overrides/trigger';
@@ -11,26 +19,84 @@ import { defaultPanel } from './overrides/panel';
 import { Option } from './Option';
 import pkg from '../package.json';
 
+export interface FormCheckRevealProps {
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId?: string;
+	/**
+	 * Show only the given number of Form check options, hide/show toggle the remainder
+	 */
+	show: number;
+	/**
+	 * Form check item(s)
+	 */
+	children?: React.ReactNode;
+
+	/**
+	 * type
+	 */
+	type?: string;
+	/**
+	 * inline
+	 */
+	inline?: boolean;
+	/**
+	 * size
+	 */
+	size?: string;
+
+	/**
+	 * data
+	 */
+	data?: any[];
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		FormCheckReveal?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Trigger?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Panel?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const FormCheckReveal = ({
 	instanceId,
-	show,
 	data,
+	type = 'checkbox',
+	inline = false,
+	size = 'medium',
+	show = -1,
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof FormCheckReveal.propTypes & typeof FormCheckReveal.defaultProps) => {
+}: FormCheckRevealProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
-	const [id] = useState(instanceId || `gel-form-check-reveal-${useInstanceId()}`);
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-form-check-reveal-${_id}`, [_id, instanceId]);
+
 	const [isOpen, setIsOpen] = useState(false);
-	const firstNewOptionRef = useRef();
+	const firstNewOptionRef = useRef<HTMLDivElement>(null);
 
 	const defaultOverrides = {
 		FormCheckReveal: defaultFormCheckReveal,
@@ -38,20 +104,23 @@ export const FormCheckReveal = ({
 		Panel: defaultPanel,
 	};
 
-	useLayoutEffect(() => {
+	useIsomorphicLayoutEffect(() => {
 		if (isOpen) {
-			firstNewOptionRef.current.focus();
+			firstNewOptionRef.current?.focus();
 		}
 	}, [isOpen]);
 
-	const handleOpen = (event) => {
+	const handleOpen = useCallback(() => {
 		setIsOpen((currentState) => !currentState);
-	};
+	}, []);
 
 	const state = {
 		id,
 		show,
 		isOpen,
+		type,
+		inline,
+		size,
 		...rest,
 	};
 
@@ -88,6 +157,9 @@ export const FormCheckReveal = ({
 
 	return (
 		<FormCheckReveal
+			type={type}
+			inline={inline}
+			size={size}
 			{...rest}
 			state={state}
 			{...formCheckRevealAttributes(state)}
@@ -114,48 +186,58 @@ export const FormCheckReveal = ({
 };
 
 FormCheckReveal.propTypes = {
-	/**
-	 * Define an id for internal elements
-	 */
-	instanceId: PropTypes.string,
-
-	/**
-	 * Show only the given number of Form check options, hide/show toggle the remainder
-	 */
-	show: PropTypes.number.isRequired,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Form check item(s)
 	 */
 	children: PropTypes.node,
-
+	/**
+	 * data
+	 */
+	data: PropTypes.array,
+	/**
+	 * inline
+	 */
+	inline: PropTypes.bool,
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		FormCheckReveal: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		Trigger: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			styles: PropTypes.func,
 		}),
 		Panel: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Trigger: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Show only the given number of Form check options, hide/show toggle the remainder
+	 */
+	show: PropTypes.number.isRequired,
+	/**
+	 * size
+	 */
+	size: PropTypes.string,
+	/**
+	 * type
+	 */
+	type: PropTypes.string,
 };
 
-export const defaultProps = {
-	type: 'checkbox',
-	inline: false,
-	size: 'medium',
-	show: -1,
-};
-
-FormCheckReveal.defaultProps = defaultProps;
+FormCheckReveal.defaultProps = { inline: false, show: -1, size: 'medium', type: 'checkbox' };

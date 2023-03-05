@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const GraphDecreasingPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -22,10 +22,10 @@ export const GraphDecreasingPictogram = ({ mode, ...rest }) => {
 };
 
 GraphDecreasingPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Graph showing decreasing trend',
 	copyrightYear: '2021',
 };
-GraphDecreasingPictogram.propTypes = propTypes;
+GraphDecreasingPictogram.propTypes = Pictogram.propTypes;

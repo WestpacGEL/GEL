@@ -1,6 +1,6 @@
 {
   "name": "@westpac/website",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "The Westpac GEL Design system website",
   "private": true,
   "main": "index.js",
@@ -25,7 +25,7 @@
     "@babel/register": "^7.14.5",
     "@brisk-docs/react-changelogs": "^0.1.11",
     "@emotion/cache": "^11.4.0",
-    "@emotion/react": "^11.4.0",
+    "@emotion/react": "^11.10.6",
     "@emotion/server": "^11.4.0",
     "@keystone-6/document-renderer": "^1.1.0",
     "@preconstruct/next": "^3.0.1",

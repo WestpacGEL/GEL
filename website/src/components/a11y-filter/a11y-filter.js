@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import React, { useState, Fragment } from 'react';
-import { jsx, useInstanceId, useBrand } from '@westpac/core';
+import React, { useState, Fragment, useId, useMemo } from 'react';
+import { jsx, useBrand } from '@westpac/core';
 import { Select } from '@westpac/text-input';
 
 const FILTER_HTML = `
@@ -96,7 +95,8 @@ const filters = [
 
 export const VisionFilter = ({ children }) => {
 	const [filter, setFilter] = useState();
-	const [id] = useState(`vision-filter-${useInstanceId()}`);
+	const _id = useId();
+	const id = useMemo(() => `vision-filter-${_id}`, [_id]);
 
 	const { SPACING, COLORS } = useBrand();
 

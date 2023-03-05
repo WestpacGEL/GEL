@@ -1,24 +1,58 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultProgressBar } from './overrides/progressBar';
 import { defaultText } from './overrides/text';
 import { defaultBar } from './overrides/bar';
 import pkg from '../package.json';
 
+export interface ProgressBarProps {
+	/**
+	 * The progress bar value as a percentage. Decimal numbers are rounded.
+	 */
+	value: number;
+	/**
+	 * Progress bar look
+	 */
+	look: 'default' | 'skinny';
+	/**
+	 * Hides the visible label (for `default` look)
+	 */
+	noLabel: boolean;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		ProgressBar?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Bar?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Text?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const ProgressBar = ({
-	value,
-	look,
-	noLabel,
+	value = 0,
+	look = 'default',
+	noLabel = false,
 	overrides: componentOverrides,
 	...rest
-}: typeof ProgressBar.propTypes & typeof ProgressBar.defaultProps) => {
+}: ProgressBarProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -73,52 +107,43 @@ export const ProgressBar = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 ProgressBar.propTypes = {
-	/**
-	 * The progress bar value as a percentage. Decimal numbers are rounded.
-	 */
-	value: PropTypes.number.isRequired,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Progress bar look
 	 */
 	look: PropTypes.oneOf(['default', 'skinny']).isRequired,
-
 	/**
 	 * Hides the visible label (for `default` look)
 	 */
 	noLabel: PropTypes.bool.isRequired,
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		ProgressBar: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		Bar: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		ProgressBar: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Text: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * The progress bar value as a percentage. Decimal numbers are rounded.
+	 */
+	value: PropTypes.number.isRequired,
 };
 
-export const defaultProps = {
-	value: 0,
-	look: 'default',
-	noLabel: false,
-};
-
-ProgressBar.defaultProps = defaultProps;
+ProgressBar.defaultProps = { look: 'default', noLabel: false, value: 0 };

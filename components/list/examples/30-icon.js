@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { AndroidIcon, GithubIcon, AppleIcon } from '@westpac/icon';
 import { List, Item } from '@westpac/list';

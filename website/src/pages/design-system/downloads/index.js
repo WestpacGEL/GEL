@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import React, { Fragment, useState, useEffect, useRef } from 'react';
 import {
 	DownloadIcon,

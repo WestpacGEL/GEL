@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -10,7 +8,8 @@ import {
 	styleReconciler,
 	formatClassName,
 } from '@westpac/core';
-import { defaultProps } from '../TextInput';
+import { TextInput as MainTextInput } from '../TextInput';
+const defaultProps = MainTextInput?.defaultProps || {};
 import { sizeMap, getHeight, getMaxWidth } from '../_utils';
 import { forwardRef } from 'react';
 
@@ -19,6 +18,7 @@ import { forwardRef } from 'react';
 // ==============================
 
 const TextInput = forwardRef(({ state: _, ...rest }, ref) => <input ref={ref} {...rest} />);
+TextInput.displayName = 'TextInput';
 
 const BlenderTextInput = ({ className, ...rest }) => (
 	<TextInput className={formatClassName(className)} {...rest} />

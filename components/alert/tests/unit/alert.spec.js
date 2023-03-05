@@ -26,8 +26,8 @@ nestingTest({
 });
 
 // Component specific tests
-describe('Alert specific tests', () => {
-	test('Comes with an SVG icon', () => {
+describe('Alert component', () => {
+	test('should come with an SVG icon', () => {
 		const text = 'Our alert content';
 		const SimpleAlert = () => (
 			<GEL brand={wbc}>
@@ -40,7 +40,7 @@ describe('Alert specific tests', () => {
 		expect(container).toContainHTML('svg');
 	});
 
-	test('Can replace SVG icon', () => {
+	test('should replace SVG icon when specified', () => {
 		const ourIcon = () => <span data-testid="our icon">Our icon</span>;
 		const SimpleAlert = () => (
 			<GEL brand={wbc}>
@@ -53,7 +53,7 @@ describe('Alert specific tests', () => {
 		expect(getByTestId('our icon')).toContainHTML('Our icon');
 	});
 
-	test('Adds the body content', () => {
+	test('should add the body content', () => {
 		const text = 'Our alert content';
 		const SimpleAlert = () => (
 			<GEL brand={wbc}>
@@ -66,7 +66,7 @@ describe('Alert specific tests', () => {
 		expect(container).toHaveTextContent(text);
 	});
 
-	test('Adds all HTML tags to body content', () => {
+	test('should add all HTML tags to body content', () => {
 		const text = 'alert text';
 		const SimpleAlert = () => (
 			<GEL brand={wbc}>
@@ -81,7 +81,7 @@ describe('Alert specific tests', () => {
 		expect(container.querySelector('strong')).toHaveTextContent(text);
 	});
 
-	test('Adds a heading', () => {
+	test('should add a heading', () => {
 		const text = 'heading text';
 		const SimpleAlert = () => (
 			<GEL brand={wbc}>
@@ -94,7 +94,7 @@ describe('Alert specific tests', () => {
 		expect(container.querySelector('h2')).toHaveTextContent(text);
 	});
 
-	test('Adds a heading with a different tag', () => {
+	test('should add a heading with a different tag', () => {
 		const text = 'heading text';
 		const SimpleAlert = () => (
 			<GEL brand={wbc}>
@@ -112,7 +112,9 @@ describe('Alert specific tests', () => {
 
 	// here we test a bunch of things in a loop. This is a good way to automate tests easily and DRY
 	['success', 'info', 'warning', 'danger'].map((look) => {
-		test(`${look.charAt(0).toUpperCase() + look.slice(1)} alert uses ${look} color`, () => {
+		test(`should use ${look} color when alert is ${
+			look.charAt(0).toUpperCase() + look.slice(1)
+		}`, () => {
 			const { COLORS } = wbc;
 
 			const SimpleAlert = () => (
@@ -156,7 +158,7 @@ describe('Alert specific tests', () => {
 	});
 
 	// We test system separately as border color and text color is different
-	test('System alert uses system color', () => {
+	test('should use system color when alert is System alert', () => {
 		const { COLORS } = wbc;
 
 		const SimpleAlert = () => (
@@ -183,7 +185,7 @@ describe('Alert specific tests', () => {
 		expect(container).toContainHTML('svg');
 	});
 
-	test('Dismissible alerts can be ... dismissed', async () => {
+	test('should be dismissed when alert is dismissible', async () => {
 		const withOverrides = { ...wbc };
 		withOverrides['@westpac/alert'] = {
 			CloseBtn: {

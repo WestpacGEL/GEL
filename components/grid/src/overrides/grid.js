@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useMediaQuery, getLabel } from '@westpac/core';
 
 const Grid = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;

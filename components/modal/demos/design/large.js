@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { useState } from 'react';
 import { Modal, Body, Footer } from '@westpac/modal';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -10,17 +8,20 @@ import {
 	formatClassName,
 } from '@westpac/core';
 import { forwardRef } from 'react';
-import { defaultProps } from '../Popover';
+import { Popover as MainPopover } from '../Popover';
+const defaultProps = MainPopover?.defaultProps || {};
 
 // ==============================
 // Component
 // ==============================
 
 const Panel = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+Panel.displayName = 'Panel';
 
 const BlenderPanel = forwardRef(({ state: _, className, ...rest }, ref) => (
 	<div ref={ref} className={formatClassName(className)} {...rest} />
 ));
+BlenderPanel.displayName = 'BlenderPanel';
 
 // ==============================
 // Styles

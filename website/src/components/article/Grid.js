@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useMediaQuery } from '@westpac/core';
 import { Grid as WBCGrid, Container as WBCContainer } from '@westpac/grid';
 import merge from 'lodash.merge';

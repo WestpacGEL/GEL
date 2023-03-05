@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { Fragment } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 import { Playground } from '../../../../website/src/components/playground/macro';

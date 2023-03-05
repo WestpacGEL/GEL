@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useMediaQuery } from '@westpac/core';
 import { Form, FormGroup, Field, Fieldset } from '@westpac/form';
 import { TextInput, Select } from '@westpac/text-input';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { ProgressRope, Step } from '@westpac/progress-rope';
 import { useProgress, Wrapper } from './_utils';

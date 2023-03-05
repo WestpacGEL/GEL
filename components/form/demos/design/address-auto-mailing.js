@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useMediaQuery } from '@westpac/core';
 import { Fragment } from 'react';
 import { Autocomplete } from '@westpac/autocomplete';

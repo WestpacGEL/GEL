@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, getLabel } from '@westpac/core';
 import { ArrowRightIcon } from '@westpac/icon';
 

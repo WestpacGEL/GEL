@@ -1,9 +1,16 @@
-/** @jsx jsx */
-
-import { GEL, jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { Fragment, createContext, useContext, useState, useEffect, useRef } from 'react';
-import { FocusOn, AutoFocusInside } from 'react-focus-on';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, GEL, useBrand, overrideReconciler } from '@westpac/core';
+import {
+	Fragment,
+	createContext,
+	useContext,
+	useState,
+	useEffect,
+	useRef,
+	useCallback,
+} from 'react';
+import { FocusOn, AutoFocusInside } from 'react-focus-on';
 import ReactDOM from 'react-dom';
 
 import { defaultModal } from './overrides/modal';
@@ -19,7 +26,7 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-const ModalContext = createContext(null);
+const ModalContext = createContext<any>(null);
 
 export const useModalContext = () => {
 	const context = useContext(ModalContext);
@@ -31,20 +38,89 @@ export const useModalContext = () => {
 	return context;
 };
 
+export interface ModalProps {
+	/**
+	 * Modal heading text
+	 */
+	heading: string;
+	/**
+	 * State of whether the modal is open
+	 */
+	open: boolean;
+	/**
+	 * Callback function for handling modal state
+	 */
+	onClose?: (...args: unknown[]) => unknown;
+	/**
+	 * Size of the modal
+	 */
+	size: 'small' | 'medium' | 'large';
+	/**
+	 * Enable dismissible mode.
+	 *
+	 * Allows modal close via close button, background overlay click and Esc key.
+	 */
+	dismissible?: boolean;
+	/**
+	 * The content for this list group
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Modal?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		ModalDialog?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		ModalContent?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Backdrop?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Header?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Heading?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		CloseBtn?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const Modal = ({
 	heading,
-	open: isOpen,
+	open: isOpen = false,
 	onClose,
-	size,
-	dismissible,
+	size = 'medium',
+	dismissible = true,
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Modal.propTypes & typeof Modal.defaultProps) => {
+}: ModalProps) => {
 	const brand = useBrand();
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
@@ -98,18 +174,21 @@ export const Modal = ({
 		setOpen(isOpen);
 	}, [isOpen]);
 
-	const handleClose = () => {
+	const handleClose = useCallback(() => {
 		if (onClose) {
 			onClose();
 		} else {
 			setOpen(false);
 		}
-	};
+	}, [onClose]);
 
 	// on escape close modal
-	const keyHandler = (event) => {
-		if (dismissible && open && event.keyCode === 27) handleClose();
-	};
+	const keyHandler = useCallback(
+		(e: KeyboardEvent) => {
+			if (dismissible && open && e.keyCode === 27) handleClose();
+		},
+		[dismissible, handleClose, open]
+	);
 
 	// bind key events
 	useEffect(() => {
@@ -117,7 +196,8 @@ export const Modal = ({
 		return () => {
 			window.document.removeEventListener('keydown', keyHandler);
 		};
-	});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	if (typeof window !== 'undefined') {
 		return ReactDOM.createPortal(
@@ -126,7 +206,7 @@ export const Modal = ({
 					<FocusOn enabled={open}>
 						<Modal
 							ref={modalRef}
-							onClick={(e) => {
+							onClick={(e: MouseEvent) => {
 								if (e.target !== e.currentTarget) return;
 								if (dismissible) {
 									handleClose();
@@ -182,89 +262,77 @@ export const Modal = ({
 	return <Fragment />;
 };
 
-// ==============================
-// Types
-// ==============================
-
 Modal.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
-	 * Modal heading text
+	 * The content for this list group
 	 */
-	heading: PropTypes.string.isRequired,
-
-	/**
-	 * State of whether the modal is open
-	 */
-	open: PropTypes.bool.isRequired,
-
-	/**
-	 * Callback function for handling modal state
-	 */
-	onClose: PropTypes.func,
-
-	/**
-	 * Size of the modal
-	 */
-	size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
-
+	children: PropTypes.node,
 	/**
 	 * Enable dismissible mode.
 	 *
 	 * Allows modal close via close button, background overlay click and Esc key.
 	 */
 	dismissible: PropTypes.bool,
-
 	/**
-	 * The content for this list group
+	 * Modal heading text
 	 */
-	children: PropTypes.node,
-
+	heading: PropTypes.string.isRequired,
+	/**
+	 * Callback function for handling modal state
+	 */
+	onClose: PropTypes.func,
+	/**
+	 * State of whether the modal is open
+	 */
+	open: PropTypes.bool.isRequired,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Modal: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		ModalDialog: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		ModalContent: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
 		Backdrop: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		Header: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
-		}),
-		Heading: PropTypes.shape({
 			styles: PropTypes.func,
-			component: PropTypes.elementType,
-			attributes: PropTypes.func,
 		}),
 		CloseBtn: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Header: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Heading: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Modal: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		ModalContent: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		ModalDialog: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Size of the modal
+	 */
+	size: PropTypes.oneOf(['large', 'medium', 'small']).isRequired,
 };
 
-export const defaultProps = {
-	open: false,
-	size: 'medium',
-	dismissible: true,
-};
-
-Modal.defaultProps = defaultProps;
+Modal.defaultProps = { dismissible: true, open: false, size: 'medium' };

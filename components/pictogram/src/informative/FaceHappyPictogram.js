@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const FaceHappyPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -26,10 +26,10 @@ export const FaceHappyPictogram = ({ mode, ...rest }) => {
 };
 
 FaceHappyPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Face looking happy',
 	copyrightYear: '2021',
 };
-FaceHappyPictogram.propTypes = propTypes;
+FaceHappyPictogram.propTypes = Pictogram.propTypes;

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, getLabel, useMediaQuery } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { RemoveCircleIcon } from '@westpac/icon';

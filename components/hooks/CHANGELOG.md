@@ -1,5 +1,18 @@
 # @westpac/hooks
 
+## 3.1.0
+
+### Minor Changes
+
+- e9d5db29: Added a new hook "useIsomorphicLayoutEffect".
+- 20f9f31f: Proptypes created using typescript and type fixes
+
+### Patch Changes
+
+- Updated dependencies [bf4dc0e5]
+- Updated dependencies [20f9f31f]
+  - @westpac/core@3.2.0
+
 ## 3.0.1
 
 ### Patch Changes

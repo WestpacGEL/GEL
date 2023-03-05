@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx, useBrand, useFonts } from '@westpac/core';
 
 function Example({ brand }) {

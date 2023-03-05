@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { _COMPONENT_NAME_ } from '@westpac/_COMPONENT_KEY_';
 

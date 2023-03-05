@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx, useMediaQuery, asArray, getLabel } from '@westpac/core';
 
 const Cell = ({ state: { tag: Tag }, ...rest }) => <Tag {...rest} />;

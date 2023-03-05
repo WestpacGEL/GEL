@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx, useBrand } from '@westpac/core';
 import { SkipLink } from '@westpac/a11y';
 import { Body } from '@westpac/body';
@@ -12,7 +10,11 @@ function Example({ brand }) {
 			<Body>
 				<h2>Screen reader skip link</h2>
 				<p>Note: The example link below is visibility hidden until focussed.</p>
-				<SkipLink href="#content">This is screen reader only text (visible when focussed)</SkipLink>
+				<div data-cy="skip-content-wrapper">
+					<SkipLink href="#content">
+						This is screen reader only text (visible when focussed)
+					</SkipLink>
+				</div>
 				<p>
 					<a href="#0">Links in this section</a> are skipped over
 				</p>

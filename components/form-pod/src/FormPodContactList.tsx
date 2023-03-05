@@ -1,7 +1,6 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
 import { defaultContactListItem } from './overrides/contactListItem';
 import { defaultContactList } from './overrides/contactList';
@@ -10,15 +9,58 @@ import { defaultItemIcon } from './overrides/itemIcon';
 import { defaultItemText } from './overrides/itemText';
 import pkg from '../package.json';
 
+export interface FormPodContactListProps {
+	/**
+	 * Array of contact detail data (objects)
+	 */
+	items?: {
+		icon(...args: unknown[]): unknown;
+		iconColor?: string;
+		text: string;
+		url: string;
+		onClick?: (...args: unknown[]) => unknown;
+	}[];
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		ContactList?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		ContactListItem?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		ItemLink?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		ItemIcon?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		ItemText?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const FormPodContactList = ({
-	items,
+	items = [],
 	overrides: componentOverrides,
 	...rest
-}: typeof FormPodContactList.propTypes & typeof FormPodContactList.defaultProps) => {
+}: FormPodContactListProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -61,7 +103,7 @@ export const FormPodContactList = ({
 			{...contactListAttributes(state)}
 			css={contactListStyles(state)}
 		>
-			{items.map((item, i) => (
+			{items?.map((item, i) => (
 				<ContactListItem
 					key={i}
 					state={state}
@@ -93,11 +135,11 @@ export const FormPodContactList = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 FormPodContactList.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Array of contact detail data (objects)
 	 */
@@ -105,44 +147,41 @@ FormPodContactList.propTypes = {
 		PropTypes.shape({
 			icon: PropTypes.func.isRequired,
 			iconColor: PropTypes.string,
+			onClick: PropTypes.func,
 			text: PropTypes.string.isRequired,
 			url: PropTypes.string.isRequired,
-			onClick: PropTypes.func,
 		})
 	),
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		ContactList: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		ContactListItem: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		ItemLink: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			styles: PropTypes.func,
 		}),
 		ItemIcon: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		ItemLink: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		ItemText: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
 
-FormPodContactList.defaultProps = {
-	items: [],
-};
+FormPodContactList.defaultProps = { items: [] };

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { Collapsible } from '@westpac/collapsible';
 import { Body } from '@westpac/body';
@@ -24,7 +22,7 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<h2>Default</h2>
-			<Collapsible text="Toggle collapsible" open={true}>
+			<Collapsible data-cy="open-collapsible" text="Toggle collapsible" open={true}>
 				<ExampleContent />
 			</Collapsible>
 

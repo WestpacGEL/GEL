@@ -1,13 +1,59 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler, useInstanceId, wrapHandlers } from '@westpac/core';
-import { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
+import { useState, useEffect, useRef, useId, useMemo, useCallback } from 'react';
 
 import { defaultCollapsible } from './overrides/collapsible';
 import { defaultTrigger } from './overrides/trigger';
 import { defaultContent } from './overrides/content';
 import pkg from '../package.json';
+
+export interface CollapsibleProps {
+	/**
+	 * size
+	 */
+	size?: string[] | 'small' | 'medium' | 'large' | 'xlarge';
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId?: string;
+	/**
+	 * State of whether the Collapsible is open
+	 */
+	open?: boolean;
+	/**
+	 * Button text
+	 */
+	text: string;
+	/**
+	 * A function for the onClick event
+	 */
+	onClick?: (...args: unknown[]) => unknown;
+	/**
+	 * Trigger element to open the collapsible
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Collapsible?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Trigger?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Content?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -15,22 +61,22 @@ import pkg from '../package.json';
 
 export const Collapsible = ({
 	instanceId,
-	open,
+	open = false,
 	text,
 	size,
 	onClick = () => {},
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Collapsible.propTypes & typeof Collapsible.defaultProps) => {
+}: CollapsibleProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
 	const [isOpen, setIsOpen] = useState(open);
-	const triggerRef = useRef();
-	const collapsibleRef = useRef();
+	const triggerRef = useRef<HTMLDivElement>(null);
+	const collapsibleRef = useRef<HTMLDivElement>(null);
 
 	const defaultOverrides = {
 		Collapsible: defaultCollapsible,
@@ -38,7 +84,8 @@ export const Collapsible = ({
 		Content: defaultContent,
 	};
 
-	const [id] = useState(instanceId || `gel-collapsible-${useInstanceId()}`);
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-collapsible-${_id}`, [_id, instanceId]);
 	const [closed, setClosed] = useState(true);
 
 	const state = {
@@ -62,29 +109,39 @@ export const Collapsible = ({
 		Content: { component: Content, styles: contentStyles, attributes: contentAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	const handleOpen = (event) => {
-		wrapHandlers(
-			() => onClick,
-			() => {
-				if (isOpen) {
-					setIsOpen(false);
-					triggerRef.current.focus();
-				} else {
-					setIsOpen(true);
+	const handleOpen = useCallback(
+		(event: KeyboardEvent) => {
+			wrapHandlers(
+				() => onClick,
+				() => {
+					if (isOpen) {
+						setIsOpen(false);
+						triggerRef.current?.focus();
+					} else {
+						setIsOpen(true);
+					}
 				}
-			}
-		)(event);
-	};
+			)(event);
+		},
+		[isOpen, onClick, triggerRef]
+	);
 
-	const keyHandler = (event) => {
-		if (
-			isOpen &&
-			event.keyCode === 27 &&
-			(collapsibleRef.current.contains(event.target) || triggerRef.current.contains(event.target))
-		) {
-			handleOpen(event);
-		}
-	};
+	const keyHandler = useCallback(
+		(event: KeyboardEvent) => {
+			if (
+				isOpen &&
+				event.keyCode === 27 &&
+				triggerRef.current &&
+				collapsibleRef.current &&
+				event.target instanceof Element &&
+				(collapsibleRef.current.contains(event.target) ||
+					triggerRef.current?.contains(event.target))
+			) {
+				handleOpen(event);
+			}
+		},
+		[collapsibleRef, handleOpen, isOpen, triggerRef]
+	);
 
 	// bind key events
 	useEffect(() => {
@@ -92,7 +149,7 @@ export const Collapsible = ({
 		return () => {
 			window.document.removeEventListener('keydown', keyHandler);
 		};
-	});
+	}, [keyHandler]);
 
 	return (
 		<Collapsible
@@ -122,60 +179,58 @@ export const Collapsible = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 Collapsible.propTypes = {
-	/**
-	 * Define an id for internal elements
-	 */
-	instanceId: PropTypes.string,
-
-	/**
-	 * State of whether the Collapsible is open
-	 */
-	open: PropTypes.bool,
-
-	/**
-	 * Button text
-	 */
-	text: PropTypes.string.isRequired,
-
-	/**
-	 * A function for the onClick event
-	 */
-	onClick: PropTypes.func,
-
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
 	 * Trigger element to open the collapsible
 	 */
 	children: PropTypes.node,
-
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+	/**
+	 * A function for the onClick event
+	 */
+	onClick: PropTypes.func,
+	/**
+	 * State of whether the Collapsible is open
+	 */
+	open: PropTypes.bool,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Collapsible: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		Trigger: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			styles: PropTypes.func,
 		}),
 		Content: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Trigger: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * size
+	 */
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.string),
+	]),
+	/**
+	 * Button text
+	 */
+	text: PropTypes.string.isRequired,
 };
 
-export const defaultProps = {
-	open: false,
-};
-
-Collapsible.defaultProps = defaultProps;
+Collapsible.defaultProps = { onClick: () => {}, open: false };

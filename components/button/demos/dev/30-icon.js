@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { ArrowLeftIcon, ArrowRightIcon } from '@westpac/icon';

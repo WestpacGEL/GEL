@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const TruckPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -20,10 +20,10 @@ export const TruckPictogram = ({ mode, ...rest }) => {
 };
 
 TruckPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Truck',
 	copyrightYear: '2020',
 };
-TruckPictogram.propTypes = propTypes;
+TruckPictogram.propTypes = Pictogram.propTypes;

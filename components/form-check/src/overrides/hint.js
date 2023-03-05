@@ -1,10 +1,9 @@
-/** @jsx jsx */
-
 import { jsx, useBrand, getLabel, getModifier, styleReconciler } from '@westpac/core';
 import { Body } from '@westpac/body';
 import { sizeMap } from '../_utils';
 
-import { defaultProps } from '../FormCheck';
+import { FormCheck as MainFormCheck } from '../FormCheck';
+const defaultProps = MainFormCheck?.defaultProps || {};
 
 // ==============================
 // Component

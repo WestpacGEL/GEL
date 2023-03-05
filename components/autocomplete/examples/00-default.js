@@ -1,6 +1,4 @@
-/** @jsx jsx */
-
-import { GEL, jsx } from '@westpac/core';
+import { GEL } from '@westpac/core';
 import { Autocomplete } from '@westpac/autocomplete';
 import { useState } from 'react';
 
@@ -18,12 +16,16 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
-			<h2>Default</h2>
-			<Autocomplete options={options} />
+			<div data-cy="valid-autocomplete">
+				<h2>Default</h2>
+				<Autocomplete options={options} />
+			</div>
 			<h2>Controlled</h2>
 			<Autocomplete options={options} value={option} onChange={handleChange} />
-			<h2>Invalid</h2>
-			<Autocomplete options={options} invalid />
+			<div data-cy="invalid-autocomplete">
+				<h2>Invalid</h2>
+				<Autocomplete options={options} invalid />
+			</div>
 			<h2>Disabled</h2>
 			<Autocomplete options={options} isDisabled />
 		</GEL>

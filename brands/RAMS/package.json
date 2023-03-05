@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/rams",
-	"version": "2.1.1",
+	"version": "2.2.0",
 	"description": "RAMS brand component for the Westpac GEL Design System",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/brands/RAMS",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
@@ -20,7 +20,6 @@
 		}
 	],
 	"license": "GPL-3.0+",
-	"scripts": {},
 	"main": "dist/westpac-rams.cjs.js",
 	"module": "dist/westpac-rams.esm.js",
 	"dependencies": {

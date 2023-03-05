@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
 
@@ -13,12 +11,16 @@ function Example({ brand }) {
 			</p>
 
 			<h3>Default instance (no styling props)</h3>
-			<VisuallyHidden>This is screen reader only text</VisuallyHidden>
+			<div data-cy="visually-hidden-wrapper">
+				<VisuallyHidden>This is screen reader only text</VisuallyHidden>
+			</div>
 
 			<h3>
 				VisuallyHidden with a <code>&lt;p&gt;</code> tag
 			</h3>
-			<VisuallyHidden tag="p">This is screen reader only text?</VisuallyHidden>
+			<div data-cy="visually-hidden-wrapper-with-p">
+				<VisuallyHidden tag="p">This is screen reader only text?</VisuallyHidden>
+			</div>
 
 			<h3>
 				VisuallyHidden with a <code>&lt;div&gt;</code> tag

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { ListGroup, Item } from '@westpac/list-group';
 import { ButtonGroup, Item as BtnGroupItem } from '@westpac/button-group';

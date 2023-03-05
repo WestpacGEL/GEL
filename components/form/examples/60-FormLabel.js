@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx } from '@westpac/core';
 import { Form, FormGroup, FormLabel } from '@westpac/form';
 import { Box } from './_utils';

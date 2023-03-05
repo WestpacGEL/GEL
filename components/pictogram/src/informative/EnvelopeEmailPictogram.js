@@ -1,6 +1,6 @@
 import React from 'react';
 import { getColors } from '../_utils';
-import { propTypes, defaultProps, Pictogram } from '../Pictogram';
+import { Pictogram } from '../Pictogram';
 
 export const EnvelopeEmailPictogram = ({ mode, ...rest }) => {
 	const { outline, highlight } = getColors(mode);
@@ -22,10 +22,10 @@ export const EnvelopeEmailPictogram = ({ mode, ...rest }) => {
 };
 
 EnvelopeEmailPictogram.defaultProps = {
-	...defaultProps,
+	...Pictogram?.defaultProps,
 	viewBoxWidth: 78,
 	viewBoxHeight: 78,
 	assistiveText: 'Email envelope',
 	copyrightYear: '2020',
 };
-EnvelopeEmailPictogram.propTypes = propTypes;
+EnvelopeEmailPictogram.propTypes = Pictogram.propTypes;

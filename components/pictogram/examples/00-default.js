@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { GEL, jsx, useBrand } from '@westpac/core';
 import { Fragment } from 'react';
 import * as components from '@westpac/pictogram';

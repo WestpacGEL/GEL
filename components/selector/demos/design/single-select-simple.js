@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import { jsx } from '@westpac/core';
 import { Selector, Option } from '@westpac/selector';
 import { Grid, Cell } from '@westpac/grid';

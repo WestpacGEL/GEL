@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import {
 	jsx,
 	useBrand,
@@ -9,7 +7,8 @@ import {
 	formatClassName,
 	getLabel,
 } from '@westpac/core';
-import { defaultProps } from '../Panel';
+import { Panel as MainPanel } from '../Panel';
+const defaultProps = MainPanel?.defaultProps || {};
 import { nestedStyles } from './header';
 
 // ==============================

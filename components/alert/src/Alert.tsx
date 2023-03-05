@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
-import { jsx, useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
-import { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useBrand, overrideReconciler, wrapHandlers } from '@westpac/core';
+import { useState, useEffect, useCallback, ReactNode } from 'react';
 
 import { defaultCloseBtn } from './overrides/closeBtn';
 import { defaultHeading } from './overrides/heading';
@@ -12,26 +11,97 @@ import { defaultIcon } from './overrides/icon';
 import pkg from '../package.json';
 
 // ==============================
+// Types
+// ==============================x
+
+export interface OverrideProps {
+	styles?: (...args: unknown[]) => unknown;
+	component?: React.ElementType;
+	attributes?: (...args: unknown[]) => unknown;
+}
+export interface AlertProps {
+	/**
+	 * Manually signal an open or close state of this alert
+	 */
+	open?: boolean;
+
+	/**
+	 * Alert look
+	 */
+	look?: 'info' | 'success' | 'warning' | 'danger' | 'system';
+
+	/**
+	 * Alert box style
+	 */
+	mode?: 'box' | 'text';
+
+	/**
+	 * Enable dismissible mode
+	 */
+	dismissible?: boolean;
+
+	/**
+	 * onClose function for dismissible mode
+	 */
+	onClose?: () => any;
+
+	/**
+	 * Alert icon.
+	 *
+	 * The alert icon is automatically rendered based on look. The icon can be overriden via this prop, for info look alerts only.
+	 */
+	icon?: () => any;
+
+	/**
+	 * The alert heading
+	 */
+	heading?: string;
+
+	/**
+	 * The alert heading tag is automatically defined, but may be overridden via this prop if required for semantic reasons.
+	 */
+	headingTag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+	/**
+	 * Alert children
+	 */
+	children?: ReactNode;
+
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Alert?: OverrideProps;
+		Body?: OverrideProps;
+		CloseBtn?: OverrideProps;
+		Icon?: OverrideProps;
+		Heading?: OverrideProps;
+	};
+}
+
+// ==============================
 // Component
 // ==============================
 
-export const Alert = ({
-	open: isOpen,
-	look,
-	mode,
-	dismissible,
+export function Alert({
+	open: isOpen = true,
+	look = 'info',
+	mode = 'box',
+	dismissible = false,
 	onClose = () => {},
 	icon,
 	heading,
-	headingTag,
+	headingTag = 'h2',
 	children,
 	overrides: componentOverrides,
 	...rest
-}: typeof Alert.propTypes & typeof Alert.defaultProps) => {
+}: AlertProps) {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
+		// TODO: when this value is going to come? how is the interface for that? What is structure of the B
 		[pkg.name]: brandOverrides,
 	} = useBrand();
+
 	const [open, setOpen] = useState(isOpen);
 
 	const defaultOverrides = {
@@ -56,143 +126,136 @@ export const Alert = ({
 	};
 
 	const {
-		Alert: { component: Alert, styles: alertStyles, attributes: alertAttributes },
-		Body: { component: Body, styles: bodyStyles, attributes: bodyAttributes },
-		CloseBtn: { component: CloseBtn, styles: closeBtnStyles, attributes: closeBtnAttributes },
-		Heading: { component: Heading, styles: headingStyles, attributes: headingAttributes },
-		Icon: { component: Icon, styles: iconStyles, attributes: iconAttributes },
+		Alert: { component: OverrideAlert, styles: alertStyles, attributes: alertAttributes },
+		Body: { component: OverrideBody, styles: bodyStyles, attributes: bodyAttributes },
+		CloseBtn: {
+			component: OverrideCloseBtn,
+			styles: closeBtnStyles,
+			attributes: closeBtnAttributes,
+		},
+		Heading: { component: OverrideHeading, styles: headingStyles, attributes: headingAttributes },
+		Icon: { component: OverrideIcon, styles: iconStyles, attributes: iconAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	useEffect(() => {
 		setOpen(isOpen);
 	}, [isOpen]);
 
-	const handleClose = (event) => {
-		wrapHandlers(
-			() => onClose(),
-			() => setOpen(false)
-		)(event);
-	};
-
-	const HeadingJSX = () => (
-		<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
-			{heading}
-		</Heading>
-	);
-
-	const IconJSX = () => <Icon state={state} {...iconAttributes(state)} css={iconStyles(state)} />;
-
-	const CloseBtnJSX = () => (
-		<CloseBtn
-			onClose={(event) => handleClose(event)}
-			state={state}
-			{...closeBtnAttributes(state)}
-			css={closeBtnStyles(state)}
-		/>
+	const handleClose = useCallback(
+		(event: MouseEvent) => {
+			wrapHandlers(
+				() => onClose(),
+				() => setOpen(false)
+			)(event);
+		},
+		[onClose]
 	);
 
 	return (
-		<Alert state={state} {...rest} {...alertAttributes(state)} css={alertStyles(state)}>
-			{Icon && <IconJSX />}
-			<Body state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
-				{heading && <HeadingJSX />}
+		<OverrideAlert state={state} {...rest} {...alertAttributes(state)} css={alertStyles(state)}>
+			{OverrideIcon && (
+				<OverrideIcon state={state} {...iconAttributes(state)} css={iconStyles(state)} />
+			)}
+			<OverrideBody state={state} {...bodyAttributes(state)} css={bodyStyles(state)}>
+				{heading && (
+					<OverrideHeading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
+						{heading}
+					</OverrideHeading>
+				)}
 				{children}
-			</Body>
-			{dismissible && mode !== 'text' && <CloseBtnJSX />}
-		</Alert>
+			</OverrideBody>
+			{dismissible && mode !== 'text' && (
+				<OverrideCloseBtn
+					onClose={(event: MouseEvent) => handleClose(event)}
+					state={state}
+					{...closeBtnAttributes(state)}
+					css={closeBtnStyles(state)}
+				/>
+			)}
+		</OverrideAlert>
 	);
-};
-
-// ==============================
-// Types
-// ==============================
+}
 
 Alert.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
-	 * Manually signal an open or close state of this alert
+	 * Alert children
 	 */
-	open: PropTypes.bool,
-
-	/**
-	 * Alert look
-	 */
-	look: PropTypes.oneOf(['info', 'success', 'warning', 'danger', 'system']).isRequired,
-
-	/**
-	 * Alert box style
-	 */
-	mode: PropTypes.oneOf(['box', 'text']).isRequired,
-
+	children: PropTypes.node,
 	/**
 	 * Enable dismissible mode
 	 */
-	dismissible: PropTypes.bool.isRequired,
-
+	dismissible: PropTypes.bool,
 	/**
-	 * onClose function for dismissible mode
+	 * The alert heading
 	 */
-	onClose: PropTypes.func,
-
+	heading: PropTypes.string,
+	/**
+	 * The alert heading tag is automatically defined, but may be overridden via this prop if required for semantic reasons.
+	 */
+	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
 	/**
 	 * Alert icon.
 	 *
 	 * The alert icon is automatically rendered based on look. The icon can be overriden via this prop, for info look alerts only.
 	 */
 	icon: PropTypes.func,
-
 	/**
-	 * The alert heading
+	 * Alert look
 	 */
-	heading: PropTypes.string,
-
+	look: PropTypes.oneOf(['danger', 'info', 'success', 'system', 'warning']),
 	/**
-	 * The alert heading tag is automatically defined, but may be overridden via this prop if required for semantic reasons.
+	 * Alert box style
 	 */
-	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
-
+	mode: PropTypes.oneOf(['box', 'text']),
 	/**
-	 * Alert children
+	 * onClose function for dismissible mode
 	 */
-	children: PropTypes.node,
-
+	onClose: PropTypes.func,
+	/**
+	 * Manually signal an open or close state of this alert
+	 */
+	open: PropTypes.bool,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		Alert: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		Body: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 		CloseBtn: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		Icon: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			styles: PropTypes.func,
 		}),
 		Heading: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Icon: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
 };
 
-export const defaultProps = {
-	open: true,
-	look: 'info',
-	mode: 'box',
+Alert.defaultProps = {
 	dismissible: false,
 	headingTag: 'h2',
+	look: 'info',
+	mode: 'box',
+	onClose: () => {},
+	open: true,
 };
-
-Alert.defaultProps = defaultProps;

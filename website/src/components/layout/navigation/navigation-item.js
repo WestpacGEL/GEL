@@ -1,6 +1,4 @@
-/** @jsx jsx */
-
-import { jsx, useBrand } from '@westpac/core';
+import { useBrand } from '@westpac/core';
 import { Item } from '@westpac/list';
 import { forwardRef } from 'react';
 
@@ -28,3 +26,4 @@ export const StyledItem = forwardRef(({ tag: Tag, level, ...rest }, ref) => {
 		/>
 	);
 });
+StyledItem.displayName = 'StyledItem';

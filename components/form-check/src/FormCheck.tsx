@@ -1,16 +1,21 @@
-/** @jsx jsx */
-
+import PropTypes from 'prop-types';
 import {
 	jsx,
 	useBrand,
 	overrideReconciler,
-	useInstanceId,
 	devWarning,
 	asArray,
 	useManagedState,
 } from '@westpac/core';
-import { Children, useState, useContext, createContext, cloneElement } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+	Children,
+	useContext,
+	createContext,
+	cloneElement,
+	useId,
+	useMemo,
+	useCallback,
+} from 'react';
 
 import { defaultFormCheck } from './overrides/formCheck';
 
@@ -21,12 +26,83 @@ import pkg from '../package.json';
 // Context and Consumer Hook
 // ==============================
 
-const FormCheckContext = createContext(null);
+const FormCheckContext = createContext<any>(null);
 
 export const useFormCheckContext = () => {
 	const context = useContext(FormCheckContext) || {};
 	return context;
 };
+
+export interface FormCheckProps {
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId?: string;
+	/**
+	 * Form check type
+	 */
+	type: 'checkbox' | 'radio';
+	/**
+	 * The form check input element’s name
+	 */
+	name: string;
+	/**
+	 * Form check size.
+	 */
+	size: 'medium' | 'large';
+	/**
+	 * To inline the element
+	 */
+	inline: boolean;
+	/**
+	 * Disable all Form check options
+	 */
+	disabled?: boolean;
+	/**
+	 * The data prop shape
+	 */
+	data?: {
+		value?: React.ReactNode;
+		text?: string;
+		hint?: React.ReactNode;
+	}[];
+	/**
+	 * value checked
+	 */
+	value?: React.ReactNode | unknown[];
+	/**
+	 * The options already checked
+	 */
+	defaultValue?: React.ReactNode | unknown[];
+	/**
+	 * A function called on change
+	 */
+	onChange?: (...args: unknown[]) => unknown;
+	/**
+	 * Form check item(s)
+	 */
+	children?: React.ReactNode;
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		FormCheck?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Option?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Label?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+}
 
 // ==============================
 // Component
@@ -34,11 +110,11 @@ export const useFormCheckContext = () => {
 
 export const FormCheck = ({
 	instanceId,
-	type,
+	type = 'checkbox',
 	name,
-	size,
+	size = 'medium',
 	value,
-	inline,
+	inline = false,
 	disabled,
 	defaultValue,
 	data,
@@ -46,7 +122,7 @@ export const FormCheck = ({
 	onChange = () => {},
 	overrides: componentOverrides,
 	...rest
-}: typeof FormCheck.propTypes & typeof FormCheck.defaultProps) => {
+}: FormCheckProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -61,23 +137,27 @@ export const FormCheck = ({
 	);
 
 	const [checked, setChecked] = useManagedState(valueAsArray, defaultValueAsArray, onChange);
-	const [id] = useState(instanceId || `gel-form-check-${useInstanceId()}`);
+	const _id = useId();
+	const id = useMemo(() => instanceId || `gel-form-check-${_id}`, [_id, instanceId]);
 
 	const defaultOverrides = {
 		FormCheck: defaultFormCheck,
 	};
 
-	const handleChange = (event, value, wasChecked) => {
-		if (type === 'radio') {
-			setChecked(asArray(value));
-		} else {
-			if (wasChecked) {
-				setChecked(checked.filter((item) => item !== value));
+	const handleChange = useCallback(
+		(_: any, value: any, wasChecked: boolean) => {
+			if (type === 'radio') {
+				setChecked(asArray(value));
 			} else {
-				setChecked([...checked, value]);
+				if (wasChecked) {
+					setChecked(checked.filter((item: any) => item !== value));
+				} else {
+					setChecked([...checked, value]);
+				}
 			}
-		}
-	};
+		},
+		[checked, setChecked, type]
+	);
 
 	const state = {
 		id,
@@ -129,93 +209,99 @@ export const FormCheck = ({
 	);
 };
 
-// ==============================
-// Types
-// ==============================
-
 FormCheck.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
 	/**
-	 * Define an id for internal elements
+	 * Form check item(s)
 	 */
-	instanceId: PropTypes.string,
-
-	/**
-	 * Form check type
-	 */
-	type: PropTypes.oneOf(['checkbox', 'radio']).isRequired,
-
-	/**
-	 * The form check input element’s name
-	 */
-	name: PropTypes.string.isRequired,
-
-	/**
-	 * Form check size.
-	 */
-	size: PropTypes.oneOf(['medium', 'large']).isRequired,
-
-	/**
-	 * To inline the element
-	 */
-	inline: PropTypes.bool.isRequired,
-
-	/**
-	 * Disable all Form check options
-	 */
-	disabled: PropTypes.bool,
-
+	children: PropTypes.node,
 	/**
 	 * The data prop shape
 	 */
 	data: PropTypes.arrayOf(
 		PropTypes.shape({
-			value: PropTypes.node,
-			text: PropTypes.string,
 			hint: PropTypes.node,
+			text: PropTypes.string,
+			value: PropTypes.node,
 		})
 	),
-
 	/**
 	 * The options already checked
 	 */
-	defaultValue: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
-
+	defaultValue: PropTypes.oneOfType([
+		PropTypes.array,
+		PropTypes.element,
+		PropTypes.number,
+		PropTypes.shape({
+			'__@iterator': PropTypes.func.isRequired,
+		}),
+		PropTypes.string,
+		PropTypes.bool,
+	]),
+	/**
+	 * Disable all Form check options
+	 */
+	disabled: PropTypes.bool,
+	/**
+	 * To inline the element
+	 */
+	inline: PropTypes.bool.isRequired,
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+	/**
+	 * The form check input element’s name
+	 */
+	name: PropTypes.string.isRequired,
 	/**
 	 * A function called on change
 	 */
 	onChange: PropTypes.func,
-
-	/**
-	 * Form check item(s)
-	 */
-	children: PropTypes.node,
-
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
 		FormCheck: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
-		}),
-		Option: PropTypes.shape({
-			styles: PropTypes.func,
 			component: PropTypes.elementType,
-			attributes: PropTypes.func,
+			styles: PropTypes.func,
 		}),
 		Label: PropTypes.shape({
-			styles: PropTypes.func,
-			component: PropTypes.elementType,
 			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Option: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Form check size.
+	 */
+	size: PropTypes.oneOf(['large', 'medium']).isRequired,
+	/**
+	 * Form check type
+	 */
+	type: PropTypes.oneOf(['checkbox', 'radio']).isRequired,
+	/**
+	 * value checked
+	 */
+	value: PropTypes.oneOfType([
+		PropTypes.array,
+		PropTypes.element,
+		PropTypes.number,
+		PropTypes.shape({
+			'__@iterator': PropTypes.func.isRequired,
+		}),
+		PropTypes.string,
+		PropTypes.bool,
+	]),
 };
 
-export const defaultProps = {
-	type: 'checkbox',
-	inline: false,
-	size: 'medium',
-};
-
-FormCheck.defaultProps = defaultProps;
+FormCheck.defaultProps = { inline: false, onChange: () => {}, size: 'medium', type: 'checkbox' };
