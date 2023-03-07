@@ -6,28 +6,25 @@ import { Button } from '@westpac/button';
 // Component
 // ==============================
 const Icon = (props) => {
-	return <RemoveCircleIcon {...props} />;
+	return <RemoveCircleIcon {...props} size="xsmall" />;
 };
 
-const RemoveBtn = ({ state: _, ...rest }) => <Button look="link" iconAfter={Icon} {...rest} />;
+const RemoveBtn = ({ state: _, ...rest }) => (
+	<Button look="link" size="small" iconBefore={Icon} {...rest} />
+);
 
 // ==============================
 // Styles
 // ==============================
 
-const removeBtnStyles = () => {
-	const { COLORS } = useBrand();
+const removeBtnStyles = (_, { separator }) => {
 	return {
 		label: getLabel('repeater-removeBtn'),
 		height: 'auto',
 		padding: 0,
-		position: 'absolute',
-		top: 0,
-		right: 0,
-		color: '#575f65',
-		':hover': {
-			color: COLORS.primary,
-		},
+		textDecoration: 'none',
+		...(separator && { margin: '2.75rem 0 0 1.125rem ' }),
+		...(!separator && { position: 'absolute', top: 0, right: 0 }),
 	};
 };
 

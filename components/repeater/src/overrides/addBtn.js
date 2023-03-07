@@ -11,24 +11,20 @@ const Icon = (props) => {
 	return <AddCircleIcon {...props} color={COLORS.primary} />;
 };
 
-const AddBtn = ({ state: _, ...rest }) => <Button look="link" iconAfter={Icon} {...rest} />;
+const AddBtn = ({ state: _, ...rest }) => (
+	<Button look="link" size="small" iconBefore={Icon} {...rest} />
+);
 
 // ==============================
 // Styles
 // ==============================
 
 const addBtnStyles = () => {
-	const { COLORS } = useBrand();
 	return {
 		label: getLabel('repeater-addButton'),
-		color: COLORS.text,
-		textDecoration: 'none !important',
-		paddingLeft: 0,
-		paddingRight: 0,
-
-		':hover': {
-			color: COLORS.primary,
-		},
+		textDecoration: 'none',
+		padding: 0,
+		height: 'auto',
 	};
 };
 
