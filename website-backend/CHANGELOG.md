@@ -1,5 +1,16 @@
 # @westpac/keystone
 
+## 1.1.0
+
+### Minor Changes
+
+- 20f9f31f: Proptypes created using typescript and type fixes
+
+### Patch Changes
+
+- Updated dependencies [20f9f31f]
+  - @westpac/icon@2.1.0
+
 ## 1.0.2
 
 ### Patch Changes

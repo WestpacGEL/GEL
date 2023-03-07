@@ -6,6 +6,7 @@ import { gridMap } from './_utils';
 import { defaultGrid } from './overrides/grid';
 import pkg from '../package.json';
 
+type GapTypes = number | string | null;
 export interface GridProps {
 	/**
 	 * The `align-content` CSS property.
@@ -31,7 +32,7 @@ export interface GridProps {
 	/**
 	 * The `column-gap` CSS property. When using an array the values are applied to the applicable breakpoints.
 	 */
-	columnGap?: number | string | number | string[];
+	columnGap?: GapTypes | GapTypes[];
 	/**
 	 * The `grid-template-columns` CSS property. When a number is passed it is a
 	 * shorthand to specify the number of columns.
@@ -44,7 +45,7 @@ export interface GridProps {
 	/**
 	 * The `gap` CSS property. When using an array the values are applied to the applicable breakpoints.
 	 */
-	gap: string | number | string[] | number[];
+	gap?: GapTypes | GapTypes[];
 	/**
 	 * The `height` CSS property
 	 */
@@ -201,7 +202,9 @@ Grid.propTypes = {
 	 * The `column-gap` CSS property. When using an array the values are applied to the applicable breakpoints.
 	 */
 	columnGap: PropTypes.oneOfType([
-		PropTypes.arrayOf(PropTypes.string),
+		PropTypes.arrayOf(
+			PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.number, PropTypes.string])
+		),
 		PropTypes.number,
 		PropTypes.string,
 	]),
@@ -218,10 +221,12 @@ Grid.propTypes = {
 	 * The `gap` CSS property. When using an array the values are applied to the applicable breakpoints.
 	 */
 	gap: PropTypes.oneOfType([
-		PropTypes.arrayOf(PropTypes.string),
+		PropTypes.arrayOf(
+			PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.number, PropTypes.string])
+		),
 		PropTypes.number,
 		PropTypes.string,
-	]).isRequired,
+	]),
 	/**
 	 * The `height` CSS property
 	 */

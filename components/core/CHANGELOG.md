@@ -1,5 +1,12 @@
 # @westpac/core
 
+## 3.2.0
+
+### Minor Changes
+
+- bf4dc0e5: Updated the Core Component Utilities to use TypeScript.
+- 20f9f31f: Proptypes created using typescript and type fixes
+
 ## 3.1.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/badge",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"description": "Small, coloured UI items used to highlight a number count",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/badge",
@@ -40,14 +40,14 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/button": "^2.1.0",
-		"@westpac/core": "^3.1.0",
+		"@westpac/button": "^2.2.0",
+		"@westpac/core": "^3.2.0",
 		"prop-types": "^15.7.2"
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.10.6",
-		"@westpac/body": "^2.1.0",
-		"@westpac/grid": "^2.1.0",
+		"@westpac/body": "^2.2.0",
+		"@westpac/grid": "^2.2.0",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"

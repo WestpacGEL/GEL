@@ -17,11 +17,11 @@ interface TextInputFieldProps {
 	/**
 	 * before
 	 */
-	before?: ReactNode;
+	before?: boolean | ReactNode;
 	/**
 	 * after
 	 */
-	after?: ReactNode;
+	after?: boolean | ReactNode;
 	/**
 	 * The instance ID for the label and text input
 	 */

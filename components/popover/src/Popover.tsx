@@ -29,7 +29,7 @@ export interface PopoverProps {
 	/**
 	 * The tag of the heading element for semantic reasons
 	 */
-	headingTag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+	headingTag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 	/**
 	 * The body of the popover
 	 */
@@ -95,7 +95,7 @@ export const Popover = ({
 	instanceId,
 	open = false,
 	heading,
-	headingTag,
+	headingTag = 'h4',
 	content,
 	placement = 'top',
 	onClick = () => {},
@@ -256,7 +256,7 @@ Popover.propTypes = {
 	/**
 	 * The tag of the heading element for semantic reasons
 	 */
-	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
+	headingTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
 	/**
 	 * Define an id for internal elements
 	 */
@@ -305,4 +305,4 @@ Popover.propTypes = {
 	placement: PropTypes.string,
 };
 
-Popover.defaultProps = { onClick: () => {}, open: false, placement: 'top' };
+Popover.defaultProps = { headingTag: 'h4', onClick: () => {}, open: false, placement: 'top' };
