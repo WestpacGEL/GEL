@@ -4,18 +4,17 @@ import { jsx, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const Title = ({ state: _, ...rest }) => <div {...rest} />;
+const HeaderTitle = ({ state: _, ...rest }) => <div {...rest} />;
 
 // ==============================
 // Styles
 // ==============================
 
-const titleStyles = () => ({
-	label: getLabel('compacta-title'),
-
+const headerTitleStyles = () => ({
+	label: getLabel('compacta-header-title'),
 	flex: '1',
 	display: 'flex',
-	flexWrap: 'wrap',
+	alignItems: 'center',
 	minWidth: 0,
 });
 
@@ -23,14 +22,14 @@ const titleStyles = () => ({
 // Attributes
 // ==============================
 
-const titleAttributes = () => null;
+const headerTitleAttributes = () => null;
 
 // ==============================
 // Exports
 // ==============================
 
-export const defaultTitle = {
-	component: Title,
-	styles: titleStyles,
-	attributes: titleAttributes,
+export const defaultHeaderTitle = {
+	component: HeaderTitle,
+	styles: headerTitleStyles,
+	attributes: headerTitleAttributes,
 };

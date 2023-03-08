@@ -5,7 +5,7 @@ import { Repeater } from '@westpac/repeater';
 const Repeat = (props) => {
 	const id = useId();
 	return (
-		<div id={id} css={{ marginBottom: '1.875rem' }} {...props}>
+		<div id={id} {...props}>
 			Repeater
 		</div>
 	);
@@ -14,7 +14,7 @@ const Repeat = (props) => {
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Repeater>
+			<Repeater separator>
 				<Repeat />
 			</Repeater>
 		</GEL>
