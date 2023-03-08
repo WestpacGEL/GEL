@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ButtonGroup, Item } from '@westpac/button-group';
 import { GEL } from '@westpac/core';
-import { render, screen, } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import wbc from '@westpac/wbc';
@@ -16,12 +16,6 @@ overridesTest({
 		</ButtonGroup> // the component with all components rendered
 	),
 });
-{/* <Item value="left">Left</Item> */}  // Warning: Failed prop type: The prop `inputProps` is marked as required in `ButtonGroupItem`, but its value is `undefined`
-{/* <Item inputProps={{ value: "left" }} >Left</Item> */} // Works
-{/* <Item inputProps={'left'}>Left</Item> // Gives "TypeError: Cannot read properties of undefined (reading 'value')" */}
-{/* <Item inputProps={{ text: "Left", value: "left" }} >Left</Item> */} // Works
-{/* <Item inputProps={{ value: "left" }} >Left</Item> */} // Works
-{/* <Item value="left" inputProps={'left'}>Left</Item> // Gives "Invalid Attribute name error" */}
 
 // another default test to check that the component errors when outside of GEL and renders when inside
 nestingTest({
@@ -32,12 +26,6 @@ nestingTest({
 		</ButtonGroup>
 	),
 });
-{/* <Item inputProps={{ value: "left" }} ></Item> */} // Doesn't work
-{/* <Item>{props.children}</Item> */} // Doesn't work
-{/* <Item inputProps={{ text: "Left", value: "left" }} >Left</Item> // Doesn't work */}
-{/* <Item inputProps={{ text: "Left", value: "left" }} >{props.children}</Item> */} // Works
-{/* <Item inputProps={{ value: "left" }} >{props.children}</Item> */}  // Works
-
 
 function SimpleButtonGroup(props) {
 	return (
@@ -49,97 +37,88 @@ function SimpleButtonGroup(props) {
 	)
 }
 
-// Component specific tests
-describe('Button component', () => {
-	test('should display items', () => {
-		render(
-			// Works
-			// <SimpleButtonGroup data-testid="my-button-group" name="default">
-			// 	<ButtonGroup name="example defaultValue={0}">
-			// 		<Item value="left" inputProps={'left'}>Left</Item>
-			// 		<Item value="middle" inputProps={'middle'}>Middle</Item>
-			// 		<Item value="right" inputProps={'right'}>Right</Item>
-			// 	</ButtonGroup>
-			// </SimpleButtonGroup>
+const HelperComponent = function () {
+	const [value, setValue] = useState('left');		
+	return (
+		<GEL brand={wbc}>
+			<ButtonGroup
+				name="example-custom-key"
+				// defaultValue="left"
+				value={value}
+				onChange={(e, v) => {
+					console.log(`custom-key: ${v}`);
+					setValue(v);
+				}}
+			>
+				<Item value="left">Left</Item>
+				<Item value="middle">Middle</Item>
+				<Item value="right">Right</Item>
+			</ButtonGroup>
+			<h1>The Value</h1>
+			<span data-testid='the-value'>{value}</span>
+		 </GEL>
+	);
+};
 
-			// Works
+// Component specific tests
+describe('ButtonGroup component', () => {
+	test('should display its Items', () => {
+		render(
 			<SimpleButtonGroup>
 				<Item>Left</Item>
 				<Item>Middle</Item>
 				<Item>Right</Item>
 			</SimpleButtonGroup>
-
-			// Works
-			// <GEL brand={wbc}>
-			// 	<ButtonGroup name="example defaultValue={0}">
-			// 		<Item value="left" inputProps={'left'}>Left</Item>
-			// 		<Item value="middle" inputProps={'middle'}>Middle</Item>
-			// 		<Item value="right" inputProps={'right'}>Right</Item>
-			// 	</ButtonGroup>
-			// </GEL>
-
-			// Works
-			// <GEL brand={wbc}>
-			// 	<ButtonGroup
-			// 		name="example-data-driven"
-			// 		data={[
-			// 			{ text: "Left", value: "left" },
-			// 			{ text: "Middle", value: "middle" },
-			// 			{ text: "Right", value: "right" },
-			// 		]}
-			// 	/>
-			// </GEL>
-
-			// Works
-			// <GEL brand={wbc}>
-			// 		<ButtonGroup name="example-composed">
-			// 			<Item value="left">Left</Item>
-			// 			<Item value="middle">Middle</Item>
-			// 			<Item value="right">Right</Item>
-			//   	</ButtonGroup>
-			// </GEL>
-
-			// Works
-			// <GEL brand={wbc}>
-			// 	<ButtonGroup name="daves-example">
-			// 		<Item inputProps={{ text: "Left", value: "left" }} >Left</Item>
-			// 		<Item inputProps={{ text: "Middle", value: "middle" }} >Middle</Item>
-			// 		<Item inputProps={{ text: "Right", value: "right" }} >Right</Item>
-			// 	</ButtonGroup>			
-			// </GEL>
-
-			// Works
-			// <GEL brand={wbc}>
-			// <ButtonGroup name="daves-example">
-			// 	<Item>Left</Item>
-			// 	<Item>Middle</Item>
-			// 	<Item>Right</Item>
-			// </ButtonGroup>			
-			// </GEL>
-
-			// Works
-			// <SimpleButtonGroup data-testid="my-button-group" name="default">
-			// 	<Item value="left" inputProps={'left'}>Left</Item>
-			// 	<Item value="middle" inputProps={'middle'}>Middle</Item>
-			// 	<Item value="right" inputProps={'right'}>Right</Item>
-			// </SimpleButtonGroup>
-
-			// Works
-			// <SimpleButtonGroup data-testid="my-button-group" name="default">
-			// 	<Item>Left</Item>
-			// 	<Item>Middle</Item>
-			// 	<Item>Right</Item>
-			// </SimpleButtonGroup>			
-
-
-		)
+		);
 		
 		const LeftItem = screen.getByText('Left');
 		expect(LeftItem).toBeVisible();
+
 		const MiddleItem = screen.getByText('Middle');
 		expect(MiddleItem).toBeVisible();
+
 		const RightItem = screen.getByText('Right');
 		expect(RightItem).toBeVisible();
 
 	});
+
+	test('should change the input value set by which button was clicked', () => {
+		const { getByTestId } = render(<HelperComponent />);
+
+		const theDisplayedValue = getByTestId('the-value');
+		const theMiddleInputItem = screen.getByText('Middle');
+		const theRightInputItem = screen.getByText('Right');
+		
+		expect(theDisplayedValue).toHaveTextContent('left');
+
+		fireEvent.click(theMiddleInputItem);
+		expect(theDisplayedValue).toHaveTextContent('middle');
+
+		fireEvent.click(theRightInputItem);
+		expect(theDisplayedValue).toHaveTextContent('right')
+	})	
+
+	test('should change the background color of LeftItem component when clicked', () => {
+		const { getByText } =
+		render(
+			<SimpleButtonGroup>
+				<Item>Left</Item>
+				<Item>Middle</Item>
+				<Item>Right</Item>
+			</SimpleButtonGroup>
+		);
+
+		const innnerSpan = getByText('Left');
+		const outerSpan = innnerSpan.parentElement;
+
+		const backgroundColorBeforeClick = window.getComputedStyle(outerSpan).getPropertyValue('background-color');
+		console.log(backgroundColorBeforeClick);
+		fireEvent.click(outerSpan);
+
+		const styles = window.getComputedStyle(outerSpan);
+		const backgroundColorAfterClick = styles['background-color'];
+		console.log(backgroundColorAfterClick);
+		expect(styles['background-color']).toEqual(styles.backgroundColor);
+		expect(backgroundColorAfterClick).not.toEqual(backgroundColorBeforeClick);
+	})
 });
