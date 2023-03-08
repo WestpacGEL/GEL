@@ -13,7 +13,7 @@ const Footer = ({ state: _, ...rest }) => <div {...rest} />;
 const footerStyles = () => ({
 	label: getLabel('repeater-footer'),
 	display: 'flex',
-	paddingTop: '0.75rem',
+	paddingTop: '0.5rem',
 });
 
 // ==============================

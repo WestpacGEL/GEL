@@ -12,7 +12,7 @@ const Icon = (props) => {
 };
 
 const AddBtn = ({ state: _, ...rest }) => (
-	<Button look="faint" size="small" soft iconAfter={Icon} {...rest} />
+	<Button look="link" size="small" soft iconBefore={Icon} {...rest} />
 );
 
 // ==============================
@@ -21,6 +21,9 @@ const AddBtn = ({ state: _, ...rest }) => (
 
 const addBtnStyles = () => ({
 	label: getLabel('compacta-addBtn'),
+	textDecoration: 'none',
+	padding: 0,
+	height: 'auto',
 });
 
 // ==============================
