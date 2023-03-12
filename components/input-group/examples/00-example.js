@@ -1,5 +1,7 @@
 import { GEL, jsx } from '@westpac/core';
 import { InputGroup, Before, After } from '@westpac/input-group';
+import { Button } from '@westpac/button';
+import { Select } from '@westpac/text-input';
 
 function Example({ brand }) {
 	return (
@@ -8,14 +10,22 @@ function Example({ brand }) {
 
 			<h3>Composed</h3>
 
-			<InputGroup name="example-text" label="Total amount">
-				<Before inputType="text" data="AUS $" />
-			</InputGroup>
+			<InputGroup name="example-text" label="Total amount" before="AUS &" />
 			<br />
 
-			<InputGroup name="example-button" label="Filter by name">
-				<After inputType="button" data="Go" />
-			</InputGroup>
+			<InputGroup name="example-text" label="Total amount" before="AUS &" after=".00" />
+			<br />
+
+			<InputGroup
+				before={
+					<Select invalid>
+						<option>loko</option>
+					</Select>
+				}
+				name="example-button"
+				label="Filter by name"
+				after={<Button>Go</Button>}
+			/>
 			<br />
 
 			<InputGroup name="example-select" label="Total amount">

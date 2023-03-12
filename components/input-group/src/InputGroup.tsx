@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
-import { jsx, useBrand, overrideReconciler, devWarning } from '@westpac/core';
-import React, { Children, cloneElement, useContext, createContext, useId, useMemo } from 'react';
+import { useBrand, overrideReconciler } from '@westpac/core';
+import React, { useContext, createContext, useId, useMemo, ReactNode, CSSProperties } from 'react';
 
 import { defaultInputGroup } from './overrides/inputGroup';
 
 import { TextInputField } from './TextInputField';
-import { After } from './After';
-import { Before } from './Before';
 import pkg from '../package.json';
+import { sizeMap } from '@westpac/text-input';
 
 // ==============================
 // Context and Consumer Hook
@@ -25,6 +24,7 @@ export const useInputGroupContext = () => {
 	return context;
 };
 
+type Sizes = 'small' | 'medium' | 'large' | 'xlarge';
 export interface InputGroupProps {
 	/**
 	 * Define an id for internal elements
@@ -35,13 +35,17 @@ export interface InputGroupProps {
 	 */
 	name?: string;
 	/**
+	 * The placeholder of the input field
+	 */
+	placeholder?: string;
+	/**
 	 * The label text for the input field
 	 */
 	label?: string;
 	/**
 	 * InputGroup size
 	 */
-	size?: 'small' | 'medium' | 'large' | 'xlarge';
+	size?: Sizes;
 	/**
 	 * The look of the component
 	 */
@@ -66,6 +70,10 @@ export interface InputGroupProps {
 	 */
 	invalid?: boolean;
 	/**
+	 * Aria Invalid input mode
+	 */
+	ariaInvalid?: boolean;
+	/**
 	 * Disabled input mode
 	 */
 	disabled?: boolean;
@@ -73,6 +81,14 @@ export interface InputGroupProps {
 	 * Read only mode
 	 */
 	readOnly?: boolean;
+	/**
+	 * Element before input
+	 */
+	before?: ReactNode;
+	/**
+	 * Element after the input
+	 */
+	after?: ReactNode;
 	/**
 	 * InputGroup children
 	 */
@@ -113,6 +129,92 @@ export interface InputGroupProps {
 // Component
 // ==============================
 
+interface TextWrapperProps {
+	children?: ReactNode;
+	css?: CSSProperties;
+	before?: boolean;
+	after?: boolean;
+	invalid?: boolean;
+	ariaInvalid?: boolean;
+	size?: Sizes;
+}
+const TextWrapper = ({
+	children,
+	before,
+	after,
+	size = 'medium',
+	invalid,
+	ariaInvalid,
+	...props
+}: TextWrapperProps) => {
+	const { COLORS } = useBrand();
+	return (
+		<span
+			{...props}
+			css={{
+				display: 'flex',
+				alignItems: 'center',
+				padding: '0 0.4rem',
+				background: COLORS.light,
+				fontSize: sizeMap[size].fontSize,
+			}}
+		>
+			{children}
+		</span>
+	);
+};
+
+interface WrapperProps {
+	children?: ReactNode;
+	css?: CSSProperties;
+	before?: boolean;
+	after?: boolean;
+	invalid?: boolean;
+	ariaInvalid?: boolean;
+	size?: Sizes;
+}
+const Wrapper = ({
+	children,
+	before,
+	after,
+	size = 'medium',
+	invalid,
+	ariaInvalid,
+	...props
+}: WrapperProps) => {
+	const { COLORS } = useBrand();
+	var s = sizeMap[size];
+	return (
+		<div
+			{...props}
+			css={{
+				display: 'flex',
+				borderRadius: '0.1875rem',
+				flexShrink: 0,
+				overflow: 'hidden',
+				boxSizing: 'border-box',
+				height: 'calc('
+					.concat(s.lineHeight.toString(), 'em + ')
+					.concat(s.padding[0], ' + ')
+					.concat(s.padding[2] || s.padding[0], ' + ')
+					.concat((2 * s.borderWidth).toString(), 'px)'),
+				border: `${sizeMap[size].borderWidth}px solid ${
+					invalid || ariaInvalid ? COLORS.danger : COLORS.borderDark
+				}`,
+				'> *': {
+					height: 'auto !important',
+				},
+				...(before
+					? { borderTopRightRadius: 0, borderBottomRightRadius: 0, borderRight: 'none' }
+					: {}),
+				...(after ? { borderTopLeftRadius: 0, borderBottomLeftRadius: 0, borderLeft: 'none' } : {}),
+			}}
+		>
+			{children}
+		</div>
+	);
+};
+
 export const InputGroup = ({
 	instanceId,
 	name,
@@ -122,13 +224,17 @@ export const InputGroup = ({
 	size = 'medium',
 	invalid = false,
 	disabled = false,
-	data,
 	children,
 	overrides: componentOverrides,
+	placeholder,
+	before,
+	after,
+	ariaInvalid,
 	...rest
 }: InputGroupProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
+		COLORS,
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
@@ -148,8 +254,9 @@ export const InputGroup = ({
 		invalid,
 		disabled,
 		readOnly,
-		data,
 		overrides: componentOverrides,
+		placeholder,
+		ariaInvalid,
 		...rest,
 	};
 
@@ -160,137 +267,35 @@ export const InputGroup = ({
 			attributes: inputGroupAttributes,
 		},
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
-
-	let textInputFieldAdded = false;
-	const childrenWithProps = [];
-	const length = Children.count(children);
-
-	if (data) {
-		const { before, after } = data;
-
-		if (before) {
-			childrenWithProps.push(
-				<Before
-					key="before"
-					instanceId={`${id}-before`}
-					size={size}
-					look={look}
-					disabled={disabled}
-					overrides={componentOverrides}
-					{...before}
-				/>
-			);
-		}
-		childrenWithProps.push(
-			<TextInputField
-				key="textinput1"
-				instanceId={`${id}-textInput`}
-				name={name}
-				label={label}
-				size={size}
-				invalid={invalid}
-				disabled={disabled}
-				readOnly={readOnly}
-				before={!!before}
-				after={!!after}
-				{...rest}
-			/>
-		);
-		if (after) {
-			childrenWithProps.push(
-				<After
-					key="after"
-					instanceId={`${id}-after`}
-					size={size}
-					look={look}
-					disabled={disabled}
-					overrides={componentOverrides}
-					{...after}
-				/>
-			);
-		}
-	} else {
-		Children.map(children, (child) => {
-			if (child.type.displayName === 'Before' && !textInputFieldAdded) {
-				childrenWithProps.push(
-					cloneElement(child, {
-						instanceId: `${id}-before`,
-						size,
-						look,
-						disabled,
-						overrides: componentOverrides,
-						key: 'before',
-					})
-				);
-				childrenWithProps.push(
-					<TextInputField
-						key="textinput1"
-						instanceId={`${id}-textInput`}
-						name={name}
-						label={label}
-						size={size}
-						invalid={invalid}
-						disabled={disabled}
-						readOnly={readOnly}
-						before={true}
-						after={length > 1}
-						{...rest}
-					/>
-				);
-				textInputFieldAdded = true;
-			} else if (child.type.displayName === 'After' && !textInputFieldAdded) {
-				childrenWithProps.push(
-					<TextInputField
-						key="textinput2"
-						instanceId={`${id}-textInput`}
-						name={name}
-						label={label}
-						size={size}
-						invalid={invalid}
-						disabled={disabled}
-						readOnly={readOnly}
-						before={false}
-						after={true}
-						{...rest}
-					/>
-				);
-				childrenWithProps.push(
-					cloneElement(child, {
-						instanceId: `${id}-after`,
-						size,
-						look,
-						disabled,
-						overrides: componentOverrides,
-						key: 'after',
-					})
-				);
-				textInputFieldAdded = true;
-			} else if (child.type.displayName === 'After' || child.type.displayName === 'Before') {
-				childrenWithProps.push(
-					cloneElement(child, {
-						instanceId: `${id}-other`,
-						size,
-						look,
-						disabled,
-						overrides: componentOverrides,
-						key: 'other',
-					})
-				);
-			} else {
-				devWarning(
-					true,
-					`<InputGroup /> only accepts <Before /> or <After /> as children. But found "<${
-						child.type.name || child.type
-					}/>"`
-				);
-			}
-		});
-	}
+	console.log('inputGroupStyles(state)', inputGroupStyles(state));
 
 	return (
 		<InputGroupContext.Provider value={{ state }}>
-			<InputGroup state={state} {...inputGroupAttributes(state)} css={inputGroupStyles(state)}>
-				{childrenWithProps}
+			<InputGroup {...inputGroupAttributes(state)} css={inputGroupStyles(state)}>
+				{before && (
+					<Wrapper invalid={invalid} ariaInvalid={ariaInvalid} size={size} before>
+						{typeof before === 'string' ? <TextWrapper>{before}</TextWrapper> : before}
+					</Wrapper>
+				)}
+				<TextInputField
+					instanceId={`${id}-textInput`}
+					name={name}
+					label={label}
+					size={size}
+					invalid={invalid}
+					disabled={disabled}
+					readOnly={readOnly}
+					placeholder={placeholder}
+					before={!!before}
+					after={!!after}
+					ariaInvalid={ariaInvalid}
+					{...rest}
+				/>
+				{after && (
+					<Wrapper invalid={invalid} ariaInvalid={ariaInvalid} size={size} after>
+						{typeof after === 'string' ? <TextWrapper>{after}</TextWrapper> : after}
+					</Wrapper>
+				)}
 			</InputGroup>
 		</InputGroupContext.Provider>
 	);
@@ -374,6 +379,10 @@ InputGroup.propTypes = {
 			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * The placeholder of the input field
+	 */
+	placeholder: PropTypes.string,
 	/**
 	 * Read only mode
 	 */

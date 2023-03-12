@@ -31,7 +31,7 @@ export interface TextInputProps {
 	/**
 	 * ReactNode
 	 */
-	children: ReactNode;
+	children?: ReactNode;
 
 	/**
 	 * Type

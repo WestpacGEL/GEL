@@ -10,6 +10,10 @@ export interface BeforeProps {
 	/**
 	 * Disable all Form check options
 	 */
+	name?: string;
+	/**
+	 * Disable all Form check options
+	 */
 	disabled?: boolean;
 	/**
 	 * The look of the component
@@ -48,6 +52,7 @@ export const Before = ({
 	inputType,
 	overrides: componentOverrides,
 	size = 'medium',
+	name,
 	...rest
 }: BeforeProps) => {
 	const componentMap = {
@@ -57,7 +62,14 @@ export const Before = ({
 	};
 	const Component = componentMap[inputType];
 
-	return <Component position="before" overrides={componentOverrides} size={size} {...rest} />;
+	return (
+		<Component
+			position="before"
+			overrides={componentOverrides}
+			size={size}
+			{...({ ...rest, name } as any)}
+		/>
+	);
 };
 
 Before.displayName = 'Before';
@@ -71,6 +83,10 @@ Before.propTypes = {
 	 * What input type this component is
 	 */
 	inputType: PropTypes.oneOf(['button', 'select', 'text']).isRequired,
+	/**
+	 * Disable all Form check options
+	 */
+	name: PropTypes.string,
 	/**
 	 * The override API
 	 */
