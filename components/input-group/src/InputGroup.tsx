@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useBrand, overrideReconciler } from '@westpac/core';
-import React, { useContext, createContext, useId, useMemo, ReactNode, CSSProperties } from 'react';
+import React, { useId, useMemo, ReactNode, CSSProperties } from 'react';
 
 import { defaultInputGroup } from './overrides/inputGroup';
 
@@ -11,18 +11,6 @@ import { sizeMap } from '@westpac/text-input';
 // ==============================
 // Context and Consumer Hook
 // ==============================
-
-const InputGroupContext = createContext<any>(null);
-
-export const useInputGroupContext = () => {
-	const context = useContext(InputGroupContext);
-
-	if (!context) {
-		throw new Error('<Before/> and <After/> components should be wrapped in <InputGroup>.');
-	}
-
-	return context;
-};
 
 type Sizes = 'small' | 'medium' | 'large' | 'xlarge';
 
@@ -284,60 +272,58 @@ export const InputGroup = ({
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	return (
-		<InputGroupContext.Provider value={{ state }}>
-			<InputGroup {...inputGroupAttributes(state)} css={inputGroupStyles(state)}>
-				{before && (
-					<Wrapper
-						disabled={disabled}
-						readOnly={readOnly}
-						invalid={invalid}
-						ariaInvalid={ariaInvalid}
-						size={size}
-						before
-					>
-						{typeof before === 'string' ? (
-							<TextWrapper disabled={disabled} readOnly={readOnly} size={size}>
-								{before}
-							</TextWrapper>
-						) : (
-							before
-						)}
-					</Wrapper>
-				)}
-				<TextInputField
-					instanceId={`${id}-textInput`}
-					name={name}
-					label={label}
-					size={size}
-					invalid={invalid}
+		<InputGroup {...inputGroupAttributes(state)} css={inputGroupStyles(state)}>
+			{before && (
+				<Wrapper
 					disabled={disabled}
 					readOnly={readOnly}
-					placeholder={placeholder}
-					before={!!before}
-					after={!!after}
-					aria-invalid={ariaInvalid}
-					{...rest}
-				/>
-				{after && (
-					<Wrapper
-						disabled={disabled}
-						invalid={invalid}
-						ariaInvalid={ariaInvalid}
-						size={size}
+					invalid={invalid}
+					ariaInvalid={ariaInvalid}
+					size={size}
+					before
+				>
+					{typeof before === 'string' ? (
+						<TextWrapper disabled={disabled} readOnly={readOnly} size={size}>
+							{before}
+						</TextWrapper>
+					) : (
+						before
+					)}
+				</Wrapper>
+			)}
+			<TextInputField
+				instanceId={`${id}-textInput`}
+				name={name}
+				label={label}
+				size={size}
+				invalid={invalid}
+				disabled={disabled}
+				readOnly={readOnly}
+				placeholder={placeholder}
+				before={!!before}
+				after={!!after}
+				aria-invalid={ariaInvalid}
+				{...rest}
+			/>
+			{after && (
+				<Wrapper
+					disabled={disabled}
+					invalid={invalid}
+					ariaInvalid={ariaInvalid}
+					size={size}
+					after
+					readOnly={readOnly}
+				>
+					{typeof after === 'string' ? (
+						<TextWrapper disabled={disabled} readOnly={readOnly} size={size}>
+							{after}
+						</TextWrapper>
+					) : (
 						after
-						readOnly={readOnly}
-					>
-						{typeof after === 'string' ? (
-							<TextWrapper disabled={disabled} readOnly={readOnly} size={size}>
-								{after}
-							</TextWrapper>
-						) : (
-							after
-						)}
-					</Wrapper>
-				)}
-			</InputGroup>
-		</InputGroupContext.Provider>
+					)}
+				</Wrapper>
+			)}
+		</InputGroup>
 	);
 };
 
