@@ -63,14 +63,6 @@
 		{
 			"name": "InputGroup",
 			"src": "InputGroup.tsx"
-		},
-		{
-			"name": "Before",
-			"src": "Before.tsx"
-		},
-		{
-			"name": "After",
-			"src": "After.tsx"
 		}
 	]
 }
