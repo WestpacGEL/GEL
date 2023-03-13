@@ -1,7 +1,7 @@
 import { GEL, jsx } from '@westpac/core';
-import { InputGroup, Before, After } from '@westpac/input-group';
+import { InputGroup } from '@westpac/input-group';
 import { Button } from '@westpac/button';
-import { Select } from '@westpac/text-input';
+import { Select, TextInput } from '@westpac/text-input';
 
 function Example({ brand }) {
 	return (
@@ -17,69 +17,21 @@ function Example({ brand }) {
 			<br />
 
 			<InputGroup
+				name="example-select"
+				label="Total amount"
 				before={
-					<Select invalid>
-						<option>loko</option>
-					</Select>
-				}
-				name="example-button"
-				label="Filter by name"
-				after={<Button>Go</Button>}
-			/>
-			<br />
-
-			<InputGroup name="example-select" label="Total amount">
-				<After
-					inputType="select"
-					name="example-select-select"
-					label="Currency"
-					onChange={(event) => console.log(`Selected ${event.target.value}`)}
-					data={[
-						{ text: 'Select', value: '' },
-						{ text: 'AUD $', value: 'AUD $' },
-						{ text: 'USD $', value: 'USD $' },
-						{ text: 'GBP £', value: 'GBP £' },
-					]}
-				/>
-			</InputGroup>
-			<br />
-
-			<h3>Data-driven</h3>
-			<InputGroup
-				name="example-text-datadriven"
-				label="Total amount"
-				data={{
-					after: { inputType: 'text', data: '.00' },
-				}}
-			/>
-			<br />
-
-			<InputGroup
-				name="example-button-datadriven"
-				label="Filter by name"
-				data={{
-					after: { inputType: 'button', data: 'Submit' },
-				}}
-			/>
-			<br />
-
-			<InputGroup
-				name="example-select-datadriven"
-				label="Total amount"
-				data={{
-					before: {
-						inputType: 'select',
-						name: 'example-select-datadriven-select',
-						label: 'Currency',
-						onChange: (event) => console.log(`Selected ${event.target.value}`),
-						data: [
+					<Select
+						name="example-select-select"
+						label="Currency"
+						onChange={(event) => console.log(`Selected ${event.target.value}`)}
+						data={[
 							{ text: 'Select', value: '' },
 							{ text: 'AUD $', value: 'AUD $' },
 							{ text: 'USD $', value: 'USD $' },
 							{ text: 'GBP £', value: 'GBP £' },
-						],
-					},
-				}}
+						]}
+					/>
+				}
 			/>
 			<br />
 
@@ -88,60 +40,30 @@ function Example({ brand }) {
 			<h2>Combination</h2>
 
 			<h3>Composed</h3>
-			<InputGroup name="example-text-button" label="Total amount">
-				<Before inputType="text" data="AUS $" />
-				<After inputType="button" data="Go" onClick={() => console.log('Go clicked')} />
-			</InputGroup>
-			<br />
-
-			<InputGroup name="example-select-button" label="Total amount">
-				<Before
-					inputType="select"
-					name="example-select-button-select"
-					label="Currency"
-					onChange={(event) => console.log(`Selected ${event.target.value}`)}
-					data={[
-						{ text: 'AUD $', value: 'AUD' },
-						{ text: 'USD $', value: 'USD' },
-						{ text: 'EUR €', value: 'EUR' },
-					]}
-				/>
-				<After inputType="button" data="Go" onClick={() => console.log('Go clicked')} />
-			</InputGroup>
-
-			<h3>Data-driven</h3>
 			<InputGroup
-				name="example-text-button-datadriven"
+				name="example-text-button"
 				label="Total amount"
-				data={{
-					before: { inputType: 'text', data: 'AUS $' },
-					after: {
-						inputType: 'button',
-						data: 'Go',
-						onClick: () => console.log('Go clicked'),
-					},
-				}}
+				after={<Button onClick={() => console.log('Go clicked')}>Go</Button>}
+				before={<TextInput width={3} placeholder="AUS $" />}
 			/>
 			<br />
 
 			<InputGroup
-				name="example-select-button-datadriven"
+				name="example-select-button"
 				label="Total amount"
-				look="primary"
-				data={{
-					before: {
-						inputType: 'select',
-						name: 'example-select-button-datadriven-select',
-						label: 'Currency',
-						onChange: (event) => console.log(`Selected ${event.target.value}`),
-						data: [{ text: 'AUD $' }, { text: 'USD $' }, { text: 'EUR €' }],
-					},
-					after: {
-						inputType: 'button',
-						data: 'Go',
-						onClick: () => console.log('Go clicked'),
-					},
-				}}
+				before={
+					<Select
+						name="example-select-button-select"
+						label="Currency"
+						onChange={(event) => console.log(`Selected ${event.target.value}`)}
+						data={[
+							{ text: 'AUD $', value: 'AUD' },
+							{ text: 'USD $', value: 'USD' },
+							{ text: 'EUR €', value: 'EUR' },
+						]}
+					/>
+				}
+				after={<Button onClick={() => console.log('Go clicked')}>Go</Button>}
 			/>
 		</GEL>
 	);

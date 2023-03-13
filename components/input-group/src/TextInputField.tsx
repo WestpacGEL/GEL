@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import React, { Fragment, ReactNode } from 'react';
+import React, { Fragment, HTMLProps, ReactNode } from 'react';
 
 import { defaultTextInput } from './overrides/textInput';
 
@@ -9,7 +9,7 @@ import { VisuallyHidden } from '@westpac/a11y';
 import { useInputGroupContext } from './InputGroup';
 import pkg from '../package.json';
 
-interface TextInputFieldProps {
+interface TextInputFieldProps extends Omit<HTMLProps<HTMLInputElement>, 'label' | 'size'> {
 	/**
 	 * label
 	 */
@@ -17,13 +17,21 @@ interface TextInputFieldProps {
 	/**
 	 * before
 	 */
-	before?: boolean | ReactNode;
+	before?: boolean;
 	/**
 	 * after
 	 */
-	after?: boolean | ReactNode;
+	after?: boolean;
 	/**
-	 * The instance ID for the label and text input
+	 * Invalid
+	 */
+	invalid?: boolean;
+	/**
+	 * Aria Invalid
+	 */
+	'aria-invalid'?: boolean;
+	/**
+	 * Size
 	 */
 	instanceId?: string;
 	/**
@@ -109,13 +117,13 @@ TextInputField.propTypes = {
 	/**
 	 * after
 	 */
-	after: PropTypes.node,
+	after: PropTypes.bool,
 	/**
 	 * before
 	 */
-	before: PropTypes.node,
+	before: PropTypes.bool,
 	/**
-	 * The instance ID for the label and text input
+	 * Size
 	 */
 	instanceId: PropTypes.string,
 	/**

@@ -25,6 +25,111 @@ export const useInputGroupContext = () => {
 };
 
 type Sizes = 'small' | 'medium' | 'large' | 'xlarge';
+
+// ==============================
+// Component
+// ==============================
+
+interface TextWrapperProps {
+	children?: ReactNode;
+	css?: CSSProperties;
+	size?: Sizes;
+	readOnly?: boolean;
+	disabled?: boolean;
+}
+
+const TextWrapper = ({
+	children,
+	disabled,
+	readOnly,
+	size = 'medium',
+	...props
+}: TextWrapperProps) => {
+	const { COLORS } = useBrand();
+	return (
+		<span
+			{...props}
+			css={{
+				display: 'flex',
+				alignItems: 'center',
+				padding: '0 0.4rem',
+				color: disabled || readOnly ? COLORS.muted : COLORS.heading,
+				background: disabled || readOnly ? COLORS.background : COLORS.light,
+				fontSize: sizeMap[size].fontSize,
+			}}
+		>
+			{children}
+		</span>
+	);
+};
+
+interface WrapperProps {
+	children?: ReactNode;
+	css?: CSSProperties;
+	before?: boolean;
+	after?: boolean;
+	invalid?: boolean;
+	ariaInvalid?: boolean;
+	disabled?: boolean;
+	readOnly?: boolean;
+	size?: Sizes;
+}
+const Wrapper = ({
+	children,
+	before,
+	after,
+	disabled,
+	readOnly,
+	size = 'medium',
+	invalid,
+	ariaInvalid,
+	...props
+}: WrapperProps) => {
+	const { COLORS } = useBrand();
+	var s = sizeMap[size];
+	return (
+		<div
+			{...props}
+			css={{
+				display: 'flex',
+				borderRadius: '0.1875rem',
+				flexShrink: 0,
+				overflow: 'hidden',
+				boxSizing: 'border-box',
+				height: 'auto',
+				border: `${sizeMap[size].borderWidth}px ${disabled || readOnly ? 'dashed' : 'solid'} ${
+					invalid || ariaInvalid ? COLORS.danger : COLORS.borderDark
+				}`,
+				'> button, > select, > input': {
+					width: 'auto !important',
+					margin: '-1px !important',
+				},
+				'> *': {
+					height: 'auto !important',
+					...(before
+						? {
+								borderTopRightRadius: '0 !important',
+								borderBottomRightRadius: '0 !important',
+						  }
+						: {}),
+					...(after
+						? {
+								borderTopLeftRadius: '0 !important',
+								borderBottomLeftRadius: '0 !important',
+						  }
+						: {}),
+				},
+				...(before
+					? { borderTopRightRadius: 0, borderBottomRightRadius: 0, borderRight: 'none' }
+					: {}),
+				...(after ? { borderTopLeftRadius: 0, borderBottomLeftRadius: 0, borderLeft: 'none' } : {}),
+			}}
+		>
+			{children}
+		</div>
+	);
+};
+
 export interface InputGroupProps {
 	/**
 	 * Define an id for internal elements
@@ -125,96 +230,6 @@ export interface InputGroupProps {
 	};
 }
 
-// ==============================
-// Component
-// ==============================
-
-interface TextWrapperProps {
-	children?: ReactNode;
-	css?: CSSProperties;
-	before?: boolean;
-	after?: boolean;
-	invalid?: boolean;
-	ariaInvalid?: boolean;
-	size?: Sizes;
-}
-const TextWrapper = ({
-	children,
-	before,
-	after,
-	size = 'medium',
-	invalid,
-	ariaInvalid,
-	...props
-}: TextWrapperProps) => {
-	const { COLORS } = useBrand();
-	return (
-		<span
-			{...props}
-			css={{
-				display: 'flex',
-				alignItems: 'center',
-				padding: '0 0.4rem',
-				background: COLORS.light,
-				fontSize: sizeMap[size].fontSize,
-			}}
-		>
-			{children}
-		</span>
-	);
-};
-
-interface WrapperProps {
-	children?: ReactNode;
-	css?: CSSProperties;
-	before?: boolean;
-	after?: boolean;
-	invalid?: boolean;
-	ariaInvalid?: boolean;
-	size?: Sizes;
-}
-const Wrapper = ({
-	children,
-	before,
-	after,
-	size = 'medium',
-	invalid,
-	ariaInvalid,
-	...props
-}: WrapperProps) => {
-	const { COLORS } = useBrand();
-	var s = sizeMap[size];
-	return (
-		<div
-			{...props}
-			css={{
-				display: 'flex',
-				borderRadius: '0.1875rem',
-				flexShrink: 0,
-				overflow: 'hidden',
-				boxSizing: 'border-box',
-				height: 'calc('
-					.concat(s.lineHeight.toString(), 'em + ')
-					.concat(s.padding[0], ' + ')
-					.concat(s.padding[2] || s.padding[0], ' + ')
-					.concat((2 * s.borderWidth).toString(), 'px)'),
-				border: `${sizeMap[size].borderWidth}px solid ${
-					invalid || ariaInvalid ? COLORS.danger : COLORS.borderDark
-				}`,
-				'> *': {
-					height: 'auto !important',
-				},
-				...(before
-					? { borderTopRightRadius: 0, borderBottomRightRadius: 0, borderRight: 'none' }
-					: {}),
-				...(after ? { borderTopLeftRadius: 0, borderBottomLeftRadius: 0, borderLeft: 'none' } : {}),
-			}}
-		>
-			{children}
-		</div>
-	);
-};
-
 export const InputGroup = ({
 	instanceId,
 	name,
@@ -230,11 +245,11 @@ export const InputGroup = ({
 	before,
 	after,
 	ariaInvalid,
+	data,
 	...rest
 }: InputGroupProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
-		COLORS,
 		[pkg.name]: brandOverrides,
 	} = useBrand();
 
@@ -267,14 +282,26 @@ export const InputGroup = ({
 			attributes: inputGroupAttributes,
 		},
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
-	console.log('inputGroupStyles(state)', inputGroupStyles(state));
 
 	return (
 		<InputGroupContext.Provider value={{ state }}>
 			<InputGroup {...inputGroupAttributes(state)} css={inputGroupStyles(state)}>
 				{before && (
-					<Wrapper invalid={invalid} ariaInvalid={ariaInvalid} size={size} before>
-						{typeof before === 'string' ? <TextWrapper>{before}</TextWrapper> : before}
+					<Wrapper
+						disabled={disabled}
+						readOnly={readOnly}
+						invalid={invalid}
+						ariaInvalid={ariaInvalid}
+						size={size}
+						before
+					>
+						{typeof before === 'string' ? (
+							<TextWrapper disabled={disabled} readOnly={readOnly} size={size}>
+								{before}
+							</TextWrapper>
+						) : (
+							before
+						)}
 					</Wrapper>
 				)}
 				<TextInputField
@@ -288,12 +315,25 @@ export const InputGroup = ({
 					placeholder={placeholder}
 					before={!!before}
 					after={!!after}
-					ariaInvalid={ariaInvalid}
+					aria-invalid={ariaInvalid}
 					{...rest}
 				/>
 				{after && (
-					<Wrapper invalid={invalid} ariaInvalid={ariaInvalid} size={size} after>
-						{typeof after === 'string' ? <TextWrapper>{after}</TextWrapper> : after}
+					<Wrapper
+						disabled={disabled}
+						invalid={invalid}
+						ariaInvalid={ariaInvalid}
+						size={size}
+						after
+						readOnly={readOnly}
+					>
+						{typeof after === 'string' ? (
+							<TextWrapper disabled={disabled} readOnly={readOnly} size={size}>
+								{after}
+							</TextWrapper>
+						) : (
+							after
+						)}
 					</Wrapper>
 				)}
 			</InputGroup>
@@ -301,11 +341,51 @@ export const InputGroup = ({
 	);
 };
 
+TextWrapper.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	children: PropTypes.node,
+	disabled: PropTypes.bool,
+	readOnly: PropTypes.bool,
+	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+};
+
+TextWrapper.defaultProps = { size: 'medium' };
+
+Wrapper.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	after: PropTypes.bool,
+	ariaInvalid: PropTypes.bool,
+	before: PropTypes.bool,
+	children: PropTypes.node,
+	disabled: PropTypes.bool,
+	invalid: PropTypes.bool,
+	readOnly: PropTypes.bool,
+	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+};
+
 InputGroup.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
+	/**
+	 * Element after the input
+	 */
+	after: PropTypes.node,
+	/**
+	 * Aria Invalid input mode
+	 */
+	ariaInvalid: PropTypes.bool,
+	/**
+	 * Element before input
+	 */
+	before: PropTypes.node,
 	/**
 	 * InputGroup children
 	 */

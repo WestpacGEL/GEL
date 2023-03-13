@@ -1,5 +1,5 @@
 import { GEL, jsx } from '@westpac/core';
-import { InputGroup, Before, After } from '@westpac/input-group';
+import { InputGroup } from '@westpac/input-group';
 
 function Example({ brand }) {
 	return (
@@ -12,19 +12,7 @@ function Example({ brand }) {
 				label="Total amount"
 				invalid
 				defaultValue="This value is marked invalid"
-			>
-				<Before inputType="text" data="AUS $" />
-			</InputGroup>
-
-			<h3>Data-driven</h3>
-			<InputGroup
-				name="example-invalid-text-datadriven"
-				label="Total amount"
-				invalid
-				defaultValue="This value is marked invalid"
-				data={{
-					before: { inputType: 'text', data: 'AUS $' },
-				}}
+				before="AUS $"
 			/>
 			<br />
 
@@ -38,19 +26,7 @@ function Example({ brand }) {
 				label="Total amount"
 				disabled
 				defaultValue="This input is disabled and contains a value"
-			>
-				<Before inputType="text" data="AUS $" />
-			</InputGroup>
-
-			<h3>Data-driven</h3>
-			<InputGroup
-				name="example-disabled-text-datadriven"
-				label="Total amount"
-				disabled
-				defaultValue="This input is disabled and contains a value"
-				data={{
-					before: { inputType: 'text', data: 'AUS $' },
-				}}
+				before="AUS $"
 			/>
 			<br />
 
@@ -64,19 +40,7 @@ function Example({ brand }) {
 				label="Total amount"
 				readOnly
 				defaultValue="This input is read only and contains a value"
-			>
-				<Before inputType="text" data="AUS $" />
-			</InputGroup>
-
-			<h3>Data-driven</h3>
-			<InputGroup
-				name="example-readonly-text-datadriven"
-				label="Total amount"
-				readOnly
-				defaultValue="This input is read only and contains a value"
-				data={{
-					before: { inputType: 'text', data: 'AUS $' },
-				}}
+				before="AUS $"
 			/>
 		</GEL>
 	);
