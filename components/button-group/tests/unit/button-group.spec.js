@@ -12,7 +12,7 @@ overridesTest({
 	overrides: ['ButtonGroup'], // every single override root key
 	Component: (props) => (
 		<ButtonGroup {...props} name="Default">
-			<Item inputProps={{ value: "left" }}>Left</Item>
+			<Item inputProps={{ value: 'left' }}>Left</Item>
 		</ButtonGroup> // the component with all components rendered
 	),
 });
@@ -22,7 +22,7 @@ nestingTest({
 	name: 'button-group',
 	Component: (props) => (
 		<ButtonGroup {...props} name="Default">
-			<Item inputProps={{ value: "left" }} >{props.children}</Item>
+			<Item inputProps={{ value: 'left' }}>{props.children}</Item>
 		</ButtonGroup>
 	),
 });
@@ -30,15 +30,13 @@ nestingTest({
 function SimpleButtonGroup(props) {
 	return (
 		<GEL brand={wbc}>
-			<ButtonGroup {...props}>
-				{props.children}
-			</ButtonGroup>
+			<ButtonGroup {...props}>{props.children}</ButtonGroup>
 		</GEL>
-	)
+	);
 }
 
 const HelperComponent = function () {
-	const [value, setValue] = useState('left');		
+	const [value, setValue] = useState('left');
 	return (
 		<GEL brand={wbc}>
 			<ButtonGroup
@@ -55,8 +53,8 @@ const HelperComponent = function () {
 				<Item value="right">Right</Item>
 			</ButtonGroup>
 			<h1>The Value</h1>
-			<span data-testid='the-value'>{value}</span>
-		 </GEL>
+			<span data-testid="the-value">{value}</span>
+		</GEL>
 	);
 };
 
@@ -70,7 +68,7 @@ describe('ButtonGroup component', () => {
 				<Item>Right</Item>
 			</SimpleButtonGroup>
 		);
-		
+
 		const LeftItem = screen.getByText('Left');
 		expect(LeftItem).toBeVisible();
 
@@ -79,7 +77,6 @@ describe('ButtonGroup component', () => {
 
 		const RightItem = screen.getByText('Right');
 		expect(RightItem).toBeVisible();
-
 	});
 
 	test('should change the input value set by which button was clicked', () => {
@@ -88,19 +85,18 @@ describe('ButtonGroup component', () => {
 		const theDisplayedValue = getByTestId('the-value');
 		const theMiddleInputItem = screen.getByText('Middle');
 		const theRightInputItem = screen.getByText('Right');
-		
+
 		expect(theDisplayedValue).toHaveTextContent('left');
 
 		fireEvent.click(theMiddleInputItem);
 		expect(theDisplayedValue).toHaveTextContent('middle');
 
 		fireEvent.click(theRightInputItem);
-		expect(theDisplayedValue).toHaveTextContent('right')
-	})	
+		expect(theDisplayedValue).toHaveTextContent('right');
+	});
 
 	test('should change the background color of LeftItem component when clicked', () => {
-		const { getByText } =
-		render(
+		const { getByText } = render(
 			<SimpleButtonGroup>
 				<Item>Left</Item>
 				<Item>Middle</Item>
@@ -111,7 +107,9 @@ describe('ButtonGroup component', () => {
 		const innnerSpan = getByText('Left');
 		const outerSpan = innnerSpan.parentElement;
 
-		const backgroundColorBeforeClick = window.getComputedStyle(outerSpan).getPropertyValue('background-color');
+		const backgroundColorBeforeClick = window
+			.getComputedStyle(outerSpan)
+			.getPropertyValue('background-color');
 		console.log(backgroundColorBeforeClick);
 		fireEvent.click(outerSpan);
 
@@ -120,5 +118,5 @@ describe('ButtonGroup component', () => {
 		console.log(backgroundColorAfterClick);
 		expect(styles['background-color']).toEqual(styles.backgroundColor);
 		expect(backgroundColorAfterClick).not.toEqual(backgroundColorBeforeClick);
-	})
+	});
 });

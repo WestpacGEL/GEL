@@ -20,4 +20,4 @@ class DefaultPage2 extends CommonPage {
 	}
 }
 
-export {DefaultPage1, DefaultPage2}
+export { DefaultPage1, DefaultPage2 };
