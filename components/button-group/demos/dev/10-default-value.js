@@ -7,7 +7,7 @@ const Demo = ({ context, showCode, showDemo }) => {
 	return (
 		<Playground context={context} showCode={showCode} showDemo={showDemo}>
 			<Title>Index (integer)</Title>
-			<ButtonGroup name="example-defaultvalue-index" defaultValue={0}>
+			<ButtonGroup data-cy="test-btn-grp" name="example-defaultvalue-index" defaultValue={0}>
 				<Item>Left</Item>
 				<Item>Middle</Item>
 				<Item>Right</Item>
