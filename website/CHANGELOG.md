@@ -1,5 +1,11 @@
 # @westpac/website
 
+## 2.1.0
+
+### Minor Changes
+
+- 20f9f31f: Proptypes created using typescript and type fixes
+
 ## 2.0.1
 
 ### Patch Changes

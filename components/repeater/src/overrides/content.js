@@ -1,30 +1,31 @@
-import { jsx, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx, getLabel } from '@westpac/core';
+import { Fragment } from 'react';
 
 // ==============================
 // Component
 // ==============================
 
-const Content = ({ state: _, ...rest }) => <div {...rest} />;
+const Content = ({ state: { separator }, children, ...rest }) => {
+	const Wrapper = separator ? 'div' : Fragment;
+	return <Wrapper {...(separator && rest)}>{children}</Wrapper>;
+};
 
 // ==============================
 // Styles
 // ==============================
 
-const contentStyles = () => {
-	const mq = useMediaQuery();
-	return mq({
-		label: getLabel('compacta-content'),
-		padding: '0 1.125rem 1.875rem',
-		paddingLeft: [null, null, '3.375rem'],
-		backgroundColor: '#fff',
-	})[0];
+const contentStyles = (_, { separator }) => {
+	return {
+		label: getLabel('repeater-content'),
+		padding: separator && '0 1.125rem ',
+	};
 };
 
 // ==============================
 // Attributes
 // ==============================
 
-const contentAttributes = (_, { open }) => ({ 'aria-hidden': !open });
+const contentAttributes = () => null;
 
 // ==============================
 // Exports
