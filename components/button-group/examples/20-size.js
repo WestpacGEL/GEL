@@ -8,9 +8,7 @@ function Example({ brand }) {
 
 			<h3>Default</h3>
 			<ButtonGroup name="example-default">
-				<Item value="left">
-					Left
-				</Item>
+				<Item value="left">Left</Item>
 				<Item value="middle">Middle</Item>
 				<Item value="right">Right</Item>
 			</ButtonGroup>
