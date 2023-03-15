@@ -88,12 +88,12 @@ export const TextInputField = forwardRef<HTMLInputElement, TextInputFieldProps>(
 					</VisuallyHidden>
 				)}
 				<TextInput
-					ref={ref}
 					{...rest}
 					size={size}
 					state={state}
 					{...textInputAttributes(state)}
 					css={textInputStyles(state)}
+					ref={ref}
 				/>
 			</Fragment>
 		);

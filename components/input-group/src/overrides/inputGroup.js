@@ -1,10 +1,12 @@
 import { jsx, getLabel } from '@westpac/core';
+import { forwardRef } from 'react';
 
 // ==============================
 // Component
 // ==============================
 
-const InputGroup = ({ state: _, ...rest }) => <div {...rest} />;
+const InputGroup = forwardRef(({ state: _, ...rest }, ref) => <div ref={ref} {...rest} />);
+InputGroup.displayName = 'InputGroup';
 
 // ==============================
 // Styles
