@@ -11,7 +11,7 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<h2>Composition</h2>
 			<h3>Composed</h3>
-			<ButtonGroup data-cy="test-btn-grp" name="example-composed">
+			<ButtonGroup name="example-composed">
 				<Item value="left">Left</Item>
 				<Item value="middle">Middle</Item>
 				<Item value="right">Right</Item>
