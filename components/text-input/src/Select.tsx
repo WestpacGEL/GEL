@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
@@ -52,58 +52,71 @@ export interface SelectProps {
 // Component
 // ==============================
 
-export const Select = ({
-	size = 'medium',
-	inline = false,
-	invalid = false,
-	width,
-	data,
-	children,
-	overrides: componentOverrides,
-	...rest
-}: SelectProps) => {
-	const {
-		OVERRIDES: { [pkg.name]: tokenOverrides },
-		[pkg.name]: brandOverrides,
-	} = useBrand();
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(
+	(
+		{
+			size = 'medium',
+			inline = false,
+			invalid = false,
+			width,
+			data,
+			children,
+			overrides: componentOverrides,
+			...rest
+		},
+		ref
+	) => {
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
 
-	const defaultOverrides = {
-		Select: defaultSelect,
-	};
+		const defaultOverrides = {
+			Select: defaultSelect,
+		};
 
-	const state = {
-		size,
-		width,
-		inline,
-		invalid,
-		data,
-		overrides: componentOverrides,
-		...rest,
-	};
+		const state = {
+			size,
+			width,
+			inline,
+			invalid,
+			data,
+			overrides: componentOverrides,
+			...rest,
+		};
 
-	const {
-		Select: { component: Select, styles: selectStyles, attributes: selectAttributes },
-	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+		const {
+			Select: { component: Select, styles: selectStyles, attributes: selectAttributes },
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	let allChildren = [];
-	if (data) {
-		data.map(({ text, ...rest }, index) => {
-			allChildren.push(
-				<option key={index} {...rest}>
-					{text}
-				</option>
-			);
-		});
-	} else {
-		allChildren = children;
+		let allChildren = [];
+		if (data) {
+			data.map(({ text, ...rest }, index) => {
+				allChildren.push(
+					<option key={index} {...rest}>
+						{text}
+					</option>
+				);
+			});
+		} else {
+			allChildren = children;
+		}
+
+		return (
+			<Select
+				ref={ref}
+				{...rest}
+				state={state}
+				{...selectAttributes(state)}
+				css={selectStyles(state)}
+			>
+				{allChildren}
+			</Select>
+		);
 	}
+);
 
-	return (
-		<Select {...rest} state={state} {...selectAttributes(state)} css={selectStyles(state)}>
-			{allChildren}
-		</Select>
-	);
-};
+Select.displayName = 'Select';
 
 Select.propTypes = {
 	// ----------------------------- Warning --------------------------------
