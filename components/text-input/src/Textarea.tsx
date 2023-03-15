@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
@@ -45,41 +45,53 @@ export interface TextareaProps {
 // Component
 // ==============================
 
-export const Textarea = ({
-	width,
-	size = 'medium',
-	inline = false,
-	invalid = false,
-	children,
-	overrides: componentOverrides,
-	...rest
-}: TextareaProps) => {
-	const {
-		OVERRIDES: { [pkg.name]: tokenOverrides },
-		[pkg.name]: brandOverrides,
-	} = useBrand();
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+	(
+		{
+			width,
+			size = 'medium',
+			inline = false,
+			invalid = false,
+			children,
+			overrides: componentOverrides,
+			...rest
+		}: TextareaProps,
+		ref
+	) => {
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
 
-	const defaultOverrides = {
-		Textarea: defaultTextarea,
-	};
+		const defaultOverrides = {
+			Textarea: defaultTextarea,
+		};
 
-	const state = {
-		size,
-		width,
-		inline,
-		invalid,
-		overrides: componentOverrides,
-		...rest,
-	};
+		const state = {
+			size,
+			width,
+			inline,
+			invalid,
+			overrides: componentOverrides,
+			...rest,
+		};
 
-	const {
-		Textarea: { component: Textarea, styles: textareaStyles, attributes: textareaAttributes },
-	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+		const {
+			Textarea: { component: Textarea, styles: textareaStyles, attributes: textareaAttributes },
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	return (
-		<Textarea {...rest} state={state} {...textareaAttributes(state)} css={textareaStyles(state)} />
-	);
-};
+		return (
+			<Textarea
+				ref={ref}
+				{...rest}
+				state={state}
+				{...textareaAttributes(state)}
+				css={textareaStyles(state)}
+			/>
+		);
+	}
+);
+Textarea.displayName = 'Textarea';
 
 Textarea.propTypes = {
 	// ----------------------------- Warning --------------------------------

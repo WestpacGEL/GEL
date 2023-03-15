@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/progress-bar",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"description": "Simple indicator used to display the progress status for a task that may take a long time or consist of several steps",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/progress-bar",
@@ -40,12 +40,12 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/core": "^3.1.0",
+		"@westpac/core": "^3.2.0",
 		"prop-types": "^15.7.2"
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.10.6",
-		"@westpac/button": "^2.1.0",
+		"@westpac/button": "^2.2.0",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"

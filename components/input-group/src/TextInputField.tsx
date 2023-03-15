@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types';
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import React, { Fragment, ReactNode } from 'react';
+import { useBrand, overrideReconciler } from '@westpac/core';
+import React, { forwardRef, Fragment, HTMLProps, ReactNode } from 'react';
 
 import { defaultTextInput } from './overrides/textInput';
 
 import { VisuallyHidden } from '@westpac/a11y';
 
-import { useInputGroupContext } from './InputGroup';
 import pkg from '../package.json';
 
-interface TextInputFieldProps {
+interface TextInputFieldProps extends Omit<HTMLProps<HTMLInputElement>, 'label' | 'size'> {
 	/**
 	 * label
 	 */
@@ -17,13 +16,21 @@ interface TextInputFieldProps {
 	/**
 	 * before
 	 */
-	before?: boolean | ReactNode;
+	before?: boolean;
 	/**
 	 * after
 	 */
-	after?: boolean | ReactNode;
+	after?: boolean;
 	/**
-	 * The instance ID for the label and text input
+	 * Invalid
+	 */
+	invalid?: boolean;
+	/**
+	 * Aria Invalid
+	 */
+	'aria-invalid'?: boolean;
+	/**
+	 * Size
 	 */
 	instanceId?: string;
 	/**
@@ -46,60 +53,53 @@ interface TextInputFieldProps {
 // Component
 // ==============================
 
-export const TextInputField = ({
-	instanceId,
-	label,
-	before,
-	after,
-	overrides,
-	size = 'medium',
-	...rest
-}: TextInputFieldProps) => {
-	const {
-		OVERRIDES: { [pkg.name]: tokenOverrides },
-		[pkg.name]: brandOverrides,
-	} = useBrand();
+export const TextInputField = forwardRef<HTMLInputElement, TextInputFieldProps>(
+	({ instanceId, label, before, after, overrides, size = 'medium', ...rest }, ref) => {
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
 
-	const context = useInputGroupContext();
+		const defaultOverrides = {
+			TextInput: defaultTextInput,
+		};
 
-	const defaultOverrides = {
-		TextInput: defaultTextInput,
-	};
+		const componentOverrides = overrides;
 
-	const componentOverrides = overrides || context.state.overrides;
+		const state = {
+			instanceId,
+			label,
+			before,
+			after,
+			overrides: componentOverrides,
+			size,
+			...rest,
+		};
 
-	const state = {
-		instanceId,
-		label,
-		before,
-		after,
-		context: context.state,
-		overrides: componentOverrides,
-		size,
-		...rest,
-	};
+		const {
+			TextInput: { component: TextInput, styles: textInputStyles, attributes: textInputAttributes },
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	const {
-		TextInput: { component: TextInput, styles: textInputStyles, attributes: textInputAttributes },
-	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
-
-	return (
-		<Fragment>
-			{label && (
-				<VisuallyHidden tag="label" htmlFor={instanceId}>
-					{label}
-				</VisuallyHidden>
-			)}
-			<TextInput
-				{...rest}
-				size={size}
-				state={state}
-				{...textInputAttributes(state)}
-				css={textInputStyles(state)}
-			/>
-		</Fragment>
-	);
-};
+		return (
+			<Fragment>
+				{label && (
+					<VisuallyHidden tag="label" htmlFor={instanceId}>
+						{label}
+					</VisuallyHidden>
+				)}
+				<TextInput
+					ref={ref}
+					{...rest}
+					size={size}
+					state={state}
+					{...textInputAttributes(state)}
+					css={textInputStyles(state)}
+				/>
+			</Fragment>
+		);
+	}
+);
+TextInputField.displayName = 'TextInputField';
 
 TextInputField.propTypes = {
 	// ----------------------------- Warning --------------------------------
@@ -109,13 +109,13 @@ TextInputField.propTypes = {
 	/**
 	 * after
 	 */
-	after: PropTypes.node,
+	after: PropTypes.bool,
 	/**
 	 * before
 	 */
-	before: PropTypes.node,
+	before: PropTypes.bool,
 	/**
-	 * The instance ID for the label and text input
+	 * Size
 	 */
 	instanceId: PropTypes.string,
 	/**

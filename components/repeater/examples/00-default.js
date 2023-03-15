@@ -5,7 +5,7 @@ import { Repeater } from '@westpac/repeater';
 const Repeat = (props) => {
 	const id = useId();
 	return (
-		<div id={id} css={{ marginBottom: '2rem' }} {...props}>
+		<div id={id} css={{ marginBottom: '1.875rem' }} {...props}>
 			Repeater
 		</div>
 	);
