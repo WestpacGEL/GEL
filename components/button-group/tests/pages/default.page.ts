@@ -1,17 +1,7 @@
 /// <reference types="cypress" />
 
 import CommonPage from './common.page';
-
-class DefaultPage1 extends CommonPage {
-	constructor() {
-		super('http://localhost:8080/button-group/examples');
-	}
-	get btnGroup() {
-		return cy.get('[data-cy="test-btn-grp"]');
-	}
-}
-
-class DefaultPage2 extends CommonPage {
+class DefaultPage extends CommonPage {
 	constructor() {
 		super('http://localhost:8080/button-group/demos/dev/10-default-value');
 	}
@@ -20,4 +10,4 @@ class DefaultPage2 extends CommonPage {
 	}
 }
 
-export { DefaultPage1, DefaultPage2 };
+export default DefaultPage;
