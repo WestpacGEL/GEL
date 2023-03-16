@@ -2,7 +2,7 @@ const COLORS = {
 	background: '#F3F5F6',
 	border: '#D3D3D3',
 	borderDark: '#91979A',
-	focus: '#E45C78',
+	focus: '#6892E8',
 	heading: '#000',
 	hero: '#000',
 	light: '#FAFAFA',

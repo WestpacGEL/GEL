@@ -10,7 +10,7 @@ const Item = ({ state: _, ...rest }) => <li {...rest} />;
 // Styles
 // ==============================
 
-const itemStyles = (_, { separator, last }) => {
+const itemStyles = (_, { separator }) => {
 	const { COLORS } = useBrand();
 	return {
 		label: getLabel('repeater-item'),
@@ -18,8 +18,6 @@ const itemStyles = (_, { separator, last }) => {
 		paddingTop: separator && '0.625rem',
 		paddingBottom: separator && '1.875rem',
 		borderTop: separator && `2px solid ${COLORS.neutral}`,
-		borderBottom: separator && last && `2px solid ${COLORS.neutral}`,
-		marginBottom: separator && last && '0.875rem',
 	};
 };
 
