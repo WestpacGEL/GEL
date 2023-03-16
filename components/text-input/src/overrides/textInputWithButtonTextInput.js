@@ -1,4 +1,5 @@
 import { jsx, useMediaQuery, getLabel } from '@westpac/core';
+import { forwardRef } from 'react';
 import { TextInput } from '../TextInput';
 import { sizeMap, getMaxWidth, textInputWithButtonBtnWidth as btnWidth } from '../_utils';
 
@@ -6,7 +7,10 @@ import { sizeMap, getMaxWidth, textInputWithButtonBtnWidth as btnWidth } from '.
 // Component
 // ==============================
 
-const TextInputWithButtonTextInput = ({ state: _, ...rest }) => <TextInput {...rest} />;
+const TextInputWithButtonTextInput = forwardRef(({ state: _, ...rest }, ref) => (
+	<TextInput ref={ref} {...rest} />
+));
+TextInputWithButtonTextInput.displayName = 'TextInputWithButtonTextInput';
 
 // ==============================
 // Styles
