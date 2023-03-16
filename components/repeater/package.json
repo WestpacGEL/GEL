@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/repeater",
-	"version": "2.2.0",
+	"version": "2.3.0",
 	"description": "Repeater component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/repeater",
 	"license": "GPL-3.0+",
@@ -26,7 +26,7 @@
 		"@emotion/react": "^11.10.6",
 		"@react-spring/web": "^9.2.4",
 		"@westpac/form": "^3.2.0",
-		"@westpac/text-input": "^2.2.0",
+		"@westpac/text-input": "^2.3.0",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"
