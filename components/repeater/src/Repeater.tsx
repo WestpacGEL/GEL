@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useTransition, animated } from '@react-spring/web';
 import { useCallback, useState } from 'react';
 
 import { defaultRemoveBtn } from './overrides/removeBtn';
@@ -123,42 +124,57 @@ export const Repeater = ({
 		RemoveBtn: { component: RemoveBtn, styles: RemoveBtnStyles, attributes: RemoveBtnAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
+	const transition = useTransition(items, {
+		config: { duration: 150 },
+		from: { opacity: 1 },
+		enter: { opacity: 1 },
+		leave: { opacity: 0 },
+		onRest: (result, ctrl, item) => {
+			setItems((state) =>
+				state.filter((i) => {
+					return i.id !== item.id;
+				})
+			);
+		},
+	});
+
 	return (
 		<Repeater {...rest} state={state} {...repeaterAttributes(state)} css={repeaterStyles(state)}>
 			<List state={state} {...listAttributes(state)} css={listStyles(state)}>
-				{items.map((item, index) => {
-					const last = items.length - 1 === index;
+				{transition((style, item, t, index) => {
 					return (
-						<Item
-							key={item.id}
-							index={index}
-							state={state}
-							{...itemAttributes(state)}
-							css={itemStyles({ ...state, last })}
-						>
-							{separator && (
-								<ItemIndex
-									state={state}
-									{...itemIndexAttributes(state)}
-									css={itemIndexStyles(state)}
-								>
-									{index + 1}.
-								</ItemIndex>
-							)}
-							<Content state={state} {...contentAttributes(state)} css={contentStyles(state)}>
-								{children}
-							</Content>
-							{items.length > 1 && (
-								<RemoveBtn
-									onClick={() => handleRemove(item.id)}
-									state={state}
-									{...RemoveBtnAttributes(state)}
-									css={RemoveBtnStyles(state)}
-								>
-									Remove
-								</RemoveBtn>
-							)}
-						</Item>
+						<animated.div style={style}>
+							<Item
+								key={item.id}
+								index={index}
+								state={state}
+								{...itemAttributes(state)}
+								css={itemStyles(state)}
+							>
+								{separator && (
+									<ItemIndex
+										state={state}
+										{...itemIndexAttributes(state)}
+										css={itemIndexStyles(state)}
+									>
+										{index + 1}.
+									</ItemIndex>
+								)}
+								<Content state={state} {...contentAttributes(state)} css={contentStyles(state)}>
+									{children}
+								</Content>
+								{items.length > 1 && (
+									<RemoveBtn
+										onClick={() => handleRemove(item.id)}
+										state={state}
+										{...RemoveBtnAttributes(state)}
+										css={RemoveBtnStyles(state)}
+									>
+										Remove
+									</RemoveBtn>
+								)}
+							</Item>
+						</animated.div>
 					);
 				})}
 			</List>
