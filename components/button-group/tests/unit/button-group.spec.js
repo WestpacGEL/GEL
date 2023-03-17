@@ -12,7 +12,7 @@ overridesTest({
 	overrides: ['ButtonGroup'], // every single override root key
 	Component: (props) => (
 		<ButtonGroup {...props} name="Default">
-			<Item inputProps={{ value: 'left' }}>Left</Item>
+			<Item>Left</Item>
 		</ButtonGroup> // the component with all components rendered
 	),
 });
@@ -22,7 +22,7 @@ nestingTest({
 	name: 'button-group',
 	Component: (props) => (
 		<ButtonGroup {...props} name="Default">
-			<Item inputProps={{ value: 'left' }}>{props.children}</Item>
+			<Item>{props.children}</Item>
 		</ButtonGroup>
 	),
 });
@@ -41,7 +41,6 @@ const HelperComponent = function () {
 		<GEL brand={wbc}>
 			<ButtonGroup
 				name="example-custom-key"
-				// defaultValue="left"
 				value={value}
 				onChange={(e, v) => {
 					console.log(`custom-key: ${v}`);
