@@ -1,6 +1,8 @@
 import { GEL, jsx } from '@westpac/core';
-import { InputGroup, Before, After } from '@westpac/input-group';
+import { InputGroup } from '@westpac/input-group';
 import { AddIcon, RemoveIcon } from '@westpac/icon';
+import { Button } from '@westpac/button';
+import { Select } from '@westpac/text-input';
 
 function Example({ brand }) {
 	return (
@@ -8,20 +10,13 @@ function Example({ brand }) {
 			<h2>Text add-on</h2>
 
 			<h3>Before</h3>
-			<InputGroup name="example-text-1" label="Total amount">
-				<Before inputType="text" data="$" />
-			</InputGroup>
+			<InputGroup name="example-text-1" label="Total amount" before="$" />
 
 			<h3>After</h3>
-			<InputGroup name="example-text-2" label="Total amount">
-				<After inputType="text" data=".00" />
-			</InputGroup>
+			<InputGroup name="example-text-2" label="Total amount" after=".00" />
 
 			<h3>Before &amp; After</h3>
-			<InputGroup name="example-text-3" label="Total amount">
-				<Before inputType="text" data="$" />
-				<After inputType="text" data=".00" />
-			</InputGroup>
+			<InputGroup name="example-text-3" label="Total amount" before="$" after=".00" />
 			<br />
 
 			<hr />
@@ -29,90 +24,103 @@ function Example({ brand }) {
 			<h2>Button add-on</h2>
 
 			<h3>Default</h3>
-			<InputGroup name="example-default-button" label="Search">
-				<After inputType="button" data="Submit" />
-			</InputGroup>
+			<InputGroup name="example-default-button" label="Search" after={<Button>Submit</Button>} />
 
 			<h3>Primary</h3>
-			<InputGroup name="example-primary-button" label="Search" look="primary">
-				<After inputType="button" data="Submit" />
-			</InputGroup>
+			<InputGroup
+				name="example-primary-button"
+				label="Search"
+				after={<Button look="primary">Submit</Button>}
+			/>
 
 			<h3>Hero</h3>
-			<InputGroup name="example-hero-button" label="Search" look="hero">
-				<After inputType="button" data="Submit" />
-			</InputGroup>
+			<InputGroup
+				name="example-hero-button"
+				label="Search"
+				after={<Button look="hero">Submit</Button>}
+			/>
 
 			<h3>Faint</h3>
-			<InputGroup name="example-faint-button" label="Search" look="faint">
-				<After inputType="button" data="Submit" />
-			</InputGroup>
+			<InputGroup
+				name="example-faint-button"
+				label="Search"
+				after={<Button look="faint">Submit</Button>}
+			/>
 
 			<h3>Before &amp; After</h3>
-			<InputGroup name="example-faint-buttons" label="Quantity">
-				<Before inputType="button" iconAfter={RemoveIcon} assistiveText="Decrement value" />
-				<After inputType="button" iconAfter={AddIcon} assistiveText="Increment value" />
-			</InputGroup>
+			<InputGroup
+				name="example-faint-buttons"
+				label="Quantity"
+				before={<Button iconAfter={RemoveIcon} assistiveText="Decrement value" />}
+				after={<Button iconAfter={AddIcon} assistiveText="Increment value" />}
+			/>
 
 			<hr />
 
 			<h2>Select add-on</h2>
 
 			<h3>Before</h3>
-			<InputGroup name="example-select-before" label="Total amount">
-				<Before
-					inputType="select"
-					name="example-select-before-select"
-					label="Currency"
-					data={[
-						{ text: 'Select', value: '' },
-						{ text: 'AUD $', value: 'AUD $' },
-						{ text: 'NZD $', value: 'NZD $' },
-						{ text: 'USD $', value: 'USD $' },
-					]}
-				/>
-			</InputGroup>
+			<InputGroup
+				name="example-select-before"
+				label="Total amount"
+				before={
+					<Select
+						name="example-select-before-select"
+						label="Currency"
+						data={[
+							{ text: 'Select', value: '' },
+							{ text: 'AUD $', value: 'AUD $' },
+							{ text: 'NZD $', value: 'NZD $' },
+							{ text: 'USD $', value: 'USD $' },
+						]}
+					/>
+				}
+			/>
 
 			<h3>After</h3>
-			<InputGroup name="example-select-after" label="Total amount">
-				<After
-					inputType="select"
-					name="example-select-after-select"
-					label="Frequency"
-					data={[
-						{ text: 'Select', value: '' },
-						{ text: 'Yearly', value: 'Yearly' },
-						{ text: 'Monthly', value: 'Monthly' },
-						{ text: 'Weekly', value: 'Weekly' },
-					]}
-				/>
-			</InputGroup>
+			<InputGroup
+				name="example-select-after"
+				label="Total amount"
+				after={
+					<Select
+						name="example-select-after-select"
+						data={[
+							{ text: 'Select', value: '' },
+							{ text: 'Yearly', value: 'Yearly' },
+							{ text: 'Monthly', value: 'Monthly' },
+							{ text: 'Weekly', value: 'Weekly' },
+						]}
+					/>
+				}
+			/>
 
 			<h3>Before &amp; After</h3>
-			<InputGroup name="example-select-both" label="Total amount">
-				<Before
-					inputType="select"
-					name="example-select-both-before"
-					label="Currency"
-					data={[
-						{ text: 'Select', value: '' },
-						{ text: 'AUD $', value: 'AUD $' },
-						{ text: 'NZD $', value: 'NZD $' },
-						{ text: 'USD $', value: 'USD $' },
-					]}
-				/>
-				<After
-					inputType="select"
-					name="example-select-both-after"
-					label="Frequency"
-					data={[
-						{ text: 'Select', value: '' },
-						{ text: 'Yearly', value: 'Yearly' },
-						{ text: 'Monthly', value: 'Monthly' },
-						{ text: 'Weekly', value: 'Weekly' },
-					]}
-				/>
-			</InputGroup>
+			<InputGroup
+				name="example-select-both"
+				label="Total amount"
+				before={
+					<Select
+						name="example-select-both-before"
+						data={[
+							{ text: 'Select', value: '' },
+							{ text: 'AUD $', value: 'AUD $' },
+							{ text: 'NZD $', value: 'NZD $' },
+							{ text: 'USD $', value: 'USD $' },
+						]}
+					/>
+				}
+				after={
+					<Select
+						name="example-select-both-after"
+						data={[
+							{ text: 'Select', value: '' },
+							{ text: 'Yearly', value: 'Yearly' },
+							{ text: 'Monthly', value: 'Monthly' },
+							{ text: 'Weekly', value: 'Weekly' },
+						]}
+					/>
+				}
+			/>
 		</GEL>
 	);
 }

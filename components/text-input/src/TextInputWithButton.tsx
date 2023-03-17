@@ -5,7 +5,7 @@ import { defaultTextInputWithButton } from './overrides/textInputWithButton';
 import { defaultTextInputWithButtonTextInput } from './overrides/textInputWithButtonTextInput';
 import { defaultTextInputWithButtonBtn } from './overrides/textInputWithButtonBtn';
 import pkg from '../package.json';
-import React, { ReactNode } from 'react';
+import React, { forwardRef, ReactNode } from 'react';
 
 export interface TextInputWithButtonProps {
 	/**
@@ -58,74 +58,81 @@ export interface TextInputWithButtonProps {
 // Component
 // ==============================
 
-export const TextInputWithButton = ({
-	btnIcon,
-	btnAssistiveText,
-	btnAriaPressed,
-	btnOnClick,
-	children,
-	overrides: componentOverrides,
-	...rest
-}: TextInputWithButtonProps) => {
-	const {
-		OVERRIDES: { [pkg.name]: tokenOverrides },
-		[pkg.name]: brandOverrides,
-	} = useBrand();
-
-	const defaultOverrides = {
-		TextInputWithButton: defaultTextInputWithButton,
-		TextInputWithButtonTextInput: defaultTextInputWithButtonTextInput,
-		TextInputWithButtonBtn: defaultTextInputWithButtonBtn,
-	};
-
-	const state = {
-		btnIcon,
-		btnAssistiveText,
-		btnAriaPressed,
-		btnOnClick,
-		overrides: componentOverrides,
-		...rest,
-	};
-
-	const {
-		TextInputWithButton: {
-			component: TextInputWithButton,
-			styles: textInputWithButtonStyles,
-			attributes: textInputWithButtonAttributes,
+export const TextInputWithButton = forwardRef<HTMLInputElement, TextInputWithButtonProps>(
+	(
+		{
+			btnIcon,
+			btnAssistiveText,
+			btnAriaPressed,
+			btnOnClick,
+			children,
+			overrides: componentOverrides,
+			...rest
 		},
-		TextInputWithButtonTextInput: {
-			component: TextInputWithButtonTextInput,
-			styles: textInputWithButtonTextInputStyles,
-			attributes: textInputWithButtonTextInputAttributes,
-		},
-		TextInputWithButtonBtn: {
-			component: TextInputWithButtonBtn,
-			styles: textInputWithButtonBtnStyles,
-			attributes: textInputWithButtonBtnAttributes,
-		},
-	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+		ref
+	) => {
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
 
-	return (
-		<TextInputWithButton
-			state={state}
-			{...textInputWithButtonAttributes(state)}
-			css={textInputWithButtonStyles(state)}
-		>
-			<TextInputWithButtonTextInput
-				{...rest}
+		const defaultOverrides = {
+			TextInputWithButton: defaultTextInputWithButton,
+			TextInputWithButtonTextInput: defaultTextInputWithButtonTextInput,
+			TextInputWithButtonBtn: defaultTextInputWithButtonBtn,
+		};
+
+		const state = {
+			btnIcon,
+			btnAssistiveText,
+			btnAriaPressed,
+			btnOnClick,
+			overrides: componentOverrides,
+			...rest,
+		};
+
+		const {
+			TextInputWithButton: {
+				component: TextInputWithButton,
+				styles: textInputWithButtonStyles,
+				attributes: textInputWithButtonAttributes,
+			},
+			TextInputWithButtonTextInput: {
+				component: TextInputWithButtonTextInput,
+				styles: textInputWithButtonTextInputStyles,
+				attributes: textInputWithButtonTextInputAttributes,
+			},
+			TextInputWithButtonBtn: {
+				component: TextInputWithButtonBtn,
+				styles: textInputWithButtonBtnStyles,
+				attributes: textInputWithButtonBtnAttributes,
+			},
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+
+		return (
+			<TextInputWithButton
 				state={state}
-				overrides={componentOverrides}
-				{...textInputWithButtonTextInputAttributes(state)}
-				css={textInputWithButtonTextInputStyles(state)}
-			/>
-			<TextInputWithButtonBtn
-				state={state}
-				{...textInputWithButtonBtnAttributes(state)}
-				css={textInputWithButtonBtnStyles(state)}
-			/>
-		</TextInputWithButton>
-	);
-};
+				{...textInputWithButtonAttributes(state)}
+				css={textInputWithButtonStyles(state)}
+			>
+				<TextInputWithButtonTextInput
+					{...rest}
+					ref={ref}
+					state={state}
+					overrides={componentOverrides}
+					{...textInputWithButtonTextInputAttributes(state)}
+					css={textInputWithButtonTextInputStyles(state)}
+				/>
+				<TextInputWithButtonBtn
+					state={state}
+					{...textInputWithButtonBtnAttributes(state)}
+					css={textInputWithButtonBtnStyles(state)}
+				/>
+			</TextInputWithButton>
+		);
+	}
+);
+TextInputWithButton.displayName = 'TextInputWithButton';
 
 TextInputWithButton.propTypes = {
 	// ----------------------------- Warning --------------------------------

@@ -102,8 +102,8 @@ for (const componentFile of componentFiles) {
 	});
 
 	newAST.body.forEach(({ name, types }) => {
-		const regexpForPropTypes = new RegExp(`${name}\.propTypes(.|\n)+?,\n};\n`);
-		const regexpForDefaultProps = new RegExp(`${name}\.defaultProps(.|\n)+?};`);
+		const regexpForPropTypes = new RegExp(`\n${name}\.propTypes(.|\n)+?,\n};\n`);
+		const regexpForDefaultProps = new RegExp(`\n${name}\.defaultProps(.|\n)+?};`);
 		const newPropTypes = propTypes.match(regexpForPropTypes)?.[0];
 		const source = prettier.format(fs.readFileSync(componentFile, 'utf8'), {
 			parser: 'typescript',

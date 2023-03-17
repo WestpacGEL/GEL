@@ -1,7 +1,7 @@
-import { GEL, titleCase } from '@westpac/core';
 import React from 'react';
-import { InputGroup, Before, After } from '@westpac/input-group';
-import { blenderTextInput, blenderSelect } from '@westpac/text-input';
+import { GEL, titleCase } from '@westpac/core';
+import { InputGroup } from '@westpac/input-group';
+import { blenderTextInput, blenderSelect, Select } from '@westpac/text-input';
 import { Button, blenderButton } from '@westpac/button';
 
 import { blenderText } from '../src/overrides/text';
@@ -35,50 +35,29 @@ export function AllStyles({ brand }) {
 	return (
 		<GEL brand={overridesWithTokens}>
 			{/* This is a special case so we can genereate a base style for the text component */}
-			<InputGroup name="TEXT" label="TEXT">
-				<Before inputType="text" data="TEXT" position={'none'} />
-			</InputGroup>
-			<InputGroup name="TEXT" label="TEXT">
-				<Before inputType="text" data="TEXT" />
-			</InputGroup>
-			<InputGroup name="TEXT" label="TEXT">
-				<After inputType="text" data="TEXT" />
-			</InputGroup>
-			<InputGroup name="TEXT" label="TEXT">
-				<Before inputType="text" data="TEXT" />
-				<After inputType="text" data="TEXT" />
-			</InputGroup>
+			<InputGroup name="TEXT" label="TEXT" before="TEXT" />
+			<InputGroup name="TEXT" label="TEXT" after="TEXT" />
+			<InputGroup name="TEXT" label="TEXT" before="TEXT" after="TEXT" />
 			{sizes.map((size) => (
-				<InputGroup name="TEXT" label="TEXT" size={size} key={size}>
-					<After inputType="text" data="TEXT" />
-				</InputGroup>
+				<InputGroup name="TEXT" label="TEXT" size={size} key={size} after="TEXT" />
 			))}
-			<InputGroup name="TEXT" label="TEXT">
-				<Before
-					inputType="select"
-					name="TEXT"
-					label="TEXT"
-					data={[
-						{ text: 'TEXT', value: '' },
-						{ text: 'TEXT', value: '' },
-					]}
-				/>
-				<After
-					inputType="select"
-					name="TEXT"
-					label="TEXT"
-					data={[
-						{ text: 'TEXT', value: '' },
-						{ text: 'TEXT', value: '' },
-					]}
-				/>
-			</InputGroup>
+			<InputGroup
+				name="TEXT"
+				label="TEXT"
+				after={
+					<Select
+						name="TEXT"
+						label="TEXT"
+						data={[
+							{ text: 'TEXT', value: '' },
+							{ text: 'TEXT', value: '' },
+						]}
+					/>
+				}
+			/>
 			{/* Adding button for here now since button styles are a different version from input-group version */}
 			<Button>TEXT</Button>
-			<InputGroup name="TEXT" label="TEXT">
-				<Before inputType="button" data="TEXT" />
-				<After inputType="button" data="TEXT" />
-			</InputGroup>
+			<InputGroup name="TEXT" label="TEXT" before="TEXT" after="TEXT" />
 		</GEL>
 	);
 }
@@ -138,9 +117,7 @@ export function Docs({ brand }) {
 					<InputGroup
 						name="inputgroup-before-button"
 						label="Your input label text"
-						data={{
-							before: { inputType: 'button', data: 'Search' },
-						}}
+						before={<Button>Search</Button>}
 					/>
 				</GEL>
 			),
@@ -152,18 +129,17 @@ export function Docs({ brand }) {
 					<InputGroup
 						name="inputgroup-before-select"
 						label="Your input label text"
-						data={{
-							before: {
-								inputType: 'select',
-								label: 'inputgroup-before-select-currency',
-								data: [
+						before={
+							<Select
+								label="inputgroup-before-select-currency"
+								data={[
 									{ text: 'Select', value: '' },
 									{ text: 'AUD $', value: 'AUD $' },
 									{ text: 'USD $', value: 'USD $' },
 									{ text: 'GBP £', value: 'GBP £' },
-								],
-							},
-						}}
+								]}
+							/>
+						}
 					/>
 				</GEL>
 			),
@@ -175,13 +151,7 @@ export function Docs({ brand }) {
 			subheading: 'Text',
 			component: () => (
 				<GEL brand={overridesWithTokens}>
-					<InputGroup
-						name="inputgroup-after-text"
-						label="Your input label text"
-						data={{
-							after: { inputType: 'text', data: '.00' },
-						}}
-					/>
+					<InputGroup name="inputgroup-after-text" label="Your input label text" after=".00" />
 				</GEL>
 			),
 		},
@@ -192,9 +162,7 @@ export function Docs({ brand }) {
 					<InputGroup
 						name="inputgroup-after-button"
 						label="Your input label text"
-						data={{
-							after: { inputType: 'button', data: 'Submit' },
-						}}
+						after={<Button>Submit</Button>}
 					/>
 				</GEL>
 			),
@@ -206,17 +174,16 @@ export function Docs({ brand }) {
 					<InputGroup
 						name="inputgroup-after-select"
 						label="Your input label text"
-						data={{
-							after: {
-								inputType: 'select',
-								label: 'inputgroup-after-select-currency',
-								data: [
+						after={
+							<Select
+								label={'inputgroup-after-select-currency'}
+								data={[
 									{ text: 'Yearly', value: 'Yearly' },
 									{ text: 'Monthly', value: 'Monthly' },
 									{ text: 'Weekly', value: 'Weekly' },
-								],
-							},
-						}}
+								]}
+							/>
+						}
 					/>
 				</GEL>
 			),
@@ -231,10 +198,8 @@ export function Docs({ brand }) {
 					<InputGroup
 						name="inputgroup-before-text-after-button"
 						label="Your input label text"
-						data={{
-							before: { inputType: 'text', data: 'AUS $' },
-							after: { inputType: 'button', data: 'Submit' },
-						}}
+						before="AUS $"
+						after={<Button>Submit</Button>}
 					/>
 				</GEL>
 			),
@@ -246,10 +211,8 @@ export function Docs({ brand }) {
 					<InputGroup
 						name="inputgroup-before-text-after-text"
 						label="Your input label text"
-						data={{
-							before: { inputType: 'text', data: 'AUS $' },
-							after: { inputType: 'text', data: '.00' },
-						}}
+						before="AUS $"
+						after=".00"
 					/>
 				</GEL>
 			),
@@ -261,10 +224,8 @@ export function Docs({ brand }) {
 					<InputGroup
 						name="inputgroup-before-button-after-button"
 						label="Your input label text"
-						data={{
-							before: { inputType: 'button', data: '-' },
-							after: { inputType: 'button', data: '+' },
-						}}
+						before={<Button>-</Button>}
+						after={<Button>+</Button>}
 					/>
 				</GEL>
 			),
@@ -280,19 +241,19 @@ export function Docs({ brand }) {
 						size={size}
 						name={`inputgroup-size-${size}`}
 						label="Your input label text"
-						data={{
-							before: {
-								inputType: 'select',
-								label: `inputgroup-size-${size}-currency`,
-								data: [
+						before={
+							<Select
+								size={size}
+								label={`inputgroup-size-${size}-currency`}
+								data={[
 									{ text: 'Select', value: '' },
 									{ text: 'AUD $', value: 'AUD $' },
 									{ text: 'USD $', value: 'USD $' },
 									{ text: 'GBP £', value: 'GBP £' },
-								],
-							},
-							after: { inputType: 'text', data: '.00' },
-						}}
+								]}
+							/>
+						}
+						after=".00"
 					/>
 				</GEL>
 			),

@@ -1,15 +1,13 @@
 import { GEL } from '@westpac/core';
 import { render } from '@testing-library/react';
-import { InputGroup, Before } from '@westpac/input-group';
+import { InputGroup } from '@westpac/input-group';
 import wbc from '@westpac/wbc';
 
 // Component specific tests
 describe('Input Group component', () => {
 	const SimpleInputGroup = () => (
 		<GEL brand={wbc}>
-			<InputGroup name="example-text" label="Total amount">
-				<Before inputType="text" data="AUS $" />
-			</InputGroup>
+			<InputGroup name="example-text" label="Total amount" before="AUS $" />
 		</GEL>
 	);
 

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Compacta } from '@westpac/compacta';
 import { Form, FormGroup, Field } from '@westpac/form';
 import { TextInput, Select } from '@westpac/text-input';
-import { InputGroup, Before } from '@westpac/input-group';
+import { InputGroup } from '@westpac/input-group';
 import { Playground } from '../../../../website/src/components/playground/macro';
 
 export const CompactaDemo = ({ error }) => {
@@ -78,9 +78,8 @@ export const CompactaDemo = ({ error }) => {
 								}}
 								width={20}
 								invalid={error}
-							>
-								<Before inputType="text" data="$" />
-							</InputGroup>
+								before="$"
+							/>
 						</Field>
 					</FormGroup>
 				</Form>

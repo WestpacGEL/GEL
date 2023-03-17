@@ -8,9 +8,6 @@ import {
 	formatClassName,
 } from '@westpac/core';
 
-import { Text as MainText } from '../Text';
-const defaultProps = MainText?.defaultProps || {};
-
 // ==============================
 // Component
 // ==============================
@@ -82,7 +79,7 @@ const textStyles = (_, { size, position }) => {
 
 const blenderStyles = (_, { size, position }) => {
 	const props = { size, position };
-	const defProps = { ...defaultProps, position: 'none' }; // so we can generate a base style with no position
+	const defProps = { position: 'none' }; // so we can generate a base style with no position
 	const baseStyles = textStyles(_, defProps);
 
 	let modifiers = getModifier(defProps, props);
@@ -123,7 +120,6 @@ const textAttributes = () => null;
 
 const blenderAttributes = (_, { size, position }) => ({
 	className: classNames({
-		[`__convert__inputGroup-text-${size}`]: size !== defaultProps.size,
 		[`__convert__inputGroup-text-${position}`]: position,
 	}),
 });

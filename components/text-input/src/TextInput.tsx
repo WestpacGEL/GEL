@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { defaultTextInput } from './overrides/textInput';
 import pkg from '../package.json';
-import React, { ReactNode } from 'react';
+import React, { forwardRef, ReactNode } from 'react';
 
 export interface TextInputProps {
 	/**
@@ -31,7 +31,7 @@ export interface TextInputProps {
 	/**
 	 * ReactNode
 	 */
-	children: ReactNode;
+	children?: ReactNode;
 
 	/**
 	 * Type
@@ -54,47 +54,54 @@ export interface TextInputProps {
 // Component
 // ==============================
 
-export const TextInput = ({
-	width,
-	children,
-	overrides: componentOverrides,
-	size = 'medium',
-	inline = false,
-	invalid = false,
-	type = 'text',
-	...rest
-}: TextInputProps) => {
-	const {
-		OVERRIDES: { [pkg.name]: tokenOverrides },
-		[pkg.name]: brandOverrides,
-	} = useBrand();
+export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+	(
+		{
+			width,
+			children,
+			overrides: componentOverrides,
+			size = 'medium',
+			inline = false,
+			invalid = false,
+			type = 'text',
+			...rest
+		},
+		ref
+	) => {
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
 
-	const defaultOverrides = {
-		TextInput: defaultTextInput,
-	};
+		const defaultOverrides = {
+			TextInput: defaultTextInput,
+		};
 
-	const state = {
-		size,
-		width,
-		inline,
-		invalid,
-		overrides: componentOverrides,
-		...rest,
-	};
+		const state = {
+			size,
+			width,
+			inline,
+			invalid,
+			overrides: componentOverrides,
+			...rest,
+		};
 
-	const {
-		TextInput: { component: TextInput, styles: textInputStyles, attributes: textInputAttributes },
-	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+		const {
+			TextInput: { component: TextInput, styles: textInputStyles, attributes: textInputAttributes },
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	return (
-		<TextInput
-			{...rest}
-			state={state}
-			{...textInputAttributes(state)}
-			css={textInputStyles(state)}
-		/>
-	);
-};
+		return (
+			<TextInput
+				ref={ref}
+				{...rest}
+				state={state}
+				{...textInputAttributes(state)}
+				css={textInputStyles(state)}
+			/>
+		);
+	}
+);
+TextInput.displayName = 'TextInput';
 
 // ==============================
 // Types
