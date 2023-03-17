@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useBrand, overrideReconciler } from '@westpac/core';
-import React, { useId, useMemo, ReactNode, CSSProperties } from 'react';
+import React, { useId, useMemo, ReactNode, CSSProperties, forwardRef } from 'react';
 
 import { defaultInputGroup } from './overrides/inputGroup';
 
@@ -218,114 +218,122 @@ export interface InputGroupProps {
 	};
 }
 
-export const InputGroup = ({
-	instanceId,
-	name,
-	label,
-	look,
-	readOnly,
-	size = 'medium',
-	invalid = false,
-	disabled = false,
-	children,
-	overrides: componentOverrides,
-	placeholder,
-	before,
-	after,
-	ariaInvalid,
-	data,
-	...rest
-}: InputGroupProps) => {
-	const {
-		OVERRIDES: { [pkg.name]: tokenOverrides },
-		[pkg.name]: brandOverrides,
-	} = useBrand();
-
-	const defaultOverrides = {
-		InputGroup: defaultInputGroup,
-	};
-
-	const _id = useId();
-	const id = useMemo(() => instanceId || `gel-input-group-${_id}`, [_id, instanceId]);
-
-	const state = {
-		id,
-		name,
-		label,
-		size,
-		look,
-		invalid,
-		disabled,
-		readOnly,
-		overrides: componentOverrides,
-		placeholder,
-		ariaInvalid,
-		...rest,
-	};
-
-	const {
-		InputGroup: {
-			component: InputGroup,
-			styles: inputGroupStyles,
-			attributes: inputGroupAttributes,
+export const InputGroup = forwardRef<HTMLInputElement, InputGroupProps>(
+	(
+		{
+			instanceId,
+			name,
+			label,
+			look,
+			readOnly,
+			size = 'medium',
+			invalid = false,
+			disabled = false,
+			children,
+			overrides: componentOverrides,
+			placeholder,
+			before,
+			after,
+			ariaInvalid,
+			data,
+			...rest
 		},
-	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+		ref
+	) => {
+		const {
+			OVERRIDES: { [pkg.name]: tokenOverrides },
+			[pkg.name]: brandOverrides,
+		} = useBrand();
 
-	return (
-		<InputGroup {...inputGroupAttributes(state)} css={inputGroupStyles(state)}>
-			{before && (
-				<Wrapper
-					disabled={disabled}
-					readOnly={readOnly}
-					invalid={invalid}
-					ariaInvalid={ariaInvalid}
-					size={size}
-					before
-				>
-					{typeof before === 'string' ? (
-						<TextWrapper disabled={disabled} readOnly={readOnly} size={size}>
-							{before}
-						</TextWrapper>
-					) : (
+		const defaultOverrides = {
+			InputGroup: defaultInputGroup,
+		};
+
+		const _id = useId();
+		const id = useMemo(() => instanceId || `gel-input-group-${_id}`, [_id, instanceId]);
+
+		const state = {
+			id,
+			name,
+			label,
+			size,
+			look,
+			invalid,
+			disabled,
+			readOnly,
+			overrides: componentOverrides,
+			placeholder,
+			ariaInvalid,
+			...rest,
+		};
+
+		const {
+			InputGroup: {
+				component: InputGroup,
+				styles: inputGroupStyles,
+				attributes: inputGroupAttributes,
+			},
+		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
+
+		return (
+			<InputGroup {...inputGroupAttributes(state)} css={inputGroupStyles(state)}>
+				{before && (
+					<Wrapper
+						disabled={disabled}
+						readOnly={readOnly}
+						invalid={invalid}
+						ariaInvalid={ariaInvalid}
+						size={size}
 						before
-					)}
-				</Wrapper>
-			)}
-			<TextInputField
-				instanceId={`${id}-textInput`}
-				name={name}
-				label={label}
-				size={size}
-				invalid={invalid}
-				disabled={disabled}
-				readOnly={readOnly}
-				placeholder={placeholder}
-				before={!!before}
-				after={!!after}
-				aria-invalid={ariaInvalid}
-				{...rest}
-			/>
-			{after && (
-				<Wrapper
-					disabled={disabled}
-					invalid={invalid}
-					ariaInvalid={ariaInvalid}
+					>
+						{typeof before === 'string' ? (
+							<TextWrapper disabled={disabled} readOnly={readOnly} size={size}>
+								{before}
+							</TextWrapper>
+						) : (
+							before
+						)}
+					</Wrapper>
+				)}
+				<TextInputField
+					ref={ref}
+					instanceId={`${id}-textInput`}
+					name={name}
+					label={label}
 					size={size}
-					after
+					invalid={invalid}
+					disabled={disabled}
 					readOnly={readOnly}
-				>
-					{typeof after === 'string' ? (
-						<TextWrapper disabled={disabled} readOnly={readOnly} size={size}>
-							{after}
-						</TextWrapper>
-					) : (
+					placeholder={placeholder}
+					before={!!before}
+					after={!!after}
+					aria-invalid={ariaInvalid}
+					{...rest}
+				/>
+				{after && (
+					<Wrapper
+						disabled={disabled}
+						invalid={invalid}
+						ariaInvalid={ariaInvalid}
+						size={size}
 						after
-					)}
-				</Wrapper>
-			)}
-		</InputGroup>
-	);
-};
+						readOnly={readOnly}
+					>
+						{typeof after === 'string' ? (
+							<TextWrapper disabled={disabled} readOnly={readOnly} size={size}>
+								{after}
+							</TextWrapper>
+						) : (
+							after
+						)}
+					</Wrapper>
+				)}
+			</InputGroup>
+		);
+	}
+);
+
+InputGroup.displayName = 'InputGroup';
 
 TextWrapper.propTypes = {
 	// ----------------------------- Warning --------------------------------

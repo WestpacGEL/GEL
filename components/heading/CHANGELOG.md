@@ -1,5 +1,11 @@
 # @westpac/heading
 
+## 2.3.0
+
+### Minor Changes
+
+- ac8d92ca: Updating the form elements to have forwardRef and inputGroup to have concept of slots
+
 ## 2.2.0
 
 ### Minor Changes

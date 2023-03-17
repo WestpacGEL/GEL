@@ -1,5 +1,16 @@
 # @westpac/input-group
 
+## 3.0.0
+
+### Major Changes
+
+- ac8d92ca: Updating the form elements to have forwardRef and inputGroup to have concept of slots
+
+### Patch Changes
+
+- Updated dependencies [ac8d92ca]
+  - @westpac/text-input@2.3.0
+
 ## 2.2.0
 
 ### Minor Changes

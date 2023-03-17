@@ -9,7 +9,7 @@ import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 const Toggle = ({ open, state: _, ...rest }) => (
 	<Button
 		look="link"
-		size="small"
+		size="large"
 		soft
 		iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}
 		{...rest}
@@ -23,6 +23,7 @@ const Toggle = ({ open, state: _, ...rest }) => (
 const toggleStyles = () => ({
 	label: getLabel('compacta-toggle'),
 	marginLeft: 'auto',
+	padding: 0,
 });
 
 // ==============================
