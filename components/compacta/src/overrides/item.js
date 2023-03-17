@@ -17,6 +17,7 @@ const itemStyles = (_, { brand }) => {
 		marginBottom: '0.75rem',
 		border: `1px solid ${COLORS.borderDark}`,
 		borderRadius: '0.1875rem',
+		overflow: 'hidden',
 	};
 };
 

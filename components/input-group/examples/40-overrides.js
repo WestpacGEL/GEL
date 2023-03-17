@@ -1,6 +1,8 @@
-import { GEL, jsx } from '@westpac/core';
+import { GEL } from '@westpac/core';
 import { HouseIcon } from '@westpac/icon';
-import { InputGroup, Before, After } from '@westpac/input-group';
+import { InputGroup } from '@westpac/input-group';
+import { Button } from '@westpac/button';
+import { Select } from '@westpac/text-input';
 
 const TextOverride = ({ data, state: _, ...rest }) => (
 	<span {...rest}>
@@ -43,101 +45,51 @@ function Example({ brand }) {
 	return (
 		<GEL brand={overridesWithTokens}>
 			<h2>With overrides applied</h2>
-			<InputGroup name="example-overrides-l">
-				<Before inputType="text" data="AUS $" />
-				<After inputType="button" data="Go" onClick={() => console.log('Go clicked')} />
-			</InputGroup>
+			<InputGroup
+				name="example-overrides-l"
+				before="AUS $"
+				after={<Button onClick={() => console.log('Go clicked')}>Go</Button>}
+			/>
 			<br />
 
 			<InputGroup
 				name="example-overrides-2"
-				data={{
-					before: {
-						inputType: 'text',
-						data: 'AUS $',
-					},
-					after: { inputType: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
-				}}
+				before="AUS $"
+				after={<Button onClick={() => console.log('Go clicked')}>Go</Button>}
 			/>
 			<br />
 
-			<InputGroup name="example-overrides-3">
-				<Before
-					inputType="select"
-					label="Currency"
-					onChange={(event) => console.log(`Select ${event.target.value}`)}
-					data={[
-						{ text: 'Select', value: '' },
-						{ text: 'AUD $', value: 'AUD $' },
-						{ text: 'NZD $', value: 'NZD $' },
-						{ text: 'USD $', value: 'USD $' },
-					]}
-				/>
-				<After inputType="button" data="Go" onClick={() => console.log('Go clicked')} />
-			</InputGroup>
+			<InputGroup
+				name="example-overrides-3"
+				before={
+					<Select
+						onChange={(event) => console.log(`Select ${event.target.value}`)}
+						data={[
+							{ text: 'Select', value: '' },
+							{ text: 'AUD $', value: 'AUD $' },
+							{ text: 'NZD $', value: 'NZD $' },
+							{ text: 'USD $', value: 'USD $' },
+						]}
+					/>
+				}
+				after={<Button onClick={() => console.log('Go clicked')}>Go</Button>}
+			/>
 			<br />
 
 			<InputGroup
 				name="example-overrides-4"
-				data={{
-					before: {
-						inputType: 'select',
-						label: 'Currency',
-						onChange: (event) => console.log(`Select ${event.target.value}`),
-						data: [
+				before={
+					<Select
+						onChange={(event) => console.log(`Select ${event.target.value}`)}
+						data={[
 							{ text: 'Select', value: '' },
 							{ text: 'AUD $', value: 'AUD $' },
 							{ text: 'NZD $', value: 'NZD $' },
 							{ text: 'USD $', value: 'USD $' },
-						],
-					},
-					after: { inputType: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
-				}}
-			/>
-
-			<hr />
-
-			<h2>With overrides and component overrides</h2>
-			<InputGroup
-				name="example-overrides-component-1"
-				overrides={{
-					Button: {
-						styles: (styles) => ({
-							...styles,
-							outline: '4px solid blue',
-						}),
-					},
-				}}
-			>
-				<Before inputType="text" data="AUS $" />
-				<After inputType="button" data="Go" onClick={() => console.log('Go clicked')} />
-			</InputGroup>
-			<br />
-
-			<InputGroup
-				name="example-overrides-component-2"
-				overrides={{
-					Select: {
-						styles: (styles) => ({
-							...styles,
-							outline: '4px solid purple',
-						}),
-					},
-				}}
-				data={{
-					before: {
-						inputType: 'select',
-						label: 'Currency',
-						onChange: (event) => console.log(`Select ${event.target.value}`),
-						data: [
-							{ text: 'Select', value: '' },
-							{ text: 'AUD $', value: 'AUD $' },
-							{ text: 'NZD $', value: 'NZD $' },
-							{ text: 'USD $', value: 'USD $' },
-						],
-					},
-					after: { inputType: 'button', data: 'Go', onClick: () => console.log('Go clicked') },
-				}}
+						]}
+					/>
+				}
+				after={<Button onClick={() => console.log('Go clicked')}>Go</Button>}
 			/>
 		</GEL>
 	);

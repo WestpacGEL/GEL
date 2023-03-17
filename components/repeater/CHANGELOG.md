@@ -1,5 +1,11 @@
 # @westpac/repeater
 
+## 2.3.0
+
+### Minor Changes
+
+- 8313a515: Update default design and add separator style option
+
 ## 2.2.0
 
 ### Minor Changes

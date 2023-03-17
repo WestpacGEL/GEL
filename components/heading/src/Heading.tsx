@@ -4,8 +4,8 @@ import React, { forwardRef, ReactNode } from 'react';
 
 import { defaultHeading } from './overrides/heading';
 import pkg from '../package.json';
-
-export interface HeadingProps {
+type HeadingKeys = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+export type HeadingProps<T extends HeadingKeys = HeadingKeys> = JSX.IntrinsicElements[T] & {
 	/**
 	 * Children
 	 */
@@ -37,17 +37,14 @@ export interface HeadingProps {
 			attributes?: (...args: unknown[]) => unknown;
 		};
 	};
-}
+};
 
 // ==============================
 // Component
 // ==============================
 
-export const Heading = forwardRef(
-	(
-		{ tag, size, uppercase, children, overrides: componentOverrides, ...rest }: HeadingProps,
-		ref
-	) => {
+export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
+	({ tag, size, uppercase, children, overrides: componentOverrides, ...rest }, ref) => {
 		const {
 			OVERRIDES: { [pkg.name]: tokenOverrides },
 			[pkg.name]: brandOverrides,

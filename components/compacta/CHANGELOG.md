@@ -1,5 +1,11 @@
 # @westpac/compacta
 
+## 2.3.0
+
+### Minor Changes
+
+- 5bcf3978: Updated compacta design
+
 ## 2.2.0
 
 ### Minor Changes

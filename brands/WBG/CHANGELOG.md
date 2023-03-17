@@ -1,5 +1,11 @@
 # @westpac/wbg
 
+## 2.4.0
+
+### Minor Changes
+
+- 4db14579: Update focus color
+
 ## 2.3.0
 
 ### Minor Changes

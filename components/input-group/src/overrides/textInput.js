@@ -1,11 +1,15 @@
-import { jsx, getLabel, classNames } from '@westpac/core';
+import { getLabel, classNames } from '@westpac/core';
 import { TextInput as Input } from '@westpac/text-input';
+import { forwardRef } from 'react';
 
 // ==============================
 // Component
 // ==============================
 
-const TextInput = ({ state: { size }, ...rest }) => <Input size={size} {...rest} />;
+const TextInput = forwardRef(({ state: { size }, ...rest }, ref) => (
+	<Input size={size} {...rest} ref={ref} />
+));
+TextInput.displayName = 'TextInput';
 
 const BlenderTextInput = (props) => {
 	const {
