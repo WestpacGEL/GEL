@@ -11,7 +11,7 @@ import { ArrowLeftIcon } from '@westpac/icon';
 // The default tests every component should run
 overridesTest({
 	name: 'button-dropdown', // the name has to be the package name without '@westpac/' scope
-	overrides: ['ButtonDropdown', 'Panel'], // every single override root key
+	overrides: ['ButtonDropdown'], // every single override root key
 	Component: (props) => (
 		<ButtonDropdown {...props} text="Default Dropdown" open={true}>
 			ButtonDropdown content
