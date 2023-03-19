@@ -51,7 +51,7 @@ interface ButtonGroupProps {
 	/**
 	 * Button size. Passed on to each child button
 	 */
-	size?: 'small' | 'medium' | 'large' | 'xlarge' | 'small' | 'medium' | 'large' | 'xlarge'[];
+	size?: 'small' | 'medium' | 'large' | 'xlarge' | ('small' | 'medium' | 'large' | 'xlarge')[];
 	/**
 	 * Block mode. Fill parent width
 	 */
@@ -269,7 +269,7 @@ ButtonGroup.propTypes = {
 	 */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
-		PropTypes.arrayOf(PropTypes.oneOf(['xlarge'])),
+		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
 	]),
 	/**
 	 * Control the value, if numeric an index is assumed. Requires `onChange`
