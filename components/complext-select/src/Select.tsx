@@ -1,15 +1,19 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, HTMLAttributes } from 'react';
+import { Item, useSelectState } from 'react-stately';
+import { HiddenSelect, useSelect } from 'react-aria';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useBrand } from '@westpac/core';
+import { useStyles } from './useStyle';
 
-import { defaultSelect } from './overrides/select';
 import pkg from '../package.json';
 
-export interface SelectProps {
+type SelectSizes = 'small' | 'medium' | 'large' | 'xlarge';
+
+export interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
 	/**
 	 * Component size
 	 */
-	size?: 'small' | 'medium' | 'large' | 'xlarge';
+	size?: SelectSizes;
 	/**
 	 * Component width (in chars).
 	 *
@@ -36,16 +40,6 @@ export interface SelectProps {
 	 * Note: Only `select` type inputs render children.
 	 */
 	children?: React.ReactNode;
-	/**
-	 * The override API
-	 */
-	overrides?: {
-		Select?: {
-			styles?: (...args: unknown[]) => unknown;
-			component?: React.ElementType;
-			attributes?: (...args: unknown[]) => unknown;
-		};
-	};
 }
 
 // ==============================
@@ -61,7 +55,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 			width,
 			data,
 			children,
-			overrides: componentOverrides,
+			name,
+			label,
 			...rest
 		},
 		ref
@@ -71,47 +66,32 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 			[pkg.name]: brandOverrides,
 		} = useBrand();
 
-		const defaultOverrides = {
-			Select: defaultSelect,
-		};
+		const state = useSelectState(rest);
+		// Get props for child elements from useSelect
+		const selectRef = React.useRef(null);
+		const { labelProps, triggerProps, valueProps, menuProps } = useSelect(rest, state, selectRef);
 
-		const state = {
-			size,
-			width,
-			inline,
-			invalid,
-			data,
-			overrides: componentOverrides,
-			...rest,
-		};
-
-		const {
-			Select: { component: Select, styles: selectStyles, attributes: selectAttributes },
-		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
-
-		let allChildren = [];
-		if (data) {
-			data.map(({ text, ...rest }, index) => {
-				allChildren.push(
-					<option key={index} {...rest}>
-						{text}
-					</option>
-				);
-			});
-		} else {
-			allChildren = children;
-		}
+		const styles = useStyles({ size, inline, invalid, width, data, ...rest });
 
 		return (
-			<Select
-				ref={ref}
-				{...rest}
-				state={state}
-				{...selectAttributes(state)}
-				css={selectStyles(state)}
-			>
-				{allChildren}
-			</Select>
+			<div style={{ display: 'inline-block' }}>
+				<div {...labelProps}>{label}</div>
+				<HiddenSelect state={state} triggerRef={selectRef} label={label} name={name} />
+				<button {...triggerProps} ref={selectRef} style={{ height: 30, fontSize: 14 }}>
+					<span {...valueProps}>
+						{state.selectedItem ? state.selectedItem.rendered : 'Select an option'}
+					</span>
+					<span aria-hidden="true" style={{ paddingLeft: 5 }}>
+						▼
+					</span>
+				</button>
+				{/* {state.isOpen && (
+					<Popover state={state} triggerRef={ref} placement="bottom start">
+						<ListBox {...menuProps} state={state} />
+					</Popover>
+				)}
+				{allChildren} */}
+			</div>
 		);
 	}
 );

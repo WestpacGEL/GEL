@@ -2,14 +2,19 @@ import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
-import { defaultSelect } from './overrides/select';
+import { defaultTextarea } from './overrides/textarea';
 import pkg from '../package.json';
+import { ReactNode } from 'react';
 
-export interface SelectProps {
+export interface TextareaProps {
+	/**
+	 * Children
+	 */
+	children?: ReactNode;
 	/**
 	 * Component size
 	 */
-	size?: 'small' | 'medium' | 'large' | 'xlarge';
+	size: 'small' | 'medium' | 'large' | 'xlarge';
 	/**
 	 * Component width (in chars).
 	 *
@@ -19,28 +24,16 @@ export interface SelectProps {
 	/**
 	 * Inline mode
 	 */
-	inline?: boolean;
+	inline: boolean;
 	/**
 	 * Invalid input mode
 	 */
-	invalid?: boolean;
-	/**
-	 * Data drive this component
-	 */
-	data?: {
-		text: string;
-	}[];
-	/**
-	 * Component children.
-	 *
-	 * Note: Only `select` type inputs render children.
-	 */
-	children?: React.ReactNode;
+	invalid: boolean;
 	/**
 	 * The override API
 	 */
 	overrides?: {
-		Select?: {
+		Textarea?: {
 			styles?: (...args: unknown[]) => unknown;
 			component?: React.ElementType;
 			attributes?: (...args: unknown[]) => unknown;
@@ -52,18 +45,17 @@ export interface SelectProps {
 // Component
 // ==============================
 
-export const Select = forwardRef<HTMLSelectElement, SelectProps>(
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 	(
 		{
+			width,
 			size = 'medium',
 			inline = false,
 			invalid = false,
-			width,
-			data,
 			children,
 			overrides: componentOverrides,
 			...rest
-		},
+		}: TextareaProps,
 		ref
 	) => {
 		const {
@@ -72,7 +64,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 		} = useBrand();
 
 		const defaultOverrides = {
-			Select: defaultSelect,
+			Textarea: defaultTextarea,
 		};
 
 		const state = {
@@ -80,76 +72,49 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 			width,
 			inline,
 			invalid,
-			data,
 			overrides: componentOverrides,
 			...rest,
 		};
 
 		const {
-			Select: { component: Select, styles: selectStyles, attributes: selectAttributes },
+			Textarea: { component: Textarea, styles: textareaStyles, attributes: textareaAttributes },
 		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-		let allChildren = [];
-		if (data) {
-			data.map(({ text, ...rest }, index) => {
-				allChildren.push(
-					<option key={index} {...rest}>
-						{text}
-					</option>
-				);
-			});
-		} else {
-			allChildren = children;
-		}
-
 		return (
-			<Select
+			<Textarea
 				ref={ref}
 				{...rest}
 				state={state}
-				{...selectAttributes(state)}
-				css={selectStyles(state)}
-			>
-				{allChildren}
-			</Select>
+				{...textareaAttributes(state)}
+				css={textareaStyles(state)}
+			/>
 		);
 	}
 );
+Textarea.displayName = 'Textarea';
 
-Select.displayName = 'Select';
-
-Select.propTypes = {
+Textarea.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
 	/**
-	 * Component children.
-	 *
-	 * Note: Only `select` type inputs render children.
+	 * Children
 	 */
 	children: PropTypes.node,
 	/**
-	 * Data drive this component
-	 */
-	data: PropTypes.arrayOf(
-		PropTypes.shape({
-			text: PropTypes.string.isRequired,
-		})
-	),
-	/**
 	 * Inline mode
 	 */
-	inline: PropTypes.bool,
+	inline: PropTypes.bool.isRequired,
 	/**
 	 * Invalid input mode
 	 */
-	invalid: PropTypes.bool,
+	invalid: PropTypes.bool.isRequired,
 	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
-		Select: PropTypes.shape({
+		Textarea: PropTypes.shape({
 			attributes: PropTypes.func,
 			component: PropTypes.elementType,
 			styles: PropTypes.func,
@@ -158,7 +123,7 @@ Select.propTypes = {
 	/**
 	 * Component size
 	 */
-	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']).isRequired,
 	/**
 	 * Component width (in chars).
 	 *
@@ -166,3 +131,5 @@ Select.propTypes = {
 	 */
 	width: PropTypes.oneOf([2, 3, 4, 5, 10, 20, 30]),
 };
+
+Textarea.defaultProps = { inline: false, invalid: false, size: 'medium' };
