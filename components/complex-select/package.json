@@ -40,15 +40,17 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
+		"@react-aria/overlays": "^3.13.0",
 		"@westpac/button": "^2.2.0",
 		"@westpac/core": "^3.2.0",
-		"mini-svg-data-uri": "^1.3.3",
+		"mini-svg-data-uri": "^1.4.4",
 		"prop-types": "^15.7.2",
 		"react-aria": "^3.23.1",
 		"react-stately": "^3.21.0"
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.10.6",
+		"@react-types/select": "^3.7.0",
 		"@westpac/grid": "^2.2.0",
 		"@westpac/icon": "^2.1.0",
 		"cypress": "^8.0.0",
@@ -61,8 +63,8 @@
 	},
 	"components": [
 		{
-			"name": "Select",
-			"src": "Select.tsx"
+			"name": "ComplexSelect",
+			"src": "ComplexSelect.tsx"
 		}
 	]
 }

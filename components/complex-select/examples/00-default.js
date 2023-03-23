@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { GEL, jsx } from '@westpac/core';
-import { Select } from '@westpac/text-input';
+import { ComplexSelect, Item } from '@westpac/complex-select';
 import { Button } from '@westpac/button';
 import { Form } from '@westpac/form';
 
 function Example({ brand }) {
 	const [value, setValue] = useState();
+	const [selectedKey, setSelectedKey] = useState('1');
 
 	const handleChange = (event) => {
 		setValue(event.target.value);
@@ -14,59 +15,70 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<h2>Default</h2>
-			<Select name="example-default">
-				<option>Select</option>
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-			</Select>
+			<ComplexSelect name="example-default">
+				<Item>Select</Item>
+				<Item key="1">1</Item>
+				<Item key="2">2</Item>
+				<Item key="3">3</Item>
+			</ComplexSelect>
+
+			<ComplexSelect
+				selectedKey={selectedKey}
+				onSelectionChange={(key) => setSelectedKey(key)}
+				name="example-default"
+			>
+				<Item key="">Select</Item>
+				<Item key="1">1</Item>
+				<Item key="2">2</Item>
+				<Item key="3">3</Item>
+			</ComplexSelect>
 			<br />
 			<br />
-			<Select name="example-optgroup">
+			{/* <ComplexSelect name="example-optgroup">
 				<optgroup label="An optgroup">
 					<option>Select</option>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
 				</optgroup>
-			</Select>
+			</ComplexSelect>
 
 			<hr />
 
 			<h2>Selected</h2>
 
 			<h3>Preselected via value</h3>
-			<Select name="example-selectedvalue" value="2">
+			<ComplexSelect name="example-selectedvalue" value="2">
 				<option>Select</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 
 			<h3>Preselected via attribute</h3>
-			<Select name="example-selectedattribute">
+			<ComplexSelect name="example-selectedattribute">
 				<option>Select</option>
 				<option>1</option>
 				<option selected>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 
 			<hr />
 
 			<h2>Controlled</h2>
-			<Select name="example-controlled" value={value} onChange={handleChange}>
+			<ComplexSelect name="example-controlled" value={value} onChange={handleChange}>
 				<option>Select</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 
 			<hr />
 
 			<h2>Data driven</h2>
 
 			<h3>Not preselected</h3>
-			<Select
+			<ComplexSelect
 				name="example-datadriven"
 				data={[
 					{ text: 'Select', value: '' },
@@ -77,7 +89,7 @@ function Example({ brand }) {
 			/>
 
 			<h3>Preselected via value</h3>
-			<Select
+			<ComplexSelect
 				name="example-datadriven-selectedvalue"
 				data={[
 					{ text: 'Select', value: '' },
@@ -89,7 +101,7 @@ function Example({ brand }) {
 			/>
 
 			<h3>Preselected via attribute</h3>
-			<Select
+			<ComplexSelect
 				name="example-datadriven-selectedattribute"
 				data={[
 					{ text: 'Select', value: '' },
@@ -102,133 +114,133 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Sizes</h2>
-			<Select name="example-small" size="small">
+			<ComplexSelect name="example-small" size="small">
 				<option>Small</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 			<br />
 			<br />
-			<Select name="example-medium" size="medium">
+			<ComplexSelect name="example-medium" size="medium">
 				<option>Medium</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 			<br />
 			<br />
-			<Select name="example-large" size="large">
+			<ComplexSelect name="example-large" size="large">
 				<option>Large</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 			<br />
 			<br />
-			<Select name="example-xlarge" size="xlarge">
+			<ComplexSelect name="example-xlarge" size="xlarge">
 				<option>XLarge</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 
 			<hr />
 
 			<h2>Invalid</h2>
-			<Select name="example-invalid" invalid>
+			<ComplexSelect name="example-invalid" invalid>
 				<option>Invalid</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 
 			<hr />
 
 			<h2>Disabled</h2>
-			<Select name="example-disabled" disabled>
+			<ComplexSelect name="example-disabled" disabled>
 				<option>disabled</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 
 			<hr />
 
 			<h2>Inline</h2>
 			<Form action="#">
-				<Select name="example-inline1" inline>
+				<ComplexSelect name="example-inline1" inline>
 					<option>Select</option>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
-				</Select>{' '}
-				<Select name="example-inline2" inline>
+				</ComplexSelect>{' '}
+				<ComplexSelect name="example-inline2" inline>
 					<option>Select</option>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
-				</Select>{' '}
+				</ComplexSelect>{' '}
 				<Button type="submit">Submit</Button>
 			</Form>
 
 			<hr />
 
 			<h2>Fixed width</h2>
-			<Select name="example-width-2" width={2}>
+			<ComplexSelect name="example-width-2" width={2}>
 				<option>Size 2</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 			<br />
 			<br />
-			<Select name="example-width-3" width={3}>
+			<ComplexSelect name="example-width-3" width={3}>
 				<option>Size 3</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 			<br />
 			<br />
-			<Select name="example-width-4" width={4}>
+			<ComplexSelect name="example-width-4" width={4}>
 				<option>Size 4</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 			<br />
 			<br />
-			<Select name="example-width-5" width={5}>
+			<ComplexSelect name="example-width-5" width={5}>
 				<option>Size 5</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 			<br />
 			<br />
-			<Select name="example-width-10" width={10}>
+			<ComplexSelect name="example-width-10" width={10}>
 				<option>Size 10</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 			<br />
 			<br />
-			<Select name="example-width-20" width={20}>
+			<ComplexSelect name="example-width-20" width={20}>
 				<option>Size 20</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect>
 			<br />
 			<br />
-			<Select name="example-width-30" width={30}>
+			<ComplexSelect name="example-width-30" width={30}>
 				<option>Size 30</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-			</Select>
+			</ComplexSelect> */}
 		</GEL>
 	);
 }

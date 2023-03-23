@@ -1,15 +1,18 @@
 import React, { forwardRef, HTMLAttributes } from 'react';
 import { Item, useSelectState } from 'react-stately';
-import { HiddenSelect, useSelect } from 'react-aria';
+import { HiddenSelect, mergeProps, useButton, useFocusRing, useSelect } from 'react-aria';
 import PropTypes from 'prop-types';
 import { useBrand } from '@westpac/core';
 import { useStyles } from './useStyle';
 
 import pkg from '../package.json';
+import { AriaSelectProps } from '@react-types/select';
+import { Popover } from './Popover';
+import { ListBox } from './ListBox';
 
 type SelectSizes = 'small' | 'medium' | 'large' | 'xlarge';
 
-export interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
+export interface ComplexSelectProps<T extends object = any> extends AriaSelectProps<T> {
 	/**
 	 * Component size
 	 */
@@ -34,19 +37,13 @@ export interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
 	data?: {
 		text: string;
 	}[];
-	/**
-	 * Component children.
-	 *
-	 * Note: Only `select` type inputs render children.
-	 */
-	children?: React.ReactNode;
 }
 
 // ==============================
 // Component
 // ==============================
 
-export const Select = forwardRef<HTMLSelectElement, SelectProps>(
+export const ComplexSelect = forwardRef<HTMLSelectElement, ComplexSelectProps>(
 	(
 		{
 			size = 'medium',
@@ -57,48 +54,68 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 			children,
 			name,
 			label,
-			...rest
+			...props
 		},
 		ref
 	) => {
 		const {
 			OVERRIDES: { [pkg.name]: tokenOverrides },
+			COLORS,
 			[pkg.name]: brandOverrides,
 		} = useBrand();
 
-		const state = useSelectState(rest);
+		const state = useSelectState({ label, children, ...props });
 		// Get props for child elements from useSelect
 		const selectRef = React.useRef(null);
-		const { labelProps, triggerProps, valueProps, menuProps } = useSelect(rest, state, selectRef);
+		const { labelProps, triggerProps, valueProps, menuProps } = useSelect(
+			{ label, children, ...props },
+			state,
+			selectRef
+		);
 
-		const styles = useStyles({ size, inline, invalid, width, data, ...rest });
+		// Get props for the button based on the trigger props from useSelect
+		const { buttonProps } = useButton(triggerProps, selectRef);
+
+		const { focusProps, isFocusVisible } = useFocusRing();
+
+		const styles = useStyles({
+			size,
+			inline,
+			invalid,
+			width,
+			data,
+			children,
+			name,
+			label,
+			...props,
+		});
 
 		return (
-			<div style={{ display: 'inline-block' }}>
-				<div {...labelProps}>{label}</div>
+			<div css={{ display: 'block' }}>
 				<HiddenSelect state={state} triggerRef={selectRef} label={label} name={name} />
-				<button {...triggerProps} ref={selectRef} style={{ height: 30, fontSize: 14 }}>
-					<span {...valueProps}>
+				<button {...mergeProps(buttonProps, focusProps)} ref={selectRef} css={styles}>
+					<span css={{ flex: 1, textAlign: 'left' }} {...valueProps}>
 						{state.selectedItem ? state.selectedItem.rendered : 'Select an option'}
 					</span>
-					<span aria-hidden="true" style={{ paddingLeft: 5 }}>
-						▼
+					<span css={{ flex: 0 }} aria-hidden="true" style={{ paddingLeft: 5 }}>
+						<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8">
+							<path fill={COLORS.muted} fillRule="evenodd" d="M0 0l7 8 7-8z" />
+						</svg>
 					</span>
 				</button>
-				{/* {state.isOpen && (
-					<Popover state={state} triggerRef={ref} placement="bottom start">
+				{state.isOpen && (
+					<Popover state={state} triggerRef={selectRef} placement="bottom start">
 						<ListBox {...menuProps} state={state} />
 					</Popover>
 				)}
-				{allChildren} */}
 			</div>
 		);
 	}
 );
 
-Select.displayName = 'Select';
+ComplexSelect.displayName = 'Select';
 
-Select.propTypes = {
+ComplexSelect.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |

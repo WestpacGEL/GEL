@@ -269,7 +269,7 @@ ButtonGroup.propTypes = {
 	 */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
-		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
+		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge'])),
 	]),
 	/**
 	 * Control the value, if numeric an index is assumed. Requires `onChange`

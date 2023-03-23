@@ -1,26 +1,17 @@
-import { useBrand, useMediaQuery } from '@westpac/core';
-import { SelectProps } from './Select';
+import { getLabel, useBrand, useMediaQuery } from '@westpac/core';
+import { ComplexSelectProps } from './ComplexSelect';
+import { getHeight, getMaxWidth, sizeMap } from './_utils';
+import svgToTinyDataURI from 'mini-svg-data-uri';
 
-export const useStyles = ({
-	size,
-	width,
-	inline,
-	invalid,
-	'aria-invalid': ariaInvalid,
-}: SelectProps) => {
+export const useStyles = ({ size, width, inline, invalid }: ComplexSelectProps) => {
 	const { COLORS, PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
 	// We’ll add !important to focus state styling to ensure it’s always visible, even with the useFocus helper
-	const focus = Object.entries(PACKS.focus).reduce((acc, [key, val]) => {
+	const focus = Object.entries(PACKS.focus).reduce((acc: Record<string, string>, [key, val]) => {
 		acc[key] = `${val} !important`;
 		return acc;
 	}, {});
-
-	const caretSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="${COLORS.muted}" fillRule="evenodd" d="M0 0l7 8 7-8z"/></svg>`;
-	const caretGap = '0.5rem';
-	const caretWidth = '14px';
-	const extras = `${caretWidth} + ${caretGap}`; // Add width for caret if a select
 
 	return mq({
 		// Normalize
@@ -33,7 +24,7 @@ export const useStyles = ({
 		fontSize: '100%', // 1
 		lineHeight: 1.15, // 1
 		margin: 0, // 2
-
+		display: 'flex',
 		// Remove the inheritance of text transform in Firefox.
 		// select:
 		textTransform: 'none',
@@ -51,25 +42,22 @@ export const useStyles = ({
 		boxSizing: 'border-box',
 		width: inline ? ['100%', 'auto'] : '100%',
 		appearance: 'none',
-		fontSize: sizeMap[size].fontSize,
+		...(size && {
+			fontSize: sizeMap[size].fontSize,
+			lineHeight: sizeMap[size].lineHeight,
+			border: `${sizeMap[size].borderWidth}px solid ${invalid ? COLORS.danger : COLORS.borderDark}`,
+			padding: sizeMap[size].padding.join(' '),
+			backgroundPosition: `right ${sizeMap[size].padding[1]} center`,
+		}),
 		...TYPE.bodyFont[400],
-		lineHeight: sizeMap[size].lineHeight,
 		color: COLORS.text,
 		backgroundColor: '#fff',
-		border: `${sizeMap[size].borderWidth}px solid ${
-			invalid || ariaInvalid ? COLORS.danger : COLORS.borderDark
-		}`,
 		borderRadius: '0.1875rem',
 		transition: 'border 0.2s ease',
 		verticalAlign: inline && 'middle',
-		padding: sizeMap[size].padding.join(' '),
 		height: getHeight(size),
-		maxWidth: width && getMaxWidth(size, width, extras),
-
-		paddingRight: `calc(${sizeMap[size].padding[1]} + ${extras})`,
-		backgroundImage: `url("${svgToTinyDataURI(caretSVG)}")`,
+		maxWidth: width && getMaxWidth(size, width),
 		backgroundRepeat: 'no-repeat',
-		backgroundPosition: `right ${sizeMap[size].padding[1]} center`,
 
 		'::placeholder': {
 			opacity: 1, // Override Firefox's unusual default opacity

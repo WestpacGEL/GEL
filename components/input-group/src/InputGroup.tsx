@@ -466,5 +466,3 @@ InputGroup.propTypes = {
 	 */
 	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
 };
-
-InputGroup.defaultProps = { disabled: false, invalid: false, size: 'medium' };
