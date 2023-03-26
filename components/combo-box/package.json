@@ -1,9 +1,9 @@
 {
-	"name": "@westpac/text-input",
-	"version": "2.3.0",
-	"description": "Styling for text input, select and textarea input elements, used for capturing text and numerical data",
+	"name": "@westpac/combo-box",
+	"version": "1.0.0",
+	"description": "Combo box",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
-	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/text-input",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/combo-box",
 	"license": "GPL-3.0+",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
@@ -28,10 +28,10 @@
 			"url": "http://florelaforge.com/"
 		}
 	],
-	"main": "dist/westpac-text-input.cjs.js",
-	"module": "dist/westpac-text-input.esm.js",
+	"main": "dist/westpac-combo-box.cjs.js",
+	"module": "dist/westpac-combo-box.esm.js",
 	"scripts": {
-		"start": "PACKAGE_NAME=text-input NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
+		"start": "PACKAGE_NAME=combo-box NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
 		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
 		"test:all": "yarn test:integration",
 		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
@@ -40,13 +40,17 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
+		"@react-aria/overlays": "^3.13.0",
 		"@westpac/button": "^2.2.0",
 		"@westpac/core": "^3.2.0",
 		"mini-svg-data-uri": "^1.4.4",
-		"prop-types": "^15.7.2"
+		"prop-types": "^15.7.2",
+		"react-aria": "^3.23.1",
+		"react-stately": "^3.21.0"
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.10.6",
+		"@react-types/combobox": "^3.6.0",
 		"@westpac/grid": "^2.2.0",
 		"@westpac/icon": "^2.1.0",
 		"cypress": "^8.0.0",
@@ -57,21 +61,10 @@
 		"@emotion/react": "^11.10.6",
 		"react": "^18.2.0"
 	},
-	"blender": {
-		"recipe": "blender/recipe.js"
-	},
 	"components": [
 		{
-			"name": "TextInput",
-			"src": "TextInput.tsx"
-		},
-		{
-			"name": "Select",
-			"src": "Select.tsx"
-		},
-		{
-			"name": "Textarea",
-			"src": "Textarea.tsx"
+			"name": "ComboBox",
+			"src": "ComboBox.tsx"
 		}
 	]
 }
