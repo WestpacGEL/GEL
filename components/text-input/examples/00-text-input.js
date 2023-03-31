@@ -14,7 +14,7 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<h2>Default</h2>
-			<TextInput />
+			<TextInput data-testid="first-text-input-node" data-cy="default-text-input" />
 
 			<hr />
 
@@ -37,7 +37,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Invalid</h2>
-			<TextInput invalid />
+			<TextInput data-cy="invalid-text-input" invalid />
 
 			<hr />
 
