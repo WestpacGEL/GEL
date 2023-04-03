@@ -96,5 +96,3 @@ Label.propTypes = {
 	 */
 	value: PropTypes.string.isRequired,
 };
-
-Label.defaultProps = { look: 'primary' };

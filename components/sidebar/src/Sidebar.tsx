@@ -389,5 +389,3 @@ Sidebar.propTypes = {
 	 */
 	skipToContentId: PropTypes.string,
 };
-
-Sidebar.defaultProps = { open: false };

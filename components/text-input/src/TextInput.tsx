@@ -149,5 +149,3 @@ TextInput.propTypes = {
 	 */
 	width: PropTypes.oneOf([2, 3, 4, 5, 10, 20, 30]),
 };
-
-TextInput.defaultProps = { inline: false, invalid: false, size: 'medium', type: 'text' };

@@ -430,5 +430,3 @@ ProgressRope.propTypes = {
 		}),
 	}),
 };
-
-ProgressRope.defaultProps = { assistiveText: 'In this form', current: 0, headingsTag: 'h3' };

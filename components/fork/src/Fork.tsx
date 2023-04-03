@@ -184,5 +184,3 @@ Fork.propTypes = {
 		}),
 	}),
 };
-
-Fork.defaultProps = { onChange: () => {} };

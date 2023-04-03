@@ -303,5 +303,3 @@ FormCheck.propTypes = {
 		PropTypes.bool,
 	]),
 };
-
-FormCheck.defaultProps = { inline: false, onChange: () => {}, size: 'medium', type: 'checkbox' };

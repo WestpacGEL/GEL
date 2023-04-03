@@ -304,5 +304,3 @@ Popover.propTypes = {
 	 */
 	placement: PropTypes.string,
 };
-
-Popover.defaultProps = { headingTag: 'h4', onClick: () => {}, open: false, placement: 'top' };

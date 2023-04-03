@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, useBrand, overrideReconciler } from '@westpac/core';
+import { useBrand, overrideReconciler } from '@westpac/core';
 import { ButtonContext } from '@westpac/button';
 import { useContext } from 'react';
 
@@ -111,5 +111,3 @@ Badge.propTypes = {
 	 */
 	value: PropTypes.string.isRequired,
 };
-
-Badge.defaultProps = { look: 'neutral', type: 'default' };

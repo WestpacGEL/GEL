@@ -190,5 +190,3 @@ Content.propTypes = {
 		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge'])),
 	]).isRequired,
 };
-
-Content.defaultProps = { block: false, size: 'medium' };

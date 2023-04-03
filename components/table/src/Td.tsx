@@ -114,5 +114,3 @@ Td.propTypes = {
 		}),
 	}),
 };
-
-Td.defaultProps = { highlighted: false, highlightStart: false };
