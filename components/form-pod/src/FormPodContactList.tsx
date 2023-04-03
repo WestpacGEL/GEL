@@ -183,5 +183,3 @@ FormPodContactList.propTypes = {
 		}),
 	}),
 };
-
-FormPodContactList.defaultProps = { items: [] };

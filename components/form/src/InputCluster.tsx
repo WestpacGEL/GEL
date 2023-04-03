@@ -107,5 +107,3 @@ InputCluster.propTypes = {
 		}),
 	}),
 };
-
-InputCluster.defaultProps = { horizontal: false };

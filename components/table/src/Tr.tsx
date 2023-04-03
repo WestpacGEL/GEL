@@ -134,5 +134,3 @@ Tr.propTypes = {
 	 */
 	striped: PropTypes.any,
 };
-
-Tr.defaultProps = { highlighted: false };

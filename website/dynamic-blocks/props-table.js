@@ -76,9 +76,6 @@ function Indent({ level }) {
  */
 function PTableRow({ name, data, level = 0 }) {
 	const required = <Code>{formatValue(data.required)}</Code>;
-	const defaultValue = data.defaultValue ? (
-		<Code>{formatValue(data.defaultValue.value)}</Code>
-	) : null;
 	const description = data.description ? data.description : '';
 	const indent = level > 0 ? <Indent level={level} /> : '';
 	const values = (data.type && data.type.value) || data.value;
@@ -120,7 +117,6 @@ function PTableRow({ name, data, level = 0 }) {
 					data={{
 						type: { name: item.name, value: item.value },
 						required: false,
-						defaultValue: item.defaultValue,
 					}}
 					level={level}
 				/>
@@ -137,7 +133,6 @@ function PTableRow({ name, data, level = 0 }) {
 						value: data.type && data.type.value && data.type.value.value,
 					},
 					required: false,
-					defaultValue: data.type.defaultValue,
 				}}
 				level={level}
 			/>
@@ -157,7 +152,6 @@ function PTableRow({ name, data, level = 0 }) {
 					<Code>{type}</Code>
 				</Td>
 				<Td>{value}</Td>
-				<Td>{defaultValue}</Td>
 				<Td>{required}</Td>
 				<Td>{description}</Td>
 			</Tr>
@@ -186,7 +180,6 @@ function PTable({ data, caption }) {
 					<Th scope="col">Property</Th>
 					<Th scope="col">Type</Th>
 					<Th scope="col">Value</Th>
-					<Th scope="col">Default</Th>
 					<Th scope="col">Required</Th>
 					<Th scope="col">Description</Th>
 				</Tr>

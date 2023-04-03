@@ -182,5 +182,3 @@ Page.propTypes = {
 	 */
 	text: PropTypes.string,
 };
-
-Page.defaultProps = { disabled: false };

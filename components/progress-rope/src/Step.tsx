@@ -185,5 +185,3 @@ Step.propTypes = {
 		}),
 	}),
 };
-
-Step.defaultProps = { end: false, groupIndex: 0, index: 0 };

@@ -77,5 +77,3 @@ Hint.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
-
-Hint.defaultProps = { tag: 'p' };

@@ -379,5 +379,3 @@ Selector.propTypes = {
 	 */
 	value: PropTypes.any,
 };
-
-Selector.defaultProps = { iconSize: 'medium', onChange: () => {}, type: 'radio' };
