@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const BSALogo = (props) => (
-	<Symbol symbol="BSALogo" {...props}>
+export const BSALogo = ({
+	align = 'left',
+	assistiveText = 'Bank SA',
+	copyrightYear = '2020',
+	viewBoxWidth = 90,
+	viewBoxHeight = 41,
+	...props
+}) => (
+	<Symbol
+		symbol="BSALogo"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<path
 			d="M58 25.5c-0.9 0-2-0.5-2-1.5V2c0-1 1-2 2-2h30c1 0 2 1 2 2v38.2c0 0.5-0.4 0.8-0.9 0.8 -0.6 0-0.8-0.5-0.9-0.8C79.7 25.5 58.9 25.5 58 25.5z"
 			fill="#E91B2B"
@@ -34,11 +49,4 @@ export const BSALogo = (props) => (
 	</Symbol>
 );
 
-BSALogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 90,
-	viewBoxHeight: 41,
-	assistiveText: 'Bank SA',
-	copyrightYear: '2020',
-};
 BSALogo.propTypes = propTypes;

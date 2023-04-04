@@ -57,7 +57,7 @@ const symbolStyles = (_, { symbol, width, height, viewBoxWidth, viewBoxHeight })
 
 const blenderStyles = (_, { symbol, width, height, viewBoxWidth, viewBoxHeight }) => {
 	const props = { symbol, width, height, viewBoxWidth, viewBoxHeight };
-	const baseStyles = symbolStyles(_, defaultProps);
+	const baseStyles = symbolStyles(_);
 
 	const modifiers = getModifier(defaultProps, props);
 	if (!modifiers.length) return baseStyles;

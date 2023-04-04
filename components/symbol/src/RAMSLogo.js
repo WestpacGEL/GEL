@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const RAMSLogo = (props) => (
-	<Symbol symbol="RAMSLogo" {...props}>
+export const RAMSLogo = ({
+	align = 'left',
+	assistiveText = 'RAMS',
+	copyrightYear = '2020',
+	viewBoxWidth = 99,
+	viewBoxHeight = 51,
+	...props
+}) => (
+	<Symbol
+		symbol="RAMSLogo"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<defs>
 			<linearGradient x1="49.289%" y1="16.767%" x2="49.289%" y2="102.357%" id="RAMSLogo-a">
 				<stop stopColor="#00B6F1" offset="0%" />
@@ -57,11 +72,4 @@ export const RAMSLogo = (props) => (
 	</Symbol>
 );
 
-RAMSLogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 99,
-	viewBoxHeight: 51,
-	assistiveText: 'RAMS',
-	copyrightYear: '2020',
-};
 RAMSLogo.propTypes = propTypes;

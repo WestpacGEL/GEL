@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const GoogleStoreSymbol = (props) => (
-	<Symbol symbol="GoogleStoreSymbol" {...props}>
+export const GoogleStoreSymbol = ({
+	align = 'left',
+	assistiveText = 'Google Store',
+	copyrightYear = '',
+	viewBoxWidth = 170,
+	viewBoxHeight = 50,
+	...props
+}) => (
+	<Symbol
+		symbol="GoogleStoreSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<defs>
 			<linearGradient
 				id="GoogleStoreSymbol-a"
@@ -113,11 +128,4 @@ export const GoogleStoreSymbol = (props) => (
 	</Symbol>
 );
 
-GoogleStoreSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 170,
-	viewBoxHeight: 50,
-	assistiveText: 'Google Store',
-	copyrightYear: '',
-};
 GoogleStoreSymbol.propTypes = propTypes;

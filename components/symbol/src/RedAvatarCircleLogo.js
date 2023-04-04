@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const RedAvatarCircleLogo = (props) => (
-	<Symbol symbol="RedAvatarCircleLogo" {...props}>
+export const RedAvatarCircleLogo = ({
+	align = 'left',
+	assistiveText = 'Red Avatar',
+	copyrightYear = '2020',
+	viewBoxWidth = 64,
+	viewBoxHeight = 64,
+	...props
+}) => (
+	<Symbol
+		symbol="RedAvatarCircleLogo"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fill="none" fillRule="evenodd">
 			<circle fill="#FFF" cx="32" cy="32" r="32" />
 			<path
@@ -17,11 +32,4 @@ export const RedAvatarCircleLogo = (props) => (
 	</Symbol>
 );
 
-RedAvatarCircleLogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 64,
-	viewBoxHeight: 64,
-	assistiveText: 'Red Avatar',
-	copyrightYear: '2020',
-};
 RedAvatarCircleLogo.propTypes = propTypes;

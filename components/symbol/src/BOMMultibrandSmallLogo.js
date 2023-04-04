@@ -1,8 +1,25 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const BOMMultibrandSmallLogo = (props) => (
-	<Symbol symbol="BOMMultibrandSmallLogo" {...props}>
+export const BOMMultibrandSmallLogo = ({
+	align = 'left',
+	assistiveText = 'Bank of Melbourne',
+	copyrightYear = '2020',
+	offset = [null, 48, 96],
+	viewBoxWidth = 122,
+	viewBoxHeight = 44,
+	...props
+}) => (
+	<Symbol
+		symbol="BOMMultibrandSmallLogo"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		offset={offset}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<polygon fill="#685AC0" points="0 16.001 6.5 9.501 0 3.001" />
 		<polygon fill="#A094FC" points=".001 3.001 6.501 9.501 13 3.001" />
 		<polygon fill="#685AC0" points="13 16.001 13 3.001 6.5 9.502" />
@@ -26,12 +43,4 @@ export const BOMMultibrandSmallLogo = (props) => (
 	</Symbol>
 );
 
-BOMMultibrandSmallLogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 122,
-	viewBoxHeight: 44,
-	offset: [null, 48, 96],
-	assistiveText: 'Bank of Melbourne',
-	copyrightYear: '2020',
-};
 BOMMultibrandSmallLogo.propTypes = propTypes;

@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const STGLogo = (props) => (
-	<Symbol symbol="STGLogo" {...props}>
+export const STGLogo = ({
+	align = 'left',
+	assistiveText = 'St.George',
+	copyrightYear = '2020',
+	viewBoxWidth = 170,
+	viewBoxHeight = 51,
+	...props
+}) => (
+	<Symbol
+		symbol="STGLogo"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<path
 			d="M169.7 37c-1.1 3.8-3.5 5.4-6.9 5.4 -4.6 0-7.5-3.5-7.5-8.4 0-4.8 3-8.5 7.5-8.5 5 0 7.4 4.6 7.1 9.5h-10.6c0.1 2.8 1.4 4.1 3.6 4.1 1.2 0 2.2-0.6 2.8-1.3 0.4-0.5 1-0.8 1.6-0.8H169.7zM166 32.3c-0.4-2.2-1.2-3.4-3.2-3.4 -2.6 0-3.3 2.2-3.3 3.4H166z"
 			fill="#E30000"
@@ -98,11 +113,4 @@ export const STGLogo = (props) => (
 	</Symbol>
 );
 
-STGLogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 170,
-	viewBoxHeight: 51,
-	assistiveText: 'St.George',
-	copyrightYear: '2020',
-};
 STGLogo.propTypes = propTypes;

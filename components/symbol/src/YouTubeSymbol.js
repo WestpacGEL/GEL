@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const YouTubeSymbol = (props) => (
-	<Symbol symbol="YouTubeSymbol" {...props}>
+export const YouTubeSymbol = ({
+	align = 'left',
+	assistiveText = 'YouTube',
+	copyrightYear = '',
+	viewBoxWidth = 32,
+	viewBoxHeight = 32,
+	...props
+}) => (
+	<Symbol
+		symbol="YouTubeSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<defs>
 			<linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="YouTubeSymbol">
 				<stop stopColor="#E52D27" offset="0%" />
@@ -20,11 +35,4 @@ export const YouTubeSymbol = (props) => (
 	</Symbol>
 );
 
-YouTubeSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 32,
-	viewBoxHeight: 32,
-	assistiveText: 'YouTube',
-	copyrightYear: '',
-};
 YouTubeSymbol.propTypes = propTypes;

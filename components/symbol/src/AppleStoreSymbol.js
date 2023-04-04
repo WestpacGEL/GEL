@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const AppleStoreSymbol = (props) => (
-	<Symbol symbol="AppleStoreSymbol" {...props}>
+export const AppleStoreSymbol = ({
+	align = 'left',
+	assistiveText = 'Apple Store',
+	copyrightYear = '',
+	viewBoxWidth = 170,
+	viewBoxHeight = 58,
+	...props
+}) => (
+	<Symbol
+		symbol="AppleStoreSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fill="none" fillRule="evenodd">
 			<path
 				fill="#A6A6A6"
@@ -42,11 +57,4 @@ export const AppleStoreSymbol = (props) => (
 	</Symbol>
 );
 
-AppleStoreSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 170,
-	viewBoxHeight: 58,
-	assistiveText: 'Apple Store',
-	copyrightYear: '',
-};
 AppleStoreSymbol.propTypes = propTypes;

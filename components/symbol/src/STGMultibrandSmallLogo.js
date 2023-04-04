@@ -1,8 +1,25 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const STGMultibrandSmallLogo = (props) => (
-	<Symbol symbol="STGMultibrandSmallLogo" {...props}>
+export const STGMultibrandSmallLogo = ({
+	align = 'left',
+	assistiveText = 'St.George',
+	copyrightYear = '2020',
+	offset = [null, 34, 68],
+	viewBoxWidth = 122,
+	viewBoxHeight = 44,
+	...props
+}) => (
+	<Symbol
+		symbol="STGMultibrandSmallLogo"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		offset={offset}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<path
 			fill="#78BE20"
 			d="M25.3243,15.2735 C25.5843,16.4485 25.3433,17.5465 25.1503,18.9695 C24.9863,20.1935 25.3753,21.3325 26.4803,21.6835 C27.3943,21.9745 29.4353,21.9045 30.8783,23.1395 C31.3083,23.5715 31.4413,23.6855 31.5293,24.3385 C31.5823,24.7435 31.5253,25.2085 31.4413,25.5625 C31.0703,26.6395 30.7053,27.5945 30.0913,28.3625 C29.1073,29.5115 28.0923,30.5055 26.7833,30.9415 C24.3183,31.7635 22.8453,29.3065 20.9413,28.2265 C20.0893,27.7735 19.1013,27.4485 18.3003,28.2895 C17.0093,29.5385 17.2093,31.5125 17.8713,32.9295 C19.2033,35.5135 21.9413,37.8555 23.8673,39.7475 C20.4243,40.6505 16.9823,41.5525 13.5273,40.5805 C11.9313,40.1285 10.4283,38.1085 9.7363,36.5445 C8.5723,33.9865 7.8013,27.9585 1.7653,23.7245 C4.7553,24.0865 5.9663,24.3875 7.9083,23.0855 C8.3343,22.7795 8.4633,22.2465 8.4333,21.7685 C8.1373,19.7395 6.4823,18.6565 5.3283,17.2415 C6.1423,17.5415 6.9663,17.7535 7.8773,17.8645 C9.1643,18.0185 10.2893,17.7475 11.3533,17.1135 C14.8633,15.0175 10.8183,10.1935 10.8183,10.1935 C10.8183,10.1935 14.5233,12.8455 16.8433,12.4815 C17.6313,12.2965 18.1583,12.0645 18.5783,11.3475 C19.5923,9.6215 20.5123,7.8465 21.2593,6.0405 C21.1463,7.7135 20.8753,9.4405 21.3183,11.0115 C21.7443,12.5055 23.0453,12.8055 24.2273,13.6355 C24.7173,13.9625 25.1133,14.3255 25.3243,15.2735"
@@ -34,12 +51,4 @@ export const STGMultibrandSmallLogo = (props) => (
 	</Symbol>
 );
 
-STGMultibrandSmallLogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 122,
-	viewBoxHeight: 44,
-	offset: [null, 34, 68],
-	assistiveText: 'St.George',
-	copyrightYear: '2020',
-};
 STGMultibrandSmallLogo.propTypes = propTypes;

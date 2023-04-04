@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const MicrosoftStoreSymbol = (props) => (
-	<Symbol symbol="MicrosoftStoreSymbol" {...props}>
+export const MicrosoftStoreSymbol = ({
+	align = 'left',
+	assistiveText = 'Microsoft Store',
+	copyrightYear = '',
+	viewBoxWidth = 170,
+	viewBoxHeight = 62,
+	...props
+}) => (
+	<Symbol
+		symbol="MicrosoftStoreSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fillRule="nonzero" fill="none">
 			<path fill="#000" d="M.453.453h169.115v60.503H.453z" />
 			<path d="M.885.885h168.23v59.618H.885V.885zM0 61.39h170V0H0v61.389z" fill="#D2D2D2" />
@@ -20,11 +35,4 @@ export const MicrosoftStoreSymbol = (props) => (
 	</Symbol>
 );
 
-MicrosoftStoreSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 170,
-	viewBoxHeight: 62,
-	assistiveText: 'Microsoft Store',
-	copyrightYear: '',
-};
 MicrosoftStoreSymbol.propTypes = propTypes;

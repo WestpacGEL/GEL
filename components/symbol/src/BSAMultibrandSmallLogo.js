@@ -1,8 +1,25 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const BSAMultibrandSmallLogo = (props) => (
-	<Symbol symbol="BSAMultibrandSmallLogo" {...props}>
+export const BSAMultibrandSmallLogo = ({
+	align = 'left',
+	assistiveText = 'Bank SA',
+	copyrightYear = '2020',
+	offset = [null, 26, 52],
+	viewBoxWidth = 122,
+	viewBoxHeight = 44,
+	...props
+}) => (
+	<Symbol
+		symbol="BSAMultibrandSmallLogo"
+		align={align}
+		assistiveText={assistiveText}
+		offset={offset}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<path
 			fill="#D81B2B"
 			d="M44.5,30 C43.525,30 43,29.528 43,28.5 L43,11.5 C43,10.548 43.526,10 44.5,10 L68.5,10 C69.46,10 70,10.516 70,11.5 L70,41.344 C70,41.695 69.663,42 69.248,42 C69.248,42 69.504,42 69.248,42 C68.789,42 68.616,41.59 68.495,41.392 C61.391,29.694 44.5,30 44.5,30"
@@ -18,12 +35,4 @@ export const BSAMultibrandSmallLogo = (props) => (
 	</Symbol>
 );
 
-BSAMultibrandSmallLogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 122,
-	viewBoxHeight: 44,
-	offset: [null, 26, 52],
-	assistiveText: 'Bank SA',
-	copyrightYear: '2020',
-};
 BSAMultibrandSmallLogo.propTypes = propTypes;

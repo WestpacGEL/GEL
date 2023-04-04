@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const BOMShieldLogo = (props) => (
-	<Symbol symbol="BOMShieldLogo" {...props}>
+export const BOMShieldLogo = ({
+	align = 'left',
+	assistiveText = 'Bank of Melbourne',
+	copyrightYear = '2020',
+	viewBoxWidth = 26,
+	viewBoxHeight = 39,
+	...props
+}) => (
+	<Symbol
+		symbol="BOMShieldLogo"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<polygon points="0 0 0 13 6.5 6.5 " fill="#685AC0" />
 		<polygon points="13 0 0 0 6.5 6.5 " fill="#A094FC" />
 		<polygon points="13 13 13 0 6.5 6.5 " fill="#685AC0" />
@@ -26,11 +41,4 @@ export const BOMShieldLogo = (props) => (
 	</Symbol>
 );
 
-BOMShieldLogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 26,
-	viewBoxHeight: 39,
-	assistiveText: 'Bank of Melbourne',
-	copyrightYear: '2020',
-};
 BOMShieldLogo.propTypes = propTypes;
