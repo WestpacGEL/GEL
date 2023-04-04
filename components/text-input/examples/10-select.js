@@ -8,13 +8,14 @@ function Example({ brand }) {
 	const [value, setValue] = useState();
 
 	const handleChange = (event) => {
+		console.log('Selected ' + event.target.value);
 		setValue(event.target.value);
 	};
 
 	return (
 		<GEL brand={brand}>
 			<h2>Default</h2>
-			<Select name="example-default">
+			<Select data-cy="default-select" name="example-default">
 				<option>Select</option>
 				<option>1</option>
 				<option>2</option>
@@ -44,7 +45,7 @@ function Example({ brand }) {
 			</Select>
 
 			<h3>Preselected via attribute</h3>
-			<Select name="example-selectedattribute">
+			<Select name="example-selectedattribute" onChange={handleChange}>
 				<option>Select</option>
 				<option>1</option>
 				<option selected>2</option>
@@ -136,7 +137,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Invalid</h2>
-			<Select name="example-invalid" invalid>
+			<Select data-cy="invalid-select" name="example-invalid" invalid>
 				<option>Invalid</option>
 				<option>1</option>
 				<option>2</option>
@@ -146,7 +147,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Disabled</h2>
-			<Select name="example-disabled" disabled>
+			<Select data-cy="disabled-select" name="example-disabled" disabled>
 				<option>disabled</option>
 				<option>1</option>
 				<option>2</option>

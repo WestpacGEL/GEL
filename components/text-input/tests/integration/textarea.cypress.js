@@ -1,6 +1,6 @@
 import TextAreaPage from '../pages/textarea.page';
 
-describe('textarea', () => {
+describe('TextArea component', () => {
 	const textareaPage = new TextAreaPage();
 
 	it('should change its content when text-input change event is triggered and handleChange handler is invoked', () => {

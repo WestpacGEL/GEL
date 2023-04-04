@@ -1,6 +1,6 @@
 import TextInputPage from '../pages/text-input.page';
 
-describe('text-input', () => {
+describe('TextInput component', () => {
 	const textInputPage = new TextInputPage();
 
 	it('should change its content when text-input change event is triggered and handleChange handler is invoked', () => {
