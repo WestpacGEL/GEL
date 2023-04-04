@@ -46,11 +46,13 @@ module.exports = () => ({
 		path: path.resolve(__dirname, 'dist'),
 		publicPath: '/',
 	},
-
+	resolve: {
+		extensions: ['.js', '.jsx', '.ts', '.tsx'],
+	},
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
+				test: /\.(ts|js)x?$/,
 				exclude: /node_modules/,
 				loader: 'babel-loader',
 				options: {
