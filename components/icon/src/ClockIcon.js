@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const ClockIcon = (props) => (
-	<Icon icon="ClockIcon" {...props}>
+export const ClockIcon = ({
+	assistiveText = 'Clock',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="ClockIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const ClockIcon = (props) => (
 	</Icon>
 );
 
-ClockIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Clock',
-	copyrightYear: '2020',
-};
 ClockIcon.propTypes = propTypes;

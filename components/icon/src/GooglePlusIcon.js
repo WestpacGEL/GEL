@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const GooglePlusIcon = (props) => (
-	<Icon icon="GooglePlusIcon" {...props}>
+export const GooglePlusIcon = ({
+	assistiveText = 'Google Plus',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="GooglePlusIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const GooglePlusIcon = (props) => (
 	</Icon>
 );
 
-GooglePlusIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Google Plus',
-	copyrightYear: '2020',
-};
 GooglePlusIcon.propTypes = propTypes;

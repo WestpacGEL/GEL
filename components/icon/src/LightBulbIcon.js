@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const LightBulbIcon = (props) => (
-	<Icon icon="LightBulbIcon" {...props}>
+export const LightBulbIcon = ({
+	assistiveText = 'Light Bulb',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="LightBulbIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const LightBulbIcon = (props) => (
 	</Icon>
 );
 
-LightBulbIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Light Bulb',
-	copyrightYear: '2020',
-};
 LightBulbIcon.propTypes = propTypes;

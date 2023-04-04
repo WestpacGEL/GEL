@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const LimitIcon = (props) => (
-	<Icon icon="LimitIcon" {...props}>
+export const LimitIcon = ({
+	assistiveText = 'Limit',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="LimitIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const LimitIcon = (props) => (
 	</Icon>
 );
 
-LimitIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Limit',
-	copyrightYear: '2020',
-};
 LimitIcon.propTypes = propTypes;

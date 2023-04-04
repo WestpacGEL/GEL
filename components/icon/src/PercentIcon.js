@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const PercentIcon = (props) => (
-	<Icon icon="PercentIcon" {...props}>
+export const PercentIcon = ({
+	assistiveText = 'Percent',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="PercentIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const PercentIcon = (props) => (
 	</Icon>
 );
 
-PercentIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Percent',
-	copyrightYear: '2020',
-};
 PercentIcon.propTypes = propTypes;

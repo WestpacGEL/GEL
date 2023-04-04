@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const ExpandMoreIcon = (props) => (
-	<Icon icon="ExpandMoreIcon" {...props}>
+export const ExpandMoreIcon = ({
+	assistiveText = 'Expand More',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="ExpandMoreIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<polygon
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const ExpandMoreIcon = (props) => (
 	</Icon>
 );
 
-ExpandMoreIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Expand More',
-	copyrightYear: '2020',
-};
 ExpandMoreIcon.propTypes = propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const EftposIcon = (props) => (
-	<Icon icon="EftposIcon" {...props}>
+export const EftposIcon = ({
+	assistiveText = 'Eftpos',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="EftposIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const EftposIcon = (props) => (
 	</Icon>
 );
 
-EftposIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Eftpos',
-	copyrightYear: '2020',
-};
 EftposIcon.propTypes = propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const TwitterIcon = (props) => (
-	<Icon icon="TwitterIcon" {...props}>
+export const TwitterIcon = ({
+	assistiveText = 'Twitter',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="TwitterIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const TwitterIcon = (props) => (
 	</Icon>
 );
 
-TwitterIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Twitter',
-	copyrightYear: '2020',
-};
 TwitterIcon.propTypes = propTypes;

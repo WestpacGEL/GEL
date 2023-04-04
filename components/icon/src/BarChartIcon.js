@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const BarChartIcon = (props) => (
-	<Icon icon="BarChartIcon" {...props}>
+export const BarChartIcon = ({
+	assistiveText = 'Bar Chart',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="BarChartIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const BarChartIcon = (props) => (
 	</Icon>
 );
 
-BarChartIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Bar Chart',
-	copyrightYear: '2020',
-};
 BarChartIcon.propTypes = propTypes;

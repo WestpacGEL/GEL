@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const OpenBrowserIcon = (props) => (
-	<Icon icon="OpenBrowserIcon" {...props}>
+export const OpenBrowserIcon = ({
+	assistiveText = 'Open Browser',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="OpenBrowserIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const OpenBrowserIcon = (props) => (
 	</Icon>
 );
 
-OpenBrowserIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Open Browser',
-	copyrightYear: '2020',
-};
 OpenBrowserIcon.propTypes = propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const MoreVerticalIcon = (props) => (
-	<Icon icon="MoreVerticalIcon" {...props}>
+export const MoreVerticalIcon = ({
+	assistiveText = 'More Vertical',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="MoreVerticalIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const MoreVerticalIcon = (props) => (
 	</Icon>
 );
 
-MoreVerticalIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'More Vertical',
-	copyrightYear: '2020',
-};
 MoreVerticalIcon.propTypes = propTypes;

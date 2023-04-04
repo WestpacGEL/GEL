@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const UploadIcon = (props) => (
-	<Icon icon="UploadIcon" {...props}>
+export const UploadIcon = ({
+	assistiveText = 'Upload',
+	copyrightYear = '2021',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="UploadIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const UploadIcon = (props) => (
 	</Icon>
 );
 
-UploadIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Upload',
-	copyrightYear: '2021',
-};
 UploadIcon.propTypes = propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const VisibilityOffIcon = (props) => (
-	<Icon icon="VisibilityOffIcon" {...props}>
+export const VisibilityOffIcon = ({
+	assistiveText = 'Visibility off',
+	copyrightYear = '2021',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="VisibilityOffIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const VisibilityOffIcon = (props) => (
 	</Icon>
 );
 
-VisibilityOffIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Visibility off',
-	copyrightYear: '2021',
-};
 VisibilityOffIcon.propTypes = propTypes;

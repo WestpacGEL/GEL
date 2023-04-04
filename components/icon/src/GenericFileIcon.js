@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const GenericFileIcon = (props) => (
-	<Icon icon="GenericFileIcon" {...props}>
+export const GenericFileIcon = ({
+	assistiveText = 'Generic File',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="GenericFileIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const GenericFileIcon = (props) => (
 	</Icon>
 );
 
-GenericFileIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Generic File',
-	copyrightYear: '2020',
-};
 GenericFileIcon.propTypes = propTypes;

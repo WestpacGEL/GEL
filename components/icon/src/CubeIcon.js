@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const CubeIcon = (props) => (
-	<Icon icon="CubeIcon" {...props}>
+export const CubeIcon = ({
+	assistiveText = 'Cube',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="CubeIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const CubeIcon = (props) => (
 	</Icon>
 );
 
-CubeIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Cube',
-	copyrightYear: '2020',
-};
 CubeIcon.propTypes = propTypes;

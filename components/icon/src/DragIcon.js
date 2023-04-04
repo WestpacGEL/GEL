@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const DragIcon = (props) => (
-	<Icon icon="DragIcon" {...props}>
+export const DragIcon = ({
+	assistiveText = 'Drag',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="DragIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const DragIcon = (props) => (
 	</Icon>
 );
 
-DragIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Drag',
-	copyrightYear: '2020',
-};
 DragIcon.propTypes = propTypes;

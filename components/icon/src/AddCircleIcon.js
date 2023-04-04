@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const AddCircleIcon = (props) => (
-	<Icon icon="AddCircleIcon" {...props}>
+export const AddCircleIcon = ({
+	assistiveText = 'Add',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="AddCircleIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const AddCircleIcon = (props) => (
 	</Icon>
 );
 
-AddCircleIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Add',
-	copyrightYear: '2020',
-};
 AddCircleIcon.propTypes = propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const SimCardIcon = (props) => (
-	<Icon icon="SimCardIcon" {...props}>
+export const SimCardIcon = ({
+	assistiveText = 'Sim Card',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="SimCardIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const SimCardIcon = (props) => (
 	</Icon>
 );
 
-SimCardIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Sim Card',
-	copyrightYear: '2020',
-};
 SimCardIcon.propTypes = propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const ExcelFileIcon = (props) => (
-	<Icon icon="ExcelFileIcon" {...props}>
+export const ExcelFileIcon = ({
+	assistiveText = 'Excel File',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="ExcelFileIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const ExcelFileIcon = (props) => (
 	</Icon>
 );
 
-ExcelFileIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Excel File',
-	copyrightYear: '2020',
-};
 ExcelFileIcon.propTypes = propTypes;
