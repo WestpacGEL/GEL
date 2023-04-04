@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const ThumbsUpPictogram = ({ mode, ...rest }) => {
+export const ThumbsUpPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Thumbs up',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="ThumbsUpPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="ThumbsUpPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -21,11 +36,4 @@ export const ThumbsUpPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-ThumbsUpPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Thumbs up',
-	copyrightYear: '2020',
-};
 ThumbsUpPictogram.propTypes = Pictogram.propTypes;

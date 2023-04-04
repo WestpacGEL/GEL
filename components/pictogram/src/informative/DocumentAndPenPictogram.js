@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const DocumentAndPenPictogram = ({ mode, ...rest }) => {
+export const DocumentAndPenPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Document and pen',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="DocumentAndPenPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="DocumentAndPenPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon
 					fill={highlight}
@@ -29,11 +44,4 @@ export const DocumentAndPenPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-DocumentAndPenPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Document and pen',
-	copyrightYear: '2021',
-};
 DocumentAndPenPictogram.propTypes = Pictogram.propTypes;

@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const BuoyPictogram = ({ mode, ...rest }) => {
+export const BuoyPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Buoy',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="BuoyPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="BuoyPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -26,11 +41,4 @@ export const BuoyPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-BuoyPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Buoy',
-	copyrightYear: '2021',
-};
 BuoyPictogram.propTypes = Pictogram.propTypes;

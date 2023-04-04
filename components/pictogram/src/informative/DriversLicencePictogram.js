@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const DriversLicencePictogram = ({ mode, ...rest }) => {
+export const DriversLicencePictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Drivers licence',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="DriversLicencePictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="DriversLicencePictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -25,11 +40,4 @@ export const DriversLicencePictogram = ({ mode, ...rest }) => {
 	);
 };
 
-DriversLicencePictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Drivers licence',
-	copyrightYear: '2020',
-};
 DriversLicencePictogram.propTypes = Pictogram.propTypes;

@@ -35,10 +35,10 @@ export const useModalContext = () => {
 
 export const Modal = ({
 	heading,
-	open: isOpen,
+	open: isOpen = false,
 	onClose,
-	size,
-	dismissible,
+	size = 'medium',
+	dismissible = true,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -206,11 +206,3 @@ Modal.propTypes = {
 		}),
 	}),
 };
-
-export const defaultProps = {
-	open: false,
-	size: 'medium',
-	dismissible: true,
-};
-
-Modal.defaultProps = defaultProps;

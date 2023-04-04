@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const TelephoneCallPictogram = ({ mode, ...rest }) => {
+export const TelephoneCallPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Telephone call',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="TelephoneCallPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="TelephoneCallPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -25,11 +40,4 @@ export const TelephoneCallPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-TelephoneCallPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Telephone call',
-	copyrightYear: '2021',
-};
 TelephoneCallPictogram.propTypes = Pictogram.propTypes;

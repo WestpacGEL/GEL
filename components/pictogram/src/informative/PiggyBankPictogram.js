@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const PiggyBankPictogram = ({ mode, ...rest }) => {
+export const PiggyBankPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Piggy bank',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="PiggyBankPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="PiggyBankPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -25,11 +40,4 @@ export const PiggyBankPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-PiggyBankPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Piggy bank',
-	copyrightYear: '2020',
-};
 PiggyBankPictogram.propTypes = Pictogram.propTypes;

@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const ChatPictogram = ({ mode, ...rest }) => {
+export const ChatPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Chat',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="ChatPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="ChatPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon fill={highlight} points="12.15 19.031 43.364 19.031 43.364 16.031 12.15 16.031" />
 				<polygon fill={highlight} points="12.15 26.01 43.364 26.01 43.364 23.01 12.15 23.01" />
@@ -24,11 +39,4 @@ export const ChatPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-ChatPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Chat',
-	copyrightYear: '2020',
-};
 ChatPictogram.propTypes = Pictogram.propTypes;

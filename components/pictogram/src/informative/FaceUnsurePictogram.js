@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const FaceUnsurePictogram = ({ mode, ...rest }) => {
+export const FaceUnsurePictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Face looking unsure',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="FaceUnsurePictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="FaceUnsurePictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -25,11 +40,4 @@ export const FaceUnsurePictogram = ({ mode, ...rest }) => {
 	);
 };
 
-FaceUnsurePictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Face looking unsure',
-	copyrightYear: '2021',
-};
 FaceUnsurePictogram.propTypes = Pictogram.propTypes;

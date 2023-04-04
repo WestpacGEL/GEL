@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const ArrowsPassingPictogram = ({ mode, ...rest }) => {
+export const ArrowsPassingPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Arrows pointing left and right',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="ArrowsPassingPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="ArrowsPassingPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -21,11 +36,4 @@ export const ArrowsPassingPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-ArrowsPassingPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Arrows pointing left and right',
-	copyrightYear: '2021',
-};
 ArrowsPassingPictogram.propTypes = Pictogram.propTypes;

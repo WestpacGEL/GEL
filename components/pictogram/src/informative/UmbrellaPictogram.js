@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const UmbrellaPictogram = ({ mode, ...rest }) => {
+export const UmbrellaPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Umbrella',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="UmbrellaPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="UmbrellaPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -21,11 +36,4 @@ export const UmbrellaPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-UmbrellaPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Umbrella',
-	copyrightYear: '2021',
-};
 UmbrellaPictogram.propTypes = Pictogram.propTypes;

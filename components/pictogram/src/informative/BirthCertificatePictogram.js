@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const BirthCertificatePictogram = ({ mode, ...rest }) => {
+export const BirthCertificatePictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Birth certificate',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="BirthCertificatePictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="BirthCertificatePictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon fill={outline} points="18.654 18.872 50.317 18.872 50.317 15.871 18.654 15.871" />
 				<polygon fill={outline} points="18.654 26.474 50.317 26.474 50.317 23.474 18.654 23.474" />
@@ -25,11 +40,4 @@ export const BirthCertificatePictogram = ({ mode, ...rest }) => {
 	);
 };
 
-BirthCertificatePictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Birth certificate',
-	copyrightYear: '2020',
-};
 BirthCertificatePictogram.propTypes = Pictogram.propTypes;

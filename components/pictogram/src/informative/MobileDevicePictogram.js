@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const MobileDevicePictogram = ({ mode, ...rest }) => {
+export const MobileDevicePictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Mobile device',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="MobileDevicePictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="MobileDevicePictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -25,11 +40,4 @@ export const MobileDevicePictogram = ({ mode, ...rest }) => {
 	);
 };
 
-MobileDevicePictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Mobile device',
-	copyrightYear: '2020',
-};
 MobileDevicePictogram.propTypes = Pictogram.propTypes;
