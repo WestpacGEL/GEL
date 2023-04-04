@@ -100,7 +100,7 @@ export const DatePicker = ({
 	onOpen,
 	onClose,
 	placeholder = '',
-	size = TextInput.defaultProps.size,
+	size = 'medium',
 	overrides: componentOverrides,
 	...rest
 }: DatePickerProps) => {
