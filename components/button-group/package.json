@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/button-group",
-	"version": "2.2.0",
+	"version": "2.2.1",
 	"description": "Button toggles grouped together on a single line, used to capture simple responses, powered by radio elements",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/button-group",
@@ -35,8 +35,8 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/button": "^2.2.0",
-		"@westpac/core": "^3.2.0",
+		"@westpac/button": "^2.2.1",
+		"@westpac/core": "^3.2.1",
 		"prop-types": "^15.7.2"
 	},
 	"devDependencies": {

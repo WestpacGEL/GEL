@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/sidebar",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "GEL sidebar component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/sidebar",
 	"license": "GPL-3.0+",
@@ -17,12 +17,12 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/a11y": "^2.2.0",
-		"@westpac/button": "^2.2.0",
-		"@westpac/core": "^3.2.0",
-		"@westpac/heading": "^2.2.0",
-		"@westpac/hooks": "^3.1.0",
-		"@westpac/icon": "^2.1.0",
+		"@westpac/a11y": "^2.2.1",
+		"@westpac/button": "^2.2.1",
+		"@westpac/core": "^3.2.1",
+		"@westpac/heading": "^2.3.1",
+		"@westpac/hooks": "^3.1.1",
+		"@westpac/icon": "^2.1.1",
 		"lodash.throttle": "^4.1.1",
 		"prop-types": "^15.7.2",
 		"react-focus-on": "^3.5.2"
