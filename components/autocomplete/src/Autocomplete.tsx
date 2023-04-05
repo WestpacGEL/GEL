@@ -267,12 +267,3 @@ Autocomplete.propTypes = {
 	 */
 	styles: PropTypes.object,
 };
-
-Autocomplete.defaultProps = {
-	components: {},
-	isClearable: true,
-	openMenuOnClick: false,
-	placeholder: '',
-	size: 'medium',
-	styles: {},
-};

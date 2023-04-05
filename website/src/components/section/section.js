@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 // ==============================
 
 export const Section = ({
-	tag: Tag,
+	tag: Tag = 'section',
 	paddingTop = 'medium',
 	paddingBottom = 'medium',
 	light,
@@ -49,11 +49,4 @@ Section.propTypes = {
 	paddingTop: PropTypes.oneOf(['medium', 'large']).isRequired,
 	paddingBottom: PropTypes.oneOf(['medium', 'large']).isRequired,
 	light: PropTypes.bool.isRequired,
-};
-
-Section.defaultProps = {
-	tag: 'section',
-	paddingTop: 'medium',
-	paddingBottom: 'medium',
-	light: false,
 };

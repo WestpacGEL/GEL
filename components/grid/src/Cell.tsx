@@ -162,5 +162,3 @@ Cell.propTypes = {
 		PropTypes.string,
 	]),
 };
-
-Cell.defaultProps = { height: 1, tag: 'div', width: 1 };

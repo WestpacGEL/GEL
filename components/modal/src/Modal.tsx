@@ -334,5 +334,3 @@ Modal.propTypes = {
 	 */
 	size: PropTypes.oneOf(['large', 'medium', 'small']).isRequired,
 };
-
-Modal.defaultProps = { dismissible: true, open: false, size: 'medium' };

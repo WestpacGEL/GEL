@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const SdStorageIcon = (props) => (
-	<Icon icon="SdStorageIcon" {...props}>
+export const SdStorageIcon = ({
+	assistiveText = 'Sd Storage',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="SdStorageIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const SdStorageIcon = (props) => (
 	</Icon>
 );
 
-SdStorageIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Sd Storage',
-	copyrightYear: '2020',
-};
 SdStorageIcon.propTypes = propTypes;

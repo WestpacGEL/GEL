@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const WatchIcon = (props) => (
-	<Icon icon="WatchIcon" {...props}>
+export const WatchIcon = ({
+	assistiveText = 'Watch',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="WatchIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const WatchIcon = (props) => (
 	</Icon>
 );
 
-WatchIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Watch',
-	copyrightYear: '2020',
-};
 WatchIcon.propTypes = propTypes;

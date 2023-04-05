@@ -86,5 +86,3 @@ Well.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
-
-Well.defaultProps = { tag: 'div' };

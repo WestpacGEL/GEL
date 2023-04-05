@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const GlobeAustraliaPictogram = ({ mode, ...rest }) => {
+export const GlobeAustraliaPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Globe showing Australia',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="GlobeAustraliaPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="GlobeAustraliaPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -25,11 +40,4 @@ export const GlobeAustraliaPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-GlobeAustraliaPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Globe showing Australia',
-	copyrightYear: '2021',
-};
 GlobeAustraliaPictogram.propTypes = Pictogram.propTypes;

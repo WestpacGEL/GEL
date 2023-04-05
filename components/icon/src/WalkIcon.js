@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const WalkIcon = (props) => (
-	<Icon icon="WalkIcon" {...props}>
+export const WalkIcon = ({
+	assistiveText = 'Walk',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="WalkIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const WalkIcon = (props) => (
 	</Icon>
 );
 
-WalkIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Walk',
-	copyrightYear: '2020',
-};
 WalkIcon.propTypes = propTypes;

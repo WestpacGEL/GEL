@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const CalculatorIcon = (props) => (
-	<Icon icon="CalculatorIcon" {...props}>
+export const CalculatorIcon = ({
+	assistiveText = 'Calculator',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="CalculatorIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const CalculatorIcon = (props) => (
 	</Icon>
 );
 
-CalculatorIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Calculator',
-	copyrightYear: '2020',
-};
 CalculatorIcon.propTypes = propTypes;

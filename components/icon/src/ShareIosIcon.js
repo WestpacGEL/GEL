@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const ShareIosIcon = (props) => (
-	<Icon icon="ShareIosIcon" {...props}>
+export const ShareIosIcon = ({
+	assistiveText = 'Share',
+	copyrightYear = '2021',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="ShareIosIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const ShareIosIcon = (props) => (
 	</Icon>
 );
 
-ShareIosIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Share',
-	copyrightYear: '2021',
-};
 ShareIosIcon.propTypes = propTypes;

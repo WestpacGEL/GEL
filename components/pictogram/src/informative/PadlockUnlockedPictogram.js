@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const PadlockUnlockedPictogram = ({ mode, ...rest }) => {
+export const PadlockUnlockedPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Unlocked padlock',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="PadlockUnlockedPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="PadlockUnlockedPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -21,11 +36,4 @@ export const PadlockUnlockedPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-PadlockUnlockedPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Unlocked padlock',
-	copyrightYear: '2020',
-};
 PadlockUnlockedPictogram.propTypes = Pictogram.propTypes;

@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const STGDragonLogo = (props) => (
-	<Symbol symbol="STGDragonLogo" {...props}>
+export const STGDragonLogo = ({
+	align = 'left',
+	assistiveText = 'St.George',
+	copyrightYear = '2020',
+	viewBoxWidth = 54,
+	viewBoxHeight = 38,
+	...props
+}) => (
+	<Symbol
+		symbol="STGDragonLogo"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<path
 			d="M30 29.3c1.4 2.2 3.8 3.8 6.3 4.1 4.4 0.6 8.5-1.6 12.9 0.1 2 0.7 3.8 2 4.8 3.7 -0.9-0.4-1.5-0.7-2.6-1 -1.9-0.6-3.5-0.4-5.5-0.1 -3.7 0.5-7.4 1.7-10.9 0C32.3 34.8 30.7 32.1 30 29.3"
 			fill="#FFCD00"
@@ -62,11 +77,4 @@ export const STGDragonLogo = (props) => (
 	</Symbol>
 );
 
-STGDragonLogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 54,
-	viewBoxHeight: 38,
-	assistiveText: 'St.George',
-	copyrightYear: '2020',
-};
 STGDragonLogo.propTypes = propTypes;

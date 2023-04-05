@@ -145,11 +145,4 @@ export const propTypes = {
 	}),
 };
 
-export const defaultProps = {
-	align: 'left',
-	copyrightYear: '',
-};
-
 Symbol.propTypes = propTypes;
-
-Symbol.defaultProps = defaultProps;

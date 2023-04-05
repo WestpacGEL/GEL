@@ -1,8 +1,25 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const RAMSMultibrandLargeLogo = (props) => (
-	<Symbol symbol="RAMSMultibrandLargeLogo" {...props}>
+export const RAMSMultibrandLargeLogo = ({
+	align = 'left',
+	assistiveText = 'RAMS',
+	copyrightYear = '2020',
+	offset = [null, 40.5, 81],
+	viewBoxWidth = 180,
+	viewBoxHeight = 65,
+	...props
+}) => (
+	<Symbol
+		symbol="RAMSMultibrandLargeLogo"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		offset={offset}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<defs>
 			<linearGradient
 				x1="49.289%"
@@ -79,12 +96,4 @@ export const RAMSMultibrandLargeLogo = (props) => (
 	</Symbol>
 );
 
-RAMSMultibrandLargeLogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 180,
-	viewBoxHeight: 65,
-	offset: [null, 40.5, 81],
-	assistiveText: 'RAMS',
-	copyrightYear: '2020',
-};
 RAMSMultibrandLargeLogo.propTypes = propTypes;

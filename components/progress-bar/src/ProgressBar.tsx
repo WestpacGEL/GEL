@@ -145,5 +145,3 @@ ProgressBar.propTypes = {
 	 */
 	value: PropTypes.number.isRequired,
 };
-
-ProgressBar.defaultProps = { look: 'default', noLabel: false, value: 0 };

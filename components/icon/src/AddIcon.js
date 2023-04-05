@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const AddIcon = (props) => (
-	<Icon icon="AddIcon" {...props}>
+export const AddIcon = ({
+	assistiveText = 'Add',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="AddIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<polygon
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const AddIcon = (props) => (
 	</Icon>
 );
 
-AddIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Add',
-	copyrightYear: '2020',
-};
 AddIcon.propTypes = propTypes;

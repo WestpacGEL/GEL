@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const CalendarIcon = (props) => (
-	<Icon icon="CalendarIcon" {...props}>
+export const CalendarIcon = ({
+	assistiveText = 'Calendar',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="CalendarIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const CalendarIcon = (props) => (
 	</Icon>
 );
 
-CalendarIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Calendar',
-	copyrightYear: '2020',
-};
 CalendarIcon.propTypes = propTypes;

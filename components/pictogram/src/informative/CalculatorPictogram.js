@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const CalculatorPictogram = ({ mode, ...rest }) => {
+export const CalculatorPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Calculator',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="CalculatorPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="CalculatorPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -39,11 +54,4 @@ export const CalculatorPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-CalculatorPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Calculator',
-	copyrightYear: '2020',
-};
 CalculatorPictogram.propTypes = Pictogram.propTypes;

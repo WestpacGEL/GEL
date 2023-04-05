@@ -11,10 +11,10 @@ import pkg from '../package.json';
 
 export const Icon = ({
 	color,
-	size,
+	size = 'medium',
 	assistiveText,
 	icon,
-	copyrightYear,
+	copyrightYear = '',
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -111,10 +111,4 @@ export const propTypes = {
 	}),
 };
 
-export const defaultProps = {
-	size: 'medium',
-	copyrightYear: '',
-};
-
 Icon.propTypes = propTypes;
-Icon.defaultProps = defaultProps;

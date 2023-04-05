@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const WordFileIcon = (props) => (
-	<Icon icon="WordFileIcon" {...props}>
+export const WordFileIcon = ({
+	assistiveText = 'Word File',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="WordFileIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const WordFileIcon = (props) => (
 	</Icon>
 );
 
-WordFileIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Word File',
-	copyrightYear: '2020',
-};
 WordFileIcon.propTypes = propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const LinkedinIcon = (props) => (
-	<Icon icon="LinkedinIcon" {...props}>
+export const LinkedinIcon = ({
+	assistiveText = 'Linkedin',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="LinkedinIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const LinkedinIcon = (props) => (
 	</Icon>
 );
 
-LinkedinIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Linkedin',
-	copyrightYear: '2020',
-};
 LinkedinIcon.propTypes = propTypes;

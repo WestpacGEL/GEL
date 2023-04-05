@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const CoffeePictogram = ({ mode, ...rest }) => {
+export const CoffeePictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Coffee',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="CoffeePictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="CoffeePictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon fill={highlight} points="52.827 52 20.163 52 19 39 54 39" />
 				<path
@@ -18,11 +33,4 @@ export const CoffeePictogram = ({ mode, ...rest }) => {
 	);
 };
 
-CoffeePictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Coffee',
-	copyrightYear: '2021',
-};
 CoffeePictogram.propTypes = Pictogram.propTypes;

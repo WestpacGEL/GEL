@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const UnsecurePictogram = ({ mode, ...rest }) => {
+export const UnsecurePictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Unsecure',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="UnsecurePictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="UnsecurePictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon
 					fill={highlight}
@@ -21,11 +36,4 @@ export const UnsecurePictogram = ({ mode, ...rest }) => {
 	);
 };
 
-UnsecurePictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Unsecure',
-	copyrightYear: '2021',
-};
 UnsecurePictogram.propTypes = Pictogram.propTypes;

@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const AppleStoreInverseSymbol = (props) => (
-	<Symbol symbol="AppleStoreInverseSymbol" {...props}>
+export const AppleStoreInverseSymbol = ({
+	align = 'left',
+	assistiveText = 'Apple Store',
+	copyrightYear = '',
+	viewBoxWidth = 170,
+	viewBoxHeight = 58,
+	...props
+}) => (
+	<Symbol
+		symbol="AppleStoreInverseSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fill="none" fillRule="evenodd">
 			<path
 				fill="#000"
@@ -42,11 +57,4 @@ export const AppleStoreInverseSymbol = (props) => (
 	</Symbol>
 );
 
-AppleStoreInverseSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 170,
-	viewBoxHeight: 58,
-	assistiveText: 'Apple Store',
-	copyrightYear: '',
-};
 AppleStoreInverseSymbol.propTypes = propTypes;

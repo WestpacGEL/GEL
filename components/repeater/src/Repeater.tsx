@@ -245,5 +245,3 @@ Repeater.propTypes = {
 	 */
 	separator: PropTypes.bool,
 };
-
-Repeater.defaultProps = { addText: 'Add another item' };

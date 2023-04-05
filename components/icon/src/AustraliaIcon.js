@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const AustraliaIcon = (props) => (
-	<Icon icon="AustraliaIcon" {...props}>
+export const AustraliaIcon = ({
+	assistiveText = 'Australia',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="AustraliaIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const AustraliaIcon = (props) => (
 	</Icon>
 );
 
-AustraliaIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Australia',
-	copyrightYear: '2020',
-};
 AustraliaIcon.propTypes = propTypes;

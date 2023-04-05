@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const MastercardAcceptedSymbol = (props) => (
-	<Symbol symbol="MastercardAcceptedSymbol" {...props}>
+export const MastercardAcceptedSymbol = ({
+	align = 'left',
+	assistiveText = 'Mastercard Accepted',
+	copyrightYear = '',
+	viewBoxWidth = 80,
+	viewBoxHeight = 50,
+	...props
+}) => (
+	<Symbol
+		symbol="MastercardAcceptedSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fill="none">
 			<path fill="#000" d="M0 50h80V0H0" />
 			<path
@@ -26,11 +41,4 @@ export const MastercardAcceptedSymbol = (props) => (
 	</Symbol>
 );
 
-MastercardAcceptedSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 80,
-	viewBoxHeight: 50,
-	assistiveText: 'Mastercard Accepted',
-	copyrightYear: '',
-};
 MastercardAcceptedSymbol.propTypes = propTypes;

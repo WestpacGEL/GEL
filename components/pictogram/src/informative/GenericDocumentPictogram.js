@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const GenericDocumentPictogram = ({ mode, ...rest }) => {
+export const GenericDocumentPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Generic document',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="GenericDocumentPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="GenericDocumentPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -30,11 +45,4 @@ export const GenericDocumentPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-GenericDocumentPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Generic document',
-	copyrightYear: '2020',
-};
 GenericDocumentPictogram.propTypes = Pictogram.propTypes;

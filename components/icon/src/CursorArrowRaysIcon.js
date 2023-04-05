@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const CursorArrowRaysIcon = (props) => (
-	<Icon icon="CursorArrowRaysIcon" {...props}>
+export const CursorArrowRaysIcon = ({
+	assistiveText = 'Cursor arrow rays',
+	copyrightYear = '2021',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="CursorArrowRaysIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const CursorArrowRaysIcon = (props) => (
 	</Icon>
 );
 
-CursorArrowRaysIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Cursor arrow rays',
-	copyrightYear: '2021',
-};
 CursorArrowRaysIcon.propTypes = propTypes;

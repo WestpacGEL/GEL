@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const PlaneIcon = (props) => (
-	<Icon icon="PlaneIcon" {...props}>
+export const PlaneIcon = ({
+	assistiveText = 'Plane',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="PlaneIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const PlaneIcon = (props) => (
 	</Icon>
 );
 
-PlaneIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Plane',
-	copyrightYear: '2020',
-};
 PlaneIcon.propTypes = propTypes;

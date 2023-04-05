@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const ExitIcon = (props) => (
-	<Icon icon="ExitIcon" {...props}>
+export const ExitIcon = ({
+	assistiveText = 'Exit',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="ExitIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const ExitIcon = (props) => (
 	</Icon>
 );
 
-ExitIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Exit',
-	copyrightYear: '2020',
-};
 ExitIcon.propTypes = propTypes;

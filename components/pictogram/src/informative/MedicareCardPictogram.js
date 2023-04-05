@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const MedicareCardPictogram = ({ mode, ...rest }) => {
+export const MedicareCardPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Medicare card',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="MedicareCardPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="MedicareCardPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -23,11 +38,4 @@ export const MedicareCardPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-MedicareCardPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Medicare card',
-	copyrightYear: '2020',
-};
 MedicareCardPictogram.propTypes = Pictogram.propTypes;

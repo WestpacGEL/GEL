@@ -355,14 +355,3 @@ Tabcordion.propTypes = {
 		}),
 	}),
 };
-
-Tabcordion.defaultProps = {
-	justify: false,
-	look: 'soft',
-	mode: 'responsive',
-	onClose: () => {},
-	onClosing: () => {},
-	onOpen: () => {},
-	onOpening: () => {},
-	openTab: 0,
-};

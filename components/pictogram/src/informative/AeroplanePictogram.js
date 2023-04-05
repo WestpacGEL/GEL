@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const AeroplanePictogram = ({ mode, ...rest }) => {
+export const AeroplanePictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Aeroplane',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="AeroplanePictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="AeroplanePictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon fill={highlight} points="2 25.025 4.02 27.243 14.694 17.524 12.674 15.306" />
 				<polygon fill={highlight} points="12.173 26.43 14.196 28.645 21.129 22.315 19.106 20.1" />
@@ -24,11 +39,4 @@ export const AeroplanePictogram = ({ mode, ...rest }) => {
 	);
 };
 
-AeroplanePictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Aeroplane',
-	copyrightYear: '2020',
-};
 AeroplanePictogram.propTypes = Pictogram.propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const AtmIcon = (props) => (
-	<Icon icon="AtmIcon" {...props}>
+export const AtmIcon = ({
+	assistiveText = 'Atm',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="AtmIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const AtmIcon = (props) => (
 	</Icon>
 );
 
-AtmIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Atm',
-	copyrightYear: '2020',
-};
 AtmIcon.propTypes = propTypes;

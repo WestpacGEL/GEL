@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const MoreHorizontalIcon = (props) => (
-	<Icon icon="MoreHorizontalIcon" {...props}>
+export const MoreHorizontalIcon = ({
+	assistiveText = 'More Horizontal',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="MoreHorizontalIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const MoreHorizontalIcon = (props) => (
 	</Icon>
 );
 
-MoreHorizontalIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'More Horizontal',
-	copyrightYear: '2020',
-};
 MoreHorizontalIcon.propTypes = propTypes;

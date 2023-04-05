@@ -301,5 +301,3 @@ Header.propTypes = {
 	 */
 	skipToContentId: PropTypes.string,
 };
-
-Header.defaultProps = { logoLink: '#', skipLinkContent: 'Skip to main content' };

@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const SlackSymbol = (props) => (
-	<Symbol symbol="SlackSymbol" {...props}>
+export const SlackSymbol = ({
+	align = 'left',
+	assistiveText = 'Slack',
+	copyrightYear = '',
+	viewBoxWidth = 32,
+	viewBoxHeight = 32,
+	...props
+}) => (
+	<Symbol
+		symbol="SlackSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fill="none" fillRule="evenodd">
 			<rect width="32" height="32" fill="#611F69" rx="2" />
 			<path
@@ -25,11 +40,4 @@ export const SlackSymbol = (props) => (
 	</Symbol>
 );
 
-SlackSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 32,
-	viewBoxHeight: 32,
-	assistiveText: 'Slack',
-	copyrightYear: '',
-};
 SlackSymbol.propTypes = propTypes;

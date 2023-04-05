@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const LightBulbPictogram = ({ mode, ...rest }) => {
+export const LightBulbPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Light bulb',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="LightBulbPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="LightBulbPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon fill={highlight} points="37.313 11.15 39.813 11.15 39.813 2.001 37.313 2.001" />
 				<polygon
@@ -36,11 +51,4 @@ export const LightBulbPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-LightBulbPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Light bulb',
-	copyrightYear: '2021',
-};
 LightBulbPictogram.propTypes = Pictogram.propTypes;

@@ -203,5 +203,3 @@ Breadcrumb.propTypes = {
 		}),
 	}),
 };
-
-Breadcrumb.defaultProps = { assistiveText: 'Breadcrumb' };

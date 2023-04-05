@@ -82,5 +82,3 @@ Text.propTypes = {
 	 */
 	children: PropTypes.node,
 };
-
-Text.defaultProps = { block: false };

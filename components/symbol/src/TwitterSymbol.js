@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const TwitterSymbol = (props) => (
-	<Symbol symbol="TwitterSymbol" {...props}>
+export const TwitterSymbol = ({
+	align = 'left',
+	assistiveText = 'Twitter',
+	copyrightYear = '',
+	viewBoxWidth = 32,
+	viewBoxHeight = 32,
+	...props
+}) => (
+	<Symbol
+		symbol="TwitterSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fillRule="nonzero" fill="none">
 			<rect fill="#0BABE3" width="32" height="32" rx="2" />
 			<path
@@ -13,11 +28,4 @@ export const TwitterSymbol = (props) => (
 	</Symbol>
 );
 
-TwitterSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 32,
-	viewBoxHeight: 32,
-	assistiveText: 'Twitter',
-	copyrightYear: '',
-};
 TwitterSymbol.propTypes = propTypes;

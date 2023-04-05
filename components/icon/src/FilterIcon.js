@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const FilterIcon = (props) => (
-	<Icon icon="FilterIcon" {...props}>
+export const FilterIcon = ({
+	assistiveText = 'Filter',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="FilterIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const FilterIcon = (props) => (
 	</Icon>
 );
 
-FilterIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Filter',
-	copyrightYear: '2020',
-};
 FilterIcon.propTypes = propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const YoutubeIcon = (props) => (
-	<Icon icon="YoutubeIcon" {...props}>
+export const YoutubeIcon = ({
+	assistiveText = 'Youtube',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="YoutubeIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const YoutubeIcon = (props) => (
 	</Icon>
 );
 
-YoutubeIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Youtube',
-	copyrightYear: '2020',
-};
 YoutubeIcon.propTypes = propTypes;

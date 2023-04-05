@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const ArrowLeftIcon = (props) => (
-	<Icon icon="ArrowLeftIcon" {...props}>
+export const ArrowLeftIcon = ({
+	assistiveText = 'Arrow Left',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="ArrowLeftIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<polygon
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const ArrowLeftIcon = (props) => (
 	</Icon>
 );
 
-ArrowLeftIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Arrow Left',
-	copyrightYear: '2020',
-};
 ArrowLeftIcon.propTypes = propTypes;

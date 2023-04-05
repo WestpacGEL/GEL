@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const PercentSignPictogram = ({ mode, ...rest }) => {
+export const PercentSignPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Percent sign',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="PercentSignPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="PercentSignPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -21,11 +36,4 @@ export const PercentSignPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-PercentSignPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Percent sign',
-	copyrightYear: '2020',
-};
 PercentSignPictogram.propTypes = Pictogram.propTypes;

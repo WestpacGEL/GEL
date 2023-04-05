@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const ShopIcon = (props) => (
-	<Icon icon="ShopIcon" {...props}>
+export const ShopIcon = ({
+	assistiveText = 'Shop',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="ShopIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const ShopIcon = (props) => (
 	</Icon>
 );
 
-ShopIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Shop',
-	copyrightYear: '2020',
-};
 ShopIcon.propTypes = propTypes;

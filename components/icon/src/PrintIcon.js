@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const PrintIcon = (props) => (
-	<Icon icon="PrintIcon" {...props}>
+export const PrintIcon = ({
+	assistiveText = 'Print',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="PrintIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const PrintIcon = (props) => (
 	</Icon>
 );
 
-PrintIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Print',
-	copyrightYear: '2020',
-};
 PrintIcon.propTypes = propTypes;

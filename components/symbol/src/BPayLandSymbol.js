@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const BPayLandSymbol = (props) => (
-	<Symbol symbol="BPayLandSymbol" {...props}>
+export const BPayLandSymbol = ({
+	align = 'left',
+	assistiveText = 'BPay',
+	copyrightYear = '',
+	viewBoxWidth = 116,
+	viewBoxHeight = 54,
+	...props
+}) => (
+	<Symbol
+		symbol="BPayLandSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fill="none" fillRule="evenodd">
 			<rect width="111" height="49" x="2.734" y="2.734" fill="#0A2652" />
 			<path
@@ -13,11 +28,4 @@ export const BPayLandSymbol = (props) => (
 	</Symbol>
 );
 
-BPayLandSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 116,
-	viewBoxHeight: 54,
-	assistiveText: 'BPay',
-	copyrightYear: '',
-};
 BPayLandSymbol.propTypes = propTypes;

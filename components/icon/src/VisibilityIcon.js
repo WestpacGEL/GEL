@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const VisibilityIcon = (props) => (
-	<Icon icon="VisibilityIcon" {...props}>
+export const VisibilityIcon = ({
+	assistiveText = 'Visibility',
+	copyrightYear = '2021',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="VisibilityIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const VisibilityIcon = (props) => (
 	</Icon>
 );
 
-VisibilityIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Visibility',
-	copyrightYear: '2021',
-};
 VisibilityIcon.propTypes = propTypes;

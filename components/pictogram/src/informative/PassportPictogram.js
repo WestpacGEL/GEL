@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const PassportPictogram = ({ mode, ...rest }) => {
+export const PassportPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Passport',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="PassportPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="PassportPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon fill={outline} points="27.791 24.295 51.496 24.295 51.496 21.295 27.791 21.295" />
 				<polygon fill={outline} points="27.791 64.275 51.496 64.275 51.496 61.275 27.791 61.275" />
@@ -23,11 +38,4 @@ export const PassportPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-PassportPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Passport',
-	copyrightYear: '2020',
-};
 PassportPictogram.propTypes = Pictogram.propTypes;

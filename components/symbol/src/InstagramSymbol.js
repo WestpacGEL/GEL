@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const InstagramSymbol = (props) => (
-	<Symbol symbol="InstagramSymbol" {...props}>
+export const InstagramSymbol = ({
+	align = 'left',
+	assistiveText = 'Instagram',
+	copyrightYear = '',
+	viewBoxWidth = 32,
+	viewBoxHeight = 32,
+	...props
+}) => (
+	<Symbol
+		symbol="InstagramSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<defs>
 			<radialGradient
 				cx="29.515%"
@@ -33,11 +48,4 @@ export const InstagramSymbol = (props) => (
 	</Symbol>
 );
 
-InstagramSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 32,
-	viewBoxHeight: 32,
-	assistiveText: 'Instagram',
-	copyrightYear: '',
-};
 InstagramSymbol.propTypes = propTypes;

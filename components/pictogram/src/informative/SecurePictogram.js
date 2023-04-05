@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const SecurePictogram = ({ mode, ...rest }) => {
+export const SecurePictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Secure',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="SecurePictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="SecurePictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -25,11 +40,4 @@ export const SecurePictogram = ({ mode, ...rest }) => {
 	);
 };
 
-SecurePictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Secure',
-	copyrightYear: '2021',
-};
 SecurePictogram.propTypes = Pictogram.propTypes;

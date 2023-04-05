@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const HousePictogram = ({ mode, ...rest }) => {
+export const HousePictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'House',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="HousePictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="HousePictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon
 					fill={highlight}
@@ -21,11 +36,4 @@ export const HousePictogram = ({ mode, ...rest }) => {
 	);
 };
 
-HousePictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'House',
-	copyrightYear: '2020',
-};
 HousePictogram.propTypes = Pictogram.propTypes;

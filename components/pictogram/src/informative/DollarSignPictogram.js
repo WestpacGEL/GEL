@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const DollarSignPictogram = ({ mode, ...rest }) => {
+export const DollarSignPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Dollar sign',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="DollarSignPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="DollarSignPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -21,11 +36,4 @@ export const DollarSignPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-DollarSignPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Dollar sign',
-	copyrightYear: '2020',
-};
 DollarSignPictogram.propTypes = Pictogram.propTypes;

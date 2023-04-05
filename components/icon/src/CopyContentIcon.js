@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const CopyContentIcon = (props) => (
-	<Icon icon="CopyContentIcon" {...props}>
+export const CopyContentIcon = ({
+	assistiveText = 'Copy',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="CopyContentIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const CopyContentIcon = (props) => (
 	</Icon>
 );
 
-CopyContentIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Copy',
-	copyrightYear: '2020',
-};
 CopyContentIcon.propTypes = propTypes;
