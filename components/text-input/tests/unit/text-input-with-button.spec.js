@@ -1,7 +1,6 @@
 import { GEL } from '@westpac/core';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
 import { TextInputWithButton } from '@westpac/text-input';
 import { UmbrellaIcon } from '@westpac/icon';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
@@ -40,5 +39,12 @@ describe('TextInputWithButton component', () => {
 		expect(parentElement.childElementCount).toBe(2);
 		expect(parentElement.firstChild).toBe(theInputElement);
 		expect(parentElement.lastChild).toBe(theButtonElement);
+	});
+
+	test('should render before button and be clickable', () => {
+		const handleClick = jest.fn(() => {});
+		render(<SimpleTextInputWithButton btnOnClick={handleClick} />);
+		fireEvent.click(screen.getByRole('button'));
+		expect(handleClick).toHaveBeenCalledTimes(1);
 	});
 });
