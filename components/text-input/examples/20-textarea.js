@@ -16,7 +16,7 @@ function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
 			<h2>Default</h2>
-			<Textarea />
+			<Textarea data-cy="default-textarea" />
 
 			<hr />
 
@@ -39,7 +39,7 @@ function Example({ brand }) {
 			<hr />
 
 			<h2>Invalid</h2>
-			<Textarea placeholder="invalid" invalid />
+			<Textarea data-cy="invalid-textarea" placeholder="invalid" invalid />
 
 			<hr />
 

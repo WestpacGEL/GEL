@@ -106,6 +106,7 @@
     "@react-spring/web": "^9.2.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/prop-types": "^15.7.5",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^27.0.6",

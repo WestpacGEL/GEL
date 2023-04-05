@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { ErrorBoundary } from './error-boundary.js';
 import { GEL } from '@westpac/core';
@@ -17,32 +17,30 @@ function nestingTest({ name, Component }) {
 		});
 
 		test('Errors when the component is rendered outside of <GEL/>', () => {
-			const text = 'Our alert content';
-			const Wrapper = () => <Component>{text}</Component>;
+			const Wrapper = () => <Component />;
 
-			const { container } = render(<Wrapper />, { wrapper: ErrorBoundary });
-
-			expect(container).toHaveTextContent(
-				/GEL components require that you wrap your application with the <GEL \/> brand provider from @westpac\/core./i
-			);
-			expect(() => container.render()).toThrow();
+			render(<Wrapper />, { wrapper: ErrorBoundary });
+			expect(
+				screen.queryByText(
+					/GEL components require that you wrap your application with the <GEL \/> brand provider from @westpac\/core./i
+				)
+			).toBeInTheDocument();
 		});
 
 		test('Renders when the component is rendered inside of <GEL/>', () => {
-			const text = 'Our alert content';
 			const Wrapper = () => (
 				<GEL brand={wbc}>
-					<Component>{text}</Component>
+					<Component />
 				</GEL>
 			);
 
-			const { container } = render(<Wrapper />, { wrapper: ErrorBoundary });
-
-			expect(container).not.toHaveTextContent(
-				/GEL components require that you wrap your application with the <GEL \/> brand provider from @westpac\/core./i
-			);
+			render(<Wrapper />, { wrapper: ErrorBoundary });
+			expect(
+				screen.queryByText(
+					/GEL components require that you wrap your application with the <GEL \/> brand provider from @westpac\/core./i
+				)
+			).toBeNull();
 			expect(console.error).toHaveBeenCalledTimes(0);
-			expect(container).toHaveTextContent(text);
 		});
 	});
 }

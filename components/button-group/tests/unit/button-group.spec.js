@@ -43,7 +43,7 @@ const HelperComponent = function () {
 				name="example-custom-key"
 				value={value}
 				onChange={(e, v) => {
-					console.log(`custom-key: ${v}`);
+					// console.log(`custom-key: ${v}`);
 					setValue(v);
 				}}
 			>
@@ -109,12 +109,10 @@ describe('ButtonGroup component', () => {
 		const backgroundColorBeforeClick = window
 			.getComputedStyle(outerSpan)
 			.getPropertyValue('background-color');
-		console.log(backgroundColorBeforeClick);
 		fireEvent.click(outerSpan);
 
 		const styles = window.getComputedStyle(outerSpan);
 		const backgroundColorAfterClick = styles['background-color'];
-		console.log(backgroundColorAfterClick);
 		expect(styles['background-color']).toEqual(styles.backgroundColor);
 		expect(backgroundColorAfterClick).not.toEqual(backgroundColorBeforeClick);
 	});
