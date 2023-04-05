@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const PdfFileIcon = (props) => (
-	<Icon icon="PdfFileIcon" {...props}>
+export const PdfFileIcon = ({
+	assistiveText = 'PDF File',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="PdfFileIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const PdfFileIcon = (props) => (
 	</Icon>
 );
 
-PdfFileIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'PDF File',
-	copyrightYear: '2020',
-};
 PdfFileIcon.propTypes = propTypes;

@@ -30,5 +30,3 @@ _COMPONENT_NAME_.propTypes = {
 	 */
 	someProperty: PropTypes.string,
 };
-
-_COMPONENT_NAME_.defaultProps = {};

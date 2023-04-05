@@ -196,5 +196,3 @@ Footer.propTypes = {
 	 */
 	srOnlyText: PropTypes.string,
 };
-
-Footer.defaultProps = { logoLink: '#' };

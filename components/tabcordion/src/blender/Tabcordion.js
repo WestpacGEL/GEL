@@ -31,10 +31,10 @@ export const useTabcordionContext = () => {
 
 export const Tabcordion = ({
 	instanceId = 'gel-tabcordion',
-	mode,
-	look,
-	justify,
-	openTab,
+	mode = 'responsive',
+	look = 'soft',
+	justify = false,
+	openTab = 0,
 	children,
 	overrides: componentOverrides,
 	...rest
@@ -236,12 +236,3 @@ Tabcordion.propTypes = {
 		}),
 	}),
 };
-
-export const defaultProps = {
-	look: 'soft',
-	openTab: 0,
-	justify: false,
-	mode: 'responsive',
-};
-
-Tabcordion.defaultProps = defaultProps;

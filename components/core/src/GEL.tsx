@@ -39,5 +39,3 @@ GEL.propTypes = {
 		PropTypes.bool,
 	]),
 };
-
-GEL.defaultProps = { normalize: false };

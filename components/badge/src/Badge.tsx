@@ -111,5 +111,3 @@ Badge.propTypes = {
 	 */
 	value: PropTypes.string.isRequired,
 };
-
-Badge.defaultProps = { look: 'neutral', type: 'default' };

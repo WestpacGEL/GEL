@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const CompassIcon = (props) => (
-	<Icon icon="CompassIcon" {...props}>
+export const CompassIcon = ({
+	assistiveText = 'Compass',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="CompassIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const CompassIcon = (props) => (
 	</Icon>
 );
 
-CompassIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Compass',
-	copyrightYear: '2020',
-};
 CompassIcon.propTypes = propTypes;

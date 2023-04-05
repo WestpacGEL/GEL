@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const SettingsIcon = (props) => (
-	<Icon icon="SettingsIcon" {...props}>
+export const SettingsIcon = ({
+	assistiveText = 'Settings',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="SettingsIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const SettingsIcon = (props) => (
 	</Icon>
 );
 
-SettingsIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Settings',
-	copyrightYear: '2020',
-};
 SettingsIcon.propTypes = propTypes;

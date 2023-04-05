@@ -346,8 +346,6 @@ TextWrapper.propTypes = {
 	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
 };
 
-TextWrapper.defaultProps = { size: 'medium' };
-
 Wrapper.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
@@ -466,5 +464,3 @@ InputGroup.propTypes = {
 	 */
 	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
 };
-
-InputGroup.defaultProps = { disabled: false, invalid: false, size: 'medium' };

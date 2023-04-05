@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const StarIcon = (props) => (
-	<Icon icon="StarIcon" {...props}>
+export const StarIcon = ({
+	assistiveText = 'Star',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="StarIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<polygon
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const StarIcon = (props) => (
 	</Icon>
 );
 
-StarIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Star',
-	copyrightYear: '2020',
-};
 StarIcon.propTypes = propTypes;

@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const FootballPictogram = ({ mode, ...rest }) => {
+export const FootballPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Football',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="FootballPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="FootballPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon
 					fill={highlight}
@@ -31,11 +46,4 @@ export const FootballPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-FootballPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Football',
-	copyrightYear: '2021',
-};
 FootballPictogram.propTypes = Pictogram.propTypes;

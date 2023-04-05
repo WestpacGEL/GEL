@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const BankCardLockedPictogram = ({ mode, ...rest }) => {
+export const BankCardLockedPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Locked bank card',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="BankCardLockedPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="BankCardLockedPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -29,11 +44,4 @@ export const BankCardLockedPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-BankCardLockedPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Locked bank card',
-	copyrightYear: '2020',
-};
 BankCardLockedPictogram.propTypes = Pictogram.propTypes;

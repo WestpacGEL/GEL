@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const KeyholeIcon = (props) => (
-	<Icon icon="KeyholeIcon" {...props}>
+export const KeyholeIcon = ({
+	assistiveText = 'Keyhole',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="KeyholeIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const KeyholeIcon = (props) => (
 	</Icon>
 );
 
-KeyholeIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Keyhole',
-	copyrightYear: '2020',
-};
 KeyholeIcon.propTypes = propTypes;

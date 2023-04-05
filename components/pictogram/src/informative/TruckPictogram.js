@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const TruckPictogram = ({ mode, ...rest }) => {
+export const TruckPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Truck',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="TruckPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="TruckPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon fill={highlight} points="38 27 64 27 64 24 38 24" />
 				<polygon fill={highlight} points="46 34 63 34 63 31 46 31" />
@@ -19,11 +34,4 @@ export const TruckPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-TruckPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Truck',
-	copyrightYear: '2020',
-};
 TruckPictogram.propTypes = Pictogram.propTypes;

@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const YammerSymbol = (props) => (
-	<Symbol symbol="YammerSymbol" {...props}>
+export const YammerSymbol = ({
+	align = 'left',
+	assistiveText = 'Yammer',
+	copyrightYear = '',
+	viewBoxWidth = 32,
+	viewBoxHeight = 32,
+	...props
+}) => (
+	<Symbol
+		symbol="YammerSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fill="none" fillRule="evenodd">
 			<rect fill="#0072C6" width="32" height="32" rx="2" />
 			<path
@@ -13,11 +28,4 @@ export const YammerSymbol = (props) => (
 	</Symbol>
 );
 
-YammerSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 32,
-	viewBoxHeight: 32,
-	assistiveText: 'Yammer',
-	copyrightYear: '',
-};
 YammerSymbol.propTypes = propTypes;

@@ -303,5 +303,3 @@ Pagination.propTypes = {
 		}),
 	}),
 };
-
-Pagination.defaultProps = { current: 0 };

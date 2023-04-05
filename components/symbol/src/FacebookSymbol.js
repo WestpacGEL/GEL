@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const FacebookSymbol = (props) => (
-	<Symbol symbol="FacebookSymbol" {...props}>
+export const FacebookSymbol = ({
+	align = 'left',
+	assistiveText = 'Facebook',
+	copyrightYear = '',
+	viewBoxWidth = 32,
+	viewBoxHeight = 32,
+	...props
+}) => (
+	<Symbol
+		symbol="FacebookSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fillRule="nonzero" fill="none">
 			<rect fill="#3C619D" width="32" height="32" rx="2" />
 			<path
@@ -13,11 +28,4 @@ export const FacebookSymbol = (props) => (
 	</Symbol>
 );
 
-FacebookSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 32,
-	viewBoxHeight: 32,
-	assistiveText: 'Facebook',
-	copyrightYear: '',
-};
 FacebookSymbol.propTypes = propTypes;

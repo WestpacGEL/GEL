@@ -90,5 +90,3 @@ Heading.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
-
-Heading.defaultProps = { tag: 'h3' };

@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const ArrowDownPictogram = ({ mode, ...rest }) => {
+export const ArrowDownPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Arrow down',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="ArrowDownPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="ArrowDownPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -21,11 +36,4 @@ export const ArrowDownPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-ArrowDownPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Arrow down',
-	copyrightYear: '2021',
-};
 ArrowDownPictogram.propTypes = Pictogram.propTypes;

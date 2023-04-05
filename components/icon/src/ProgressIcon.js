@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const ProgressIcon = (props) => (
-	<Icon icon="ProgressIcon" {...props}>
+export const ProgressIcon = ({
+	assistiveText = 'Progress',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="ProgressIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const ProgressIcon = (props) => (
 	</Icon>
 );
 
-ProgressIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Progress',
-	copyrightYear: '2020',
-};
 ProgressIcon.propTypes = propTypes;

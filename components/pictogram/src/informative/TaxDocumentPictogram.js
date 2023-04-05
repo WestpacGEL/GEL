@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const TaxDocumentPictogram = ({ mode, ...rest }) => {
+export const TaxDocumentPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Tax document',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="TaxDocumentPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="TaxDocumentPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -32,11 +47,4 @@ export const TaxDocumentPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-TaxDocumentPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Tax document',
-	copyrightYear: '2021',
-};
 TaxDocumentPictogram.propTypes = Pictogram.propTypes;

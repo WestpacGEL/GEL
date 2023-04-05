@@ -178,5 +178,3 @@ Link.propTypes = {
 	 */
 	underline: PropTypes.bool,
 };
-
-Link.defaultProps = { iconSize: 'small', type: 'standalone', underline: true };

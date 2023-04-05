@@ -9,7 +9,11 @@ import {
 	getLabel,
 	formatClassName,
 } from '@westpac/core';
-import { defaultProps } from '../Icon';
+
+const defaultProps = {
+	size: 'medium',
+	copyrightYear: '',
+};
 
 // ==============================
 // Component

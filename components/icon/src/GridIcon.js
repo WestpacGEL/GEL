@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const GridIcon = (props) => (
-	<Icon icon="GridIcon" {...props}>
+export const GridIcon = ({
+	assistiveText = 'Grid',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="GridIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const GridIcon = (props) => (
 	</Icon>
 );
 
-GridIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Grid',
-	copyrightYear: '2020',
-};
 GridIcon.propTypes = propTypes;

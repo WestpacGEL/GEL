@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const DropboxIcon = (props) => (
-	<Icon icon="DropboxIcon" {...props}>
+export const DropboxIcon = ({
+	assistiveText = 'Dropbox',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="DropboxIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const DropboxIcon = (props) => (
 	</Icon>
 );
 
-DropboxIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Dropbox',
-	copyrightYear: '2020',
-};
 DropboxIcon.propTypes = propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const InstagramIcon = (props) => (
-	<Icon icon="InstagramIcon" {...props}>
+export const InstagramIcon = ({
+	assistiveText = 'Instagram',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="InstagramIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const InstagramIcon = (props) => (
 	</Icon>
 );
 
-InstagramIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Instagram',
-	copyrightYear: '2020',
-};
 InstagramIcon.propTypes = propTypes;

@@ -167,5 +167,3 @@ Crumb.propTypes = {
 	 */
 	text: PropTypes.string.isRequired,
 };
-
-Crumb.defaultProps = { href: '#0' };

@@ -155,5 +155,3 @@ Panel.propTypes = {
 		}),
 	}),
 };
-
-Panel.defaultProps = { headingTag: 'h1', look: 'hero' };

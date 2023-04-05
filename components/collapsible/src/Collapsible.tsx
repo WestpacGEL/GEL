@@ -232,5 +232,3 @@ Collapsible.propTypes = {
 	 */
 	text: PropTypes.string.isRequired,
 };
-
-Collapsible.defaultProps = { onClick: () => {}, open: false };

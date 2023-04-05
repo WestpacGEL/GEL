@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const HeadsetIcon = (props) => (
-	<Icon icon="HeadsetIcon" {...props}>
+export const HeadsetIcon = ({
+	assistiveText = 'Headset',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="HeadsetIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const HeadsetIcon = (props) => (
 	</Icon>
 );
 
-HeadsetIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Headset',
-	copyrightYear: '2020',
-};
 HeadsetIcon.propTypes = propTypes;

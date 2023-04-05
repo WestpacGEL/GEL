@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const AccessibilityPictogram = ({ mode, ...rest }) => {
+export const AccessibilityPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Accessibility',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="AccessibilityPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="AccessibilityPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -21,11 +36,4 @@ export const AccessibilityPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-AccessibilityPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Accessibility',
-	copyrightYear: '2020',
-};
 AccessibilityPictogram.propTypes = Pictogram.propTypes;

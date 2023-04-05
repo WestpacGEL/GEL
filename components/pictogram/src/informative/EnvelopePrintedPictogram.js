@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const EnvelopePrintedPictogram = ({ mode, ...rest }) => {
+export const EnvelopePrintedPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Printed envelope',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="EnvelopePrintedPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="EnvelopePrintedPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon
 					fill={highlight}
@@ -29,11 +44,4 @@ export const EnvelopePrintedPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-EnvelopePrintedPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Printed envelope',
-	copyrightYear: '2021',
-};
 EnvelopePrintedPictogram.propTypes = Pictogram.propTypes;

@@ -12,10 +12,8 @@ const Control = ({ children, ...props }) => (
 		{children}
 	</label>
 );
-const Radio = (p) => <Control {...p} />;
-Radio.defaultProps = { type: 'radio' };
-const Checkbox = (p) => <Control {...p} />;
-Checkbox.defaultProps = { type: 'checkbox' };
+const Radio = (p) => <Control type="radio" {...p} />;
+const Checkbox = (p) => <Control type="checkbox" {...p} />;
 
 function Example({ brand }) {
 	const [look, setLook] = useState(looks[0]);

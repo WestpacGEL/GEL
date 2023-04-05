@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const OfficeIcon = (props) => (
-	<Icon icon="OfficeIcon" {...props}>
+export const OfficeIcon = ({
+	assistiveText = 'Office',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="OfficeIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const OfficeIcon = (props) => (
 	</Icon>
 );
 
-OfficeIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Office',
-	copyrightYear: '2020',
-};
 OfficeIcon.propTypes = propTypes;

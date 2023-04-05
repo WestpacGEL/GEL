@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const PhoneIcon = (props) => (
-	<Icon icon="PhoneIcon" {...props}>
+export const PhoneIcon = ({
+	assistiveText = 'Phone',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="PhoneIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const PhoneIcon = (props) => (
 	</Icon>
 );
 
-PhoneIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Phone',
-	copyrightYear: '2020',
-};
 PhoneIcon.propTypes = propTypes;

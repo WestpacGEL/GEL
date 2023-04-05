@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const NewWindowIcon = (props) => (
-	<Icon icon="NewWindowIcon" {...props}>
+export const NewWindowIcon = ({
+	assistiveText = 'New Window',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="NewWindowIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const NewWindowIcon = (props) => (
 	</Icon>
 );
 
-NewWindowIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'New Window',
-	copyrightYear: '2020',
-};
 NewWindowIcon.propTypes = propTypes;

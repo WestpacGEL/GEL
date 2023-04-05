@@ -398,5 +398,3 @@ Compacta.propTypes = {
 		}),
 	}),
 };
-
-Compacta.defaultProps = { addText: 'Add another' };

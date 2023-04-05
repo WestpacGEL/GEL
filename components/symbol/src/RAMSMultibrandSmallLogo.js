@@ -1,8 +1,25 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const RAMSMultibrandSmallLogo = (props) => (
-	<Symbol symbol="RAMSMultibrandSmallLogo" {...props}>
+export const RAMSMultibrandSmallLogo = ({
+	align = 'left',
+	assistiveText = 'RAMS',
+	copyrightYear = '2020',
+	offset = [null, 25, 50],
+	viewBoxWidth = 122,
+	viewBoxHeight = 44,
+	...props
+}) => (
+	<Symbol
+		symbol="RAMSMultibrandSmallLogo"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		offset={offset}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<defs>
 			<linearGradient
 				x1="49.018%"
@@ -79,12 +96,4 @@ export const RAMSMultibrandSmallLogo = (props) => (
 	</Symbol>
 );
 
-RAMSMultibrandSmallLogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 122,
-	viewBoxHeight: 44,
-	offset: [null, 25, 50],
-	assistiveText: 'RAMS',
-	copyrightYear: '2020',
-};
 RAMSMultibrandSmallLogo.propTypes = propTypes;

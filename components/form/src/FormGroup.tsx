@@ -90,5 +90,3 @@ FormGroup.propTypes = {
 	 */
 	primary: PropTypes.bool,
 };
-
-FormGroup.defaultProps = { primary: false };

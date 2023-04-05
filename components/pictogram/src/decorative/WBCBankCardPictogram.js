@@ -1,9 +1,24 @@
 import React from 'react';
 import { Pictogram } from '../Pictogram';
 
-export const WBCBankCardPictogram = (props) => {
+export const WBCBankCardPictogram = ({
+	assistiveText = 'Bank card',
+	copyrightYear = '2020',
+	mode,
+	viewBoxHeight = 200,
+	viewBoxWidth = 200,
+	...props
+}) => {
 	return (
-		<Pictogram pictogram="WBCBankCardPictogram" {...props}>
+		<Pictogram
+			pictogram="WBCBankCardPictogram"
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			mode={mode}
+			viewBoxHeight={viewBoxHeight}
+			viewBoxWidth={viewBoxWidth}
+			{...props}
+		>
 			<path fill="#ffd8f7" d="M31.98 48h16.01v8H31.98z" />
 			<circle cx="160" cy="176" r="8" fill="#ffd8f7" />
 			<path
@@ -42,11 +57,4 @@ export const WBCBankCardPictogram = (props) => {
 	);
 };
 
-WBCBankCardPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 200,
-	viewBoxHeight: 200,
-	assistiveText: 'Bank card',
-	copyrightYear: '2020',
-};
 WBCBankCardPictogram.propTypes = Pictogram.propTypes;

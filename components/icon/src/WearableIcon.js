@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const WearableIcon = (props) => (
-	<Icon icon="WearableIcon" {...props}>
+export const WearableIcon = ({
+	assistiveText = 'Wearable',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="WearableIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const WearableIcon = (props) => (
 	</Icon>
 );
 
-WearableIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Wearable',
-	copyrightYear: '2020',
-};
 WearableIcon.propTypes = propTypes;

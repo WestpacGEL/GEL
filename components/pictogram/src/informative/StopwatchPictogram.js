@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const StopwatchPictogram = ({ mode, ...rest }) => {
+export const StopwatchPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Stopwatch',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="StopwatchPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="StopwatchPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon
 					fill={outline}
@@ -25,11 +40,4 @@ export const StopwatchPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-StopwatchPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Stopwatch',
-	copyrightYear: '2020',
-};
 StopwatchPictogram.propTypes = Pictogram.propTypes;

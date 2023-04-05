@@ -290,12 +290,3 @@ Grid.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
-
-Grid.defaultProps = {
-	columns: 12,
-	flow: 'row',
-	gap: [12, 24],
-	height: 'auto',
-	minRowHeight: 32,
-	tag: 'div',
-};

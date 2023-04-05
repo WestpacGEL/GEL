@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const SuccessIcon = (props) => (
-	<Icon icon="SuccessIcon" {...props}>
+export const SuccessIcon = ({
+	assistiveText = 'Success',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="SuccessIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="nonzero"
@@ -11,9 +22,4 @@ export const SuccessIcon = (props) => (
 	</Icon>
 );
 
-SuccessIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Success',
-	copyrightYear: '2020',
-};
 SuccessIcon.propTypes = propTypes;

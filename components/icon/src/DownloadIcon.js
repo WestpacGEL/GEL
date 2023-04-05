@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const DownloadIcon = (props) => (
-	<Icon icon="DownloadIcon" {...props}>
+export const DownloadIcon = ({
+	assistiveText = 'Download',
+	copyrightYear = '2021',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="DownloadIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const DownloadIcon = (props) => (
 	</Icon>
 );
 
-DownloadIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Download',
-	copyrightYear: '2021',
-};
 DownloadIcon.propTypes = propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const PieChartIcon = (props) => (
-	<Icon icon="PieChartIcon" {...props}>
+export const PieChartIcon = ({
+	assistiveText = 'Pie Chart',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="PieChartIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const PieChartIcon = (props) => (
 	</Icon>
 );
 
-PieChartIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Pie Chart',
-	copyrightYear: '2020',
-};
 PieChartIcon.propTypes = propTypes;

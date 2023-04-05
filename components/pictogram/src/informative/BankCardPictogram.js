@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const BankCardPictogram = ({ mode, ...rest }) => {
+export const BankCardPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Bank card',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="BankCardPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="BankCardPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon fill={highlight} points="11.385 40.91 44.385 40.91 44.385 37.91 11.385 37.91" />
 				<polygon
@@ -22,11 +37,4 @@ export const BankCardPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-BankCardPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Bank card',
-	copyrightYear: '2020',
-};
 BankCardPictogram.propTypes = Pictogram.propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const TakeOutIcon = (props) => (
-	<Icon icon="TakeOutIcon" {...props}>
+export const TakeOutIcon = ({
+	assistiveText = 'Take Out',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="TakeOutIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const TakeOutIcon = (props) => (
 	</Icon>
 );
 
-TakeOutIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Take Out',
-	copyrightYear: '2020',
-};
 TakeOutIcon.propTypes = propTypes;

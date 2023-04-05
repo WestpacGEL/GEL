@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const MobilePayIcon = (props) => (
-	<Icon icon="MobilePayIcon" {...props}>
+export const MobilePayIcon = ({
+	assistiveText = 'Mobile Pay',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="MobilePayIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const MobilePayIcon = (props) => (
 	</Icon>
 );
 
-MobilePayIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Mobile Pay',
-	copyrightYear: '2020',
-};
 MobilePayIcon.propTypes = propTypes;

@@ -84,5 +84,3 @@ FormSection.propTypes = {
 		}),
 	}),
 };
-
-FormSection.defaultProps = { noPadding: false };

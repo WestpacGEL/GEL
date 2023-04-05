@@ -96,5 +96,3 @@ Container.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
-
-Container.defaultProps = { fixed: false, tag: 'div' };

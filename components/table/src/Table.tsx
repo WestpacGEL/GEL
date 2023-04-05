@@ -198,5 +198,3 @@ Table.propTypes = {
 	 */
 	striped: PropTypes.bool,
 };
-
-Table.defaultProps = { bordered: false, striped: false };

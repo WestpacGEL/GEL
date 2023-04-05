@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const HelpIcon = (props) => (
-	<Icon icon="HelpIcon" {...props}>
+export const HelpIcon = ({
+	assistiveText = 'Help',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="HelpIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const HelpIcon = (props) => (
 	</Icon>
 );
 
-HelpIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Help',
-	copyrightYear: '2020',
-};
 HelpIcon.propTypes = propTypes;

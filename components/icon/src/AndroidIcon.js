@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const AndroidIcon = (props) => (
-	<Icon icon="AndroidIcon" {...props}>
+export const AndroidIcon = ({
+	assistiveText = 'Android',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="AndroidIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const AndroidIcon = (props) => (
 	</Icon>
 );
 
-AndroidIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Android',
-	copyrightYear: '2020',
-};
 AndroidIcon.propTypes = propTypes;

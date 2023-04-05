@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const QuickBalanceIcon = (props) => (
-	<Icon icon="QuickBalanceIcon" {...props}>
+export const QuickBalanceIcon = ({
+	assistiveText = 'Quick Balance',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="QuickBalanceIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const QuickBalanceIcon = (props) => (
 	</Icon>
 );
 
-QuickBalanceIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Quick Balance',
-	copyrightYear: '2020',
-};
 QuickBalanceIcon.propTypes = propTypes;

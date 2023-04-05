@@ -132,5 +132,3 @@ Form.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
-
-Form.defaultProps = { inline: false, size: 'medium', spacing: 'medium', tag: 'form' };

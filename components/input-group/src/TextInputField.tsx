@@ -137,5 +137,3 @@ TextInputField.propTypes = {
 	 */
 	size: PropTypes.string,
 };
-
-TextInputField.defaultProps = { size: 'medium' };
