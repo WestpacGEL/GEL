@@ -11,7 +11,15 @@ import { blenderGroupList } from '../overrides/groupList';
 // Component
 // ==============================
 
-export const Group = ({ index, text, active, visited, open, children, ...rest }) => {
+export const Group = ({
+	index,
+	text,
+	active = false,
+	visited = false,
+	open = false,
+	children,
+	...rest
+}) => {
 	const { component: Group, styles: groupStyles, attributes: groupAttributes } = blenderGroup;
 	const {
 		component: GroupBtnWrapper,
@@ -106,11 +114,3 @@ Group.propTypes = {
 	 */
 	children: PropTypes.node,
 };
-
-export const defaultProps = {
-	active: false,
-	visited: false,
-	open: false,
-};
-
-Group.defaultProps = defaultProps;
