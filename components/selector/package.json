@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/selector",
-	"version": "3.2.0",
+	"version": "3.2.1",
 	"description": "Button toggles stacked vertically, powered by radio elements",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/selector",
@@ -35,14 +35,14 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/core": "^3.2.0",
-		"@westpac/icon": "^2.1.0",
+		"@westpac/core": "^3.2.1",
+		"@westpac/icon": "^2.1.1",
 		"prop-types": "^15.7.2"
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.10.6",
-		"@westpac/a11y": "^2.2.0",
-		"@westpac/pictogram": "^2.2.0",
+		"@westpac/a11y": "^2.2.1",
+		"@westpac/pictogram": "^2.2.1",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"
