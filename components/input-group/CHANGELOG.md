@@ -1,5 +1,16 @@
 # @westpac/input-group
 
+## 3.0.1
+
+### Patch Changes
+
+- 5885e9e7: defaultProps removed due to deprecation on React 18.3
+- Updated dependencies [5885e9e7]
+  - @westpac/text-input@2.3.1
+  - @westpac/button@2.2.1
+  - @westpac/a11y@2.2.1
+  - @westpac/core@3.2.1
+
 ## 3.0.0
 
 ### Major Changes

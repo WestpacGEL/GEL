@@ -1,5 +1,14 @@
 # @westpac/pagination
 
+## 2.2.1
+
+### Patch Changes
+
+- 5885e9e7: defaultProps removed due to deprecation on React 18.3
+- Updated dependencies [5885e9e7]
+  - @westpac/a11y@2.2.1
+  - @westpac/core@3.2.1
+
 ## 2.2.0
 
 ### Minor Changes
