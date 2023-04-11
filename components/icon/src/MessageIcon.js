@@ -5,6 +5,7 @@ export const MessageIcon = ({
 	assistiveText = 'Message',
 	copyrightYear = '2020',
 	size = 'medium',
+	look = 'filled',
 	...props
 }) => (
 	<Icon
@@ -14,11 +15,21 @@ export const MessageIcon = ({
 		size={size}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M10.5,15.633 L19.725,18.97725 L24,0 L10.5,15.633 Z M0,11.99925 L7.49925,14.5845 L24,0 L0,11.99925 Z M10.5,23.25 L14.853,18.82875 L10.5,17.24925 L10.5,23.25 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fill="currentColor"
+				fill-rule="evenodd"
+				d="M3.636 13 0 23l24-11L0 1l3.636 10H12a1 1 0 1 1 0 2H3.636Z"
+				clip-rule="evenodd"
+			/>
+		) : (
+			<path
+				fill="currentColor"
+				fill-rule="evenodd"
+				d="m0 23 4-11L0 1l24 11L0 23Zm5.764-12-2.25-6.19L19.2 12 3.514 19.19 5.764 13H12a1 1 0 1 0 0-2H5.764Z"
+				clip-rule="evenodd"
+			/>
+		)}
 	</Icon>
 );
 

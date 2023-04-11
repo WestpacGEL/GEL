@@ -1,5 +1,5 @@
 import { GEL, jsx } from '@westpac/core';
-import { HouseIcon } from '@westpac/icon';
+import { HouseIcon, MessageIcon } from '@westpac/icon';
 import { Grid, Cell, Name } from './_util';
 
 function Example({ brand }) {
@@ -7,9 +7,17 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Grid css={{ justifyItems: 'start' }}>
 				<Cell>
-					<HouseIcon />
+					<p>Filled</p>
+					<MessageIcon />
 					<Name>
-						<code>{`<HouseIcon\u00A0/>`}</code>
+						<code>{`<MessageIcon look='filled'\u00A0/>`}</code>
+					</Name>
+				</Cell>
+				<Cell>
+					<p>Outlined</p>
+					<MessageIcon look="outlined" />
+					<Name>
+						<code>{`<MessageIcon look='outlined'\u00A0/>`}</code>
 					</Name>
 				</Cell>
 			</Grid>
