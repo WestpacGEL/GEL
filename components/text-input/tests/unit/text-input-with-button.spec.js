@@ -12,7 +12,13 @@ overridesTest({
 	name: 'text-input', // the name has to be the package name without '@westpac/' scope
 	overrides: ['TextInputWithButton'], // every single override root key
 	Component: (props) => (
-		<TextInputWithButton btnIcon={UmbrellaIcon} {...props}>
+		<TextInputWithButton
+			size="medium"
+			inline={false}
+			invalid={false}
+			btnIcon={UmbrellaIcon}
+			{...props}
+		>
 			{props.children}
 		</TextInputWithButton>
 	),
@@ -21,13 +27,27 @@ overridesTest({
 // another default test to check that the component errors when outside of GEL and renders when inside
 nestingTest({
 	name: 'text-input-with-button',
-	Component: (props) => <TextInputWithButton {...props} defaultValue={props.children} />,
+	Component: (props) => (
+		<TextInputWithButton
+			size="medium"
+			inline={false}
+			invalid={false}
+			{...props}
+			defaultValue={props.children}
+		/>
+	),
 });
 
 describe('TextInputWithButton component', () => {
 	const SimpleTextInputWithButton = (props) => (
 		<GEL brand={wbc}>
-			<TextInputWithButton {...props} btnIcon={UmbrellaIcon} />
+			<TextInputWithButton
+				{...props}
+				size="medium"
+				inline={false}
+				invalid={false}
+				btnIcon={UmbrellaIcon}
+			/>
 		</GEL>
 	);
 

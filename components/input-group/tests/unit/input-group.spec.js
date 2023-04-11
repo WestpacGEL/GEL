@@ -13,6 +13,9 @@ overridesTest({
 	overrides: ['InputGroup'], // every single override root key
 	Component: (props) => (
 		<InputGroup
+			size="medium"
+			inline={false}
+			invalid={false}
 			{...props}
 			name="Default"
 			before={<Button>content</Button>}
@@ -25,14 +28,27 @@ overridesTest({
 nestingTest({
 	name: 'input-group',
 	Component: (props) => (
-		<InputGroup {...props} name="Default" before={props.children}></InputGroup> // the component with all components rendered
+		<InputGroup
+			{...props}
+			size="medium"
+			inline={false}
+			invalid={false}
+			name="Default"
+			before={props.children}
+		></InputGroup> // the component with all components rendered
 	),
 });
 
 function SimpleInputGroup(props) {
 	return (
 		<GEL brand={wbc}>
-			<InputGroup data-testid="input-group" {...props} />
+			<InputGroup
+				size="medium"
+				inline={false}
+				invalid={false}
+				data-testid="input-group"
+				{...props}
+			/>
 		</GEL>
 	);
 }

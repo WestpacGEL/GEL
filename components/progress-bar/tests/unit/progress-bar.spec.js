@@ -6,7 +6,7 @@ import wbc from '@westpac/wbc';
 describe('Progress Bar component', () => {
 	const SimpleProgressBar = () => (
 		<GEL brand={wbc}>
-			<ProgressBar value={0} />
+			<ProgressBar look="default" value={0} noLabel={false} />
 		</GEL>
 	);
 

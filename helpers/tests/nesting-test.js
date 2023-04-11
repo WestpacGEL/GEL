@@ -30,11 +30,12 @@ function nestingTest({ name, Component }) {
 		test('Renders when the component is rendered inside of <GEL/>', () => {
 			const Wrapper = () => (
 				<GEL brand={wbc}>
-					<Component />
+					<Component data-testid="test-component" />
 				</GEL>
 			);
 
 			render(<Wrapper />, { wrapper: ErrorBoundary });
+			// console.log(screen.getByTestId('test-component'));
 			expect(
 				screen.queryByText(
 					/GEL components require that you wrap your application with the <GEL \/> brand provider from @westpac\/core./i
