@@ -10,8 +10,8 @@ import {
 import { useSpring, animated } from '@react-spring/web';
 import BezierEasing from 'bezier-easing';
 
-import { Modal as MainModal } from '../Modal';
-const defaultProps = MainModal?.defaultProps || {};
+// import { Modal as MainModal } from '../Modal';
+// const defaultProps = MainModal?.defaultProps || {};
 
 // ==============================
 // Component

@@ -8,8 +8,8 @@ import {
 	formatClassName,
 } from '@westpac/core';
 
-import { Switch as MainSwitch } from '../Switch';
-const defaultProps = MainSwitch?.defaultProps || {};
+// import { Switch as MainSwitch } from '../Switch';
+// const defaultProps = MainSwitch?.defaultProps || {};
 import { nestedToggleStyles } from './toggle';
 import { nestedLabelStyles } from './label';
 

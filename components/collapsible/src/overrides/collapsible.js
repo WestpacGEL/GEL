@@ -1,6 +1,6 @@
 import { jsx, getLabel, useBrand, classNames, getModifier, formatClassName } from '@westpac/core';
-import { Collapsible as MainCollapsible } from '../Collapsible';
-const defaultProps = MainCollapsible?.defaultProps || {};
+// import { Collapsible as MainCollapsible } from '../Collapsible';
+// const defaultProps = MainCollapsible?.defaultProps || {};
 
 // ==============================
 // Component

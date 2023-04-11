@@ -10,8 +10,8 @@ import {
 } from '@westpac/core';
 import { useTransition, animated } from '@react-spring/web';
 
-import { Alert as MainAlert } from '../Alert';
-const defaultProps = MainAlert?.defaultProps || {};
+// import { Alert as MainAlert } from '../Alert';
+// const defaultProps = MainAlert?.defaultProps || {};
 
 // ==============================
 // Component

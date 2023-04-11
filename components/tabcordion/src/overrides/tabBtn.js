@@ -9,8 +9,8 @@ import {
 	formatClassName,
 } from '@westpac/core';
 
-import { Tabcordion as MainTabcordion } from '../blender/Tabcordion';
-const defaultProps = MainTabcordion?.defaultProps || {};
+// import { Tabcordion as MainTabcordion } from '../blender/Tabcordion';
+// const defaultProps = MainTabcordion?.defaultProps || {};
 
 // ==============================
 // Component

@@ -7,8 +7,8 @@ import {
 	styleReconciler,
 	formatClassName,
 } from '@westpac/core';
-import { Td as MainTd } from '../Td';
-const defaultProps = MainTd?.defaultProps || {};
+// import { Td as MainTd } from '../Td';
+// const defaultProps = MainTd?.defaultProps || {};
 
 // ==============================
 // Component

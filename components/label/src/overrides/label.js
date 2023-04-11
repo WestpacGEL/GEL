@@ -7,8 +7,8 @@ import {
 	styleReconciler,
 	formatClassName,
 } from '@westpac/core';
-import { Label as MainLabel } from '../Label';
-const defaultProps = MainLabel?.defaultProps || {};
+// import { Label as MainLabel } from '../Label';
+// const defaultProps = MainLabel?.defaultProps || {};
 
 // ==============================
 // Component

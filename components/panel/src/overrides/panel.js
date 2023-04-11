@@ -7,8 +7,8 @@ import {
 	formatClassName,
 	getLabel,
 } from '@westpac/core';
-import { Panel as MainPanel } from '../Panel';
-const defaultProps = MainPanel?.defaultProps || {};
+// import { Panel as MainPanel } from '../Panel';
+// const defaultProps = MainPanel?.defaultProps || {};
 import { nestedStyles } from './header';
 
 // ==============================

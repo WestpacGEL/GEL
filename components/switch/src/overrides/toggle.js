@@ -9,8 +9,8 @@ import {
 	mergeWith,
 } from '@westpac/core';
 import { sizeMap } from './_utils';
-import { Switch as MainSwitch } from '../Switch';
-const defaultProps = MainSwitch?.defaultProps || {};
+// import { Switch as MainSwitch } from '../Switch';
+// const defaultProps = MainSwitch?.defaultProps || {};
 
 // ==============================
 // Component

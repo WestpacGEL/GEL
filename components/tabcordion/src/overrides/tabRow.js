@@ -1,8 +1,8 @@
 import { jsx, getLabel, classNames, getModifier, formatClassName } from '@westpac/core';
 import { forwardRef } from 'react';
 
-import { Tabcordion as MainTabcordion } from '../blender/Tabcordion';
-const defaultProps = MainTabcordion?.defaultProps || {};
+// import { Tabcordion as MainTabcordion } from '../blender/Tabcordion';
+// const defaultProps = MainTabcordion?.defaultProps || {};
 // ==============================
 // Component
 // ==============================

@@ -8,8 +8,8 @@ import {
 	classNames,
 	formatClassName,
 } from '@westpac/core';
-import { ButtonGroup as MainButtonGroup } from '../ButtonGroup';
-const defaultProps = MainButtonGroup?.defaultProps || {};
+// import { ButtonGroup as MainButtonGroup } from '../ButtonGroup';
+// const defaultProps = MainButtonGroup?.defaultProps || {};
 // ==============================
 // Component
 // ==============================

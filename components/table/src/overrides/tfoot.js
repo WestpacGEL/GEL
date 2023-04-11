@@ -1,7 +1,7 @@
 import { jsx, useBrand, getLabel, getModifier, styleReconciler } from '@westpac/core';
 
-import { Table as MainTable } from '../Table';
-const defaultProps = MainTable?.defaultProps || {};
+// import { Table as MainTable } from '../Table';
+// const defaultProps = MainTable?.defaultProps || {};
 // ==============================
 // Component
 // ==============================
