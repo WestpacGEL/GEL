@@ -35,7 +35,6 @@ function nestingTest({ name, Component }) {
 			);
 
 			render(<Wrapper />, { wrapper: ErrorBoundary });
-			// console.log(screen.getByTestId('test-component'));
 			expect(
 				screen.queryByText(
 					/GEL components require that you wrap your application with the <GEL \/> brand provider from @westpac\/core./i
