@@ -28,6 +28,7 @@ function overridesTest({ name, overrides, Component }) {
 					[override]: {
 						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
+						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
 							<div data-testid={wrapper1}>
 								<div ref={ref} data-testid={wrapper2} {...rest} />
@@ -44,7 +45,6 @@ function overridesTest({ name, overrides, Component }) {
 				);
 
 				const { container, getByTestId } = render(<Wrapper />);
-				// screen.debug();
 				const content = window
 					.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
 					.getPropertyValue('content')
@@ -69,6 +69,7 @@ function overridesTest({ name, overrides, Component }) {
 					[override]: {
 						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
+						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
 							<div data-testid={wrapper1}>
 								<div ref={ref} data-testid={wrapper2} {...rest} />
@@ -110,6 +111,7 @@ function overridesTest({ name, overrides, Component }) {
 					[override]: {
 						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
+						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
 							<div data-testid={wrapper1}>
 								<div ref={ref} data-testid={wrapper2} {...rest} />
@@ -150,6 +152,7 @@ function overridesTest({ name, overrides, Component }) {
 					[override]: {
 						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
+						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
 							<div data-testid={wrapper1}>
 								<div ref={ref} data-testid={wrapper2} {...rest} />
@@ -190,6 +193,7 @@ function overridesTest({ name, overrides, Component }) {
 					[override]: {
 						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
+						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
 							<div data-testid={wrapper1}>
 								<div ref={ref} data-testid={wrapper2} {...rest} />
@@ -231,6 +235,7 @@ function overridesTest({ name, overrides, Component }) {
 					[override]: {
 						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
+						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
 							<div data-testid={wrapper1}>
 								<div ref={ref} data-testid={wrapper2} {...rest} />
