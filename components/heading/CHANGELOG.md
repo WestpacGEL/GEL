@@ -1,5 +1,11 @@
 # @westpac/heading
 
+## 2.3.2
+
+### Patch Changes
+
+- 5985a6b4: Fix for prop attributes
+
 ## 2.3.1
 
 ### Patch Changes
