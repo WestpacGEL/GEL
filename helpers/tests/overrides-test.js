@@ -1,4 +1,4 @@
-import {React, forwardRef} from 'react';
+import { React, forwardRef } from 'react';
 import cloneDeep from 'lodash.clonedeep';
 import { render, screen } from '@testing-library/react';
 
@@ -115,7 +115,6 @@ function overridesTest({ name, overrides, Component }) {
 								<div ref={ref} data-testid={wrapper2} {...rest} />
 							</div>
 						)),
-
 					},
 				};
 				withOverrides[`@westpac/${name}`] = brandOverrides;
@@ -155,7 +154,7 @@ function overridesTest({ name, overrides, Component }) {
 							<div data-testid={wrapper1}>
 								<div ref={ref} data-testid={wrapper2} {...rest} />
 							</div>
-						)),						
+						)),
 					},
 				};
 
