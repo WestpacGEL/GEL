@@ -7,7 +7,7 @@ import wbc from '@westpac/wbc';
 describe('Selector component', () => {
 	const SimpleSelector = () => (
 		<GEL brand={wbc}>
-			<Selector name="example-default">
+			<Selector type="radio" name="example-default">
 				<Option value="1">Here is a label</Option>
 				<Option value="2">Here is a label</Option>
 				<Option value="3">Here is a label</Option>

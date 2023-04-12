@@ -12,6 +12,7 @@ const ErrorMessageContent = ({ state: { icon }, children }) => {
 	return (
 		<Fragment>
 			<Icon
+				copyrightYear="2020"
 				css={{ verticalAlign: 'top', marginRight: '0.5em', marginTop: '0.25em' }}
 				size="xsmall"
 				color="inherit"

@@ -17,7 +17,13 @@ const Icon = ({ state: { look, icon }, ...rest }) => {
 	const Tag = look === 'info' && icon ? icon : iconMap[look];
 
 	return (
-		<Tag size={['small', 'medium']} color="inherit" assistiveText={titleCase(look)} {...rest} />
+		<Tag
+			copyrightYear="2020"
+			size={['small', 'medium']}
+			color="inherit"
+			assistiveText={titleCase(look)}
+			{...rest}
+		/>
 	);
 };
 

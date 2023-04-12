@@ -13,7 +13,7 @@ describe('ProgressRope component', () => {
 
 		return (
 			<GEL brand={wbc}>
-				<ProgressRope current={0}>
+				<ProgressRope current={0} headingsTag="h1" assistiveText="rope">
 					<Step onClick={handleClick(0)}>Step 1</Step>
 					<Step onClick={handleClick(1)}>Step 2</Step>
 					<Step onClick={handleClick(2)}>Step 3</Step>
