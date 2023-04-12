@@ -7,7 +7,7 @@ import wbc from '@westpac/wbc';
 describe('Pagination component', () => {
 	const SimplePagination = () => (
 		<GEL brand={wbc}>
-			<Pagination>
+			<Pagination current={1}>
 				<Page text="1" onClick={(event, page) => console.log(`Page ${page}`, event)} />
 				<Page text="2" onClick={(event, page) => console.log(`Page ${page}`, event)} />
 				<Page text="3" onClick={(event, page) => console.log(`Page ${page}`, event)} />

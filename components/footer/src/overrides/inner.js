@@ -5,7 +5,16 @@ import { Grid } from '@westpac/grid';
 // Component
 // ==============================
 
-const Inner = ({ state: _, ...rest }) => <Grid columnGap={['6px', null, '12px']} {...rest} />;
+const Inner = ({ state: _, ...rest }) => (
+	<Grid
+		flow="row"
+		columns="1"
+		height="1"
+		minRowHeight="1"
+		columnGap={['6px', null, '12px']}
+		{...rest}
+	/>
+);
 
 // ==============================
 // Styles

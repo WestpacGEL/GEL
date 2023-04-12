@@ -11,13 +11,19 @@ import wbc from '@westpac/wbc';
 overridesTest({
 	name: 'text-input', // the name has to be the package name without '@westpac/' scope
 	overrides: ['Select'], // every single override root key
-	Component: (props) => <Select {...props}>{props.children}</Select>,
+	Component: (props) => (
+		<Select size="medium" inline={false} invalid={false} {...props}>
+			{props.children}
+		</Select>
+	),
 });
 
 // another default test to check that the component errors when outside of GEL and renders when inside
 nestingTest({
 	name: 'select',
-	Component: (props) => <Select {...props} defaultValue={props.children} />,
+	Component: (props) => (
+		<Select size="medium" inline={false} invalid={false} {...props} defaultValue={props.children} />
+	),
 });
 
 describe('Select component', () => {
@@ -30,7 +36,13 @@ describe('Select component', () => {
 
 	const SimpleSelect = (props) => (
 		<GEL brand={wbc}>
-			<Select {...props} data={DEFAULT_OPTIONS}></Select>
+			<Select
+				size="medium"
+				inline={false}
+				invalid={false}
+				{...props}
+				data={DEFAULT_OPTIONS}
+			></Select>
 		</GEL>
 	);
 

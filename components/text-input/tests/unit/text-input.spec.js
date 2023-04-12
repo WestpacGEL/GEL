@@ -11,20 +11,39 @@ import wbc from '@westpac/wbc';
 overridesTest({
 	name: 'text-input', // the name has to be the package name without '@westpac/' scope
 	overrides: ['TextInput'], // every single override root key
-	Component: (props) => <TextInput {...props}>{props.children}</TextInput>,
+	Component: (props) => (
+		<TextInput size="medium" inline={false} invalid={false} {...props}>
+			{props.children}
+		</TextInput>
+	),
 });
 
 // another default test to check that the component errors when outside of GEL and renders when inside
 nestingTest({
 	name: 'text-input',
-	Component: (props) => <TextInput {...props} defaultValue={props.children} />,
+	Component: (props) => (
+		<TextInput
+			{...props}
+			size="medium"
+			inline={false}
+			invalid={false}
+			defaultValue={props.children}
+		/>
+	),
 });
 
 // Component specific tests
 describe('TextInput component', () => {
 	const SimpleTextInput = (props) => (
 		<GEL brand={wbc}>
-			<TextInput {...props} defaultValue={'sample'} onChange={() => {}} />
+			<TextInput
+				{...props}
+				size="medium"
+				inline={false}
+				invalid={false}
+				defaultValue={'sample'}
+				onChange={() => {}}
+			/>
 		</GEL>
 	);
 

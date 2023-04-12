@@ -30,7 +30,7 @@ function nestingTest({ name, Component }) {
 		test('Renders when the component is rendered inside of <GEL/>', () => {
 			const Wrapper = () => (
 				<GEL brand={wbc}>
-					<Component />
+					<Component data-testid="test-component" />
 				</GEL>
 			);
 

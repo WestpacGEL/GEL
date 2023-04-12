@@ -5,7 +5,7 @@ import { Cell } from '@westpac/grid';
 // Component
 // ==============================
 
-const Right = ({ state: _, ...rest }) => <Cell width={[12, null, 3]} {...rest} />;
+const Right = ({ state: _, ...rest }) => <Cell height={1} width={[12, null, 3]} {...rest} />;
 
 // ==============================
 // Styles

@@ -4,7 +4,9 @@ import { jsx } from '@westpac/core';
 // Component
 // ==============================
 
-const Icon = ({ icon: Icon, before, after, state: _, ...rest }) => <Icon {...rest} />;
+const Icon = ({ icon: Icon, before, after, state: _, ...rest }) => (
+	<Icon copyrightYear="2020" {...rest} />
+);
 
 const BlenderIcon = (props) => (
 	<Icon

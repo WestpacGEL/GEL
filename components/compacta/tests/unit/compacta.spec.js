@@ -22,6 +22,9 @@ describe('Compacta component', () => {
 							<FormGroup>
 								<Field label="Primary" hint="Primary title text">
 									<TextInput
+										size="medium"
+										inline={false}
+										invalid={false}
 										name={`input-primary-${id}`}
 										value={inputs[`input-primary-${id}`] || ''}
 										onChange={(e) => {
@@ -35,6 +38,9 @@ describe('Compacta component', () => {
 							<FormGroup>
 								<Field label="Secondary" hint="Secondary title text">
 									<TextInput
+										size="medium"
+										inline={false}
+										invalid={false}
 										name={`input-secondary-${id}`}
 										value={inputs[`input-secondary-${id}`] || ''}
 										onChange={(e) => {
@@ -48,6 +54,9 @@ describe('Compacta component', () => {
 							<FormGroup>
 								<Field label="Tertiary" hint="Tertiary title text">
 									<TextInput
+										size="medium"
+										inline={false}
+										invalid={false}
 										name={`input-tertiary-${id}`}
 										value={inputs[`input-tertiary-${id}`] || ''}
 										onChange={(e) => {

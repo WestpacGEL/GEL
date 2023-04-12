@@ -8,7 +8,7 @@ import { logoMap } from './_utils';
 const Logo = ({ state: { logoAssistiveText }, ...rest }) => {
 	const { BRAND } = useBrand();
 	const Logo = logoMap[BRAND.code];
-	return <Logo assistiveText={logoAssistiveText} {...rest} />;
+	return <Logo align="left" copyrightYear="2020" assistiveText={logoAssistiveText} {...rest} />;
 };
 
 // ==============================
