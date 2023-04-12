@@ -7,6 +7,10 @@ import pkg from '../package.json';
 type HeadingKeys = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 export type HeadingProps<T extends HeadingKeys = HeadingKeys> = JSX.IntrinsicElements[T] & {
 	/**
+	 * Emotion css
+	 */
+	css?: JSX.IntrinsicElements[T]['css'];
+	/**
 	 * Children
 	 */
 	children?: ReactNode;
