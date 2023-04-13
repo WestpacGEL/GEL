@@ -10,9 +10,7 @@ overridesTest({
 	name: 'footer', // the name has to be the package name without '@westpac/' scope
 	overrides: ['Footer', 'Inner', 'Left', 'Right', 'LogoLink', 'Logo'], // every single override root key
 	Component: (props) => (
-		<Footer {...props} >
-			Footer content
-		</Footer> // the component with all components rendered
+		<Footer {...props}>Footer content</Footer> // the component with all components rendered
 	),
 });
 
@@ -39,19 +37,18 @@ describe('Footer component', () => {
 		expect(screen.getByText(/Just a title/)).toBeInTheDocument();
 	});
 
-	test('should render the hidden screen reader text when srOnlyText prop passed', () =>{
+	test('should render the hidden screen reader text when srOnlyText prop passed', () => {
 		render(<SimpleFooter srOnlyText="Go to home" />);
 		expect(screen.getByText(/Go to home/)).toBeInTheDocument();
-	})
+	});
 
 	test('should show Westpac logo at right hand side', () => {
 		render(<SimpleFooter />);
-		expect(screen.getByRole('img', {name: 'Westpac'})).toBeInTheDocument();
-	})
+		expect(screen.getByRole('img', { name: 'Westpac' })).toBeInTheDocument();
+	});
 
 	test('should hide Westpac logo when hideLogo prop is passed', () => {
 		render(<SimpleFooter hideLogo />);
-		expect(screen.queryByRole('img', {name: 'Westpac'})).not.toBeInTheDocument();
-	})
-
+		expect(screen.queryByRole('img', { name: 'Westpac' })).not.toBeInTheDocument();
+	});
 });
