@@ -1,6 +1,6 @@
-import React from 'react';
+import { React, forwardRef } from 'react';
 import cloneDeep from 'lodash.clonedeep';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
@@ -28,11 +28,12 @@ function overridesTest({ name, overrides, Component }) {
 					[override]: {
 						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
-						component: ({ state, ...rest }) => (
+						// eslint-disable-next-line react/display-name
+						component: forwardRef(({ state: _, ...rest }, ref) => (
 							<div data-testid={wrapper1}>
-								<div data-testid={wrapper2} {...rest} />
+								<div ref={ref} data-testid={wrapper2} {...rest} />
 							</div>
-						),
+						)),
 					},
 				};
 				withOverrides.OVERRIDES[`@westpac/${name}`] = tokenOverrides;
@@ -44,7 +45,6 @@ function overridesTest({ name, overrides, Component }) {
 				);
 
 				const { container, getByTestId } = render(<Wrapper />);
-
 				const content = window
 					.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
 					.getPropertyValue('content')
@@ -69,11 +69,12 @@ function overridesTest({ name, overrides, Component }) {
 					[override]: {
 						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
-						component: ({ state, ...rest }) => (
+						// eslint-disable-next-line react/display-name
+						component: forwardRef(({ state: _, ...rest }, ref) => (
 							<div data-testid={wrapper1}>
-								<div data-testid={wrapper2} {...rest} />
+								<div ref={ref} data-testid={wrapper2} {...rest} />
 							</div>
-						),
+						)),
 					},
 				};
 				withOverrides[`@westpac/${name}`] = brandOverrides;
@@ -110,11 +111,12 @@ function overridesTest({ name, overrides, Component }) {
 					[override]: {
 						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
-						component: ({ state, ...rest }) => (
+						// eslint-disable-next-line react/display-name
+						component: forwardRef(({ state: _, ...rest }, ref) => (
 							<div data-testid={wrapper1}>
-								<div data-testid={wrapper2} {...rest} />
+								<div ref={ref} data-testid={wrapper2} {...rest} />
 							</div>
-						),
+						)),
 					},
 				};
 				withOverrides[`@westpac/${name}`] = brandOverrides;
@@ -150,11 +152,12 @@ function overridesTest({ name, overrides, Component }) {
 					[override]: {
 						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
-						component: ({ state, ...rest }) => (
+						// eslint-disable-next-line react/display-name
+						component: forwardRef(({ state: _, ...rest }, ref) => (
 							<div data-testid={wrapper1}>
-								<div data-testid={wrapper2} {...rest} />
+								<div ref={ref} data-testid={wrapper2} {...rest} />
 							</div>
-						),
+						)),
 					},
 				};
 
@@ -190,11 +193,12 @@ function overridesTest({ name, overrides, Component }) {
 					[override]: {
 						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
-						component: ({ state, ...rest }) => (
+						// eslint-disable-next-line react/display-name
+						component: forwardRef(({ state: _, ...rest }, ref) => (
 							<div data-testid={wrapper1}>
-								<div data-testid={wrapper2} {...rest} />
+								<div ref={ref} data-testid={wrapper2} {...rest} />
 							</div>
-						),
+						)),
 					},
 				};
 
@@ -231,11 +235,12 @@ function overridesTest({ name, overrides, Component }) {
 					[override]: {
 						styles: (styles) => ({ ...styles, content: styleText }),
 						attributes: () => ({ 'data-attribute': attributeText }),
-						component: ({ state, ...rest }) => (
+						// eslint-disable-next-line react/display-name
+						component: forwardRef(({ state: _, ...rest }, ref) => (
 							<div data-testid={wrapper1}>
-								<div data-testid={wrapper2} {...rest} />
+								<div ref={ref} data-testid={wrapper2} {...rest} />
 							</div>
-						),
+						)),
 					},
 				};
 
