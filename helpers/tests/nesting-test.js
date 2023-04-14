@@ -45,6 +45,4 @@ function nestingTest({ name, Component }) {
 	});
 }
 
-module.exports = exports = {
-	nestingTest,
-};
+export { nestingTest };

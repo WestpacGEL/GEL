@@ -2,10 +2,14 @@ import { GEL } from '@westpac/core';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { InputGroup } from '@westpac/input-group';
 import { Button } from '@westpac/button';
-import { Select } from '@westpac/text-input';
+import { Select, TextInput } from '@westpac/text-input';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import wbc from '@westpac/wbc';
+
+import { blenderTextInput as blenderGroupTextInput } from '../../src/overrides/textInput';
+import { blenderButton as blenderGroupButton } from '../../src/overrides/button';
+import { blenderSelect as blenderGroupSelect } from '../../src/overrides/select';
 
 // The default tests every component should run
 overridesTest({
@@ -13,13 +17,14 @@ overridesTest({
 	overrides: ['InputGroup'], // every single override root key
 	Component: (props) => (
 		<InputGroup
+			label="test-label"
 			size="medium"
 			inline={false}
 			invalid={false}
-			{...props}
 			name="Default"
-			before={<Button>content</Button>}
+			before={'test'}
 			after={<Button>content</Button>}
+			{...props}
 		></InputGroup> // the component with all components rendered
 	),
 });
@@ -58,6 +63,25 @@ describe('Input Group component', () => {
 	test('should render Input Group', () => {
 		const { container } = render(<SimpleInputGroup />);
 		expect(container).toBeInTheDocument();
+	});
+
+	test('should render with default options', () => {
+		const { container } = render(
+			<GEL brand={wbc}>
+				<InputGroup />
+			</GEL>
+		);
+		expect(container).toBeInTheDocument();
+	});
+
+	test('should be disabled if disabled prop passed', () => {
+		const { getByTestId } = render(<SimpleInputGroup disabled before="test" />);
+		expect(getByTestId('input-group')).toBeDisabled();
+	});
+
+	test('should be invalid if invalid prop passed', () => {
+		const { getByTestId } = render(<SimpleInputGroup invalid before="test" />);
+		expect(getByTestId('input-group')).toBeInvalid();
 	});
 
 	test('should render placeholder text', () => {
@@ -132,6 +156,7 @@ describe('Input Group component', () => {
 			<SimpleInputGroup
 				before={
 					<Select
+						size="small"
 						data-testid="before-select"
 						label="Currency"
 						defaultValue="monthly"
@@ -187,5 +212,74 @@ describe('Input Group component', () => {
 		const { getByText } = render(<SimpleInputGroup before="before text" after="after text" />);
 		expect(getByText(/before text/)).toBeInTheDocument();
 		expect(getByText(/after text/)).toBeInTheDocument();
+	});
+
+	// ==============================
+	// Extra Override Tests
+	// NOTE: These tests aren't working correctly with blender component overrides
+	// ==============================
+
+	test('should override Button rendered inside InputGroup with styles and attributes', () => {
+		const overridesObj = {
+			Button: {
+				styles: blenderGroupButton.styles,
+				attributes: blenderGroupButton.attributes,
+			},
+		};
+		const handleClick = jest.fn(() => {});
+
+		const { container } = render(
+			<SimpleInputGroup
+				before={
+					<Button overrides={overridesObj} onClick={handleClick}>
+						click me before
+					</Button>
+				}
+			></SimpleInputGroup>
+		);
+		expect(container).toBeInTheDocument();
+	});
+
+	test('should override TextInput rendered inside InputGroup with styles and attributes', () => {
+		const overridesObj = {
+			TextInput: {
+				styles: blenderGroupTextInput.styles,
+				attributes: blenderGroupTextInput.attributes,
+			},
+		};
+
+		const { container } = render(
+			<SimpleInputGroup before={<TextInput overrides={overridesObj} />} />
+		);
+		expect(container).toBeInTheDocument();
+	});
+
+	test('should override Select rendered inside InputGroup with styles and attributes', () => {
+		const overridesObj = {
+			Select: {
+				styles: blenderGroupSelect.styles,
+				attributes: blenderGroupSelect.attributes,
+			},
+		};
+
+		const { container } = render(
+			<SimpleInputGroup
+				before={
+					<Select
+						overrides={overridesObj}
+						data-testid="before-select"
+						label="Currency"
+						defaultValue="monthly"
+						onChange={() => {}}
+						data={[
+							{ text: 'Daily', value: 'daily' },
+							{ text: 'Monthly', value: 'monthly' },
+							{ text: 'Yearly', value: 'yearly' },
+						]}
+					/>
+				}
+			/>
+		);
+		expect(container).toBeInTheDocument();
 	});
 });

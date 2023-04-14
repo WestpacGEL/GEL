@@ -4,6 +4,7 @@ declare module '@westpac/wbc' {
 		code: string;
 	};
 	type Colors = {
+		[key: string]: string;
 		tints: {
 			background5: string;
 			background10: string;

@@ -31,6 +31,11 @@ describe('FormGroup component', () => {
 		expect(container).toBeInTheDocument();
 	});
 
+	test('should render FormGroup inline', () => {
+		const { container } = render(<SimpleFormGroup inline />);
+		expect(container).toBeInTheDocument();
+	});
+
 	test('should render child component within FormGroup', () => {
 		const { getByTestId } = render(
 			<SimpleFormGroup>
