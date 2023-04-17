@@ -43,6 +43,12 @@ describe('Field component', () => {
 		expect(getByText(/test hint/).getAttribute('class')).toMatch(/form-hint/gi);
 	});
 
+	test('should render Field component when hint prop contains function', () => {
+		const handleClick = jest.fn(() => {});
+		const { getByTestId } = render(<SimpleField hint={handleClick} />);
+		expect(getByTestId('test-field')).toBeInTheDocument();
+	});
+
 	test('should render Field component with ErrorLabel when error prop passed', () => {
 		const { getByText } = render(<SimpleField error="test error" />);
 		expect(getByText(/test error/).getAttribute('class')).toMatch(/form-error-message/gi);

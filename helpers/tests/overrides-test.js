@@ -266,6 +266,4 @@ function overridesTest({ name, overrides, Component }) {
 	});
 }
 
-module.exports = exports = {
-	overridesTest,
-};
+export { overridesTest };
