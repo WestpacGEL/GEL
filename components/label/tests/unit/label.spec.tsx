@@ -25,6 +25,8 @@ function SimpleLabel(props: any) {
 	);
 }
 
+const { COLORS } = wbc;
+
 describe('Label component', () => {
 	test('should render Label', () => {
 		const { container } = render(<SimpleLabel />);
@@ -49,8 +51,6 @@ describe('Label component', () => {
 	});
 
 	test('should render with correct styling if look is faint', () => {
-		const { COLORS } = wbc;
-
 		const { getByTestId } = render(<SimpleLabel look="faint" value="test" />);
 		const labelComponent = getByTestId('test-label');
 
@@ -61,13 +61,13 @@ describe('Label component', () => {
 
 	['primary', 'hero', 'neutral', 'success', 'info', 'warning', 'danger'].map((look) => {
 		test(`should use correct ${look} color styling`, () => {
-			const { COLORS } = wbc;
 			const { getByTestId } = render(<SimpleLabel look={look} value="test" />);
 			const labelComponent = getByTestId('test-label');
-
 			expect(labelComponent).toHaveStyle('color: #fff');
-			expect(labelComponent).toHaveStyle(`background-color: ${COLORS[look]}`);
-			expect(labelComponent).toHaveStyle(`border-color: ${COLORS[look]}`);
+			expect(labelComponent).toHaveStyle(
+				`background-color: ${COLORS[look as keyof typeof COLORS]}`
+			);
+			expect(labelComponent).toHaveStyle(`border-color: ${COLORS[look as keyof typeof COLORS]}`);
 		});
 	});
 });
