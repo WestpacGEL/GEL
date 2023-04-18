@@ -12,13 +12,13 @@ overridesTest({
 	name: 'fork',
 	overrides: ['Fork'],
 	Component: (props: any) => (
-		<Fork name='test-fork' defaultValue={1} {...props}>
-			<Content text="Fork A" >
-				<Wrapper >Fork A content</Wrapper>
+		<Fork name="test-fork" defaultValue={1} {...props}>
+			<Content text="Fork A">
+				<Wrapper>Fork A content</Wrapper>
 			</Content>
 			<Content text="Fork B">
 				<Wrapper>Fork B content</Wrapper>
-			</Content>			
+			</Content>
 		</Fork>
 	),
 });
@@ -26,21 +26,21 @@ overridesTest({
 nestingTest({
 	name: 'fork',
 	Component: (props: any) => (
-		<Fork name='test-fork' defaultValue={1} {...props}>
-			<Content text="Fork A" >
-				<Wrapper >Fork A content</Wrapper>
+		<Fork name="test-fork" defaultValue={1} {...props}>
+			<Content text="Fork A">
+				<Wrapper>Fork A content</Wrapper>
 			</Content>
 			<Content text="Fork B">
 				<Wrapper>Fork B content</Wrapper>
 				<Wrapper />
-			</Content>			
+			</Content>
 		</Fork>
 	),
 });
 
 // Component specific tests
 describe('Fork component', () => {
-	function SimpleFork(props:any) {
+	function SimpleFork(props: any) {
 		return (
 			<GEL brand={wbc}>
 				<Fork {...props}>
@@ -64,7 +64,7 @@ describe('Fork component', () => {
 		render(<SimpleFork />);
 		expect(screen.getByLabelText('Fork A')).toBeInTheDocument();
 		expect(screen.getByLabelText('Fork B')).toBeInTheDocument();
-	})
+	});
 
 	test('should display content of selected option', async () => {
 		render(<SimpleFork />);
@@ -79,7 +79,5 @@ describe('Fork component', () => {
 		await user.click(screen.getByLabelText('Fork B'));
 		expect(content2).toBeVisible();
 		expect(content1).not.toBeVisible();
-	})
-
-	
+	});
 });
