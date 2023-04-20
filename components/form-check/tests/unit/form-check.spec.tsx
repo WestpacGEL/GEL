@@ -3,10 +3,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { FormCheck, Option } from '@westpac/form-check';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
-import { blenderFormCheck } from '../../src/overrides/formCheck.js';
 import wbc from '@westpac/wbc';
-import { blenderLabel } from '../../src/overrides/label.js';
-import { blenderOption } from '../../src/overrides/option.js';
 import { AllStyles } from '../../blender/recipe.js';
 
 overridesTest({
@@ -86,21 +83,6 @@ describe('FormCheck component', () => {
 		expect(getByText(/Option 2/)).toBeInTheDocument();
 		expect(getByText(/Option 3/)).toBeInTheDocument();
 	});
-
-	// test('should have input with no onChange function when onChange not passed in', () => {
-	// 	const { getByLabelText } = render(
-	// 		<SimpleFormCheck
-	// 			type="checkbox"
-	// 			name="test-data"
-	// 			data={[
-	// 				{ value: '1', text: 'Option 1' },
-	// 				{ value: '2', text: 'Option 2' },
-	// 				{ value: '3', text: 'Option 3' },
-	// 			]}
-	// 		/>
-	// 	);
-	// 	expect(getByLabelText('Option 1')).toBeInTheDocument();
-	// });
 
 	test('should disable options', () => {
 		const handleChange = jest.fn(() => {});
