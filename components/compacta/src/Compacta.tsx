@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import { useCallback, useId, useState } from 'react';
+import { useCallback, useId, useState, useRef, useEffect } from 'react';
 
 import { defaultHeaderSecondary } from './overrides/headerSecondary';
 import { defaultTitleSecondary } from './overrides/titleSecondary';
+import { defaultPrimaryHeading } from './overrides/primaryHeading';
 import { defaultTitleTertiary } from './overrides/titleTertiary';
 import { defaultTitlePrimary } from './overrides/titlePrimary';
 import { defaultCollapsible } from './overrides/collapsible';
@@ -22,6 +23,10 @@ import pkg from '../package.json';
 import { generateID } from '@westpac/core';
 
 interface CompactaProps {
+	/**
+	 * Tag for primary title
+	 */
+	titleTag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 	/**
 	 * Component to repeat
 	 */
@@ -67,11 +72,17 @@ interface CompactaProps {
 	};
 }
 
+interface Action {
+	type: string;
+	index: number;
+}
+
 // ==============================
 // Component
 // ==============================
 
 export const Compacta = ({
+	titleTag = 'h3',
 	addText = 'Add another',
 	children,
 	overrides: componentOverrides,
@@ -90,6 +101,7 @@ export const Compacta = ({
 		ItemIndex: defaultItemIndex,
 		HeaderTitle: defaultHeaderTitle,
 		HeaderSecondary: defaultHeaderSecondary,
+		PrimaryHeading: defaultPrimaryHeading,
 		TitlePrimary: defaultTitlePrimary,
 		TitleSecondary: defaultTitleSecondary,
 		TitleTertiary: defaultTitleTertiary,
@@ -106,11 +118,15 @@ export const Compacta = ({
 	const [items, setItems] = useState([
 		{ id, open: true, delay: false, title: { primary: '', secondary: '', tertiary: '' } },
 	]);
+	const [action, setAction] = useState<Action>({ type: '', index: 0 });
+	const headingRefs = useRef(new Array());
+	const toggleRefs = useRef(new Array());
 
 	const state = {
 		initial,
 		items,
 		brand,
+		titleTag,
 		overrides: componentOverrides,
 		...rest,
 	};
@@ -141,18 +157,22 @@ export const Compacta = ({
 				title: { primary: '', secondary: '', tertiary: '' },
 			},
 		]);
+
+		setAction({ type: 'add', index: newItems.length });
 	}, [id, items]);
 
-	const handleRemove = useCallback((id: string) => {
+	const handleRemove = useCallback((id: string, index: number) => {
 		setItems((items) => items.filter((item) => item.id !== id));
+		setAction({ type: 'remove', index });
 	}, []);
 
 	const handleToggle = useCallback(
-		(id: string) => {
+		(id: string, index: number) => {
 			if (initial) setInitial(false);
 			setItems((items) =>
 				items.map((item) => (item.id === id ? { ...item, delay: false, open: !item.open } : item))
 			);
+			setAction({ type: 'toggle', index });
 		},
 		[initial]
 	);
@@ -172,6 +192,24 @@ export const Compacta = ({
 		);
 	}, []);
 
+	useEffect(() => {
+		if (action.type) {
+			if (action.type === 'add') {
+				headingRefs.current[action.index].focus();
+			}
+
+			if (action.type === 'remove') {
+				headingRefs.current.splice(action.index, 1);
+				const focusIndex = action.index === 0 ? 0 : action.index - 1;
+				headingRefs.current[focusIndex].focus();
+			}
+
+			if (action.type === 'toggle') {
+				toggleRefs.current[action.index].focus();
+			}
+		}
+	}, [items.length, action]);
+
 	const {
 		Compacta: { component: Compacta, styles: compactaStyles, attributes: compactaAttributes },
 		Item: { component: Item, styles: itemStyles, attributes: itemAttributes },
@@ -186,6 +224,11 @@ export const Compacta = ({
 			component: HeaderSecondary,
 			styles: headerSecondaryStyles,
 			attributes: headerSecondaryAttributes,
+		},
+		PrimaryHeading: {
+			component: PrimaryHeading,
+			styles: primaryHeadingStyles,
+			attributes: primaryHeadingAttributes,
 		},
 		TitlePrimary: {
 			component: TitlePrimary,
@@ -257,29 +300,44 @@ export const Compacta = ({
 								{...headerTitleAttributes(state)}
 								css={headerTitleStyles(state)}
 							>
-								<ItemIndex
+								<PrimaryHeading
+									id={`gel-compacta-title-${item.id}`}
+									ref={(el: HTMLElement) => {
+										headingRefs.current[index] = el;
+									}}
+									tabIndex="-1"
 									state={state}
-									{...itemIndexAttributes(state)}
-									css={itemIndexStyles(state)}
+									{...primaryHeadingAttributes(state)}
+									css={primaryHeadingStyles(state)}
 								>
-									{index + 1}.
-								</ItemIndex>
-								{!item.open && item.title.primary && (
-									<TitlePrimary
+									<ItemIndex
 										state={state}
-										{...titlePrimaryAttributes(state)}
-										css={titlePrimaryStyles(state)}
+										{...itemIndexAttributes(state)}
+										css={itemIndexStyles(state)}
 									>
-										{item.title.primary}
-									</TitlePrimary>
-								)}
+										{index + 1}.
+									</ItemIndex>
+									{!item.open && item.title.primary && (
+										<TitlePrimary
+											state={state}
+											{...titlePrimaryAttributes(state)}
+											css={titlePrimaryStyles(state)}
+										>
+											{item.title.primary}
+										</TitlePrimary>
+									)}
+								</PrimaryHeading>
 								<Toggle
-									onClick={() => handleToggle(item.id)}
+									onClick={() => handleToggle(item.id, index)}
 									open={item.open}
+									ref={(el: HTMLDivElement) => {
+										toggleRefs.current[index] = el;
+									}}
 									state={state}
 									{...toggleAttributes({
 										...state,
 										id: `gel-compacta-content-${item.id}`,
+										titleId: `gel-compacta-title-${item.id}`,
 										open: item.open,
 									})}
 									css={toggleStyles(state)}
@@ -322,8 +380,8 @@ export const Compacta = ({
 								})}
 								{item.open && (
 									<RemoveBtn
-										onClick={() => handleRemove(item.id)}
-										state={state}
+										onClick={() => handleRemove(item.id, index)}
+										state={{ ...state, id: item.id }}
 										{...removeBtnAttributes(state)}
 										css={removeBtnStyles(state)}
 									>
