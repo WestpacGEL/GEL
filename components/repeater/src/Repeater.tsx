@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { useTransition, animated } from '@react-spring/web';
 import { useCallback, useState, useRef, useEffect } from 'react';
+import { VisuallyHidden } from '@westpac/a11y';
 
 import { defaultRemoveBtn } from './overrides/removeBtn';
 import { defaultAddBtn } from './overrides/addBtn';
@@ -72,6 +73,7 @@ export interface RepeaterProps {
 interface Action {
 	type: string;
 	index: number;
+	id?: string;
 }
 
 // ==============================
@@ -104,6 +106,7 @@ export const Repeater = ({
 
 	const [items, setItems] = useState([{ id: generateID() }]);
 	const [action, setAction] = useState<Action>({ type: '', index: 0 });
+	const [status, setStatus] = useState('');
 	const refArr = useRef(new Array());
 
 	const state = {
@@ -123,20 +126,22 @@ export const Repeater = ({
 		(id: string, index: number) => {
 			const newItems = items.filter((item) => item.id !== id);
 			setItems(newItems);
-			setAction({ type: 'remove', index });
+			setAction({ type: 'remove', index, id });
 		},
 		[items]
 	);
 
 	useEffect(() => {
-		if (action.type) {
-			if (action.type === 'add') {
-				refArr.current[items.length - 1].focus();
-			} else {
-				refArr.current.splice(action.index, 1);
-				const focusIndex = action.index === 0 ? 0 : action.index - 1;
-				refArr.current[focusIndex].focus();
-			}
+		if (action.type === 'add') {
+			refArr.current[items.length - 1].focus();
+			setStatus(`Item added`);
+		}
+
+		if (action.type === 'remove') {
+			refArr.current.splice(action.index, 1);
+			const focusIndex = action.index === 0 ? 0 : action.index - 1;
+			refArr.current[focusIndex].focus();
+			setStatus(`Item ${action.id} removed`);
 		}
 	}, [items.length, action]);
 
@@ -218,6 +223,7 @@ export const Repeater = ({
 					{addText}
 				</AddBtn>
 			</Footer>
+			<VisuallyHidden role="status">{status}</VisuallyHidden>
 		</Repeater>
 	);
 };

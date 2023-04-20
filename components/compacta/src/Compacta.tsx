@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { useCallback, useId, useState, useRef, useEffect } from 'react';
+import { VisuallyHidden } from '@westpac/a11y';
 
 import { defaultHeaderSecondary } from './overrides/headerSecondary';
 import { defaultTitleSecondary } from './overrides/titleSecondary';
@@ -75,6 +76,7 @@ interface CompactaProps {
 interface Action {
 	type: string;
 	index: number;
+	id?: string;
 }
 
 // ==============================
@@ -119,6 +121,7 @@ export const Compacta = ({
 		{ id, open: true, delay: false, title: { primary: '', secondary: '', tertiary: '' } },
 	]);
 	const [action, setAction] = useState<Action>({ type: '', index: 0 });
+	const [status, setStatus] = useState('');
 	const headingRefs = useRef(new Array());
 	const toggleRefs = useRef(new Array());
 
@@ -163,7 +166,7 @@ export const Compacta = ({
 
 	const handleRemove = useCallback((id: string, index: number) => {
 		setItems((items) => items.filter((item) => item.id !== id));
-		setAction({ type: 'remove', index });
+		setAction({ type: 'remove', index, id });
 	}, []);
 
 	const handleToggle = useCallback(
@@ -196,12 +199,14 @@ export const Compacta = ({
 		if (action.type) {
 			if (action.type === 'add') {
 				headingRefs.current[action.index].focus();
+				setStatus(`Item added`);
 			}
 
 			if (action.type === 'remove') {
 				headingRefs.current.splice(action.index, 1);
 				const focusIndex = action.index === 0 ? 0 : action.index - 1;
 				headingRefs.current[focusIndex].focus();
+				setStatus(`Item ${action.id} removed`);
 			}
 
 			if (action.type === 'toggle') {
@@ -403,6 +408,7 @@ export const Compacta = ({
 					{addText}
 				</AddBtn>
 			</Footer>
+			<VisuallyHidden role="status">{status}</VisuallyHidden>
 		</Compacta>
 	);
 };
