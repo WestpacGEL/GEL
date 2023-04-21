@@ -26,7 +26,7 @@ function overridesTest({ name, overrides, Component }) {
 				const withOverrides = cloneDeep(wbc);
 				tokenOverrides = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, display: "block", }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
@@ -67,7 +67,7 @@ function overridesTest({ name, overrides, Component }) {
 				const withOverrides = cloneDeep(wbc);
 				brandOverrides = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, display: "block", }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
@@ -109,7 +109,7 @@ function overridesTest({ name, overrides, Component }) {
 				withOverrides.OVERRIDES[`@westpac/${name}`] = tokenOverrides; // we apply the token overrides which should be overridden by the brand overrides
 				brandOverrides = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, display: "block", }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
@@ -150,7 +150,7 @@ function overridesTest({ name, overrides, Component }) {
 				const withOverrides = cloneDeep(wbc);
 				const overridesObj = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, display: "block", }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
@@ -191,7 +191,7 @@ function overridesTest({ name, overrides, Component }) {
 				withOverrides.OVERRIDES[`@westpac/${name}`] = tokenOverrides; // we apply the token overrides which should be overridden by the brand overrides
 				const overridesObj = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, display: "block", }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
@@ -233,7 +233,7 @@ function overridesTest({ name, overrides, Component }) {
 				withOverrides[`@westpac/${name}`] = brandOverrides; // we apply the brand overrides which should be overridden by the component overrides
 				const overridesObj = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, display: "block", }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
