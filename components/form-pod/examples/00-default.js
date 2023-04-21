@@ -22,7 +22,9 @@ function Example({ brand }) {
 			// iconColor: COLORS.muted,
 			text: '1300 888 888',
 			url: 'tel:1300888888',
-			onClick: () => {},
+			onClick: () => {
+				console.log('hi!');
+			},
 		},
 		// {
 		// 	icon: LiveChatIcon,
