@@ -13,9 +13,9 @@ overridesTest({
 	name: 'fork',
 	overrides: ['ForkContent'],
 	Component: (props: any) => (
-		<Fork name="test-fork" >
-			<Content text="Fork A" {...props} >
-				<Wrapper >Fork A content</Wrapper>
+		<Fork name="test-fork">
+			<Content text="Fork A" {...props}>
+				<Wrapper>Fork A content</Wrapper>
 			</Content>
 		</Fork>
 	),
@@ -57,7 +57,7 @@ describe('ForkContent component', () => {
 		expect(screen.getByText('Fork A content')).toBeInTheDocument();
 		expect(screen.getByText('Fork B content')).toBeInTheDocument();
 	});
-	
+
 	test('should display content of selected option', async () => {
 		render(<SimpleForkContent />);
 		const user = userEvent.setup();
@@ -82,9 +82,7 @@ describe('ForkContent component', () => {
 
 		render(<Wrapper />, { wrapper: ErrorBoundary });
 		expect(
-			screen.queryByText(
-				/<Content\/> components should be wrapped in a <Fork>./i
-			)
+			screen.queryByText(/<Content\/> components should be wrapped in a <Fork>./i)
 		).toBeInTheDocument();
 	});
 });

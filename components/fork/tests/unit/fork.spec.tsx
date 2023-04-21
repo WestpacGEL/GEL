@@ -43,9 +43,7 @@ describe('Fork component', () => {
 	function SimpleFork(props: any) {
 		return (
 			<GEL brand={wbc}>
-				<Fork {...props}>
-					{props.children}
-				</Fork>
+				<Fork {...props}>{props.children}</Fork>
 			</GEL>
 		);
 	}
@@ -77,5 +75,4 @@ describe('Fork component', () => {
 		fireEvent.click(option1);
 		expect(handleChange).toHaveBeenCalledTimes(1);
 	});
-
 });
