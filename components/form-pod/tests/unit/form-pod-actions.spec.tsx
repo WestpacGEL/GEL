@@ -15,16 +15,16 @@ overridesTest({
 		<Actions
 			primary={
 				<>
-					<Button appearance="primary" soft size="large" block={[true, false]}>
+					<Button soft size="large" block={[true, false]}>
 						Primary Button A
 					</Button>
-					<Button appearance="primary" soft size="large" block={[true, false]}>
+					<Button soft size="large" block={[true, false]}>
 						Primary Button B
 					</Button>
 				</>
 			}
 			secondary={
-				<Button appearance="faint" soft size="large" block={[true, false]}>
+				<Button soft size="large" block={[true, false]}>
 					Cancel
 				</Button>
 			}
