@@ -6,10 +6,11 @@ import { PanelFooter } from '@westpac/form-pod';
 import { overridesTest } from '../../../../helpers/tests/overrides-test';
 import { nestingTest } from '../../../../helpers/tests/nesting-test';
 import { FormPodPanelFooterProps } from '../../src/FormPodPanelFooter';
+import {} from '../../../icon/src/Icon';
 
 overridesTest({
 	name: 'form-pod',
-	overrides: ['Footer'], //TODO: need to add a FooterItem to this array when overridesTest function gets improved to be able to test it
+	overrides: ['Footer', 'FooterItem'],
 	Component: (props: any) => {
 		const LeftItem = <div>Left Item</div>;
 		const RightItem = <div>Right Item</div>;
