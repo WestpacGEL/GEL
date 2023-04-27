@@ -5,6 +5,7 @@ import { blenderLabel } from '../../src/overrides/label.js';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import wbc from '@westpac/wbc';
+import { LabelProps } from '../../src/Label.js';
 
 overridesTest({
 	name: 'label',
@@ -17,10 +18,10 @@ nestingTest({
 	Component: (props: any) => <Label look="primary" value="default" {...props}></Label>,
 });
 
-function SimpleLabel(props: any) {
+function SimpleLabel(props: LabelProps) {
 	return (
 		<GEL brand={wbc}>
-			<Label look={props.look} {...props} data-testid="test-label" />
+			<Label {...props} data-testid="test-label" />
 		</GEL>
 	);
 }
@@ -29,19 +30,31 @@ const { COLORS } = wbc;
 
 describe('Label component', () => {
 	test('should render Label', () => {
-		const { container } = render(<SimpleLabel />);
+		const { container } = render(<SimpleLabel look="primary" value="test" />);
+		expect(container).toBeInTheDocument();
+	});
+
+	test('should render Label with default props', () => {
+		const DefaultLabel = () => Label({} as LabelProps);
+		const { container } = render(
+			<GEL brand={wbc}>
+				<DefaultLabel />
+			</GEL>
+		);
 		expect(container).toBeInTheDocument();
 	});
 
 	test('should render Label with overrides', () => {
 		const overridesObj = {
 			Label: {
-				styles: blenderLabel.styles,
+				styles: () => blenderLabel.styles(null, { look: 'primary' }),
 				component: blenderLabel.component,
-				attributes: blenderLabel.attributes,
+				attributes: () => blenderLabel.attributes(null, { look: 'primary' }),
 			},
 		};
-		const { container } = render(<SimpleLabel overrides={overridesObj} />);
+		const { container } = render(
+			<SimpleLabel look="primary" value="test" overrides={overridesObj} />
+		);
 		expect(container).toBeInTheDocument();
 	});
 
@@ -61,7 +74,9 @@ describe('Label component', () => {
 
 	['primary', 'hero', 'neutral', 'success', 'info', 'warning', 'danger'].map((look) => {
 		test(`should use correct ${look} color styling`, () => {
-			const { getByTestId } = render(<SimpleLabel look={look} value="test" />);
+			const { getByTestId } = render(
+				<SimpleLabel look={look as LabelProps['look']} value="test" />
+			);
 			const labelComponent = getByTestId('test-label');
 			expect(labelComponent).toHaveStyle('color: #fff');
 			expect(labelComponent).toHaveStyle(
