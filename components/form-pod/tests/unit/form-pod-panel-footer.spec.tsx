@@ -6,7 +6,6 @@ import { PanelFooter } from '@westpac/form-pod';
 import { overridesTest } from '../../../../helpers/tests/overrides-test';
 import { nestingTest } from '../../../../helpers/tests/nesting-test';
 import { FormPodPanelFooterProps } from '../../src/FormPodPanelFooter';
-import {} from '../../../icon/src/Icon';
 
 overridesTest({
 	name: 'form-pod',
