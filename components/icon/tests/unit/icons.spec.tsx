@@ -29,6 +29,7 @@ function SimpleIcon(props: any) {
 describe('Icon components', () => {
 	// Tests every Icon in the library to see if it renders correctly
 	for (let [key, val] of Object.entries(icons)) {
+		// need to create new variable with expected typing and check if val is function for TS
 		let typedVal: Function;
 		if (typeof val === 'function') {
 			typedVal = val;
