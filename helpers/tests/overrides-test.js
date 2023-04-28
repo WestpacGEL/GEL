@@ -1,41 +1,44 @@
-import { React, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import cloneDeep from 'lodash.clonedeep';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
 
-function overridesTest({ name, overrides, Component }) {
+const overridesTest = ({ name, overrides, styles: overridesStyles = {}, Component }) => {
 	describe(`Overrides test for ${name}`, () => {
 		beforeEach(() => {
 			jest.resetModules();
 		});
 
-		// We test every single override in sequence to make sure the overrides cascade correctly
-		overrides.map((override) => {
+		// Test if the overrides cascade correctly in sequence
+		overrides.forEach((override) => {
 			let tokenOverrides;
 			let brandOverrides;
 
-			// 1. we test the token overrides
+			// 1. Test the token overrides
 			test(`${override} - Token overrides applies styles, attributes and components correctly`, () => {
 				const styleText = '"token overrides added style"';
 				const attributeText = 'token overrides added attributes';
-				const wrapper1 = 'token overrides wrapper 1';
-				const wrapper2 = 'token overrides wrapper 2';
+
+				const parentWrapper = 'token overrides parent wrapper';
+				const childWrapper = 'token overrides child wrapper';
 
 				const withOverrides = cloneDeep(wbc);
+
 				tokenOverrides = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
-							<div data-testid={wrapper1}>
-								<div ref={ref} data-testid={wrapper2} {...rest} />
+							<div data-testid={parentWrapper}>
+								<div ref={ref} data-testid={childWrapper} {...rest} />
 							</div>
 						)),
 					},
 				};
+
 				withOverrides.OVERRIDES[`@westpac/${name}`] = tokenOverrides;
 
 				const Wrapper = () => (
@@ -44,7 +47,7 @@ function overridesTest({ name, overrides, Component }) {
 					</GEL>
 				);
 
-				const { container, getByTestId } = render(<Wrapper />);
+				const { container, getAllByTestId } = render(<Wrapper />);
 				const content = window
 					.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
 					.getPropertyValue('content')
@@ -52,31 +55,41 @@ function overridesTest({ name, overrides, Component }) {
 
 				// We just need to check if the items exist; toBeVisible works fine for that
 				expect(container.querySelector(`[data-attribute="${attributeText}"]`)).toBeVisible();
-				expect(getByTestId(wrapper1)).toBeVisible();
-				expect(getByTestId(wrapper2)).toBeVisible();
+
+				getAllByTestId(parentWrapper).forEach((parentWrapperElement) =>
+					expect(parentWrapperElement).toBeVisible()
+				);
+
+				getAllByTestId(childWrapper).forEach((childWrapperElement) =>
+					expect(childWrapperElement).toBeVisible()
+				);
+
 				expect(content).toBe(styleText);
 			});
 
-			// 2. we test the brand overrides
+			// 2. Test the brand overrides
 			test(`${override} - Brand overrides applies styles, attributes and components correctly`, () => {
 				const styleText = '"brand overrides added style"';
 				const attributeText = 'brand overrides added attributes';
-				const wrapper1 = 'brand overrides wrapper 1';
-				const wrapper2 = 'brand overrides wrapper 2';
+
+				const parentWrapper = 'brand overrides parent wrapper';
+				const childWrapper = 'brand overrides child wrapper';
 
 				const withOverrides = cloneDeep(wbc);
+
 				brandOverrides = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
-							<div data-testid={wrapper1}>
-								<div ref={ref} data-testid={wrapper2} {...rest} />
+							<div data-testid={parentWrapper}>
+								<div ref={ref} data-testid={childWrapper} {...rest} />
 							</div>
 						)),
 					},
 				};
+
 				withOverrides[`@westpac/${name}`] = brandOverrides;
 
 				const Wrapper = () => (
@@ -85,7 +98,7 @@ function overridesTest({ name, overrides, Component }) {
 					</GEL>
 				);
 
-				const { container, getByTestId } = render(<Wrapper />);
+				const { container, getAllByTestId } = render(<Wrapper />);
 
 				const content = window
 					.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
@@ -93,32 +106,42 @@ function overridesTest({ name, overrides, Component }) {
 					.toLowerCase();
 
 				expect(container.querySelector(`[data-attribute="${attributeText}"]`)).toBeVisible();
-				expect(getByTestId(wrapper1)).toBeVisible();
-				expect(getByTestId(wrapper2)).toBeVisible();
+
+				getAllByTestId(parentWrapper).forEach((parentWrapperElement) =>
+					expect(parentWrapperElement).toBeVisible()
+				);
+
+				getAllByTestId(childWrapper).forEach((childWrapperElement) =>
+					expect(childWrapperElement).toBeVisible()
+				);
+
 				expect(content).toBe(styleText);
 			});
 
-			// 3.
+			// 3. Test if the brand overrides override the token overrides
 			test(`${override} - Brand overrides override token-overrides`, () => {
 				const styleText = '"brand overrides added style"';
 				const attributeText = 'brand overrides added attributes';
-				const wrapper1 = 'brand overrides wrapper 1';
-				const wrapper2 = 'brand overrides wrapper 2';
+
+				const parentWrapper = 'brand overrides parent wrapper';
+				const childWrapper = 'brand overrides child wrapper';
 
 				const withOverrides = cloneDeep(wbc);
 				withOverrides.OVERRIDES[`@westpac/${name}`] = tokenOverrides; // we apply the token overrides which should be overridden by the brand overrides
+
 				brandOverrides = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
-							<div data-testid={wrapper1}>
-								<div ref={ref} data-testid={wrapper2} {...rest} />
+							<div data-testid={parentWrapper}>
+								<div ref={ref} data-testid={childWrapper} {...rest} />
 							</div>
 						)),
 					},
 				};
+
 				withOverrides[`@westpac/${name}`] = brandOverrides;
 
 				const Wrapper = () => (
@@ -127,7 +150,7 @@ function overridesTest({ name, overrides, Component }) {
 					</GEL>
 				);
 
-				const { container, getByTestId } = render(<Wrapper />);
+				const { container, getAllByTestId } = render(<Wrapper />);
 
 				const content = window
 					.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
@@ -135,27 +158,36 @@ function overridesTest({ name, overrides, Component }) {
 					.toLowerCase();
 
 				expect(container.querySelector(`[data-attribute="${attributeText}"]`)).toBeVisible();
-				expect(getByTestId(wrapper1)).toBeVisible();
-				expect(getByTestId(wrapper2)).toBeVisible();
+
+				getAllByTestId(parentWrapper).forEach((parentWrapperElement) =>
+					expect(parentWrapperElement).toBeVisible()
+				);
+
+				getAllByTestId(childWrapper).forEach((childWrapperElement) =>
+					expect(childWrapperElement).toBeVisible()
+				);
+
 				expect(content).toBe(styleText);
 			});
 
-			// 4. we test the component overrides
+			// 4. Test the component overrides
 			test(`${override} - Component overrides applies styles, attributes and components correctly`, () => {
 				const styleText = '"component overrides added style"';
 				const attributeText = 'component overrides added attributes';
-				const wrapper1 = 'component overrides wrapper 1';
-				const wrapper2 = 'component overrides wrapper 2';
+
+				const parentWrapper = 'component overrides parent wrapper';
+				const childWrapper = 'component overrides child wrapper';
 
 				const withOverrides = cloneDeep(wbc);
+
 				const overridesObj = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
-							<div data-testid={wrapper1}>
-								<div ref={ref} data-testid={wrapper2} {...rest} />
+							<div data-testid={parentWrapper}>
+								<div ref={ref} data-testid={childWrapper} {...rest} />
 							</div>
 						)),
 					},
@@ -167,7 +199,7 @@ function overridesTest({ name, overrides, Component }) {
 					</GEL>
 				);
 
-				const { container, getByTestId } = render(<Wrapper />);
+				const { container, getAllByTestId } = render(<Wrapper />);
 
 				const content = window
 					.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
@@ -175,28 +207,36 @@ function overridesTest({ name, overrides, Component }) {
 					.toLowerCase();
 
 				expect(container.querySelector(`[data-attribute="${attributeText}"]`)).toBeVisible();
-				expect(getByTestId(wrapper1)).toBeVisible();
-				expect(getByTestId(wrapper2)).toBeVisible();
+
+				getAllByTestId(parentWrapper).forEach((parentWrapperElement) =>
+					expect(parentWrapperElement).toBeVisible()
+				);
+
+				getAllByTestId(childWrapper).forEach((childWrapperElement) =>
+					expect(childWrapperElement).toBeVisible()
+				);
+
 				expect(content).toBe(styleText);
 			});
 
-			// 5.
+			// 5. Test if the component overrides override the token overrides
 			test(`${override} - Component overrides override token-overrides`, () => {
 				const styleText = '"component overrides added style"';
 				const attributeText = 'component overrides added attributes';
-				const wrapper1 = 'component overrides wrapper 1';
-				const wrapper2 = 'component overrides wrapper 2';
+
+				const parentWrapper = 'component overrides parent wrapper';
+				const childWrapper = 'component overrides child wrapper';
 
 				const withOverrides = cloneDeep(wbc);
 				withOverrides.OVERRIDES[`@westpac/${name}`] = tokenOverrides; // we apply the token overrides which should be overridden by the brand overrides
 				const overridesObj = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
-							<div data-testid={wrapper1}>
-								<div ref={ref} data-testid={wrapper2} {...rest} />
+							<div data-testid={parentWrapper}>
+								<div ref={ref} data-testid={childWrapper} {...rest} />
 							</div>
 						)),
 					},
@@ -208,7 +248,7 @@ function overridesTest({ name, overrides, Component }) {
 					</GEL>
 				);
 
-				const { container, getByTestId } = render(<Wrapper />);
+				const { container, getAllByTestId } = render(<Wrapper />);
 
 				const content = window
 					.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
@@ -216,29 +256,39 @@ function overridesTest({ name, overrides, Component }) {
 					.toLowerCase();
 
 				expect(container.querySelector(`[data-attribute="${attributeText}"]`)).toBeVisible();
-				expect(getByTestId(wrapper1)).toBeVisible();
-				expect(getByTestId(wrapper2)).toBeVisible();
+
+				getAllByTestId(parentWrapper).forEach((parentWrapperElement) =>
+					expect(parentWrapperElement).toBeVisible()
+				);
+
+				getAllByTestId(childWrapper).forEach((childWrapperElement) =>
+					expect(childWrapperElement).toBeVisible()
+				);
+
 				expect(content).toBe(styleText);
 			});
 
-			// 6.
-			test(`${override} - Component overrides override token-overrides and brand-override`, () => {
+			// 6. Test if the component overrides override the token overrides and the brand overrides
+			test(`${override} - Component overrides override token-overrides and brand-overrides`, () => {
 				const styleText = '"component overrides added style"';
 				const attributeText = 'component overrides added attributes';
-				const wrapper1 = 'component overrides wrapper 1';
-				const wrapper2 = 'component overrides wrapper 2';
+
+				const parentWrapper = 'component overrides parent wrapper';
+				const childWrapper = 'component overrides child wrapper';
 
 				const withOverrides = cloneDeep(wbc);
+
 				withOverrides.OVERRIDES[`@westpac/${name}`] = tokenOverrides; // we apply the token overrides which should be overridden by the brand overrides
 				withOverrides[`@westpac/${name}`] = brandOverrides; // we apply the brand overrides which should be overridden by the component overrides
+
 				const overridesObj = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
-							<div data-testid={wrapper1}>
-								<div ref={ref} data-testid={wrapper2} {...rest} />
+							<div data-testid={parentWrapper}>
+								<div ref={ref} data-testid={childWrapper} {...rest} />
 							</div>
 						)),
 					},
@@ -250,7 +300,7 @@ function overridesTest({ name, overrides, Component }) {
 					</GEL>
 				);
 
-				const { container, getByTestId } = render(<Wrapper />);
+				const { container, getAllByTestId } = render(<Wrapper />);
 
 				const content = window
 					.getComputedStyle(container.querySelector(`[data-attribute="${attributeText}"]`))
@@ -258,12 +308,19 @@ function overridesTest({ name, overrides, Component }) {
 					.toLowerCase();
 
 				expect(container.querySelector(`[data-attribute="${attributeText}"]`)).toBeVisible();
-				expect(getByTestId(wrapper1)).toBeVisible();
-				expect(getByTestId(wrapper2)).toBeVisible();
+
+				getAllByTestId(parentWrapper).forEach((parentWrapperElement) =>
+					expect(parentWrapperElement).toBeVisible()
+				);
+
+				getAllByTestId(childWrapper).forEach((childWrapperElement) =>
+					expect(childWrapperElement).toBeVisible()
+				);
+
 				expect(content).toBe(styleText);
 			});
 		});
 	});
-}
+};
 
 export { overridesTest };
