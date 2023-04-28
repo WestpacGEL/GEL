@@ -1,22 +1,27 @@
 import { GEL } from '@westpac/core';
-import { render, screen, fireEvent, getByText } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Fork, Content } from '@westpac/fork';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import userEvent from '@testing-library/user-event';
 import { ErrorBoundary } from '../../../../helpers/tests/error-boundary';
 import wbc from '@westpac/wbc';
+import { ForkContent } from '../../src/ForkContent';
 
 const Wrapper = (props: any) => <div css={{ padding: '2rem 0' }} {...props} />;
 
 overridesTest({
 	name: 'fork',
 	overrides: ['ForkContent'],
+	styles: { ForkContent: { display: 'block' } },
 	Component: (props: any) => (
 		<Fork name="test-fork">
 			<Content text="Fork A" {...props}>
 				<Wrapper>Fork A content</Wrapper>
 			</Content>
+			<ForkContent text="Fork B" {...props}>
+				<Wrapper>Fork B content</Wrapper>
+			</ForkContent>
 		</Fork>
 	),
 });

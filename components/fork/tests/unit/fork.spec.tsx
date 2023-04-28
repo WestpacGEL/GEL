@@ -3,7 +3,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Fork, Content } from '@westpac/fork';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
-import userEvent from '@testing-library/user-event';
 import wbc from '@westpac/wbc';
 
 const Wrapper = (props: any) => <div css={{ padding: '2rem 0' }} {...props} />;

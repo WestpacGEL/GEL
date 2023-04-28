@@ -40,7 +40,6 @@ const overridesTest = ({ name, overrides, styles: overridesStyles = {}, Componen
 				};
 
 				withOverrides.OVERRIDES[`@westpac/${name}`] = tokenOverrides;
-
 				const Wrapper = () => (
 					<GEL brand={withOverrides}>
 						<Component />
