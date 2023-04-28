@@ -5,7 +5,7 @@ import { render } from '@testing-library/react';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
 
-function overridesTest({ name, overrides, Component }) {
+const overridesTest = ({ name, overrides, styles: overridesStyles = {}, Component }) => {
 	describe(`Overrides test for ${name}`, () => {
 		beforeEach(() => {
 			jest.resetModules();
@@ -28,7 +28,7 @@ function overridesTest({ name, overrides, Component }) {
 
 				tokenOverrides = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
@@ -79,7 +79,7 @@ function overridesTest({ name, overrides, Component }) {
 
 				brandOverrides = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
@@ -131,7 +131,7 @@ function overridesTest({ name, overrides, Component }) {
 
 				brandOverrides = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
@@ -182,7 +182,7 @@ function overridesTest({ name, overrides, Component }) {
 
 				const overridesObj = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
@@ -231,7 +231,7 @@ function overridesTest({ name, overrides, Component }) {
 				withOverrides.OVERRIDES[`@westpac/${name}`] = tokenOverrides; // we apply the token overrides which should be overridden by the brand overrides
 				const overridesObj = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
@@ -283,7 +283,7 @@ function overridesTest({ name, overrides, Component }) {
 
 				const overridesObj = {
 					[override]: {
-						styles: (styles) => ({ ...styles, content: styleText }),
+						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
 						component: forwardRef(({ state: _, ...rest }, ref) => (
@@ -321,6 +321,6 @@ function overridesTest({ name, overrides, Component }) {
 			});
 		});
 	});
-}
+};
 
 export { overridesTest };
