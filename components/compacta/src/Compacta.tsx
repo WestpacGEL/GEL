@@ -309,7 +309,10 @@ export const Compacta = ({
 				return (
 					<Item key={item.id} state={state} {...itemAttributes(state)} css={itemStyles(state)}>
 						<button onClick={() => handleToggle(item.id, index)}>Toggle</button>
+						<Button onClick={() => handleToggle(item.id, index)}>Toggle</Button>
 						<HeaderJSX open={item.open} state={state}>
+							<button onClick={() => handleToggle(item.id, index)}>Toggle</button>
+							<Button onClick={() => handleToggle(item.id, index)}>Toggle</Button>
 							<HeaderTitle
 								state={state}
 								{...headerTitleAttributes(state)}

@@ -7,14 +7,17 @@ import { forwardRef } from 'react';
 // ==============================
 
 const Toggle = forwardRef(({ open, state: _, ...rest }, ref) => (
-	<Button
-		ref={ref}
-		look="link"
-		size="large"
-		soft
-		iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}
-		{...rest}
-	/>
+	// <Button
+	// 	ref={ref}
+	// 	look="link"
+	// 	size="large"
+	// 	soft
+	// 	iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}
+	// 	{...rest}
+	// />
+	<button ref={ref} {...rest}>
+		{open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+	</button>
 ));
 
 Toggle.displayName = 'Toggle';
