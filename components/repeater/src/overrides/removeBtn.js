@@ -9,12 +9,12 @@ const Icon = (props) => {
 	return <RemoveCircleIcon {...props} size="xsmall" />;
 };
 
-const RemoveBtn = ({ state: { id }, ...rest }) => (
+const RemoveBtn = ({ state: { index }, ...rest }) => (
 	<Button
 		look="link"
 		size="small"
 		iconBefore={Icon}
-		assistiveText={`remove item ${id}`}
+		assistiveText={`remove item ${index + 1}`}
 		{...rest}
 	/>
 );

@@ -141,7 +141,7 @@ export const Repeater = ({
 			refArr.current.splice(action.index, 1);
 			const focusIndex = action.index === 0 ? 0 : action.index - 1;
 			refArr.current[focusIndex].focus();
-			setStatus(`Item ${action.id} removed`);
+			setStatus(`Item ${action.index + 1} removed`);
 		}
 	}, [items.length, action]);
 
@@ -201,7 +201,7 @@ export const Repeater = ({
 								{items.length > 1 && (
 									<RemoveBtn
 										onClick={() => handleRemove(item.id, index)}
-										state={{ ...state, id: item.id }}
+										state={{ ...state, index }}
 										{...RemoveBtnAttributes(state)}
 										css={RemoveBtnStyles(state)}
 									>
