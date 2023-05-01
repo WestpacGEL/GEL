@@ -8,14 +8,14 @@ import { RemoveCircleIcon } from '@westpac/icon';
 
 const Icon = (props) => <RemoveCircleIcon {...props} size="xsmall" />;
 
-const RemoveBtn = ({ state: { id }, ...rest }) => {
+const RemoveBtn = ({ state: { index }, ...rest }) => {
 	return (
 		<Button
 			look="link"
 			size="small"
 			soft
 			iconBefore={Icon}
-			assistiveText={`remove item ${id}`}
+			assistiveText={`remove item ${index + 1}`}
 			{...rest}
 		/>
 	);

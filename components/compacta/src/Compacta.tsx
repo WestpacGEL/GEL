@@ -198,19 +198,23 @@ export const Compacta = ({
 	useEffect(() => {
 		if (action.type) {
 			if (action.type === 'add') {
-				headingRefs.current[action.index].focus();
+				setTimeout(() => {
+					headingRefs?.current[action.index]?.focus();
+				}, 1);
 				setStatus(`Item added`);
 			}
 
 			if (action.type === 'remove') {
 				headingRefs.current.splice(action.index, 1);
 				const focusIndex = action.index === 0 ? 0 : action.index - 1;
-				headingRefs.current[focusIndex].focus();
-				setStatus(`Item ${action.id} removed`);
+				setTimeout(() => {
+					headingRefs?.current[focusIndex]?.focus();
+				}, 1);
+				setStatus(`Item ${action.index + 1} removed`);
 			}
 
 			if (action.type === 'toggle') {
-				toggleRefs.current[action.index].focus();
+				toggleRefs?.current[action.index]?.focus();
 			}
 		}
 	}, [items.length, action]);
@@ -335,7 +339,7 @@ export const Compacta = ({
 								<Toggle
 									onClick={() => handleToggle(item.id, index)}
 									open={item.open}
-									ref={(el: HTMLDivElement) => {
+									ref={(el: HTMLElement) => {
 										toggleRefs.current[index] = el;
 									}}
 									state={state}

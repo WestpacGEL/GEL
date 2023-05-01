@@ -3,6 +3,8 @@ import { useCallback, useState } from 'react';
 import { Compacta } from '@westpac/compacta';
 import { Form, FormGroup, Field } from '@westpac/form';
 import { TextInput } from '@westpac/text-input';
+import { Button } from '@westpac/button';
+import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 
 function Example({ brand }) {
 	const [inputs, setInputs] = useState({});
@@ -10,6 +12,8 @@ function Example({ brand }) {
 	const handleChange = useCallback((e) => {
 		setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	}, []);
+
+	const [toggle, setToggle] = useState(false);
 
 	return (
 		<GEL brand={brand}>
@@ -59,6 +63,18 @@ function Example({ brand }) {
 					</Form>
 				)}
 			</Compacta>
+			<br />
+			<br />
+			<Button
+				look="link"
+				size="large"
+				soft
+				iconAfter={toggle ? ExpandLessIcon : ExpandMoreIcon}
+				onClick={() => {
+					console.log('toggled');
+					setToggle(!toggle);
+				}}
+			/>
 		</GEL>
 	);
 }
