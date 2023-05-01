@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { useCallback, useId, useState, useRef, useEffect } from 'react';
 import { VisuallyHidden } from '@westpac/a11y';
+import { Button } from '@westpac/button';
+import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 
 import { defaultHeaderSecondary } from './overrides/headerSecondary';
 import { defaultTitleSecondary } from './overrides/titleSecondary';
@@ -171,6 +173,7 @@ export const Compacta = ({
 
 	const handleToggle = useCallback(
 		(id: string, index: number) => {
+			console.log('TOGGLE');
 			if (initial) setInitial(false);
 			setItems((items) =>
 				items.map((item) => (item.id === id ? { ...item, delay: false, open: !item.open } : item))
@@ -298,11 +301,14 @@ export const Compacta = ({
 	// contain text-inputs which update compacta state causing re-renders and making them lose focus on each keystroke
 	const builtContentStyles = contentStyles(state);
 
+	const [toggle, setToggle] = useState(false);
+
 	return (
 		<Compacta {...rest} state={state} {...compactaAttributes(state)} css={compactaStyles(state)}>
 			{items.map((item, index) => {
 				return (
 					<Item key={item.id} state={state} {...itemAttributes(state)} css={itemStyles(state)}>
+						<button onClick={() => handleToggle(item.id, index)}>Toggle</button>
 						<HeaderJSX open={item.open} state={state}>
 							<HeaderTitle
 								state={state}
@@ -413,6 +419,16 @@ export const Compacta = ({
 				</AddBtn>
 			</Footer>
 			<VisuallyHidden role="status">{status}</VisuallyHidden>
+			<Button
+				look="link"
+				size="large"
+				soft
+				iconAfter={toggle ? ExpandLessIcon : ExpandMoreIcon}
+				onClick={() => {
+					console.log('toggled');
+					setToggle(!toggle);
+				}}
+			/>
 		</Compacta>
 	);
 };
