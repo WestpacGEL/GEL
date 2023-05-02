@@ -13,8 +13,6 @@ function Example({ brand }) {
 		setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	}, []);
 
-	const [toggle, setToggle] = useState(false);
-
 	return (
 		<GEL brand={brand}>
 			<h3>Default</h3>
@@ -63,18 +61,6 @@ function Example({ brand }) {
 					</Form>
 				)}
 			</Compacta>
-			<br />
-			<br />
-			<Button
-				look="link"
-				size="large"
-				soft
-				iconAfter={toggle ? ExpandLessIcon : ExpandMoreIcon}
-				onClick={() => {
-					console.log('toggled');
-					setToggle(!toggle);
-				}}
-			/>
 		</GEL>
 	);
 }
