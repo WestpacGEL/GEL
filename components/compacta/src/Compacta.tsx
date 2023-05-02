@@ -270,14 +270,14 @@ export const Compacta = ({
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
 	// pre-building JSX for these components since we can't call hooks in loops
-	const HeaderJSX = ({ open, ...rest }: any) => (
-		<Header
-			state={state}
-			{...headerAttributes(state)}
-			css={headerStyles({ ...state, open })}
-			{...rest}
-		/>
-	);
+	// const HeaderJSX = ({ open, ...rest }: any) => (
+	// 	<Header
+	// 		state={state}
+	// 		{...headerAttributes(state)}
+	// 		css={headerStyles({ ...state, open })}
+	// 		{...rest}
+	// 	/>
+	// );
 
 	const TitleSecondaryJSX = (props: any) => (
 		<TitleSecondary
@@ -310,7 +310,7 @@ export const Compacta = ({
 					<Item key={item.id} state={state} {...itemAttributes(state)} css={itemStyles(state)}>
 						<button onClick={() => handleToggle(item.id, index)}>Toggle</button>
 						<Button onClick={() => handleToggle(item.id, index)}>Toggle</Button>
-						<HeaderJSX open={item.open} state={state}>
+						<Header state={state} {...headerAttributes(state)} css={headerStyles(state)} {...rest}>
 							<button onClick={() => handleToggle(item.id, index)}>Toggle</button>
 							<Button onClick={() => handleToggle(item.id, index)}>Toggle</Button>
 							<HeaderTitle
@@ -375,7 +375,7 @@ export const Compacta = ({
 									)}
 								</HeaderSecondary>
 							)}
-						</HeaderJSX>
+						</Header>
 						<Collapsible
 							open={item.open}
 							delay={item.delay}
