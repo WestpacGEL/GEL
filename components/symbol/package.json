@@ -67,6 +67,7 @@
 	"preconstruct": {
 		"entrypoints": [
 			"*.js",
+			"index.ts",
 			"!Symbol.js",
 			"!overrides/*"
 		]
