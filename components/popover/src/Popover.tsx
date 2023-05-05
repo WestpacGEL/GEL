@@ -217,7 +217,7 @@ export const Popover = ({
 				{children}
 			</Trigger>
 			<Panel ref={popoverRef} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
-				{heading && (
+				{!!heading && (
 					<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
 						{heading}
 					</Heading>
