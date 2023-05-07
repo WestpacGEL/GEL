@@ -1,9 +1,12 @@
 import { forwardRef } from 'react';
 import cloneDeep from 'lodash.clonedeep';
 import { render } from '@testing-library/react';
+import { jest } from '@jest/globals';
 
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
+
+// this test ensures all the brand/token overrides apply correctly to a component and their children
 
 const overridesTest = ({ name, overrides, styles: overridesStyles = {}, Component }) => {
 	describe(`Overrides test for ${name}`, () => {
@@ -31,11 +34,21 @@ const overridesTest = ({ name, overrides, styles: overridesStyles = {}, Componen
 						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
-						component: forwardRef(({ state: _, ...rest }, ref) => (
-							<div data-testid={parentWrapper}>
-								<div ref={ref} data-testid={childWrapper} {...rest} />
-							</div>
-						)),
+						component: forwardRef(
+							({ 'data-attribute': dataAttribute, children, className }, ref) => (
+								<div data-testid={parentWrapper}>
+									<div
+										ref={ref}
+										data-testid={childWrapper}
+										data-attribute={dataAttribute}
+										className={className}
+									>
+										{' '}
+										{children}
+									</div>
+								</div>
+							)
+						),
 					},
 				};
 
@@ -81,11 +94,21 @@ const overridesTest = ({ name, overrides, styles: overridesStyles = {}, Componen
 						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
-						component: forwardRef(({ state: _, ...rest }, ref) => (
-							<div data-testid={parentWrapper}>
-								<div ref={ref} data-testid={childWrapper} {...rest} />
-							</div>
-						)),
+						component: forwardRef(
+							({ 'data-attribute': dataAttribute, children, className }, ref) => (
+								<div data-testid={parentWrapper}>
+									<div
+										ref={ref}
+										data-testid={childWrapper}
+										data-attribute={dataAttribute}
+										className={className}
+									>
+										{' '}
+										{children}
+									</div>
+								</div>
+							)
+						),
 					},
 				};
 
@@ -133,11 +156,21 @@ const overridesTest = ({ name, overrides, styles: overridesStyles = {}, Componen
 						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
-						component: forwardRef(({ state: _, ...rest }, ref) => (
-							<div data-testid={parentWrapper}>
-								<div ref={ref} data-testid={childWrapper} {...rest} />
-							</div>
-						)),
+						component: forwardRef(
+							({ 'data-attribute': dataAttribute, children, className }, ref) => (
+								<div data-testid={parentWrapper}>
+									<div
+										ref={ref}
+										data-testid={childWrapper}
+										data-attribute={dataAttribute}
+										className={className}
+									>
+										{' '}
+										{children}
+									</div>
+								</div>
+							)
+						),
 					},
 				};
 
@@ -184,11 +217,21 @@ const overridesTest = ({ name, overrides, styles: overridesStyles = {}, Componen
 						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
-						component: forwardRef(({ state: _, ...rest }, ref) => (
-							<div data-testid={parentWrapper}>
-								<div ref={ref} data-testid={childWrapper} {...rest} />
-							</div>
-						)),
+						component: forwardRef(
+							({ 'data-attribute': dataAttribute, children, className }, ref) => (
+								<div data-testid={parentWrapper}>
+									<div
+										ref={ref}
+										data-testid={childWrapper}
+										data-attribute={dataAttribute}
+										className={className}
+									>
+										{' '}
+										{children}
+									</div>
+								</div>
+							)
+						),
 					},
 				};
 
@@ -233,11 +276,21 @@ const overridesTest = ({ name, overrides, styles: overridesStyles = {}, Componen
 						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
-						component: forwardRef(({ state: _, ...rest }, ref) => (
-							<div data-testid={parentWrapper}>
-								<div ref={ref} data-testid={childWrapper} {...rest} />
-							</div>
-						)),
+						component: forwardRef(
+							({ 'data-attribute': dataAttribute, children, className }, ref) => (
+								<div data-testid={parentWrapper}>
+									<div
+										ref={ref}
+										data-testid={childWrapper}
+										data-attribute={dataAttribute}
+										className={className}
+									>
+										{' '}
+										{children}
+									</div>
+								</div>
+							)
+						),
 					},
 				};
 
@@ -285,11 +338,21 @@ const overridesTest = ({ name, overrides, styles: overridesStyles = {}, Componen
 						styles: (styles) => ({ ...styles, content: styleText, ...overridesStyles[override] }),
 						attributes: () => ({ 'data-attribute': attributeText }),
 						// eslint-disable-next-line react/display-name
-						component: forwardRef(({ state: _, ...rest }, ref) => (
-							<div data-testid={parentWrapper}>
-								<div ref={ref} data-testid={childWrapper} {...rest} />
-							</div>
-						)),
+						component: forwardRef(
+							({ 'data-attribute': dataAttribute, children, className }, ref) => (
+								<div data-testid={parentWrapper}>
+									<div
+										ref={ref}
+										data-testid={childWrapper}
+										data-attribute={dataAttribute}
+										className={className}
+									>
+										{' '}
+										{children}
+									</div>
+								</div>
+							)
+						),
 					},
 				};
 
