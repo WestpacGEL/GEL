@@ -380,7 +380,7 @@ export const Compacta = ({
 								{item.open && (
 									<RemoveBtn
 										onClick={() => handleRemove(item.id, index)}
-										state={{ ...state, id: item.id }}
+										state={{ ...state, index }}
 										{...removeBtnAttributes(state)}
 										css={removeBtnStyles(state)}
 									>
