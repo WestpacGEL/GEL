@@ -11,15 +11,15 @@ export interface ProgressBarProps {
 	/**
 	 * The progress bar value as a percentage. Decimal numbers are rounded.
 	 */
-	value: number;
+	value?: number;
 	/**
 	 * Progress bar look
 	 */
-	look: 'default' | 'skinny';
+	look?: 'default' | 'skinny';
 	/**
 	 * Hides the visible label (for `default` look)
 	 */
-	noLabel: boolean;
+	noLabel?: boolean;
 	/**
 	 * The override API
 	 */
@@ -115,11 +115,11 @@ ProgressBar.propTypes = {
 	/**
 	 * Progress bar look
 	 */
-	look: PropTypes.oneOf(['default', 'skinny']).isRequired,
+	look: PropTypes.oneOf(['default', 'skinny']),
 	/**
 	 * Hides the visible label (for `default` look)
 	 */
-	noLabel: PropTypes.bool.isRequired,
+	noLabel: PropTypes.bool,
 	/**
 	 * The override API
 	 */
@@ -143,5 +143,5 @@ ProgressBar.propTypes = {
 	/**
 	 * The progress bar value as a percentage. Decimal numbers are rounded.
 	 */
-	value: PropTypes.number.isRequired,
+	value: PropTypes.number,
 };
