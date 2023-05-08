@@ -1,14 +1,11 @@
 import { GEL } from '@westpac/core';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render } from '@testing-library/react';
 import { ProgressBar } from '@westpac/progress-bar';
 import wbc from '@westpac/wbc';
 
 import { overridesTest } from '../../../../helpers/tests/overrides-test';
 import { nestingTest } from '../../../../helpers/tests/nesting-test';
 import { ProgressBarProps } from '../../src/ProgressBar';
-
-// TODO: add changeset
 
 overridesTest({
 	name: 'progress-bar',
