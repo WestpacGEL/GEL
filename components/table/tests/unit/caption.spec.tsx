@@ -45,4 +45,20 @@ describe('Caption component', () => {
 		const { getByText } = render(<SimpleCaption>This is test caption</SimpleCaption>);
 		expect(getByText(/This is test caption/)).toBeInTheDocument();
 	});
+
+	test('should render color DodgerBlue if you override styles', () => {
+		const props: CaptionProps = {
+			overrides: {
+				Caption: {
+					styles: (styles: any) => ({
+						...styles,
+						color: 'DodgerBlue',
+					}),
+				},
+			},
+		};
+		const { container, getByTestId } = render(<SimpleCaption {...props}>Test</SimpleCaption>);
+		expect(container).toBeInTheDocument();
+		expect(getByTestId('test-caption')).toHaveStyle('color: DodgerBlue');
+	});
 });

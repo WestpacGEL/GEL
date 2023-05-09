@@ -71,6 +71,16 @@ describe('Table component', () => {
 		expect(container).toBeInTheDocument();
 	});
 
+	test('should render striped style table when striped property is passed in props', () => {
+		const { container } = render(<SimpleTable striped />);
+		expect(container).toBeInTheDocument();
+	});
+
+	test('should render striped & bordered table when striped and bordered property is passed in props', () => {
+		const { container } = render(<SimpleTable bordered striped />);
+		expect(container).toBeInTheDocument();
+	});
+
 	test('should render children inside Table', () => {
 		const { getByTestId } = render(
 			<SimpleTable>
@@ -78,5 +88,21 @@ describe('Table component', () => {
 			</SimpleTable>
 		);
 		expect(getByTestId('test-child')).toBeInTheDocument();
+	});
+
+	test('should render backgroundColor: #efe8ed if you overrides styles', () => {
+		const props: TableProps = {
+			overrides: {
+				Table: {
+					styles: (styles: any) => ({
+						...styles,
+						backgroundColor: '#efe8ed',
+					}),
+				},
+			},
+		};
+		const { container, getByTestId } = render(<SimpleTable {...props}>Test</SimpleTable>);
+		expect(container).toBeInTheDocument();
+		expect(getByTestId('test-table')).toHaveStyle('backgroundColor: efe8ed');
 	});
 });
