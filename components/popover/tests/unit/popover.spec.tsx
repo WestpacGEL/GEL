@@ -1,5 +1,5 @@
 import { GEL } from '@westpac/core';
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Popover } from '@westpac/popover';
 import wbc from '@westpac/wbc';
@@ -41,14 +41,14 @@ describe('Popover component', () => {
 		children: 'Click me',
 	};
 
-	const WbcPopover = (props: PopoverProps) => (
+	const WBCPopover = (props: PopoverProps) => (
 		<GEL brand={wbc}>
 			<Popover {...props} />
 		</GEL>
 	);
 
 	it('should render the popover content when the trigger is clicked', () => {
-		const { getByText } = render(<WbcPopover {...defaultProps} />);
+		const { getByText } = render(<WBCPopover {...defaultProps} />);
 
 		expect(getByText(TEST_CONTENT)).not.toBeVisible();
 
@@ -60,7 +60,7 @@ describe('Popover component', () => {
 
 	it('should call the onClick prop when the trigger is clicked', async () => {
 		const onClick = jest.fn();
-		const { getByText } = render(<WbcPopover {...defaultProps} onClick={onClick} />);
+		const { getByText } = render(<WBCPopover {...defaultProps} onClick={onClick} />);
 
 		const trigger = getByText(/click me/i);
 		await userEvent.click(trigger);
@@ -70,7 +70,7 @@ describe('Popover component', () => {
 
 	it('should render the provided heading', () => {
 		const heading = 'Popover heading';
-		const { getByText } = render(<WbcPopover {...defaultProps} heading={heading} />);
+		const { getByText } = render(<WBCPopover {...defaultProps} heading={heading} />);
 
 		const headingElement = getByText(heading);
 		expect(headingElement).toBeInTheDocument();
