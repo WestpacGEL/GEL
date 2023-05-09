@@ -42,5 +42,4 @@ describe('Option component', () => {
 
 		expect(getByTestId('test-option')).toBeDisabled();
 	});
-
 });
