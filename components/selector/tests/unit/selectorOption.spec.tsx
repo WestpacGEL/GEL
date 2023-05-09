@@ -102,16 +102,13 @@ describe('Option component', () => {
 		const { getByText } = render(
 			<>
 				<SimpleOption type="radio" hint="test radio hint">
-					{' '}
-					option{' '}
+					option
 				</SimpleOption>
 				<SimpleOption type="checkbox" hint="test checkbox hint">
-					{' '}
-					option{' '}
+					option
 				</SimpleOption>
 				<SimpleOption href="test" hint="test link hint">
-					{' '}
-					option{' '}
+					option
 				</SimpleOption>
 			</>
 		);
