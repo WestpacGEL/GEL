@@ -7,7 +7,7 @@ import { useTableContext } from './Table';
 import pkg from '../package.json';
 import React, { ReactNode } from 'react';
 
-interface TheadProps {
+export interface TheadProps {
 	/**
 	 * Children
 	 */
