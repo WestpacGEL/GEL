@@ -92,7 +92,7 @@ describe('Option component', () => {
 		expect(getByRole('link', { current: false })).toBeInTheDocument();
 	});
 
-	test('should be disabled if disable prop is passed', () => {
+	test('should be disabled if disabled prop is passed', () => {
 		const { getByTestId } = render(<SimpleOption disabled>Test option</SimpleOption>);
 
 		expect(getByTestId('test-option')).toBeDisabled();
