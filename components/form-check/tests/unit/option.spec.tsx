@@ -36,4 +36,11 @@ describe('Option component', () => {
 		const { getByText } = render(<SimpleOption hint="this is hint text" />);
 		expect(getByText(/this is hint text/)).toBeInTheDocument();
 	});
+
+	test('should be disabled if disable prop is passed', () => {
+		const { getByTestId } = render(<SimpleOption disabled />);
+
+		expect(getByTestId('test-option')).toBeDisabled();
+	});
+
 });
