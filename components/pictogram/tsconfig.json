@@ -15,7 +15,8 @@
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "react-jsx",
-		"types": ["@emotion/core"]
+		"types": ["@emotion/core", "jest", "@testing-library/jest-dom"],
+		"allowImportingTsExtensions": true // needed to import base pictogram as it isn't exported from module
 	},
 	"exclude": ["**/dist", "**/node_modules"]
 }
