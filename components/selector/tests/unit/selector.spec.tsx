@@ -131,7 +131,7 @@ describe('Selector component', () => {
 		expect(getByTestId('opt3')).toBeDisabled();
 	});
 
-	test('should work as intened if type is button', () => {
+	test('should call onChange function if type is button', () => {
 		const handleChange = jest.fn(() => {});
 		const { getByText } = render(<SimpleSelector onChange={handleChange} type="button" />);
 
