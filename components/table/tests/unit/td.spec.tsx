@@ -51,7 +51,7 @@ describe('Td component', () => {
 		expect(container).toBeInTheDocument();
 	});
 
-	test('should render children inside Tbody', () => {
+	test('should render children inside Td', () => {
 		const { getByTestId } = render(
 			<SimpleTd>
 				<span data-testid="test-child">Test</span>
