@@ -88,7 +88,7 @@ const SimpleSelectorNoOptions = (props: SelectorProps) => (
 
 // Component specific tests
 describe('Selector component', () => {
-	test('It should render Simple Selector as radio', () => {
+	test('should render Simple Selector as radio', () => {
 		const { container } = render(<SimpleSelector type="radio" />);
 
 		expect(container).toBeInTheDocument();
