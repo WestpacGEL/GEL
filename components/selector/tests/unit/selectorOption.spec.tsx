@@ -22,7 +22,7 @@ overridesTest({
 		'IndicatorCheck',
 		'IndicatorNext',
 	],
-	Component: (props: any) => (
+	Component: (props: OptionProps) => (
 		<>
 			<Option value="1" hint="hint test" secondaryLabel="secondary label test" {...props}>
 				Here is a label

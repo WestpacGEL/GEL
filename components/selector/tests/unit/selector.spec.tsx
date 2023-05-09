@@ -26,6 +26,7 @@ overridesTest({
 		'IndicatorCheck',
 		'IndicatorNext',
 	],
+	// using any for props as type needs to be specified for tests
 	Component: (props: any) => (
 		<>
 			<Selector type="radio" {...props}>
@@ -60,7 +61,7 @@ overridesTest({
 
 nestingTest({
 	name: 'selector',
-	Component: (props: any) => <Selector {...props}>{props.children}</Selector>,
+	Component: (props: SelectorProps) => <Selector {...props}>{props.children}</Selector>,
 });
 
 const SimpleSelector = (props: SelectorProps) => (
