@@ -22,7 +22,7 @@ export const useTableContext = () => {
 	return context;
 };
 
-interface TableProps {
+export interface TableProps {
 	/**
 	 * Children
 	 */
