@@ -1,5 +1,5 @@
 import { GEL } from '@westpac/core';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { Selector, Option } from '@westpac/selector';
 import wbc from '@westpac/wbc';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';

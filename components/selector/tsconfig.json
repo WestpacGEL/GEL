@@ -15,8 +15,7 @@
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "react-jsx",
-		"types": ["@emotion/core", "jest", "@testing-library/jest-dom"],
-		"allowImportingTsExtensions": true
-	},
+		"types": ["@emotion/core", "jest", "@testing-library/jest-dom"]
+		},
 	"exclude": ["**/dist", "**/node_modules"]
 }
