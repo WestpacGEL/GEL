@@ -33,7 +33,7 @@ export const useSelectorContext = () => {
 	return context;
 };
 
-interface SelectorProps {
+export interface SelectorProps {
 	/**
 	 * Define an id for internal elements
 	 */
