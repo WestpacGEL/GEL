@@ -1,37 +1,16 @@
-import { Table, Caption, Tbody, Td, Tfoot, Th, Thead, Tr } from '@westpac/table';
+import { Table, Caption, Td, Tbody, Tr } from '@westpac/table';
 import { GEL } from '@westpac/core';
 import { render, screen } from '@testing-library/react';
+import { blenderTable } from '../../src/overrides/table.js';
+import { blenderTd } from '../../src/overrides/td.js';
+import { blenderTr } from '../../src/overrides/tr.js';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import { TableProps } from '../../src/Table';
 import wbc from '@westpac/wbc';
 import { ErrorBoundary } from '../../../../helpers/tests/error-boundary.js';
 
-// Todo: fix override function for table component
-// overridesTest({
-// 	name: 'table', // the name has to be the package name without '@westpac/' scope
-// 	overrides: ['Table', 'Caption', 'Tbody', 'Td', 'Tfoot', 'Th', 'Thead', 'Tr'], // every single override root key
-// 	Component: (props: TableProps) => (
-// 		<Table {...props}>
-// 			<Caption>Test caption</Caption>
-// 			<Thead>
-// 				<Tr>
-// 					<Th>Test Column 1</Th>
-// 				</Tr>
-// 			</Thead>
-// 			<Tbody>
-// 				<Tr>
-// 					<Td>Test Cell 1</Td>
-// 				</Tr>
-// 			</Tbody>
-// 			<Tfoot>
-// 				<Tr>
-// 					<Td>Footer goes here and should colSpan all columns</Td>
-// 				</Tr>
-// 			</Tfoot>
-// 		</Table>
-// 	),
-// });
+// Todo: generic override function cause error for table component **fix override function for table component
 
 // another default test to check that the component errors when outside of GEL and renders when inside
 nestingTest({
@@ -104,5 +83,35 @@ describe('Table component', () => {
 		const { container, getByTestId } = render(<SimpleTable {...props}>Test</SimpleTable>);
 		expect(container).toBeInTheDocument();
 		expect(getByTestId('test-table')).toHaveStyle('backgroundColor: efe8ed');
+	});
+
+	test('should render table with blender overrides', () => {
+		const overridesObj = {
+			Table: {
+				component: blenderTable.component,
+				styles: () => blenderTable.styles(null, { striped: false, bordered: false }),
+				attributes: () => blenderTable.attributes,
+			},
+			Tr: {
+				component: blenderTr.component,
+				styles: () => blenderTr.styles(null, { highlighted: false }),
+				attributes: () => blenderTr.attributes,
+			},
+			Td: {
+				component: blenderTd.component,
+				styles: () => blenderTd.styles(null, { highlighted: false, highlightStart: false }),
+				attributes: () => blenderTd.attributes,
+			},
+		};
+		const { container } = render(
+			<SimpleTable overrides={overridesObj}>
+				<Tbody>
+					<Tr>
+						<Td></Td>
+					</Tr>
+				</Tbody>
+			</SimpleTable>
+		);
+		expect(container).toBeInTheDocument();
 	});
 });

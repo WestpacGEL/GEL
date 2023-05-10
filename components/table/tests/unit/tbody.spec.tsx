@@ -6,15 +6,8 @@ import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import { TbodyProps } from '../../src/Tbody';
 import wbc from '@westpac/wbc';
 
-// Todo: fix override function for table component// overridesTest({
-// 	name: 'table',
-// 	overrides: ['Tbody'],
-// 	Component: (props: TbodyProps) => (
-// 		<Table>
-// 			<Tbody {...props}>{props.children}</Tbody>
-// 		</Table>
-// 	),
-// });
+// Todo: generic override function cause error for table component **fix override function for table component
+
 // another default test to check that the component errors when outside of GEL and renders when inside
 nestingTest({
 	name: 'table',
