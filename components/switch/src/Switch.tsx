@@ -31,7 +31,7 @@ export interface SwitchProps {
 	/**
 	 * Switch size
 	 */
-	size?: 'small' | 'medium' | 'large' | 'xlarge' | 'small' | 'medium' | 'large' | 'xlarge'[];
+	size?: 'small' | 'medium' | 'large' | 'xlarge' | ('small' | 'medium' | 'large' | 'xlarge')[];
 	/**
 	 * Block mode
 	 */
@@ -212,6 +212,6 @@ Switch.propTypes = {
 	 */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
-		PropTypes.arrayOf(PropTypes.oneOf(['xlarge'])),
+		PropTypes.arrayOf(PropTypes.oneOf(['xlarge', 'medium', 'small', 'xlarge'])),
 	]),
 };
