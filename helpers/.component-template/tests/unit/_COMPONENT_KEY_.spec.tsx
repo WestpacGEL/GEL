@@ -6,7 +6,7 @@ describe('Given the _COMPONENT_NAME_ is rendered', () => {
 		test('then the component should be displayed', () => {
 			render(<_COMPONENT_NAME_ />);
 
-			expect(screen.getByRole('generic', { name: '_COMPONENT_NAME_' })).toBeVisible();
+			expect(screen.getByRole('term')).toHaveTextContent('_COMPONENT_NAME_');
 		});
 	});
 });

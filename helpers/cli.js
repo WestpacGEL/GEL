@@ -38,9 +38,9 @@ const qDescription = () => {
 
 const qConfirm = (name, description) => {
 	return new Promise((resolve, reject) => {
-		console.log(chalk.green.underline('\nCOMPONENT DETAILS'));
-		console.log(chalk.cyan('Component Name: ') + name);
-		console.log(chalk.cyan('Component Description: ') + description);
+		console.info(chalk.green.underline('\nCOMPONENT DETAILS'));
+		console.info(chalk.cyan('Component Name: ') + name);
+		console.info(chalk.cyan('Component Description: ') + description);
 		rl.question('\nConfirm creation (y/N)? ', (answer) => {
 			resolve(answer);
 		});
@@ -75,11 +75,11 @@ const createComponent = (component) => {
 	const src = `./helpers/.component-template`;
 	const dest = `./components/${component.folderName}`;
 
-	console.log(chalk.gray('[1/3] Copying template files...\n'));
+	console.info(chalk.gray('[1/3] Copying template files...\n'));
 	shell(`mkdir -p ${dest}`);
 	shell(`cp -r ${src}/* ${dest}`);
 
-	console.log(chalk.gray('[2/3] Updating template references...\n'));
+	console.info(chalk.gray('[2/3] Updating template references...\n'));
 	updateReferences(dest, component);
 };
 
@@ -95,12 +95,12 @@ const main = async () => {
 
 	if (!packageName) {
 		do {
-			packageName = await qName().catch((e) => console.log(chalk.red(e)));
+			packageName = await qName().catch((e) => console.info(chalk.red(e)));
 		} while (!packageName);
 	}
 
 	do {
-		description = await qDescription().catch((e) => console.log(chalk.red(e)));
+		description = await qDescription().catch((e) => console.info(chalk.red(e)));
 	} while (!description);
 
 	const folderName = packageName.toLowerCase();
@@ -124,11 +124,12 @@ const main = async () => {
 			description: description,
 		};
 
-		console.log(chalk.gray(`\nCreating ${component.key} component...\n`));
+		console.info(chalk.gray(`\nCreating ${component.key} component...\n`));
 		createComponent(component);
-		console.log(chalk.gray('[3/3] Installing dependencies...\n'));
+		console.info(chalk.gray('[3/3] Installing dependencies...\n'));
+		shell(`yarn manypkg fix`, { stdio: 'inherit' });
 		shell(`yarn`, { stdio: 'inherit' });
-		console.log(chalk.green(`Successfully created at ./components/${component.key}`));
+		console.info(chalk.green(`Successfully created at ./components/${component.key}`));
 	}
 };
 

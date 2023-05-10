@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 /** _COMPONENT_TITLE_: _COMPONENT_DESCRIPTION_ */
 export const _COMPONENT_NAME_ = ({ ...props }) => {
 	return (
-		<div css={{}} {...props}>
+		<dfn css={{}} {...props}>
 			_COMPONENT_NAME_
-		</div>
+		</dfn>
 	);
 };
 
