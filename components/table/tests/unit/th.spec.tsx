@@ -1,7 +1,6 @@
 import { Th, Table, Tr, Thead } from '@westpac/table';
 import { GEL } from '@westpac/core';
 import { render } from '@testing-library/react';
-import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import { ThProps } from '../../src/Th';
 import wbc from '@westpac/wbc';
