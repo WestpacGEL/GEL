@@ -161,12 +161,12 @@ type TextInputGroupFieldProps = BaseTextInputGroupFieldProps & (TextInputProps |
 />
 
 // Interactive add on (Note: we may need to add a new `look` for the button that includes
-// the styles from the TextInputWithButton's button - suggested name: 'addOn')
+// the styles from the TextInputWithButton's button including the negative margin - suggested name from Jeremy: 'insetButton' which will display the button "inside" the text input)
 <TextInputGroupField
   groupLabel="Search"
   type="text"
 	addOnBefore={<SearchIcon />}
-	addOnAfter={<Button look="unstyled" iconAfter={ClearIcon} assistiveText="Clear input" />}
+	addOnAfter={<Button look="insetButton" iconAfter={ClearIcon} assistiveText="Clear input" />}
 />
 
 // Multiple inputs - Fieldset
