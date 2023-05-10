@@ -63,6 +63,11 @@ const updateReferences = (dir, component) => {
 				fs.renameSync(fullPath, renamedPath);
 			}
 
+			if (fullPath.includes('node_modules')) {
+				console.info('Skipping node_modules file:', fullPath);
+				return;
+			}
+
 			shell(`sed -i  '' 's/_COMPONENT_KEY_/${key}/g' ${renamedPath}`);
 			shell(`sed -i  '' 's/_COMPONENT_NAME_/${name}/g' ${renamedPath}`);
 			shell(`sed -i  '' 's/_COMPONENT_TITLE_/${title}/g' ${renamedPath}`);
@@ -110,7 +115,7 @@ const main = async () => {
 		.map((part) => part[0].toUpperCase() + part.slice(1))
 		.join(' ');
 
-	const componentName = componentTitle.replace(' ', '');
+	const componentName = componentTitle.replaceAll(' ', '');
 
 	const confirm = await qConfirm(packageName, description);
 	rl.close();
