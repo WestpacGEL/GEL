@@ -460,7 +460,7 @@ _No data-driven API required for this package._
 ## Definition of done
 
 1. Fully TypeScript
-2. No TypeScript errors for files in when `yarn typecheck` is run in the `input-group-field` directory
+2. No TypeScript errors for files in the `input-group-field` directory when `yarn typecheck` is run
 3. All tests pass
 4. All examples work
 5. Design QA pass
