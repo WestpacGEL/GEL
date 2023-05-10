@@ -4,7 +4,6 @@ import { render, screen } from '@testing-library/react';
 import { blenderTable } from '../../src/overrides/table.js';
 import { blenderTd } from '../../src/overrides/td.js';
 import { blenderTr } from '../../src/overrides/tr.js';
-import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import { TableProps } from '../../src/Table';
 import wbc from '@westpac/wbc';
