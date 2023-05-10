@@ -5,7 +5,9 @@ import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import { CaptionProps } from '../../src/Caption';
 import wbc from '@westpac/wbc';
 
-// Todo: generic override function cause error for table component **fix override function for table component
+// TODO: Fix overridesTest function to work with table
+// There is no overridesTest function for the various table components due to how the overridesTest works,
+// creating warnings relating to unexpected <div> as children/parents
 
 nestingTest({
 	name: 'table',
