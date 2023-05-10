@@ -12,6 +12,8 @@ const Pictogram = ({
 	const defaultWidth = 24;
 
 	return (
+		// TODO: adding pictogramHeight doesn't seem to change anything that is testable
+		// 		but does affect the unit test and allows the null branch to be hit
 		<Pictogram
 			width={pictogramWidth || (!pictogramHeight ? defaultWidth : null)}
 			height={pictogramHeight}
@@ -23,6 +25,7 @@ const Pictogram = ({
 
 const BlenderPictogram = (props) => (
 	<Pictogram
+		// TODO: figure out why some of below code can't be reached with a test when overriding
 		overrides={{
 			Pictogram: {
 				styles: (styles) => {
