@@ -63,11 +63,6 @@ const updateReferences = (dir, component) => {
 				fs.renameSync(fullPath, renamedPath);
 			}
 
-			if (fullPath.includes('node_modules')) {
-				console.info('Skipping node_modules file:', fullPath);
-				return;
-			}
-
 			shell(`sed -i  '' 's/_COMPONENT_KEY_/${key}/g' ${renamedPath}`);
 			shell(`sed -i  '' 's/_COMPONENT_NAME_/${name}/g' ${renamedPath}`);
 			shell(`sed -i  '' 's/_COMPONENT_TITLE_/${title}/g' ${renamedPath}`);
@@ -133,7 +128,6 @@ const main = async () => {
 		createComponent(component);
 		console.info(chalk.gray('[3/3] Installing dependencies...\n'));
 		shell(`yarn manypkg fix`, { stdio: 'inherit' });
-		shell(`yarn`, { stdio: 'inherit' });
 		console.info(chalk.green(`Successfully created at ./components/${component.key}`));
 	}
 };

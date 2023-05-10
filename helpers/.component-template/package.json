@@ -8,7 +8,8 @@
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "PACKAGE_NAME=_COMPONENT_KEY_ NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
-		"test": "jest"
+		"test": "jest _COMPONENT_KEY_",
+		"typecheck": "yarn tsc --noEmit"
 	},
 	"main": "dist/westpac-_COMPONENT_KEY_.cjs.js",
 	"module": "dist/westpac-_COMPONENT_KEY_.esm.js",
