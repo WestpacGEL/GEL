@@ -6,7 +6,7 @@ import { ArrowRightIcon } from '@westpac/icon';
 // ==============================
 
 const IndicatorNext = ({ state: _, ...rest }) => (
-	<ArrowRightIcon size="medium" assistiveText={null} {...rest} />
+	<ArrowRightIcon copyrightYear="2020" size="medium" assistiveText={null} {...rest} />
 );
 
 const BlenderIndicatorNext = (props) => (
