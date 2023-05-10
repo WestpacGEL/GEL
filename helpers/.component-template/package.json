@@ -8,11 +8,7 @@
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "PACKAGE_NAME=_COMPONENT_KEY_ NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
-		"test": "start-server-and-test start http://localhost:8080 test:all",
-		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
-		"test:all": "yarn test:integration",
-		"test:integration": "cypress run",
-		"test:test-dev": "cypress open"
+		"test": "jest"
 	},
 	"main": "dist/westpac-_COMPONENT_KEY_.cjs.js",
 	"module": "dist/westpac-_COMPONENT_KEY_.esm.js",
@@ -23,12 +19,11 @@
 	},
 	"peerDependencies": {
 		"react": "^18.2.0",
-    "@emotion/react": "^11.10.6"
+		"@emotion/react": "^11.10.6"
 	},
 	"devDependencies": {
     "@emotion/react": "^11.10.6",
-    "cypress": "^7.4.0",
-		"react": "^18.2.0",
-		"start-server-and-test": "^1.12.3"
+	"react": "^18.2.0",
+	"start-server-and-test": "^1.12.3"
 	}
 }

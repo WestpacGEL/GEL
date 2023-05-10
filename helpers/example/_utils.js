@@ -11,8 +11,10 @@ const fs = require('fs');
 const slugFromFilename = (filename) => {
 	if (filename.match(/^[0-9][0-9]-/)) {
 		return filename.slice(3, -3);
-	} else if (filename.match(/.js$/)) {
+	} else if (filename.match(/(.js|.ts)$/)) {
 		return filename.slice(0, -3);
+	} else if (filename.match(/.tsx$/)) {
+		return filename.slice(0, -4);
 	} else {
 		return filename;
 	}
@@ -45,7 +47,9 @@ const findExampleFiles = (component, parent = '') => {
 	if (fs.existsSync(exampleDir)) {
 		const files = fs
 			.readdirSync(exampleDir)
-			.filter((file) => !file.startsWith('.') && !file.startsWith('_') && file.endsWith('.js'));
+			.filter(
+				(file) => !file.startsWith('.') && !file.startsWith('_') && /(.js|.ts|.tsx)$/.test(file)
+			);
 
 		const { version } = require(path.normalize(
 			`${__dirname}/../../components/${component}/package.json`
@@ -88,11 +92,11 @@ const recurseFindFiles = (dir, data, fileList = []) => {
 			recurseFindFiles(fullPath, data, fileList);
 		} else if (
 			fs.lstatSync(fullPath).isFile() &&
-			path.extname(fullPath) === '.js' &&
+			['.js', '.ts', '.tsx'].includes(path.extname(fullPath)) &&
 			!file.startsWith('.') &&
 			!file.startsWith('_')
 		) {
-			const slug = fullPath.match(/components\/(.+).js$/)[1];
+			const slug = fullPath.match(/components\/(.+).(js|ts|tsx)$/)[1];
 			const label = labelFromSlug(slug);
 
 			fileList.push({
