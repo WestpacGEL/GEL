@@ -3,8 +3,6 @@ import { useCallback, useState } from 'react';
 import { Compacta } from '@westpac/compacta';
 import { Form, FormGroup, Field } from '@westpac/form';
 import { TextInput } from '@westpac/text-input';
-import { Button } from '@westpac/button';
-import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
 
 function Example({ brand }) {
 	const [inputs, setInputs] = useState({});
