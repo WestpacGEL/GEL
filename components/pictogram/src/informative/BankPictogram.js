@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const BankPictogram = ({ mode, ...rest }) => {
+export const BankPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Bank',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="BankPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="BankPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<polygon fill={highlight} points="10.122 51 23.244 51 23.244 30.332 10.122 30.332" />
 				<path
@@ -22,11 +37,4 @@ export const BankPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-BankPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Bank',
-	copyrightYear: '2021',
-};
 BankPictogram.propTypes = Pictogram.propTypes;

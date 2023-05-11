@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const FingerprintPictogram = ({ mode, ...rest }) => {
+export const FingerprintPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Fingerprint',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="FingerprintPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="FingerprintPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -21,11 +36,4 @@ export const FingerprintPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-FingerprintPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Fingerprint',
-	copyrightYear: '2021',
-};
 FingerprintPictogram.propTypes = Pictogram.propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const IdCardIcon = (props) => (
-	<Icon icon="IdCardIcon" {...props}>
+export const IdCardIcon = ({
+	assistiveText = 'Id Card',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="IdCardIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const IdCardIcon = (props) => (
 	</Icon>
 );
 
-IdCardIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Id Card',
-	copyrightYear: '2020',
-};
 IdCardIcon.propTypes = propTypes;

@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const CompassPictogram = ({ mode, ...rest }) => {
+export const CompassPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Compass',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="CompassPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="CompassPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -25,11 +40,4 @@ export const CompassPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-CompassPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Compass',
-	copyrightYear: '2021',
-};
 CompassPictogram.propTypes = Pictogram.propTypes;

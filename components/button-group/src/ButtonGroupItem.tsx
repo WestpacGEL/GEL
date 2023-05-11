@@ -41,7 +41,7 @@ interface ButtonGroupItemProps {
 	/**
 	 * input
 	 */
-	inputProps: any;
+	inputProps?: any;
 	/**
 	 * Button look
 	 */
@@ -266,7 +266,7 @@ ButtonGroupItem.propTypes = {
 	/**
 	 * input
 	 */
-	inputProps: PropTypes.any.isRequired,
+	inputProps: PropTypes.any,
 	/**
 	 * Button look
 	 */
@@ -303,5 +303,3 @@ ButtonGroupItem.propTypes = {
 	 */
 	value: PropTypes.any,
 };
-
-ButtonGroupItem.defaultProps = { checked: false };

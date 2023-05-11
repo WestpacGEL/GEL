@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const PendingIcon = (props) => (
-	<Icon icon="PendingIcon" {...props}>
+export const PendingIcon = ({
+	assistiveText = 'Pending',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="PendingIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const PendingIcon = (props) => (
 	</Icon>
 );
 
-PendingIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Pending',
-	copyrightYear: '2020',
-};
 PendingIcon.propTypes = propTypes;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const SlackIcon = (props) => (
-	<Icon icon="SlackIcon" {...props}>
+export const SlackIcon = ({
+	assistiveText = 'Slack',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="SlackIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const SlackIcon = (props) => (
 	</Icon>
 );
 
-SlackIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Slack',
-	copyrightYear: '2020',
-};
 SlackIcon.propTypes = propTypes;

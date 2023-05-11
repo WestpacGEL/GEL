@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const ForkKnifePictogram = ({ mode, ...rest }) => {
+export const ForkKnifePictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Fork and knife',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="ForkKnifePictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="ForkKnifePictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -21,11 +36,4 @@ export const ForkKnifePictogram = ({ mode, ...rest }) => {
 	);
 };
 
-ForkKnifePictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Fork and knife',
-	copyrightYear: '2021',
-};
 ForkKnifePictogram.propTypes = Pictogram.propTypes;

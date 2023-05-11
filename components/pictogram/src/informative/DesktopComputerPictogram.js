@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const DesktopComputerPictogram = ({ mode, ...rest }) => {
+export const DesktopComputerPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Desktop computer',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="DesktopComputerPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="DesktopComputerPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={outline}
@@ -25,11 +40,4 @@ export const DesktopComputerPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-DesktopComputerPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Desktop computer',
-	copyrightYear: '2020',
-};
 DesktopComputerPictogram.propTypes = Pictogram.propTypes;

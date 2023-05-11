@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const GooglePlusSymbol = (props) => (
-	<Symbol symbol="GooglePlusSymbol" {...props}>
+export const GooglePlusSymbol = ({
+	align = 'left',
+	assistiveText = 'Google+',
+	copyrightYear = '',
+	viewBoxWidth = 32,
+	viewBoxHeight = 32,
+	...props
+}) => (
+	<Symbol
+		symbol="GooglePlusSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fill="none" fillRule="evenodd">
 			<rect fill="#DC4E41" fillRule="nonzero" width="32" height="32" rx="2" />
 			<path
@@ -29,11 +44,4 @@ export const GooglePlusSymbol = (props) => (
 	</Symbol>
 );
 
-GooglePlusSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 32,
-	viewBoxHeight: 32,
-	assistiveText: 'Google+',
-	copyrightYear: '',
-};
 GooglePlusSymbol.propTypes = propTypes;

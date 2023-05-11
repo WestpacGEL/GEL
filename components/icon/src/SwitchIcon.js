@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const SwitchIcon = (props) => (
-	<Icon icon="SwitchIcon" {...props}>
+export const SwitchIcon = ({
+	assistiveText = 'Switch',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="SwitchIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const SwitchIcon = (props) => (
 	</Icon>
 );
 
-SwitchIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Switch',
-	copyrightYear: '2020',
-};
 SwitchIcon.propTypes = propTypes;

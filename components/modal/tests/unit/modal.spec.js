@@ -7,7 +7,7 @@ import wbc from '@westpac/wbc';
 describe('Modal component', () => {
 	const SimpleModal = () => (
 		<GEL brand={wbc}>
-			<Modal heading="Modal heading" open={false} onClose={() => {}}>
+			<Modal heading="Modal heading" open={false} size="medium" onClose={() => {}}>
 				<Body>
 					<p>
 						‘It was much pleasanter at home’, thought poor Alice, ‘when one wasn’t always growing

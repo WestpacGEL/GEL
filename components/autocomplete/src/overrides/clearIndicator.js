@@ -6,7 +6,7 @@ import { ClearIcon } from '@westpac/icon';
 
 export const ClearIndicator = (props) => {
 	const { innerProps } = props;
-	return <ClearIcon size="small" {...innerProps} />;
+	return <ClearIcon copyrightYear="2020" size="small" {...innerProps} />;
 };
 
 // ==============================

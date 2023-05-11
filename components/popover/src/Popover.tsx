@@ -217,7 +217,7 @@ export const Popover = ({
 				{children}
 			</Trigger>
 			<Panel ref={popoverRef} state={state} {...panelAttributes(state)} css={panelStyles(state)}>
-				{heading && (
+				{!!heading && (
 					<Heading state={state} {...headingAttributes(state)} css={headingStyles(state)}>
 						{heading}
 					</Heading>
@@ -304,5 +304,3 @@ Popover.propTypes = {
 	 */
 	placement: PropTypes.string,
 };
-
-Popover.defaultProps = { headingTag: 'h4', onClick: () => {}, open: false, placement: 'top' };

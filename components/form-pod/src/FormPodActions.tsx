@@ -162,5 +162,3 @@ FormPodActions.propTypes = {
 	 */
 	secondary: PropTypes.node,
 };
-
-FormPodActions.defaultProps = { reverse: false };

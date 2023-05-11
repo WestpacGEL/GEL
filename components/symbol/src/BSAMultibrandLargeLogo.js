@@ -1,8 +1,25 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const BSAMultibrandLargeLogo = (props) => (
-	<Symbol symbol="BSAMultibrandLargeLogo" {...props}>
+export const BSAMultibrandLargeLogo = ({
+	align = 'left',
+	assistiveText = 'Bank SA',
+	copyrightYear = '2020',
+	offset = [null, 45, 90],
+	viewBoxWidth = 180,
+	viewBoxHeight = 65,
+	...props
+}) => (
+	<Symbol
+		symbol="BSAMultibrandLargeLogo"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		offset={offset}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<path
 			fill="#D81B2B"
 			d="M58,43.5002 C57.063,43.5002 56,43.0002 56,42.0002 L56,20.0002 C56,19.0162 57.028,17.9972 58,18.0002 L88,18.0002 C88.984,17.9842 90,19.0312 90,20.0002 L90,58.1592 C90,58.6092 89.576,59.0002 89.053,59.0002 C89.053,59.0002 89.375,59.0002 89.053,59.0002 C88.475,59.0002 88.252,58.4782 88.105,58.2212 C79.685,43.4862 58.937,43.5002 58,43.5002"
@@ -18,12 +35,4 @@ export const BSAMultibrandLargeLogo = (props) => (
 	</Symbol>
 );
 
-BSAMultibrandLargeLogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 180,
-	viewBoxHeight: 65,
-	offset: [null, 45, 90],
-	assistiveText: 'Bank SA',
-	copyrightYear: '2020',
-};
 BSAMultibrandLargeLogo.propTypes = propTypes;

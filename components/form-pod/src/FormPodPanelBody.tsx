@@ -86,5 +86,3 @@ FormPodPanelBody.propTypes = {
 		}),
 	}),
 };
-
-FormPodPanelBody.defaultProps = { expanded: false };

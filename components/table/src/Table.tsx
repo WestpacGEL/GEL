@@ -22,7 +22,7 @@ export const useTableContext = () => {
 	return context;
 };
 
-interface TableProps {
+export interface TableProps {
 	/**
 	 * Children
 	 */
@@ -198,5 +198,3 @@ Table.propTypes = {
 	 */
 	striped: PropTypes.bool,
 };
-
-Table.defaultProps = { bordered: false, striped: false };

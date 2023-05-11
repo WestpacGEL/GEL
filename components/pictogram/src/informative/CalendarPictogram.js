@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const CalendarPictogram = ({ mode, ...rest }) => {
+export const CalendarPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Calendar',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="CalendarPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="CalendarPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -21,11 +36,4 @@ export const CalendarPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-CalendarPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Calendar',
-	copyrightYear: '2020',
-};
 CalendarPictogram.propTypes = Pictogram.propTypes;

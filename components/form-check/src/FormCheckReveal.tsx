@@ -239,5 +239,3 @@ FormCheckReveal.propTypes = {
 	 */
 	type: PropTypes.string,
 };
-
-FormCheckReveal.defaultProps = { inline: false, show: -1, size: 'medium', type: 'checkbox' };

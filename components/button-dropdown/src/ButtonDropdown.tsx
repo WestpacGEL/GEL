@@ -275,10 +275,3 @@ ButtonDropdown.propTypes = {
 	 */
 	text: PropTypes.string.isRequired,
 };
-
-ButtonDropdown.defaultProps = {
-	block: false,
-	dropdownSize: 'medium',
-	onClick: () => {},
-	open: false,
-};

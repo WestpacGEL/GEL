@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const AmericanExpressSymbol = (props) => (
-	<Symbol symbol="AmericanExpressSymbol" {...props}>
+export const AmericanExpressSymbol = ({
+	align = 'left',
+	assistiveText = 'American Express',
+	copyrightYear = '',
+	viewBoxWidth = 80,
+	viewBoxHeight = 70,
+	...props
+}) => (
+	<Symbol
+		symbol="AmericanExpressSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g>
 			<path
 				fill="#007CC3"
@@ -26,11 +41,4 @@ export const AmericanExpressSymbol = (props) => (
 	</Symbol>
 );
 
-AmericanExpressSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 80,
-	viewBoxHeight: 70,
-	assistiveText: 'American Express',
-	copyrightYear: '',
-};
 AmericanExpressSymbol.propTypes = propTypes;

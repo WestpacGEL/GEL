@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/well",
-	"version": "2.2.0",
+	"version": "2.2.1",
 	"description": "Simple containers used to highlight content",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/well",
@@ -40,8 +40,8 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/body": "^2.2.0",
-		"@westpac/core": "^3.2.0",
+		"@westpac/body": "^2.2.1",
+		"@westpac/core": "^3.2.1",
 		"prop-types": "^15.7.2"
 	},
 	"devDependencies": {

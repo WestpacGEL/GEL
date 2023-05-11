@@ -131,5 +131,3 @@ Textarea.propTypes = {
 	 */
 	width: PropTypes.oneOf([2, 3, 4, 5, 10, 20, 30]),
 };
-
-Textarea.defaultProps = { inline: false, invalid: false, size: 'medium' };

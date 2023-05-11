@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const CloseIcon = (props) => (
-	<Icon icon="CloseIcon" {...props}>
+export const CloseIcon = ({
+	assistiveText = 'Close',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="CloseIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<polygon
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const CloseIcon = (props) => (
 	</Icon>
 );
 
-CloseIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Close',
-	copyrightYear: '2020',
-};
 CloseIcon.propTypes = propTypes;

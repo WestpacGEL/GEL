@@ -16,12 +16,12 @@ const DEFAULT_DATA = [
 overridesTest({
 	name: 'breadcrumb', // the name has to be the package name without '@westpac/' scope
 	overrides: ['Breadcrumb', 'List'], // every single override root key
-	Component: (props) => <Breadcrumb data={DEFAULT_DATA} {...props} />, // the component with all components rendered
+	Component: (props) => <Breadcrumb assistiveText="breadcrumb" data={DEFAULT_DATA} {...props} />, // the component with all components rendered
 });
 
 const SimpleBreadcrumb = (props) => (
 	<GEL brand={wbc}>
-		<Breadcrumb {...props} />
+		<Breadcrumb assistiveText="breadcrumb" {...props} />
 	</GEL>
 );
 

@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const StopwatchIcon = (props) => (
-	<Icon icon="StopwatchIcon" {...props}>
+export const StopwatchIcon = ({
+	assistiveText = 'Stopwatch',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="StopwatchIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const StopwatchIcon = (props) => (
 	</Icon>
 );
 
-StopwatchIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Stopwatch',
-	copyrightYear: '2020',
-};
 StopwatchIcon.propTypes = propTypes;

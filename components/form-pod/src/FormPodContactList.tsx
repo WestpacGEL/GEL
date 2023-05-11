@@ -112,6 +112,7 @@ export const FormPodContactList = ({
 				>
 					<ItemLink
 						href={item.url}
+						onClick={item.onClick}
 						state={state}
 						{...itemLinkAttributes(state)}
 						css={itemLinkStyles(state)}
@@ -119,7 +120,7 @@ export const FormPodContactList = ({
 						{item.icon && (
 							<ItemIcon
 								icon={item.icon}
-								color={item.color}
+								color={item.iconColor}
 								state={state}
 								{...itemIconAttributes(state)}
 								css={itemIconStyles(state)}
@@ -183,5 +184,3 @@ FormPodContactList.propTypes = {
 		}),
 	}),
 };
-
-FormPodContactList.defaultProps = { items: [] };

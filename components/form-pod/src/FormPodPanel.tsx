@@ -90,5 +90,3 @@ FormPodPanel.propTypes = {
 		}),
 	}),
 };
-
-FormPodPanel.defaultProps = { borderTop: true };

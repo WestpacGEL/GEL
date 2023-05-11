@@ -250,12 +250,3 @@ Alert.propTypes = {
 		}),
 	}),
 };
-
-Alert.defaultProps = {
-	dismissible: false,
-	headingTag: 'h2',
-	look: 'info',
-	mode: 'box',
-	onClose: () => {},
-	open: true,
-};

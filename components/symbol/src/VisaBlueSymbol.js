@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const VisaBlueSymbol = (props) => (
-	<Symbol symbol="VisaBlueSymbol" {...props}>
+export const VisaBlueSymbol = ({
+	align = 'left',
+	assistiveText = 'Visa',
+	copyrightYear = '',
+	viewBoxWidth = 80,
+	viewBoxHeight = 37,
+	...props
+}) => (
+	<Symbol
+		symbol="VisaBlueSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fill="none">
 			<path fill="#1A1F71" d="M0 37h80V0H0" />
 			<path
@@ -13,11 +28,4 @@ export const VisaBlueSymbol = (props) => (
 	</Symbol>
 );
 
-VisaBlueSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 80,
-	viewBoxHeight: 37,
-	assistiveText: 'Visa',
-	copyrightYear: '',
-};
 VisaBlueSymbol.propTypes = propTypes;

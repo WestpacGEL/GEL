@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const BSAStackedLogo = (props) => (
-	<Symbol symbol="BSAStackedLogo" {...props}>
+export const BSAStackedLogo = ({
+	align = 'left',
+	assistiveText = 'Bank SA',
+	copyrightYear = '2020',
+	viewBoxWidth = 32,
+	viewBoxHeight = 54,
+	...props
+}) => (
+	<Symbol
+		symbol="BSAStackedLogo"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<path
 			d="M0.9 39.4L0.9 39.4C0.4 39.4 0 39 0 38.6l0-22.8C0 15.4 0.4 15 0.9 15l30.2 0c0.5 0 0.9 0.4 0.9 0.8l0 37.4c0 0.4-0.2 0.8-0.9 0.8 -0.6 0-0.8-0.5-0.9-0.7C21.6 38.6 0.9 39.4 0.9 39.4"
 			fill="#E91B2B"
@@ -34,11 +49,4 @@ export const BSAStackedLogo = (props) => (
 	</Symbol>
 );
 
-BSAStackedLogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 32,
-	viewBoxHeight: 54,
-	assistiveText: 'Bank SA',
-	copyrightYear: '2020',
-};
 BSAStackedLogo.propTypes = propTypes;

@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 import { defaultTextInput } from './overrides/textInput';
 import pkg from '../package.json';
-import React, { forwardRef, ReactNode } from 'react';
+import React, { forwardRef, HTMLInputTypeAttribute, ReactNode } from 'react';
 
-export interface TextInputProps {
+type DefaultInputProps = React.InputHTMLAttributes<HTMLInputElement>;
+export interface TextInputProps extends Omit<DefaultInputProps, 'size'> {
 	/**
 	 * Component size
 	 */
-	size: 'small' | 'medium' | 'large' | 'xlarge';
+	size?: 'small' | 'medium' | 'large' | 'xlarge';
 
 	/**
 	 * Component width (in chars).
@@ -21,12 +22,12 @@ export interface TextInputProps {
 	/**
 	 * Inline mode
 	 */
-	inline: boolean;
+	inline?: boolean;
 
 	/**
 	 * Invalid input mode
 	 */
-	invalid: boolean;
+	invalid?: boolean;
 
 	/**
 	 * ReactNode
@@ -119,11 +120,11 @@ TextInput.propTypes = {
 	/**
 	 * Inline mode
 	 */
-	inline: PropTypes.bool.isRequired,
+	inline: PropTypes.bool,
 	/**
 	 * Invalid input mode
 	 */
-	invalid: PropTypes.bool.isRequired,
+	invalid: PropTypes.bool,
 	/**
 	 * The override API
 	 */
@@ -137,7 +138,7 @@ TextInput.propTypes = {
 	/**
 	 * Component size
 	 */
-	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']).isRequired,
+	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
 	/**
 	 * Type
 	 */
@@ -149,5 +150,3 @@ TextInput.propTypes = {
 	 */
 	width: PropTypes.oneOf([2, 3, 4, 5, 10, 20, 30]),
 };
-
-TextInput.defaultProps = { inline: false, invalid: false, size: 'medium', type: 'text' };

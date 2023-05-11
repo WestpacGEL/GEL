@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const BusinessPersonPictogram = ({ mode, ...rest }) => {
+export const BusinessPersonPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Business person',
+	copyrightYear = '2020',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="BusinessPersonPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="BusinessPersonPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -21,11 +36,4 @@ export const BusinessPersonPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-BusinessPersonPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Business person',
-	copyrightYear: '2020',
-};
 BusinessPersonPictogram.propTypes = Pictogram.propTypes;

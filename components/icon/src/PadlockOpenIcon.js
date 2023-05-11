@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const PadlockOpenIcon = (props) => (
-	<Icon icon="PadlockOpenIcon" {...props}>
+export const PadlockOpenIcon = ({
+	assistiveText = 'Padlock Open',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="PadlockOpenIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const PadlockOpenIcon = (props) => (
 	</Icon>
 );
 
-PadlockOpenIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Padlock Open',
-	copyrightYear: '2020',
-};
 PadlockOpenIcon.propTypes = propTypes;

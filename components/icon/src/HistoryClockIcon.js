@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const HistoryClockIcon = (props) => (
-	<Icon icon="HistoryClockIcon" {...props}>
+export const HistoryClockIcon = ({
+	assistiveText = 'History Clock',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="HistoryClockIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const HistoryClockIcon = (props) => (
 	</Icon>
 );
 
-HistoryClockIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'History Clock',
-	copyrightYear: '2020',
-};
 HistoryClockIcon.propTypes = propTypes;

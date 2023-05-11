@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const ServiceBellIcon = (props) => (
-	<Icon icon="ServiceBellIcon" {...props}>
+export const ServiceBellIcon = ({
+	assistiveText = 'Service Bell',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="ServiceBellIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const ServiceBellIcon = (props) => (
 	</Icon>
 );
 
-ServiceBellIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Service Bell',
-	copyrightYear: '2020',
-};
 ServiceBellIcon.propTypes = propTypes;

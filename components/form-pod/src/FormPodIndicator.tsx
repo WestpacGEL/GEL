@@ -137,5 +137,3 @@ FormPodIndicator.propTypes = {
 	 */
 	text: PropTypes.string,
 };
-
-FormPodIndicator.defaultProps = { text: 'Saving' };

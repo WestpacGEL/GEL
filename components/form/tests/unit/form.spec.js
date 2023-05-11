@@ -1,79 +1,65 @@
 import { GEL } from '@westpac/core';
 import { render } from '@testing-library/react';
-import {
-	Form,
-	ChitChat,
-	ErrorMessage,
-	Fieldset,
-	FormGroup,
-	Hint,
-	InputCluster,
-	Item,
-	FormLabel,
-	FormSection,
-} from '@westpac/form';
+import { Form, FormGroup, Hint, FormLabel } from '@westpac/form';
 import { TextInput } from '@westpac/text-input';
 import wbc from '@westpac/wbc';
+import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
+import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 
-// Component specific tests
-describe('Form component', () => {
-	const SimpleForm = () => (
+overridesTest({
+	name: 'form',
+	overrides: ['Form'],
+	Component: (props) => <Form {...props} />,
+});
+
+nestingTest({
+	name: 'form',
+	Component: () => <Form />,
+});
+
+function SimpleForm(props) {
+	return (
 		<GEL brand={wbc}>
-			<Form>
-				<FormSection>
-					<ChitChat>
-						Hello, I’m the friendly conversational text component. I live at the top of the form pod
-						if required.
-					</ChitChat>
-				</FormSection>
-
-				<FormSection>
-					<FormGroup>
-						<FormLabel htmlFor="example-default-1">This is a label</FormLabel>
-						<Hint>This is a hint</Hint>
-						<ErrorMessage message="This is an error message" />
-						<TextInput name="example-default-1" />
-					</FormGroup>
-
-					<FormGroup>
-						<FormLabel htmlFor="example-default-2">This is a label</FormLabel>
-						<Hint>This is a hint</Hint>
-						<ErrorMessage message="This is an error message" />
-						<TextInput name="example-default-2" />
-					</FormGroup>
-				</FormSection>
-
-				<FormSection>
-					<FormGroup>
-						<FormLabel htmlFor="example-default-3">This is a label</FormLabel>
-						<Hint>This is a hint</Hint>
-						<ErrorMessage message="This is an error message" />
-						<TextInput name="example-default-3" />
-					</FormGroup>
-
-					<FormGroup>
-						<Fieldset legend="This is a legend">
-							<Hint>This is a hint</Hint>
-							<ErrorMessage
-								message={['This is an error message', 'This is another error message']}
-							/>
-							<InputCluster>
-								<Item>
-									<TextInput name="example-default-4-line1" />
-								</Item>
-								<Item>
-									<TextInput name="example-default-4-line2" />
-								</Item>
-							</InputCluster>
-						</Fieldset>
-					</FormGroup>
-				</FormSection>
-			</Form>
+			<Form {...props}>{props.children}</Form>
 		</GEL>
 	);
-
+}
+// Component specific tests
+describe('Form component', () => {
 	test('It should render Form', () => {
 		const { container } = render(<SimpleForm />);
 		expect(container).toBeInTheDocument();
+	});
+
+	test('should render components within form', () => {
+		const { getByTestId } = render(
+			<SimpleForm>
+				<FormGroup data-testid="test-group">
+					<TextInput data-testid="test-input" />
+				</FormGroup>
+			</SimpleForm>
+		);
+
+		expect(getByTestId('test-group')).toBeInTheDocument();
+		expect(getByTestId('test-input')).toBeInTheDocument();
+	});
+
+	/**
+	 * Below test passes the spacing prop down to children as they consume FormContext
+	 * Checks for spacing large as medium is default.
+	 * Checks all components that consume FormContext (at the time of writing test)
+	 */
+	test('should render form group with styling from form using context', () => {
+		const { getByTestId } = render(
+			<SimpleForm spacing="large">
+				<FormGroup data-testid="test-group">
+					<FormLabel data-testid="test-label" />
+					<Hint data-testid="test-hint" />
+				</FormGroup>
+			</SimpleForm>
+		);
+		expect(getByTestId('test-group')).toHaveStyle('margin-bottom: 1.5rem');
+		expect(getByTestId('test-label')).toHaveStyle('margin-bottom: 1.125rem');
+		expect(getByTestId('test-hint')).toHaveStyle('margin-bottom: 1.125rem');
 	});
 });

@@ -75,5 +75,3 @@ ChitChat.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
-
-ChitChat.defaultProps = { tag: 'p' };

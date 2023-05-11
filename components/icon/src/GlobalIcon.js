@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const GlobalIcon = (props) => (
-	<Icon icon="GlobalIcon" {...props}>
+export const GlobalIcon = ({
+	assistiveText = 'Global',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="GlobalIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const GlobalIcon = (props) => (
 	</Icon>
 );
 
-GlobalIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Global',
-	copyrightYear: '2020',
-};
 GlobalIcon.propTypes = propTypes;

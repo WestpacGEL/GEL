@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const WBGInternalLogo = (props) => (
-	<Symbol symbol="WBGInternalLogo" {...props}>
+export const WBGInternalLogo = ({
+	align = 'left',
+	assistiveText = 'We Are Westpac Group',
+	copyrightYear = '2020',
+	viewBoxWidth = 233,
+	viewBoxHeight = 48,
+	...props
+}) => (
+	<Symbol
+		symbol="WBGInternalLogo"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fill="none" fillRule="evenodd">
 			<path
 				fill="#000"
@@ -20,11 +35,4 @@ export const WBGInternalLogo = (props) => (
 	</Symbol>
 );
 
-WBGInternalLogo.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 233,
-	viewBoxHeight: 48,
-	assistiveText: 'We Are Westpac Group',
-	copyrightYear: '2020',
-};
 WBGInternalLogo.propTypes = propTypes;

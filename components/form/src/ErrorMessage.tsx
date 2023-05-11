@@ -176,5 +176,3 @@ ErrorMessage.propTypes = {
 	 */
 	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
-
-ErrorMessage.defaultProps = { message: 'Invalid input', tag: 'div' };

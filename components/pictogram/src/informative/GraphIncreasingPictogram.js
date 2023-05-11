@@ -2,11 +2,26 @@ import React from 'react';
 import { getColors } from '../_utils';
 import { Pictogram } from '../Pictogram';
 
-export const GraphIncreasingPictogram = ({ mode, ...rest }) => {
+export const GraphIncreasingPictogram = ({
+	mode,
+	viewBoxWidth = 78,
+	viewBoxHeight = 78,
+	assistiveText = 'Graph showing increasing trend',
+	copyrightYear = '2021',
+	...rest
+}) => {
 	const { outline, highlight } = getColors(mode);
 
 	return (
-		<Pictogram pictogram="GraphIncreasingPictogram" mode={mode} {...rest}>
+		<Pictogram
+			pictogram="GraphIncreasingPictogram"
+			mode={mode}
+			viewBoxWidth={viewBoxWidth}
+			viewBoxHeight={viewBoxHeight}
+			assistiveText={assistiveText}
+			copyrightYear={copyrightYear}
+			{...rest}
+		>
 			<g fill="none" fillRule="evenodd">
 				<path
 					fill={highlight}
@@ -21,11 +36,4 @@ export const GraphIncreasingPictogram = ({ mode, ...rest }) => {
 	);
 };
 
-GraphIncreasingPictogram.defaultProps = {
-	...Pictogram?.defaultProps,
-	viewBoxWidth: 78,
-	viewBoxHeight: 78,
-	assistiveText: 'Graph showing increasing trend',
-	copyrightYear: '2021',
-};
 GraphIncreasingPictogram.propTypes = Pictogram.propTypes;

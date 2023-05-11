@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const CafeIcon = (props) => (
-	<Icon icon="CafeIcon" {...props}>
+export const CafeIcon = ({
+	assistiveText = 'Cafe',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="Cafe"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const CafeIcon = (props) => (
 	</Icon>
 );
 
-CafeIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Cafe',
-	copyrightYear: '2020',
-};
 CafeIcon.propTypes = propTypes;

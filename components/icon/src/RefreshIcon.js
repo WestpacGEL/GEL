@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const RefreshIcon = (props) => (
-	<Icon icon="RefreshIcon" {...props}>
+export const RefreshIcon = ({
+	assistiveText = 'Refresh',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="RefreshIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const RefreshIcon = (props) => (
 	</Icon>
 );
 
-RefreshIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Refresh',
-	copyrightYear: '2020',
-};
 RefreshIcon.propTypes = propTypes;

@@ -33,7 +33,7 @@ export const useSelectorContext = () => {
 	return context;
 };
 
-interface SelectorProps {
+export interface SelectorProps {
 	/**
 	 * Define an id for internal elements
 	 */
@@ -379,5 +379,3 @@ Selector.propTypes = {
 	 */
 	value: PropTypes.any,
 };
-
-Selector.defaultProps = { iconSize: 'medium', onChange: () => {}, type: 'radio' };

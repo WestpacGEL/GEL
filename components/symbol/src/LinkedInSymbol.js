@@ -1,8 +1,23 @@
 import React from 'react';
-import { propTypes, defaultProps, Symbol } from './Symbol';
+import { propTypes, Symbol } from './Symbol';
 
-export const LinkedInSymbol = (props) => (
-	<Symbol symbol="LinkedInSymbol" {...props}>
+export const LinkedInSymbol = ({
+	align = 'left',
+	assistiveText = 'LinkedIn',
+	copyrightYear = '',
+	viewBoxWidth = 32,
+	viewBoxHeight = 32,
+	...props
+}) => (
+	<Symbol
+		symbol="LinkedInSymbol"
+		align={align}
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		viewBoxWidth={viewBoxWidth}
+		viewBoxHeight={viewBoxHeight}
+		{...props}
+	>
 		<g fill="none" fillRule="evenodd">
 			<rect fill="#0D7FB7" width="32" height="32" rx="2" />
 			<path
@@ -16,11 +31,4 @@ export const LinkedInSymbol = (props) => (
 	</Symbol>
 );
 
-LinkedInSymbol.defaultProps = {
-	...defaultProps,
-	viewBoxWidth: 32,
-	viewBoxHeight: 32,
-	assistiveText: 'LinkedIn',
-	copyrightYear: '',
-};
 LinkedInSymbol.propTypes = propTypes;

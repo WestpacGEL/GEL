@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const CursorArrowDoubleClickIcon = (props) => (
-	<Icon icon="CursorArrowDoubleClickIcon" {...props}>
+export const CursorArrowDoubleClickIcon = ({
+	assistiveText = 'Cursor arrow double-click',
+	copyrightYear = '2021',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="CursorArrowDoubleClickIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const CursorArrowDoubleClickIcon = (props) => (
 	</Icon>
 );
 
-CursorArrowDoubleClickIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Cursor arrow double-click',
-	copyrightYear: '2021',
-};
 CursorArrowDoubleClickIcon.propTypes = propTypes;

@@ -131,10 +131,10 @@ export interface ProgressRopeProps {
 	 * Data
 	 */
 	data?: {
-		type: any;
+		type?: any;
 		text: any;
 		onClick: any;
-		steps: any;
+		steps?: any;
 		[key: string]: any;
 	}[];
 	/**
@@ -148,15 +148,15 @@ export interface ProgressRopeProps {
 	/**
 	 * Current active step (zero-indexed)
 	 */
-	current: number;
+	current?: number;
 	/**
 	 * The tag of the heading elements wrapping group toggles for semantic reasons
 	 */
-	headingsTag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+	headingsTag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 	/**
 	 * Text to use as the `aria-label` for the progress rope
 	 */
-	assistiveText: string;
+	assistiveText?: string;
 	/**
 	 * The override API
 	 */
@@ -167,11 +167,6 @@ export interface ProgressRopeProps {
 			attributes?: (...args: unknown[]) => unknown;
 		};
 		Group?: {
-			styles?: (...args: unknown[]) => unknown;
-			component?: React.ElementType;
-			attributes?: (...args: unknown[]) => unknown;
-		};
-		GroupText?: {
 			styles?: (...args: unknown[]) => unknown;
 			component?: React.ElementType;
 			attributes?: (...args: unknown[]) => unknown;
@@ -361,7 +356,7 @@ ProgressRope.propTypes = {
 	/**
 	 * Text to use as the `aria-label` for the progress rope
 	 */
-	assistiveText: PropTypes.string.isRequired,
+	assistiveText: PropTypes.string,
 	/**
 	 * Children
 	 */
@@ -369,22 +364,22 @@ ProgressRope.propTypes = {
 	/**
 	 * Current active step (zero-indexed)
 	 */
-	current: PropTypes.number.isRequired,
+	current: PropTypes.number,
 	/**
 	 * Data
 	 */
 	data: PropTypes.arrayOf(
 		PropTypes.shape({
 			onClick: PropTypes.any.isRequired,
-			steps: PropTypes.any.isRequired,
+			steps: PropTypes.any,
 			text: PropTypes.any.isRequired,
-			type: PropTypes.any.isRequired,
+			type: PropTypes.any,
 		})
 	),
 	/**
 	 * The tag of the heading elements wrapping group toggles for semantic reasons
 	 */
-	headingsTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
+	headingsTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
 	/**
 	 * Define an id for the group step elements e.g. for an instanceId of "progress-rope" --> "progress-rope-group-1" etc.
 	 */
@@ -399,11 +394,6 @@ ProgressRope.propTypes = {
 			styles: PropTypes.func,
 		}),
 		GroupList: PropTypes.shape({
-			attributes: PropTypes.func,
-			component: PropTypes.elementType,
-			styles: PropTypes.func,
-		}),
-		GroupText: PropTypes.shape({
 			attributes: PropTypes.func,
 			component: PropTypes.elementType,
 			styles: PropTypes.func,
@@ -430,5 +420,3 @@ ProgressRope.propTypes = {
 		}),
 	}),
 };
-
-ProgressRope.defaultProps = { assistiveText: 'In this form', current: 0, headingsTag: 'h3' };

@@ -7,7 +7,14 @@ import { blenderStepButton } from '../overrides/stepButton';
 // ==============================
 // Component
 // ==============================
-export const Step = ({ index, active, visited, end, children, ...rest }) => {
+export const Step = ({
+	index,
+	active = false,
+	visited = false,
+	end = false,
+	children,
+	...rest
+}) => {
 	const { component: Step, styles: stepStyles, attributes: stepAttributes } = blenderStep;
 	const {
 		component: StepButton,
@@ -59,11 +66,3 @@ Step.propTypes = {
 	 */
 	children: PropTypes.node,
 };
-
-export const defaultProps = {
-	active: false,
-	visited: false,
-	end: false,
-};
-
-Step.defaultProps = defaultProps;

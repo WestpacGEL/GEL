@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const SmsIcon = (props) => (
-	<Icon icon="SmsIcon" {...props}>
+export const SmsIcon = ({
+	assistiveText = 'Sms',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="SmsIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const SmsIcon = (props) => (
 	</Icon>
 );
 
-SmsIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Sms',
-	copyrightYear: '2020',
-};
 SmsIcon.propTypes = propTypes;

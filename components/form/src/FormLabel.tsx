@@ -113,5 +113,3 @@ FormLabel.propTypes = {
 	 */
 	tag: PropTypes.oneOf(['label', 'legend']),
 };
-
-FormLabel.defaultProps = { subLabel: false, tag: 'label' };

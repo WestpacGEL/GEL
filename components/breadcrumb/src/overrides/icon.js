@@ -8,7 +8,15 @@ import { ArrowRightIcon } from '@westpac/icon';
 const Icon = ({ state: _, ...rest }) => {
 	const { COLORS } = useBrand();
 
-	return <ArrowRightIcon size="small" color={COLORS.link} assistiveText={null} {...rest} />;
+	return (
+		<ArrowRightIcon
+			copyrightYear="2020"
+			size="small"
+			color={COLORS.link}
+			assistiveText={null}
+			{...rest}
+		/>
+	);
 };
 
 const BlenderIcon = (props) => (

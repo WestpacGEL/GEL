@@ -1,8 +1,19 @@
 import React from 'react';
-import { propTypes, defaultProps, Icon } from './Icon';
+import { propTypes, Icon } from './Icon';
 
-export const YammerIcon = (props) => (
-	<Icon icon="YammerIcon" {...props}>
+export const YammerIcon = ({
+	assistiveText = 'Yammer',
+	copyrightYear = '2020',
+	size = 'medium',
+	...props
+}) => (
+	<Icon
+		icon="YammerIcon"
+		assistiveText={assistiveText}
+		copyrightYear={copyrightYear}
+		size={size}
+		{...props}
+	>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
@@ -11,9 +22,4 @@ export const YammerIcon = (props) => (
 	</Icon>
 );
 
-YammerIcon.defaultProps = {
-	...defaultProps,
-	assistiveText: 'Yammer',
-	copyrightYear: '2020',
-};
 YammerIcon.propTypes = propTypes;
