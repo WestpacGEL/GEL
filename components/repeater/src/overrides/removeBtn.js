@@ -9,8 +9,14 @@ const Icon = (props) => {
 	return <RemoveCircleIcon {...props} size="xsmall" />;
 };
 
-const RemoveBtn = ({ state: _, ...rest }) => (
-	<Button look="link" size="small" iconBefore={Icon} {...rest} />
+const RemoveBtn = ({ state: { index }, ...rest }) => (
+	<Button
+		look="link"
+		size="small"
+		iconBefore={Icon}
+		assistiveText={`remove item ${index + 1}`}
+		{...rest}
+	/>
 );
 
 // ==============================
@@ -23,7 +29,7 @@ const removeBtnStyles = (_, { separator }) => {
 		height: 'auto',
 		padding: 0,
 		textDecoration: 'none',
-		...(separator && { margin: '2.75rem 0 0 1.125rem ' }),
+		...(separator && { margin: '0 0 1.875rem 1.125rem' }),
 		...(!separator && { position: 'absolute', top: 0, right: 0 }),
 	};
 };

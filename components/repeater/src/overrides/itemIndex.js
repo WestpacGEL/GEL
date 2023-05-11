@@ -4,7 +4,7 @@ import { jsx, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const ItemIndex = ({ state: _, ...rest }) => <div {...rest} />;
+const ItemIndex = ({ state: { indexTag: Tag }, ...rest }) => <Tag {...rest} />;
 
 // ==============================
 // Styles
@@ -12,8 +12,6 @@ const ItemIndex = ({ state: _, ...rest }) => <div {...rest} />;
 
 const itemIndexStyles = () => ({
 	label: getLabel('repeater-itemIndex'),
-	// flex: '0 0 auto',
-	// width: '1.5rem',
 	fontWeight: 'bold',
 	marginBottom: '1.125rem',
 });
