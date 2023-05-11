@@ -41,6 +41,14 @@ describe('Fieldset component', () => {
 		expect(getByText(/test hint/).getAttribute('class')).toMatch(/form-hint/gi);
 	});
 
+	test('should render Fieldset component when hint prop contains function', () => {
+		const handleClick = jest.fn(() => {});
+		const { getByTestId } = render(
+			<SimpleFieldset hint={handleClick} data-testid="test-fieldset" />
+		);
+		expect(getByTestId('test-fieldset')).toBeInTheDocument();
+	});
+
 	test('should render Fieldset component with ErrorMessage when error prop passed', () => {
 		const { getByText } = render(<SimpleFieldset error="test error" />);
 		expect(getByText(/test error/).getAttribute('class')).toMatch(/form-error-message/gi);

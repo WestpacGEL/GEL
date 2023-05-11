@@ -1,17 +1,6 @@
 import { GEL } from '@westpac/core';
 import { render } from '@testing-library/react';
-import {
-	Form,
-	ChitChat,
-	ErrorMessage,
-	Fieldset,
-	FormGroup,
-	Hint,
-	InputCluster,
-	Item,
-	FormLabel,
-	FormSection,
-} from '@westpac/form';
+import { Form, FormGroup, Hint, FormLabel } from '@westpac/form';
 import { TextInput } from '@westpac/text-input';
 import wbc from '@westpac/wbc';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
