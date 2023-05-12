@@ -120,7 +120,11 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
 			setChecked(isChecked);
 		}, [isChecked]);
 
-		const handleChange = () => wrapHandlers(onChange, () => setChecked(!checked));
+		const handleChange = (event: any) =>
+			wrapHandlers(
+				() => onChange(event),
+				() => setChecked(!checked)
+			)(event);
 
 		return (
 			<Switch {...rest} state={state} {...switchAttributes(state)} css={switchStyles(state)}>
