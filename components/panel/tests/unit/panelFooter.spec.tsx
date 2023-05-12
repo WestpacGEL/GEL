@@ -13,7 +13,7 @@ overridesTest({
 	overrides: ['Panel', 'Footer'],
 	Component: (props: any) => (
 		<Panel heading="Faint panel" look="hero" headingTag="h1" {...props}>
-			<Footer> {props.children} </Footer>
+			<Footer />
 		</Panel>
 	),
 });
