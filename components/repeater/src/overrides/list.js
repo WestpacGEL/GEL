@@ -4,7 +4,10 @@ import { jsx, getLabel } from '@westpac/core';
 // Component
 // ==============================
 
-const List = ({ state: _, ...rest }) => <ol {...rest} />;
+const List = ({ state: { separator }, ...rest }) => {
+	const Tag = separator ? 'ol' : 'ul';
+	return <Tag {...rest} />;
+};
 
 // ==============================
 // Styles
