@@ -20,9 +20,11 @@ const Repeat = (props) => {
 function Example({ brand }) {
 	return (
 		<GEL brand={brand}>
-			<Repeater>
-				<Repeat />
-			</Repeater>
+			<div css={{ maxWidth: '30rem' }}>
+				<Repeater>
+					<Repeat />
+				</Repeater>
+			</div>
 		</GEL>
 	);
 }
