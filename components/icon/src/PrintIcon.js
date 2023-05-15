@@ -1,24 +1,44 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { propTypes, Icon } from './Icon';
 
 export const PrintIcon = ({
 	assistiveText = 'Print',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	...props
 }) => (
 	<Icon
-		icon="PrintIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M20,18 L20,24 L4,24 L4,18 L0,18 L0,9 C-2.02906125e-16,7.34314575 1.34314575,6 3,6 L21,6 C22.6568542,6 24,7.34314575 24,9 L24,18 L20,18 Z M6,14 L18,14 L18,22 L6,22 L6,14 Z M20.5,11 C19.6715729,11 19,10.3284271 19,9.5 C19,8.67157288 19.6715729,8 20.5,8 C21.3284271,8 22,8.67157288 22,9.5 C22,10.3284271 21.3284271,11 20.5,11 Z M4,0 L20,0 L20,4 L4,4 L4,0 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path d="M20 0H4V4H20V0Z" fill="currentColor" />
+				<path
+					fill-rule="evenodd"
+					clip-rule="evenodd"
+					d="M0 9C0 7.34315 1.34315 6 3 6H21C22.6569 6 24 7.34315 24 9V18H20V24H4V18H0V9ZM19.5 12C20.3284 12 21 11.3284 21 10.5C21 9.67157 20.3284 9 19.5 9C18.6716 9 18 9.67157 18 10.5C18 11.3284 18.6716 12 19.5 12ZM6 14H18V22H6V14Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<Fragment>
+				<path
+					d="M19.5 12C20.3284 12 21 11.3284 21 10.5C21 9.67157 20.3284 9 19.5 9C18.6716 9 18 9.67157 18 10.5C18 11.3284 18.6716 12 19.5 12Z"
+					fill="currentColor"
+				/>
+				<path
+					fill-rule="evenodd"
+					clip-rule="evenodd"
+					d="M5 0H19V6H21C22.6569 6 24 7.34315 24 9V18H19V24H5V18H0V9C0 7.34315 1.34315 6 3 6H5V0ZM17 2V6H7V2H17ZM2 9C2 8.44772 2.44772 8 3 8H21C21.5523 8 22 8.44771 22 9V16H19V13H5V16H2V9ZM17 15H7V22H17V15Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 

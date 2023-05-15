@@ -71,6 +71,13 @@ export const propTypes = {
 	color: PropTypes.string,
 
 	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
+
+	/**
 	 * String to use as the `aria-label` for the icon. Set to an empty string if you
 	 * are rendering the icon with visible text to prevent accessibility label
 	 * duplication.

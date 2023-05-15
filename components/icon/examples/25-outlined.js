@@ -7,11 +7,15 @@ function Example({ brand }) {
 		<GEL brand={brand}>
 			<Grid css={{ justifyItems: 'start' }}>
 				<Cell>
-					<AddCircleIcon />
-					<br />
+					<AddCircleIcon look="filled" />
+					<Name>
+						<code>{`<AddCircle look="filled"\u00A0/>`}</code>
+					</Name>
+				</Cell>
+				<Cell>
 					<AddCircleIcon look="outlined" />
 					<Name>
-						<code>{`<HouseIcon\u00A0/>`}</code>
+						<code>{`<AddCircle look="outlined"\u00A0/>`}</code>
 					</Name>
 				</Cell>
 			</Grid>

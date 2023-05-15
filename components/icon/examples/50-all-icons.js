@@ -57,7 +57,6 @@ function Example({ brand }) {
 							<Icon />
 							<Name>
 								<code>{`<${icon}\u00A0/>`}</code>
-								<div css={{ color: COLORS.muted }}>“{Icon.defaultProps.assistiveText}”</div>
 							</Name>
 						</Cell>
 					);

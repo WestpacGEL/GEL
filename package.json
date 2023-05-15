@@ -30,6 +30,7 @@
     "build": "yarn build:dynamicblocks && preconstruct build",
     "build:dev": "preconstruct dev",
     "build:dynamicblocks": "node helpers/dynamic-blocks.js",
+    "build:icons": "ts-node --project tsconfig.prop-types.json --esm ./helpers/icon-template/generateIcons.ts",
     "build:watch": "preconstruct watch",
     "dep:fix": "manypkg fix && preconstruct fix",
     "dep:test": "manypkg check && preconstruct build",
