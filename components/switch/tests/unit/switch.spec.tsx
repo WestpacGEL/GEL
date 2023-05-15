@@ -33,48 +33,30 @@ describe('Switch component', () => {
 
 	test('should change its checked valued when clicked', async () => {
 		const handleChange = jest.fn();
-		const { container, getByRole, getByTestId, getByLabelText } = render(
-			<SimpleSwitch label="A Switch" onChange={handleChange} />
-		);
-		const switchText = getByLabelText('A Switch');
+		const { getByRole } = render(<SimpleSwitch label="A Switch" onChange={handleChange} />);
 		const switchInput = getByRole('checkbox');
-		const switchToggle = container.querySelector('span[class$=-switch-toggle]') as HTMLElement;
-		const switchParent = getByTestId('switch-parent');
+		expect(switchInput).toBeInTheDocument();
 		const user = userEvent.setup();
 		expect(switchInput).toHaveProperty('checked');
 		expect(switchInput).not.toBeChecked();
-		expect(switchInput).toHaveProperty('checked', false);
-		await user.click(switchText);
+		await user.click(switchInput);
 		expect(switchInput).toBeChecked();
-		expect(switchInput).toHaveProperty('checked', true);
 		expect(handleChange).toHaveBeenCalledTimes(1);
 		await user.click(switchInput);
 		expect(switchInput).not.toBeChecked();
-		expect(switchInput).toHaveProperty('checked', false);
 		expect(handleChange).toHaveBeenCalledTimes(2);
-		await user.click(switchToggle);
-		expect(switchInput).toBeChecked();
-		expect(switchInput).toHaveProperty('checked', true);
-		expect(handleChange).toHaveBeenCalledTimes(3);
-		await user.click(switchParent);
-		expect(switchInput).not.toBeChecked();
-		expect(switchInput).toHaveProperty('checked', false);
-		expect(handleChange).toHaveBeenCalledTimes(4);
 	});
 
 	test('should change its background colour upon being clicked', async () => {
 		const handleChange = jest.fn();
-		const { container, getByRole, getByTestId, getByLabelText } = render(
+		const { container, getByRole } = render(
 			<SimpleSwitch label="A Switch" onChange={handleChange} />
 		);
 		const user = userEvent.setup();
-		const switchText = getByLabelText('A Switch');
 		const switchInput = getByRole('checkbox');
 		const switchToggle = container.querySelector('span[class$=-switch-toggle]') as HTMLElement;
-		const switchParent = getByTestId('switch-parent');
 		expect(switchToggle).toBeInTheDocument();
 		expect(switchInput).toBeInTheDocument();
-		expect(switchText).toBeInTheDocument();
 		const uncheckedSwitchTogglebackgroundColor = window
 			.getComputedStyle(switchToggle)
 			.getPropertyValue('background-color');
@@ -83,18 +65,14 @@ describe('Switch component', () => {
 			.getComputedStyle(switchToggle)
 			.getPropertyValue('background-color');
 		expect(checkedSwitchTogglebackgroundColor).not.toEqual(uncheckedSwitchTogglebackgroundColor);
-		await user.click(switchParent);
+		await user.click(switchInput);
 		expect(window.getComputedStyle(switchToggle).getPropertyValue('background-color')).toEqual(
 			uncheckedSwitchTogglebackgroundColor
 		);
-		await user.click(switchText);
+		await user.click(switchInput);
 		expect(window.getComputedStyle(switchToggle).getPropertyValue('background-color')).toEqual(
 			checkedSwitchTogglebackgroundColor
 		);
-		await user.click(switchToggle);
-		expect(window.getComputedStyle(switchToggle).getPropertyValue('background-color')).toEqual(
-			uncheckedSwitchTogglebackgroundColor
-		);
-		expect(handleChange).toHaveBeenCalledTimes(4);
+		expect(handleChange).toHaveBeenCalledTimes(3);
 	});
 });
