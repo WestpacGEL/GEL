@@ -1,17 +1,18 @@
 import { Tab, Tabcordion } from '@westpac/tabcordion';
 import { GEL } from '@westpac/core';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import { TabProps } from '../../src/Tab';
+import { blenderPanel } from '../../src/overrides/panel.js';
 import wbc from '@westpac/wbc';
-import { ErrorBoundary } from '../../../../helpers/tests/error-boundary.js';
 
 overridesTest({
 	name: 'tabcordion',
 	overrides: [
 		'Item',
 		'AccordionBtn',
+		// TODO: 'AccordionIcon' needs to be added as a part of overrides test in the future
 		// 'AccordionIcon',
 		'Panel',
 		'PanelBody',
@@ -26,25 +27,48 @@ overridesTest({
 // another default test to check that the component errors when outside of GEL and renders when inside
 nestingTest({
 	name: 'tabcordion',
-	Component: (props: TabProps) => <Tab {...props} />,
+	Component: (props: TabProps) => (
+		<Tabcordion>
+			<Tab {...props} />
+		</Tabcordion>
+	),
 });
 
 // Component specific tests
-// describe('TabCordion component', () => {
-// 	const WBCTabCordion = (props: TabcordionProps) => (
-// 		<GEL brand={wbc}>
-// 			<Tabcordion {...props} />
-// 		</GEL>
-// 	);
+describe('Tab component', () => {
+	const WBCTab = (props: TabProps) => (
+		<GEL brand={wbc}>
+			<Tabcordion mode="tabs">
+				<Tab {...props} />
+				<Tab mode="tabs" last selected={false} text="tap2" onClick={() => {}}>
+					test
+				</Tab>
+			</Tabcordion>
+		</GEL>
+	);
 
-// 	it('renders TabCordion with default props', () => {
-// 		const defaultProps: TabcordionProps = {
-// 			mode: 'responsive',
-// 			look: 'soft',
-// 			justify: false,
-// 			openTab: 0,
-// 			children: [],
-// 		};
-// 		const { container } = render(<WBCTabCordion {...defaultProps} />);
-// 		expect(container).toBeInTheDocument();
-// 	});
+	it('renders Tab with default props', () => {
+		const defaultProps: TabProps = {
+			children: 'test tap',
+			text: 'test text',
+		};
+		const { container } = render(<WBCTab {...defaultProps} />);
+		expect(container).toBeInTheDocument();
+	});
+
+	it('renders Tab with blender overrides', () => {
+		const defaultProps: TabProps = {
+			children: 'test tap',
+			text: 'test text',
+		};
+		const overridesObj = {
+			Panel: {
+				component: blenderPanel.component,
+				styles: () => blenderPanel.styles(null, { selected: false }),
+				attributes: () => blenderPanel.attributes,
+			},
+		};
+		const { container } = render(<WBCTab {...defaultProps} overrides={overridesObj}></WBCTab>);
+		expect(container).toBeInTheDocument();
+	});
+});
