@@ -3,69 +3,69 @@ import { GEL } from '@westpac/core';
 import { render, screen } from '@testing-library/react';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
-import { TabcordionProps } from '../../src/Tabcordion';
+import { TabcordionProps } from '../../src/Tabcordion.js';
 import wbc from '@westpac/wbc';
 import { ErrorBoundary } from '../../../../helpers/tests/error-boundary.js';
 
-const SimpleTabCordion = ({ mode, look, justify, openTab, ...rest }: TabcordionProps) => (
-	<>
-		<Tabcordion mode={'tabs'} look={'soft'} justify={false} openTab={0} {...rest}>
-			<Tab panelId="test" tabId="test" mode="tabs" text="test1">
-				Test Tab1
-			</Tab>
-		</Tabcordion>
-		<Tabcordion mode={'accordion'} look={'lego'} justify={false} openTab={0} {...rest}>
-			<Tab tabId="test" panelId="test" mode="accordion" text="test1">
-				Test Tab1
-			</Tab>
-		</Tabcordion>
-		<Tabcordion mode={'responsive'} look={'lego'} justify={false} openTab={0} {...rest}>
-			<Tab tabId="test" panelId="test" mode="accordion" text="test1">
-				Test Tab1
-			</Tab>
-		</Tabcordion>
-	</>
+const ResponsiveTabcordion = ({ mode, ...rest }: TabcordionProps) => (
+	<Tabcordion mode="responsive" {...rest}>
+		<Tab text="Test Tab 1">Test Tab 1</Tab>
+		<Tab text="Test Tab 2">Test Tab 2</Tab>
+	</Tabcordion>
 );
 
+const TabsTabcordion = ({ mode, ...rest }: TabcordionProps) => (
+	<Tabcordion mode="tabs" {...rest}>
+		<Tab text="Test Tab 1">Test Tab 1</Tab>
+		<Tab text="Test Tab 2">Test Tab 2</Tab>
+	</Tabcordion>
+);
+
+// Testing responsive mode Tabcordion
 overridesTest({
 	name: 'tabcordion',
-	overrides: [
-		'Tabcordion',
-		'TabBtn',
-		'TabRow',
-		'Item',
-		'AccordionBtn',
-		'AccordionIcon',
-		'Panel',
-		'PanelBody',
-	],
-	Component: (props: TabcordionProps) => <SimpleTabCordion {...props} />,
+	// TODO: 'AccordionIcon' needs to be added as a part of overrides test in the future
+	overrides: ['Tabcordion', 'Item', 'AccordionBtn', 'Panel', 'PanelBody'],
+	Component: (props: TabcordionProps) => <ResponsiveTabcordion {...props} />,
+});
+
+// Testing tabs mode Tabcordion
+overridesTest({
+	name: 'tabcordion',
+	overrides: ['TabBtn', 'TabRow'],
+	Component: (props: TabcordionProps) => <TabsTabcordion {...props} />,
 });
 
 // another default test to check that the component errors when outside of GEL and renders when inside
 nestingTest({
 	name: 'tabcordion',
-	Component: (props: TabcordionProps) => <Tabcordion {...props} />,
+	Component: (props: TabcordionProps) => <ResponsiveTabcordion {...props} />,
 });
 
 // Component specific tests
-describe('TabCordion component', () => {
-	const WBCTabCordion = (props: TabcordionProps) => (
+describe('Tabcordion component', () => {
+	const WBCTabcordion = (props: TabcordionProps) => (
 		<GEL brand={wbc}>
 			<Tabcordion {...props} />
 		</GEL>
 	);
-
-	it('renders TabCordion with default props', () => {
+	it('renders Tabcordion with default props', () => {
 		const defaultProps: TabcordionProps = {
 			mode: 'responsive',
 			look: 'soft',
 			justify: false,
 			openTab: 0,
-			children: [],
+			children: (
+				<>
+					<Tab text="Test Tab 1">Test Tab 1</Tab>
+					<Tab text="Test Tab 2">Test Tab 2</Tab>
+				</>
+			),
 		};
-		const { container } = render(<WBCTabCordion {...defaultProps} />);
+		const { container, getByText } = render(<WBCTabcordion {...defaultProps} />);
 		expect(container).toBeInTheDocument();
+		expect(getByText(/Test Tab 1/i)).toBeInTheDocument();
+		expect(getByText(/Test Tab 2/i)).toBeInTheDocument();
 	});
 
 	// 	test('throw the error if child component is not wrapped by parent component', () => {
@@ -79,22 +79,18 @@ describe('TabCordion component', () => {
 	// 			screen.queryByText(/Table sub-components should be wrapped in a <Table>./i)
 	// 		).toBeInTheDocument();
 	// 	});
-
 	// 	test('should render bordered style table when bordered property is passed in props', () => {
 	// 		const { container } = render(<SimpleTable bordered />);
 	// 		expect(container).toBeInTheDocument();
 	// 	});
-
 	// 	test('should render striped style table when striped property is passed in props', () => {
 	// 		const { container } = render(<SimpleTable striped />);
 	// 		expect(container).toBeInTheDocument();
 	// 	});
-
 	// 	test('should render striped & bordered table when striped and bordered property is passed in props', () => {
 	// 		const { container } = render(<SimpleTable bordered striped />);
 	// 		expect(container).toBeInTheDocument();
 	// 	});
-
 	// 	test('should render children inside Table', () => {
 	// 		const { getByTestId } = render(
 	// 			<SimpleTable>
@@ -103,7 +99,6 @@ describe('TabCordion component', () => {
 	// 		);
 	// 		expect(getByTestId('test-child')).toBeInTheDocument();
 	// 	});
-
 	// 	test('should render backgroundColor: #efe8ed if you overrides styles', () => {
 	// 		const props: TableProps = {
 	// 			overrides: {
@@ -119,7 +114,6 @@ describe('TabCordion component', () => {
 	// 		expect(container).toBeInTheDocument();
 	// 		expect(getByTestId('test-table')).toHaveStyle('backgroundColor: efe8ed');
 	// 	});
-
 	// 	test('should render table with blender overrides', () => {
 	// 		const overridesObj = {
 	// 			Table: {
