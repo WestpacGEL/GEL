@@ -216,6 +216,6 @@ Switch.propTypes = {
 	 */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
-		PropTypes.arrayOf(PropTypes.oneOf(['xlarge', 'medium', 'small', 'xlarge'])),
+		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge'])),
 	]),
 };
