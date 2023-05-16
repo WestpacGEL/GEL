@@ -7,7 +7,7 @@ import pkg from '../../../GEL.json';
 const { brands } = pkg;
 
 function Example({ brand }) {
-	const { BRAND } = useBrand();
+	const { BRAND, COLORS } = useBrand();
 
 	const informative = Object.keys(components).filter(
 		(component) => !Object.keys(brands).some((code) => component.startsWith(code))
@@ -27,6 +27,7 @@ function Example({ brand }) {
 							<Pictogram />
 							<Name>
 								<code>{`<${pictogram}\u00A0/>`}</code>
+								<div css={{ color: COLORS.muted }}>“{Pictogram.defaultProps.assistiveText}”</div>
 							</Name>
 						</Cell>
 					);
@@ -46,6 +47,9 @@ function Example({ brand }) {
 									<Pictogram />
 									<Name>
 										<code>{`<${pictogram}\u00A0/>`}</code>
+										<div css={{ color: COLORS.muted }}>
+											“{Pictogram.defaultProps.assistiveText}”
+										</div>
 									</Name>
 								</Cell>
 							);
