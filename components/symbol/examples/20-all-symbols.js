@@ -5,6 +5,8 @@ import { Cell, Grid, Name } from './_utils';
 const symbols = Object.keys(components).filter((s) => s.includes('Symbol'));
 
 function Example({ brand }) {
+	const { COLORS } = useBrand();
+
 	return (
 		<GEL brand={brand}>
 			<Grid>
@@ -15,6 +17,7 @@ function Example({ brand }) {
 							<Symbol />
 							<Name>
 								<code>{`<${s}\u00A0/>`}</code>
+								<div css={{ color: COLORS.muted }}>“{Symbol.defaultProps.assistiveText}”</div>
 							</Name>
 						</Cell>
 					);
