@@ -32,13 +32,17 @@ yarn && yarn prepare
 
 ## Development Workflow
 
+Here you'll find our contributing guidelines as well as how to add or edit a component.
+
+### Contributing
+
 To contribute to this repo please follow the steps listed below:
 
-### 1. Fork the repository.
+**1. Fork the repository.**
 
 Fork the repo and checkout the develop branch.
 
-### 2. Install the Dependencies.
+**2. Install the Dependencies.**
 
 Install the project dependencies with:
 
@@ -47,11 +51,11 @@ cd path/to/repo
 yarn
 ```
 
-### 3. Implement changes.
+**3. Implement changes.**
 
 When implementing your changes please ensure that you follow modern web development best practices.
 
-### 4. Format & Generate prop-types
+**4. Format & Generate prop-types**
 
 Format your changes and Generate your Prop-Types for documentation:
 
@@ -59,7 +63,7 @@ Format your changes and Generate your Prop-Types for documentation:
 yarn prop-types && yarn format
 ```
 
-### 5. Test
+**5. Test**
 
 Run the Format, Unit and Integration Tests with:
 
@@ -67,7 +71,7 @@ Run the Format, Unit and Integration Tests with:
 yarn test
 ```
 
-### 6. Add a Changeset
+**6. Add a Changeset**
 
 Any Component changes will require a [changeset](https://github.com/changesets/changesets)
 (This is how we manage versioning and changelogs).
@@ -80,23 +84,49 @@ yarn changeset add
 
 Make sure to follow [SemVer](https://semver.org/) convention and write a meaningful description of the change in the changelog.
 
-### 7. Create a Pull Request
+**7. Create a Pull Request**
 
 - Create a PR and target the "develop" branch.
 - Write a meaningful title and description for your PR.
 - Ensure the PR passess the GitHub Workflow.
 
-### 8. Review
+**8. Review**
 
 Wait for your changes to be reviewed and approved.
 
-### 9. Merge
+**9. Merge**
 
 The Maintainer will merge the Pull Request into the Develop branch.
 
-### 10. Publish
+**10. Publish**
 
 The Maintainer will publish changes to NPM.
+
+### Adding a new component
+
+To add a new component (aka package), run the below command from the root of the project and then follow the prompts:
+
+```sh
+yarn new my-component-name
+```
+
+_Note: replace `my-component-name` with the component you wish to add._
+
+This will create a new entry in the `/components` directory with all of the files you need to get started and with all dependencies installed. Please note that this component will be TypeScript.
+
+### Editing an existing component
+
+To edit a component, including if you've just added one using the steps above, use the below command from the root of the project:
+
+```sh
+yarn dev my-component-name
+```
+
+_Note: replace `my-component-name` with the component you wish to run._
+
+This component can now be viewed on `http://localhost:8080/`.
+
+### File structure
 
 <details>
 <summary>👉 The file structure of this monorepo</summary>
@@ -161,8 +191,11 @@ The Maintainer will publish changes to NPM.
 ```
 
 </details>
+
+### NPM scripts
+
 <details>
-<summary>👉 npm scripts</summary>
+<summary>👉 Script names and descriptions</summary>
 
 | script                    | description                                                 |
 | ------------------------- | ----------------------------------------------------------- |
@@ -243,7 +276,7 @@ There are two different ways you can run the components locally:
 
 </details>
 <details>
-<summary>👉 npm scripts</summary>
+<summary>👉 Script names and descriptions</summary>
 
 | script                  | description                      |
 | ----------------------- | -------------------------------- |

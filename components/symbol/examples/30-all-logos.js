@@ -25,7 +25,6 @@ function Example({ brand }) {
 							<Symbol align="center" />
 							<Name>
 								<code>{`<${s}\u00A0/>`}</code>
-								<div css={{ color: COLORS.muted }}>“{Symbol.defaultProps.assistiveText}”</div>
 							</Name>
 						</Cell>
 					);
@@ -45,7 +44,6 @@ function Example({ brand }) {
 								<Symbol align={align} css={{ border: `1px dashed ${COLORS.border}` }} />
 								<Name>
 									<code>{`<${component} align="${align}"\u00A0/>`}</code>
-									<div css={{ color: COLORS.muted }}>“{Symbol.defaultProps.assistiveText}”</div>
 								</Name>
 							</Cell>
 						);
@@ -63,7 +61,6 @@ function Example({ brand }) {
 								<Symbol align={align} css={{ border: `1px dashed ${COLORS.border}` }} />
 								<Name>
 									<code>{`<${component} align="${align}"\u00A0/>`}</code>
-									<div css={{ color: COLORS.muted }}>“{Symbol.defaultProps.assistiveText}”</div>
 								</Name>
 							</Cell>
 						);
