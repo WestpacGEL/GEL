@@ -5,6 +5,7 @@ import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import { TabProps } from '../../src/Tab';
 import { blenderPanel } from '../../src/overrides/panel.js';
+import userEvent from '@testing-library/user-event';
 import wbc from '@westpac/wbc';
 
 overridesTest({
@@ -36,31 +37,33 @@ nestingTest({
 
 // Component specific tests
 describe('Tab component', () => {
+	// Callback function setting
+	const onOpenHandler = jest.fn(() => {});
+
+	const onCloseHandler = jest.fn(() => {});
+
+	// default props for Tab component
+	const defaultProps: TabProps = {
+		// first: true,
+		children: 'test tap 1',
+		text: 'tap1',
+	};
+
 	const WBCTab = (props: TabProps) => (
 		<GEL brand={wbc}>
-			<Tabcordion mode="tabs">
+			<Tabcordion mode="tabs" onOpen={onOpenHandler} onClose={onCloseHandler}>
 				<Tab {...props} />
-				<Tab mode="tabs" last selected={false} text="tap2" onClick={() => {}}>
-					test
-				</Tab>
+				<Tab text="tap2">test tap 2</Tab>
 			</Tabcordion>
 		</GEL>
 	);
 
 	it('renders Tab with default props', () => {
-		const defaultProps: TabProps = {
-			children: 'test tap',
-			text: 'test text',
-		};
 		const { container } = render(<WBCTab {...defaultProps} />);
 		expect(container).toBeInTheDocument();
 	});
 
 	it('renders Tab with blender overrides', () => {
-		const defaultProps: TabProps = {
-			children: 'test tap',
-			text: 'test text',
-		};
 		const overridesObj = {
 			Panel: {
 				component: blenderPanel.component,
@@ -70,5 +73,12 @@ describe('Tab component', () => {
 		};
 		const { container } = render(<WBCTab {...defaultProps} overrides={overridesObj}></WBCTab>);
 		expect(container).toBeInTheDocument();
+	});
+
+	it('calles onOpen and onClose function when tap is clicked', async () => {
+		const { getByText } = render(<WBCTab {...defaultProps} />);
+		await userEvent.click(getByText(/tap1/));
+		expect(onOpenHandler).toHaveBeenCalled();
+		expect(onCloseHandler).toHaveBeenCalled();
 	});
 });

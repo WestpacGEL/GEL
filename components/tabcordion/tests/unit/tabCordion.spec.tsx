@@ -68,7 +68,7 @@ describe('Tabcordion component', () => {
 		expect(getByText(/Test Tab 2/i)).toBeInTheDocument();
 	});
 
-	it('renders Tabcordion with accordion mode with lego look', async () => {
+	it('renders Tabcordion with accordion mode with lego look', () => {
 		const defaultProps: TabcordionProps = {
 			mode: 'accordion',
 			look: 'lego',
