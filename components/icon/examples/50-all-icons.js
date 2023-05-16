@@ -28,8 +28,6 @@ const Search = (props) => (
 );
 
 function Example({ brand }) {
-	const { COLORS } = useBrand();
-
 	const [inputValue, setInputValue] = useState('');
 	const filteredIcons = inputValue.length
 		? icons.filter((p) =>
@@ -57,7 +55,6 @@ function Example({ brand }) {
 							<Icon />
 							<Name>
 								<code>{`<${icon}\u00A0/>`}</code>
-								<div css={{ color: COLORS.muted }}>“{Icon.defaultProps.assistiveText}”</div>
 							</Name>
 						</Cell>
 					);
