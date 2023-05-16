@@ -1,7 +1,7 @@
-import { GEL, jsx } from '@westpac/core';
+import { GEL } from '@westpac/core';
 import { _COMPONENT_NAME_ } from '@westpac/_COMPONENT_KEY_';
 
-function Example({ brand }) {
+function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) }) {
 	return (
 		<GEL brand={brand}>
 			<_COMPONENT_NAME_ />
