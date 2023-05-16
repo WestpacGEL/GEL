@@ -54,32 +54,24 @@ describe('Tabcordion component', () => {
 		</GEL>
 	);
 	it('renders Tabcordion with default props', async () => {
-		const defaultProps: TabcordionProps = {
-			children: (
-				<>
-					<Tab text="Test Tab 1">Test Tab 1</Tab>
-					<Tab text="Test Tab 2">Test Tab 2</Tab>
-				</>
-			),
-		};
-		const { container, getByText } = render(<WBCTabcordion {...defaultProps} />);
+		const { container, getByText } = render(
+			<WBCTabcordion>
+				<Tab text="Test Tab 1">Tab1</Tab>
+				<Tab text="Test Tab 2">Tab2</Tab>
+			</WBCTabcordion>
+		);
 		expect(container).toBeInTheDocument();
 		expect(getByText(/Test Tab 1/i)).toBeInTheDocument();
 		expect(getByText(/Test Tab 2/i)).toBeInTheDocument();
 	});
 
 	it('renders Tabcordion with accordion mode with lego look', () => {
-		const defaultProps: TabcordionProps = {
-			mode: 'accordion',
-			look: 'lego',
-			children: (
-				<>
-					<Tab text="Test Tab 1">Test Tab 1</Tab>
-					<Tab text="Test Tab 2">Test Tab 2</Tab>
-				</>
-			),
-		};
-		const { container, getByText } = render(<WBCTabcordion {...defaultProps} />);
+		const { container, getByText } = render(
+			<WBCTabcordion mode="accordion" look="lego">
+				<Tab text="Test Tab 1">Tab1</Tab>
+				<Tab text="Test Tab 2">Tab2</Tab>
+			</WBCTabcordion>
+		);
 		expect(container).toBeInTheDocument();
 		expect(getByText(/Test Tab 1/i)).toBeInTheDocument();
 		expect(getByText(/Test Tab 2/i)).toBeInTheDocument();
