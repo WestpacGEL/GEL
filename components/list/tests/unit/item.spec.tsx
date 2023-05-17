@@ -10,17 +10,7 @@ import { ItemProps } from '../../src/Item';
 
 overridesTest({
 	name: 'list',
-	overrides: ['Item', 'Content'],
-	Component: (props: ItemProps) => (
-		<List {...props}>
-			<Item>item1</Item>
-		</List>
-	),
-});
-
-overridesTest({
-	name: 'list',
-	overrides: ['Item', 'Icon'],
+	overrides: ['Item', 'Icon', 'Content'],
 	Component: (props: ItemProps) => (
 		<List {...props}>
 			<Item
@@ -31,6 +21,8 @@ overridesTest({
 			>
 				item1
 			</Item>
+			<Item>item2</Item>
+			<Item>item3</Item>
 		</List>
 	),
 });
