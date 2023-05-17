@@ -6,6 +6,9 @@ import wbc from '@westpac/wbc';
 import { overridesTest } from '../../../../helpers/tests/overrides-test';
 import { nestingTest } from '../../../../helpers/tests/nesting-test';
 import { SwitchProps } from '../../src/Switch';
+import { blenderSwitch } from '../../src/overrides/switch';
+import { blenderLabel } from '../../src/overrides/label';
+import { blenderToggle } from '../../src/overrides/toggle';
 
 overridesTest({
 	name: 'switch',
@@ -74,5 +77,29 @@ describe('Switch component', () => {
 			checkedSwitchTogglebackgroundColor
 		);
 		expect(handleChange).toHaveBeenCalledTimes(3);
+	});
+
+	test('should render Switch with blender overrides', () => {
+		const overridesObj = {
+			Switch: {
+				component: blenderSwitch.component,
+				styles: () => blenderSwitch.styles(null, { block: false, size: 'small' }),
+				attributes: () => blenderSwitch.attributes,
+			},
+			Label: {
+				component: blenderLabel.component,
+				styles: () => blenderLabel.styles(null),
+				attributes: () => blenderLabel.attributes,
+			},
+			Toggle: {
+				component: blenderToggle.component,
+				styles: () => blenderToggle.styles(null),
+				attributes: () => blenderToggle.attributes,
+			},
+		};
+		const { container } = render(
+			<SimpleSwitch block size={'large'} label={''} overrides={overridesObj}></SimpleSwitch>
+		);
+		expect(container).toBeInTheDocument();
 	});
 });
