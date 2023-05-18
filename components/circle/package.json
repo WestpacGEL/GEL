@@ -1,0 +1,30 @@
+{
+	"name": "@westpac/circle",
+	"version": "1.0.0",
+	"description": "Circle",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/circle",
+	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"license": "GPL-3.0+",
+	"scripts": {
+		"start": "PACKAGE_NAME=circle NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
+		"test": "jest circle",
+		"typecheck": "yarn tsc --noEmit"
+	},
+	"main": "dist/westpac-circle.cjs.js",
+	"module": "dist/westpac-circle.esm.js",
+	"dependencies": {
+		"@babel/runtime": "^7.14.8",
+		"@westpac/core": "^3.2.1",
+		"prop-types": "^15.7.2"
+	},
+	"peerDependencies": {
+		"@emotion/react": "^11.10.6",
+		"react": "^18.2.0"
+	},
+	"devDependencies": {
+		"@emotion/react": "^11.10.6",
+		"react": "^18.2.0",
+		"start-server-and-test": "^1.12.6"
+	}
+}
