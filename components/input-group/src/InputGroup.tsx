@@ -54,6 +54,7 @@ const TextWrapper = ({
 interface WrapperProps {
 	children?: ReactNode;
 	css?: CSSProperties;
+	withBorders?: boolean;
 	before?: boolean;
 	after?: boolean;
 	invalid?: boolean;
@@ -71,10 +72,29 @@ const Wrapper = ({
 	size = 'medium',
 	invalid,
 	ariaInvalid,
+	withBorders,
 	...props
 }: WrapperProps) => {
 	const { COLORS } = useBrand();
 	var s = sizeMap[size];
+	const borderStyle = useMemo(() => {
+		if (!withBorders) {
+			return undefined;
+		}
+		return `${sizeMap[size].borderWidth}px ${disabled || readOnly ? 'dashed' : 'solid'} ${
+			invalid || ariaInvalid ? COLORS.danger : COLORS.borderDark
+		}`;
+	}, [
+		COLORS.borderDark,
+		COLORS.danger,
+		ariaInvalid,
+		disabled,
+		invalid,
+		readOnly,
+		size,
+		withBorders,
+	]);
+
 	return (
 		<div
 			{...props}
@@ -85,12 +105,9 @@ const Wrapper = ({
 				overflow: 'hidden',
 				boxSizing: 'border-box',
 				height: 'auto',
-				border: `${sizeMap[size].borderWidth}px ${disabled || readOnly ? 'dashed' : 'solid'} ${
-					invalid || ariaInvalid ? COLORS.danger : COLORS.borderDark
-				}`,
+				border: borderStyle,
 				'> button, > select, > input': {
 					width: 'auto !important',
-					margin: '-1px !important',
 				},
 				'> *': {
 					height: 'auto !important',
@@ -119,6 +136,10 @@ const Wrapper = ({
 };
 
 export interface InputGroupProps {
+	/**
+	 * Define if there is a wrapper
+	 */
+	withWrapper?: boolean;
 	/**
 	 * Define an id for internal elements
 	 */
@@ -236,6 +257,7 @@ export const InputGroup = forwardRef<HTMLInputElement, InputGroupProps>(
 			after,
 			ariaInvalid,
 			data,
+			withWrapper = true,
 			...rest
 		},
 		ref
@@ -279,6 +301,7 @@ export const InputGroup = forwardRef<HTMLInputElement, InputGroupProps>(
 			<InputGroup {...inputGroupAttributes(state)} css={inputGroupStyles(state)}>
 				{before && (
 					<Wrapper
+						withBorders={withWrapper}
 						disabled={disabled}
 						readOnly={readOnly}
 						invalid={invalid}
@@ -308,10 +331,15 @@ export const InputGroup = forwardRef<HTMLInputElement, InputGroupProps>(
 					before={!!before}
 					after={!!after}
 					aria-invalid={ariaInvalid}
+					css={{
+						...(after && typeof after !== 'string' ? { borderRight: 'none !important' } : {}),
+						...(before && typeof before !== 'string' ? { borderLeft: 'none !important' } : {}),
+					}}
 					{...rest}
 				/>
 				{after && (
 					<Wrapper
+						withBorders={withWrapper}
 						disabled={disabled}
 						invalid={invalid}
 						ariaInvalid={ariaInvalid}
