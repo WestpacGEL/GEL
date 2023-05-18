@@ -40,7 +40,6 @@ describe('Switch component', () => {
 		const switchInput = getByRole('checkbox');
 		expect(switchInput).toBeInTheDocument();
 		const user = userEvent.setup();
-		expect(switchInput).toHaveProperty('checked');
 		expect(switchInput).not.toBeChecked();
 		await user.click(switchInput);
 		expect(switchInput).toBeChecked();
