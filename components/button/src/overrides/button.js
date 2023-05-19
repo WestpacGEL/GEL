@@ -30,9 +30,13 @@ BlenderButton.displayName = 'BlenderButton';
 // Styles
 // ==============================
 
-const buttonStyles = (_, { tag, type, look, size, soft, block, justify, disabled }) => {
+const buttonStyles = (
+	_,
+	{ tag, type, look, size, soft, block, justify, disabled, horizontalPadding }
+) => {
 	const mq = useMediaQuery();
 	const { COLORS, TYPE } = useBrand();
+	console.log('This is from overrides js', horizontalPadding);
 
 	const bg = {
 		background:
@@ -216,6 +220,12 @@ const buttonStyles = (_, { tag, type, look, size, soft, block, justify, disabled
 			borderRadius: look !== 'link' && '0.1875rem',
 			transition: 'background 0.2s ease, color 0.2s ease',
 		}),
+		// Trim horizontal padding if button is link style and false for horizontalPadding prop
+		...(!horizontalPadding &&
+			look === 'link' && {
+				paddingLeft: 0,
+				paddingRight: 0,
+			}),
 		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 
 		// Hover state (but excluded if disabled or inside a disabled fieldset)
