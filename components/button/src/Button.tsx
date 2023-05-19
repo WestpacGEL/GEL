@@ -118,6 +118,13 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 	 */
 	horizontalPadding?: boolean;
 	/**
+
+	/**
+	 * min-width
+	 */
+	minWidth?: string;
+	/**
+
 	 * The override API
 	 */
 	overrides?: {
@@ -168,6 +175,7 @@ export const Button = forwardRef(
 			justify = false,
 			disabled = false,
 			horizontalPadding = true,
+			minWidth = 'auto',
 			...rest
 		}: ButtonProps,
 		ref
@@ -204,6 +212,7 @@ export const Button = forwardRef(
 			dropdown,
 			onClick,
 			horizontalPadding,
+			minWidth,
 			overrides: componentOverrides,
 			...rest,
 		};
