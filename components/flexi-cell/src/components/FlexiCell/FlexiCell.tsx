@@ -1,6 +1,9 @@
 import { useBrand, useMediaQuery } from '@westpac/core';
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
+import { FlexiCellAdornment } from '../FlexiCellAdornment';
+import { FlexiCellHint } from '../FlexiCellHint';
+import { FlexiCellLabel } from '../FlexiCellLabel';
 import { FlexiCellProps } from './FlexiCell.types';
 
 /** Flexi Cell: Flexi Cell */
@@ -32,23 +35,18 @@ export const FlexiCell = ({
 
 	return (
 		<Tag css={css} {...props}>
-			{before && <div>{before}</div>}
-			<div css={{ flex: 1 }}>{children}</div>
-			{after && (
-				<div
-					css={{
-						display: 'flex',
-						flexDirection: 'column',
-						alignContent: 'center',
-						justifyContent: 'center',
-					}}
-				>
-					{after}
-				</div>
-			)}
+			{before}
+			<div css={{ flex: 1, display: 'flex', flexDirection: 'column', gap: SPACING(1) }}>
+				{children}
+			</div>
+			{after}
 		</Tag>
 	);
 };
+
+FlexiCell.Adornment = FlexiCellAdornment;
+FlexiCell.Hint = FlexiCellHint;
+FlexiCell.Label = FlexiCellLabel;
 
 FlexiCell.propTypes = {
 	// ----------------------------- Warning --------------------------------

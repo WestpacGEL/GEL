@@ -1,1 +1,1 @@
-export { FlexiCell } from './FlexiCell';
+export { FlexiCell } from './components/FlexiCell';

@@ -27,21 +27,19 @@ function ExampleChildren() {
 		>
 			<FlexiCell
 				tag="a"
-				href="/dsadsa"
+				href="#"
 				withBorder // add the border and radius
 				after={
-					<>
-						<Heading tag="h3" size={8} css={{ fontWeight: 'normal', textAlign: 'right' }}>
+					<FlexiCell.Adornment align="top">
+						<FlexiCell.Label tag="h3" size={8} css={{ fontWeight: 'normal', textAlign: 'right' }}>
 							$9,999.99
-						</Heading>
-						<small css={{ color: COLORS.muted }}>avail $9,999.99</small>
-					</>
+						</FlexiCell.Label>
+						<FlexiCell.Hint>avail $9,999.99</FlexiCell.Hint>
+					</FlexiCell.Adornment>
 				}
 			>
-				<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
-					Credit card
-				</Heading>
-				<small css={{ color: COLORS.muted }}>Card ending in 1234</small>
+				<FlexiCell.Label tag="h3">Credit card</FlexiCell.Label>
+				<FlexiCell.Hint>Card ending in 1234</FlexiCell.Hint>
 			</FlexiCell>
 
 			<FlexiCell
@@ -49,15 +47,15 @@ function ExampleChildren() {
 				withBorder // add the border and radius
 				href="loko"
 				after={
-					<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
-						$9,999.99
-					</Heading>
+					<FlexiCell.Adornment align="top">
+						<FlexiCell.Label tag="h3" size={8} css={{ fontWeight: 'normal', textAlign: 'right' }}>
+							$9,999.99
+						</FlexiCell.Label>
+					</FlexiCell.Adornment>
 				}
 			>
-				<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
-					Account
-				</Heading>
-				<small css={{ color: COLORS.muted }}>032-123 12345678</small>
+				<FlexiCell.Label tag="h3">Account</FlexiCell.Label>
+				<FlexiCell.Hint>032-123 12345678</FlexiCell.Hint>
 			</FlexiCell>
 
 			<FlexiCell
@@ -69,7 +67,11 @@ function ExampleChildren() {
 						B
 					</Circle>
 				}
-				after={<small css={{ color: COLORS.muted }}>Fri 5 Aug</small>}
+				after={
+					<FlexiCell.Adornment align="center">
+						<FlexiCell.Hint css={{ color: COLORS.muted }}>Fri 5 Aug</FlexiCell.Hint>
+					</FlexiCell.Adornment>
+				}
 			>
 				<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
 					Payee
@@ -78,33 +80,43 @@ function ExampleChildren() {
 			</FlexiCell>
 
 			<FlexiCell
-				tag="a"
 				withBorder // add the border and radius
-				href="loko"
 				before={
 					<Circle background={COLORS.muted} css={{ color: 'white' }}>
 						WW
 					</Circle>
 				}
-				after={<Button look="link" href="/somewhere" iconBefore={InfoIcon} />}
+				after={
+					<FlexiCell.Adornment align="center">
+						{/* @ts-ignore */}
+						<Button look="link" href="/somewhere" iconBefore={InfoIcon} />
+					</FlexiCell.Adornment>
+				}
 			>
-				<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
-					Payee
-				</Heading>
-				<small css={{ color: COLORS.muted }}>Payee details</small>
+				<a href="#" css={{ color: 'inherit', textDecoration: 'inherit' }}>
+					<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
+						Payee
+					</Heading>
+					<small css={{ color: COLORS.muted }}>Payee details</small>
+				</a>
 			</FlexiCell>
 
 			<FlexiCell
-				tag="a"
 				withBorder // add the border and radius
-				href="loko"
 				before={<div>Flag</div>}
-				after={<Button look="link" href="/somewhere" iconBefore={InfoIcon} />}
+				after={
+					<FlexiCell.Adornment align="center">
+						{/* @ts-ignore */}
+						<Button look="link" href="/somewhere" iconBefore={InfoIcon} />
+					</FlexiCell.Adornment>
+				}
 			>
-				<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
-					Payee
-				</Heading>
-				<small css={{ color: COLORS.muted }}>Payee details</small>
+				<a href="#" css={{ color: 'inherit', textDecoration: 'inherit' }}>
+					<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
+						Payee
+					</Heading>
+					<small css={{ color: COLORS.muted }}>Payee details</small>
+				</a>
 			</FlexiCell>
 			<FlexiCell
 				tag="a"
