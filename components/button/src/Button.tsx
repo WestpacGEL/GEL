@@ -114,6 +114,10 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 	href?: string;
 
 	/**
+	 * horizontalPadding for link style
+	 */
+	horizontalPadding?: boolean;
+	/**
 	 * The override API
 	 */
 	overrides?: {
@@ -163,6 +167,7 @@ export const Button = forwardRef(
 			block = false,
 			justify = false,
 			disabled = false,
+			horizontalPadding = true,
 			...rest
 		}: ButtonProps,
 		ref
@@ -198,6 +203,7 @@ export const Button = forwardRef(
 			type,
 			dropdown,
 			onClick,
+			horizontalPadding,
 			overrides: componentOverrides,
 			...rest,
 		};
@@ -205,7 +211,6 @@ export const Button = forwardRef(
 		const {
 			Button: { component: Button, styles: buttonStyles, attributes: buttonAttributes },
 		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
-
 		return (
 			<ButtonContext.Provider value={{ state }}>
 				<Button
