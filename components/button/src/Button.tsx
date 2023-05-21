@@ -285,6 +285,10 @@ Button.propTypes = {
 	 */
 	dropdown: PropTypes.bool,
 	/**
+	 * horizontalPadding for link style
+	 */
+	horizontalPadding: PropTypes.bool,
+	/**
 	 * Href
 	 */
 	href: PropTypes.string,
@@ -310,6 +314,11 @@ Button.propTypes = {
 	 * Button look
 	 */
 	look: PropTypes.oneOf(['faint', 'hero', 'link', 'primary', 'unstyled']),
+	/**
+	 * /**
+	 * min-width
+	 */
+	minWidth: PropTypes.string,
 	/**
 	 * Handler to be called on click
 	 */
