@@ -34,7 +34,7 @@ BlenderButton.displayName = 'BlenderButton';
 
 const buttonStyles = (
 	_: any,
-	{ tag, type, look, size, soft, block, justify, disabled, horizontalPadding, minWidth }: any
+	{ tag, type, look, size, soft, block, justify, disabled, horizontalPadding }: any
 ) => {
 	const mq = useMediaQuery();
 	const { COLORS, TYPE } = useBrand();
@@ -213,7 +213,6 @@ const buttonStyles = (
 		boxSizing: 'border-box',
 		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
 		width: blockArr.map((b) => b !== null && (b ? '100%' : 'auto')),
-		minWidth: minWidth,
 		...(look !== 'unstyled' && {
 			fontSize: sizeArr.map((s) => s && sizeMap[s].fontSize),
 			...TYPE.bodyFont[400],
