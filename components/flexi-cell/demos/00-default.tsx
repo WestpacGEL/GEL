@@ -28,12 +28,10 @@ function ExampleChildren() {
 			<FlexiCell
 				tag="a"
 				href="#"
-				withBorder // add the border and radius
+				withBorder
 				after={
 					<FlexiCell.Adornment align="top">
-						<FlexiCell.Label tag="h3" size={8} css={{ fontWeight: 'normal', textAlign: 'right' }}>
-							$9,999.99
-						</FlexiCell.Label>
+						<FlexiCell.Label tag="h3">$9,999.99</FlexiCell.Label>
 						<FlexiCell.Hint>avail $9,999.99</FlexiCell.Hint>
 					</FlexiCell.Adornment>
 				}
@@ -44,13 +42,11 @@ function ExampleChildren() {
 
 			<FlexiCell
 				tag="a"
-				withBorder // add the border and radius
+				withBorder
 				href="loko"
 				after={
 					<FlexiCell.Adornment align="top">
-						<FlexiCell.Label tag="h3" size={8} css={{ fontWeight: 'normal', textAlign: 'right' }}>
-							$9,999.99
-						</FlexiCell.Label>
+						<FlexiCell.Label tag="h3">$9,999.99</FlexiCell.Label>
 					</FlexiCell.Adornment>
 				}
 			>
@@ -60,7 +56,7 @@ function ExampleChildren() {
 
 			<FlexiCell
 				tag="a"
-				withBorder // add the border and radius
+				withBorder
 				href="loko"
 				before={
 					<Circle background={COLORS.primary} css={{ color: 'white' }}>
@@ -80,7 +76,7 @@ function ExampleChildren() {
 			</FlexiCell>
 
 			<FlexiCell
-				withBorder // add the border and radius
+				withBorder
 				before={
 					<Circle background={COLORS.muted} css={{ color: 'white' }}>
 						WW
@@ -102,7 +98,7 @@ function ExampleChildren() {
 			</FlexiCell>
 
 			<FlexiCell
-				withBorder // add the border and radius
+				withBorder
 				before={<div>Flag</div>}
 				after={
 					<FlexiCell.Adornment align="center">
@@ -118,21 +114,12 @@ function ExampleChildren() {
 					<small css={{ color: COLORS.muted }}>Payee details</small>
 				</a>
 			</FlexiCell>
-			<FlexiCell
-				tag="a"
-				withBorder // add the border and radius
-				href="loko"
-				before={<div>Flag</div>}
-			>
+			<FlexiCell tag="a" withBorder href="loko" before={<div>Flag</div>}>
 				<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
 					List item
 				</Heading>
 			</FlexiCell>
-			<FlexiCell
-				tag="a"
-				withBorder // add the border and radius
-				href="loko"
-			>
+			<FlexiCell tag="a" withBorder href="loko">
 				<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
 					List item
 				</Heading>

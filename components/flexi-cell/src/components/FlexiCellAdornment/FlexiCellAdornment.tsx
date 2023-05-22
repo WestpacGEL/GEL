@@ -18,6 +18,7 @@ export const FlexiCellAdornment = ({
 				display: 'flex',
 				flexDirection: 'column',
 				gap: SPACING(1),
+				alignItems: 'flex-end',
 				justifyContent: cx({
 					center: 'center' === align,
 					'flex-start': 'top' === align,
