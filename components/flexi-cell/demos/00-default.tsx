@@ -36,7 +36,7 @@ function ExampleChildren() {
 					</FlexiCell.Adornment>
 				}
 			>
-				<FlexiCell.Label truncateText tag="h3">Credit card</FlexiCell.Label>
+				<FlexiCell.Label tag="h3">Credit card</FlexiCell.Label>
 				<FlexiCell.Hint>Card ending in 1234</FlexiCell.Hint>
 			</FlexiCell>
 
