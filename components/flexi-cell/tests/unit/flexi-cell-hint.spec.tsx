@@ -1,13 +1,12 @@
-import { FlexiCell } from '../../src';
-import { render, screen } from '@testing-library/react';
-import { FlexiCellProps } from '../../src/components/FlexiCell';
+import { FlexiCell } from '@westpac/flexi-cell';
+import { render } from '@testing-library/react';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
-import { FlexiCellHint, FlexiCellHintProps } from '../../src/components/FlexiCellHint';
+import { type FlexiCellHintProps } from '../../src/components/FlexiCellHint';
 
 const SimpleFlexiCellHint = (props: FlexiCellHintProps) => (
 	<GEL brand={wbc}>
-		<FlexiCellHint {...props} />
+		<FlexiCell.Hint {...props} />
 	</GEL>
 );
 

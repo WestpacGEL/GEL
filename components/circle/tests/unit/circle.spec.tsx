@@ -1,4 +1,4 @@
-import { Circle } from '../../src';
+import { Circle } from '@westpac/circle';
 import { render } from '@testing-library/react';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
