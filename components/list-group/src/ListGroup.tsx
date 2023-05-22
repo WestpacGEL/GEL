@@ -21,7 +21,7 @@ export const useListGroupContext = () => {
 	return context;
 };
 
-interface ListGroupProps {
+export interface ListGroupProps {
 	/**
 	 * The content for this list group
 	 */

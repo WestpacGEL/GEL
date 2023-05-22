@@ -114,6 +114,17 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 	href?: string;
 
 	/**
+	 * horizontalPadding for link style
+	 */
+	horizontalPadding?: boolean;
+	/**
+
+	/**
+	 * min-width
+	 */
+	minWidth?: string;
+	/**
+
 	 * The override API
 	 */
 	overrides?: {
@@ -163,6 +174,8 @@ export const Button = forwardRef(
 			block = false,
 			justify = false,
 			disabled = false,
+			horizontalPadding = true,
+			minWidth = 'auto',
 			...rest
 		}: ButtonProps,
 		ref
@@ -198,6 +211,8 @@ export const Button = forwardRef(
 			type,
 			dropdown,
 			onClick,
+			horizontalPadding,
+			minWidth,
 			overrides: componentOverrides,
 			...rest,
 		};
@@ -205,7 +220,6 @@ export const Button = forwardRef(
 		const {
 			Button: { component: Button, styles: buttonStyles, attributes: buttonAttributes },
 		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
-
 		return (
 			<ButtonContext.Provider value={{ state }}>
 				<Button
@@ -271,6 +285,10 @@ Button.propTypes = {
 	 */
 	dropdown: PropTypes.bool,
 	/**
+	 * horizontalPadding for link style
+	 */
+	horizontalPadding: PropTypes.bool,
+	/**
 	 * Href
 	 */
 	href: PropTypes.string,
@@ -296,6 +314,11 @@ Button.propTypes = {
 	 * Button look
 	 */
 	look: PropTypes.oneOf(['faint', 'hero', 'link', 'primary', 'unstyled']),
+	/**
+	 * /**
+	 * min-width
+	 */
+	minWidth: PropTypes.string,
 	/**
 	 * Handler to be called on click
 	 */
