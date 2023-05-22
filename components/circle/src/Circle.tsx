@@ -36,8 +36,17 @@ Circle.propTypes = {
 	// | These PropTypes are generated from the TypeScript type definitions |
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
+	/**
+	 * Adds a background color
+	 */
 	background: PropTypes.string,
+	/**
+	 * JSX element to be render inside of circle
+	 */
 	children: PropTypes.node,
+	/**
+	 * Size of the circle
+	 */
 	size: PropTypes.oneOfType([
 		PropTypes.arrayOf(
 			PropTypes.oneOfType([
@@ -564,6 +573,9 @@ Circle.propTypes = {
 		}),
 		PropTypes.string,
 	]),
+	/**
+	 * The native tag that flexicell will be rendered
+	 */
 	tag: PropTypes.oneOf([
 		'a',
 		'abbr',
