@@ -1,16 +1,12 @@
-import { FlexiCell } from '../../src';
-import { render, screen } from '@testing-library/react';
-import { FlexiCellProps } from '../../src/components/FlexiCell';
+import { FlexiCell } from '@westpac/flexi-cell';
+import { render } from '@testing-library/react';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
-import {
-	FlexiCellAdornment,
-	FlexiCellAdornmentProps,
-} from '../../src/components/FlexiCellAdornment';
+import { type FlexiCellAdornmentProps } from '../../src/components/FlexiCellAdornment';
 
 const SimpleFlexiCellAdornment = (props: FlexiCellAdornmentProps) => (
 	<GEL brand={wbc}>
-		<FlexiCellAdornment {...props} />
+		<FlexiCell.Adornment {...props} />
 	</GEL>
 );
 

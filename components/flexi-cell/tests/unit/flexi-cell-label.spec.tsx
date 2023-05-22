@@ -1,9 +1,8 @@
-import { FlexiCell } from '../../src';
-import { render, screen } from '@testing-library/react';
-import { FlexiCellProps } from '../../src/components/FlexiCell';
+import { FlexiCell } from '@westpac/flexi-cell';
+import { render } from '@testing-library/react';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
-import { FlexiCellLabelProps } from '../../src/components/FlexiCellLabel';
+import { type FlexiCellLabelProps } from '../../src/components/FlexiCellLabel';
 
 const SimpleFlexiCellLabel = (props: FlexiCellLabelProps) => (
 	<GEL brand={wbc}>

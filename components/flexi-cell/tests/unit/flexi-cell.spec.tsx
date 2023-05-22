@@ -1,6 +1,6 @@
-import { FlexiCell } from '../../src';
-import { render, screen } from '@testing-library/react';
-import { FlexiCellProps } from '../../src/components/FlexiCell';
+import { FlexiCell } from '@westpac/flexi-cell';
+import { render } from '@testing-library/react';
+import { type FlexiCellProps } from '../../src/components/FlexiCell';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
 
