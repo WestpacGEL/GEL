@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import { FlexiCellHintProps } from './FlexiCellHint.types';
 
 /** Flexi Cell Hint: Flexi Cell Hint */
-export const FlexiCellHint = ({ children, tag: Tag = 'small', ...props }: FlexiCellHintProps) => {
+export const FlexiCellHint = ({
+	children,
+	tag: Tag = 'small',
+	truncateText,
+	...props
+}: FlexiCellHintProps) => {
 	const { PACKS, COLORS } = useBrand();
 
 	return (
@@ -14,6 +19,11 @@ export const FlexiCellHint = ({ children, tag: Tag = 'small', ...props }: FlexiC
 				fontWeight: 400,
 				margin: 0,
 				color: COLORS.muted,
+				...(truncateText && {
+					overflow: 'hidden',
+					textOverflow: 'ellipsis',
+					whiteSpace: 'nowrap',
+				}),
 			}}
 		>
 			{children}
@@ -205,4 +215,8 @@ FlexiCellHint.propTypes = {
 		'wbr',
 		'webview',
 	]),
+	/**
+	 * Define if it is going to truncate the text
+	 */
+	truncateText: PropTypes.bool,
 };

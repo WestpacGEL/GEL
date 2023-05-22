@@ -2,7 +2,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 export type FlexiCellProps = {
 	/**
-	 * Adds an border radius and a border
+	 * Adds a border radius and a border
 	 */
 	withBorder?: boolean;
 	/**
@@ -13,10 +13,6 @@ export type FlexiCellProps = {
 	 * Renders an element on the right
 	 */
 	after?: ReactNode;
-	/**
-	 * Define if it is going to truncate the text
-	 */
-	truncateText?: boolean;
 	/**
 	 * the middle content of FlexiCell
 	 */

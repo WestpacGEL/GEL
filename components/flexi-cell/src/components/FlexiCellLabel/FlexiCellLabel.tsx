@@ -3,10 +3,27 @@ import PropTypes from 'prop-types';
 import { FlexiCellLabelProps } from './FlexiCellLabel.types';
 
 /** Flexi Cell Labek: Flexi Cell Labek */
-export const FlexiCellLabel = ({ children, tag: Tag = 'div', ...props }: FlexiCellLabelProps) => {
+export const FlexiCellLabel = ({
+	children,
+	tag: Tag = 'div',
+	truncateText,
+	...props
+}: FlexiCellLabelProps) => {
 	const { PACKS } = useBrand();
 	return (
-		<Tag {...props} css={{ ...PACKS.typeScale.bodyFont[9], fontWeight: 'normal', margin: 0 }}>
+		<Tag
+			{...props}
+			css={{
+				...PACKS.typeScale.bodyFont[9],
+				fontWeight: 'normal',
+				margin: 0,
+				...(truncateText && {
+					overflow: 'hidden',
+					textOverflow: 'ellipsis',
+					whiteSpace: 'nowrap',
+				}),
+			}}
+		>
 			{children}
 		</Tag>
 	);
@@ -196,4 +213,8 @@ FlexiCellLabel.propTypes = {
 		'wbr',
 		'webview',
 	]),
+	/**
+	 * Define if it is going to truncate the text
+	 */
+	truncateText: PropTypes.bool,
 };

@@ -11,7 +11,6 @@ export const FlexiCell = ({
 	withBorder,
 	before,
 	after,
-	truncateText,
 	children,
 	tag: Tag = 'div',
 	...props
@@ -36,7 +35,16 @@ export const FlexiCell = ({
 	return (
 		<Tag css={css} {...props}>
 			{before}
-			<div css={{ flex: 1, display: 'flex', flexDirection: 'column', gap: SPACING(1) }}>
+			<div
+				css={{
+					flex: 1,
+					overflow: 'hidden',
+					display: 'flex',
+					flexDirection: 'column',
+					gap: SPACING(1),
+					textOverflow: 'ellipsis',
+				}}
+			>
 				{children}
 			</div>
 			{after}
@@ -53,9 +61,21 @@ FlexiCell.propTypes = {
 	// | These PropTypes are generated from the TypeScript type definitions |
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
+	/**
+	 * Renders an element on the right
+	 */
 	after: PropTypes.node,
+	/**
+	 * Renders an element on the left
+	 */
 	before: PropTypes.node,
+	/**
+	 * the middle content of FlexiCell
+	 */
 	children: PropTypes.node,
+	/**
+	 * The native tag that flexicell will be rendered
+	 */
 	tag: PropTypes.oneOf([
 		'a',
 		'abbr',
@@ -234,6 +254,8 @@ FlexiCell.propTypes = {
 		'wbr',
 		'webview',
 	]),
-	truncateText: PropTypes.bool,
+	/**
+	 * Adds a border radius and a border
+	 */
 	withBorder: PropTypes.bool,
 };
