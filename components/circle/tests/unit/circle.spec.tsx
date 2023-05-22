@@ -1,12 +1,18 @@
 import { Circle } from '../../src';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import { GEL } from '@westpac/core';
+import wbc from '@westpac/wbc';
 
 describe('Given the Circle is rendered', () => {
 	describe('when default props are defined', () => {
 		test('then the component should be displayed', () => {
-			render(<Circle />);
+			const { getByText } = render(
+				<GEL brand={wbc}>
+					<Circle>child</Circle>
+				</GEL>
+			);
 
-			expect(screen.getByRole('term')).toHaveTextContent('Circle');
+			expect(getByText('child')).toBeVisible();
 		});
 	});
 });
