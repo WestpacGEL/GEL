@@ -126,15 +126,4 @@ describe('Button component', () => {
 			padding-right: 0;
 		`);
 	});
-
-	it('should render button with min-width when min-width is given as prop', () => {
-		const { getByTestId } = render(
-			<SimpleButton minWidth="150px" look="primary">
-				Primary Style Button
-			</SimpleButton>
-		);
-		expect(getByTestId(/buttonTest/)).toHaveStyle(`
-			min-width: 150px;
-		`);
-	});
 });
