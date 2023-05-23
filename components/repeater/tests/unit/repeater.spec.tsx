@@ -48,13 +48,10 @@ describe('Repeater component', () => {
 		</GEL>
 	);
 
-	if (typeof window.URL.createObjectURL === 'undefined') {
-		Object.defineProperty(window.URL, 'createObjectURL', { value: () => new Blob() });
-	}
-
-	if (typeof window.URL.revokeObjectURL === 'undefined') {
-		Object.defineProperty(window.URL, 'revokeObjectURL', { value: () => {} });
-	}
+	global.URL = {
+		createObjectURL: () => new Blob(),
+		revokeObjectURL: () => {},
+	};
 
 	test('it should render Simple Repeater', () => {
 		const { container } = render(<SimpleRepeater />);
