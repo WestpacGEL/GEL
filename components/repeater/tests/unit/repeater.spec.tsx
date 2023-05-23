@@ -48,6 +48,7 @@ describe('Repeater component', () => {
 		</GEL>
 	);
 
+	// Implement a mock URL API. The Repeater uses the generateId module that calls URL methods not implemented in jest-dom.
 	global.URL = {
 		createObjectURL: () => new Blob(),
 		revokeObjectURL: () => {},
