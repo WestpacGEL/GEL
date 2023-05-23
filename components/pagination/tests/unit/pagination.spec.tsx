@@ -12,8 +12,8 @@ import { ErrorBoundary } from '../../../../helpers/tests/error-boundary.js';
 overridesTest({
 	name: 'pagination',
 	overrides: ['Pagination', 'List', 'Page', 'Link'],
-	Component: (props: PaginationProps) => (
-		<Pagination {...props}>
+	Component: ({ current, ...rest }: PaginationProps) => (
+		<Pagination current={0} {...rest}>
 			<Page text="1" onClick={() => console.log('page 1')} />
 			<Page text="2" onClick={() => console.log('page 2')} />
 		</Pagination>
@@ -27,6 +27,9 @@ nestingTest({
 
 // Pagination specific tests
 describe('Pagination component', () => {
+	beforeEach(() => {
+		jest.clearAllMocks();
+	});
 	const handleClick = jest.fn(() => {});
 	const SimplePagination = (props: PaginationProps) => (
 		<GEL brand={wbc}>
@@ -78,7 +81,7 @@ describe('Pagination component', () => {
 		const { getByText } = render(<SimplePagination current={0} />);
 		await userEvent.click(getByText(/Go back/i));
 		await userEvent.click(getByText(/Go forth/i));
-		expect(handleClick).toHaveBeenCalledTimes(7);
+		expect(handleClick).toHaveBeenCalledTimes(2);
 	});
 
 	it('throws the error if child component is not wrapped by parent component', () => {
