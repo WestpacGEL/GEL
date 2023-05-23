@@ -36,6 +36,12 @@ interface ContentProps {
 	 */
 	iconColor?: string;
 	/**
+	 * Icon size
+	 *
+	 * Defaults to button size prop
+	 */
+	iconSize?: 'small' | 'medium' | 'large' | 'xlarge' | ('small' | 'medium' | 'large' | 'xlarge')[];
+	/**
 	 * Enable dropdown mode
 	 */
 	dropdown?: boolean;
@@ -70,6 +76,7 @@ export const Content = ({
 	iconAfter: IconAfter,
 	iconBefore: IconBefore,
 	iconColor,
+	iconSize,
 	dropdown,
 	children,
 	...rest
@@ -94,6 +101,7 @@ export const Content = ({
 		iconBefore: IconBefore,
 		iconAfter: IconAfter,
 		iconColor,
+		iconSize,
 		dropdown,
 		hasChildren: !!children,
 		context: context.state,
@@ -119,7 +127,7 @@ export const Content = ({
 		<Content {...rest} state={state} {...contentAttributes(state)} css={contentStyles(state)}>
 			{IconBefore && (
 				<Icon
-					size={!Array.isArray(size) && iconSizeMap[size]}
+					size={iconSize || (!Array.isArray(size) && iconSizeMap[size])}
 					icon={IconBefore}
 					state={state}
 					{...iconAttributes(state)}
@@ -129,7 +137,7 @@ export const Content = ({
 			{children && <Text block={block}>{children}</Text>}
 			{IconAfter && (
 				<Icon
-					size={!Array.isArray(size) && iconSizeMap[size]}
+					size={iconSize || (!Array.isArray(size) && iconSizeMap[size])}
 					icon={IconAfter}
 					state={state}
 					{...iconAttributes(state)}
