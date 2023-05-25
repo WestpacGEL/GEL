@@ -6,6 +6,7 @@ import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import * as icons from '@westpac/icon';
 import { Icon } from '../../src/Icon'; // needs to be imported this way as it is not included in the Icon library
 import { blenderIcon } from '../../src/overrides/icon.js';
+import { ArrowRightIcon } from '../../src/ArrowRightIcon';
 import { IconProps } from '../../src/Icon';
 
 overridesTest({
@@ -35,7 +36,7 @@ describe('Icon components', () => {
 		if (typeof val === 'function') {
 			typedVal = val;
 		}
-		test(`should render ${key} with default props`, () => {
+		it(`should render ${key} with default props`, () => {
 			const TestIcon = (props: any) => {
 				return typedVal({
 					assistiveText: props.assistiveText,
@@ -52,7 +53,7 @@ describe('Icon components', () => {
 		});
 	}
 
-	test('should render base Icon with blender overrides', () => {
+	it('should render base Icon with blender overrides', () => {
 		const overridesObj = {
 			Icon: {
 				component: blenderIcon.component,
@@ -68,5 +69,25 @@ describe('Icon components', () => {
 			</GEL>
 		);
 		expect(container).toBeInTheDocument();
+	});
+
+	it('should render Icon with overrides', () => {
+		const overridesObj = {
+			Icon: {
+				styles: (styles: any) => ({
+					...styles,
+					height: `78px`,
+					width: `78px`,
+				}),
+			},
+		};
+		const { container, getByTestId } = render(
+			<GEL brand={wbc}>
+				<ArrowRightIcon data-testid="test-icon" color="primary" overrides={overridesObj} />
+			</GEL>
+		);
+		expect(container).toBeInTheDocument();
+		expect(getByTestId('test-icon')).toHaveStyle('height: 78px');
+		expect(getByTestId('test-icon')).toHaveStyle('width: 78px');
 	});
 });
