@@ -4,24 +4,25 @@ import wbc from '@westpac/wbc';
 import { overridesTest } from '../../../../helpers/tests/overrides-test.js';
 import { nestingTest } from '../../../../helpers/tests/nesting-test.js';
 import * as icons from '@westpac/icon';
-import { Icon } from '../../src/Icon.js'; // needs to be imported this way as it is not included in the Icon library
+import { Icon } from '../../src/Icon'; // needs to be imported this way as it is not included in the Icon library
 import { blenderIcon } from '../../src/overrides/icon.js';
+import { IconProps } from '../../src/Icon';
 
 overridesTest({
 	name: 'icon',
 	overrides: ['Icon'],
-	Component: (props: any) => <Icon copyrightYear="2020" size="medium" {...props} />,
+	Component: ({ icon, ...props }: IconProps) => <Icon icon="test-icon" {...props} />,
 });
 
 nestingTest({
 	name: 'icon',
-	Component: (props: any) => <Icon {...props} />,
+	Component: (props: IconProps) => <Icon {...props} />,
 });
 
-function SimpleIcon(props: any) {
+function SimpleIcon({ icon, ...props }: IconProps) {
 	return (
 		<GEL brand={wbc}>
-			<Icon {...props} />
+			<Icon icon={icon} {...props} />
 		</GEL>
 	);
 }
@@ -55,15 +56,15 @@ describe('Icon components', () => {
 		const overridesObj = {
 			Icon: {
 				component: blenderIcon.component,
-				styles: blenderIcon.styles,
-				attributes: blenderIcon.attributes,
+				styles: () => blenderIcon.styles(null, { color: 'primary', size: 'medium' }),
+				attributes: () => blenderIcon.attributes,
 			},
 		};
 		const { container } = render(
 			<GEL brand={wbc}>
-				<SimpleIcon overrides={overridesObj} color="primary" />
-				<SimpleIcon overrides={overridesObj} size="small" />
-				<SimpleIcon overrides={overridesObj} />
+				<SimpleIcon icon="test-icon" overrides={overridesObj} color="primary" />
+				<SimpleIcon icon="test-icon" overrides={overridesObj} size="small" />
+				<SimpleIcon icon="test-icon" overrides={overridesObj} />
 			</GEL>
 		);
 		expect(container).toBeInTheDocument();
