@@ -1,12 +1,11 @@
-import React from 'react';
-import { propTypes, Icon } from './Icon';
+import { Icon, IconProps } from './Icon';
 
 export const InfoIcon = ({
 	assistiveText = 'Info',
 	copyrightYear = '2020',
 	size = 'medium',
 	...props
-}) => (
+}: Omit<IconProps, 'icon'>) => (
 	<Icon
 		icon="InfoIcon"
 		assistiveText={assistiveText}
@@ -21,5 +20,3 @@ export const InfoIcon = ({
 		/>
 	</Icon>
 );
-
-InfoIcon.propTypes = propTypes;

@@ -1,9 +1,70 @@
 import { useBrand, overrideReconciler } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { ReactNode } from 'react';
 
 import { defaultIcon } from './overrides/icon';
 import { defaultSvg } from './overrides/svg';
 import pkg from '../package.json';
+
+export interface IconProps {
+	/**
+	 * The color for the icon.
+	 *
+	 * Defaults to the current text color.
+	 */
+	color?: string;
+
+	/**
+	 * String to use as the `aria-label` for the icon. Set to an empty string if you
+	 * are rendering the icon with visible text to prevent accessibility label
+	 * duplication.
+	 *
+	 * Defaults to the icon name e.g. `BusinessPersonIcon` --> "Business Person"
+	 */
+	assistiveText?: string;
+
+	/**
+	 * Control the size of the icon.
+	 *
+	 * Defaults to "medium" --> 24px
+	 */
+	size?:
+		| 'xsmall'
+		| 'small'
+		| 'medium'
+		| 'large'
+		| 'xlarge'
+		| ('xsmall' | 'small' | 'medium' | 'large' | 'xlarge')[];
+
+	/**
+	 * The icon SVG metadata copyright year text
+	 */
+	//TODO: Ask Senior developer regarding optional
+	copyrightYear?: string;
+
+	/**
+	 * Define Icon
+	 */
+	icon: string;
+
+	/**
+	 * The override API
+	 */
+	overrides?: {
+		Icon?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+		Svg?: {
+			styles?: (...args: unknown[]) => unknown;
+			component?: React.ElementType;
+			attributes?: (...args: unknown[]) => unknown;
+		};
+	};
+	//TODO: Ask Senior developer needs of this prop
+	children?: ReactNode;
+}
 
 // ==============================
 // Component
@@ -18,7 +79,7 @@ export const Icon = ({
 	children,
 	overrides: componentOverrides,
 	...rest
-}) => {
+}: IconProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -57,10 +118,6 @@ export const Icon = ({
 		</Icon>
 	);
 };
-
-// ==============================
-// Types
-// ==============================
 
 export const propTypes = {
 	/**
@@ -110,5 +167,3 @@ export const propTypes = {
 		}),
 	}),
 };
-
-Icon.propTypes = propTypes;

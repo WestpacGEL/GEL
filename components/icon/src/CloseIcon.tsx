@@ -1,12 +1,11 @@
-import React from 'react';
-import { propTypes, Icon } from './Icon';
+import { Icon, IconProps } from './Icon';
 
 export const CloseIcon = ({
 	assistiveText = 'Close',
 	copyrightYear = '2020',
 	size = 'medium',
 	...props
-}) => (
+}: Omit<IconProps, 'icon'>) => (
 	<Icon
 		icon="CloseIcon"
 		assistiveText={assistiveText}
@@ -21,5 +20,3 @@ export const CloseIcon = ({
 		/>
 	</Icon>
 );
-
-CloseIcon.propTypes = propTypes;
