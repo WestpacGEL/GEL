@@ -1,10 +1,5 @@
 import { ReactNode, Dispatch, SetStateAction } from 'react';
 
-// export type Composition = {
-// 	before: string | null;
-// 	after: string | null;
-// };
-
 export type Composition = Record<'before' | 'after', string | null>;
 
 export type Sizes = 'small' | 'medium' | 'large' | 'xlarge';
@@ -18,12 +13,36 @@ export type InputFieldContextType = {
 };
 
 export type InputFieldProps = {
-	label?: string;
-	hideLabel?: boolean;
-	hint?: ReactNode;
-	errorMessage?: string | string[];
-	supportingText?: ReactNode;
-	size?: Sizes;
-	children: ReactNode;
+	/**
+	 * Define an id for internal elements
+	 */
 	instanceId?: string;
+	/**
+	 * Label text
+	 */
+	label?: string;
+	/**
+	 * Visually hide label
+	 */
+	hideLabel?: boolean;
+	/**
+	 * Hint text
+	 */
+	hint?: ReactNode;
+	/**
+	 * Error message text
+	 */
+	errorMessage?: string | string[];
+	/**
+	 * Supporting text
+	 */
+	supportingText?: ReactNode;
+	/**
+	 * Size for Before/After/Input child components
+	 */
+	size?: Sizes;
+	/**
+	 * children
+	 */
+	children: ReactNode;
 };

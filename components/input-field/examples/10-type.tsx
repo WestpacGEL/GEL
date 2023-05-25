@@ -104,7 +104,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 			<h3>Select add on</h3>
 			<InputField label="Select " hint="I am a hint" supportingText="Supporting text">
 				<InputBefore>
-					<Select>
+					<Select size="medium" inline={false} invalid={false}>
 						<option>Select</option>
 						<option>Yearly</option>
 						<option>Monthly</option>
@@ -113,7 +113,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 				</InputBefore>
 				<Input />
 				<InputAfter>
-					<Select>
+					<Select size="medium" inline={false} invalid={false}>
 						<option>Select</option>
 						<option>Yearly</option>
 						<option>Monthly</option>
@@ -123,7 +123,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 			</InputField>
 			<h3>Textarea</h3>
 			<InputField label="Label" hint="I am a hint">
-				<Textarea />
+				<Textarea size="medium" inline={false} invalid={false} />
 			</InputField>
 		</GEL>
 	);

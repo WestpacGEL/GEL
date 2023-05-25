@@ -71,7 +71,7 @@ export const getAddOnStyles = (size: string, composition: Composition) => {
 			default: {
 				borderTopLeftRadius: 0,
 				borderBottomLeftRadius: 0,
-				borderLeft: 'none',
+				borderLeft: 'none !important',
 			},
 			inset: {
 				paddingLeft: insetMap[size],
@@ -81,7 +81,7 @@ export const getAddOnStyles = (size: string, composition: Composition) => {
 			default: {
 				borderTopRightRadius: 0,
 				borderBottomRightRadius: 0,
-				borderRight: 'none',
+				borderRight: 'none !important',
 			},
 			inset: { paddingRight: insetMap[size] },
 		},

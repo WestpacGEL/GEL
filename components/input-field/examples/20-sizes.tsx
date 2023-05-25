@@ -3,6 +3,7 @@ import { InputField, Input, InputBefore, InputAfter } from '@westpac/input-field
 import { Button } from '@westpac/button';
 import { VisibilityIcon, SearchIcon } from '@westpac/icon';
 import { Fragment } from 'react';
+import { Select } from '@westpac/text-input';
 import { Sizes } from '../src/components/InputField';
 
 function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) }) {
@@ -53,6 +54,26 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 						<Input />
 						<InputAfter>
 							<Button size={size}>Check</Button>
+						</InputAfter>
+					</InputField>
+
+					<InputField label="Select " size={size}>
+						<InputBefore>
+							<Select size={size} invalid={false} inline={false}>
+								<option>Select</option>
+								<option>Yearly</option>
+								<option>Monthly</option>
+								<option>Weekly</option>
+							</Select>
+						</InputBefore>
+						<Input />
+						<InputAfter>
+							<Select size={size} invalid={false} inline={false}>
+								<option>Select</option>
+								<option>Yearly</option>
+								<option>Monthly</option>
+								<option>Weekly</option>
+							</Select>
 						</InputAfter>
 					</InputField>
 				</Fragment>

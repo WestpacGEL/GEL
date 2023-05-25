@@ -1,20 +1,12 @@
 import { forwardRef, useMemo, InputHTMLAttributes } from 'react';
 import { useBrand, useMediaQuery } from '@westpac/core';
-import { AddOnType } from '../AddOns';
 import { useInputFieldContext } from '../InputField';
 import { sizeMap, getHeight, getMaxWidth, getAddOnStyles } from './_utils';
 
 // -----------------------------------------------------
 // Text Input
 // -----------------------------------------------------
-type DefaultInputProps = InputHTMLAttributes<HTMLInputElement>;
-
-export interface TextInputProps extends Omit<DefaultInputProps, 'size'> {
-	/**
-	 * Component size
-	 */
-	// size?: 'small' | 'medium' | 'large' | 'xlarge';
-
+export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	/**
 	 * Component width (in chars).
 	 *
@@ -42,7 +34,7 @@ export const Input = forwardRef<HTMLInputElement, TextInputProps>(
 	({ width, inline = false, invalid = false, type = 'text', ...props }, ref) => {
 		const { COLORS, PACKS, TYPE } = useBrand();
 		const mq = useMediaQuery();
-		const { id, ariaDescribedByValue, size, composition } = useInputFieldContext();
+		const { id, ariaDescribedByValue, composition, size } = useInputFieldContext();
 
 		const focus = useMemo(
 			() =>
@@ -85,7 +77,6 @@ export const Input = forwardRef<HTMLInputElement, TextInputProps>(
 					padding: sizeMap[size].padding.join(' '),
 					height: getHeight(size),
 					maxWidth: width && getMaxWidth(size, width),
-					...addOnStyles,
 					'::placeholder': {
 						opacity: 1, // Override Firefox's unusual default opacity
 						color: COLORS.tints.text50,
@@ -111,6 +102,7 @@ export const Input = forwardRef<HTMLInputElement, TextInputProps>(
 						margin: 0,
 						appearance: 'none',
 					},
+					...addOnStyles,
 				}),
 			[COLORS, TYPE, addOnStyles, focus, inline, invalid, mq, size, width]
 		);
@@ -130,67 +122,3 @@ export const Input = forwardRef<HTMLInputElement, TextInputProps>(
 );
 
 Input.displayName = 'TextInput';
-
-// It will get super confusing if you have to mix and match between packages for the input field?
-export const TInput = (props) => {
-	const { COLORS, PACKS, TYPE } = useBrand();
-	const { id, ariaDescribedByValue, size, composition } = useInputFieldContext();
-	const insetMap = {
-		small: '2.25rem', // 18 + 9 + 9
-		medium: '2.625rem', // 18 + 12 + 12
-		large: '3rem', // 18 + 15 + 15
-		xlarge: '3.375rem', // 18 + 18 + 18
-	};
-	const addOnMap = {
-		before: {
-			default: {
-				borderTopLeftRadius: 0,
-				borderBottomLeftRadius: 0,
-				borderLeft: 'none',
-			},
-			inset: {
-				paddingLeft: insetMap[size],
-			},
-		},
-		after: {
-			default: {
-				borderTopRightRadius: 0,
-				borderBottomRightRadius: 0,
-				borderRight: 'none',
-			},
-			inset: { paddingRight: insetMap[size] },
-		},
-	};
-
-	const addOnStyles = ['before', 'after'].reduce((styles, placement) => {
-		if (composition[placement as keyof typeof composition] === AddOnType.Default) {
-			return { ...styles, ...addOnMap[placement].default };
-		} else if (composition[placement] === AddOnType.Inset) {
-			return { ...styles, ...addOnMap[placement].inset };
-		} else {
-			return styles;
-		}
-	}, {});
-
-	return (
-		<input
-			id={id}
-			aria-describedby={ariaDescribedByValue}
-			css={{
-				width: '100%',
-				fontSize: '1rem',
-				padding: 0,
-				boxSizing: 'border-box',
-				// ...TYPE.bodyFont[400],
-				color: COLORS.text,
-				border: '1px solid rgb(147, 144, 162)',
-				borderRadius: '0.1875rem',
-				height: 'calc(1.5em + 0.3125rem + 0.3125rem + 2px)',
-				...addOnStyles,
-			}}
-			{...props}
-		/>
-	);
-};
-
-TInput.displayName = 'TextInput';
