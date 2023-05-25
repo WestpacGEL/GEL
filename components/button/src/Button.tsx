@@ -309,6 +309,15 @@ Button.propTypes = {
 	 */
 	iconColor: PropTypes.string,
 	/**
+	 * Icon size
+	 *
+	 * Defaults to button size prop
+	 */
+	iconSize: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge'])),
+	]),
+	/**
 	 * Justify align button children
 	 */
 	justify: PropTypes.bool,

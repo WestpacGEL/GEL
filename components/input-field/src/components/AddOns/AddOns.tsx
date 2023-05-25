@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useBrand } from '@westpac/core';
 import { AddOnProps, InputAddOnProps } from './AddOns.types';
 import { useInputFieldContext } from '../InputField';
@@ -126,4 +127,72 @@ export const InputAddOn = ({
 			{Icon ? <Icon size="small" /> : children}
 		</Wrapper>
 	);
+};
+
+DefaultAddOn.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
+	/**
+	 * Position of add on i.e. before or after input
+	 */
+	position: PropTypes.oneOf(['after', 'before']).isRequired,
+};
+
+TextAddOn.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
+	/**
+	 * Position of add on i.e. before or after input
+	 */
+	position: PropTypes.oneOf(['after', 'before']).isRequired,
+};
+
+IconAddOn.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
+	/**
+	 * Position of add on i.e. before or after input
+	 */
+	position: PropTypes.oneOf(['after', 'before']).isRequired,
+};
+
+InputAddOn.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
+	/**
+	 * Icon to display
+	 */
+	icon: PropTypes.func,
+	/**
+	 * Render compononent within input borders
+	 */
+	inset: PropTypes.bool,
+	/**
+	 * Position of add on i.e. before or after input
+	 */
+	position: PropTypes.oneOf(['after', 'before']).isRequired,
 };

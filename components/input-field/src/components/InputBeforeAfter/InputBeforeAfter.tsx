@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { InputAddOn, AddOnType } from '../AddOns';
 import { useInputFieldContext, Composition } from '../InputField';
@@ -32,3 +33,37 @@ export const InputAfter = ({ inset, icon, ...props }: InputBeforeAfterProps) => 
 };
 
 InputAfter.displayName = 'InputAfter';
+
+InputBefore.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Renders an icon and automatically insets within input borders
+	 */
+	icon: PropTypes.func,
+	/**
+	 * Moves component within the input component borders
+	 *
+	 * Used with icon only components
+	 */
+	inset: PropTypes.bool,
+};
+
+InputAfter.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Renders an icon and automatically insets within input borders
+	 */
+	icon: PropTypes.func,
+	/**
+	 * Moves component within the input component borders
+	 *
+	 * Used with icon only components
+	 */
+	inset: PropTypes.bool,
+};

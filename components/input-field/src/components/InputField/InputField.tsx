@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { createContext, useContext, useMemo, useId, useState, useEffect, ReactNode } from 'react';
 import { FormLabel, Hint, ErrorMessage } from '@westpac/form';
 import { SupportingText } from '../SupportingText';
@@ -74,4 +75,59 @@ export const InputField = ({
 			</InputFieldWrapper>
 		</InputFieldContext.Provider>
 	);
+};
+
+InputFieldWrapper.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	children: PropTypes.node,
+};
+
+InputWrapper.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	children: PropTypes.node,
+};
+
+InputField.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * children
+	 */
+	children: PropTypes.node,
+	/**
+	 * Error message text
+	 */
+	errorMessage: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+	/**
+	 * Visually hide label
+	 */
+	hideLabel: PropTypes.bool,
+	/**
+	 * Hint text
+	 */
+	hint: PropTypes.node,
+	/**
+	 * Define an id for internal elements
+	 */
+	instanceId: PropTypes.string,
+	/**
+	 * Label text
+	 */
+	label: PropTypes.string,
+	/**
+	 * Size for Before/After/Input child components
+	 */
+	size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+	/**
+	 * Supporting text
+	 */
+	supportingText: PropTypes.node,
 };

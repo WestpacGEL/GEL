@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useBrand } from '@westpac/core';
 import { SupportingTextProps } from './SupportingText.types';
 
@@ -17,4 +18,19 @@ export const SupportingText = ({ id, children, ...props }: SupportingTextProps) 
 			{children}
 		</p>
 	);
+};
+
+SupportingText.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Children
+	 */
+	children: PropTypes.node,
+	/**
+	 * Id for supporting text (used for aria-describedy)
+	 */
+	id: PropTypes.string,
 };

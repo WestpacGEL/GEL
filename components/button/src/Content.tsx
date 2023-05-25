@@ -191,6 +191,15 @@ Content.propTypes = {
 	 */
 	iconColor: PropTypes.string,
 	/**
+	 * Icon size
+	 *
+	 * Defaults to button size prop
+	 */
+	iconSize: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge'])),
+	]),
+	/**
 	 * Button size
 	 */
 	size: PropTypes.oneOfType([

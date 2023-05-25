@@ -7,7 +7,6 @@ import { Button } from '@westpac/button';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
 import { InputFieldProps } from '../../src/components/InputField';
-import { ErrorBoundary } from '../../../../helpers/tests/error-boundary.js';
 
 const SimpleInputField = (props: InputFieldProps) => (
 	<GEL brand={wbc}>

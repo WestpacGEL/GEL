@@ -73,6 +73,10 @@ Hint.propTypes = {
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
 	/**
+	 * Hint Id
+	 */
+	id: PropTypes.string,
+	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({

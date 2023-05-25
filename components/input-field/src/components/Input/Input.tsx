@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { forwardRef, useMemo, InputHTMLAttributes } from 'react';
 import { useBrand, useMediaQuery } from '@westpac/core';
 import { useInputFieldContext } from '../InputField';
@@ -122,3 +123,28 @@ export const Input = forwardRef<HTMLInputElement, TextInputProps>(
 );
 
 Input.displayName = 'TextInput';
+
+Input.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * Inline mode
+	 */
+	inline: PropTypes.bool,
+	/**
+	 * Invalid input mode
+	 */
+	invalid: PropTypes.bool,
+	/**
+	 * Type
+	 */
+	type: PropTypes.string,
+	/**
+	 * Component width (in chars).
+	 *
+	 * This prop sets a fixed width, measured in characters.
+	 */
+	width: PropTypes.oneOf([2, 3, 4, 5, 10, 20, 30]),
+};
