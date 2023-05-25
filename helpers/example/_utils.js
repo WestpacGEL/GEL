@@ -10,17 +10,14 @@ const fs = require('fs');
  */
 const slugFromFilename = (filename) => {
 	if (filename.match(/^[0-9][0-9]-/)) {
-		console.log('1', filename.slice(3, -3));
 		if (filename.match(/(.js|.ts)$/)) {
 			return filename.slice(3, -3);
 		} else if (filename.match(/.tsx$/)) {
 			return filename.slice(3, -4);
 		}
 	} else if (filename.match(/(.js|.ts)$/)) {
-		console.log('2', filename.slice(0, -3));
 		return filename.slice(0, -3);
 	} else if (filename.match(/.tsx$/)) {
-		console.log('3', filename.slice(0, -4));
 		return filename.slice(0, -4);
 	} else {
 		return filename;
