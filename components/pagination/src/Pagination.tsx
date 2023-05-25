@@ -26,7 +26,7 @@ export const usePaginationContext = () => {
 	return context;
 };
 
-interface PaginationProps {
+export interface PaginationProps {
 	/**
 	 * Index of current active page (zero-indexed)
 	 */

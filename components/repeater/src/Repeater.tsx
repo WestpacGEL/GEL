@@ -242,6 +242,10 @@ Repeater.propTypes = {
 	 */
 	children: PropTypes.node,
 	/**
+	 * Index heading tag to use for index on separator version
+	 */
+	indexTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
+	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({

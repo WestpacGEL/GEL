@@ -32,7 +32,10 @@ BlenderButton.displayName = 'BlenderButton';
 // Styles
 // ==============================
 
-const buttonStyles = (_: any, { tag, type, look, size, soft, block, justify, disabled }: any) => {
+const buttonStyles = (
+	_: any,
+	{ tag, type, look, size, soft, block, justify, disabled, horizontalPadding }: any
+) => {
 	const mq = useMediaQuery();
 	const { COLORS, TYPE } = useBrand();
 
@@ -191,6 +194,7 @@ const buttonStyles = (_: any, { tag, type, look, size, soft, block, justify, dis
 				padding: 0,
 			},
 		}),
+
 		// =========
 
 		label: 'button',
@@ -212,7 +216,11 @@ const buttonStyles = (_: any, { tag, type, look, size, soft, block, justify, dis
 		...(look !== 'unstyled' && {
 			fontSize: sizeArr.map((s) => s && sizeMap[s].fontSize),
 			...TYPE.bodyFont[400],
-			padding: sizeArr.map((s) => s && sizeMap[s].padding),
+			padding: sizeArr.map((s) =>
+				!horizontalPadding && look === 'link'
+					? s && sizeMap[s].strippedLinkPadding
+					: s && sizeMap[s].padding
+			),
 			height: sizeArr.map((s) => s && sizeMap[s].height),
 			border: look !== 'link' ? '1px solid transparent' : 0,
 			borderRadius: look !== 'link' && '0.1875rem',
