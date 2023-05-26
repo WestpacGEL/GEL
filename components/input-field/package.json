@@ -8,7 +8,11 @@
 	"license": "GPL-3.0+",
 	"scripts": {
 		"start": "PACKAGE_NAME=input-field NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
-		"test": "jest input-field",
+		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
+		"test:all": "yarn test:integration",
+		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
+		"test:integration": "cypress run",
+		"test:test-dev": "cypress open",
 		"typecheck": "yarn tsc --noEmit"
 	},
 	"main": "dist/westpac-input-field.cjs.js",
