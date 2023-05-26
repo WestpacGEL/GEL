@@ -176,15 +176,15 @@ export const Modal = ({
 		setMounted(true);
 	}, []);
 
-	// These styles call hooks and will create hook call warning if called directly in component
+	// These styles call hooks and will create hook call warning if called in return for component
 	const modalDialogStyle = modalDialogStyles(state);
 	const headerStyle = headerStyles(state);
 	const headingStyle = headingStyles(state);
 	const closeBtnStyle = closeBtnStyles(state);
 
 	/**
-	 * Tab selection causes re-render of modal if portal is separated out as component and passed in
-	 * however if done as seperate component won't have the hook call warnings
+	 * Tab selection causes re-render of modal if portal is separated out as component and included
+	 * in the return
 	 **/
 	return (
 		<Fragment>
