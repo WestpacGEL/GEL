@@ -171,7 +171,11 @@ function ExampleChildren() {
 					'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem quae possimus, nam nobis cumque ullam et harum, magni quam distinctio, corporis sunt saepe.',
 					'Lorem ipsum dolor sit amet',
 				].map((title) => (
-					<FlexiCell withBorder key={title} badge={<Badge css={{ display: 'block' }} look="primary" value="Badge" />}>
+					<FlexiCell
+						withBorder
+						key={title}
+						badge={<Badge css={{ display: 'block' }} look="primary" value="Badge" />}
+					>
 						<FlexiCell.Body>
 							<img
 								src="https://images.unsplash.com/photo-1657299170950-87e5b0eaf77c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
