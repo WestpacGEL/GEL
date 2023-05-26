@@ -34,7 +34,7 @@ BlenderButton.displayName = 'BlenderButton';
 
 const buttonStyles = (
 	_: any,
-	{ tag, type, look, size, soft, block, justify, disabled, horizontalPadding, minWidth }: any
+	{ tag, type, look, size, soft, block, justify, disabled, horizontalPadding }: any
 ) => {
 	const mq = useMediaQuery();
 	const { COLORS, TYPE } = useBrand();
@@ -213,23 +213,19 @@ const buttonStyles = (
 		boxSizing: 'border-box',
 		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
 		width: blockArr.map((b) => b !== null && (b ? '100%' : 'auto')),
-		minWidth: minWidth,
 		...(look !== 'unstyled' && {
 			fontSize: sizeArr.map((s) => s && sizeMap[s].fontSize),
 			...TYPE.bodyFont[400],
-			padding: sizeArr.map((s) => s && sizeMap[s].padding),
+			padding: sizeArr.map((s) =>
+				!horizontalPadding && look === 'link'
+					? s && sizeMap[s].strippedLinkPadding
+					: s && sizeMap[s].padding
+			),
 			height: sizeArr.map((s) => s && sizeMap[s].height),
 			border: look !== 'link' ? '1px solid transparent' : 0,
 			borderRadius: look !== 'link' && '0.1875rem',
 			transition: 'background 0.2s ease, color 0.2s ease',
 		}),
-
-		// Trim horizontal padding if button is link style and false for horizontalPadding prop
-		...(!horizontalPadding &&
-			look === 'link' && {
-				paddingLeft: 0,
-				paddingRight: 0,
-			}),
 		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 
 		// Hover state (but excluded if disabled or inside a disabled fieldset)
