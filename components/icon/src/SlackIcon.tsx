@@ -5,6 +5,7 @@ export const SlackIcon = ({
 	assistiveText = 'Slack',
 	copyrightYear = '2020',
 	size = 'medium',
+	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
@@ -13,6 +14,7 @@ export const SlackIcon = ({
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		color={color}
 		overrides={overrides}
 		{...props}
 	>
@@ -37,6 +39,12 @@ SlackIcon.propTypes = {
 	 * Defaults to the icon name e.g. `BusinessPersonIcon` --> "Business Person"
 	 */
 	assistiveText: PropTypes.string,
+	/**
+	 * The color for the icon.
+	 *
+	 * Defaults to the current text color.
+	 */
+	color: PropTypes.string,
 	/**
 	 * The icon SVG metadata copyright year text
 	 */
