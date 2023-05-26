@@ -1,4 +1,3 @@
-import React from 'react';
 import { propTypes, Icon } from './Icon';
 
 export const AccessibilityIcon = ({
