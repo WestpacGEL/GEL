@@ -1,86 +1,32 @@
 import { useBrand, useMediaQuery } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { useMemo } from 'react';
-import { FlexiCellAdornment } from '../FlexiCellAdornment';
-import { FlexiCellBody } from '../FlexiCellBody';
-import { FlexiCellFooter } from '../FlexiCellFooter';
-import { FlexiCellHint } from '../FlexiCellHint';
-import { FlexiCellLabel } from '../FlexiCellLabel';
-import { FlexiCellProps } from './FlexiCell.types';
+import { FlexiCellBodyProps } from './FlexiCellBody.types';
 
-/** Flexi Cell: Flexi Cell */
-export const FlexiCell = ({
-	withBorder,
-	before,
-	after,
-	children,
-	body,
-	tag: Tag = 'div',
-	badge,
-	...props
-}: FlexiCellProps) => {
-	const { SPACING, PACKS, COLORS } = useBrand();
-	const mq = useMediaQuery();
-	const css = useMemo(
-		() =>
-			mq({
-				position: 'relative',
-				display: 'flex',
-				padding: [SPACING(2), SPACING(3)],
-				background: 'white',
-				gap: SPACING(2),
-				color: 'inherit',
-				textDecoration: 'inherit',
-				...(withBorder && { border: `solid 1px ${COLORS.border}`, borderRadius: '3px' }),
-				':focus': { ...PACKS.focus },
-			}),
-		[COLORS.border, PACKS.focus, SPACING, mq, withBorder]
-	);
-
+/** Flexi Cell Body: Flexi Cell Body */
+export const FlexiCellBody = ({ children, tag: Tag = 'div', ...props }: FlexiCellBodyProps) => {
+	const { SPACING } = useBrand();
 	return (
-		<Tag css={css} {...props}>
-			{badge && <div css={{ top: 0, right: 0, position: 'absolute', zIndex: 9 }}>{badge}</div>}
-			{before}
-			<div
-				css={{
-					flex: 1,
-					display: 'flex',
-					flexDirection: 'column',
-				}}
-			>
-				{body ? <FlexiCellBody>{children}</FlexiCellBody> : children}
-			</div>
-			{after}
+		<Tag
+			{...props}
+			css={{
+				overflow: 'hidden',
+				display: 'flex',
+				flex: 1,
+				flexDirection: 'column',
+				gap: SPACING(1),
+			}}
+		>
+			{children}
 		</Tag>
 	);
 };
 
-FlexiCell.Body = FlexiCellBody;
-FlexiCell.Footer = FlexiCellFooter;
-FlexiCell.Adornment = FlexiCellAdornment;
-FlexiCell.Hint = FlexiCellHint;
-FlexiCell.Label = FlexiCellLabel;
-
-FlexiCell.propTypes = {
+FlexiCellBody.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
-	/**
-	 * Renders an element on the right
-	 */
-	after: PropTypes.node,
-	/**
-	 * Renders an element on the left
-	 */
-	before: PropTypes.node,
-	/**
-	 * the middle content of FlexiCell
-	 */
 	children: PropTypes.node,
-	/**
-	 * The native tag that flexicell will be rendered
-	 */
 	tag: PropTypes.oneOf([
 		'a',
 		'abbr',
@@ -260,7 +206,7 @@ FlexiCell.propTypes = {
 		'webview',
 	]),
 	/**
-	 * Adds a border radius and a border
+	 * Define if it is going to truncate the text
 	 */
-	withBorder: PropTypes.bool,
+	truncateText: PropTypes.bool,
 };
