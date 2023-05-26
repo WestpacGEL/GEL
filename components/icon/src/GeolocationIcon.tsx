@@ -5,6 +5,7 @@ export const GeolocationIcon = ({
 	assistiveText = 'Geolocation',
 	copyrightYear = '2020',
 	size = 'medium',
+	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
@@ -35,6 +36,21 @@ GeolocationIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Icon: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Svg: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
 	/**
 	 * Control the size of the icon.
 	 *
