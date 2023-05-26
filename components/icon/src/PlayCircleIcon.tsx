@@ -13,6 +13,7 @@ export const PlayCircleIcon = ({
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		overrides={overrides}
 		{...props}
 	>
 		<path

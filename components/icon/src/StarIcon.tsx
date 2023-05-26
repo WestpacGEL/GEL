@@ -13,6 +13,7 @@ export const StarIcon = ({
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		overrides={overrides}
 		{...props}
 	>
 		<polygon

@@ -13,6 +13,7 @@ export const SearchIcon = ({
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		overrides={overrides}
 		{...props}
 	>
 		<path

@@ -13,6 +13,7 @@ export const PlayIcon = ({
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		overrides={overrides}
 		{...props}
 	>
 		<polygon fill="currentColor" fillRule="evenodd" points="8 5 8 19 19 12" />

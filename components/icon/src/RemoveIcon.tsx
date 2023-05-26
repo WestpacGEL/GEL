@@ -13,6 +13,7 @@ export const RemoveIcon = ({
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		overrides={overrides}
 		{...props}
 	>
 		<polygon fill="currentColor" fillRule="evenodd" points="4 11 4 13 20 13 20 11" />
