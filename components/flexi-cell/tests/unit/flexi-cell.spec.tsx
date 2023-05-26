@@ -18,6 +18,7 @@ describe('Given the FlexiCell is rendered', () => {
 					tag="a"
 					href="#"
 					withBorder
+					badge={<h4>badge</h4>}
 					before={<h3>before</h3>}
 					after={
 						<FlexiCell.Adornment align="top">
@@ -31,6 +32,7 @@ describe('Given the FlexiCell is rendered', () => {
 				</SimpleFlexiCell>
 			);
 
+			expect(getByText('badge')).toBeVisible();
 			expect(getByText('before')).toBeVisible();
 			expect(getByText('$9,999.99')).toBeVisible();
 			expect(getByText('avail $9,999.99')).toBeVisible();
