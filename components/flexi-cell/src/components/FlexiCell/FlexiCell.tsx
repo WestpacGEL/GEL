@@ -71,9 +71,17 @@ FlexiCell.propTypes = {
 	 */
 	after: PropTypes.node,
 	/**
+	 * Renders an element on the top right corner
+	 */
+	badge: PropTypes.node,
+	/**
 	 * Renders an element on the left
 	 */
 	before: PropTypes.node,
+	/**
+	 * Injects the FlexiCell.Body inside of the children
+	 */
+	body: PropTypes.bool,
 	/**
 	 * the middle content of FlexiCell
 	 */

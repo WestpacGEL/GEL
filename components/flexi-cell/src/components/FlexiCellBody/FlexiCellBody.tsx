@@ -205,8 +205,4 @@ FlexiCellBody.propTypes = {
 		'wbr',
 		'webview',
 	]),
-	/**
-	 * Define if it is going to truncate the text
-	 */
-	truncateText: PropTypes.bool,
 };
