@@ -84,6 +84,13 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 	iconColor?: string;
 
 	/**
+	 * Icon size
+	 *
+	 * Defaults to button size prop
+	 */
+	iconSize?: 'small' | 'medium' | 'large' | 'xlarge' | ('small' | 'medium' | 'large' | 'xlarge')[];
+
+	/**
 	 * Justify align button children
 	 */
 	justify?: boolean;
@@ -155,6 +162,7 @@ export const Button = forwardRef(
 			iconAfter,
 			iconBefore,
 			iconColor,
+			iconSize,
 			assistiveText,
 			type,
 			dropdown,
@@ -197,6 +205,7 @@ export const Button = forwardRef(
 			iconAfter,
 			iconBefore,
 			iconColor,
+			iconSize,
 			justify,
 			disabled,
 			assistiveText,
@@ -233,6 +242,7 @@ export const Button = forwardRef(
 							iconBefore={iconBefore}
 							dropdown={dropdown}
 							iconColor={iconColor}
+							iconSize={iconSize}
 						>
 							{children}
 						</Content>
@@ -298,6 +308,15 @@ Button.propTypes = {
 	 * Defaults to the current text color.
 	 */
 	iconColor: PropTypes.string,
+	/**
+	 * Icon size
+	 *
+	 * Defaults to button size prop
+	 */
+	iconSize: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge'])),
+	]),
 	/**
 	 * Justify align button children
 	 */

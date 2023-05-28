@@ -6,6 +6,14 @@ export type FlexiCellProps = {
 	 */
 	withBorder?: boolean;
 	/**
+	 * Injects the FlexiCell.Body inside of the children
+	 */
+	body?: boolean;
+	/**
+	 * Renders an element on the top right corner
+	 */
+	badge?: ReactNode;
+	/**
 	 * Renders an element on the left
 	 */
 	before?: ReactNode;
