@@ -59,9 +59,10 @@ module.exports = () => ({
 		path: path.resolve(__dirname, '../../docs'),
 		publicPath: '/',
 	},
-
+	resolve: {
+		extensions: ['.js', '.jsx', '.ts', '.tsx'],
+	},
 	target: ['web', 'es5'],
-
 	performance: {
 		hints: false,
 		maxEntrypointSize: 512000,
@@ -71,7 +72,7 @@ module.exports = () => ({
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
+				test: /\.(ts|js)x?$/,
 				exclude: babelLoaderExcludeNodeModulesExcept([
 					'react-spring',
 					'react-use-measure',
