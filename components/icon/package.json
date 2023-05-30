@@ -67,14 +67,14 @@
 	"components": [
 		{
 			"name": "Icon",
-			"src": "Icon.js"
+			"src": "Icon.tsx"
 		}
 	],
 	"preconstruct": {
 		"entrypoints": [
-			"*.js",
+			"*.tsx",
 			"index.ts",
-			"!Icon.js",
+			"!Icon.tsx",
 			"!overrides/*"
 		]
 	}
