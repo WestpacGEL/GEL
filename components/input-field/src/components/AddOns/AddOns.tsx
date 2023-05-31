@@ -9,7 +9,6 @@ const DefaultAddOn = ({ position, children, ...props }: AddOnProps) => {
 			css={{
 				display: 'flex',
 				flexShrink: 0,
-				overflow: 'hidden',
 				'> button, select': {
 					...(position === 'before' ? { borderTopRightRadius: 0, borderBottomRightRadius: 0 } : {}),
 					...(position === 'after' ? { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 } : {}),
