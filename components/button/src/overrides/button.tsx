@@ -223,7 +223,7 @@ const buttonStyles = (
 			),
 			height: sizeArr.map((s) => s && sizeMap[s].height),
 			border: look !== 'link' ? '1px solid transparent' : 0,
-			borderRadius: look !== 'link' && '0.1875rem',
+			borderRadius: '0.1875rem',
 			transition: 'background 0.2s ease, color 0.2s ease',
 		}),
 		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
