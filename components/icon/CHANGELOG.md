@@ -1,5 +1,11 @@
 # @westpac/icon
 
+## 2.2.0
+
+### Minor Changes
+
+- cab56804: Updates baseIcon by adding TS interface and migrates all icon files from js to tsx
+
 ## 2.1.1
 
 ### Patch Changes

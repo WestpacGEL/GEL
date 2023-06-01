@@ -1,5 +1,16 @@
 # @westpac/selector
 
+## 3.3.0
+
+### Minor Changes
+
+- c024faa1: changing so the interface file gets exported
+
+### Patch Changes
+
+- Updated dependencies [cab56804]
+  - @westpac/icon@2.2.0
+
 ## 3.2.1
 
 ### Patch Changes
