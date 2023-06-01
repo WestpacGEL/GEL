@@ -1,4 +1,4 @@
-import { jsx, getLabel, formatClassName } from '@westpac/core';
+import { jsx, getLabel, formatClassName, useBrand } from '@westpac/core';
 
 // ==============================
 // Component
@@ -14,15 +14,18 @@ const BlenderModalContent = ({ state, className, ...rest }) => (
 // Styles
 // ==============================
 
-const modalContentStyles = () => ({
-	label: getLabel('modal-content'),
-	position: 'relative',
-	backgroundColor: '#fff',
-	borderRadius: '0.1875rem',
-	boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
-	pointerEvents: 'auto',
-	overflow: 'hidden',
-});
+const modalContentStyles = () => {
+	const { COLORS } = useBrand();
+	return {
+		label: getLabel('modal-content'),
+		position: 'relative',
+		backgroundColor: COLORS.white,
+		borderRadius: '0.1875rem',
+		boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
+		pointerEvents: 'auto',
+		overflow: 'hidden',
+	};
+};
 
 // ==============================
 // Attributes

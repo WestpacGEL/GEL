@@ -199,6 +199,8 @@ declare module '@westpac/bom' {
 		pop: string;
 		primary: string;
 		text: string;
+		white: string;
+		black: string;
 
 		// reserved
 		success: string;

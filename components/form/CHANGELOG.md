@@ -1,5 +1,17 @@
 # @westpac/form
 
+## 3.2.2
+
+### Patch Changes
+
+- 6d326e14: Add id prop type
+- Updated dependencies [cab56804]
+- Updated dependencies [1f2e1275]
+- Updated dependencies [95cfa546]
+  - @westpac/icon@2.2.0
+  - @westpac/text-input@2.4.0
+  - @westpac/repeater@2.4.0
+
 ## 3.2.1
 
 ### Patch Changes

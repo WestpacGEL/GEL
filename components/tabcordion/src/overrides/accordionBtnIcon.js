@@ -10,7 +10,9 @@ const AccordionBtnIcon = ({ state: { hidden }, ...rest }) => {
 	const { COLORS } = useBrand();
 	const Icon = hidden ? ExpandMoreIcon : ExpandLessIcon;
 
-	return <Icon color={COLORS.muted} size="small" assistiveText={null} {...rest} />;
+	return (
+		<Icon copyrightYear="2020" color={COLORS.muted} size="small" assistiveText={null} {...rest} />
+	);
 };
 
 const BlenderAccordionBtnIcon = (props) => {

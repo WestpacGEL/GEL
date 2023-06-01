@@ -4,7 +4,7 @@ export const tabcordion = ({ COLORS }) => ({
 			if (look === 'lego') {
 				return {
 					...styles,
-					color: selected ? COLORS.hero : '#fff',
+					color: selected ? COLORS.hero : COLORS.white,
 				};
 			}
 			return styles;

@@ -27,7 +27,7 @@ interface CompactaProps {
 	/**
 	 * Tag for primary title
 	 */
-	titleTag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+	titleTag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 	/**
 	 * Component to repeat
 	 */
@@ -455,4 +455,8 @@ Compacta.propTypes = {
 			styles: PropTypes.func,
 		}),
 	}),
+	/**
+	 * Tag for primary title
+	 */
+	titleTag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
 };

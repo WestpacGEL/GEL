@@ -39,7 +39,7 @@ const wellStyles = () => {
 
 		// Nested Well styling
 		'& > &': {
-			backgroundColor: '#fff',
+			backgroundColor: COLORS.white,
 			margin: `${SPACING(2)} 0`,
 		},
 	})[0];

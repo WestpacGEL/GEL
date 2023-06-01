@@ -1,5 +1,12 @@
 # @westpac/table
 
+## 2.3.0
+
+### Minor Changes
+
+- 4ca327f4: export type interface
+- 1f2e1275: Add white, black tokens and update references
+
 ## 2.2.1
 
 ### Patch Changes

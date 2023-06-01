@@ -35,7 +35,7 @@ export const useTabcordionContext = () => {
 	return context;
 };
 
-interface TabcordionProps {
+export interface TabcordionProps {
 	/**
 	 * Define an id for the elements e.g. for an instanceId of "sidebar-tabs" --> "sidebar-tabs-panel-1" etc.
 	 */

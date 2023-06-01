@@ -156,8 +156,8 @@ export const Sidebar = ({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [width]);
 
-	const keyHandler = (event) => {
-		if (open && event.keyCode === 27) handleOpen();
+	const keyHandler = (event: KeyboardEvent) => {
+		if (open && event.code === 'Escape') handleOpen();
 	};
 
 	useEffect(() => {

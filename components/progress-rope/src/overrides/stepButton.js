@@ -104,7 +104,7 @@ export const stepButtonStyles = (_, { end, grouped, visited, active, furthest })
 					: visited
 					? '3px'
 					: '2px', //a11y: filling with border for HCM support
-			backgroundColor: '#fff',
+			backgroundColor: COLORS.white,
 			boxSizing: 'border-box',
 		},
 	};

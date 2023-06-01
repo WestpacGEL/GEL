@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 
@@ -8,9 +8,17 @@ import pkg from '../package.json';
 
 export interface HintProps {
 	/**
+	 * Hint Id
+	 */
+	id?: string;
+	/**
 	 * Component tag
 	 */
 	tag?: ((...args: unknown[]) => unknown) | string;
+	/**
+	 * Hint content
+	 */
+	children: ReactNode;
 	/**
 	 * The override API
 	 */
@@ -27,7 +35,7 @@ export interface HintProps {
 // Component
 // ==============================
 
-export const Hint = ({ tag = 'p', overrides, ...rest }: HintProps) => {
+export const Hint = ({ id, tag = 'p', overrides, ...rest }: HintProps) => {
 	const {
 		OVERRIDES: { [pkg.name]: tokenOverrides },
 		[pkg.name]: brandOverrides,
@@ -54,7 +62,9 @@ export const Hint = ({ tag = 'p', overrides, ...rest }: HintProps) => {
 		Hint: { component: Hint, styles: hintStyles, attributes: hintAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	return <Hint {...rest} state={state} {...hintAttributes(state)} css={hintStyles(state)} />;
+	return (
+		<Hint id={id} {...rest} state={state} {...hintAttributes(state)} css={hintStyles(state)} />
+	);
 };
 
 Hint.propTypes = {
@@ -62,6 +72,10 @@ Hint.propTypes = {
 	// | These PropTypes are generated from the TypeScript type definitions |
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
+	/**
+	 * Hint Id
+	 */
+	id: PropTypes.string,
 	/**
 	 * The override API
 	 */
