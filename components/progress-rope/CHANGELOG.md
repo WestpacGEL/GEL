@@ -1,5 +1,12 @@
 # @westpac/progress-rope
 
+## 3.3.0
+
+### Minor Changes
+
+- cc621e16: fix optional PropTypes with default values & remove unnecessary override component from ProgressBar component
+- 1f2e1275: Add white, black tokens and update references
+
 ## 3.2.1
 
 ### Patch Changes

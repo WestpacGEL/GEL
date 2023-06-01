@@ -1,5 +1,20 @@
 # @westpac/form-pod
 
+## 4.0.0
+
+### Major Changes
+
+- d60ae33b: fix iconColor and onClick props for FormPodContactList component
+
+### Minor Changes
+
+- 1f2e1275: Add white, black tokens and update references
+
+### Patch Changes
+
+- Updated dependencies [cab56804]
+  - @westpac/icon@2.2.0
+
 ## 3.2.1
 
 ### Patch Changes
