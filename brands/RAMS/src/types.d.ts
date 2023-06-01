@@ -199,6 +199,8 @@ declare module '@westpac/rams' {
 		pop: string;
 		primary: string;
 		text: string;
+		white: string;
+		black: string;
 
 		// reserved
 		success: string;

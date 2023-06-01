@@ -84,7 +84,7 @@ describe('TextInput component', () => {
 		const inputNode = screen.getByDisplayValue('sample');
 		expect(inputNode).toBeInTheDocument();
 		expect(inputNode.value).toEqual('sample');
-		expect(inputNode.className).toEqual('css-4t3uc7-textInput');
+		expect(inputNode.className).toEqual('css-13g1z14-textInput');
 		const user = userEvent.setup();
 		await user.tripleClick(inputNode);
 		await user.keyboard('{backspace}');
