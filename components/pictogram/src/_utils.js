@@ -16,8 +16,8 @@ export const getColors = (mode) => {
 				highlight: COLORS.hero,
 			},
 			light: {
-				outline: '#fff',
-				highlight: '#fff',
+				outline: COLORS.white,
+				highlight: COLORS.white,
 			},
 			duo: {
 				outline: COLORS.hero,
@@ -30,8 +30,8 @@ export const getColors = (mode) => {
 				highlight: COLORS.hero,
 			},
 			light: {
-				outline: '#fff',
-				highlight: '#fff',
+				outline: COLORS.white,
+				highlight: COLORS.white,
 			},
 			duo: {
 				outline: COLORS.hero,
@@ -44,8 +44,8 @@ export const getColors = (mode) => {
 				highlight: COLORS.hero,
 			},
 			light: {
-				outline: '#fff',
-				highlight: '#fff',
+				outline: COLORS.white,
+				highlight: COLORS.white,
 			},
 			duo: {
 				outline: COLORS.hero,
@@ -58,8 +58,8 @@ export const getColors = (mode) => {
 				highlight: COLORS.primary,
 			},
 			light: {
-				outline: '#fff',
-				highlight: '#fff',
+				outline: COLORS.white,
+				highlight: COLORS.white,
 			},
 			duo: {
 				outline: COLORS.primary,
@@ -72,8 +72,8 @@ export const getColors = (mode) => {
 				highlight: COLORS.text,
 			},
 			light: {
-				outline: '#fff',
-				highlight: '#fff',
+				outline: COLORS.white,
+				highlight: COLORS.white,
 			},
 			duo: {
 				outline: COLORS.text,
@@ -86,8 +86,8 @@ export const getColors = (mode) => {
 				highlight: COLORS.hero,
 			},
 			light: {
-				outline: '#fff',
-				highlight: '#fff',
+				outline: COLORS.white,
+				highlight: COLORS.white,
 			},
 			duo: {
 				outline: COLORS.hero,
@@ -100,8 +100,8 @@ export const getColors = (mode) => {
 				highlight: COLORS.hero,
 			},
 			light: {
-				outline: '#fff',
-				highlight: '#fff',
+				outline: COLORS.white,
+				highlight: COLORS.white,
 			},
 			duo: {
 				outline: COLORS.hero,

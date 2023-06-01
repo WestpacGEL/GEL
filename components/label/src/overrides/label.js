@@ -38,8 +38,8 @@ const labelStyles = (_, { look }) => {
 		textAlign: 'center',
 		verticalAlign: 'baseline',
 		whiteSpace: 'nowrap',
-		color: look === 'faint' ? COLORS.muted : '#fff',
-		backgroundColor: look === 'faint' ? '#fff' : COLORS[look],
+		color: look === 'faint' ? COLORS.muted : COLORS.white,
+		backgroundColor: look === 'faint' ? COLORS.white : COLORS[look],
 		borderColor: look === 'faint' ? COLORS.border : COLORS[look],
 		...TYPE.bodyFont[400],
 
@@ -48,9 +48,9 @@ const labelStyles = (_, { look }) => {
 		},
 
 		'@media print': {
-			color: '#000',
-			backgroundColor: '#fff',
-			border: '1px solid #000',
+			color: COLORS.black,
+			backgroundColor: COLORS.white,
+			border: `1px solid ${COLORS.black}`,
 		},
 	};
 };

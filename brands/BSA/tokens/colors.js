@@ -12,6 +12,8 @@ const COLORS = {
 	pop: '#00ADBD', //Bight
 	primary: '#D81B2B',
 	text: '#333',
+	white: '#FFFFFF',
+	black: '#000000',
 
 	// reserved
 	success: '#008000',

@@ -12,6 +12,8 @@ const COLORS = {
 	pop: '#78C339', //RAMS Green
 	primary: '#047DBC',
 	text: '#333',
+	white: '#FFFFFF',
+	black: '#000000',
 
 	// reserved
 	success: '#008000',

@@ -77,7 +77,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 		...TYPE.bodyFont[400],
 		lineHeight: sizeMap[size].lineHeight,
 		color: COLORS.text,
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 		border: `${sizeMap[size].borderWidth}px solid ${
 			invalid || rest.ariaInvalid ? COLORS.danger : COLORS.borderDark
 		}`,
@@ -128,7 +128,7 @@ const selectStyles = (_, { size, width, inline, invalid, ...rest }) => {
 			backgroundColor: 'transparent',
 
 			':disabled': {
-				backgroundColor: '#fff',
+				backgroundColor: COLORS.white,
 			},
 		},
 	})[0];

@@ -17,10 +17,10 @@ const DatePicker = ({ state: _, ...rest }) => {
 					:root {
 						--duet-color-primary: ${COLORS.primary};
 						--duet-color-text: ${COLORS.text};
-						--duet-color-text-active: #fff;
+						--duet-color-text-active: ${COLORS.white};
 						--duet-color-placeholder: ${COLORS.tints.text50};
 						--duet-color-button: ${COLORS.background};
-						--duet-color-surface: #fff;
+						--duet-color-surface: ${COLORS.white};
 						--duet-color-overlay: rgba(0, 0, 0, 0.5);
 						--duet-color-border: ${COLORS.borderDark};
 
@@ -91,7 +91,7 @@ const datePickerStyles = (_, { size }) => {
 			transition: 'background 0.2s ease, color 0.2s ease',
 
 			'&:hover, &:active': {
-				backgroundColor: '#fff',
+				backgroundColor: COLORS.white,
 			},
 			':focus': {
 				boxShadow: 'none',

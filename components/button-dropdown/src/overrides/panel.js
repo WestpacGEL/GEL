@@ -62,7 +62,7 @@ const panelStyles = (_, { isOpen, dropdownSize }) => {
 		borderRadius: '0.1875rem',
 		padding: '0.75rem',
 		minWidth: dropdownSizeArr.map((s) => s && sizeMap[s].minWidth),
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 		zIndex: 100,
 	})[0];
 };

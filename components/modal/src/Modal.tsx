@@ -181,7 +181,8 @@ export const Modal = ({
 	const headerStyle = headerStyles(state);
 	const headingStyle = headingStyles(state);
 	const closeBtnStyle = closeBtnStyles(state);
-
+	const backdropStyle = backdropStyles(state);
+	const modalContentStyle = modalContentStyles(state);
 	/**
 	 * Tab selection causes re-render of modal if portal is separated out as component and included
 	 * in the return
@@ -218,7 +219,7 @@ export const Modal = ({
 										<ModalContent
 											state={state}
 											{...modalContentAttributes(state)}
-											css={modalContentStyles(state)}
+											css={modalContentStyle}
 										>
 											<Header state={state} {...headerAttributes(state)} css={headerStyle}>
 												<AutoFocusInside>
@@ -240,7 +241,7 @@ export const Modal = ({
 									</ModalDialog>
 								</Modal>
 							</FocusOn>
-							<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyles(state)} />
+							<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyle} />
 						</ModalContext.Provider>
 					</GEL>,
 					document.body

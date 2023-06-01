@@ -3,5 +3,6 @@
 	"changelog": "@changesets/cli/changelog",
 	"commit": false,
 	"linked": [],
-	"access": "public"
+	"access": "public",
+	"ignore": ["@westpac/input-field", "@westpac/flexi-cell", "@westpac/circle"]
 }

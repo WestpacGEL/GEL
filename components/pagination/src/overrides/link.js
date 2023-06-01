@@ -62,10 +62,10 @@ const linkStyles = (_, { active, first, last, disabled }) => {
 		display: 'inline-block',
 		border: `1px solid ${active ? COLORS.hero : COLORS.border}`,
 		borderRadius: 0,
-		backgroundColor: active ? COLORS.hero : '#fff',
+		backgroundColor: active ? COLORS.hero : COLORS.white,
 		padding: '0.5625rem 0.75rem',
 		fontSize: '0.875rem',
-		color: active ? '#fff' : COLORS.text, //set default `COLORS.text` because this is a `<button />`
+		color: active ? COLORS.white : COLORS.text, //set default `COLORS.text` because this is a `<button />`
 		textDecoration: 'none',
 		cursor: 'pointer',
 		transition: 'background .2s ease, border .2s ease',
