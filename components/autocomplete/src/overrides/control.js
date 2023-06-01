@@ -60,7 +60,7 @@ const controlStyles = (_, { selectProps: { size, invalid, isDisabled }, isFocuse
 		appearance: 'none',
 		lineHeight: lineHeight,
 		color: COLORS.text,
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 		border: `${borderWidth}px solid ${
 			invalid || rest.ariaInvalid ? COLORS.danger : COLORS.borderDark
 		}`,

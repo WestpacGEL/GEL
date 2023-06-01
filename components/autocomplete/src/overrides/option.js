@@ -46,7 +46,7 @@ const optionStyles = (_, { isFocused }) => {
 		fontSize: '0.875rem',
 		padding: '0.5rem 1rem',
 		backgroundColor: isFocused && COLORS.hero,
-		color: isFocused ? '#fff' : COLORS.text,
+		color: isFocused ? COLORS.white : COLORS.text,
 	};
 };
 

@@ -56,7 +56,7 @@ const buttonStyles = (
 	const styleMap = {
 		primary: {
 			standardCSS: {
-				color: '#fff',
+				color: COLORS.white,
 				backgroundColor: COLORS.primary,
 				borderColor: COLORS.primary,
 
@@ -69,22 +69,22 @@ const buttonStyles = (
 			},
 			softCSS: {
 				color: COLORS.text,
-				backgroundColor: '#fff',
+				backgroundColor: COLORS.white,
 				borderColor: COLORS.primary,
 
 				':hover': {
-					color: '#fff',
+					color: COLORS.white,
 					backgroundColor: COLORS.tints.primary70,
 				},
 				':active, &.active': {
-					color: '#fff',
+					color: COLORS.white,
 					backgroundColor: COLORS.tints.primary50,
 				},
 			},
 		},
 		hero: {
 			standardCSS: {
-				color: '#fff',
+				color: COLORS.white,
 				backgroundColor: COLORS.hero,
 				borderColor: COLORS.hero,
 
@@ -97,15 +97,15 @@ const buttonStyles = (
 			},
 			softCSS: {
 				color: COLORS.text,
-				backgroundColor: '#fff',
+				backgroundColor: COLORS.white,
 				borderColor: COLORS.hero,
 
 				':hover': {
-					color: '#fff',
+					color: COLORS.white,
 					backgroundColor: COLORS.tints.hero70,
 				},
 				':active, &.active': {
-					color: '#fff',
+					color: COLORS.white,
 					backgroundColor: COLORS.tints.hero50,
 				},
 			},
@@ -117,12 +117,12 @@ const buttonStyles = (
 				borderColor: COLORS.border,
 
 				':hover, :active, &.active': {
-					backgroundColor: '#fff',
+					backgroundColor: COLORS.white,
 				},
 			},
 			softCSS: {
 				color: COLORS.muted,
-				backgroundColor: '#fff',
+				backgroundColor: COLORS.white,
 				borderColor: COLORS.border,
 
 				':hover, :active, &.active': {

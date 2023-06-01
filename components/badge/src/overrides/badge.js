@@ -42,8 +42,8 @@ const badgeStyles = (_, { look, type, btnContext }) => {
 		textAlign: 'center',
 		verticalAlign: 'baseline',
 		whiteSpace: 'nowrap',
-		color: look === 'faint' ? COLORS.muted : invert ? COLORS[look] : '#fff',
-		backgroundColor: invert || look === 'faint' ? '#fff' : COLORS[look],
+		color: look === 'faint' ? COLORS.muted : invert ? COLORS[look] : COLORS.white,
+		backgroundColor: invert || look === 'faint' ? COLORS.white : COLORS[look],
 		borderColor: look === 'faint' ? COLORS.border : COLORS[look],
 		...(type === 'pill' ? TYPE.bodyFont[700] : TYPE.bodyFont[400]),
 
@@ -52,9 +52,9 @@ const badgeStyles = (_, { look, type, btnContext }) => {
 		},
 
 		'@media print': {
-			color: '#000',
-			backgroundColor: '#fff',
-			border: '1px solid #000',
+			color: COLORS.black,
+			backgroundColor: COLORS.white,
+			border: `1px solid ${COLORS.black}`,
 		},
 	};
 };

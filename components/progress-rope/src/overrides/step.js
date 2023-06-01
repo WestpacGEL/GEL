@@ -22,7 +22,7 @@ export const stepStyles = (_, { end, visited, grouped, furthest }) => {
 	return {
 		label: STEP_LABEL,
 		position: 'relative',
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 
 		marginTop: end && (grouped ? '0.375rem' : '0.125rem'),
 
@@ -55,7 +55,7 @@ const blenderStyles = (_, { active, visited, end }) => {
 	const baseStyles = {
 		label: STEP_LABEL,
 		position: 'relative',
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 	};
 
 	let modifiers = getModifier(defaultProps, props);

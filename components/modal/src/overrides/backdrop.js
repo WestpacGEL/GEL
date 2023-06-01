@@ -1,4 +1,4 @@
-import { jsx, getLabel } from '@westpac/core';
+import { jsx, getLabel, useBrand } from '@westpac/core';
 import { useTransition, animated } from '@react-spring/web';
 
 // ==============================
@@ -22,16 +22,19 @@ const BlenderBackdrop = (props) => <div {...props} />;
 // Styles
 // ==============================
 
-const backdropStyles = () => ({
-	label: getLabel('modal-backdrop'),
-	position: 'fixed',
-	zIndex: 1001,
-	top: 0,
-	right: 0,
-	bottom: 0,
-	left: 0,
-	backgroundColor: '#000',
-});
+const backdropStyles = () => {
+	const { COLORS } = useBrand();
+	return {
+		label: getLabel('modal-backdrop'),
+		position: 'fixed',
+		zIndex: 1001,
+		top: 0,
+		right: 0,
+		bottom: 0,
+		left: 0,
+		backgroundColor: COLORS.black,
+	};
+};
 
 // ==============================
 // Blender Styles

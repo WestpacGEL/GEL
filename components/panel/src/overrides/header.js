@@ -27,7 +27,7 @@ const headerStyles = (_, { look }) => {
 		hero: {
 			backgroundColor: COLORS.hero,
 			borderColor: COLORS.hero,
-			color: '#fff',
+			color: COLORS.white,
 		},
 		faint: {
 			backgroundColor: COLORS.background,
@@ -45,7 +45,7 @@ const headerStyles = (_, { look }) => {
 		borderTopLeftRadius: `calc(0.1875rem - 1px)`,
 		color: styleMap[look].color,
 		'@media print': {
-			borderBottom: '1px solid #000',
+			borderBottom: `1px solid ${COLORS.black}`,
 		},
 	})[0];
 };

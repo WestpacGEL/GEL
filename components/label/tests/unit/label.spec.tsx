@@ -68,7 +68,7 @@ describe('Label component', () => {
 		const labelComponent = getByTestId('test-label');
 
 		expect(labelComponent).toHaveStyle(`color: ${COLORS.muted}`);
-		expect(labelComponent).toHaveStyle('background-color: #fff');
+		expect(labelComponent).toHaveStyle(`background-color: ${COLORS.white}`);
 		expect(labelComponent).toHaveStyle(`border-color: ${COLORS.border}`);
 	});
 
@@ -78,7 +78,7 @@ describe('Label component', () => {
 				<SimpleLabel look={look as LabelProps['look']} value="test" />
 			);
 			const labelComponent = getByTestId('test-label');
-			expect(labelComponent).toHaveStyle('color: #fff');
+			expect(labelComponent).toHaveStyle(`color: ${COLORS.white}`);
 			expect(labelComponent).toHaveStyle(
 				`background-color: ${COLORS[look as keyof typeof COLORS]}`
 			);

@@ -40,7 +40,7 @@ const panelStyles = (_, { look }) => {
 	return {
 		label: getLabel('panel'),
 		marginBottom: SPACING(4),
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 		border: `1px solid ${styleMap[look].borderColor}`,
 		borderRadius: '0.1875rem',
 

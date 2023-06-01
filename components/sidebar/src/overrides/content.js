@@ -11,7 +11,7 @@ const Content = ({ state: _, ...rest }) => <div {...rest} />;
 // ==============================
 
 const contentStyles = (_, { open }) => {
-	const { LAYOUT } = useBrand();
+	const { LAYOUT, COLORS } = useBrand();
 
 	return {
 		label: getLabel('sidebar-content'),
@@ -19,7 +19,7 @@ const contentStyles = (_, { open }) => {
 		display: 'flex',
 		flexDirection: 'column',
 		height: '100%',
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 
 		[`@media (max-width: ${LAYOUT.breakpoints.md}px)`]: {
 			zIndex: 1030,
