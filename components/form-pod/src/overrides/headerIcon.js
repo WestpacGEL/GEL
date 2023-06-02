@@ -21,7 +21,7 @@ const headerIconStyles = () => {
 		bottom: [null, 0],
 		display: 'inline-block',
 		border: `1px solid ${COLORS.border}`,
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 		borderRadius: '50%',
 		width: '4.125rem', //66px
 		height: '4.125rem', //66px

@@ -1,4 +1,4 @@
-import { jsx, useMediaQuery, getLabel } from '@westpac/core';
+import { jsx, useMediaQuery, getLabel, useBrand } from '@westpac/core';
 
 // ==============================
 // Component
@@ -11,13 +11,14 @@ const Inner = ({ state: _, ...rest }) => <div {...rest} />;
 // ==============================
 
 const innerStyles = (_, { fixed, scrolled }) => {
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
 	return mq({
 		label: getLabel('header-inner'),
 		position: 'relative',
 		flex: 1,
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 		textAlign: 'left',
 		marginLeft: 'auto',
 		marginRight: 'auto',

@@ -12,6 +12,8 @@ const COLORS = {
 	pop: '#A094FC', //Light Purple
 	primary: '#D13900',
 	text: '#20024E',
+	white: '#FFFFFF',
+	black: '#000000',
 
 	// reserved
 	success: '#008000',

@@ -1,5 +1,12 @@
 # @westpac/switch
 
+## 2.3.0
+
+### Minor Changes
+
+- 25f34f16: modified the handleChange event handler to make the switch toggle work; fixed interface error for size prop array types
+- 1f2e1275: Add white, black tokens and update references
+
 ## 2.2.1
 
 ### Patch Changes

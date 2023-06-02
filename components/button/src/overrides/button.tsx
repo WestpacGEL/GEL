@@ -34,7 +34,7 @@ BlenderButton.displayName = 'BlenderButton';
 
 const buttonStyles = (
 	_: any,
-	{ tag, type, look, size, soft, block, justify, disabled, horizontalPadding, minWidth }: any
+	{ tag, type, look, size, soft, block, justify, disabled, horizontalPadding }: any
 ) => {
 	const mq = useMediaQuery();
 	const { COLORS, TYPE } = useBrand();
@@ -56,7 +56,7 @@ const buttonStyles = (
 	const styleMap = {
 		primary: {
 			standardCSS: {
-				color: '#fff',
+				color: COLORS.white,
 				backgroundColor: COLORS.primary,
 				borderColor: COLORS.primary,
 
@@ -69,22 +69,22 @@ const buttonStyles = (
 			},
 			softCSS: {
 				color: COLORS.text,
-				backgroundColor: '#fff',
+				backgroundColor: COLORS.white,
 				borderColor: COLORS.primary,
 
 				':hover': {
-					color: '#fff',
+					color: COLORS.white,
 					backgroundColor: COLORS.tints.primary70,
 				},
 				':active, &.active': {
-					color: '#fff',
+					color: COLORS.white,
 					backgroundColor: COLORS.tints.primary50,
 				},
 			},
 		},
 		hero: {
 			standardCSS: {
-				color: '#fff',
+				color: COLORS.white,
 				backgroundColor: COLORS.hero,
 				borderColor: COLORS.hero,
 
@@ -97,15 +97,15 @@ const buttonStyles = (
 			},
 			softCSS: {
 				color: COLORS.text,
-				backgroundColor: '#fff',
+				backgroundColor: COLORS.white,
 				borderColor: COLORS.hero,
 
 				':hover': {
-					color: '#fff',
+					color: COLORS.white,
 					backgroundColor: COLORS.tints.hero70,
 				},
 				':active, &.active': {
-					color: '#fff',
+					color: COLORS.white,
 					backgroundColor: COLORS.tints.hero50,
 				},
 			},
@@ -117,12 +117,12 @@ const buttonStyles = (
 				borderColor: COLORS.border,
 
 				':hover, :active, &.active': {
-					backgroundColor: '#fff',
+					backgroundColor: COLORS.white,
 				},
 			},
 			softCSS: {
 				color: COLORS.muted,
-				backgroundColor: '#fff',
+				backgroundColor: COLORS.white,
 				borderColor: COLORS.border,
 
 				':hover, :active, &.active': {
@@ -213,23 +213,19 @@ const buttonStyles = (
 		boxSizing: 'border-box',
 		display: blockArr.map((b) => b !== null && (b ? 'flex' : 'inline-flex')),
 		width: blockArr.map((b) => b !== null && (b ? '100%' : 'auto')),
-		minWidth: minWidth,
 		...(look !== 'unstyled' && {
 			fontSize: sizeArr.map((s) => s && sizeMap[s].fontSize),
 			...TYPE.bodyFont[400],
-			padding: sizeArr.map((s) => s && sizeMap[s].padding),
+			padding: sizeArr.map((s) =>
+				!horizontalPadding && look === 'link'
+					? s && sizeMap[s].strippedLinkPadding
+					: s && sizeMap[s].padding
+			),
 			height: sizeArr.map((s) => s && sizeMap[s].height),
 			border: look !== 'link' ? '1px solid transparent' : 0,
-			borderRadius: look !== 'link' && '0.1875rem',
+			borderRadius: '0.1875rem',
 			transition: 'background 0.2s ease, color 0.2s ease',
 		}),
-
-		// Trim horizontal padding if button is link style and false for horizontalPadding prop
-		...(!horizontalPadding &&
-			look === 'link' && {
-				paddingLeft: 0,
-				paddingRight: 0,
-			}),
 		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],
 
 		// Hover state (but excluded if disabled or inside a disabled fieldset)

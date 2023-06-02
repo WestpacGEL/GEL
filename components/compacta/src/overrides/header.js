@@ -17,7 +17,7 @@ const headerStyles = () => {
 		padding: '0.8125rem 1.125rem',
 		fontSize: '1rem',
 		color: COLORS.text,
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 	};
 };
 

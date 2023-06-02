@@ -1,5 +1,20 @@
 # @westpac/tabcordion
 
+## 4.0.0
+
+### Major Changes
+
+- dc426541: changed idx prop's type to number, and fixed accordionBtnIcon Icon props
+
+### Minor Changes
+
+- 1f2e1275: Add white, black tokens and update references
+
+### Patch Changes
+
+- Updated dependencies [cab56804]
+  - @westpac/icon@2.2.0
+
 ## 3.2.1
 
 ### Patch Changes

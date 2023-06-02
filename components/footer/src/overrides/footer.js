@@ -18,7 +18,7 @@ const footerStyles = (_, { offsetSidebar }) => {
 		label: getLabel('footer'),
 		position: 'relative',
 		overflow: 'hidden',
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 		marginRight: offsetSidebar && [null, null, null, '300px'],
 		borderTop: `1px solid ${COLORS.primary}`,
 	})[0];

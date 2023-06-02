@@ -1,5 +1,15 @@
 # @westpac/progress-bar
 
+## 3.0.0
+
+### Major Changes
+
+- af92d101: Fix ProgressBar component's optional props
+
+### Minor Changes
+
+- 1f2e1275: Add white, black tokens and update references
+
 ## 2.2.1
 
 ### Patch Changes

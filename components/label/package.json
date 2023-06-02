@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/label",
-	"version": "2.2.1",
+	"version": "2.3.0",
 	"description": "Small, coloured UI items used to highlight a word",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/label",
