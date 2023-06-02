@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/well",
-	"version": "2.2.1",
+	"version": "2.3.0",
 	"description": "Simple containers used to highlight content",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/well",

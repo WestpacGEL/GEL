@@ -1,5 +1,18 @@
 # @westpac/autocomplete
 
+## 2.3.0
+
+### Minor Changes
+
+- 1f2e1275: Add white, black tokens and update references
+
+### Patch Changes
+
+- Updated dependencies [cab56804]
+- Updated dependencies [1f2e1275]
+  - @westpac/icon@2.2.0
+  - @westpac/text-input@2.4.0
+
 ## 2.2.1
 
 ### Patch Changes

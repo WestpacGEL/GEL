@@ -34,7 +34,7 @@ const menuStyles = () => {
 		marginTop: '-1px',
 		border: `1px solid ${COLORS.hero}`,
 		borderRadius: '0 0 3px 3px',
-		background: '#fff',
+		background: COLORS.white,
 		boxShadow: '0 6px 12px rgb(0 0 0 / 18%)',
 		position: 'absolute',
 		top: '100%',

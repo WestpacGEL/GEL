@@ -12,6 +12,8 @@ const COLORS = {
 	pop: '#FF3DDB', //Bright Pink
 	primary: '#DA1710',
 	text: '#181B25',
+	white: '#FFFFFF',
+	black: '#000000',
 
 	// reserved
 	success: '#008000',

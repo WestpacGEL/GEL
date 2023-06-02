@@ -1,5 +1,11 @@
 # @westpac/list-group
 
+## 3.0.0
+
+### Major Changes
+
+- 94e6ed17: export ListGroupProps interface
+
 ## 2.2.1
 
 ### Patch Changes

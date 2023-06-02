@@ -1,15 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, GEL, useBrand, overrideReconciler } from '@westpac/core';
-import {
-	Fragment,
-	createContext,
-	useContext,
-	useState,
-	useEffect,
-	useRef,
-	useCallback,
-} from 'react';
+import { GEL, useBrand, overrideReconciler } from '@westpac/core';
+import { Fragment, createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { FocusOn, AutoFocusInside } from 'react-focus-on';
 import ReactDOM from 'react-dom';
 
@@ -128,6 +120,7 @@ export const Modal = ({
 	} = brand;
 
 	const [open, setOpen] = useState(isOpen);
+	const [mounted, setMounted] = useState(false);
 
 	const defaultOverrides = {
 		Modal: defaultModal,
@@ -167,9 +160,6 @@ export const Modal = ({
 		Backdrop: { component: Backdrop, styles: backdropStyles, attributes: backdropAttributes },
 	} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
 
-	const modalRef = useRef(null);
-	const headingRef = useRef(null);
-
 	useEffect(() => {
 		setOpen(isOpen);
 	}, [isOpen]);
@@ -182,84 +172,82 @@ export const Modal = ({
 		}
 	}, [onClose]);
 
-	// on escape close modal
-	const keyHandler = useCallback(
-		(e: KeyboardEvent) => {
-			if (dismissible && open && e.keyCode === 27) handleClose();
-		},
-		[dismissible, handleClose, open]
-	);
-
-	// bind key events
 	useEffect(() => {
-		window.document.addEventListener('keydown', keyHandler);
-		return () => {
-			window.document.removeEventListener('keydown', keyHandler);
-		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		setMounted(true);
 	}, []);
 
-	if (typeof window !== 'undefined') {
-		return ReactDOM.createPortal(
-			<GEL brand={brand}>
-				<ModalContext.Provider value={{ state }}>
-					<FocusOn enabled={open}>
-						<Modal
-							ref={modalRef}
-							onClick={(e: MouseEvent) => {
-								if (e.target !== e.currentTarget) return;
-								if (dismissible) {
-									handleClose();
-								}
-							}}
-							state={state}
-							{...rest}
-							{...modalAttributes(state)}
-							css={modalStyles(state)}
-						>
-							<ModalDialog
-								state={state}
-								{...modalDialogAttributes(state)}
-								css={modalDialogStyles(state)}
+	// These styles call hooks and will create hook call warning if called in return for component
+	const modalDialogStyle = modalDialogStyles(state);
+	const headerStyle = headerStyles(state);
+	const headingStyle = headingStyles(state);
+	const closeBtnStyle = closeBtnStyles(state);
+	const backdropStyle = backdropStyles(state);
+	const modalContentStyle = modalContentStyles(state);
+	/**
+	 * Tab selection causes re-render of modal if portal is separated out as component and included
+	 * in the return
+	 **/
+	return (
+		<Fragment>
+			{mounted &&
+				ReactDOM.createPortal(
+					<GEL brand={brand}>
+						<ModalContext.Provider value={{ state }}>
+							<FocusOn
+								enabled={open}
+								onEscapeKey={() => {
+									if (dismissible) handleClose();
+								}}
 							>
-								<ModalContent
+								<Modal
+									onClick={(e: MouseEvent) => {
+										if (e.target !== e.currentTarget) return;
+										if (dismissible) {
+											handleClose();
+										}
+									}}
 									state={state}
-									{...modalContentAttributes(state)}
-									css={modalContentStyles(state)}
+									{...rest}
+									{...modalAttributes(state)}
+									css={modalStyles(state)}
 								>
-									<Header state={state} {...headerAttributes(state)} css={headerStyles(state)}>
-										<AutoFocusInside>
-											<Heading
-												ref={headingRef}
-												state={state}
-												{...headingAttributes(state)}
-												css={headingStyles(state)}
-											>
-												{heading}
-											</Heading>
-										</AutoFocusInside>
-										{dismissible && (
-											<CloseBtn
-												onClick={() => handleClose()}
-												state={state}
-												{...closeBtnAttributes(state)}
-												css={closeBtnStyles(state)}
-											/>
-										)}
-									</Header>
-									{children}
-								</ModalContent>
-							</ModalDialog>
-						</Modal>
-					</FocusOn>
-					<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyles(state)} />
-				</ModalContext.Provider>
-			</GEL>,
-			document.body
-		);
-	}
-
-	return <Fragment />;
+									<ModalDialog
+										state={state}
+										{...modalDialogAttributes(state)}
+										css={modalDialogStyle}
+									>
+										<ModalContent
+											state={state}
+											{...modalContentAttributes(state)}
+											css={modalContentStyle}
+										>
+											<Header state={state} {...headerAttributes(state)} css={headerStyle}>
+												<AutoFocusInside>
+													<Heading state={state} {...headingAttributes(state)} css={headingStyle}>
+														{heading}
+													</Heading>
+												</AutoFocusInside>
+												{dismissible && (
+													<CloseBtn
+														onClick={() => handleClose()}
+														state={state}
+														{...closeBtnAttributes(state)}
+														css={closeBtnStyle}
+													/>
+												)}
+											</Header>
+											{children}
+										</ModalContent>
+									</ModalDialog>
+								</Modal>
+							</FocusOn>
+							<Backdrop state={state} {...backdropAttributes(state)} css={backdropStyle} />
+						</ModalContext.Provider>
+					</GEL>,
+					document.body
+				)}
+		</Fragment>
+	);
 };
 
 Modal.propTypes = {

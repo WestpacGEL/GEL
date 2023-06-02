@@ -44,7 +44,7 @@ const panelStyles = (_, { isOpen, position, ...rest }) => {
 		border: `1px solid ${COLORS.muted}`,
 		borderRadius: 3,
 		width: '17.625rem',
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 		pointerEvents: 'all',
 		textAlign: 'left',
 		padding: '24px 30px 24px 18px',
@@ -75,7 +75,7 @@ const panelStyles = (_, { isOpen, position, ...rest }) => {
 			borderRightWidth: '7px',
 			marginLeft: !position.offset ? '-7px' : 0,
 			[position.placement === 'top' ? 'borderTop' : 'borderBottom']:
-				rest.placement !== 'none' && '11px solid #fff',
+				rest.placement !== 'none' && `11px solid ${COLORS.white}`,
 		},
 	};
 };

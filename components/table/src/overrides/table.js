@@ -52,7 +52,7 @@ const tableStyles = (_, { striped }) => {
 		width: '100%',
 		maxWidth: '100%',
 		marginBottom: SPACING(4),
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 		borderCollapse: 'collapse',
 
 		// Odd row
