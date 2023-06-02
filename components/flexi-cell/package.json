@@ -20,8 +20,8 @@
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
 		"@westpac/button": "^2.2.1",
-		"@westpac/core": "^3.2.1",
 		"@westpac/circle": "^1.0.0",
+		"@westpac/core": "^3.2.1",
 		"classnames": "^2.3.1",
 		"prop-types": "^15.7.2"
 	},
