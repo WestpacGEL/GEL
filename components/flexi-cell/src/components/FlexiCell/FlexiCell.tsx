@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 import { FlexiCellAdornment } from '../FlexiCellAdornment';
 import { FlexiCellBody } from '../FlexiCellBody';
+import { FlexiCellButton } from '../FlexiCellButton';
+import { FlexiCellCircle } from '../FlexiCellCircle';
 import { FlexiCellFooter } from '../FlexiCellFooter';
 import { FlexiCellHint } from '../FlexiCellHint';
 import { FlexiCellLabel } from '../FlexiCellLabel';
@@ -20,6 +22,7 @@ export const FlexiCell = ({
 	...props
 }: FlexiCellProps) => {
 	const { SPACING, PACKS, COLORS } = useBrand();
+	const isLink = useMemo(() => ['a', 'button'].includes(Tag), [Tag]);
 	const mq = useMediaQuery();
 	const css = useMemo(
 		() =>
@@ -31,10 +34,19 @@ export const FlexiCell = ({
 				gap: SPACING(2),
 				color: 'inherit',
 				textDecoration: 'inherit',
-				...(withBorder && { border: `solid 1px ${COLORS.border}`, borderRadius: '3px' }),
+				transition: 'borderColor 0.2s ease',
+				...(withBorder && { border: `solid 1px ${COLORS.borderDark}`, borderRadius: '3px' }),
 				':focus': { ...PACKS.focus },
+				...(isLink && {
+					':hover': {
+						borderColor: COLORS.hero,
+						'.flexi-cell-label': {
+							color: COLORS.link,
+						},
+					},
+				}),
 			}),
-		[COLORS.border, PACKS.focus, SPACING, mq, withBorder]
+		[COLORS.borderDark, COLORS.hero, COLORS.link, PACKS.focus, SPACING, isLink, mq, withBorder]
 	);
 
 	return (
@@ -60,6 +72,8 @@ FlexiCell.Footer = FlexiCellFooter;
 FlexiCell.Adornment = FlexiCellAdornment;
 FlexiCell.Hint = FlexiCellHint;
 FlexiCell.Label = FlexiCellLabel;
+FlexiCell.Button = FlexiCellButton;
+FlexiCell.Circle = FlexiCellCircle;
 
 FlexiCell.propTypes = {
 	// ----------------------------- Warning --------------------------------
