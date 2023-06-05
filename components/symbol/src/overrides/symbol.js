@@ -8,8 +8,6 @@ import {
 	formatClassName,
 	styleReconciler,
 } from '@westpac/core';
-import { Symbol as MainSymbol } from '../Symbol';
-const defaultProps = MainSymbol?.defaultProps || {};
 
 // ==============================
 // Component
@@ -57,6 +55,7 @@ const symbolStyles = (_, { symbol, width, height, viewBoxWidth, viewBoxHeight })
 };
 
 const blenderStyles = (_, { symbol, width, height, viewBoxWidth, viewBoxHeight }) => {
+	const defaultProps = {};
 	const props = { symbol, width, height, viewBoxWidth, viewBoxHeight };
 	const baseStyles = symbolStyles(_, defaultProps);
 

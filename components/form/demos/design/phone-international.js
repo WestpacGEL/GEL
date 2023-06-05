@@ -14,7 +14,7 @@ export const PhoneInternationalPattern = ({ showErrors = false }) => {
 		<FormGroup>
 			<Fieldset
 				legend="Phone number"
-				hint="Enter your country code (e.g. +61) and your number"
+				hint="Enter a number in the format: 2135096995, 213-509-6995, or (213) 509-6995"
 				error={error}
 			>
 				<InputCluster horizontal>
