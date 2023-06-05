@@ -1,57 +1,29 @@
-import { useBrand, useMediaQuery } from '@westpac/core';
+import { Circle } from '@westpac/circle';
+import { useMediaQuery } from '@westpac/core';
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
-import { FlexiCellLabelProps } from './FlexiCellLabel.types';
-import cx from 'classnames';
+import { FlexiCellCircleProps } from './FlexiCellCircle.types';
 
-/** Flexi Cell Labek: Flexi Cell Labek */
-export const FlexiCellLabel = ({
-	children,
-	tag: Tag = 'div',
-	fontWeight = 'normal',
-	truncateText,
-	className,
-	...props
-}: FlexiCellLabelProps) => {
-	const { PACKS } = useBrand();
+/** Flexi Cell Circle: Flexi Cell Circle */
+export const FlexiCellCircle = ({ ...props }: FlexiCellCircleProps) => {
 	const mq = useMediaQuery();
-	const css = useMemo(() => {
-		const {
-			fontSize: fontSizeXS,
-			lineHeight: lineHeightXS,
-			fontFamily: fontFamilyXS,
-		} = PACKS.typeScale.bodyFont[9];
-		const {
-			fontSize: fontSizeMD,
-			lineHeight: lineHeightMD,
-			fontFamily: fontFamilyMD,
-		} = PACKS.typeScale.bodyFont[8];
-		return mq({
-			fontSize: [fontSizeXS, fontSizeMD],
-			lineHeight: [lineHeightXS, lineHeightMD],
-			fontFamily: [fontFamilyXS, fontFamilyMD],
-			fontWeight,
-			margin: 0,
-			transition: 'color 0.2s ease',
-			...(truncateText && {
-				overflow: 'hidden',
-				textOverflow: 'ellipsis',
-				whiteSpace: 'nowrap',
+	const css = useMemo(
+		() =>
+			mq({
+				height: ['30px', '36px'],
+				width: ['30px', '36px'],
 			}),
-		});
-	}, [PACKS.typeScale.bodyFont, fontWeight, mq, truncateText]);
-	return (
-		<Tag className={cx(className, 'flexi-cell-label')} {...props} css={css}>
-			{children}
-		</Tag>
+		[mq]
 	);
+	return <Circle css={css} {...props} />;
 };
 
-FlexiCellLabel.propTypes = {
+FlexiCellCircle.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
+	align: PropTypes.oneOf(['bottom', 'center', 'top']),
 	children: PropTypes.node,
 	tag: PropTypes.oneOf([
 		'a',
@@ -231,8 +203,4 @@ FlexiCellLabel.propTypes = {
 		'wbr',
 		'webview',
 	]),
-	/**
-	 * Define if it is going to truncate the text
-	 */
-	truncateText: PropTypes.bool,
 };

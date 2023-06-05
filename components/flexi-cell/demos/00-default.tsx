@@ -1,4 +1,4 @@
-import { GEL, useBrand } from '@westpac/core';
+import { GEL, useBrand, useMediaQuery } from '@westpac/core';
 import { FlexiCell } from '@westpac/flexi-cell';
 import { InfoIcon } from '@westpac/icon';
 import { Heading } from '@westpac/heading';
@@ -18,6 +18,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 
 function ExampleChildren() {
 	const { COLORS } = useBrand();
+	const mq = useMediaQuery();
 	return (
 		<div
 			css={{
@@ -35,7 +36,9 @@ function ExampleChildren() {
 				body
 				after={
 					<FlexiCell.Adornment align="top">
-						<FlexiCell.Label tag="h3">$9,999.99</FlexiCell.Label>
+						<FlexiCell.Label fontWeight="600" tag="h3">
+							$9,999.99
+						</FlexiCell.Label>
 						<FlexiCell.Hint>avail $9,999.99</FlexiCell.Hint>
 					</FlexiCell.Adornment>
 				}
@@ -47,7 +50,7 @@ function ExampleChildren() {
 			<FlexiCell
 				tag="a"
 				withBorder
-				href="loko"
+				href="#"
 				body
 				after={
 					<FlexiCell.Adornment align="top">
@@ -61,13 +64,12 @@ function ExampleChildren() {
 
 			<FlexiCell
 				tag="a"
-				withBorder
-				href="loko"
+				href="#"
 				body
 				before={
-					<Circle background={COLORS.primary} css={{ color: 'white' }}>
+					<FlexiCell.Circle background={COLORS.primary} css={{ color: 'white' }}>
 						B
-					</Circle>
+					</FlexiCell.Circle>
 				}
 				after={
 					<FlexiCell.Adornment align="center">
@@ -75,63 +77,80 @@ function ExampleChildren() {
 					</FlexiCell.Adornment>
 				}
 			>
-				<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
+				<FlexiCell.Label tag="h3" fontWeight="500">
 					Payee
-				</Heading>
+				</FlexiCell.Label>
 				<small css={{ color: COLORS.muted }}>Payee details</small>
 			</FlexiCell>
 
 			<FlexiCell
-				withBorder
 				body
 				before={
-					<Circle background={COLORS.muted} css={{ color: 'white' }}>
+					<FlexiCell.Circle background={COLORS.muted} css={{ color: 'white' }}>
 						WW
-					</Circle>
+					</FlexiCell.Circle>
 				}
 				after={
 					<FlexiCell.Adornment align="center">
 						{/* @ts-ignore */}
-						<Button look="link" href="/somewhere" iconBefore={InfoIcon} />
+						<FlexiCell.Button href="/somewhere" iconBefore={InfoIcon} />
 					</FlexiCell.Adornment>
 				}
 			>
-				<a href="#" css={{ color: 'inherit', textDecoration: 'inherit' }}>
-					<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
+				<a
+					href="#"
+					css={{
+						color: 'inherit',
+						textDecoration: 'inherit',
+						':hover .flexi-cell-label': {
+							color: COLORS.link,
+						},
+					}}
+				>
+					<FlexiCell.Label fontWeight="500" tag="h3">
 						Payee
-					</Heading>
+					</FlexiCell.Label>
 					<small css={{ color: COLORS.muted }}>Payee details</small>
 				</a>
 			</FlexiCell>
 
 			<FlexiCell
-				withBorder
 				body
 				before={<div>Flag</div>}
 				after={
 					<FlexiCell.Adornment align="center">
 						{/* @ts-ignore */}
-						<Button look="link" href="/somewhere" iconBefore={InfoIcon} />
+						<FlexiCell.Button href="/somewhere" iconBefore={InfoIcon} />
 					</FlexiCell.Adornment>
 				}
 			>
-				<a href="#" css={{ color: 'inherit', textDecoration: 'inherit' }}>
-					<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
+				<a
+					href="#"
+					css={{
+						color: 'inherit',
+						textDecoration: 'inherit',
+						':hover .flexi-cell-label': {
+							color: COLORS.link,
+						},
+					}}
+				>
+					<FlexiCell.Label tag="h3" css={{ fontWeight: 'normal' }}>
 						Payee
-					</Heading>
+					</FlexiCell.Label>
 					<small css={{ color: COLORS.muted }}>Payee details</small>
 				</a>
 			</FlexiCell>
-			<FlexiCell body tag="a" withBorder href="loko" before={<div>Flag</div>}>
-				<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
+			<FlexiCell body tag="a" withBorder href="#" before={<div>Flag</div>}>
+				<FlexiCell.Label tag="h3" css={{ fontWeight: 'normal' }}>
 					List item
-				</Heading>
+				</FlexiCell.Label>
 			</FlexiCell>
-			<FlexiCell body tag="a" withBorder href="loko">
-				<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
+			<FlexiCell body tag="a" withBorder href="#">
+				<FlexiCell.Label tag="h3" css={{ fontWeight: 'normal' }}>
 					List item
-				</Heading>
+				</FlexiCell.Label>
 			</FlexiCell>
+
 			<FlexiCell
 				tag="a"
 				href="#"
@@ -139,17 +158,26 @@ function ExampleChildren() {
 				body
 				after={
 					<FlexiCell.Adornment align="top">
-						<ArrowRightIcon color="link" />
+						<ArrowRightIcon color={COLORS.link} />
 					</FlexiCell.Adornment>
 				}
 			>
-				<GiftPictogram mode="duo" css={{ width: '50px', height: '50px' }} />
-				<Heading tag="h3" size={8}>
-					Westpac specials and product offers
-				</Heading>
-				<FlexiCell.Hint>
-					Discounts and cashback from select merchants & product offers from Westpac
-				</FlexiCell.Hint>
+				<div
+					css={mq({
+						display: 'flex',
+						flexDirection: ['column', 'row'],
+					})}
+				>
+					<GiftPictogram mode="duo" css={{ width: '50px', height: '50px' }} />
+					<div>
+						<Heading tag="h3" size={8}>
+							Westpac specials and product offers
+						</Heading>
+						<FlexiCell.Hint>
+							Discounts and cashback from select merchants & product offers from Westpac
+						</FlexiCell.Hint>
+					</div>
+				</div>
 			</FlexiCell>
 
 			<h3>Flexi cell with an image</h3>
@@ -160,9 +188,9 @@ function ExampleChildren() {
 					css={{ width: '100%', display: 'block', marginBottom: '0.75rem' }}
 				/>
 				<FlexiCell.Label css={{ marginBottom: '0.5rem' }}>MYER</FlexiCell.Label>
-				<Heading tag="h3" size={8}>
+				<FlexiCell.Label tag="h3" fontWeight="600">
 					Westpac specials and product offers
-				</Heading>
+				</FlexiCell.Label>
 			</FlexiCell>
 			<h3>Sticky footer example</h3>
 			<div css={{ display: 'flex', gap: '1rem' }}>

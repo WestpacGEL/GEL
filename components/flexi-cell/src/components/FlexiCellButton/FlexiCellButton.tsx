@@ -1,57 +1,36 @@
+import { Button } from '@westpac/button';
 import { useBrand, useMediaQuery } from '@westpac/core';
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
-import { FlexiCellLabelProps } from './FlexiCellLabel.types';
-import cx from 'classnames';
+import { FlexiCellButtonProps } from './FlexiCellButton.types';
 
-/** Flexi Cell Labek: Flexi Cell Labek */
-export const FlexiCellLabel = ({
-	children,
-	tag: Tag = 'div',
-	fontWeight = 'normal',
-	truncateText,
-	className,
-	...props
-}: FlexiCellLabelProps) => {
-	const { PACKS } = useBrand();
+/** Flexi Cell Button: Flexi Cell Button */
+export const FlexiCellButton = ({ ...props }: FlexiCellButtonProps) => {
+	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
-	const css = useMemo(() => {
-		const {
-			fontSize: fontSizeXS,
-			lineHeight: lineHeightXS,
-			fontFamily: fontFamilyXS,
-		} = PACKS.typeScale.bodyFont[9];
-		const {
-			fontSize: fontSizeMD,
-			lineHeight: lineHeightMD,
-			fontFamily: fontFamilyMD,
-		} = PACKS.typeScale.bodyFont[8];
-		return mq({
-			fontSize: [fontSizeXS, fontSizeMD],
-			lineHeight: [lineHeightXS, lineHeightMD],
-			fontFamily: [fontFamilyXS, fontFamilyMD],
-			fontWeight,
-			margin: 0,
-			transition: 'color 0.2s ease',
-			...(truncateText && {
-				overflow: 'hidden',
-				textOverflow: 'ellipsis',
-				whiteSpace: 'nowrap',
+	const css = useMemo(
+		() =>
+			mq({
+				color: COLORS.muted,
+				':hover': {
+					color: COLORS.link,
+				},
+				svg: {
+					height: [null, '24px'],
+					width: [null, '24px'],
+				},
 			}),
-		});
-	}, [PACKS.typeScale.bodyFont, fontWeight, mq, truncateText]);
-	return (
-		<Tag className={cx(className, 'flexi-cell-label')} {...props} css={css}>
-			{children}
-		</Tag>
+		[COLORS.link, COLORS.muted, mq]
 	);
+	return <Button css={css} look="link" {...props} />;
 };
 
-FlexiCellLabel.propTypes = {
+FlexiCellButton.propTypes = {
 	// ----------------------------- Warning --------------------------------
 	// | These PropTypes are generated from the TypeScript type definitions |
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
+	align: PropTypes.oneOf(['bottom', 'center', 'top']),
 	children: PropTypes.node,
 	tag: PropTypes.oneOf([
 		'a',
@@ -231,8 +210,4 @@ FlexiCellLabel.propTypes = {
 		'wbr',
 		'webview',
 	]),
-	/**
-	 * Define if it is going to truncate the text
-	 */
-	truncateText: PropTypes.bool,
 };
