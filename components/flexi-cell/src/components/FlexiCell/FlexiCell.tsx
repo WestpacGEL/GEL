@@ -289,6 +289,10 @@ FlexiCell.propTypes = {
 		'webview',
 	]),
 	/**
+	 * Adds an arrow on top right
+	 */
+	withArrow: PropTypes.bool,
+	/**
 	 * Adds a border radius and a border
 	 */
 	withBorder: PropTypes.bool,
