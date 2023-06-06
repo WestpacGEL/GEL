@@ -1,8 +1,6 @@
-import { Badge } from '@westpac/badge';
-import { Button } from '@westpac/button';
 import { GEL, useBrand, useMediaQuery } from '@westpac/core';
 import { FlexiCell } from '@westpac/flexi-cell';
-import { ArrowRightIcon } from '@westpac/icon';
+import { TickCircleIcon } from '@westpac/icon';
 import { GiftPictogram } from '@westpac/pictogram';
 import { useMemo } from 'react';
 
@@ -48,10 +46,10 @@ function ExampleChildren() {
 					tag="a"
 					href="#"
 					withBorder
+					withArrow
 					body
 					key={title}
-					// @ts-ignore
-					badge={<Button look="link" size="large" iconBefore={ArrowRightIcon} />}
+					after={<TickCircleIcon color={COLORS.success} />}
 				>
 					<div css={css}>
 						<GiftPictogram mode="duo" css={{ width: '24px', height: '24px' }} />

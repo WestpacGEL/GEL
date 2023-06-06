@@ -2,6 +2,10 @@ import type { HTMLAttributes, ReactNode } from 'react';
 
 export type FlexiCellProps = {
 	/**
+	 * Adds an arrow on top right
+	 */
+	withArrow?: boolean;
+	/**
 	 * Adds a border radius and a border
 	 */
 	withBorder?: boolean;
