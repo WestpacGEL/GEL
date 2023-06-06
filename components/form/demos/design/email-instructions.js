@@ -12,7 +12,7 @@ export const EmailInstructionsPattern = ({ showErrors = false }) => {
 		<FormGroup>
 			<Field
 				label="Email address"
-				hint="Make sure your email address is correct as we will use it to confirm your account"
+				hint="Enter an email address in the format: youremail@example.com"
 				error={error}
 			>
 				<TextInput
