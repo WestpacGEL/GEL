@@ -1,4 +1,5 @@
 import { useBrand, useMediaQuery } from '@westpac/core';
+import { ArrowRightIcon } from '@westpac/icon';
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 import { FlexiCellAdornment } from '../FlexiCellAdornment';
@@ -19,6 +20,7 @@ export const FlexiCell = ({
 	body,
 	tag: Tag = 'div',
 	badge,
+	withArrow,
 	...props
 }: FlexiCellProps) => {
 	const { SPACING, PACKS, COLORS } = useBrand();
@@ -63,6 +65,11 @@ export const FlexiCell = ({
 				{body ? <FlexiCellBody>{children}</FlexiCellBody> : children}
 			</div>
 			{after}
+			{withArrow && (
+				<FlexiCellAdornment align="top">
+					<ArrowRightIcon color={COLORS.link} />
+				</FlexiCellAdornment>
+			)}
 		</Tag>
 	);
 };
@@ -281,6 +288,10 @@ FlexiCell.propTypes = {
 		'wbr',
 		'webview',
 	]),
+	/**
+	 * Adds an arrow on top right
+	 */
+	withArrow: PropTypes.bool,
 	/**
 	 * Adds a border radius and a border
 	 */

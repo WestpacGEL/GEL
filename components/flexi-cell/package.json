@@ -22,6 +22,7 @@
 		"@westpac/button": "^3.0.0",
 		"@westpac/circle": "^1.0.0",
 		"@westpac/core": "^3.2.1",
+		"@westpac/icon": "^2.2.0",
 		"classnames": "^2.3.1",
 		"prop-types": "^15.7.2"
 	},
