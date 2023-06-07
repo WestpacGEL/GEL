@@ -16,11 +16,27 @@ export const useInputFieldContext = () => {
 	return context;
 };
 
-const InputFieldWrapper = ({ children, ...props }: { children: ReactNode }) => (
-	<div css={{ marginBottom: '1.875rem' }} {...props}>
+const Fieldset = ({ children, ...props }: { children: ReactNode }) => (
+	<fieldset role="group" css={{ border: 'none', margin: 0, padding: 0 }} {...props}>
 		{children}
-	</div>
+	</fieldset>
 );
+
+const InputFieldWrapper = ({
+	isFieldset,
+	children,
+	...props
+}: {
+	isFieldset: boolean;
+	children: ReactNode;
+}) => {
+	const Wrapper = isFieldset ? Fieldset : 'div';
+	return (
+		<Wrapper css={{ marginBottom: '1.875rem' }} {...props}>
+			{children}
+		</Wrapper>
+	);
+};
 
 const InputWrapper = ({ children, ...props }: { children: ReactNode }) => (
 	<div css={{ position: 'relative', display: 'flex' }} {...props}>
@@ -37,6 +53,7 @@ export const InputField = ({
 	supportingText,
 	children,
 	instanceId,
+	isFieldset = false,
 	...props
 }: InputFieldProps) => {
 	const _id = useId();
@@ -60,7 +77,7 @@ export const InputField = ({
 		<InputFieldContext.Provider
 			value={{ id, ariaDescribedByValue, composition, setComposition, size }}
 		>
-			<InputFieldWrapper {...props}>
+			<InputFieldWrapper isFieldset={isFieldset} {...props}>
 				{label && (
 					<FormLabel htmlFor={id} srOnly={hideLabel}>
 						{label}

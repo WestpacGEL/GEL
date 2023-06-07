@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { IconProps } from '@westpac/icon';
 
 export type InputBeforeAfterProps = {
 	/**
@@ -10,7 +11,7 @@ export type InputBeforeAfterProps = {
 	/**
 	 * Renders an icon and automatically insets within input borders
 	 */
-	icon?: (...args: unknown[]) => any;
+	icon?: (props: Omit<IconProps, 'icon'>) => JSX.Element;
 	/**
 	 * Component/text to add before/after input
 	 */

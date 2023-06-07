@@ -79,7 +79,7 @@ describe('Given the InputField is rendered', () => {
 						<Input />
 					</SimpleInputField>
 				);
-				expect(screen.getByRole('img')).toBeInTheDocument();
+				expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument();
 			});
 		});
 
@@ -173,7 +173,7 @@ describe('Given the InputField is rendered', () => {
 						<InputAfter icon={SearchIcon} />
 					</SimpleInputField>
 				);
-				expect(screen.getByRole('img')).toBeInTheDocument();
+				expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument();
 			});
 		});
 
@@ -249,22 +249,49 @@ describe('Given the InputField is rendered', () => {
 	describe('when the Input component is used', () => {
 		test('then an input should be rendered', () => {
 			render(
-				<SimpleInputField>
+				<SimpleInputField label="Mock input">
 					<Input />
 				</SimpleInputField>
 			);
 
-			expect(screen.getByRole('textbox')).toBeInTheDocument();
+			expect(screen.getByRole('textbox', { name: 'Mock input' })).toBeInTheDocument();
 		});
 
 		describe('when a default value is defined', () => {
 			test('then the value of the text input should match the value', () => {
 				render(
-					<SimpleInputField>
+					<SimpleInputField label="Mock input">
 						<Input defaultValue="test-value" />
 					</SimpleInputField>
 				);
-				expect(screen.getByRole('textbox')).toHaveValue('test-value');
+				expect(screen.getByRole('textbox', { name: 'Mock input' })).toHaveValue('test-value');
+			});
+		});
+
+		describe('when the value prop is defined', () => {
+			test('then the value of the text input should match the value', async () => {
+				render(
+					<SimpleInputField label="Mock input">
+						<Input value="test-value" onChange={() => {}} />
+					</SimpleInputField>
+				);
+
+				expect(screen.getByRole('textbox', { name: 'Mock input' })).toHaveValue('test-value');
+			});
+		});
+
+		describe('when the onChange prop is defined', () => {
+			test('then the callback should be fired as the user types', async () => {
+				const user = userEvent.setup();
+				const handleChange = jest.fn();
+				render(
+					<SimpleInputField label="Mock input">
+						<Input value="test-value" onChange={handleChange} />
+					</SimpleInputField>
+				);
+				const input = screen.getByRole('textbox', { name: 'Mock input' });
+				await user.type(input, 't');
+				expect(handleChange).toHaveBeenCalledTimes(1);
 			});
 		});
 
@@ -272,33 +299,37 @@ describe('Given the InputField is rendered', () => {
 			test('then the value should be displayed in the input', async () => {
 				const user = userEvent.setup();
 				render(
-					<SimpleInputField>
+					<SimpleInputField label="Mock input">
 						<Input />
 					</SimpleInputField>
 				);
 
-				const input = screen.getByRole('textbox');
+				const input = screen.getByRole('textbox', { name: 'Mock input' });
 				await user.type(input, 'test-text');
 				expect(input).toHaveValue('test-text');
 			});
 		});
 
 		describe('when the invalid prop is defined', () => {
-			test('then the input should be invalid', () => {});
+			test('then the input should be invalid', () => {
+				render(
+					<SimpleInputField label="Mock input">
+						<Input invalid />
+					</SimpleInputField>
+				);
+				expect(screen.getByRole('textbox', { name: 'Mock input' })).toBeInvalid();
+			});
 		});
 
 		describe('when the disabled prop is defined', () => {
-			test('then the input should not allow additional text to be added', async () => {
-				const user = userEvent.setup();
+			test('then the input should be disabled', () => {
 				render(
-					<SimpleInputField>
+					<SimpleInputField label="Mock input">
 						<Input defaultValue="test-text" disabled />
 					</SimpleInputField>
 				);
 
-				const input = screen.getByRole('textbox');
-				await user.type(input, 'additional text');
-				expect(input).toHaveValue('test-text');
+				expect(screen.getByRole('textbox', { name: 'Mock input' })).toBeDisabled();
 			});
 		});
 	});

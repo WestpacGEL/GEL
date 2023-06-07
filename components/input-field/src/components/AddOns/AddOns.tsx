@@ -100,20 +100,13 @@ export const InputAddOn = ({
 }: InputAddOnProps) => {
 	const isInset = Icon ? true : inset;
 
-	let addOnType = 'default';
+	let Wrapper = DefaultAddOn;
+
 	if (Icon) {
-		addOnType = 'icon';
+		Wrapper = IconAddOn;
 	} else if (typeof children === 'string') {
-		addOnType = 'text';
+		Wrapper = TextAddOn;
 	}
-
-	const wrapperMap = {
-		default: DefaultAddOn,
-		text: TextAddOn,
-		icon: IconAddOn,
-	};
-
-	const Wrapper = wrapperMap[addOnType as keyof typeof wrapperMap];
 
 	return (
 		<Wrapper
@@ -123,7 +116,7 @@ export const InputAddOn = ({
 			}}
 			{...props}
 		>
-			{Icon ? <Icon size="small" /> : children}
+			{Icon ? <Icon size="small" aria-hidden={true} /> : children}
 		</Wrapper>
 	);
 };
