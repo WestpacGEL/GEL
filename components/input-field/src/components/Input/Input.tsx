@@ -138,7 +138,7 @@ Input.propTypes = {
 	 */
 	invalid: PropTypes.bool,
 	/**
-	 * Type
+	 * input type attribute
 	 */
 	type: PropTypes.string,
 	/**

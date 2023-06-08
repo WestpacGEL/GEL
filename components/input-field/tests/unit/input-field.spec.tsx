@@ -333,4 +333,16 @@ describe('Given the InputField is rendered', () => {
 			});
 		});
 	});
+
+	describe('when the isFieldset prop is defined', () => {
+		test('then a fieldset should be rendered', () => {
+			render(
+				<SimpleInputField label="Mock input" isFieldset>
+					<Input />
+				</SimpleInputField>
+			);
+
+			expect(screen.getByRole('group')).toBeInTheDocument();
+		});
+	});
 });
