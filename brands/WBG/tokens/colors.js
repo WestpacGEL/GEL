@@ -12,6 +12,8 @@ const COLORS = {
 	pop: '#FF7468',
 	primary: '#DA1710',
 	text: '#000',
+	white: '#FFFFFF',
+	black: '#000000',
 
 	// reserved
 	success: '#008000',

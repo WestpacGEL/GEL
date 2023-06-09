@@ -1,20 +1,23 @@
 import { jsx, getLabel } from '@westpac/core';
 import { Button } from '@westpac/button';
 import { ExpandLessIcon, ExpandMoreIcon } from '@westpac/icon';
-
+import { forwardRef } from 'react';
 // ==============================
 // Component
 // ==============================
 
-const Toggle = ({ open, state: _, ...rest }) => (
+const Toggle = forwardRef(({ open, state: _, ...rest }, ref) => (
 	<Button
+		ref={ref}
 		look="link"
 		size="large"
 		soft
 		iconAfter={open ? ExpandLessIcon : ExpandMoreIcon}
 		{...rest}
 	/>
-);
+));
+
+Toggle.displayName = 'Toggle';
 
 // ==============================
 // Styles
@@ -30,9 +33,10 @@ const toggleStyles = () => ({
 // Attributes
 // ==============================
 
-const toggleAttributes = (_, { id, open }) => ({
+const toggleAttributes = (_, { id, titleId, open }) => ({
 	'aria-expanded': open,
 	'aria-controls': id,
+	'aria-labelledby': titleId,
 });
 
 // ==============================

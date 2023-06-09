@@ -31,7 +31,7 @@ export interface SwitchProps {
 	/**
 	 * Switch size
 	 */
-	size?: 'small' | 'medium' | 'large' | 'xlarge' | 'small' | 'medium' | 'large' | 'xlarge'[];
+	size?: 'small' | 'medium' | 'large' | 'xlarge' | ('small' | 'medium' | 'large' | 'xlarge')[];
 	/**
 	 * Block mode
 	 */
@@ -120,7 +120,11 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
 			setChecked(isChecked);
 		}, [isChecked]);
 
-		const handleChange = () => wrapHandlers(onChange, () => setChecked(!checked));
+		const handleChange = (event: any) =>
+			wrapHandlers(
+				() => onChange(event),
+				() => setChecked(!checked)
+			)(event);
 
 		return (
 			<Switch {...rest} state={state} {...switchAttributes(state)} css={switchStyles(state)}>
@@ -212,6 +216,6 @@ Switch.propTypes = {
 	 */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
-		PropTypes.arrayOf(PropTypes.oneOf(['xlarge'])),
+		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge'])),
 	]),
 };

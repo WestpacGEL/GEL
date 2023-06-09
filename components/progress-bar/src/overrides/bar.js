@@ -24,7 +24,7 @@ const barStyles = (_, { look }) => {
 		height: '100%',
 		width: 0,
 		fontSize: '0.875rem',
-		color: '#fff',
+		color: COLORS.white,
 		lineHeight: '1.25rem',
 		textAlign: 'right',
 		backgroundColor: COLORS.hero,
@@ -46,7 +46,7 @@ const barStyles = (_, { look }) => {
 		},
 
 		'@media print': {
-			backgroundColor: '#000 !important',
+			backgroundColor: `${COLORS.black} !important`,
 		},
 	};
 };

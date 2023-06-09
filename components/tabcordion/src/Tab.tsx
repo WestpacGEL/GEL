@@ -17,7 +17,7 @@ export interface TabProps {
 	/**
 	 * Idx
 	 */
-	idx?: string;
+	idx?: number;
 	/**
 	 * The look of the tabs
 	 */
@@ -267,7 +267,7 @@ Tab.propTypes = {
 	/**
 	 * Idx
 	 */
-	idx: PropTypes.string,
+	idx: PropTypes.number,
 	/**
 	 * Indicator if this is the last tab
 	 */

@@ -43,7 +43,7 @@ export const progressBarStyles = (_, { look }) => {
 		label: getLabel('progressBar'),
 		marginBottom: '1.3125rem',
 		overflow: 'hidden',
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 		border: `1px solid ${COLORS.border}`,
 		padding: '0.0625rem',
 		position: 'relative',

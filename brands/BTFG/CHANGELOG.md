@@ -1,5 +1,11 @@
 # @westpac/btfg
 
+## 2.3.0
+
+### Minor Changes
+
+- 1f2e1275: Add white, black tokens and update references
+
 ## 2.2.1
 
 ### Patch Changes

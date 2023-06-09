@@ -1,4 +1,4 @@
-import { jsx, getLabel } from '@westpac/core';
+import { jsx, getLabel, useBrand } from '@westpac/core';
 import { useTransition, animated } from '@react-spring/web';
 
 // ==============================
@@ -20,16 +20,19 @@ const Backdrop = ({ state: { open }, ...rest }) => {
 // Styles
 // ==============================
 
-const backdropStyles = () => ({
-	label: getLabel('sidebar-backdrop'),
-	position: 'fixed',
-	zIndex: 10,
-	top: 0,
-	right: 0,
-	bottom: 0,
-	left: 0,
-	backgroundColor: '#000',
-});
+const backdropStyles = () => {
+	const { COLORS } = useBrand();
+	return {
+		label: getLabel('sidebar-backdrop'),
+		position: 'fixed',
+		zIndex: 10,
+		top: 0,
+		right: 0,
+		bottom: 0,
+		left: 0,
+		backgroundColor: COLORS.black,
+	};
+};
 
 // ==============================
 // Attributes

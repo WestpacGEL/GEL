@@ -17,7 +17,7 @@ const Content = ({ state: { separator }, children, ...rest }) => {
 const contentStyles = (_, { separator }) => {
 	return {
 		label: getLabel('repeater-content'),
-		padding: separator && '0 1.125rem ',
+		padding: separator && '0 1.125rem 2.625rem',
 	};
 };
 

@@ -1,5 +1,11 @@
 # @westpac/wbg
 
+## 2.5.0
+
+### Minor Changes
+
+- 1f2e1275: Add white, black tokens and update references
+
 ## 2.4.1
 
 ### Patch Changes

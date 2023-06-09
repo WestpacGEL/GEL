@@ -32,7 +32,10 @@ BlenderButton.displayName = 'BlenderButton';
 // Styles
 // ==============================
 
-const buttonStyles = (_: any, { tag, type, look, size, soft, block, justify, disabled }: any) => {
+const buttonStyles = (
+	_: any,
+	{ tag, type, look, size, soft, block, justify, disabled, horizontalPadding }: any
+) => {
 	const mq = useMediaQuery();
 	const { COLORS, TYPE } = useBrand();
 
@@ -53,7 +56,7 @@ const buttonStyles = (_: any, { tag, type, look, size, soft, block, justify, dis
 	const styleMap = {
 		primary: {
 			standardCSS: {
-				color: '#fff',
+				color: COLORS.white,
 				backgroundColor: COLORS.primary,
 				borderColor: COLORS.primary,
 
@@ -66,22 +69,22 @@ const buttonStyles = (_: any, { tag, type, look, size, soft, block, justify, dis
 			},
 			softCSS: {
 				color: COLORS.text,
-				backgroundColor: '#fff',
+				backgroundColor: COLORS.white,
 				borderColor: COLORS.primary,
 
 				':hover': {
-					color: '#fff',
+					color: COLORS.white,
 					backgroundColor: COLORS.tints.primary70,
 				},
 				':active, &.active': {
-					color: '#fff',
+					color: COLORS.white,
 					backgroundColor: COLORS.tints.primary50,
 				},
 			},
 		},
 		hero: {
 			standardCSS: {
-				color: '#fff',
+				color: COLORS.white,
 				backgroundColor: COLORS.hero,
 				borderColor: COLORS.hero,
 
@@ -94,15 +97,15 @@ const buttonStyles = (_: any, { tag, type, look, size, soft, block, justify, dis
 			},
 			softCSS: {
 				color: COLORS.text,
-				backgroundColor: '#fff',
+				backgroundColor: COLORS.white,
 				borderColor: COLORS.hero,
 
 				':hover': {
-					color: '#fff',
+					color: COLORS.white,
 					backgroundColor: COLORS.tints.hero70,
 				},
 				':active, &.active': {
-					color: '#fff',
+					color: COLORS.white,
 					backgroundColor: COLORS.tints.hero50,
 				},
 			},
@@ -114,12 +117,12 @@ const buttonStyles = (_: any, { tag, type, look, size, soft, block, justify, dis
 				borderColor: COLORS.border,
 
 				':hover, :active, &.active': {
-					backgroundColor: '#fff',
+					backgroundColor: COLORS.white,
 				},
 			},
 			softCSS: {
 				color: COLORS.muted,
-				backgroundColor: '#fff',
+				backgroundColor: COLORS.white,
 				borderColor: COLORS.border,
 
 				':hover, :active, &.active': {
@@ -191,6 +194,7 @@ const buttonStyles = (_: any, { tag, type, look, size, soft, block, justify, dis
 				padding: 0,
 			},
 		}),
+
 		// =========
 
 		label: 'button',
@@ -212,10 +216,14 @@ const buttonStyles = (_: any, { tag, type, look, size, soft, block, justify, dis
 		...(look !== 'unstyled' && {
 			fontSize: sizeArr.map((s) => s && sizeMap[s].fontSize),
 			...TYPE.bodyFont[400],
-			padding: sizeArr.map((s) => s && sizeMap[s].padding),
+			padding: sizeArr.map((s) =>
+				!horizontalPadding && look === 'link'
+					? s && sizeMap[s].strippedLinkPadding
+					: s && sizeMap[s].padding
+			),
 			height: sizeArr.map((s) => s && sizeMap[s].height),
 			border: look !== 'link' ? '1px solid transparent' : 0,
-			borderRadius: look !== 'link' && '0.1875rem',
+			borderRadius: '0.1875rem',
 			transition: 'background 0.2s ease, color 0.2s ease',
 		}),
 		...styleMap[look][soft ? 'softCSS' : 'standardCSS'],

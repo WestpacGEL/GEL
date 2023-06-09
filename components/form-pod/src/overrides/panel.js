@@ -15,7 +15,7 @@ const panelStyles = (_, { borderTop }) => {
 
 	return {
 		label: getLabel('formPod-panel'),
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 		borderTop: borderTop && `1px solid ${COLORS.hero}`,
 		borderBottom: `1px solid ${COLORS.border}`,
 	};

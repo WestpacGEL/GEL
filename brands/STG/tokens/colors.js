@@ -12,6 +12,8 @@ const COLORS = {
 	pop: '#78BE20', //St.George Green
 	primary: '#E30000',
 	text: '#004833',
+	white: '#FFFFFF',
+	black: '#000000',
 
 	// reserved
 	success: '#008000',

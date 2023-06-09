@@ -1,5 +1,22 @@
 # @westpac/sidebar
 
+## 1.3.0
+
+### Minor Changes
+
+- a6687794: allocated KeyboardEvent type to event object in keyHandler; replaced deprecated "keycode" method on event obj with "code" method
+- 1f2e1275: Add white, black tokens and update references
+
+### Patch Changes
+
+- Updated dependencies [c88fada6]
+- Updated dependencies [cab56804]
+- Updated dependencies [6d326e14]
+- Updated dependencies [2a2c53b9]
+- Updated dependencies [1f2e1275]
+  - @westpac/button@3.0.0
+  - @westpac/icon@2.2.0
+
 ## 1.2.1
 
 ### Patch Changes

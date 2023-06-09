@@ -1,0 +1,41 @@
+{
+	"name": "@westpac/input-field",
+	"version": "1.0.0",
+	"description": "Westpac GEL input field component",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/input-field",
+	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"license": "GPL-3.0+",
+	"scripts": {
+		"start": "PACKAGE_NAME=input-field NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
+		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
+		"test:all": "yarn test:integration",
+		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
+		"test:integration": "cypress run",
+		"test:test-dev": "cypress open",
+		"typecheck": "yarn tsc --noEmit"
+	},
+	"main": "dist/westpac-input-field.cjs.js",
+	"module": "dist/westpac-input-field.esm.js",
+	"dependencies": {
+		"@babel/runtime": "^7.14.8",
+		"@westpac/core": "^3.2.1",
+		"@westpac/form": "^3.2.2",
+		"prop-types": "^15.7.2"
+	},
+	"peerDependencies": {
+		"@emotion/react": "^11.10.6",
+		"@westpac/button": "^3.0.0",
+		"@westpac/icon": "^2.2.0",
+		"@westpac/text-input": "^2.4.0",
+		"react": "^18.2.0"
+	},
+	"devDependencies": {
+		"@emotion/react": "^11.10.6",
+		"@westpac/button": "*",
+		"@westpac/icon": "*",
+		"@westpac/text-input": "*",
+		"react": "^18.2.0",
+		"start-server-and-test": "^1.12.6"
+	}
+}

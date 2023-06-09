@@ -84,6 +84,13 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 	iconColor?: string;
 
 	/**
+	 * Icon size
+	 *
+	 * Defaults to button size prop
+	 */
+	iconSize?: 'small' | 'medium' | 'large' | 'xlarge' | ('small' | 'medium' | 'large' | 'xlarge')[];
+
+	/**
 	 * Justify align button children
 	 */
 	justify?: boolean;
@@ -114,6 +121,11 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 	href?: string;
 
 	/**
+	 * horizontalPadding for link style
+	 */
+	horizontalPadding?: boolean;
+	/**
+
 	 * The override API
 	 */
 	overrides?: {
@@ -150,6 +162,7 @@ export const Button = forwardRef(
 			iconAfter,
 			iconBefore,
 			iconColor,
+			iconSize,
 			assistiveText,
 			type,
 			dropdown,
@@ -163,6 +176,7 @@ export const Button = forwardRef(
 			block = false,
 			justify = false,
 			disabled = false,
+			horizontalPadding = true,
 			...rest
 		}: ButtonProps,
 		ref
@@ -191,6 +205,7 @@ export const Button = forwardRef(
 			iconAfter,
 			iconBefore,
 			iconColor,
+			iconSize,
 			justify,
 			disabled,
 			assistiveText,
@@ -198,6 +213,7 @@ export const Button = forwardRef(
 			type,
 			dropdown,
 			onClick,
+			horizontalPadding,
 			overrides: componentOverrides,
 			...rest,
 		};
@@ -205,7 +221,6 @@ export const Button = forwardRef(
 		const {
 			Button: { component: Button, styles: buttonStyles, attributes: buttonAttributes },
 		} = overrideReconciler(defaultOverrides, tokenOverrides, brandOverrides, componentOverrides);
-
 		return (
 			<ButtonContext.Provider value={{ state }}>
 				<Button
@@ -227,6 +242,7 @@ export const Button = forwardRef(
 							iconBefore={iconBefore}
 							dropdown={dropdown}
 							iconColor={iconColor}
+							iconSize={iconSize}
 						>
 							{children}
 						</Content>
@@ -271,6 +287,10 @@ Button.propTypes = {
 	 */
 	dropdown: PropTypes.bool,
 	/**
+	 * horizontalPadding for link style
+	 */
+	horizontalPadding: PropTypes.bool,
+	/**
 	 * Href
 	 */
 	href: PropTypes.string,
@@ -288,6 +308,15 @@ Button.propTypes = {
 	 * Defaults to the current text color.
 	 */
 	iconColor: PropTypes.string,
+	/**
+	 * Icon size
+	 *
+	 * Defaults to button size prop
+	 */
+	iconSize: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
+		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge'])),
+	]),
 	/**
 	 * Justify align button children
 	 */

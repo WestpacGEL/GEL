@@ -35,7 +35,7 @@ const tabBtnStyles = (_, { look, justify, selected }) => {
 
 	const styleMap = {
 		soft: {
-			backgroundColor: selected ? '#fff' : COLORS.light,
+			backgroundColor: selected ? COLORS.white : COLORS.light,
 			borderTopLeftRadius: '0.1875rem',
 			borderTopRightRadius: '0.1875rem',
 			border: `1px solid ${COLORS.border}`,
@@ -48,12 +48,12 @@ const tabBtnStyles = (_, { look, justify, selected }) => {
 			},
 		},
 		lego: {
-			backgroundColor: selected ? '#fff' : COLORS.hero,
+			backgroundColor: selected ? COLORS.white : COLORS.hero,
 			borderTopLeftRadius: 0,
 			borderTopRightRadius: 0,
 			border: `1px solid ${selected ? COLORS.border : 'transparent'}`,
 			borderBottom: 0,
-			color: selected ? COLORS.text : '#fff',
+			color: selected ? COLORS.text : COLORS.white,
 			marginBottom: selected ? '-1px' : '0.125rem',
 
 			':hover': {

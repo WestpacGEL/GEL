@@ -1,5 +1,22 @@
 # @westpac/button
 
+## 3.0.0
+
+### Major Changes
+
+- c88fada6: button enhancement. added two optional props for button
+
+### Minor Changes
+
+- 6d326e14: Add iconSize prop
+- 2a2c53b9: Update link look buttons border radius style
+- 1f2e1275: Add white, black tokens and update references
+
+### Patch Changes
+
+- Updated dependencies [cab56804]
+  - @westpac/icon@2.2.0
+
 ## 2.2.1
 
 ### Patch Changes

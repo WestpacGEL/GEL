@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/repeater",
-	"version": "2.3.1",
+	"version": "2.4.0",
 	"description": "Repeater component",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/repeater",
 	"license": "GPL-3.0+",
@@ -17,16 +17,17 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/button": "^2.2.1",
+		"@westpac/a11y": "^2.2.1",
+		"@westpac/button": "^3.0.0",
 		"@westpac/core": "^3.2.1",
-		"@westpac/icon": "^2.1.1",
+		"@westpac/icon": "^2.2.0",
 		"prop-types": "^15.7.2"
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.10.6",
 		"@react-spring/web": "^9.2.4",
-		"@westpac/form": "^3.2.1",
-		"@westpac/text-input": "^2.3.1",
+		"@westpac/form": "^3.2.2",
+		"@westpac/text-input": "^2.4.0",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"

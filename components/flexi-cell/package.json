@@ -1,0 +1,45 @@
+{
+	"name": "@westpac/flexi-cell",
+	"version": "1.0.0",
+	"description": "Flexi Cell",
+	"homepage": "https://gel.westpacgroup.com.au/design-system",
+	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/flexi-cell",
+	"author": "Westpac GEL Team <gel@westpac.com.au>",
+	"license": "GPL-3.0+",
+	"scripts": {
+		"start": "PACKAGE_NAME=flexi-cell NODE_ENV=development webpack server --config ../../helpers/example/start.webpack.config.js",
+		"test": "exit 0 # start-server-and-test start http://localhost:8080 test:all",
+		"test:all": "yarn test:integration",
+		"test:dev": "start-server-and-test start http://localhost:8080 test:test-dev",
+		"test:integration": "cypress run",
+		"test:test-dev": "cypress open",
+		"typecheck": "yarn tsc --noEmit"
+	},
+	"main": "dist/westpac-flexi-cell.cjs.js",
+	"module": "dist/westpac-flexi-cell.esm.js",
+	"dependencies": {
+		"@babel/runtime": "^7.14.8",
+		"@westpac/button": "^3.0.0",
+		"@westpac/circle": "^1.0.0",
+		"@westpac/core": "^3.2.1",
+		"@westpac/icon": "^2.2.0",
+		"classnames": "^2.3.1",
+		"prop-types": "^15.7.2"
+	},
+	"peerDependencies": {
+		"@emotion/react": "^11.10.6",
+		"react": "^18.2.0"
+	},
+	"devDependencies": {
+		"@emotion/react": "^11.10.6",
+		"cypress": "^8.0.0",
+		"react": "^18.2.0",
+		"start-server-and-test": "^1.12.6"
+	},
+	"components": [
+		{
+			"name": "FlexiCell",
+			"src": "components/FlexiCell/FlexiCell.tsx"
+		}
+	]
+}

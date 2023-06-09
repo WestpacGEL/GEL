@@ -15,7 +15,7 @@ const skipLinkStyles = () => {
 		fontSize: '1.3125rem',
 		padding: '1em',
 		textAlign: 'center',
-		backgroundColor: '#fff',
+		backgroundColor: COLORS.white,
 		outlineOffset: '-2px !important', // override to be inside
 		color: COLORS.link,
 		textDecoration: 'underline',
