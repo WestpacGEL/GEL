@@ -16,5 +16,13 @@ describe.only('Given the FlexiCellHint is rendered', () => {
 			const { getByText } = render(<SimpleFlexiCellHint>hint</SimpleFlexiCellHint>);
 			expect(getByText('hint')).toBeVisible();
 		});
+		test('then the component should be displayed', () => {
+			const { getByText } = render(
+				<SimpleFlexiCellHint tag="small" truncateText>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				</SimpleFlexiCellHint>
+			);
+			expect(getByText('Lorem ipsum dolor sit amet, consectetur adipisicing elit.')).toBeVisible();
+		});
 	});
 });

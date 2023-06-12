@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { FlexiCellLabelProps } from './FlexiCellLabel.types';
 import cx from 'classnames';
 
-/** Flexi Cell Labek: Flexi Cell Labek */
+/** Flexi Cell Label: Flexi Cell Label */
 export const FlexiCellLabel = ({
 	children,
 	tag: Tag = 'div',
@@ -52,8 +52,14 @@ FlexiCellLabel.propTypes = {
 	// | These PropTypes are generated from the TypeScript type definitions |
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
+	/**
+	 * Children attribute
+	 */
 	children: PropTypes.node,
 	className: PropTypes.string,
+	/**
+	 * Label's font weight
+	 */
 	fontWeight: PropTypes.oneOfType([
 		PropTypes.oneOf([
 			'-moz-initial',
@@ -326,6 +332,9 @@ FlexiCellLabel.propTypes = {
 			valueOf: PropTypes.func.isRequired,
 		}),
 	]),
+	/**
+	 * Component tag
+	 */
 	tag: PropTypes.oneOf([
 		'a',
 		'abbr',

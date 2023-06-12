@@ -1,6 +1,6 @@
 import { useBrand, useMediaQuery } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { FlexiCellBodyProps } from './FlexiCellBody.types';
+import { type FlexiCellBodyProps } from './FlexiCellBody.types';
 
 /** Flexi Cell Body: Flexi Cell Body */
 export const FlexiCellBody = ({ children, tag: Tag = 'div', ...props }: FlexiCellBodyProps) => {
@@ -9,7 +9,6 @@ export const FlexiCellBody = ({ children, tag: Tag = 'div', ...props }: FlexiCel
 		<Tag
 			{...props}
 			css={{
-				overflow: 'hidden',
 				display: 'flex',
 				flex: 1,
 				flexDirection: 'column',
@@ -26,7 +25,13 @@ FlexiCellBody.propTypes = {
 	// | These PropTypes are generated from the TypeScript type definitions |
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
+	/**
+	 * Children attributes
+	 */
 	children: PropTypes.node,
+	/**
+	 * The native tag that the circle will be rendered as
+	 */
 	tag: PropTypes.oneOf([
 		'a',
 		'abbr',

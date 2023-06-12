@@ -1,6 +1,7 @@
 import type { HTMLAttributes, ReactNode } from 'react';
+import type { StandardLonghandPropertiesHyphenFallback } from 'csstype';
 
-export type FlexiCellProps = {
+type BaseFlexiCellProps = {
 	/**
 	 * Adds an arrow on top right
 	 */
@@ -37,4 +38,28 @@ export type FlexiCellProps = {
 	 * href in case it is an "a" tag
 	 */
 	href?: string;
+	/**
+	 * zIndex for badge
+	 */
+	badgeZIndex?: StandardLonghandPropertiesHyphenFallback['z-index'];
 } & HTMLAttributes<HTMLOrSVGElement>;
+
+type FlexiCellAsLinkProps = {
+	/**
+	 * The native tag that the circle will be rendered as
+	 */
+	tag: 'a';
+	/**
+	 * The href for the link
+	 */
+	href: string;
+};
+
+type FlexiCellAsAllOtherTagsProps<Tag> = {
+	tag?: Tag;
+	href?: never;
+};
+
+export type FlexiCellProps<
+	Tag extends keyof Omit<JSX.IntrinsicElements, 'a'> = keyof Omit<JSX.IntrinsicElements, 'a'>
+> = (FlexiCellAsLinkProps | FlexiCellAsAllOtherTagsProps<Tag>) & BaseFlexiCellProps;

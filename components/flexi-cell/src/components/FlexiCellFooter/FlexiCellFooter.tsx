@@ -1,9 +1,8 @@
-import { useBrand, useMediaQuery } from '@westpac/core';
+import { useBrand } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { useMemo } from 'react';
 import { FlexiCellFooterProps } from './FlexiCellFooter.types';
 
-/** Flexi Cell Labek: Flexi Cell Labek */
+/** Flexi Cell Footer: Flexi Cell Footer */
 export const FlexiCellFooter = ({ children, tag: Tag = 'div', ...props }: FlexiCellFooterProps) => {
 	const { SPACING } = useBrand();
 
@@ -25,7 +24,13 @@ FlexiCellFooter.propTypes = {
 	// | These PropTypes are generated from the TypeScript type definitions |
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
+	/**
+	 * Children attributes
+	 */
 	children: PropTypes.node,
+	/**
+	 * Component tag
+	 */
 	tag: PropTypes.oneOf([
 		'a',
 		'abbr',

@@ -1,23 +1,11 @@
 import { CSSProperties } from '@emotion/react/node_modules/@emotion/serialize';
 import { HTMLAttributes, ReactNode } from 'react';
 
-type IntrinsicElementsCustom = {
-	a: JSX.IntrinsicElements['a'];
-};
-
-export type CircleProps<Tag extends keyof JSX.IntrinsicElements = keyof JSX.IntrinsicElements> = {
-	/**
-	 * The native tag that flexicell will be rendered
-	 */
-	tag?: Tag;
-	/**
-	 * href in case it is an "a" tag
-	 */
-	href?: string;
+type BaseCircleProps = {
 	/**
 	 * Adds a background color
 	 */
-	background?: string;
+	background?: CSSProperties['backgroundColor'];
 	/**
 	 * JSX element to be render inside of circle
 	 */
@@ -27,3 +15,23 @@ export type CircleProps<Tag extends keyof JSX.IntrinsicElements = keyof JSX.Intr
 	 */
 	size?: CSSProperties['width'] | CSSProperties['height'];
 } & HTMLAttributes<HTMLOrSVGElement>;
+
+type CircleAsLinkProps = {
+	/**
+	 * The native tag that the circle will be rendered as
+	 */
+	tag: 'a';
+	/**
+	 * The href for the link
+	 */
+	href: string;
+};
+
+type CircleAsAllOtherTagsProps<Tag> = {
+	tag?: Tag;
+	href?: never;
+};
+
+export type CircleProps<
+	Tag extends keyof Omit<JSX.IntrinsicElements, 'a'> = keyof Omit<JSX.IntrinsicElements, 'a'>
+> = (CircleAsLinkProps | CircleAsAllOtherTagsProps<Tag>) & BaseCircleProps;

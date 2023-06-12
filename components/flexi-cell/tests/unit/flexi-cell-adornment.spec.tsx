@@ -14,12 +14,12 @@ describe.only('Given the FlexiCellAdornment is rendered', () => {
 	describe('when default props are defined', () => {
 		test('then the component should be displayed', () => {
 			const { getByText } = render(
-				<SimpleFlexiCellAdornment>
+				<SimpleFlexiCellAdornment tag="aside">
 					<FlexiCell.Label>label</FlexiCell.Label>
 				</SimpleFlexiCellAdornment>
 			);
 
-			expect(getByText('label')).toBeVisible();
+			expect(getByText('label', { selector: 'aside' })).toBeVisible();
 		});
 	});
 });

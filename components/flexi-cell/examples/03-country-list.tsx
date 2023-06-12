@@ -101,7 +101,7 @@ function ExampleChildren() {
 										</FlexiCell.Adornment>
 									}
 								>
-									<FlexiCell.Label fontWeight="500" tag="h4">
+									<FlexiCell.Label fontWeight="500" tag="span">
 										{name}
 									</FlexiCell.Label>
 								</FlexiCell>

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { DropDownIcon } from '@westpac/icon';
+import { type IconProps } from '@westpac/icon';
 
 import { defaultContent } from './overrides/content';
 import { defaultIcon } from './overrides/icon';
@@ -24,11 +25,12 @@ interface ContentProps {
 	/**
 	 * Places an icon within the button, after the button’s text
 	 */
-	iconAfter?: (...args: unknown[]) => unknown;
+	iconAfter?: (props: IconProps) => JSX.Element;
+
 	/**
 	 * Places an icon within the button, before the button’s text
 	 */
-	iconBefore?: (...args: unknown[]) => unknown;
+	iconBefore?: (props: IconProps) => JSX.Element;
 	/**
 	 * The color for the icon.
 	 *
