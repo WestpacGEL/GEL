@@ -4,6 +4,15 @@ import { Button } from '@westpac/button';
 import { Select, Textarea } from '@westpac/text-input';
 import { VisibilityIcon, SearchIcon } from '@westpac/icon';
 
+const IconButton = () => (
+	<Button
+		look="link"
+		iconColor="grey"
+		iconAfter={VisibilityIcon}
+		assistiveText="Icon button action"
+	/>
+);
+
 function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) }) {
 	return (
 		<GEL brand={brand}>
@@ -40,14 +49,14 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 			<h3>Icons in buttons</h3>
 			<InputField label="Icon button before" hint="I am a hint" supportingText="Supporting text">
 				<InputBefore inset>
-					<Button look="link" iconColor="grey" iconAfter={VisibilityIcon} />
+					<IconButton />
 				</InputBefore>
 				<Input />
 			</InputField>
 			<InputField label="Icon button after" hint="I am a hint" supportingText="Supporting text">
 				<Input />
 				<InputAfter inset>
-					<Button look="link" iconColor="grey" iconAfter={VisibilityIcon} />
+					<IconButton />
 				</InputAfter>
 			</InputField>
 			<InputField
@@ -56,11 +65,11 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 				supportingText="Supporting text"
 			>
 				<InputBefore inset>
-					<Button look="link" iconColor="grey" iconAfter={VisibilityIcon} />
+					<IconButton />
 				</InputBefore>
 				<Input />
 				<InputAfter inset>
-					<Button look="link" iconColor="grey" iconAfter={VisibilityIcon} />
+					<IconButton />
 				</InputAfter>
 			</InputField>
 			<h3>Button add on</h3>

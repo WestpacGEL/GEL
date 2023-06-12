@@ -42,6 +42,10 @@ export type InputFieldProps = {
 	 */
 	size?: Sizes;
 	/**
+	 * Whether the inputs are a related set. If you need to read the value of multiple inputs, setting this to true helps screen reader users understand the relationship between the inputs.
+	 */
+	isFieldset?: boolean;
+	/**
 	 * children
 	 */
 	children: ReactNode;

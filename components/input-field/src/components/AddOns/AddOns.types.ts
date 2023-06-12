@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { IconProps } from '@westpac/icon';
 
 export type AddOnProps = {
 	/**
@@ -19,7 +20,7 @@ export type InputAddOnProps = {
 	/**
 	 * Icon to display
 	 */
-	icon?: (...args: unknown[]) => any;
+	icon?: (props: Omit<IconProps, 'icon'>) => JSX.Element;
 	/**
 	 * Render compononent within input borders
 	 */
