@@ -43,9 +43,11 @@ export const FlexiCell = ({
 				...(isLink && {
 					':hover': {
 						borderColor: COLORS.hero,
-						'.flexi-cell-label': {
-							color: COLORS.link,
-						},
+						...(!withBorder && {
+							'.flexi-cell-label': {
+								color: COLORS.link,
+							},
+						}),
 					},
 				}),
 			}),
