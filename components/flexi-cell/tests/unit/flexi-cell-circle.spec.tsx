@@ -10,7 +10,7 @@ const SimpleFlexiCellCircle = (props: FlexiCellCircleProps) => (
 	</GEL>
 );
 
-describe.only('Given the FlexiCellCircle is rendered', () => {
+describe('Given the FlexiCellCircle is rendered', () => {
 	describe('when default props are defined', () => {
 		test('then the component should be displayed', () => {
 			const { getByText } = render(

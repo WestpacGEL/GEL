@@ -10,7 +10,7 @@ const SimpleFlexiCellFooter = (props: FlexiCellFooterProps) => (
 	</GEL>
 );
 
-describe.only('Given the FlexiCellFooter is rendered', () => {
+describe('Given the FlexiCellFooter is rendered', () => {
 	describe('when default props are defined', () => {
 		test('then the component should be displayed', () => {
 			const { getByText } = render(

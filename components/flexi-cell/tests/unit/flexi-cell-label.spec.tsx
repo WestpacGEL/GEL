@@ -10,7 +10,7 @@ const SimpleFlexiCellLabel = (props: FlexiCellLabelProps) => (
 	</GEL>
 );
 
-describe.only('Given the FlexiCellLabel is rendered', () => {
+describe('Given the FlexiCellLabel is rendered', () => {
 	describe('when default props are defined', () => {
 		test('then the component should be displayed', () => {
 			const { getByText } = render(<SimpleFlexiCellLabel tag="a">label</SimpleFlexiCellLabel>);
