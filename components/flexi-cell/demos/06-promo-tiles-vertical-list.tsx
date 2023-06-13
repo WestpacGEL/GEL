@@ -5,17 +5,17 @@ import { FlexiCell } from '@westpac/flexi-cell';
 
 const MOCK_PROMOS = [
 	{
-		title: 'This is talking about the bonus',
+		title: 'This is talking about the bonus.',
 		subtitle: 'This is more about the bonus and all the other exciting things about this.',
 		stars: true,
 	},
 	{
-		title: 'This is a longer heading talking all about the bonus this one wraps',
+		title: 'This is a longer heading talking all about the bonus this one wraps.',
 		subtitle: 'This is more about the bonus',
 		stars: false,
 	},
 	{
-		title: 'This is talking about the bonus',
+		title: 'This is talking about the bonus.',
 		subtitle: 'This is more about the bonus and all the other exciting things about this.',
 		stars: false,
 	},

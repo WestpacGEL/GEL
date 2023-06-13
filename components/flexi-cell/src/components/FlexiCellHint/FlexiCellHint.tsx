@@ -6,7 +6,7 @@ import { FlexiCellHintProps } from './FlexiCellHint.types';
 /** Flexi Cell Hint: Flexi Cell Hint */
 export const FlexiCellHint = ({
 	children,
-	tag: Tag = 'small',
+	tag: Tag = 'p',
 	truncateText,
 	...props
 }: FlexiCellHintProps) => {

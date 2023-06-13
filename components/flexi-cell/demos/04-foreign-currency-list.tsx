@@ -88,8 +88,7 @@ function ExampleChildren() {
 						{payees.map(({ name, paidAt, number }) => {
 							return (
 								<FlexiCell
-									tag={paidAt ? 'a' : 'div'}
-									href="#"
+									{...(paidAt ? { href: '#', tag: 'a' } : { tag: 'div' })}
 									body
 									key={name}
 									before={
@@ -112,7 +111,6 @@ function ExampleChildren() {
 											{paidAt ? (
 												<FlexiCell.Hint tag="h4">{paidAt}</FlexiCell.Hint>
 											) : (
-												// @ts-ignore
 												<FlexiCell.Button href="/somewhere" iconBefore={InfoIcon} />
 											)}
 										</FlexiCell.Adornment>

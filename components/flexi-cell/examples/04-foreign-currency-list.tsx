@@ -1,7 +1,6 @@
 import { GEL, useBrand } from '@westpac/core';
 import { FlexiCell } from '@westpac/flexi-cell';
 import { InfoIcon } from '@westpac/icon';
-import { Fragment } from 'react';
 
 const MOCK_PAYEES = [
 	{
@@ -88,8 +87,7 @@ function ExampleChildren() {
 						{payees.map(({ name, paidAt, number }) => {
 							return (
 								<FlexiCell
-									tag={paidAt ? 'a' : 'div'}
-									href="#"
+									{...(paidAt ? { href: '#', tag: 'a' } : { tag: 'div' })}
 									body
 									key={name}
 									before={
@@ -112,7 +110,6 @@ function ExampleChildren() {
 											{paidAt ? (
 												<FlexiCell.Hint tag="h4">{paidAt}</FlexiCell.Hint>
 											) : (
-												// @ts-ignore
 												<FlexiCell.Button href="/somewhere" iconBefore={InfoIcon} />
 											)}
 										</FlexiCell.Adornment>

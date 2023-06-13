@@ -18,6 +18,7 @@ describe('Given the FlexiCell is rendered', () => {
 					tag="a"
 					href="#"
 					withBorder
+					withArrow
 					badge={<h4>badge</h4>}
 					before={<h3>before</h3>}
 					after={

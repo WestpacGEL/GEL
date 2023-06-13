@@ -6,15 +6,15 @@ import { useMemo } from 'react';
 
 const MOCK_PROMOS = [
 	{
-		title: 'This is talking about the bonus',
+		title: 'This is talking about the bonus.',
 		subtitle: 'This is more about the bonus and all the other exciting things about this.',
 	},
 	{
-		title: 'This is a longer heading talking all about the bonus this one wraps',
+		title: 'This is a longer heading talking all about the bonus this one wraps.',
 		subtitle: 'This is more about the bonus',
 	},
 	{
-		title: 'This is talking about the bonus',
+		title: 'This is talking about the bonus.',
 		subtitle: 'This is more about the bonus and all the other exciting things about this.',
 	},
 ];

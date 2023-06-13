@@ -5,6 +5,6 @@ export type FlexiCellHintProps = {
 	 * Define if it is going to truncate the text
 	 */
 	truncateText?: boolean;
-	children?: ReactNode;
+	children: ReactNode;
 	tag?: keyof JSX.IntrinsicElements;
 } & HTMLAttributes<HTMLOrSVGElement>;

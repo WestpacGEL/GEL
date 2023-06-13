@@ -1,7 +1,16 @@
 import type { HTMLAttributes, ReactNode } from 'react';
 
 export type FlexiCellAdornmentProps = {
+	/**
+	 * Define the alignment of content
+	 */
 	align?: 'center' | 'top' | 'bottom';
-	children?: ReactNode;
+	/**
+	 * Children attribute
+	 */
+	children: ReactNode;
+	/**
+	 * Component's tag
+	 */
 	tag?: keyof JSX.IntrinsicElements;
 } & HTMLAttributes<HTMLOrSVGElement>;

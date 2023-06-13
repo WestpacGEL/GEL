@@ -36,8 +36,17 @@ FlexiCellAdornment.propTypes = {
 	// | These PropTypes are generated from the TypeScript type definitions |
 	// |     To update them edit TypeScript types and run "yarn prop-types"  |
 	// ----------------------------------------------------------------------
+	/**
+	 * Define the alignment of content
+	 */
 	align: PropTypes.oneOf(['bottom', 'center', 'top']),
+	/**
+	 * Children attribute
+	 */
 	children: PropTypes.node,
+	/**
+	 * Component's tag
+	 */
 	tag: PropTypes.oneOf([
 		'a',
 		'abbr',

@@ -10,8 +10,8 @@ export const FlexiCellCircle = ({ ...props }: FlexiCellCircleProps) => {
 	const css = useMemo(
 		() =>
 			mq({
-				height: ['30px', '36px'],
-				width: ['30px', '36px'],
+				height: ['1.875rem', '2.25rem'],
+				width: ['1.875rem', '2.25rem'],
 			}),
 		[mq]
 	);

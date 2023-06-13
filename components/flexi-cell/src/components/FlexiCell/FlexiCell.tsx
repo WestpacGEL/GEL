@@ -21,6 +21,7 @@ export const FlexiCell = ({
 	tag: Tag = 'div',
 	badge,
 	withArrow,
+	badgeZIndex = 9,
 	...props
 }: FlexiCellProps) => {
 	const { SPACING, PACKS, COLORS } = useBrand();
@@ -42,9 +43,11 @@ export const FlexiCell = ({
 				...(isLink && {
 					':hover': {
 						borderColor: COLORS.hero,
-						'.flexi-cell-label': {
-							color: COLORS.link,
-						},
+						...(!withBorder && {
+							'.flexi-cell-label': {
+								color: COLORS.link,
+							},
+						}),
 					},
 				}),
 			}),
@@ -53,7 +56,9 @@ export const FlexiCell = ({
 
 	return (
 		<Tag css={css} {...props}>
-			{badge && <div css={{ top: 0, right: 0, position: 'absolute', zIndex: 9 }}>{badge}</div>}
+			{badge && (
+				<div css={{ top: 0, right: 0, position: 'absolute', zIndex: badgeZIndex }}>{badge}</div>
+			)}
 			{before}
 			<div
 				css={{
@@ -96,6 +101,35 @@ FlexiCell.propTypes = {
 	 */
 	badge: PropTypes.node,
 	/**
+	 * zIndex for badge
+	 */
+	badgeZIndex: PropTypes.oneOfType([
+		PropTypes.oneOf([
+			'-moz-initial',
+			'auto',
+			'inherit',
+			'initial',
+			'revert-layer',
+			'revert',
+			'unset',
+		]),
+		PropTypes.arrayOf(
+			PropTypes.oneOfType([
+				PropTypes.oneOf([
+					'-moz-initial',
+					'auto',
+					'inherit',
+					'initial',
+					'revert-layer',
+					'revert',
+					'unset',
+				]),
+				PropTypes.number,
+			])
+		),
+		PropTypes.number,
+	]),
+	/**
 	 * Renders an element on the left
 	 */
 	before: PropTypes.node,
@@ -108,7 +142,7 @@ FlexiCell.propTypes = {
 	 */
 	children: PropTypes.node,
 	/**
-	 * The native tag that flexicell will be rendered
+	 * The native tag that the circle will be rendered as
 	 */
 	tag: PropTypes.oneOf([
 		'a',

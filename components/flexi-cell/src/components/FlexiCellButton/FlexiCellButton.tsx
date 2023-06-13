@@ -16,8 +16,8 @@ export const FlexiCellButton = ({ ...props }: FlexiCellButtonProps) => {
 					color: COLORS.link,
 				},
 				svg: {
-					height: [null, '24px'],
-					width: [null, '24px'],
+					height: [null, '1.5rem'],
+					width: [null, '1.5rem'],
 				},
 			}),
 		[COLORS.link, COLORS.muted, mq]

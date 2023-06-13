@@ -91,7 +91,6 @@ function ExampleChildren() {
 				}
 				after={
 					<FlexiCell.Adornment align="center">
-						{/* @ts-ignore */}
 						<Button look="link" href="/somewhere" iconBefore={InfoIcon} />
 					</FlexiCell.Adornment>
 				}
@@ -110,7 +109,6 @@ function ExampleChildren() {
 				before={<div>Flag</div>}
 				after={
 					<FlexiCell.Adornment align="center">
-						{/* @ts-ignore */}
 						<Button look="link" href="/somewhere" iconBefore={InfoIcon} />
 					</FlexiCell.Adornment>
 				}

@@ -2,7 +2,6 @@ import { GEL, useBrand, useMediaQuery } from '@westpac/core';
 import { FlexiCell } from '@westpac/flexi-cell';
 import { InfoIcon } from '@westpac/icon';
 import { Heading } from '@westpac/heading';
-import { Circle } from '@westpac/circle';
 import { Badge } from '@westpac/badge';
 import { Button } from '@westpac/button';
 import { GiftPictogram } from '@westpac/pictogram';
@@ -92,7 +91,6 @@ function ExampleChildren() {
 				}
 				after={
 					<FlexiCell.Adornment align="center">
-						{/* @ts-ignore */}
 						<FlexiCell.Button href="/somewhere" iconBefore={InfoIcon} />
 					</FlexiCell.Adornment>
 				}
@@ -119,7 +117,6 @@ function ExampleChildren() {
 				before={<div>Flag</div>}
 				after={
 					<FlexiCell.Adornment align="center">
-						{/* @ts-ignore */}
 						<FlexiCell.Button href="/somewhere" iconBefore={InfoIcon} />
 					</FlexiCell.Adornment>
 				}
