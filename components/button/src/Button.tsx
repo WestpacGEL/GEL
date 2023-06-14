@@ -41,7 +41,7 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 	 */
 	tag?:
 		| ((...args: unknown[]) => unknown)
-		| keyof Pick<JSX.IntrinsicElements, 'a' | 'button' | 'input'>;
+		| keyof Pick<JSX.IntrinsicElements, 'a' | 'span' | 'button' | 'input'>;
 
 	/**
 	 * Button type.

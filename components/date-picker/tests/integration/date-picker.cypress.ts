@@ -68,7 +68,7 @@ describe('Date Picker', () => {
 		});
 	});
 
-	it.only('using Disable dates should disable the specific dates. ', () => {
+	it('using Disable dates should disable the specific dates. ', () => {
 		// Disables 2021-06-01, 2021-06-28 and 2021-06-29
 		disableDaysPage.visit();
 		disableDaysPage.disableSpecificDatesDatePicker.datePickerInput.type('27-06-2021');

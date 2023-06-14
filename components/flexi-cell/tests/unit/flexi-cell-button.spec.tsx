@@ -10,7 +10,7 @@ const SimpleFlexiCellButton = (props: FlexiCellButtonProps) => (
 	</GEL>
 );
 
-describe.only('Given the FlexiCellButon is rendered', () => {
+describe('Given the FlexiCellButon is rendered', () => {
 	describe('when default props are defined', () => {
 		test('then the component should be displayed', () => {
 			const { getByText } = render(<SimpleFlexiCellButton>label</SimpleFlexiCellButton>);

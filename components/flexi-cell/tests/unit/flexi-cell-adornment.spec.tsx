@@ -10,7 +10,7 @@ const SimpleFlexiCellAdornment = (props: FlexiCellAdornmentProps) => (
 	</GEL>
 );
 
-describe.only('Given the FlexiCellAdornment is rendered', () => {
+describe('Given the FlexiCellAdornment is rendered', () => {
 	describe('when default props are defined', () => {
 		test('then the component should be displayed', () => {
 			const { getByText, getByRole } = render(

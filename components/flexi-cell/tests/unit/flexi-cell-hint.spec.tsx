@@ -10,7 +10,7 @@ const SimpleFlexiCellHint = (props: FlexiCellHintProps) => (
 	</GEL>
 );
 
-describe.only('Given the FlexiCellHint is rendered', () => {
+describe('Given the FlexiCellHint is rendered', () => {
 	describe('when default props are defined', () => {
 		test('then the component should be displayed', () => {
 			const { getByText } = render(<SimpleFlexiCellHint>hint</SimpleFlexiCellHint>);
