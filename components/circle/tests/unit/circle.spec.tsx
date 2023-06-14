@@ -1,30 +1,34 @@
 import { Circle } from '@westpac/circle';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
 
 describe('Given the Circle is rendered', () => {
-	describe('when default props are defined', () => {
+	describe('when the children prop is defined', () => {
 		test('then the component should be displayed', () => {
-			const { getByText } = render(
+			render(
 				<GEL brand={wbc}>
-					<Circle>child</Circle>
-				</GEL>
-			);
-
-			expect(getByText('child')).toBeVisible();
-		});
-
-		test('then the component should be displayed', () => {
-			const { getByText } = render(
-				<GEL brand={wbc}>
-					<Circle tag="a" href="#somewhere">
-						child
+					<Circle>
+						<div data-testid="mock-child">child</div>
 					</Circle>
 				</GEL>
 			);
 
-			expect(getByText('child', { selector: 'a' })).toHaveAttribute('href', '#somewhere');
+			expect(screen.getByTestId('mock-child')).toBeVisible();
+		});
+	});
+
+	describe('when the tag prop is defined', () => {
+		test('then the component should be rendered as that tag', () => {
+			render(
+				<GEL brand={wbc}>
+					<Circle tag="a" href="#">
+						mock link text
+					</Circle>
+				</GEL>
+			);
+
+			expect(screen.getByRole('link', { name: 'mock link text' })).toBeVisible();
 		});
 	});
 });

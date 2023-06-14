@@ -1,5 +1,5 @@
 import { FlexiCell } from '@westpac/flexi-cell';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
 import { type FlexiCellFooterProps } from '../../src/components/FlexiCellFooter';
@@ -11,13 +11,23 @@ const SimpleFlexiCellFooter = (props: FlexiCellFooterProps) => (
 );
 
 describe('Given the FlexiCellFooter is rendered', () => {
-	describe('when default props are defined', () => {
+	describe('when the children prop is defined', () => {
 		test('then the component should be displayed', () => {
-			const { getByText } = render(
-				<SimpleFlexiCellFooter tag="footer">label</SimpleFlexiCellFooter>
+			render(
+				<SimpleFlexiCellFooter>
+					<div data-testid="mock-child">child</div>
+				</SimpleFlexiCellFooter>
 			);
 
-			expect(getByText('label', { selector: 'footer' })).toBeVisible();
+			expect(screen.getByTestId('mock-child')).toBeVisible();
+		});
+	});
+
+	describe('when the tag prop is defined', () => {
+		test('then the component should be rendered as that tag', () => {
+			render(<SimpleFlexiCellFooter tag="footer">mock footer text</SimpleFlexiCellFooter>);
+
+			expect(screen.getByRole('contentinfo')).toBeVisible();
 		});
 	});
 });

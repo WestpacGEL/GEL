@@ -1,5 +1,5 @@
 import { FlexiCell } from '@westpac/flexi-cell';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
 import { type FlexiCellBodyProps } from '../../src/components/FlexiCellBody';
@@ -11,15 +11,27 @@ const SimpleFlexiCellBody = (props: FlexiCellBodyProps) => (
 );
 
 describe('Given the FlexiCellBody is rendered', () => {
-	describe('when default props are defined', () => {
+	describe('when the children prop is defined', () => {
 		test('then the component should be displayed', () => {
-			const { getByText } = render(
-				<SimpleFlexiCellBody tag="a" href="#href">
-					label
+			render(
+				<SimpleFlexiCellBody>
+					<div data-testid="mock-child">child</div>
 				</SimpleFlexiCellBody>
 			);
 
-			expect(getByText('label', { selector: 'a' })).toHaveAttribute('href', '#href');
+			expect(screen.getByTestId('mock-child')).toBeVisible();
+		});
+	});
+
+	describe('when the tag prop is defined', () => {
+		test('then the component should be rendered as that tag', () => {
+			render(
+				<SimpleFlexiCellBody tag="a" href="#">
+					mock link text
+				</SimpleFlexiCellBody>
+			);
+
+			expect(screen.getByRole('link', { name: 'mock link text' })).toBeVisible();
 		});
 	});
 });

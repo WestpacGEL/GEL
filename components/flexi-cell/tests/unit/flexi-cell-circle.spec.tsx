@@ -1,5 +1,5 @@
 import { FlexiCell } from '@westpac/flexi-cell';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
 import { FlexiCellCircleProps } from '../../src/components/FlexiCellCircle';
@@ -11,15 +11,27 @@ const SimpleFlexiCellCircle = (props: FlexiCellCircleProps) => (
 );
 
 describe('Given the FlexiCellCircle is rendered', () => {
-	describe('when default props are defined', () => {
+	describe('when the children prop is defined', () => {
 		test('then the component should be displayed', () => {
-			const { getByText } = render(
-				<SimpleFlexiCellCircle tag="a" href="#">
-					label
+			render(
+				<SimpleFlexiCellCircle>
+					<div data-testid="mock-child">child</div>
 				</SimpleFlexiCellCircle>
 			);
 
-			expect(getByText('label', { selector: 'a' })).toHaveAttribute('href', '#');
+			expect(screen.getByTestId('mock-child')).toBeVisible();
+		});
+	});
+
+	describe('when the tag prop is defined', () => {
+		test('then the component should be rendered as that tag', () => {
+			render(
+				<SimpleFlexiCellCircle tag="a" href="#">
+					mock link text
+				</SimpleFlexiCellCircle>
+			);
+
+			expect(screen.getByRole('link', { name: 'mock link text' })).toBeVisible();
 		});
 	});
 });
