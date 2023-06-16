@@ -1,5 +1,5 @@
 import { FlexiCell } from '@westpac/flexi-cell';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
 import { type FlexiCellAdornmentProps } from '../../src/components/FlexiCellAdornment';
@@ -11,16 +11,23 @@ const SimpleFlexiCellAdornment = (props: FlexiCellAdornmentProps) => (
 );
 
 describe('Given the FlexiCellAdornment is rendered', () => {
-	describe('when default props are defined', () => {
+	describe('when the children prop is defined', () => {
 		test('then the component should be displayed', () => {
-			const { getByText, getByRole } = render(
-				<SimpleFlexiCellAdornment tag="button">
-					<FlexiCell.Label>label</FlexiCell.Label>
+			render(
+				<SimpleFlexiCellAdornment>
+					<div data-testid="mock-child">child</div>
 				</SimpleFlexiCellAdornment>
 			);
 
-			expect(getByRole('button')).toBeVisible();
-			expect(getByText('label')).toBeVisible();
+			expect(screen.getByTestId('mock-child')).toBeVisible();
+		});
+	});
+
+	describe('when the tag prop is defined', () => {
+		test('then the component should be rendered as that tag', () => {
+			render(<SimpleFlexiCellAdornment tag="button">mock button text</SimpleFlexiCellAdornment>);
+
+			expect(screen.getByRole('button', { name: 'mock button text' })).toBeVisible();
 		});
 	});
 });
