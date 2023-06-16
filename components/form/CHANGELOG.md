@@ -1,5 +1,16 @@
 # @westpac/form
 
+## 3.3.0
+
+### Minor Changes
+
+- 911c852c: Update types
+
+### Patch Changes
+
+- Updated dependencies [911c852c]
+  - @westpac/icon@2.3.0
+
 ## 3.2.2
 
 ### Patch Changes
