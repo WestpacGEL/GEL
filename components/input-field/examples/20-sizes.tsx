@@ -33,6 +33,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 								iconColor="grey"
 								iconAfter={VisibilityIcon}
 								iconSize="small"
+								assistiveText="icon button assistive text"
 							/>
 						</InputBefore>
 						<Input />
@@ -43,6 +44,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 								iconColor="grey"
 								iconAfter={VisibilityIcon}
 								iconSize="small"
+								assistiveText="icon button assistive text"
 							/>
 						</InputAfter>
 					</InputField>
@@ -59,7 +61,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 
 					<InputField label="Select " size={size}>
 						<InputBefore>
-							<Select size={size} invalid={false} inline={false}>
+							<Select size={size} invalid={false} inline={false} aria-label="select aria label">
 								<option>Select</option>
 								<option>Yearly</option>
 								<option>Monthly</option>
@@ -68,7 +70,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 						</InputBefore>
 						<Input />
 						<InputAfter>
-							<Select size={size} invalid={false} inline={false}>
+							<Select size={size} invalid={false} inline={false} aria-label="select aria label">
 								<option>Select</option>
 								<option>Yearly</option>
 								<option>Monthly</option>
