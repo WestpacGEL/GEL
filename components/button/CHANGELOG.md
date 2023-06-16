@@ -1,5 +1,16 @@
 # @westpac/button
 
+## 3.1.0
+
+### Minor Changes
+
+- 911c852c: Update and export types
+
+### Patch Changes
+
+- Updated dependencies [911c852c]
+  - @westpac/icon@2.3.0
+
 ## 3.0.0
 
 ### Major Changes

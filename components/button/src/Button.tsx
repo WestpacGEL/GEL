@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { forwardRef, createContext, useContext, ReactNode, ButtonHTMLAttributes } from 'react';
@@ -7,6 +7,7 @@ import { defaultButton } from './overrides/button';
 
 import { Content } from './Content';
 import pkg from '../package.json';
+import { type IconProps } from '@westpac/icon';
 
 // ==============================
 // Context and Consumer Hook
@@ -38,7 +39,9 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 	/**
 	 * Button tag
 	 */
-	tag?: ((...args: unknown[]) => unknown) | string;
+	tag?:
+		| ((...args: unknown[]) => unknown)
+		| keyof Pick<JSX.IntrinsicElements, 'a' | 'span' | 'button' | 'input'>;
 
 	/**
 	 * Button type.
@@ -69,12 +72,12 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 	/**
 	 * Places an icon within the button, after the button’s text
 	 */
-	iconAfter?: (...args: unknown[]) => unknown;
+	iconAfter?: (props: IconProps) => JSX.Element;
 
 	/**
 	 * Places an icon within the button, before the button’s text
 	 */
-	iconBefore?: (...args: unknown[]) => unknown;
+	iconBefore?: (props: IconProps) => JSX.Element;
 
 	/**
 	 * The color for the icon.
@@ -108,7 +111,7 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 	/**
 	 * Handler to be called on click
 	 */
-	onClick?: (...args: unknown[]) => unknown;
+	onClick?: MouseEventHandler;
 
 	/**
 	 * Button text
@@ -370,7 +373,7 @@ Button.propTypes = {
 	/**
 	 * Button tag
 	 */
-	tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+	tag: PropTypes.oneOfType([PropTypes.oneOf(['a', 'button', 'input', 'span']), PropTypes.func]),
 	/**
 	 * Button type.
 	 *

@@ -19,7 +19,10 @@
 	"module": "dist/westpac-flexi-cell.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
+		"@westpac/button": "^3.1.0",
+		"@westpac/circle": "^1.0.0",
 		"@westpac/core": "^3.2.1",
+		"@westpac/icon": "^2.3.0",
 		"classnames": "^2.3.1",
 		"prop-types": "^15.7.2"
 	},
@@ -29,6 +32,7 @@
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.10.6",
+		"csstype": "2.6.21",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"

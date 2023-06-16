@@ -12,7 +12,7 @@ describe('Badge', () => {
 		}
 	});
 
-	it.only('should change the shape to rounded when it is pill', async () => {
+	it('should change the shape to rounded when it is pill', async () => {
 		typePage.visit();
 		typePage.getPrimaryPill.should('have.css', 'border-radius', '12px');
 	});

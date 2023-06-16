@@ -26,7 +26,7 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	invalid?: boolean;
 
 	/**
-	 * Type
+	 * input type attribute
 	 */
 	type?: string;
 }
@@ -138,7 +138,7 @@ Input.propTypes = {
 	 */
 	invalid: PropTypes.bool,
 	/**
-	 * Type
+	 * input type attribute
 	 */
 	type: PropTypes.string,
 	/**

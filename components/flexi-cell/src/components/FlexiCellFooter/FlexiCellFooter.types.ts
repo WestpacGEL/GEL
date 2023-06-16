@@ -1,6 +1,12 @@
 import type { HTMLAttributes, ReactNode } from 'react';
 
 export type FlexiCellFooterProps = {
-	children?: ReactNode;
+	/**
+	 * Children attributes
+	 */
+	children: ReactNode;
+	/**
+	 * Component tag
+	 */
 	tag?: keyof JSX.IntrinsicElements;
 } & HTMLAttributes<HTMLOrSVGElement>;

@@ -1,8 +1,28 @@
 import { GEL } from '@westpac/core';
-import { InputField, Input, InputBefore, InputAfter } from '@westpac/input-field';
+import {
+	InputField,
+	Input,
+	InputBefore,
+	InputAfter,
+	useInputFieldContext,
+} from '@westpac/input-field';
 import { Button } from '@westpac/button';
 import { Select, Textarea } from '@westpac/text-input';
 import { VisibilityIcon, SearchIcon } from '@westpac/icon';
+
+const IconButton = () => (
+	<Button
+		look="link"
+		iconColor="grey"
+		iconAfter={VisibilityIcon}
+		assistiveText="Icon button action"
+	/>
+);
+
+const InputTextarea = (props: any) => {
+	const { id, ariaDescribedByValue } = useInputFieldContext();
+	return <Textarea id={id} aria-describedby={ariaDescribedByValue} {...props} />;
+};
 
 function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) }) {
 	return (
@@ -40,14 +60,14 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 			<h3>Icons in buttons</h3>
 			<InputField label="Icon button before" hint="I am a hint" supportingText="Supporting text">
 				<InputBefore inset>
-					<Button look="link" iconColor="grey" iconAfter={VisibilityIcon} />
+					<IconButton />
 				</InputBefore>
 				<Input />
 			</InputField>
 			<InputField label="Icon button after" hint="I am a hint" supportingText="Supporting text">
 				<Input />
 				<InputAfter inset>
-					<Button look="link" iconColor="grey" iconAfter={VisibilityIcon} />
+					<IconButton />
 				</InputAfter>
 			</InputField>
 			<InputField
@@ -56,11 +76,11 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 				supportingText="Supporting text"
 			>
 				<InputBefore inset>
-					<Button look="link" iconColor="grey" iconAfter={VisibilityIcon} />
+					<IconButton />
 				</InputBefore>
 				<Input />
 				<InputAfter inset>
-					<Button look="link" iconColor="grey" iconAfter={VisibilityIcon} />
+					<IconButton />
 				</InputAfter>
 			</InputField>
 			<h3>Button add on</h3>
@@ -104,7 +124,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 			<h3>Select add on</h3>
 			<InputField label="Select " hint="I am a hint" supportingText="Supporting text">
 				<InputBefore>
-					<Select size="medium" inline={false} invalid={false}>
+					<Select size="medium" inline={false} invalid={false} aria-label="select aria label">
 						<option>Select</option>
 						<option>Yearly</option>
 						<option>Monthly</option>
@@ -113,7 +133,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 				</InputBefore>
 				<Input />
 				<InputAfter>
-					<Select size="medium" inline={false} invalid={false}>
+					<Select size="medium" inline={false} invalid={false} aria-label="select aria label">
 						<option>Select</option>
 						<option>Yearly</option>
 						<option>Monthly</option>
@@ -123,7 +143,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 			</InputField>
 			<h3>Textarea</h3>
 			<InputField label="Label" hint="I am a hint">
-				<Textarea size="medium" inline={false} invalid={false} />
+				<InputTextarea size="medium" inline={false} invalid={false} />
 			</InputField>
 		</GEL>
 	);

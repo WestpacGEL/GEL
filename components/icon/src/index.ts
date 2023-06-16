@@ -174,3 +174,5 @@ export { WriteIcon } from './WriteIcon';
 export { YammerIcon } from './YammerIcon';
 export { YoutubeIcon } from './YoutubeIcon';
 export { ZipFileIcon } from './ZipFileIcon';
+
+export type { IconProps } from './Icon';

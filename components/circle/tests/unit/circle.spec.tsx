@@ -14,5 +14,17 @@ describe('Given the Circle is rendered', () => {
 
 			expect(getByText('child')).toBeVisible();
 		});
+
+		test('then the component should be displayed', () => {
+			const { getByText } = render(
+				<GEL brand={wbc}>
+					<Circle tag="a" href="#somewhere">
+						child
+					</Circle>
+				</GEL>
+			);
+
+			expect(getByText('child', { selector: 'a' })).toHaveAttribute('href', '#somewhere');
+		});
 	});
 });

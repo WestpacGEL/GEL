@@ -1,31 +1,46 @@
-import { useBrand } from '@westpac/core';
+import { useBrand, useMediaQuery } from '@westpac/core';
 import PropTypes from 'prop-types';
+import { useMemo } from 'react';
 import { FlexiCellHintProps } from './FlexiCellHint.types';
 
 /** Flexi Cell Hint: Flexi Cell Hint */
 export const FlexiCellHint = ({
 	children,
-	tag: Tag = 'small',
+	tag: Tag = 'p',
 	truncateText,
 	...props
 }: FlexiCellHintProps) => {
 	const { PACKS, COLORS } = useBrand();
+	const mq = useMediaQuery();
+	const css = useMemo(() => {
+		const {
+			fontSize: fontSizeXS,
+			lineHeight: lineHeightXS,
+			fontFamily: fontFamilyXS,
+		} = PACKS.typeScale.bodyFont[10];
+		const {
+			fontSize: fontSizeMD,
+			lineHeight: lineHeightMD,
+			fontFamily: fontFamilyMD,
+		} = PACKS.typeScale.bodyFont[9];
+
+		return mq({
+			fontSize: [fontSizeXS, fontSizeMD],
+			lineHeight: [lineHeightXS, lineHeightMD],
+			fontFamily: [fontFamilyXS, fontFamilyMD],
+			fontWeight: 400,
+			margin: 0,
+			color: COLORS.muted,
+			...(truncateText && {
+				overflow: 'hidden',
+				textOverflow: 'ellipsis',
+				whiteSpace: 'nowrap',
+			}),
+		});
+	}, [COLORS.muted, PACKS.typeScale.bodyFont, mq, truncateText]);
 
 	return (
-		<Tag
-			{...props}
-			css={{
-				...PACKS.typeScale.bodyFont[10],
-				fontWeight: 400,
-				margin: 0,
-				color: COLORS.muted,
-				...(truncateText && {
-					overflow: 'hidden',
-					textOverflow: 'ellipsis',
-					whiteSpace: 'nowrap',
-				}),
-			}}
-		>
+		<Tag {...props} css={css}>
 			{children}
 		</Tag>
 	);
