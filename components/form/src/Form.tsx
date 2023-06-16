@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { createContext, useContext } from 'react';
@@ -37,6 +37,10 @@ export interface FormProps {
 	 * Component tag
 	 */
 	tag?: ((...args: unknown[]) => unknown) | string;
+	/**
+	 * Children
+	 */
+	children: ReactNode;
 	/**
 	 * The override API
 	 */
