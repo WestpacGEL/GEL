@@ -1,5 +1,11 @@
 # @westpac/icon
 
+## 2.3.0
+
+### Minor Changes
+
+- 911c852c: Export icon type
+
 ## 2.2.0
 
 ### Minor Changes
