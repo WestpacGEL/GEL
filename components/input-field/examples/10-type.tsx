@@ -1,5 +1,11 @@
 import { GEL } from '@westpac/core';
-import { InputField, Input, InputBefore, InputAfter } from '@westpac/input-field';
+import {
+	InputField,
+	Input,
+	InputBefore,
+	InputAfter,
+	useInputFieldContext,
+} from '@westpac/input-field';
 import { Button } from '@westpac/button';
 import { Select, Textarea } from '@westpac/text-input';
 import { VisibilityIcon, SearchIcon } from '@westpac/icon';
@@ -12,6 +18,11 @@ const IconButton = () => (
 		assistiveText="Icon button action"
 	/>
 );
+
+const InputTextarea = (props: any) => {
+	const { id, ariaDescribedByValue } = useInputFieldContext();
+	return <Textarea id={id} aria-describedby={ariaDescribedByValue} {...props} />;
+};
 
 function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) }) {
 	return (
@@ -113,7 +124,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 			<h3>Select add on</h3>
 			<InputField label="Select " hint="I am a hint" supportingText="Supporting text">
 				<InputBefore>
-					<Select size="medium" inline={false} invalid={false}>
+					<Select size="medium" inline={false} invalid={false} aria-label="select aria label">
 						<option>Select</option>
 						<option>Yearly</option>
 						<option>Monthly</option>
@@ -122,7 +133,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 				</InputBefore>
 				<Input />
 				<InputAfter>
-					<Select size="medium" inline={false} invalid={false}>
+					<Select size="medium" inline={false} invalid={false} aria-label="select aria label">
 						<option>Select</option>
 						<option>Yearly</option>
 						<option>Monthly</option>
@@ -132,7 +143,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 			</InputField>
 			<h3>Textarea</h3>
 			<InputField label="Label" hint="I am a hint">
-				<Textarea size="medium" inline={false} invalid={false} />
+				<InputTextarea size="medium" inline={false} invalid={false} />
 			</InputField>
 		</GEL>
 	);

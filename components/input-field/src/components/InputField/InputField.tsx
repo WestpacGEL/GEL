@@ -68,10 +68,12 @@ export const InputField = ({
 		const arr = [
 			...(errorMessage ? [`${id}-error`] : []),
 			...(hint ? [`${id}-hint`] : []),
-			...(supportingText ? [`${id}-supportingText`] : []),
+			...(composition.before ? [`${id}-text-before`] : []),
+			...(composition.after ? [`${id}-text-after`] : []),
+			...(supportingText ? [`${id}-supporting-text`] : []),
 		];
 		setAriaDescribedByValue(arr.join(' '));
-	}, [id, hint, errorMessage, supportingText]);
+	}, [id, hint, errorMessage, supportingText, composition]);
 
 	return (
 		<InputFieldContext.Provider
@@ -91,7 +93,7 @@ export const InputField = ({
 				{errorMessage && <ErrorMessage id={`${id}-error`} message={errorMessage} />}
 				<InputWrapper>{children}</InputWrapper>
 				{supportingText && (
-					<SupportingText id={`${id}-supportMessage`}>{supportingText}</SupportingText>
+					<SupportingText id={`${id}-supporting-text`}>{supportingText}</SupportingText>
 				)}
 			</InputFieldWrapper>
 		</InputFieldContext.Provider>
