@@ -16,6 +16,7 @@ import {
 	ClearIcon,
 	RefreshIcon,
 } from '@westpac/icon';
+import { VisuallyHidden } from '@westpac/a11y';
 import { useState, ChangeEvent, useRef, useEffect } from 'react';
 
 const InputTextarea = (props: any) => {
@@ -77,10 +78,6 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 		// Show appropriate message to the user
 		setErrorMessage(errorMessage);
 		setSupportMessage(bank);
-
-		if (errorMessage) {
-			// inputRef?.current?.focus();
-		}
 	};
 
 	const addOnAfterMap = {
@@ -165,7 +162,10 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 				supportingText={supportMessage}
 			>
 				<Input ref={inputRef} type="numeric" value={abaNumber} onChange={onChangeTextInput} />
-				{addOnAfterMap[status]}
+				<div>
+					{addOnAfterMap[status]}
+					<VisuallyHidden role="status">{status}</VisuallyHidden>
+				</div>
 			</InputField>
 
 			<h3>Currency and frequency</h3>
