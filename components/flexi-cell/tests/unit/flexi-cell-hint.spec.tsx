@@ -15,7 +15,7 @@ describe('Given the FlexiCellHint is rendered', () => {
 		test('then the component should be displayed', () => {
 			render(
 				<SimpleFlexiCellHint>
-					<div data-testid="mock-child">child</div>
+					<span data-testid="mock-child">child</span>
 				</SimpleFlexiCellHint>
 			);
 
