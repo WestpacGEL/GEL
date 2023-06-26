@@ -1,11 +1,11 @@
-import { CSSProperties } from '@emotion/react/node_modules/@emotion/serialize';
+import type * as CSS from 'csstype';
 import { HTMLAttributes, ReactNode } from 'react';
 
 type BaseCircleProps = {
 	/**
 	 * Adds a background color
 	 */
-	background?: CSSProperties['backgroundColor'];
+	background?: CSS.Properties['backgroundColor'];
 	/**
 	 * JSX element to be render inside of circle
 	 */
@@ -13,7 +13,7 @@ type BaseCircleProps = {
 	/**
 	 * Size of the circle
 	 */
-	size?: CSSProperties['width'] | CSSProperties['height'];
+	size?: CSS.Properties['width'] | CSS.Properties['height'];
 } & HTMLAttributes<HTMLOrSVGElement>;
 
 type CircleAsLinkProps = {
