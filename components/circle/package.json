@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/circle",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "Circle",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/circle",
@@ -28,7 +28,7 @@
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.10.6",
-	  	"csstype": "2.6.21",
+		"csstype": "2.6.21",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"
