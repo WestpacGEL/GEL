@@ -32,6 +32,7 @@
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.10.6",
+		"@westpac/a11y": "*",
 		"@westpac/button": "*",
 		"@westpac/icon": "*",
 		"@westpac/text-input": "*",

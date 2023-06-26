@@ -1,4 +1,5 @@
-import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
+import type * as CSS from 'csstype';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 export type FlexiCellLabelProps = {
 	/**
@@ -8,7 +9,7 @@ export type FlexiCellLabelProps = {
 	/**
 	 * Label's font weight
 	 */
-	fontWeight?: CSSProperties['fontWeight'];
+	fontWeight?: CSS.Properties['fontWeight'];
 	/**
 	 * Children attribute
 	 */

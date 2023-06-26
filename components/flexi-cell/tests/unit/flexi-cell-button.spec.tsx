@@ -1,5 +1,5 @@
 import { FlexiCell } from '@westpac/flexi-cell';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
 import { FlexiCellButtonProps } from '../../src/components/FlexiCellButton';
@@ -10,12 +10,12 @@ const SimpleFlexiCellButton = (props: FlexiCellButtonProps) => (
 	</GEL>
 );
 
-describe('Given the FlexiCellButon is rendered', () => {
-	describe('when default props are defined', () => {
+describe('Given the FlexiCellButton is rendered', () => {
+	describe('when the chilcren prop is defined', () => {
 		test('then the component should be displayed', () => {
-			const { getByText } = render(<SimpleFlexiCellButton>label</SimpleFlexiCellButton>);
+			render(<SimpleFlexiCellButton>mock button</SimpleFlexiCellButton>);
 
-			expect(getByText('label')).toBeVisible();
+			expect(screen.getByRole('button', { name: 'mock button' })).toBeVisible();
 		});
 	});
 });
