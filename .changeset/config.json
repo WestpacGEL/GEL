@@ -4,5 +4,5 @@
 	"commit": false,
 	"linked": [],
 	"access": "public",
-	"ignore": ["@westpac/input-field", "@westpac/flexi-cell", "@westpac/circle"]
+	"ignore": ["@westpac/input-field"]
 }
