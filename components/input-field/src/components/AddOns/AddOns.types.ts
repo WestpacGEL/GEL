@@ -22,6 +22,10 @@ export type InputAddOnProps = {
 	 */
 	icon?: (props: Omit<IconProps, 'icon'>) => JSX.Element;
 	/**
+	 * Icon component props
+	 */
+	iconProps?: Omit<IconProps, 'icon'>;
+	/**
 	 * Render compononent within input borders
 	 */
 	inset?: boolean;

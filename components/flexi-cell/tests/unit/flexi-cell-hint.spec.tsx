@@ -1,5 +1,5 @@
 import { FlexiCell } from '@westpac/flexi-cell';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import { GEL } from '@westpac/core';
 import wbc from '@westpac/wbc';
 import { type FlexiCellHintProps } from '../../src/components/FlexiCellHint';
@@ -11,18 +11,23 @@ const SimpleFlexiCellHint = (props: FlexiCellHintProps) => (
 );
 
 describe('Given the FlexiCellHint is rendered', () => {
-	describe('when default props are defined', () => {
+	describe('when the children prop is defined', () => {
 		test('then the component should be displayed', () => {
-			const { getByText } = render(<SimpleFlexiCellHint>hint</SimpleFlexiCellHint>);
-			expect(getByText('hint')).toBeVisible();
-		});
-		test('then the component should be displayed', () => {
-			const { getByText } = render(
-				<SimpleFlexiCellHint tag="small" truncateText>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+			render(
+				<SimpleFlexiCellHint>
+					<span data-testid="mock-child">child</span>
 				</SimpleFlexiCellHint>
 			);
-			expect(getByText('Lorem ipsum dolor sit amet, consectetur adipisicing elit.')).toBeVisible();
+
+			expect(screen.getByTestId('mock-child')).toBeVisible();
+		});
+	});
+
+	describe('when the tag prop is defined', () => {
+		test('then the component should be rendered as that tag', () => {
+			render(<SimpleFlexiCellHint tag="button">mock button text</SimpleFlexiCellHint>);
+
+			expect(screen.getByRole('button', { name: 'mock button text' })).toBeVisible();
 		});
 	});
 });

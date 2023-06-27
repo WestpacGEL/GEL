@@ -1,5 +1,11 @@
 import { GEL } from '@westpac/core';
-import { InputField, Input, InputBefore, InputAfter } from '@westpac/input-field';
+import {
+	InputField,
+	Input,
+	InputBefore,
+	InputAfter,
+	useInputFieldContext,
+} from '@westpac/input-field';
 import { Button } from '@westpac/button';
 import { Select, Textarea } from '@westpac/text-input';
 import {
@@ -10,13 +16,20 @@ import {
 	ClearIcon,
 	RefreshIcon,
 } from '@westpac/icon';
-import { useState, ChangeEvent } from 'react';
+import { VisuallyHidden } from '@westpac/a11y';
+import { useState, ChangeEvent, useRef, useEffect } from 'react';
+
+const InputTextarea = (props: any) => {
+	const { id, ariaDescribedByValue } = useInputFieldContext();
+	return <Textarea id={id} aria-describedby={ariaDescribedByValue} {...props} />;
+};
 
 function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) }) {
 	const [type, setType] = useState('password');
 	const [count, setCount] = useState(0);
 	const [value, setValue] = useState('');
 	const [charCountMessage, setCharCountMessage] = useState('250 remaining');
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	const onChangeTextAreaInput = (event: ChangeEvent<HTMLInputElement>) => {
 		const { value } = event.target;
@@ -53,6 +66,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 	const [supportMessage, setSupportMessage] = useState('');
 
 	const onClickCheckBtn = async () => {
+		inputRef?.current?.focus();
 		// Set loading status on click
 		setStatus('loading');
 
@@ -61,7 +75,6 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 
 		// Update the status based on the result from the API
 		setStatus(status);
-
 		// Show appropriate message to the user
 		setErrorMessage(errorMessage);
 		setSupportMessage(bank);
@@ -75,7 +88,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 				</Button>
 			</InputAfter>
 		),
-		loading: <InputAfter icon={RefreshIcon} />,
+		loading: <InputAfter icon={RefreshIcon} iconProps={{ assistiveText: 'Loading' }} />,
 		invalid: (
 			<InputAfter>
 				<Button look="hero" onClick={onClickCheckBtn}>
@@ -83,7 +96,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 				</Button>
 			</InputAfter>
 		),
-		valid: <InputAfter icon={TickIcon} />,
+		valid: <InputAfter icon={TickIcon} iconProps={{ assistiveText: 'Success', color: 'green' }} />,
 	};
 
 	const onChangeTextInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -99,11 +112,15 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 			<h3>Number stepper</h3>
 			<InputField label="Number of dependents">
 				<InputBefore>
-					<Button onClick={() => setCount(count - 1)}>-</Button>
+					<Button onClick={() => setCount(count - 1)} assistiveText="Increment number">
+						-
+					</Button>
 				</InputBefore>
-				<Input value={count} onChange={() => {}} />
+				<Input type="number" value={count} onChange={() => {}} />
 				<InputAfter>
-					<Button onClick={() => setCount(count + 1)}>+</Button>
+					<Button onClick={() => setCount(count + 1)} assistiveText="Decrement number">
+						+
+					</Button>
 				</InputAfter>
 			</InputField>
 
@@ -116,6 +133,8 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 						iconColor="grey"
 						iconAfter={type === 'text' ? VisibilityIcon : VisibilityOffIcon}
 						onClick={() => (type === 'text' ? setType('password') : setType('text'))}
+						assistiveText="Show password"
+						aria-pressed={type === 'text'}
 					/>
 				</InputAfter>
 			</InputField>
@@ -125,7 +144,13 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 				<InputBefore icon={SearchIcon} />
 				<Input value={value} onChange={(event) => setValue(event.target.value)} />
 				<InputAfter inset>
-					<Button look="link" iconAfter={ClearIcon} iconColor="grey" onClick={() => setValue('')} />
+					<Button
+						look="link"
+						iconAfter={ClearIcon}
+						iconColor="grey"
+						onClick={() => setValue('')}
+						assistiveText="Clear"
+					/>
 				</InputAfter>
 			</InputField>
 
@@ -136,8 +161,11 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 				errorMessage={errorMessage}
 				supportingText={supportMessage}
 			>
-				<Input type="number" value={abaNumber} onChange={onChangeTextInput} />
-				{addOnAfterMap[status]}
+				<Input ref={inputRef} type="numeric" value={abaNumber} onChange={onChangeTextInput} />
+				<div>
+					{addOnAfterMap[status]}
+					<VisuallyHidden role="status">{status}</VisuallyHidden>
+				</div>
 			</InputField>
 
 			<h3>Currency and frequency</h3>
@@ -156,7 +184,7 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 
 			<h3>Textarea with character count</h3>
 			<InputField label="Comments" hint="I am a hint" supportingText={charCountMessage}>
-				<Textarea onChange={onChangeTextAreaInput} />
+				<InputTextarea onChange={onChangeTextAreaInput} />
 			</InputField>
 		</GEL>
 	);

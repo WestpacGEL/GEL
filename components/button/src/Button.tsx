@@ -373,7 +373,7 @@ Button.propTypes = {
 	/**
 	 * Button tag
 	 */
-	tag: PropTypes.oneOfType([PropTypes.oneOf(['a', 'button', 'input']), PropTypes.func]),
+	tag: PropTypes.oneOfType([PropTypes.oneOf(['a', 'button', 'input', 'span']), PropTypes.func]),
 	/**
 	 * Button type.
 	 *

@@ -13,6 +13,10 @@ export type InputBeforeAfterProps = {
 	 */
 	icon?: (props: Omit<IconProps, 'icon'>) => JSX.Element;
 	/**
+	 * Icon component props
+	 */
+	iconProps?: Omit<IconProps, 'icon'>;
+	/**
 	 * Component/text to add before/after input
 	 */
 	children?: ReactNode;
