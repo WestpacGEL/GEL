@@ -49,7 +49,7 @@ function ExampleChildren() {
 			<FlexiCell
 				tag="a"
 				withBorder
-				href="loko"
+				href="#"
 				body
 				after={
 					<FlexiCell.Adornment align="top">
@@ -64,7 +64,7 @@ function ExampleChildren() {
 			<FlexiCell
 				tag="a"
 				withBorder
-				href="loko"
+				href="#"
 				body
 				before={
 					<Circle background={COLORS.primary} css={{ color: 'white' }} aria-label="Bruce">
@@ -122,12 +122,12 @@ function ExampleChildren() {
 					<small css={{ color: COLORS.muted }}>Payee details</small>
 				</a>
 			</FlexiCell>
-			<FlexiCell body tag="a" withBorder href="loko" before={<div>Flag</div>}>
+			<FlexiCell body tag="a" withBorder href="#" before={<div>Flag</div>}>
 				<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
 					List item
 				</Heading>
 			</FlexiCell>
-			<FlexiCell body tag="a" withBorder href="loko">
+			<FlexiCell body tag="a" withBorder href="#">
 				<Heading tag="h3" size={8} css={{ fontWeight: 'normal' }}>
 					List item
 				</Heading>
