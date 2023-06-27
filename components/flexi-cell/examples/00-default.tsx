@@ -1,4 +1,4 @@
-import { GEL, useBrand } from '@westpac/core';
+import { GEL, useBrand, useMediaQuery } from '@westpac/core';
 import { FlexiCell } from '@westpac/flexi-cell';
 import { InfoIcon } from '@westpac/icon';
 import { Heading } from '@westpac/heading';
@@ -17,7 +17,9 @@ function Example({ brand }: { brand: object | ((...args: unknown[]) => unknown) 
 }
 
 function ExampleChildren() {
-	const { COLORS } = useBrand();
+	const { COLORS, SPACING } = useBrand();
+	const mq = useMediaQuery();
+
 	return (
 		<div
 			css={{
@@ -65,7 +67,7 @@ function ExampleChildren() {
 				href="loko"
 				body
 				before={
-					<Circle background={COLORS.primary} css={{ color: 'white' }}>
+					<Circle background={COLORS.primary} css={{ color: 'white' }} aria-label="Bruce">
 						B
 					</Circle>
 				}
@@ -85,13 +87,13 @@ function ExampleChildren() {
 				withBorder
 				body
 				before={
-					<Circle background={COLORS.muted} css={{ color: 'white' }}>
+					<Circle background={COLORS.muted} css={{ color: 'white' }} aria-label="Walter White">
 						WW
 					</Circle>
 				}
 				after={
 					<FlexiCell.Adornment align="center">
-						<Button look="link" href="/somewhere" iconBefore={InfoIcon} />
+						<Button look="link" href="/somewhere" iconBefore={InfoIcon} aria-label="more info" />
 					</FlexiCell.Adornment>
 				}
 			>
@@ -109,7 +111,7 @@ function ExampleChildren() {
 				before={<div>Flag</div>}
 				after={
 					<FlexiCell.Adornment align="center">
-						<Button look="link" href="/somewhere" iconBefore={InfoIcon} />
+						<Button look="link" href="/somewhere" iconBefore={InfoIcon} aria-label="more info" />
 					</FlexiCell.Adornment>
 				}
 			>
@@ -137,11 +139,11 @@ function ExampleChildren() {
 				body
 				after={
 					<FlexiCell.Adornment align="top">
-						<ArrowRightIcon color="link" />
+						<ArrowRightIcon color="link" aria-hidden="true" />
 					</FlexiCell.Adornment>
 				}
 			>
-				<GiftPictogram mode="duo" css={{ width: '50px', height: '50px' }} />
+				<GiftPictogram mode="duo" css={{ width: '50px', height: '50px' }} aria-hidden="true" />
 				<Heading tag="h3" size={8}>
 					Westpac specials and product offers
 				</Heading>
@@ -154,7 +156,7 @@ function ExampleChildren() {
 			<FlexiCell tag="a" href="#" withBorder body>
 				<img
 					src="https://images.unsplash.com/photo-1657299170950-87e5b0eaf77c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
-					alt="Food"
+					alt=""
 					css={{ width: '100%', display: 'block', marginBottom: '0.75rem' }}
 				/>
 				<FlexiCell.Label css={{ marginBottom: '0.5rem' }}>MYER</FlexiCell.Label>
@@ -163,7 +165,13 @@ function ExampleChildren() {
 				</Heading>
 			</FlexiCell>
 			<h3>Sticky footer example</h3>
-			<div css={{ display: 'flex', gap: '1rem' }}>
+			<div
+				css={mq({
+					display: 'flex',
+					flexDirection: ['column', 'column', 'row'],
+					gap: SPACING(2),
+				})}
+			>
 				{[
 					'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem quae possimus, nam nobis cumque ullam et harum, magni quam distinctio, corporis sunt saepe maxime quod. Sapiente voluptatibus sint dicta tenetur.',
 					'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem quae possimus, nam nobis cumque ullam et harum, magni quam distinctio, corporis sunt saepe.',
@@ -177,7 +185,7 @@ function ExampleChildren() {
 						<FlexiCell.Body>
 							<img
 								src="https://images.unsplash.com/photo-1657299170950-87e5b0eaf77c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
-								alt="Food"
+								alt=""
 								css={{ width: '100%', display: 'block', marginBottom: '0.75rem' }}
 							/>
 							<FlexiCell.Label css={{ marginBottom: '0.5rem' }}>MYER</FlexiCell.Label>
