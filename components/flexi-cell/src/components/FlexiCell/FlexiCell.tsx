@@ -72,7 +72,7 @@ export const FlexiCell = ({
 			{after}
 			{withArrow && (
 				<FlexiCellAdornment align="top">
-					<ArrowRightIcon color={COLORS.link} />
+					<ArrowRightIcon color={COLORS.link} aria-hidden="true" />
 				</FlexiCellAdornment>
 			)}
 		</Tag>
