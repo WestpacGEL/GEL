@@ -51,7 +51,7 @@ describe('Given the FlexiCell is rendered', () => {
 		test('then an arrow should be visible', () => {
 			render(<SimpleFlexiCell withArrow />);
 
-			expect(screen.getByRole('img', { name: 'Arrow Right' })).toBeVisible();
+			expect(screen.getByRole('img', { name: 'Arrow Right', hidden: true })).toBeVisible();
 		});
 	});
 });
