@@ -52,7 +52,7 @@ function ExampleChildren() {
 					after={<TickCircleIcon color={COLORS.success} />}
 				>
 					<div css={css}>
-						<GiftPictogram mode="duo" css={{ width: '24px', height: '24px' }} />
+						<GiftPictogram mode="duo" css={{ width: '24px', height: '24px' }} aria-hidden="true" />
 						<div css={{ display: 'flex', flexDirection: 'column', gap: SPACING(1) }}>
 							<FlexiCell.Label fontWeight="500" tag="h4">
 								{title}
