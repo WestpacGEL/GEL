@@ -1,5 +1,11 @@
 # @westpac/flexi-cell
 
+## 1.1.1
+
+### Patch Changes
+
+- c4cd0b51: aria-hidden to the arrow
+
 ## 1.1.0
 
 ### Minor Changes

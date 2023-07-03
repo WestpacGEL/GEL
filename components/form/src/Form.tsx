@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { FormHTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
 import { createContext, useContext } from 'react';
@@ -14,7 +14,7 @@ const FormContext = createContext<any>(null);
 
 export const useFormContext = () => useContext(FormContext);
 
-export interface FormProps {
+export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
 	/**
 	 * Size of children components.
 	 *
@@ -37,10 +37,6 @@ export interface FormProps {
 	 * Component tag
 	 */
 	tag?: ((...args: unknown[]) => unknown) | string;
-	/**
-	 * Children
-	 */
-	children: ReactNode;
 	/**
 	 * The override API
 	 */

@@ -2,7 +2,6 @@ import { Badge } from '@westpac/badge';
 import { Circle } from '@westpac/circle';
 import { GEL, useBrand } from '@westpac/core';
 import { FlexiCell } from '@westpac/flexi-cell';
-import { InfoIcon } from '@westpac/icon';
 
 const MOCK_PROMOS = [
 	{
@@ -59,7 +58,12 @@ function ExampleChildren() {
 							</FlexiCell.Adornment>
 						}
 						badge={
-							<Badge css={{ display: 'block' }} look="hero" value={stars ? '✭' : 'Corner flag'} />
+							<Badge
+								css={{ display: 'block' }}
+								look="hero"
+								value={stars ? '✭' : 'Corner flag'}
+								aria-hidden={stars ?? 'true'}
+							/>
 						}
 					>
 						<small>MYER</small>
