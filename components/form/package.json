@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/form",
-	"version": "3.3.0",
+	"version": "3.4.0",
 	"description": "Form components for the Westpac GEL Design System",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/form",
