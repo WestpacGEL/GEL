@@ -92,7 +92,11 @@ function ExampleChildren() {
 									body
 									before={
 										<FlexiCell.Adornment align="top">
-											<FlexiCell.Circle background={COLORS.muted} css={{ color: 'white' }}>
+											<FlexiCell.Circle
+												background={COLORS.muted}
+												css={{ color: 'white' }}
+												aria-hidden="true"
+											>
 												{initials}
 											</FlexiCell.Circle>
 										</FlexiCell.Adornment>
@@ -102,7 +106,11 @@ function ExampleChildren() {
 											{paidAt ? (
 												<FlexiCell.Hint tag="h4">{paidAt}</FlexiCell.Hint>
 											) : (
-												<FlexiCell.Button href="/somewhere" iconBefore={InfoIcon} />
+												<FlexiCell.Button
+													href="/somewhere"
+													iconBefore={InfoIcon}
+													aria-label="more info"
+												/>
 											)}
 										</FlexiCell.Adornment>
 									}

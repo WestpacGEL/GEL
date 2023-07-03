@@ -1,5 +1,11 @@
 # @westpac/form
 
+## 3.4.0
+
+### Minor Changes
+
+- e199909f: Enable standard HTMLFormElement attributes in Form interface
+
 ## 3.3.0
 
 ### Minor Changes
