@@ -1,3 +1,7 @@
+// ----------------------------- Warning --------------------------------
+// | TypeScript type definition created using babel-plugin-codegen |
+// | To make any changes, modify the "brand.types.d.ts" template file in helpers/transformers directory and run "yarn build" |
+// ----------------------------------------------------------------------
 declare module '@westpac/wbg' {
 	export type BRAND = {
 		name: string;

@@ -1,3 +1,7 @@
+// ----------------------------- Warning --------------------------------
+// | TypeScript type definition created using babel-plugin-codegen |
+// | To make any changes, modify the "brand.types.d.ts" template file in helpers/transformers directory and run "yarn build" |
+// ----------------------------------------------------------------------
 declare module '@westpac/bsa' {
 	export type BRAND = {
 		name: string;
@@ -209,7 +213,7 @@ declare module '@westpac/bsa' {
 		danger: string;
 		system: string;
 	};
-	type LAYOUT = {
+	export type LAYOUT = {
 		breakpoints: {
 			xsl: number;
 			sm: number;
@@ -217,7 +221,7 @@ declare module '@westpac/bsa' {
 			lg: number;
 		};
 	};
-	type PACKS = {
+	export type PACKS = {
 		typeScale: {
 			bodyFont: {
 				1: {
@@ -345,9 +349,9 @@ declare module '@westpac/bsa' {
 		};
 	};
 	type Overide = {
-		styles: any;
-		component: any;
-		attributes: any;
+		styles: unknown;
+		component: unknown;
+		attributes: unknown;
 	};
 	export type OVERRIDES = Record<string, Overide>;
 	export type SPACING = {
