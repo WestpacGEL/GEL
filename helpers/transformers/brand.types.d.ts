@@ -2,7 +2,7 @@
 // | TypeScript type definition created using babel-plugin-codegen |
 // | To make any changes, modify the "brand.types.d.ts" template file in helpers/transformers directory and run "yarn build" |
 // ----------------------------------------------------------------------
-declare module '@westpac/stg' {
+declare module '@westpac/{BRAND_NAME}' {
 	export type BRAND = {
 		name: string;
 		code: string;
