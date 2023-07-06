@@ -1,9 +1,13 @@
+// ----------------------------- Warning --------------------------------
+// | TypeScript type definition created using babel-plugin-codegen |
+// | To make any changes, modify the "brand.types.d.ts" template file in helpers/transformers directory and run "yarn build" |
+// ----------------------------------------------------------------------
 declare module '@westpac/wbc' {
-	type Brand = {
+	export type BRAND = {
 		name: string;
 		code: string;
 	};
-	type Colors = {
+	export type COLORS = {
 		tints: {
 			background5: string;
 			background10: string;
@@ -209,7 +213,7 @@ declare module '@westpac/wbc' {
 		danger: string;
 		system: string;
 	};
-	type Layout = {
+	export type LAYOUT = {
 		breakpoints: {
 			xsl: number;
 			sm: number;
@@ -217,110 +221,110 @@ declare module '@westpac/wbc' {
 			lg: number;
 		};
 	};
-	type Packs = {
+	export type PACKS = {
 		typeScale: {
 			bodyFont: {
 				1: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				2: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				3: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				4: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				5: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				6: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				7: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				8: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				9: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				10: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 			};
 			brandFont: {
 				1: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				2: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				3: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				4: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				5: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				6: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				7: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				8: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				9: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 				10: {
 					fontSize: string;
 					lineHeight: number;
-					fontFamily: string[];
+					fontFamily: string;
 				};
 			};
 		};
@@ -345,109 +349,109 @@ declare module '@westpac/wbc' {
 		};
 	};
 	type Overide = {
-		stypes: any;
-		component: any;
-		attributes: any;
+		styles: unknown;
+		component: unknown;
+		attributes: unknown;
 	};
-	type Overrides = Record<string, Overide>;
-	type Spacing = {
+	export type OVERRIDES = Record<string, Overide>;
+	export type SPACING = {
 		major: string;
 		minor: string;
 	};
-	type Type = {
+	export type TYPE = {
 		files: {
 			'': string[];
 		};
 		bodyFont: {
-			fontFamily: string[];
+			fontFamily: string;
 			headingWeight: number;
 			100: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			200: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			300: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			400: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			500: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			600: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			700: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			800: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			900: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 		};
 		brandFont: {
-			fontFamily: string[];
+			fontFamily: string;
 			headingWeight: number;
 			100: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			200: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			300: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			400: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			500: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			600: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			700: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			800: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 			900: {
-				fontFamily: string[];
+				fontFamily: string;
 				fontWeight: number;
 			};
 		};
 	};
 
 	const config: {
-		BRAND: Brand;
-		COLORS: Colors;
-		LAYOUT: Layout;
-		PACKS: Packs;
-		OVERRIDES: Overrides;
-		SPACING: Spacing;
-		TYPE: Type;
+		BRAND: BRAND;
+		COLORS: COLORS;
+		LAYOUT: LAYOUT;
+		PACKS: PACKS;
+		OVERRIDES: OVERRIDES;
+		SPACING: SPACING;
+		TYPE: TYPE;
 	};
 	export default config;
 }

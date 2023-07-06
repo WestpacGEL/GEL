@@ -1,5 +1,5 @@
 const Color = require('color');
-
+const fs = require('fs');
 const tinting = (color, amount) =>
 	Color('white')
 		.mix(Color(color), amount / 100)
@@ -26,7 +26,15 @@ const createUnits = (majorStep, minorStep, amount) => {
 	return { major, minor };
 };
 
+const createInterface = async (src, dest, brand) => {
+	await fs.promises.copyFile(src, dest);
+	const content = await fs.promises.readFile(dest, 'utf8');
+	const updatedContent = content.replace(/{BRAND_NAME}/g, brand);
+	await fs.promises.writeFile(dest, updatedContent, 'utf8');
+};
+
 module.exports = {
 	makeTints,
 	createUnits,
+	createInterface,
 };

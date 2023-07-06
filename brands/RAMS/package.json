@@ -22,6 +22,7 @@
 	"license": "GPL-3.0+",
 	"main": "dist/westpac-rams.cjs.js",
 	"module": "dist/westpac-rams.esm.js",
+  	"types": "./src/types.d.ts",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8"
 	}
