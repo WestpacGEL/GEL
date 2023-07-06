@@ -1,5 +1,11 @@
 # @westpac/btfg
 
+## 2.4.0
+
+### Minor Changes
+
+- 775e750d: fixed interface and export brand, colours, layout and packs
+
 ## 2.3.0
 
 ### Minor Changes

@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const { makeTints } = require('./_utils');
+const { makeTints, createInterface } = require('./_utils');
 
 /**
  * Convert a font token object to a styled object for emotion to use
@@ -112,6 +112,14 @@ function build(brandCode) {
 	if (errors.length > 0) {
 		throw errors.join('\n');
 	}
+
+	(async () => {
+		await createInterface(
+			path.resolve(__dirname, './brand.types.d.ts'),
+			path.resolve(__dirname, `../../brands/${brandCode}/src/types.d.ts`),
+			brandCode.toLowerCase()
+		);
+	})();
 
 	// packs
 	const PACKS = packs;

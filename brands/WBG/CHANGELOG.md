@@ -1,5 +1,11 @@
 # @westpac/wbg
 
+## 2.6.0
+
+### Minor Changes
+
+- 775e750d: fixed interface and export brand, colours, layout and packs
+
 ## 2.5.0
 
 ### Minor Changes
