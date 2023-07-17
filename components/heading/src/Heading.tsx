@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { jsx, useBrand, overrideReconciler } from '@westpac/core';
-import React, { forwardRef, ReactNode } from 'react';
+import React, { forwardRef, ReactNode, CSSProperties } from 'react';
 
 import { defaultHeading } from './overrides/heading';
 import pkg from '../package.json';
@@ -9,7 +9,7 @@ export type HeadingProps<T extends HeadingKeys = HeadingKeys> = JSX.IntrinsicEle
 	/**
 	 * Emotion css
 	 */
-	css?: JSX.IntrinsicElements[T]['css'];
+	css?: CSSProperties;
 	/**
 	 * Children
 	 */
