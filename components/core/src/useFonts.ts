@@ -1,7 +1,7 @@
 import { useBrand } from './Brand';
 
 export const useFonts = <T extends { path: string }>({ path, ...restProps }: T) => {
-	const { TYPE }: { TYPE: any } = useBrand();
+	const { TYPE } = useBrand();
 
 	return {
 		'': TYPE.files[''].map((file: any) => {
