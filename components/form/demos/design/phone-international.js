@@ -6,7 +6,7 @@ import { Playground } from '../../../../website/src/components/playground/macro'
 
 export const PhoneInternationalPattern = ({ showErrors = false }) => {
 	const error = showErrors
-		? 'Enter your number in either format of 2135096995, 213-509-6995, or (213) 509-6995'
+		? 'Enter a number in the format: 2135096995, 213-509-6995, or (213) 509-6995'
 		: '';
 	const invalid = showErrors;
 
@@ -14,7 +14,7 @@ export const PhoneInternationalPattern = ({ showErrors = false }) => {
 		<FormGroup>
 			<Fieldset
 				legend="Phone number"
-				hint="Enter a number in the format: 2135096995, 213-509-6995, or (213) 509-6995"
+				hint="Enter your country code (e.g. +61) and your number"
 				error={error}
 			>
 				<InputCluster horizontal>
