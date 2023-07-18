@@ -11,7 +11,7 @@ const paint = weakMemo(<TBreakpoints extends Record<string, any>>(breakpoints: T
 );
 
 export const useMediaQuery = () => {
-	const { LAYOUT }: { LAYOUT: any } = useBrand();
+	const { LAYOUT } = useBrand();
 
 	return paint(LAYOUT.breakpoints);
 };

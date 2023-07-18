@@ -43,11 +43,6 @@ const FooterItem = ({ link = '#', children, ...props }) => {
 				css={{
 					display: 'flex',
 					textDecoration: 'none',
-					':hover .dot-logo': {
-						transition: 'all 0.4s cubic-bezier(0.13, 0.00, 0.11, 1.00)', // mouse over
-						border: `4px solid ${COLORS.icon}60`,
-						margin: '-3px',
-					},
 				}}
 			>
 				{children}
