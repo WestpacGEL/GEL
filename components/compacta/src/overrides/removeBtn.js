@@ -6,7 +6,7 @@ import { RemoveCircleIcon } from '@westpac/icon';
 // Component
 // ==============================
 
-const Icon = (props) => <RemoveCircleIcon {...props} size="xsmall" />;
+const Icon = (props) => <RemoveCircleIcon {...props} look="outlined" size="xsmall" />;
 
 const RemoveBtn = ({ state: { index }, ...rest }) => {
 	return (
