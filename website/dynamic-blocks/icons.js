@@ -159,7 +159,8 @@ const Icon = () => {
 					<Cell width={[12, null, 3]}>
 						<Button
 							tag="a"
-							href={`${BASE_URL}/downloads/GEL_icons.zip`}
+							href={`${BASE_URL}/icons/GEL_icons.zip`}
+							download
 							look="primary"
 							soft
 							iconBefore={DownloadIcon}
