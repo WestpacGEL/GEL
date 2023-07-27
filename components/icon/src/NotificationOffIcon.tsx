@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
@@ -46,8 +47,8 @@ export const NotificationOffIcon = ({
 					fill="currentColor"
 				/>
 				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
+					fillRule="evenodd"
+					clipRule="evenodd"
 					d="M0.964844 3.03531L2.37906 1.62109L22.3791 21.6211L20.9648 23.0353L17.9296 20.0001H2.00008V19.0001L4.00008 17.0001V11.0001C4.00008 9.57978 4.3702 8.24593 5.01925 7.08971L0.964844 3.03531ZM6 11C6 10.1385 6.18156 9.31945 6.50849 8.57896L15.9295 18H6V11Z"
 					fill="currentColor"
 				/>
@@ -55,3 +56,58 @@ export const NotificationOffIcon = ({
 		)}
 	</Icon>
 );
+
+NotificationOffIcon.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * String to use as the `aria-label` for the icon. Set to an empty string if you
+	 * are rendering the icon with visible text to prevent accessibility label
+	 * duplication.
+	 *
+	 * Defaults to the icon name e.g. `BusinessPersonIcon` --> "Business Person"
+	 */
+	assistiveText: PropTypes.string,
+	/**
+	 * The color for the icon.
+	 *
+	 * Defaults to the current text color.
+	 */
+	color: PropTypes.string,
+	/**
+	 * The icon SVG metadata copyright year text
+	 */
+	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Icon: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Svg: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
+	/**
+	 * Control the size of the icon.
+	 *
+	 * Defaults to "medium" --> 24px
+	 */
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge', 'xsmall']),
+		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge', 'xsmall'])),
+	]),
+};

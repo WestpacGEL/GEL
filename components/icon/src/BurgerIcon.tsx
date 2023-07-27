@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
@@ -38,14 +39,14 @@ export const BurgerIcon = ({
 		) : (
 			<Fragment>
 				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
+					fillRule="evenodd"
+					clipRule="evenodd"
 					d="M0 10V8C0 3 4.99994 1 12 1C19.0001 1 24 3 24 8V10H0ZM19.6892 4.39257C17.9854 3.49054 15.3676 3 12 3C8.63244 3 6.01459 3.49054 4.31076 4.39257C2.7449 5.22156 2.00001 6.34307 2.00001 8H22C22 6.34307 21.2551 5.22156 19.6892 4.39257Z"
 					fill="currentColor"
 				/>
 				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
+					fillRule="evenodd"
+					clipRule="evenodd"
 					d="M0 17V21C0 22.1046 0.89543 23 2 23H22C23.1046 23 24 22.1046 24 21V17H0ZM2 19L2 21H22V19H2Z"
 					fill="currentColor"
 				/>
@@ -57,3 +58,58 @@ export const BurgerIcon = ({
 		)}
 	</Icon>
 );
+
+BurgerIcon.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * String to use as the `aria-label` for the icon. Set to an empty string if you
+	 * are rendering the icon with visible text to prevent accessibility label
+	 * duplication.
+	 *
+	 * Defaults to the icon name e.g. `BusinessPersonIcon` --> "Business Person"
+	 */
+	assistiveText: PropTypes.string,
+	/**
+	 * The color for the icon.
+	 *
+	 * Defaults to the current text color.
+	 */
+	color: PropTypes.string,
+	/**
+	 * The icon SVG metadata copyright year text
+	 */
+	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Icon: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Svg: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
+	/**
+	 * Control the size of the icon.
+	 *
+	 * Defaults to "medium" --> 24px
+	 */
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge', 'xsmall']),
+		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge', 'xsmall'])),
+	]),
+};

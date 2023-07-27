@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
@@ -28,14 +29,14 @@ export const PersonIcon = ({
 		) : (
 			<Fragment>
 				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
+					fillRule="evenodd"
+					clipRule="evenodd"
 					d="M24 21C24 17.01 16.005 15 12 15C7.995 15 0 17.01 0 21V24H24V21ZM2.66825 19.8489C2.11583 20.3588 2 20.7371 2 21V22H22V21C22 20.7371 21.8842 20.3588 21.3317 19.8489C20.7657 19.3265 19.8858 18.812 18.7581 18.3603C16.4997 17.4556 13.7525 17 12 17C10.2475 17 7.50034 17.4556 5.24187 18.3603C4.11424 18.812 3.23426 19.3265 2.66825 19.8489Z"
 					fill="currentColor"
 				/>
 				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
+					fillRule="evenodd"
+					clipRule="evenodd"
 					d="M18 6C18 9.315 15.315 12 12 12C8.685 12 6 9.315 6 6C6 2.685 8.685 0 12 0C15.315 0 18 2.685 18 6ZM12 10C14.2104 10 16 8.21043 16 6C16 3.78957 14.2104 2 12 2C9.78957 2 8 3.78957 8 6C8 8.21043 9.78957 10 12 10Z"
 					fill="currentColor"
 				/>
@@ -43,3 +44,58 @@ export const PersonIcon = ({
 		)}
 	</Icon>
 );
+
+PersonIcon.propTypes = {
+	// ----------------------------- Warning --------------------------------
+	// | These PropTypes are generated from the TypeScript type definitions |
+	// |     To update them edit TypeScript types and run "yarn prop-types"  |
+	// ----------------------------------------------------------------------
+	/**
+	 * String to use as the `aria-label` for the icon. Set to an empty string if you
+	 * are rendering the icon with visible text to prevent accessibility label
+	 * duplication.
+	 *
+	 * Defaults to the icon name e.g. `BusinessPersonIcon` --> "Business Person"
+	 */
+	assistiveText: PropTypes.string,
+	/**
+	 * The color for the icon.
+	 *
+	 * Defaults to the current text color.
+	 */
+	color: PropTypes.string,
+	/**
+	 * The icon SVG metadata copyright year text
+	 */
+	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
+	/**
+	 * The override API
+	 */
+	overrides: PropTypes.shape({
+		Icon: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+		Svg: PropTypes.shape({
+			attributes: PropTypes.func,
+			component: PropTypes.elementType,
+			styles: PropTypes.func,
+		}),
+	}),
+	/**
+	 * Control the size of the icon.
+	 *
+	 * Defaults to "medium" --> 24px
+	 */
+	size: PropTypes.oneOfType([
+		PropTypes.oneOf(['large', 'medium', 'small', 'xlarge', 'xsmall']),
+		PropTypes.arrayOf(PropTypes.oneOf(['large', 'medium', 'small', 'xlarge', 'xsmall'])),
+	]),
+};

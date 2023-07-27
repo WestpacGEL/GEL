@@ -18,6 +18,8 @@ const formatSVG = (svg: Buffer, pathCount: number) => {
 		.toString()
 		.replace(/<\/?svg[^>]*>/g, '')
 		.replace(/fill="[^"]*"/g, 'fill="currentColor"')
+		.replace(/fill-rule/g, 'fillRule')
+		.replace(/clip-rule/g, 'clipRule')
 		.trim();
 
 	return pathCount > 1 ? `<Fragment>${iconPaths}</Fragment>` : iconPaths;

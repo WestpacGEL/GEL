@@ -162,6 +162,12 @@ Icon.propTypes = {
 	 */
 	icon: PropTypes.string.isRequired,
 	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
+	/**
 	 * The override API
 	 */
 	overrides: PropTypes.shape({
