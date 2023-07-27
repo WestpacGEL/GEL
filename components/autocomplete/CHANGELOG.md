@@ -1,5 +1,12 @@
 # @westpac/autocomplete
 
+## 2.3.1
+
+### Patch Changes
+
+- Updated dependencies [0537e5d6]
+  - @westpac/icon@3.0.0
+
 ## 2.3.0
 
 ### Minor Changes

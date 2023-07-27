@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/button": "^3.0.0",
+		"@westpac/button": "^3.1.1",
 		"@westpac/core": "^3.2.1",
 		"@westpac/heading": "^2.3.1",
 		"@westpac/hooks": "^3.1.1",
@@ -44,8 +44,8 @@
 	"devDependencies": {
 		"@emotion/react": "^11.10.6",
 		"@westpac/button-group": "^2.2.2",
-		"@westpac/form-check": "^2.2.2",
-		"@westpac/icon": "^2.2.0",
+		"@westpac/form-check": "^2.2.3",
+		"@westpac/icon": "^3.0.0",
 		"@westpac/list": "^2.2.1",
 		"@westpac/switch": "^2.3.0",
 		"cypress": "^8.0.0",

@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/flexi-cell",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "Flexi Cell",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/flexi-cell",
@@ -19,10 +19,10 @@
 	"module": "dist/westpac-flexi-cell.esm.js",
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
-		"@westpac/button": "^3.1.0",
+		"@westpac/button": "^3.1.1",
 		"@westpac/circle": "^1.1.0",
 		"@westpac/core": "^3.2.1",
-		"@westpac/icon": "^2.3.0",
+		"@westpac/icon": "^3.0.0",
 		"classnames": "^2.3.1",
 		"prop-types": "^15.7.2"
 	},

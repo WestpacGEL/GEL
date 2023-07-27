@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/form-pod",
-	"version": "4.0.0",
+	"version": "4.0.1",
 	"description": "Form-pod components for the Westpac GEL Design System",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/form-pod",
@@ -31,13 +31,13 @@
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
 		"@westpac/core": "^3.2.1",
-		"@westpac/icon": "^2.2.0",
+		"@westpac/icon": "^3.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.10.6",
-		"@westpac/alert": "^2.2.2",
-		"@westpac/button": "^3.0.0",
+		"@westpac/alert": "^2.2.3",
+		"@westpac/button": "^3.1.1",
 		"@westpac/list": "^2.2.1",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
