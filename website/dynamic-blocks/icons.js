@@ -98,7 +98,9 @@ const Icon = () => {
 	};
 
 	return (
-		<div
+		<form
+			action="/api/icons"
+			method="GET"
 			css={{
 				gridColumnEnd: 'span 12',
 				gridRowEnd: 'span 1',
@@ -157,14 +159,7 @@ const Icon = () => {
 						</div>
 					</Cell>
 					<Cell width={[12, null, 3]}>
-						<Button
-							tag="a"
-							href={`${BASE_URL}/icons/GEL_icons.zip`}
-							download
-							look="primary"
-							soft
-							iconBefore={DownloadIcon}
-						>
+						<Button type="submit" look="primary" soft iconBefore={DownloadIcon}>
 							Download all SVGs
 						</Button>
 						{/* <DownloadBtn qty={iconsFiltered.length} total={iconDetails.length} /> */}
@@ -174,7 +169,7 @@ const Icon = () => {
 				</Grid>
 			</div>
 			<Grid>{renderIcons(iconsFiltered, look)}</Grid>
-		</div>
+		</form>
 	);
 };
 
