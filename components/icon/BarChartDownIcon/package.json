@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-BarChartDownIcon.cjs.js",
+	"module": "dist/westpac-icon-BarChartDownIcon.esm.js"
+}

@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-TickCircleIcon.cjs.js",
+	"module": "dist/westpac-icon-TickCircleIcon.esm.js"
+}

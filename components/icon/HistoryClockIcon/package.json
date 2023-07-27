@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-HistoryClockIcon.cjs.js",
+	"module": "dist/westpac-icon-HistoryClockIcon.esm.js"
+}

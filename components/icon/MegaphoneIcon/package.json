@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-MegaphoneIcon.cjs.js",
+	"module": "dist/westpac-icon-MegaphoneIcon.esm.js"
+}

@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-CalendarIcon.cjs.js",
+	"module": "dist/westpac-icon-CalendarIcon.esm.js"
+}

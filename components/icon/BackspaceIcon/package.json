@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-BackspaceIcon.cjs.js",
+	"module": "dist/westpac-icon-BackspaceIcon.esm.js"
+}

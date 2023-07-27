@@ -8,8 +8,6 @@ function Example({ brand }) {
 			<Grid css={{ justifyItems: 'start' }}>
 				<Cell>
 					<AddCircleIcon />
-					<br />
-					<AddCircleIcon look="outlined" />
 					<Name>
 						<code>{`<AddCircleIcon\u00A0/>`}</code>
 					</Name>

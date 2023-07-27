@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-QuickBalanceIcon.cjs.js",
+	"module": "dist/westpac-icon-QuickBalanceIcon.esm.js"
+}

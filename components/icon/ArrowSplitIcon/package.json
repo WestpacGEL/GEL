@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-ArrowSplitIcon.cjs.js",
+	"module": "dist/westpac-icon-ArrowSplitIcon.esm.js"
+}

@@ -1,6 +1,6 @@
 import { jsx, useBrand, getLabel } from '@westpac/core';
 import { Button } from '@westpac/button';
-import { MoreVerticalIcon } from '@westpac/icon';
+import { MoreVertIcon } from '@westpac/icon';
 
 // ==============================
 // Component
@@ -8,7 +8,7 @@ import { MoreVerticalIcon } from '@westpac/icon';
 
 const VerticalIcon = (props) => {
 	const { COLORS } = useBrand();
-	return <MoreVerticalIcon {...props} color={COLORS.primary} />;
+	return <MoreVertIcon {...props} color={COLORS.primary} />;
 };
 
 const HeaderBtn = ({ state: _, ...rest }) => (

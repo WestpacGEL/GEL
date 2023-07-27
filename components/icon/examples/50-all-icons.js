@@ -46,6 +46,7 @@ function Example({ brand }) {
 
 	return (
 		<GEL brand={brand}>
+			<p>Icon count: {icons.length}</p>
 			<div css={{ display: 'flex' }}>
 				<Search
 					autoFocus

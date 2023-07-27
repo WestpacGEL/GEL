@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-ContentCopyIcon.cjs.js",
+	"module": "dist/westpac-icon-ContentCopyIcon.esm.js"
+}

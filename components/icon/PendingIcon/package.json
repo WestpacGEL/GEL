@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-PendingIcon.cjs.js",
+	"module": "dist/westpac-icon-PendingIcon.esm.js"
+}

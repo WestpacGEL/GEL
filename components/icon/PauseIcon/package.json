@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-PauseIcon.cjs.js",
+	"module": "dist/westpac-icon-PauseIcon.esm.js"
+}

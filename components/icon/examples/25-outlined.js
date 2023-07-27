@@ -18,18 +18,6 @@ function Example({ brand }) {
 						<code>{`<AddCircle look="outlined"\u00A0/>`}</code>
 					</Name>
 				</Cell>
-				<Cell>
-					<BookIcon look="filled" />
-					<Name>
-						<code>{`<AddCircle look="filled"\u00A0/>`}</code>
-					</Name>
-				</Cell>
-				<Cell>
-					<BookIcon look="outlined" />
-					<Name>
-						<code>{`<AddCircle look="outlined"\u00A0/>`}</code>
-					</Name>
-				</Cell>
 			</Grid>
 		</GEL>
 	);

@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-SlackIcon.cjs.js",
+	"module": "dist/westpac-icon-SlackIcon.esm.js"
+}
