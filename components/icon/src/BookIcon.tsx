@@ -3,26 +3,38 @@ import { Icon, IconProps } from './Icon';
 
 export const BookIcon = ({
 	assistiveText = 'Book',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="BookIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M22,24 L6,24 C3.790861,24 2,22.209139 2,20 L2,4 C2,1.790861 3.790861,4.05812251e-16 6,0 L18,0 L18,16 L7,16 C5.34314575,16 4,17.3431458 4,19 C4,20.6568542 5.34314575,22 7,22 L20,22 L20,0 L22,0 L22,24 Z M6,18 L18,18 L18,20 L6,20 L6,18 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M4 0C2.89543 0 2 0.89543 2 2V22C2 23.1046 2.89543 24 4 24H20C21.1046 24 22 23.1046 22 22V2C22 0.895431 21.1046 0 20 0H4ZM12 2H6V14L9 12L12 14V2Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M12 2H20V22H4V2H6V14L9 12L12 14V2ZM2 2C2 0.89543 2.89543 0 4 0H20C21.1046 0 22 0.895431 22 2V22C22 23.1046 21.1046 24 20 24H4C2.89543 24 2 23.1046 2 22V2Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +61,12 @@ BookIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

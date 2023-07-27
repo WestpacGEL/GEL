@@ -4,14 +4,14 @@ import {
 	AddIcon,
 	CalendarIcon,
 	DeleteIcon,
-	FavouriteIcon,
+	FavoriteIcon,
 	GridIcon,
 	HelpIcon,
 	MessageIcon,
 	NotificationOffIcon,
 	PersonIcon,
 	ProgressIcon,
-	StarIcon,
+	StarRateIcon,
 	WriteIcon,
 } from '@westpac/icon';
 import { Row } from './_util';
@@ -26,14 +26,14 @@ const icons = [
 	AddIcon,
 	CalendarIcon,
 	DeleteIcon,
-	FavouriteIcon,
+	FavoriteIcon,
 	GridIcon,
 	HelpIcon,
 	MessageIcon,
 	NotificationOffIcon,
 	PersonIcon,
 	ProgressIcon,
-	StarIcon,
+	StarRateIcon,
 	WriteIcon,
 ];
 

@@ -3,26 +3,38 @@ import { Icon, IconProps } from './Icon';
 
 export const SecurityIcon = ({
 	assistiveText = 'Security',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="SecurityIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M12,0 L22,4.5 L22,11 C22,17.0545455 17.7333333,22.6254545 12,24 C6.26666667,22.6254545 2,17.0545455 2,11 L2,4.5 L12,0 Z M4.04577037,12 L4.04577037,12 L12,12 L12,21.9311004 C16.274414,20.6811566 19.534648,16.5867485 19.9542296,12 L12,12 L12,2.19317122 L4,5.79317122 L4,11 C4,11.3353086 4.01548572,11.6689368 4.04577037,12 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M22 4.5L12 0L2 4.5V11C2 17.0545 6.26667 22.6255 12 24C17.7333 22.6255 22 17.0545 22 11V4.5ZM4 11C4 11.3353 4.01549 11.6689 4.04577 12H12V21.9311C16.2744 20.6812 19.5346 16.5867 19.9542 12H12V2.19317L4 5.79317V11Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M22 4.5L12 0L2 4.5V11C2 17.0545 6.26667 22.6255 12 24C17.7333 22.6255 22 17.0545 22 11V4.5ZM4 11C4 11.3353 4.01549 11.6689 4.04577 12H12V21.9311C16.2744 20.6812 19.5346 16.5867 19.9542 12H12V2.19317L4 5.79317V11Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +61,12 @@ SecurityIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

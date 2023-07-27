@@ -3,26 +3,38 @@ import { Icon, IconProps } from './Icon';
 
 export const LimitIcon = ({
 	assistiveText = 'Limit',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="LimitIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M20.4663464,17.3242108 C21.437899,15.7825285 22,13.9569085 22,12 C22,6.47714286 17.5228571,2 12,2 C10.0430915,2 8.21747148,2.562101 6.67578925,3.53365362 L20.4663464,17.3242108 L20.4663464,17.3242108 Z M17.7016635,20.2163822 L3.78361783,6.29833646 C2.6591542,7.91570425 2,9.88087368 2,12 C2,17.5228571 6.47714286,22 12,22 C14.1191263,22 16.0842958,21.3408458 17.7016635,20.2163822 L17.7016635,20.2163822 Z M24,12 C24,18.627 18.62775,24 12,24 C5.37225,24 -8.8817842e-16,18.627 -8.8817842e-16,12 C-8.8817842e-16,5.373 5.37225,0 12,0 C18.62775,0 24,5.373 24,12 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M24 12C24 18.627 18.6278 24 12 24C5.37225 24 0 18.627 0 12C0 5.373 5.37225 0 12 0C18.6278 0 24 5.373 24 12ZM3.8557 6.36994L17.6301 20.1443C18.7358 19.3785 19.678 18.3933 20.3938 17.2517L6.74833 3.6062C5.6067 4.32199 4.62151 5.26423 3.8557 6.36994Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M12 24C18.6278 24 24 18.627 24 12C24 5.373 18.6278 0 12 0C5.37225 0 0 5.373 0 12C0 18.627 5.37225 24 12 24ZM20.4663 17.3242C21.4379 15.7825 22 13.9569 22 12C22 6.47714 17.5229 2 12 2C10.0431 2 8.21747 2.5621 6.67579 3.53365L20.4663 17.3242ZM17.7017 20.2164L3.78362 6.29834C2.65915 7.9157 2 9.88087 2 12C2 17.5229 6.47714 22 12 22C14.1191 22 16.0843 21.3408 17.7017 20.2164Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +61,12 @@ LimitIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

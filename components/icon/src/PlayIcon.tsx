@@ -3,22 +3,28 @@ import { Icon, IconProps } from './Icon';
 
 export const PlayIcon = ({
 	assistiveText = 'Play',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="PlayIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<polygon fill="currentColor" fillRule="evenodd" points="8 5 8 19 19 12" />
+		{look === 'filled' ? (
+			<path d="M8 5V19L19 12L8 5Z" fill="currentColor" />
+		) : (
+			<path d="M8 5V19L19 12L8 5Z" fill="currentColor" />
+		)}
 	</Icon>
 );
 
@@ -45,6 +51,12 @@ PlayIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

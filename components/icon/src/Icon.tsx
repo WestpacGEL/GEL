@@ -15,6 +15,13 @@ export interface IconProps {
 	color?: string;
 
 	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look?: string;
+
+	/**
 	 * String to use as the `aria-label` for the icon. Set to an empty string if you
 	 * are rendering the icon with visible text to prevent accessibility label
 	 * duplication.
@@ -75,6 +82,7 @@ export interface IconProps {
 export const Icon = ({
 	color,
 	size = 'medium',
+	look = 'filled',
 	assistiveText,
 	icon,
 	copyrightYear = '',
@@ -95,6 +103,7 @@ export const Icon = ({
 	const state = {
 		color,
 		size,
+		look,
 		assistiveText,
 		icon,
 		copyrightYear,
@@ -152,6 +161,12 @@ Icon.propTypes = {
 	 * Define Icon
 	 */
 	icon: PropTypes.string.isRequired,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

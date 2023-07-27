@@ -3,26 +3,38 @@ import { Icon, IconProps } from './Icon';
 
 export const HouseIcon = ({
 	assistiveText = 'House',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="HouseIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<polygon
-			fill="currentColor"
-			fillRule="evenodd"
-			points="12 0 0 12 4 12 4 24 10 24 10 17 14 17 14 24 20 24 20 12 24 12"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M24 12V11.0769L12 0L0 11.0769V12H2V24H22V12H24ZM15 22V15H9V22H15Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M24 12V11.0769L12 0L0 11.0769V12H2V24H22V12H24ZM20 22V10.1064L12 2.72182L4 10.1064V22H8V15H16V22H20ZM14 22V17H10V22H14Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +61,12 @@ HouseIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

@@ -3,26 +3,38 @@ import { Icon, IconProps } from './Icon';
 
 export const DesktopIcon = ({
 	assistiveText = 'Desktop',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="DesktopIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M15.5,22 L18,23.5 L18,24 L6,24 L6,23.5 L8.5,22 L9.16666667,20 L2,20 C0.8954305,20 1.3527075e-16,19.1045695 0,18 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 L22,0 C23.1045695,-2.02906125e-16 24,0.8954305 24,2 L24,18 C24,19.1045695 23.1045695,20 22,20 L14.8333333,20 L15.5,22 Z M2,16 L22,16 L22,2 L2,2 L2,16 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M18 23.5L15.5 22L14.8333 20H22C23.1046 20 24 19.1046 24 18V2C24 0.89543 23.1046 0 22 0H2C0.89543 0 0 0.89543 0 2V18C0 19.1046 0.89543 20 2 20H9.16667L8.5 22L6 23.5V24H18V23.5ZM22 16H2V2H22V16Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M18 23.5L15.5 22L14.8333 20H22C23.1046 20 24 19.1046 24 18V2C24 0.89543 23.1046 0 22 0H2C0.89543 0 0 0.89543 0 2V18C0 19.1046 0.89543 20 2 20H9.16667L8.5 22L6 23.5V24H18V23.5ZM22 16H2V2H22V16Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +61,12 @@ DesktopIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

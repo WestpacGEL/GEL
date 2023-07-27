@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-DeliveryTruckIcon.cjs.js",
+	"module": "dist/westpac-icon-DeliveryTruckIcon.esm.js"
+}

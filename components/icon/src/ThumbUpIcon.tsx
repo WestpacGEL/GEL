@@ -1,29 +1,44 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const ThumbUpIcon = ({
 	assistiveText = 'Thumb Up',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="ThumbUpIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M14,0 L5,0 C4.17,0 3.46,0.5 3.16,1.22 L0.14,8.27 C0.05,8.5 0,9.5 0,10 C7.34788079e-17,11.5 0.5,12 2,12 L8,12 L7.36,17.57 L7.33,17.89 C7.33,18.3 7.5,18.68 7.77,18.95 L8.83,20 L15.42,13.41 C15.78,13.05 16,12.55 16,12 L16,2 C16,0.9 15.1,0 14,0 Z M18,0 L18,12 L22,12 L22,0 L18,0 Z"
-			transform="rotate(180 11 10)"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M17 20H8C6.9 20 6 19.1 6 18V8C6 7.45 6.22 6.95 6.58 6.59L13.17 0L14.23 1.05C14.5 1.32 14.67 1.7 14.67 2.11L14.64 2.43L14 8H20C21.5 8 22 8.5 22 10C22 10.5 21.95 11.5 21.86 11.73L18.84 18.78C18.54 19.5 17.83 20 17 20ZM4 8V20H0V8H4Z"
+				fill="currentColor"
+			/>
+		) : (
+			<Fragment>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M14 8L14.64 2.43L14.67 2.11C14.67 1.88372 14.6182 1.66657 14.5264 1.47201C14.4729 1.35851 14.4057 1.2527 14.3272 1.15724C14.2965 1.11985 14.2641 1.08405 14.23 1.05L13.17 0L6.58 6.59C6.22 6.95 6 7.45 6 8V18C6 19.1 6.9 20 8 20H17C17.83 20 18.54 19.5 18.84 18.78L21.86 11.73C21.95 11.5 22 10.5 22 10C22 8.5 21.5 8 20 8H14ZM19.9423 11.1276L16.9984 18H8V8L8.00007 7.99836L12.5046 3.49382L11.757 10H20C20 10.1995 19.9894 10.528 19.9686 10.8274C19.9601 10.9492 19.951 11.0509 19.9423 11.1276Z"
+					fill="currentColor"
+				/>
+				<path d="M4 8V20H0V8H4Z" fill="currentColor" />
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -50,6 +65,12 @@ ThumbUpIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

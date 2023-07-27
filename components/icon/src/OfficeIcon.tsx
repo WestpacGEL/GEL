@@ -1,28 +1,51 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const OfficeIcon = ({
 	assistiveText = 'Office',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="OfficeIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M14,6 L24,6 L24,24 L0,24 L0,0 L14,0 L14,6 Z M14,8 L14,22 L22,22 L22,8 L14,8 Z M16,10 L20,10 L20,12 L16,12 L16,10 Z M16,14 L20,14 L20,16 L16,16 L16,14 Z M16,18 L20,18 L20,20 L16,20 L16,18 Z M2,4 L2,8 L6,8 L6,4 L2,4 Z M8,4 L8,8 L12,8 L12,4 L8,4 Z M2,10 L2,14 L6,14 L6,10 L2,10 Z M8,10 L8,14 L12,14 L12,10 L8,10 Z M2,16 L2,20 L6,20 L6,16 L2,16 Z M8,16 L8,20 L12,20 L12,16 L8,16 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path d="M20 10H16V12H20V10Z" fill="currentColor" />
+				<path d="M16 14H20V16H16V14Z" fill="currentColor" />
+				<path d="M20 18H16V20H20V18Z" fill="currentColor" />
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M14 6H24V24H0V0H14V6ZM14 8H22V22H14V8ZM2 4H6V8H2V4ZM12 4H8V8H12V4ZM2 10H6V14H2V10ZM12 10H8V14H12V10ZM2 16H6V20H2V16ZM12 16H8V20H12V16Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<Fragment>
+				<path d="M20 10H16V12H20V10Z" fill="currentColor" />
+				<path d="M16 14H20V16H16V14Z" fill="currentColor" />
+				<path d="M20 18H16V20H20V18Z" fill="currentColor" />
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M14 6H24V24H0V0H14V6ZM14 8H22V22H14V8ZM2 4H6V8H2V4ZM12 4H8V8H12V4ZM2 10H6V14H2V10ZM12 10H8V14H12V10ZM2 16H6V20H2V16ZM12 16H8V20H12V16Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +72,12 @@ OfficeIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

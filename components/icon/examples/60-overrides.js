@@ -7,7 +7,6 @@ import {
 	GridIcon,
 	HelpIcon,
 	MessageIcon,
-	StarIcon,
 	WriteIcon,
 } from '@westpac/icon';
 import { Fragment } from 'react';
@@ -58,7 +57,6 @@ function Example({ brand }) {
 			<GridIcon />
 			<HelpIcon />
 			<MessageIcon />
-			<StarIcon />
 			<WriteIcon />
 
 			<h2>Overriding the icon itself</h2>

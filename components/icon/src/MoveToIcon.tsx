@@ -1,28 +1,49 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const MoveToIcon = ({
 	assistiveText = 'Move To',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="MoveToIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M22,0 C23.1,0 24,0.9 24,2 L24,22 C24,23.1 23.1,24 22,24 L4,24 C2.89,24 2,23.1 2,22 L2,18 L4,18 L4,22 L22,22 L22,2 L4,2 L4,6 L2,6 L2,2 C2,0.9 2.89,0 4,0 L22,0 Z M14,12 L8.015,18 L8.015,14 L0,14 L0,10 L8.015,10 L8.015,6 L14,12 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path
+					d="M20 0H4C2.9 0 2 0.9 2 2V6H4V2H20V22H4V18H2V22C2 23.1 2.9 24 4 24H20C21.11 24 22 23.1 22 22V2C22 0.9 21.11 0 20 0Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M5.29291 7.70712L8.58579 11H0V13H8.58582L5.29291 16.2929L6.70712 17.7071L12.4142 12L6.70712 6.29291L5.29291 7.70712Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<Fragment>
+				<path
+					d="M20 0H4C2.9 0 2 0.9 2 2V6H4V2H20V22H4V18H2V22C2 23.1 2.9 24 4 24H20C21.11 24 22 23.1 22 22V2C22 0.9 21.11 0 20 0Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M5.29291 7.70712L8.58579 11H0V13H8.58582L5.29291 16.2929L6.70712 17.7071L12.4142 12L6.70712 6.29291L5.29291 7.70712Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +70,12 @@ MoveToIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

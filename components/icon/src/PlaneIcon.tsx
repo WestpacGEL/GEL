@@ -3,26 +3,34 @@ import { Icon, IconProps } from './Icon';
 
 export const PlaneIcon = ({
 	assistiveText = 'Plane',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="PlaneIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M7,24 L7,22.5 L10,20 L10,14 L0,17 L0,15 L10,8 L10,2 C10,0.8954305 10.8954305,0 12,0 C13.1045695,0 14,0.8954305 14,2 L14,8 L24,15 L24,17 L14,14 L14,20 L17,22.5 L17,24 L12,22.5 L7,24 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				d="M7 24V22.5L10 20V14L0 17V15L10 8V2C10 0.89543 10.8954 0 12 0C13.1046 0 14 0.89543 14 2V8L24 15V17L14 14V20L17 22.5V24L12 22.5L7 24Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				d="M7 24V22.5L10 20V14L0 17V15L10 8V2C10 0.89543 10.8954 0 12 0C13.1046 0 14 0.89543 14 2V8L24 15V17L14 14V20L17 22.5V24L12 22.5L7 24Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +57,12 @@ PlaneIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

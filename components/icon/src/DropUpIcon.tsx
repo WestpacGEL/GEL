@@ -3,27 +3,28 @@ import { Icon, IconProps } from './Icon';
 
 export const DropUpIcon = ({
 	assistiveText = 'Drop Up',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="DropUpIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<polygon
-			fill="currentColor"
-			fillRule="evenodd"
-			points="5 8 12 16 19 8"
-			transform="rotate(-180 12 12)"
-		/>
+		{look === 'filled' ? (
+			<path d="M19 16L12 8L5 16L19 16Z" fill="currentColor" />
+		) : (
+			<path d="M19 16L12 8L5 16L19 16Z" fill="currentColor" />
+		)}
 	</Icon>
 );
 
@@ -50,6 +51,12 @@ DropUpIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

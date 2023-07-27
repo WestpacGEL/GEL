@@ -1,28 +1,48 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const StopwatchIcon = ({
 	assistiveText = 'Stopwatch',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="StopwatchIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M18.6181506,6.50316976 L20.1213203,5 L21.5355339,6.41421356 L19.9788158,7.9709317 C21.2474477,9.64720474 22,11.7357184 22,14 C22,19.5228475 17.5228475,24 12,24 C6.4771525,24 2,19.5228475 2,14 C2,8.4771525 6.4771525,4 12,4 C14.5378379,4 16.854872,4.94537379 18.6181506,6.50316976 L18.6181506,6.50316976 Z M12,22 C16.418278,22 20,18.418278 20,14 C20,9.581722 16.418278,6 12,6 C7.581722,6 4,9.581722 4,14 C4,18.418278 7.581722,22 12,22 Z M8,0 L16,0 L16,2 L8,2 L8,0 Z M11,8 L13,8 L13,16 L11,16 L11,8 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path d="M16 0H8V2H16V0Z" fill="currentColor" />
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M18.6182 6.50317L20.1213 5L21.5355 6.41421L19.9788 7.97093C21.2474 9.64721 22 11.7357 22 14C22 19.5228 17.5228 24 12 24C6.47715 24 2 19.5228 2 14C2 8.47715 6.47715 4 12 4C14.5378 4 16.8549 4.94537 18.6182 6.50317ZM13 8V16H11V8H13Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<Fragment>
+				<path d="M8 0H16V2H8V0Z" fill="currentColor" />
+				<path d="M13 16V8H11V16H13Z" fill="currentColor" />
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M20.1213 5L18.6182 6.50317C16.8549 4.94537 14.5378 4 12 4C6.47715 4 2 8.47715 2 14C2 19.5228 6.47715 24 12 24C17.5228 24 22 19.5228 22 14C22 11.7357 21.2474 9.64721 19.9788 7.97093L21.5355 6.41421L20.1213 5ZM20 14C20 18.4183 16.4183 22 12 22C7.58172 22 4 18.4183 4 14C4 9.58172 7.58172 6 12 6C16.4183 6 20 9.58172 20 14Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +69,12 @@ StopwatchIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */
