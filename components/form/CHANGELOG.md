@@ -1,5 +1,13 @@
 # @westpac/form
 
+## 3.4.1
+
+### Patch Changes
+
+- Updated dependencies [0537e5d6]
+  - @westpac/icon@3.0.0
+  - @westpac/repeater@2.4.1
+
 ## 3.4.0
 
 ### Minor Changes

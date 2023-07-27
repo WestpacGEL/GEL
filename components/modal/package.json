@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/modal",
-	"version": "2.3.0",
+	"version": "2.3.1",
 	"description": "Configurable dialog panels to provide singular focus to important content, used for lightboxes, user notifications and more",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/modal",
@@ -36,11 +36,11 @@
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
 		"@westpac/body": "^2.2.1",
-		"@westpac/button": "^3.0.0",
+		"@westpac/button": "^3.1.1",
 		"@westpac/core": "^3.2.1",
 		"@westpac/heading": "^2.3.1",
 		"@westpac/hooks": "^3.1.1",
-		"@westpac/icon": "^2.2.0",
+		"@westpac/icon": "^3.0.0",
 		"bezier-easing": "^2.1.0",
 		"prop-types": "^15.7.2",
 		"react-focus-on": "^3.5.2",

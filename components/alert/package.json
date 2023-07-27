@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/alert",
-	"version": "2.2.2",
+	"version": "2.2.3",
 	"description": "Alert boxes and Alert text, used as a consistent message system for common user interactions",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/alert",
@@ -41,10 +41,10 @@
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
 		"@westpac/body": "^2.2.1",
-		"@westpac/button": "^3.0.0",
+		"@westpac/button": "^3.1.1",
 		"@westpac/core": "^3.2.1",
 		"@westpac/heading": "^2.3.1",
-		"@westpac/icon": "^2.2.0",
+		"@westpac/icon": "^3.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"devDependencies": {

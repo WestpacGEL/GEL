@@ -46,8 +46,8 @@
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.10.6",
-		"@westpac/button": "^3.0.0",
-		"@westpac/icon": "^2.2.0",
+		"@westpac/button": "^3.1.1",
+		"@westpac/icon": "^3.0.0",
 		"cypress": "^8.0.0",
 		"react": "^18.2.0",
 		"start-server-and-test": "^1.12.6"

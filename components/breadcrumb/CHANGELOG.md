@@ -1,5 +1,12 @@
 # @westpac/breadcrumb
 
+## 2.2.2
+
+### Patch Changes
+
+- Updated dependencies [0537e5d6]
+  - @westpac/icon@3.0.0
+
 ## 2.2.1
 
 ### Patch Changes
