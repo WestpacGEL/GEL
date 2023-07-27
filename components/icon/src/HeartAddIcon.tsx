@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const HeartAddIcon = ({
-	assistiveText = 'HeartAdd',
+	assistiveText = 'Heart Add',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

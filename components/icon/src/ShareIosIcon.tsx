@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Icon, IconProps } from './Icon';
 
 export const ShareIosIcon = ({
-	assistiveText = 'ShareIos',
+	assistiveText = 'Share Ios',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

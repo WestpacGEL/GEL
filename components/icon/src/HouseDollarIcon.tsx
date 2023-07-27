@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const HouseDollarIcon = ({
-	assistiveText = 'HouseDollar',
+	assistiveText = 'House Dollar',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

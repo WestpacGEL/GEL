@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const QuickBalanceIcon = ({
-	assistiveText = 'QuickBalance',
+	assistiveText = 'Quick Balance',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

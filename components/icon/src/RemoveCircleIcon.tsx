@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const RemoveCircleIcon = ({
-	assistiveText = 'RemoveCircle',
+	assistiveText = 'Remove Circle',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

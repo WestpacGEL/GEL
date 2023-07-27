@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const HousePersonIcon = ({
-	assistiveText = 'HousePerson',
+	assistiveText = 'House Person',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

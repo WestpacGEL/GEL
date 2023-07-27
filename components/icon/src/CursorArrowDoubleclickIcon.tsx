@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const CursorArrowDoubleclickIcon = ({
-	assistiveText = 'CursorArrowDoubleclick',
+	assistiveText = 'Cursor Arrow Doubleclick',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

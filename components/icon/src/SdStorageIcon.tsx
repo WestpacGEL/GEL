@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const SdStorageIcon = ({
-	assistiveText = 'SdStorage',
+	assistiveText = 'Sd Storage',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

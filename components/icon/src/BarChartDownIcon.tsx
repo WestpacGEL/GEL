@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const BarChartDownIcon = ({
-	assistiveText = 'BarChartDown',
+	assistiveText = 'Bar Chart Down',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

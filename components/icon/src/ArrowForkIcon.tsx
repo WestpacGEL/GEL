@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const ArrowForkIcon = ({
-	assistiveText = 'ArrowFork',
+	assistiveText = 'Arrow Fork',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

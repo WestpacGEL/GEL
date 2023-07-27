@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const NewContentIcon = ({
-	assistiveText = 'NewContent',
+	assistiveText = 'New Content',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

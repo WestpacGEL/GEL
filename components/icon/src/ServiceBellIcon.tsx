@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const ServiceBellIcon = ({
-	assistiveText = 'ServiceBell',
+	assistiveText = 'Service Bell',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

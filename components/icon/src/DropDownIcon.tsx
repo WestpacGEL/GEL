@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Icon, IconProps } from './Icon';
 
 export const DropDownIcon = ({
-	assistiveText = 'DropDown',
+	assistiveText = 'Drop Down',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

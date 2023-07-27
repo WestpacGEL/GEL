@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const ScanDocumentIcon = ({
-	assistiveText = 'ScanDocument',
+	assistiveText = 'Scan Document',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

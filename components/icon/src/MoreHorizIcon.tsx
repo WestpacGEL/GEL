@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Icon, IconProps } from './Icon';
 
 export const MoreHorizIcon = ({
-	assistiveText = 'MoreHoriz',
+	assistiveText = 'More Horiz',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

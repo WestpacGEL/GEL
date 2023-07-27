@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Icon, IconProps } from './Icon';
 
 export const IceCreamIcon = ({
-	assistiveText = 'IceCream',
+	assistiveText = 'Ice Cream',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

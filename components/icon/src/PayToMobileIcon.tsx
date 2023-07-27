@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const PayToMobileIcon = ({
-	assistiveText = 'PayToMobile',
+	assistiveText = 'Pay To Mobile',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

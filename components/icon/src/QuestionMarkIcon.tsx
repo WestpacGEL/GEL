@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const QuestionMarkIcon = ({
-	assistiveText = 'QuestionMark',
+	assistiveText = 'Question Mark',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

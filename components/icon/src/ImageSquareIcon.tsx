@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const ImageSquareIcon = ({
-	assistiveText = 'ImageSquare',
+	assistiveText = 'Image Square',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

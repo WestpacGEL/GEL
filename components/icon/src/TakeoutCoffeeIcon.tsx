@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const TakeoutCoffeeIcon = ({
-	assistiveText = 'TakeoutCoffee',
+	assistiveText = 'Takeout Coffee',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

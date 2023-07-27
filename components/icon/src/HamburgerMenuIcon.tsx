@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const HamburgerMenuIcon = ({
-	assistiveText = 'HamburgerMenu',
+	assistiveText = 'Hamburger Menu',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

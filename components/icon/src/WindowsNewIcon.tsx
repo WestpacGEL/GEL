@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Icon, IconProps } from './Icon';
 
 export const WindowsNewIcon = ({
-	assistiveText = 'WindowsNew',
+	assistiveText = 'Windows New',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

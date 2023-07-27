@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const FutureClockIcon = ({
-	assistiveText = 'FutureClock',
+	assistiveText = 'Future Clock',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

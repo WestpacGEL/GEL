@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const CardlessCashIcon = ({
-	assistiveText = 'CardlessCash',
+	assistiveText = 'Cardless Cash',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const TravelExploreIcon = ({
-	assistiveText = 'TravelExplore',
+	assistiveText = 'Travel Explore',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

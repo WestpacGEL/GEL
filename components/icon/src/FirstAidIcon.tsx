@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const FirstAidIcon = ({
-	assistiveText = 'FirstAid',
+	assistiveText = 'First Aid',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

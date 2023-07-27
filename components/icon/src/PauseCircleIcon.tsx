@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const PauseCircleIcon = ({
-	assistiveText = 'PauseCircle',
+	assistiveText = 'Pause Circle',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

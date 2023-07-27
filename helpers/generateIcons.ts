@@ -9,8 +9,10 @@ import { iconTemplate } from './.icon-template/icon-template';
 
 const formatIconName = (icon: string) => {
 	let name = icon.replace(/-(outlined|filled)$/, '');
-	name = name.replace(/-([a-z])/g, (_, char) => char.toUpperCase());
-	return name[0].toUpperCase() + name.slice(1);
+	name = name[0].toUpperCase() + name.slice(1);
+	const iconComponentName = name.replace(/-([a-z])/g, (_, char) => char.toUpperCase());
+	const assistiveText = name.replace(/-([a-z])/g, (_, char) => ` ${char.toUpperCase()}`);
+	return { iconComponentName, assistiveText };
 };
 
 const formatSVG = (svg: Buffer, pathCount: number) => {
@@ -35,7 +37,7 @@ const main = async () => {
 
 	for (const iconPath of iconFiles) {
 		const iconFileName = path.basename(iconPath, path.extname(iconPath));
-		const iconComponentName = formatIconName(iconFileName);
+		const { iconComponentName, assistiveText } = formatIconName(iconFileName);
 		const outlinedPath = iconPath.replace(/filled/g, 'outlined');
 
 		console.log(chalk.gray(`[${i}/${iconCount}] ${iconComponentName}Icon`));
@@ -54,7 +56,7 @@ const main = async () => {
 		const outlinedPaths = formatSVG(outlinedSVG, outlinedPathCount);
 
 		const iconComponent = prettier.format(
-			iconTemplate(iconComponentName, filledPaths, outlinedPaths, addFragment),
+			iconTemplate(iconComponentName, assistiveText, filledPaths, outlinedPaths, addFragment),
 			{
 				parser: 'typescript',
 				...(prettierConfig || {}),

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Icon, IconProps } from './Icon';
 
 export const FaceHappyIcon = ({
-	assistiveText = 'FaceHappy',
+	assistiveText = 'Face Happy',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

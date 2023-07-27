@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const SimCardIcon = ({
-	assistiveText = 'SimCard',
+	assistiveText = 'Sim Card',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

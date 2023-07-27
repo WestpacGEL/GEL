@@ -1,5 +1,6 @@
 export const iconTemplate = (
 	name: string,
+	assistiveText: string,
 	filledSVG: string,
 	outlinedSVG: string,
 	addFragment: boolean
@@ -7,7 +8,7 @@ export const iconTemplate = (
 import { Icon, IconProps } from './Icon';
 
 export const ${name}Icon = ({
-	assistiveText = '${name}',
+	assistiveText = '${assistiveText}',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

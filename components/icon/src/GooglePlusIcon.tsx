@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const GooglePlusIcon = ({
-	assistiveText = 'GooglePlus',
+	assistiveText = 'Google Plus',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const VisibilityOffIcon = ({
-	assistiveText = 'VisibilityOff',
+	assistiveText = 'Visibility Off',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

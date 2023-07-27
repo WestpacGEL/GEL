@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const ArchiveBoxIcon = ({
-	assistiveText = 'ArchiveBox',
+	assistiveText = 'Archive Box',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const WordFileIcon = ({
-	assistiveText = 'WordFile',
+	assistiveText = 'Word File',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

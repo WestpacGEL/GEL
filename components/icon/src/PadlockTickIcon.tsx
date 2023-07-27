@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const PadlockTickIcon = ({
-	assistiveText = 'PadlockTick',
+	assistiveText = 'Padlock Tick',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

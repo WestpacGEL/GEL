@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const MoneyInIcon = ({
-	assistiveText = 'MoneyIn',
+	assistiveText = 'Money In',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

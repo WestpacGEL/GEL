@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const IdCardIcon = ({
-	assistiveText = 'IdCard',
+	assistiveText = 'Id Card',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

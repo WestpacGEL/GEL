@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const PlayCircleIcon = ({
-	assistiveText = 'PlayCircle',
+	assistiveText = 'Play Circle',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',

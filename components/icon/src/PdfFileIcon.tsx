@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const PdfFileIcon = ({
-	assistiveText = 'PdfFile',
+	assistiveText = 'Pdf File',
 	copyrightYear = '2023',
 	size = 'medium',
 	look = 'filled',
