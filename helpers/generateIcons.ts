@@ -26,6 +26,7 @@ const formatSVG = (svg: Buffer, pathCount: number) => {
 const main = async () => {
 	const iconFiles = glob.sync('assets/icons/filled/*.svg');
 	const iconCount = iconFiles.length;
+	const iconNames = [];
 	let i = 1;
 
 	console.log(chalk.gray.bold('Building icons...'));
@@ -63,8 +64,13 @@ const main = async () => {
 			iconComponent
 		);
 
+		iconNames.push(`export { ${iconComponentName}Icon } from './${iconComponentName}Icon';`);
 		i++;
 	}
+
+	iconNames.push(`\nexport type { IconProps } from './Icon';\n`);
+
+	await fs.promises.writeFile('./components/icon/src/index.ts', iconNames.join('\n'));
 };
 
 main();
