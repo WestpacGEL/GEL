@@ -3,11 +3,11 @@ import path from 'path';
 
 export default async function handler(req, res) {
 	try {
-		const filePath = path.join(process.cwd(), '/public/design-system/icons/GEL_icon.zip');
+		const filePath = path.join(process.cwd(), '/public/design-system/icons/GEL_Icons.zip');
 		const exists = fs.existsSync(filePath);
 
 		const publicDir = __dirname.split('.next')[0] + 'public/';
-		const filePath2 = publicDir + 'design-system/icons/GEL_icons.zip';
+		const filePath2 = publicDir + 'design-system/icons/GEL_Icons.zip';
 		const exists2 = fs.existsSync(filePath2);
 
 		res
