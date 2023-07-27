@@ -189,7 +189,7 @@ const Pictogram = () => {
 							</div>
 						</Cell>
 						<Cell width={[12, null, 4]}>
-							<DownloadBtn qty={pictogramsFiltered.length} total={pictogramDetails.length} />
+							{/* <DownloadBtn qty={pictogramsFiltered.length} total={pictogramDetails.length} /> */}
 							<input type="hidden" name="brand" value={BRAND.code} />
 							<input type="hidden" name="pkg" value="@westpac/pictogram" />
 						</Cell>
