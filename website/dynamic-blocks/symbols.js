@@ -126,9 +126,9 @@ const Symbol = () => {
 							</div>
 						</Cell>
 						<Cell width={[12, null, 6]}>
-							<DownloadBtn qty={symbolsFiltered.length} total={symbolDetails} />
+							{/* <DownloadBtn qty={symbolsFiltered.length} total={symbolDetails} />
 							<input type="hidden" name="brand" value={BRAND.code} />
-							<input type="hidden" name="pkg" value="@westpac/symbol" />
+							<input type="hidden" name="pkg" value="@westpac/symbol" /> */}
 						</Cell>
 					</Grid>
 				</div>
