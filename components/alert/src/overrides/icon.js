@@ -22,6 +22,7 @@ const Icon = ({ state: { look, icon }, ...rest }) => {
 			size={['small', 'medium']}
 			color="inherit"
 			assistiveText={titleCase(look)}
+			{...(!icon && { look: 'outlined' })}
 			{...rest}
 		/>
 	);

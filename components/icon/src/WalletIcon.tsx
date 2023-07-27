@@ -1,28 +1,47 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const WalletIcon = ({
 	assistiveText = 'Wallet',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="WalletIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M21.4142136,2.58578644 C21.7761424,2.94771525 22,3.44771525 22,4 L22,6 L14,6 C12.8954305,6 12,6.8954305 12,8 L12,16 C12,17.1045695 12.8954305,18 14,18 L22,18 L22,20 C22,21.1045695 21.1045695,22 20,22 L2,22 C0.8954305,22 1.52655666e-16,21.1045695 0,20 L0,4 C-3.05311332e-16,2.8954305 0.8954305,2 2,2 L20,2 C20.5522847,2 21.0522847,2.22385763 21.4142136,2.58578644 Z M14,8 L23,8 C23.5522847,8 24,8.44771525 24,9 L24,15 C24,15.5522847 23.5522847,16 23,16 L14,16 L14,8 Z M18.5,13.5 C19.3284271,13.5 20,12.8284271 20,12 C20,11.1715729 19.3284271,10.5 18.5,10.5 C17.6715729,10.5 17,11.1715729 17,12 C17,12.8284271 17.6715729,13.5 18.5,13.5 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path
+					d="M22 4C22 3.44772 21.7761 2.94772 21.4142 2.58579C21.0523 2.22386 20.5523 2 20 2H2C0.89543 2 0 2.89543 0 4V20C0 21.1046 0.89543 22 2 22H20C21.1046 22 22 21.1046 22 20V18H14C12.8954 18 12 17.1046 12 16V8C12 6.89543 12.8954 6 14 6H22V4Z"
+					fill="currentColor"
+				/>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M14 9C14 8.44772 14.4477 8 15 8H23C23.5523 8 24 8.44772 24 9V15C24 15.5523 23.5523 16 23 16H15C14.4477 16 14 15.5523 14 15V9ZM20 12C20 12.8284 19.3284 13.5 18.5 13.5C17.6716 13.5 17 12.8284 17 12C17 11.1716 17.6716 10.5 18.5 10.5C19.3284 10.5 20 11.1716 20 12Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M22 16V20C22 21.1046 21.1046 22 20 22H2C0.89543 22 0 21.1046 0 20V4C0 2.89543 0.895431 2 2 2H20C21.1046 2 22 2.89543 22 4V8H23C23.5523 8 24 8.44772 24 9V15C24 15.5523 23.5523 16 23 16H22ZM2 4H20V8H15C14.4477 8 14 8.44772 14 9V15C14 15.5523 14.4477 16 15 16H20V20H2L2 4ZM20 12C20 11.1716 19.3284 10.5 18.5 10.5C17.6716 10.5 17 11.1716 17 12C17 12.8284 17.6716 13.5 18.5 13.5C19.3284 13.5 20 12.8284 20 12Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +68,12 @@ WalletIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

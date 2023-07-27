@@ -1,5 +1,13 @@
 # @westpac/modal
 
+## 2.3.1
+
+### Patch Changes
+
+- Updated dependencies [0537e5d6]
+  - @westpac/icon@3.0.0
+  - @westpac/button@3.1.1
+
 ## 2.3.0
 
 ### Minor Changes

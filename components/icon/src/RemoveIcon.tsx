@@ -3,22 +3,28 @@ import { Icon, IconProps } from './Icon';
 
 export const RemoveIcon = ({
 	assistiveText = 'Remove',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="RemoveIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<polygon fill="currentColor" fillRule="evenodd" points="4 11 4 13 20 13 20 11" />
+		{look === 'filled' ? (
+			<path d="M4 11V13H20V11H4Z" fill="currentColor" />
+		) : (
+			<path d="M4 11V13H20V11H4Z" fill="currentColor" />
+		)}
 	</Icon>
 );
 
@@ -45,6 +51,12 @@ RemoveIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-ArchiveBoxIcon.cjs.js",
+	"module": "dist/westpac-icon-ArchiveBoxIcon.esm.js"
+}

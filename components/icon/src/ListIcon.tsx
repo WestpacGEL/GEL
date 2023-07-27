@@ -3,26 +3,38 @@ import { Icon, IconProps } from './Icon';
 
 export const ListIcon = ({
 	assistiveText = 'List',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="ListIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M2,13 L4,13 L4,11 L2,11 L2,13 Z M2,17 L4,17 L4,15 L2,15 L2,17 Z M2,9 L4,9 L4,7 L2,7 L2,9 Z M6,13 L22,13 L22,11 L6,11 L6,13 Z M6,17 L22,17 L22,15 L6,15 L6,17 Z M6,7 L6,9 L22,9 L22,7 L6,7 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M2 9H4V7H2V9ZM4 13H2V11H4V13ZM4 17H2V15H4V17ZM22 13H6V11H22V13ZM6 17H22V15H6V17ZM6 9V7H22V9H6Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M2 9H4V7H2V9ZM4 13H2V11H4V13ZM4 17H2V15H4V17ZM22 13H6V11H22V13ZM6 17H22V15H6V17ZM6 9V7H22V9H6Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +61,12 @@ ListIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

@@ -1,13 +1,14 @@
 import React, { Fragment, useState } from 'react'; // Needed for within Keystone
 import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { TextInput } from '@westpac/text-input';
+import { TextInput, Select } from '@westpac/text-input';
 import { Grid, Cell } from '@westpac/grid';
 import { Button } from '@westpac/button';
 import { DownloadIcon } from '@westpac/icon/DownloadIcon';
 import * as icons from '@westpac/icon';
 import { pluralize } from './_utils';
+import { BASE_URL } from '../src/config';
 
-const renderIcons = (icons) => {
+const renderIcons = (icons, look) => {
 	const { COLORS } = useBrand();
 	const mq = useMediaQuery();
 
@@ -50,6 +51,7 @@ const renderIcons = (icons) => {
 							})}
 						>
 							<Icon
+								look={look}
 								css={{
 									paddingBottom: '36px',
 								}}
@@ -80,6 +82,7 @@ const Icon = () => {
 	const { BRAND, COLORS, SPACING } = useBrand();
 
 	const [search, setSearch] = useState('');
+	const [look, setLook] = useState('filled');
 
 	const iconDetails = [];
 	for (let key in icons) {
@@ -90,10 +93,12 @@ const Icon = () => {
 		search.trim() === '' ? true : icon.name.toLowerCase().includes(search.toLowerCase())
 	);
 
+	const handleLookChange = (event) => {
+		setLook(event.target.value);
+	};
+
 	return (
-		<form
-			action="/api/svg"
-			method="POST"
+		<div
 			css={{
 				gridColumnEnd: 'span 12',
 				gridRowEnd: 'span 1',
@@ -127,15 +132,48 @@ const Icon = () => {
 							/>
 						</div>
 					</Cell>
-					<Cell width={[12, null, 6]}>
-						<DownloadBtn qty={iconsFiltered.length} total={iconDetails.length} />
+					<Cell width={[12, null, 3]}>
+						<div
+							css={mq({
+								display: 'flex',
+								flexDirection: ['column', null, 'row'],
+								alignItems: ['start', null, 'center'],
+							})}
+						>
+							<label
+								htmlFor="icon-look"
+								css={mq({
+									marginRight: '1rem',
+									marginBottom: ['0.75rem', null, 0],
+									whiteSpace: 'nowrap',
+								})}
+							>
+								Mode
+							</label>
+							<Select id="icon-look" name="look" value={look} onChange={handleLookChange} inline>
+								<option value="filled">Filled</option>
+								<option value="outlined">Outlined</option>
+							</Select>
+						</div>
+					</Cell>
+					<Cell width={[12, null, 3]}>
+						<Button
+							tag="a"
+							href={`${BASE_URL}/downloads/GEL_icons.zip`}
+							look="primary"
+							soft
+							iconBefore={DownloadIcon}
+						>
+							Download all SVGs
+						</Button>
+						{/* <DownloadBtn qty={iconsFiltered.length} total={iconDetails.length} /> */}
 						<input type="hidden" name="brand" value={BRAND.code} />
 						<input type="hidden" name="pkg" value="@westpac/icon" />
 					</Cell>
 				</Grid>
 			</div>
-			<Grid>{renderIcons(iconsFiltered)}</Grid>
-		</form>
+			<Grid>{renderIcons(iconsFiltered, look)}</Grid>
+		</div>
 	);
 };
 

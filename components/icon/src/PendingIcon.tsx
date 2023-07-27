@@ -1,28 +1,49 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const PendingIcon = ({
 	assistiveText = 'Pending',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="PendingIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M24,12 L20,16.5 L16,12 L19,12 C19,7.30557963 15.1944204,3.5 10.5,3.5 C5.80557963,3.5 2,7.30557963 2,12 C2,16.6944204 5.80557963,20.5 10.5,20.5 C12.5701131,20.5 14.4673847,19.7599774 15.9417031,18.5300437 L17.2221038,20.0665245 C15.4008869,21.5858544 13.0571985,22.5 10.5,22.5 C4.70101013,22.5 0,17.7989899 0,12 C0,6.20101013 4.70101013,1.5 10.5,1.5 C16.2989899,1.5 21,6.20101013 21,12 L24,12 Z M10.5,14.5 C9.11928813,14.5 8,13.3807119 8,12 C8,10.6192881 9.11928813,9.5 10.5,9.5 C11.8807119,9.5 13,10.6192881 13,12 C13,13.3807119 11.8807119,14.5 10.5,14.5 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path
+					d="M20 16.5L24 12H21C21 6.20101 16.299 1.5 10.5 1.5C4.70101 1.5 0 6.20101 0 12C0 17.799 4.70101 22.5 10.5 22.5C13.0572 22.5 15.4009 21.5859 17.2221 20.0665L15.9417 18.53C14.4674 19.76 12.5701 20.5 10.5 20.5C5.80558 20.5 2 16.6944 2 12C2 7.30558 5.80558 3.5 10.5 3.5C15.1944 3.5 19 7.30558 19 12H16L20 16.5Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M10.5 14.5C11.8807 14.5 13 13.3807 13 12C13 10.6193 11.8807 9.5 10.5 9.5C9.11929 9.5 8 10.6193 8 12C8 13.3807 9.11929 14.5 10.5 14.5Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<Fragment>
+				<path
+					d="M20 16.5L24 12H21C21 6.20101 16.299 1.5 10.5 1.5C4.70101 1.5 0 6.20101 0 12C0 17.799 4.70101 22.5 10.5 22.5C13.0572 22.5 15.4009 21.5859 17.2221 20.0665L15.9417 18.53C14.4674 19.76 12.5701 20.5 10.5 20.5C5.80558 20.5 2 16.6944 2 12C2 7.30558 5.80558 3.5 10.5 3.5C15.1944 3.5 19 7.30558 19 12H16L20 16.5Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M10.5 14.5C11.8807 14.5 13 13.3807 13 12C13 10.6193 11.8807 9.5 10.5 9.5C9.11929 9.5 8 10.6193 8 12C8 13.3807 9.11929 14.5 10.5 14.5Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +70,12 @@ PendingIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

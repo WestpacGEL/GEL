@@ -1,28 +1,69 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const DropboxIcon = ({
 	assistiveText = 'Dropbox',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="DropboxIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M7.05975881,19.0540557 L4.93952869,17.6598188 L4.93952869,19.2228042 L12.0142124,23.4992641 L19.088896,19.2228042 L19.088896,17.6598188 L16.9686659,19.0540557 L12.0142124,14.9103446 L7.05975881,19.0540557 Z M16.9403162,1 L12.0001125,5.15496105 L19.1182958,9.58591951 L24,5.64620644 L16.9403162,1 Z M12.0000375,14.016578 L16.9402412,18.172289 L23.999925,13.5268326 L19.1182208,9.58561951 L12.0000375,14.016578 Z M0,13.5265326 L4.88170423,9.58606951 L11.9998875,14.016278 L7.05968382,18.172739 L0,13.5265326 Z M7.05975881,1 L11.9999625,5.15496105 L4.88177923,9.58591951 L7.49992969e-05,5.64620644 L7.05975881,1 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M16.9403 1L12.0001 5.15496L19.118 9.58574L12 14.0166L16.9402 18.1723L23.9999 13.5268L19.118 9.58574L24 5.64621L16.9403 1Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M7.05976 19.0541L4.93953 17.6598V19.2228L12.0142 23.4993L19.0889 19.2228V17.6598L16.9687 19.0541L12.0142 14.9103L7.05976 19.0541Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M0 13.5265L7.05968 18.1727L12 14.0166L4.8817 9.58607L0 13.5265Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M7.49993e-05 5.64621L7.05976 1L12.0001 5.15496L4.8817 9.58607L7.49993e-05 5.64621Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<Fragment>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M16.9403 1L12.0001 5.15496L19.118 9.58574L12 14.0166L16.9402 18.1723L23.9999 13.5268L19.118 9.58574L24 5.64621L16.9403 1Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M7.05976 19.0541L4.93953 17.6598V19.2228L12.0142 23.4993L19.0889 19.2228V17.6598L16.9687 19.0541L12.0142 14.9103L7.05976 19.0541Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M0 13.5265L7.05968 18.1727L12 14.0166L4.8817 9.58607L0 13.5265Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M7.49993e-05 5.64621L7.05976 1L12.0001 5.15496L4.8817 9.58607L7.49993e-05 5.64621Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +90,12 @@ DropboxIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

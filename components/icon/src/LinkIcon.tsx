@@ -1,28 +1,51 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const LinkIcon = ({
 	assistiveText = 'Link',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="LinkIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M13,18 L13,16 L18,16 C20.209139,16 22,14.209139 22,12 C22,9.790861 20.209139,8 18,8 L13,8 L13,6 L18,6 C21.3137085,6 24,8.6862915 24,12 C24,15.3137085 21.3137085,18 18,18 L13,18 Z M11,18 L6,18 C2.6862915,18 -1.77635684e-15,15.3137085 -1.77635684e-15,12 C-1.77635684e-15,8.6862915 2.6862915,6 6,6 L11,6 L11,8 L6,8 C3.790861,8 2,9.790861 2,12 C2,14.209139 3.790861,16 6,16 L11,16 L11,18 L11,18 Z M8,11 L16,11 L16,13 L8,13 L8,11 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path
+					d="M11 18H6C2.68629 18 0 15.3137 0 12C0 8.68629 2.68629 6 6 6H11V8H6C3.79086 8 2 9.79086 2 12C2 14.2091 3.79086 16 6 16H11V18Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M13 18H18C21.3137 18 24 15.3137 24 12C24 8.68629 21.3137 6 18 6H13V8H18C20.2091 8 22 9.79086 22 12C22 14.2091 20.2091 16 18 16H13V18Z"
+					fill="currentColor"
+				/>
+				<path d="M16 11H8V13H16V11Z" fill="currentColor" />
+			</Fragment>
+		) : (
+			<Fragment>
+				<path
+					d="M11 18H6C2.68629 18 0 15.3137 0 12C0 8.68629 2.68629 6 6 6H11V8H6C3.79086 8 2 9.79086 2 12C2 14.2091 3.79086 16 6 16H11V18Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M13 18H18C21.3137 18 24 15.3137 24 12C24 8.68629 21.3137 6 18 6H13V8H18C20.2091 8 22 9.79086 22 12C22 14.2091 20.2091 16 18 16H13V18Z"
+					fill="currentColor"
+				/>
+				<path d="M16 11H8V13H16V11Z" fill="currentColor" />
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +72,12 @@ LinkIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-BriefcaseIcon.cjs.js",
+	"module": "dist/westpac-icon-BriefcaseIcon.esm.js"
+}

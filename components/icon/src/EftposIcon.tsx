@@ -1,28 +1,50 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const EftposIcon = ({
 	assistiveText = 'Eftpos',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="EftposIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M14,18 L14,22 L16,22 L16,18 L18,18 L18,23 C18,23.5522847 17.5522847,24 17,24 L7,24 C6.44771525,24 6,23.5522847 6,23 L6,18 L14,18 Z M6,0 L18,0 C19.1045695,-2.02906125e-16 20,0.8954305 20,2 L20,14 C20,15.1045695 19.1045695,16 18,16 L6,16 C4.8954305,16 4,15.1045695 4,14 L4,2 C4,0.8954305 4.8954305,2.02906125e-16 6,0 Z M6,2 L6,8 L18,8 L18,2 L6,2 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M2 2C2 0.89543 2.89543 0 4 0H20C21.1046 0 22 0.895431 22 2V16C22 17.1046 21.1046 18 20 18H4C2.89543 18 2 17.1046 2 16V2ZM20 2H4V8H20V2ZM17.25 14L15 11L12.75 14H17.25Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M14 19H6V23C6 23.5523 6.44771 24 7 24H17C17.5523 24 18 23.5523 18 23V19H16V22H14V19Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<Fragment>
+				<path d="M12.75 14L15 11L17.25 14H12.75Z" fill="currentColor" />
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M4 0C2.89543 0 2 0.89543 2 2V16C2 17.1046 2.89543 18 4 18H6V23C6 23.5523 6.44771 24 7 24H17C17.5523 24 18 23.5523 18 23V18H20C21.1046 18 22 17.1046 22 16V2C22 0.895431 21.1046 0 20 0H4ZM20 2H4V8H20V2ZM16 22V18H14V22H16ZM4 10H20V16H4V10ZM12 18H8V22H12V18Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +71,12 @@ EftposIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

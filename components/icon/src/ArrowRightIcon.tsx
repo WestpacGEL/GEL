@@ -3,26 +3,34 @@ import { Icon, IconProps } from './Icon';
 
 export const ArrowRightIcon = ({
 	assistiveText = 'Arrow Right',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="ArrowRightIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<polygon
-			fill="currentColor"
-			fillRule="evenodd"
-			points="14.588 12 8 18.588 9.412 20 17.412 12 9.412 4 8 5.412"
-		/>
+		{look === 'filled' ? (
+			<path
+				d="M14.5879 12L8.00006 18.5878L9.41223 20L17.4122 12L9.41218 4L8 5.41218L14.5879 12Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				d="M14.5879 12L8.00006 18.5878L9.41223 20L17.4122 12L9.41218 4L8 5.41218L14.5879 12Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +57,12 @@ ArrowRightIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

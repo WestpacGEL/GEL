@@ -3,26 +3,34 @@ import { Icon, IconProps } from './Icon';
 
 export const ExpandLessIcon = ({
 	assistiveText = 'Expand Less',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="ExpandLessIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<polygon
-			fill="currentColor"
-			fillRule="evenodd"
-			points="12 9.824 18.588 16.412 20 15 12 7 4 15 5.412 16.412"
-		/>
+		{look === 'filled' ? (
+			<path
+				d="M12 9.82435L18.5878 16.4121L20 15L12 7L4 15L5.41218 16.4122L12 9.82435Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				d="M12 9.82435L18.5878 16.4121L20 15L12 7L4 15L5.41218 16.4122L12 9.82435Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +57,12 @@ ExpandLessIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

@@ -1,28 +1,47 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const ShopIcon = ({
 	assistiveText = 'Shop',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="ShopIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M4,2 L20,2 L20,0 L4,0 L4,2 Z M4,4 L0,11.00075 L0,14.00075 L2,14.00075 L2,24 L14,24 L14,14.00075 L20,14.00075 L20,24 L22,24 L22,14.00075 L24,14.00075 L24,11.00075 L20,4 L4,4 Z M4,20 L12,20 L12,14 L4,14 L4,20 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path d="M4 0H20V2H4V0Z" fill="currentColor" />
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M4 4L0 11.0007V14H2V24H22V14H24V11.0007L20 4H4ZM20 22V14H16V22H20ZM14 22V14H4V22H14Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<Fragment>
+				<path d="M4 0H20V2H4V0Z" fill="currentColor" />
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M4 4L0 11.0007V14H2V24H22V14H24V11.0007L20 4H4ZM2 11.5318V12H22V11.5318L18.8393 6H5.16071L2 11.5318ZM20 22V14H16V22H20ZM14 22V14H4V22H14Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +68,12 @@ ShopIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

@@ -1,28 +1,39 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const HamburgerMenuIcon = ({
 	assistiveText = 'Hamburger Menu',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="HamburgerMenuIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M2,7 L22,7 L22,5 L2,5 L2,7 Z M2,19 L2,17 L22,17 L22,19 L2,19 Z M2,13 L2,11 L22,11 L22,13 L2,13 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path d="M2 7H22V5H2V7Z" fill="currentColor" />
+				<path d="M2 19H22V17H2V19Z" fill="currentColor" />
+				<path d="M22 13H2V11H22V13Z" fill="currentColor" />
+			</Fragment>
+		) : (
+			<Fragment>
+				<path d="M2 7H22V5H2V7Z" fill="currentColor" />
+				<path d="M2 19H22V17H2V19Z" fill="currentColor" />
+				<path d="M22 13H2V11H22V13Z" fill="currentColor" />
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +60,12 @@ HamburgerMenuIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

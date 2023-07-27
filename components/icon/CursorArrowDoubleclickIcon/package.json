@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-CursorArrowDoubleclickIcon.cjs.js",
+	"module": "dist/westpac-icon-CursorArrowDoubleclickIcon.esm.js"
+}

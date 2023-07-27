@@ -1,28 +1,51 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const ContactIcon = ({
 	assistiveText = 'Contact',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="ContactIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M18,2 L20,2 C21.1045695,2 22,2.8954305 22,4 L22,22 C22,23.1045695 21.1045695,24 20,24 L4,24 C2.8954305,24 2,23.1045695 2,22 L2,4 C2,2.8954305 2.8954305,2 4,2 L6,2 L6,0 L8,0 L8,2 L16,2 L16,0 L18,0 L18,2 Z M6,18.6666667 L6,20 L18,20 L18,18.6666667 C18,16.8933333 14.0025,16 12,16 C9.9975,16 6,16.8933333 6,18.6666667 Z M12,14 C13.6575,14 15,12.6575 15,11 C15,9.3425 13.6575,8 12,8 C10.3425,8 9,9.3425 9,11 C9,12.6575 10.3425,14 12,14 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M20 2H18V0H16V2H8V0H6V2H4C2.89543 2 2 2.89543 2 4V22C2 23.1046 2.89543 24 4 24H20C21.1046 24 22 23.1046 22 22V4C22 2.89543 21.1046 2 20 2ZM6 18.46C6 15.96 9.97 14.88 12 14.88C14.03 14.88 18 15.96 18 18.47V20H6V18.46ZM15 11C15 12.65 13.65 14 12 14C10.35 14 9 12.65 9 11C9 9.35 10.35 8 12 8C13.65 8 15 9.35 15 11Z"
+				fill="currentColor"
+			/>
+		) : (
+			<Fragment>
+				<path
+					d="M6 18.46C6 15.96 9.97 14.88 12 14.88C14.03 14.88 18 15.96 18 18.47V20H6V18.46Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M15 11C15 12.65 13.65 14 12 14C10.35 14 9 12.65 9 11C9 9.35 10.35 8 12 8C13.65 8 15 9.35 15 11Z"
+					fill="currentColor"
+				/>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M18 2H20C21.1046 2 22 2.89543 22 4V22C22 23.1046 21.1046 24 20 24H4C2.89543 24 2 23.1046 2 22V4C2 2.89543 2.89543 2 4 2H6V0H8V2H16V0H18V2ZM4 4H20V22H4V4Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +72,12 @@ ContactIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

@@ -1,28 +1,53 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const MobilePayIcon = ({
 	assistiveText = 'Mobile Pay',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="MobilePayIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M6,0 C4.8954305,2.02906125e-16 4,0.8954305 4,2 L4,22 C4,23.1045695 4.8954305,24 6,24 L16,24 C17.1045695,24 18,23.1045695 18,22 L18,14 L16,14 L16,20 L6,20 L6,4 L10,4 L10,0 L6,0 Z M12,9 C13.66,9 15,10.34 15,12 L12,12 L12,9 Z M12,5 C15.87,5 19,8.13 19,12 L17,12 C17,9.24 14.76,7 12,7 L12,5 Z M12,1 C18.08,1 23,5.92 23,12 L21,12 C21,7.03 16.97,3 12,3 L12,1 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path
+					d="M6 0C4.89543 0 4 0.89543 4 2V22C4 23.1046 4.89543 24 6 24H16C17.1046 24 18 23.1046 18 22V13H15.584C14.8124 14.7659 13.0503 16 11 16C8.23858 16 6 13.7614 6 11C6 8.94968 7.2341 7.1876 9 6.41604V0H6Z"
+					fill="currentColor"
+				/>
+				<path d="M11 2V0C17.08 0 22 4.92 22 11H20C20 6.03 15.97 2 11 2Z" fill="currentColor" />
+				<path d="M11 6V4C14.87 4 18 7.13 18 11H16C16 8.24 13.76 6 11 6Z" fill="currentColor" />
+				<path
+					d="M14 11C14 12.6569 12.6569 14 11 14C9.34315 14 8 12.6569 8 11C8 9.34315 9.34315 8 11 8C12.6569 8 14 9.34315 14 11Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<Fragment>
+				<path
+					d="M4 2C4 0.89543 4.89543 0 6 0H9V2H6V22H16V13H18V22C18 23.1046 17.1046 24 16 24H6C4.89543 24 4 23.1046 4 22V2Z"
+					fill="currentColor"
+				/>
+				<path d="M11 2V0C17.08 0 22 4.92 22 11H20C20 6.03 15.97 2 11 2Z" fill="currentColor" />
+				<path d="M11 4V6C13.76 6 16 8.24 16 11H18C18 7.13 14.87 4 11 4Z" fill="currentColor" />
+				<path
+					d="M14 11C14 9.34 12.66 8 11 8C9.34315 8 8 9.34315 8 11C8 12.6569 9.34315 14 11 14C12.6569 14 14 12.6569 14 11Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +74,12 @@ MobilePayIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */
