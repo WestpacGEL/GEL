@@ -100,7 +100,7 @@ const Icon = () => {
 	return (
 		<form
 			action="/api/icons"
-			method="GET"
+			method="POST"
 			css={{
 				gridColumnEnd: 'span 12',
 				gridRowEnd: 'span 1',
@@ -163,8 +163,8 @@ const Icon = () => {
 							Download all SVGs
 						</Button>
 						{/* <DownloadBtn qty={iconsFiltered.length} total={iconDetails.length} /> */}
-						<input type="hidden" name="brand" value={BRAND.code} />
-						<input type="hidden" name="pkg" value="@westpac/icon" />
+						{/* <input type="hidden" name="brand" value={BRAND.code} /> */}
+						{/* <input type="hidden" name="pkg" value="@westpac/icon" /> */}
 					</Cell>
 				</Grid>
 			</div>
