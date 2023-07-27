@@ -3,26 +3,38 @@ import { Icon, IconProps } from './Icon';
 
 export const StarHalfIcon = ({
 	assistiveText = 'Star Half',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="StarHalfIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M12,0 L9,9 L0,9 L7.5,14.25 L4.5,23.25 L12,17.24925 L19.5,23.25 L16.49925,14.25 L24,9 L15,9 L12,0 Z M12.93675,16.0785 L12,15.32925 L12,4.743 L13.5765,9.474 L13.91925,10.49925 L15,10.49925 L19.24125,10.49925 L15.63975,13.02075 L14.72325,13.66275 L15.0765,14.724 L16.47075,18.90525 L12.93675,16.0785 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M9 9L12 0L15 9H24L16.4993 14.25L19.5 23.25L12 17.2493L4.5 23.25L7.5 14.25L0 9H9ZM12 15.3293L16.4707 18.9053L14.7232 13.6628L19.2412 10.4993H13.9193L12 4.743V15.3293Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M9 9L12 0L15 9H24L16.4993 14.25L19.5 23.25L12 17.2493L4.5 23.25L7.5 14.25L0 9H9ZM12 15.3293L16.4707 18.9053L14.7232 13.6628L19.2412 10.4993H13.9193L12 4.743V15.3293Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +61,12 @@ StarHalfIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

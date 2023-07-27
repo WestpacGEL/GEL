@@ -8,7 +8,7 @@ import { Button } from '@westpac/button';
 
 const Icon = (props) => {
 	const { COLORS } = useBrand();
-	return <AddCircleIcon {...props} color={COLORS.primary} />;
+	return <AddCircleIcon {...props} look="outlined" color={COLORS.primary} />;
 };
 
 const AddBtn = ({ state: _, ...rest }) => (

@@ -3,26 +3,38 @@ import { Icon, IconProps } from './Icon';
 
 export const MapIcon = ({
 	assistiveText = 'Map',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="MapIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M21.4444444,2 C21.7555556,2 22,2.24444444 22,2.55555556 L22,19.3555556 C22,19.6111111 21.8333333,19.8111111 21.6,19.8888889 L15,22 L9,19 L2.73333333,21.9666667 L2.55555556,22 C2.24444444,22 2,21.7555556 2,21.4444444 L2,4.64444444 C2,4.38888889 2.16666667,4.18888889 2.4,4.11111111 L9,2 L15,4 L21.2666667,2.03333333 L21.4444444,2 Z M15,20 L15,6 L9,4 L9,17 L15,20 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M23.52 19.4667C23.8 19.3733 24 19.1333 24 18.8267V2.66667C24 2.29333 23.7067 2 23.3333 2L23.12 2.04L16 5L8 2L0.48 4.53333C0.2 4.62667 0 4.86667 0 5.17333V21.3333C0 21.7067 0.293333 22 0.666667 22L0.88 21.96L8 19L16 22L23.52 19.4667ZM16 19.864L8 16.864V4.136L16 7.136V19.864Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M23.52 19.4667C23.8 19.3733 24 19.1333 24 18.8267V2.66667C24 2.29333 23.7067 2 23.3333 2L23.12 2.04L16 5L8 2L0.48 4.53333C0.2 4.62667 0 4.86667 0 5.17333V21.3333C0 21.7067 0.293333 22 0.666667 22L0.88 21.96L8 19L16 22L23.52 19.4667ZM18 19.2158L22 17.8683V4.67157L18 6.33449V19.2158ZM16 7.136V19.864L8 16.864V4.136L16 7.136ZM2 6.13172L6 4.7842V17.6655L2 19.3284V6.13172Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +61,12 @@ MapIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

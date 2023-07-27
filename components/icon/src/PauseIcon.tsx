@@ -3,26 +3,38 @@ import { Icon, IconProps } from './Icon';
 
 export const PauseIcon = ({
 	assistiveText = 'Pause',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="PauseIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M6,19 L10,19 L10,5 L6,5 L6,19 Z M14,5 L14,19 L18,19 L18,5 L14,5 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M10 19H6V5H10V19ZM14 19V5H18V19H14Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M10 19H6V5H10V19ZM14 19V5H18V19H14Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +61,12 @@ PauseIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

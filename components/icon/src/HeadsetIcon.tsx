@@ -3,26 +3,36 @@ import { Icon, IconProps } from './Icon';
 
 export const HeadsetIcon = ({
 	assistiveText = 'Headset',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="HeadsetIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M22,21 L22,10 C22,4.4771525 17.5228475,0 12,0 C6.4771525,0 2,4.4771525 2,10 L2,17 C2,18.6568542 3.34314575,20 5,20 L8,20 L8,12 L4,12 L4,10 C4,5.581722 7.581722,2 12,2 C16.418278,2 20,5.581722 20,10 L20,12 L16,12 L16,20 L20,20 L20,20.25 C20,21.2164983 19.3604068,22 18.5714286,22 L12,22 L12,24 L19,24 C20.6568542,24 22,22.6568542 22,21 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				d="M22 21V10C22 4.47715 17.5228 0 12 0C6.47715 0 2 4.47715 2 10V17C2 18.6569 3.34315 20 5 20H8V12H4V10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10V12H16V20H20V20.25C20 21.2165 19.3604 22 18.5714 22H12V24H19C20.6569 24 22 22.6569 22 21Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M22 10V21C22 22.6569 20.6569 24 19 24H12V22H18.5714C19.3604 22 20 21.2165 20 20.25V20H16V12H20V10C20 5.58172 16.4183 2 12 2C7.58172 2 4 5.58172 4 10V12H8V20H5C3.34315 20 2 18.6569 2 17V10C2 4.47715 6.47715 0 12 0C17.5228 0 22 4.47715 22 10ZM4 17V14H6V18H5C4.44772 18 4 17.5523 4 17ZM18 18V14H20V18H18Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +59,12 @@ HeadsetIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

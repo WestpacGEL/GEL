@@ -3,26 +3,34 @@ import { Icon, IconProps } from './Icon';
 
 export const CloseIcon = ({
 	assistiveText = 'Close',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="CloseIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<polygon
-			fill="currentColor"
-			fillRule="evenodd"
-			points="5.414 4 12 10.586 18.586 4 20 5.414 13.414 12 20 18.586 18.586 20 12 13.414 5.414 20 4 18.586 10.586 12 4 5.414"
-		/>
+		{look === 'filled' ? (
+			<path
+				d="M5.41421 4L12 10.5858L18.5858 4L20 5.41421L13.4142 12L20 18.5858L18.5858 20L12 13.4142L5.41421 20L4 18.5858L10.5858 12L4 5.41421L5.41421 4Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				d="M5.41421 4L12 10.5858L18.5858 4L20 5.41421L13.4142 12L20 18.5858L18.5858 20L12 13.4142L5.41421 20L4 18.5858L10.5858 12L4 5.41421L5.41421 4Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +57,12 @@ CloseIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

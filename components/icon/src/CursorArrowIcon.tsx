@@ -2,27 +2,35 @@ import PropTypes from 'prop-types';
 import { Icon, IconProps } from './Icon';
 
 export const CursorArrowIcon = ({
-	assistiveText = 'Cursor arrow',
-	copyrightYear = '2021',
+	assistiveText = 'Cursor Arrow',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="CursorArrowIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="m6 1 12.67 11.823-5.701.169 3.801 8.741L13.856 23l-3.801-8.741L6 18.313z"
-		/>
+		{look === 'filled' ? (
+			<path
+				d="M6 18.8885V1L20.3228 11.7571L13.6146 11.7459L18.0717 20.6976L14.491 22.4805L10.0339 13.5287L6 18.8885Z"
+				fill="currentColor"
+			/>
+		) : (
+			<path
+				d="M6 18.8885V1L20.3228 11.7571L13.6146 11.7459L18.0717 20.6976L14.491 22.4805L10.0339 13.5287L6 18.8885Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -49,6 +57,12 @@ CursorArrowIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

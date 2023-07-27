@@ -1,28 +1,45 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const AlertIcon = ({
 	assistiveText = 'Alert',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="AlertIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M1.0004095,24 C0.653409497,24 0.332409497,23.8196664 0.149409497,23.5241196 C-0.0325905031,23.2285729 -0.0495905031,22.8598908 0.105409497,22.5503181 L11.1054095,0.509542654 C11.4454095,-0.169713971 12.5554095,-0.169713971 12.8944095,0.509542654 L23.8944095,22.5503181 C24.0504095,22.8598908 24.0334095,23.2285729 23.8504095,23.5241196 C23.6684095,23.8196664 23.3474095,24 23.0004095,24 L1.0004095,24 Z M2.6184095,22.0001002 L21.3824095,22.0001002 L12.0004095,3.1975154 L2.6184095,22.0001002 Z M11,20 L11,18 L13,18 L13,20 L11,20 Z M11,16 L11,10 L13,10 L13,16 L11,16 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M1.00041 24C0.653409 24 0.33241 23.8197 0.14941 23.5241C-0.0325905 23.2286 -0.0495905 22.8599 0.105409 22.5503L11.1054 0.509565C11.4454 -0.169692 12.5554 -0.169692 12.8944 0.509565L23.8944 22.5503C24.0504 22.8599 24.0334 23.2286 23.8504 23.5241C23.6684 23.8197 23.3474 24 23.0004 24H1.00041ZM11 20.0001H13V18.0001H11V20.0001ZM13 16.0001H11V10.0001H13V16.0001Z"
+				fill="currentColor"
+			/>
+		) : (
+			<Fragment>
+				<path d="M11 20H13V18H11V20Z" fill="currentColor" />
+				<path d="M13 16H11V10H13V16Z" fill="currentColor" />
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M0.14941 23.5241C0.33241 23.8197 0.653409 24 1.00041 24H23.0004C23.3474 24 23.6684 23.8197 23.8504 23.5241C24.0334 23.2286 24.0504 22.8599 23.8944 22.5503L12.8944 0.509565C12.5554 -0.169692 11.4454 -0.169692 11.1054 0.509565L0.105409 22.5503C-0.0495905 22.8599 -0.0325905 23.2286 0.14941 23.5241ZM12.0004 3.19754L21.3824 22.0001H2.61841L12.0004 3.19754Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +66,12 @@ AlertIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

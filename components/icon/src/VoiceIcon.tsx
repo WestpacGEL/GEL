@@ -1,28 +1,51 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const VoiceIcon = ({
 	assistiveText = 'Voice',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="VoiceIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M10,19.7769836 C6.30831435,18.9392957 3.47856125,15.8322384 3.05492878,12 L5.07088886,12 C5.55611852,15.3922941 8.47352809,18 12,18 C15.5264719,18 18.4438815,15.3922941 18.9291111,12 L20.9450712,12 C20.5214388,15.8322384 17.6916857,18.9392957 14,19.7769836 L14,24 L10,24 L10,19.7769836 Z M16,4 L16,11 C16,13.209139 14.209139,15 12,15 C9.790861,15 8,13.209139 8,11 L8,4 C8,1.790861 9.790861,0 12,0 C14.209139,0 16,1.790861 16,4 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path
+					d="M16 11V4C16 1.79086 14.2091 0 12 0C9.79086 0 8 1.79086 8 4V11C8 13.2091 9.79086 15 12 15C14.2091 15 16 13.2091 16 11Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M3.05493 12C3.47856 15.8322 6.30832 18.9393 10 19.777V24H14V19.777C17.6917 18.9393 20.5214 15.8322 20.9451 12H18.9291C18.4439 15.3923 15.5265 18 12 18C8.47353 18 5.55612 15.3923 5.07089 12H3.05493Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<Fragment>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M16 4V11C16 13.2091 14.2091 15 12 15C9.79086 15 8 13.2091 8 11V4C8 1.79086 9.79086 0 12 0C14.2091 0 16 1.79086 16 4ZM14 4V11C14 12.1046 13.1046 13 12 13C10.8954 13 10 12.1046 10 11V4C10 2.89543 10.8954 2 12 2C13.1046 2 14 2.89543 14 4Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M3.05493 12C3.47856 15.8322 6.30832 18.9393 10 19.777V24H14V19.777C17.6917 18.9393 20.5214 15.8322 20.9451 12H18.9291C18.4439 15.3923 15.5265 18 12 18C8.47353 18 5.55612 15.3923 5.07089 12H3.05493Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +72,12 @@ VoiceIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

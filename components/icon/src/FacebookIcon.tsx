@@ -1,28 +1,47 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const FacebookIcon = ({
 	assistiveText = 'Facebook',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="FacebookIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M2,0 L22,0 C23.1045695,-2.02906125e-16 24,0.8954305 24,2 L24,22 C24,23.1045695 23.1045695,24 22,24 L2,24 C0.8954305,24 1.3527075e-16,23.1045695 0,22 L0,2 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 L2,0 Z M20.7142857,9.14285714 L16.4285714,9.14285714 L16.4285714,7 C16.4285714,6.07642857 16.5514286,5.57 17.5,5.57142857 L20.7142857,5.57142857 L20.7142857,2 L16.7828571,2 C13.3885714,2 12.1428571,3.42857143 12.1428571,6.64285714 L12.1428571,9.14285714 L10,9.14285714 L10,12 L12.1428571,12 L12.1428571,22 L16.4285714,22 L16.4285714,12 L20,12 L20.7142857,9.14285714 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M2 0C0.895431 0 0 0.89543 0 2V22C0 23.1046 0.89543 24 2 24H22C23.1046 24 24 23.1046 24 22V2C24 0.895431 23.1046 0 22 0H2ZM16.6429 9.71429H20.0714L19.5 12H16.6429V20H13.2143V12H11.5V9.71429H13.2143V7.71429C13.2143 5.14286 14.2109 4 16.9263 4H20.0714V6.85714H17.5C16.7411 6.856 16.6429 7.26114 16.6429 8V9.71429Z"
+				fill="currentColor"
+			/>
+		) : (
+			<Fragment>
+				<path
+					d="M16.6429 9.71429H20.0714L19.5 12H16.6429V20H13.2143V12H11.5V9.71429H13.2143V7.71429C13.2143 5.14286 14.2109 4 16.9263 4H20.0714V6.85714H17.5C16.7411 6.856 16.6429 7.26114 16.6429 8V9.71429Z"
+					fill="currentColor"
+				/>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M0 2C0 0.89543 0.895431 0 2 0H22C23.1046 0 24 0.895431 24 2V22C24 23.1046 23.1046 24 22 24H2C0.89543 24 0 23.1046 0 22V2ZM2 2H22V22H2V2Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +68,12 @@ FacebookIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

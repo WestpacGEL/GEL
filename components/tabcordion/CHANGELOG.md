@@ -1,5 +1,12 @@
 # @westpac/tabcordion
 
+## 4.0.1
+
+### Patch Changes
+
+- Updated dependencies [0537e5d6]
+  - @westpac/icon@3.0.0
+
 ## 4.0.0
 
 ### Major Changes

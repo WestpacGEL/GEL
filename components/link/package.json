@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/link",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"description": "Styled links depending on use case",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/link",
@@ -31,7 +31,7 @@
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
 		"@westpac/core": "^3.2.1",
-		"@westpac/icon": "^2.1.1",
+		"@westpac/icon": "^3.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"devDependencies": {

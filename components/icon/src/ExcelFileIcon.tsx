@@ -1,28 +1,47 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const ExcelFileIcon = ({
 	assistiveText = 'Excel File',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="ExcelFileIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M4,0 L16,0 L22,6 L22,22 C22,23.1045695 21.1045695,24 20,24 L4,24 C2.8954305,24 2,23.1045695 2,22 L2,2 L2,2 C2,0.8954305 2.8954305,2.02906125e-16 4,0 L4,0 Z M4,2 L4,22 L20,22 L20,6 L16,6 L16,2 L4,2 Z M14.2810673,8 L17.5044473,8 L13.6414231,13.68275 L18,20 L14.6546379,20 L12,16.0955 L10.8053367,17.8535 L12.2485388,17.8535 L12.2485388,20 L6,20 L10.3593393,13.68275 L6.49555273,8 L9.71893266,8 L12,11.30525 L14.2810673,8 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M2 2C2 0.89543 2.89543 0 4 0H16L22 6V22C22 23.1046 21.1046 24 20 24H4C2.89543 24 2 23.1046 2 22V2ZM16 2L20 6H16V2ZM14.2811 8L12 11.3053L9.71893 8H6.49555L10.3593 13.6828L6 20H12.2485V17.8535H10.8053L12 16.0955L14.6546 20H18L13.6414 13.6828L17.5044 8H14.2811Z"
+				fill="currentColor"
+			/>
+		) : (
+			<Fragment>
+				<path
+					d="M12 11.3053L14.2811 8H17.5044L13.6414 13.6828L18 20H14.6546L12 16.0955L10.8053 17.8535H12.2485V20H6L10.3593 13.6828L6.49555 8H9.71893L12 11.3053Z"
+					fill="currentColor"
+				/>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M2 2C2 0.89543 2.89543 0 4 0H16L22 6V22C22 23.1046 21.1046 24 20 24H4C2.89543 24 2 23.1046 2 22V2ZM4 2H16V6H20V22H4V2Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +68,12 @@ ExcelFileIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

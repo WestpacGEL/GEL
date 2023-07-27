@@ -3,22 +3,33 @@ import { Icon, IconProps } from './Icon';
 
 export const GeolocationIcon = ({
 	assistiveText = 'Geolocation',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="GeolocationIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<polygon fill="currentColor" fillRule="evenodd" points="0 12 11.143 12.857 12 24 24 0" />
+		{look === 'filled' ? (
+			<path d="M24 0L0 10.04V11.3467L9.12 14.88L12.64 24H13.9467L24 0Z" fill="currentColor" />
+		) : (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M10.6673 13.3346L13.3425 20.2658L20.2698 3.7284L3.73081 10.6472L10.6673 13.3346ZM9.12 14.88L12.64 24H13.9467L24 0L0 10.04V11.3467L9.12 14.88Z"
+				fill="currentColor"
+			/>
+		)}
 	</Icon>
 );
 
@@ -45,6 +56,12 @@ GeolocationIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

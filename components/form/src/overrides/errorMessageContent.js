@@ -16,6 +16,7 @@ const ErrorMessageContent = ({ state: { icon }, children }) => {
 				css={{ verticalAlign: 'top', marginRight: '0.5em', marginTop: '0.25em' }}
 				size="xsmall"
 				color="inherit"
+				{...(!icon && { look: 'outlined' })}
 			/>
 			{children}
 		</Fragment>

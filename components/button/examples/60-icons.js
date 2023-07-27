@@ -7,7 +7,7 @@ import {
 	AccessibilityIcon,
 	ArrowLeftIcon,
 	ArrowRightIcon,
-	StarIcon,
+	StarRateIcon,
 	CloseIcon,
 } from '@westpac/icon';
 
@@ -228,18 +228,18 @@ function Example({ brand }) {
 			<Button look="primary" soft iconAfter={CloseIcon} assistiveText="Close" />{' '}
 			<Button look="hero" soft iconAfter={CloseIcon} assistiveText="Close" />{' '}
 			<Button look="faint" soft iconAfter={CloseIcon} assistiveText="Close" /> <h3>Size</h3>
-			<Button size="small" iconBefore={StarIcon} assistiveText="Star" />{' '}
-			<Button size="medium" iconBefore={StarIcon} assistiveText="Star" />{' '}
-			<Button size="large" iconBefore={StarIcon} assistiveText="Star" />{' '}
-			<Button size="xlarge" iconBefore={StarIcon} assistiveText="Star" /> <br />
+			<Button size="small" iconBefore={StarRateIcon} assistiveText="Star" />{' '}
+			<Button size="medium" iconBefore={StarRateIcon} assistiveText="Star" />{' '}
+			<Button size="large" iconBefore={StarRateIcon} assistiveText="Star" />{' '}
+			<Button size="xlarge" iconBefore={StarRateIcon} assistiveText="Star" /> <br />
 			<br />
-			<Button soft size="small" iconBefore={StarIcon} assistiveText="Star" />{' '}
-			<Button soft size="medium" iconBefore={StarIcon} assistiveText="Star" />{' '}
-			<Button soft size="large" iconBefore={StarIcon} assistiveText="Star" />{' '}
-			<Button soft size="xlarge" iconBefore={StarIcon} assistiveText="Star" /> <h3>Block</h3>
-			<Button size="xlarge" iconBefore={StarIcon} block assistiveText="Star" />
+			<Button soft size="small" iconBefore={StarRateIcon} assistiveText="Star" />{' '}
+			<Button soft size="medium" iconBefore={StarRateIcon} assistiveText="Star" />{' '}
+			<Button soft size="large" iconBefore={StarRateIcon} assistiveText="Star" />{' '}
+			<Button soft size="xlarge" iconBefore={StarRateIcon} assistiveText="Star" /> <h3>Block</h3>
+			<Button size="xlarge" iconBefore={StarRateIcon} block assistiveText="Star" />
 			<br />
-			<Button soft size="xlarge" iconBefore={StarIcon} block assistiveText="Star" />
+			<Button soft size="xlarge" iconBefore={StarRateIcon} block assistiveText="Star" />
 		</GEL>
 	);
 }

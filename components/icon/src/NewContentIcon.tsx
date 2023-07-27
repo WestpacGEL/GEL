@@ -1,28 +1,49 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const NewContentIcon = ({
 	assistiveText = 'New Content',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="NewContentIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M12.0708889,4 L4,4 L4,22 L20,22 L20,11.9291111 C20.7061453,11.828105 21.3782934,11.6217094 22,11.3263688 L22,22 C22,23.1045695 21.1045695,24 20,24 L4,24 C2.8954305,24 2,23.1045695 2,22 L2,4 C2,2.8954305 2.8954305,2 4,2 L12.6736312,2 C12.3782906,2.62170659 12.171895,3.2938547 12.0708889,4 Z M19,0 C21.7614286,0 24,2.23857143 24,5 C24,7.76142857 21.7614286,10 19,10 C16.2385714,10 14,7.76142857 14,5 C14,2.23857143 16.2385714,0 19,0 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path
+					d="M14 5C14 2.23857 16.2386 0 19 0C21.7614 0 24 2.23857 24 5C24 7.76143 21.7614 10 19 10C16.2386 10 14 7.76143 14 5Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M4 4H12.0709C12.1719 3.29385 12.3783 2.62171 12.6736 2H4C2.89543 2 2 2.89543 2 4V22C2 23.1046 2.89543 24 4 24H20C21.1046 24 22 23.1046 22 22V11.3264C21.3783 11.6217 20.7061 11.8281 20 11.9291V22H4V4Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<Fragment>
+				<path
+					d="M14 5C14 2.23857 16.2386 0 19 0C21.7614 0 24 2.23857 24 5C24 7.76143 21.7614 10 19 10C16.2386 10 14 7.76143 14 5Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M4 4H12.0709C12.1719 3.29385 12.3783 2.62171 12.6736 2H4C2.89543 2 2 2.89543 2 4V22C2 23.1046 2.89543 24 4 24H20C21.1046 24 22 23.1046 22 22V11.3264C21.3783 11.6217 20.7061 11.8281 20 11.9291V22H4V4Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +70,12 @@ NewContentIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

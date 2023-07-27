@@ -1,28 +1,44 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const OpenBrowserIcon = ({
 	assistiveText = 'Open Browser',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="OpenBrowserIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M22,0 L2,0 C0.89,0 0,0.9 0,2 L0,18 C0,19.1 0.89,20 2,20 L7,20 L7,18 L2,18 L2,6 L22,6 L22,18 L17,18 L17,20 L22,20 C23.1,20 24,19.1 24,18 L24,2 C24,0.9 23.11,0 22,0 Z M12,9 L6,15 L10,15 L10,24 L14,24 L14,15 L18,15 L12,9 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M2 0H22C23.11 0 24 0.9 24 2V18C24 19.1 23.1 20 22 20H17V18H22V6H2V18H7V20H2C0.89 20 0 19.1 0 18V2C0 0.9 0.89 0 2 0ZM6 15L12 9L18 15H14V24H10V15H6Z"
+				fill="currentColor"
+			/>
+		) : (
+			<Fragment>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M22 0H2C0.89 0 0 0.9 0 2V18C0 19.1 0.89 20 2 20H7V18H2V6H22V18H17V20H22C23.1 20 24 19.1 24 18V2C24 0.9 23.11 0 22 0ZM2 2H22V4H2V2Z"
+					fill="currentColor"
+				/>
+				<path d="M6 15L12 9L18 15H14V24H10V15H6Z" fill="currentColor" />
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +65,12 @@ OpenBrowserIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

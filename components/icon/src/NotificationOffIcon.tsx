@@ -1,28 +1,59 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const NotificationOffIcon = ({
 	assistiveText = 'Notification Off',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="NotificationOffIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M9,21 L15.003,21 C15.003,22.6568542 13.6591827,24 12.0015,24 C10.3438173,24 9,22.6568542 9,21 Z M10,3.25203497 L10,2 C10,0.8954305 10.8954305,-8.8817842e-16 12,-8.8817842e-16 C13.1045695,-8.8817842e-16 14,0.8954305 14,2 L14,3.25203497 C17.4504544,4.14012056 20,7.27232114 20,11 L20,16.4226821 L7.77974993,4.20243206 C8.45863802,3.78005235 9.20543208,3.45654262 10,3.25203497 Z M2.37898178,1.62101822 L22.3789818,21.6210182 L20.9647682,23.0352318 L17.9295364,20 L2,20 L2,19 L4,17 L4,11 C4,9.57970281 4.37012145,8.24585212 5.01917435,7.08963792 L0.964768219,3.03523178 L2.37898178,1.62101822 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path
+					d="M9.99995 3.25203V2C9.99995 0.89543 10.8954 0 12 0C13.1045 0 14 0.89543 14 2V3.25203C17.4504 4.14012 20 7.27232 20 11V16.4227L7.7797 4.20243C8.45859 3.78005 9.20539 3.45654 9.99995 3.25203Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M8.99995 21C8.99995 22.6569 10.3438 24 12.0015 24C13.6591 24 15.003 22.6569 15.003 21H8.99995Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M0.964722 3.03523L2.37894 1.62102L22.3789 21.621L20.9647 23.0352L17.9295 20H1.99995V19L3.99995 17V11C3.99995 9.5797 4.37007 8.24585 5.01913 7.08964L0.964722 3.03523Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<Fragment>
+				<path
+					d="M10 2V3.25203C9.20547 3.45654 8.45867 3.78005 7.77979 4.20243L9.24556 5.66821C10.0704 5.2412 11.0071 5 12 5C15.3137 5 18 7.68629 18 11V14.4226L20 16.4227V11C20 7.27232 17.4505 4.14012 14 3.25203V2C14 0.89543 13.1046 0 12 0C10.8955 0 10 0.89543 10 2Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M9 21C9 22.6569 10.3438 24 12.0015 24C13.6592 24 15.003 22.6569 15.003 21H9Z"
+					fill="currentColor"
+				/>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M0.964844 3.03531L2.37906 1.62109L22.3791 21.6211L20.9648 23.0353L17.9296 20.0001H2.00008V19.0001L4.00008 17.0001V11.0001C4.00008 9.57978 4.3702 8.24593 5.01925 7.08971L0.964844 3.03531ZM6 11C6 10.1385 6.18156 9.31945 6.50849 8.57896L15.9295 18H6V11Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +80,12 @@ NotificationOffIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

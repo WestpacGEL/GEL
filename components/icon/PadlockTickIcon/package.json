@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-PadlockTickIcon.cjs.js",
+	"module": "dist/westpac-icon-PadlockTickIcon.esm.js"
+}

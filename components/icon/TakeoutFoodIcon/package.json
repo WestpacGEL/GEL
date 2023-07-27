@@ -1,0 +1,4 @@
+{
+	"main": "dist/westpac-icon-TakeoutFoodIcon.cjs.js",
+	"module": "dist/westpac-icon-TakeoutFoodIcon.esm.js"
+}

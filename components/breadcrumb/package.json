@@ -1,6 +1,6 @@
 {
 	"name": "@westpac/breadcrumb",
-	"version": "2.2.1",
+	"version": "2.2.2",
 	"description": "Styled navigational links used to indicate the user’s location within a website application",
 	"homepage": "https://gel.westpacgroup.com.au/design-system",
 	"repository": "https://github.com/WestpacGEL/GEL/tree/master/components/breadcrumb",
@@ -41,7 +41,7 @@
 	"dependencies": {
 		"@babel/runtime": "^7.14.8",
 		"@westpac/core": "^3.2.1",
-		"@westpac/icon": "^2.1.1",
+		"@westpac/icon": "^3.0.0",
 		"prop-types": "^15.7.2"
 	},
 	"devDependencies": {

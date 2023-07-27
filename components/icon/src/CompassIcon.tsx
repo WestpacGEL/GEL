@@ -1,28 +1,55 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const CompassIcon = ({
 	assistiveText = 'Compass',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="CompassIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M24,12 C24,18.627 18.62775,24 12,24 C5.37225,24 0,18.627 0,12 C0,5.373 5.37225,0 12,0 C18.62775,0 24,5.373 24,12 Z M12,2 C6.47714286,2 2,6.47714286 2,12 C2,17.5228571 6.47714286,22 12,22 C17.5228571,22 22,17.5228571 22,12 C22,6.47714286 17.5228571,2 12,2 Z M14.25,9.75 L18,18 L9.75,14.25 L6,6 L14.25,9.75 Z M12,13.5 C12.82875,13.5 13.5,12.82875 13.5,12 C13.5,11.17125 12.82875,10.5 12,10.5 C11.17125,10.5 10.5,11.17125 10.5,12 C10.5,12.82875 11.17125,13.5 12,13.5 Z"
-		/>
+		{look === 'filled' ? (
+			<Fragment>
+				<path
+					d="M12 13.5C11.1712 13.5 10.5 12.8288 10.5 12C10.5 11.1712 11.1712 10.5 12 10.5C12.8288 10.5 13.5 11.1712 13.5 12C13.5 12.8288 12.8288 13.5 12 13.5Z"
+					fill="currentColor"
+				/>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M12 24C18.6278 24 24 18.627 24 12C24 5.373 18.6278 0 12 0C5.37225 0 0 5.373 0 12C0 18.627 5.37225 24 12 24ZM14.25 9.75L6 6L9.75 14.25L18 18L14.25 9.75Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		) : (
+			<Fragment>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M14.25 9.75L6 6L9.75 14.25L18 18L14.25 9.75ZM10.5 12C10.5 12.8287 11.1713 13.5 12 13.5C12.8287 13.5 13.5 12.8287 13.5 12C13.5 11.1713 12.8287 10.5 12 10.5C11.1713 10.5 10.5 11.1713 10.5 12Z"
+					fill="currentColor"
+				/>
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M12 24C18.6278 24 24 18.627 24 12C24 5.373 18.6278 0 12 0C5.37225 0 0 5.373 0 12C0 18.627 5.37225 24 12 24ZM2 12C2 6.47714 6.47714 2 12 2C17.5229 2 22 6.47714 22 12C22 17.5229 17.5229 22 12 22C6.47714 22 2 17.5229 2 12Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +76,12 @@ CompassIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

@@ -210,6 +210,12 @@ InputAddOn.propTypes = {
 		 */
 		copyrightYear: PropTypes.string,
 		/**
+		 * The look of the icon.
+		 *
+		 * Defaults to the filled version.
+		 */
+		look: PropTypes.string,
+		/**
 		 * The override API
 		 */
 		overrides: PropTypes.shape({

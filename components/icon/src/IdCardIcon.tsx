@@ -1,28 +1,54 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const IdCardIcon = ({
 	assistiveText = 'Id Card',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="IdCardIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M2,2 L22,2 C23.1045695,2 24,2.8954305 24,4 L24,20 C24,21.1045695 23.1045695,22 22,22 L2,22 C0.8954305,22 1.3527075e-16,21.1045695 0,20 L0,4 C-1.3527075e-16,2.8954305 0.8954305,2 2,2 Z M16,16 L16,18 L22,18 L22,16 L16,16 Z M16,8 L16,10 L22,10 L22,8 L16,8 Z M16,12 L16,14 L22,14 L22,12 L16,12 Z M14,18.1 L2,18.1 L2,17.1 C2,15.1 6,14 8,14 C10,14 14,15.1 14,17.1 L14,18.1 Z M8,6 C9.66,6 11,7.34 11,9 C11,10.66 9.66,12 8,12 C6.34,12 5,10.66 5,9 C5,7.34 6.34,6 8,6 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M2 2H22C23.1046 2 24 2.89543 24 4V20C24 21.1046 23.1046 22 22 22H2C0.89543 22 0 21.1046 0 20V4C0 2.89543 0.89543 2 2 2ZM11.5 10.5C11.5 9.11667 10.3833 8 9 8C7.61667 8 6.5 9.11667 6.5 10.5C6.5 11.8833 7.61667 13 9 13C10.3833 13 11.5 11.8833 11.5 10.5ZM4 17.0854V18H14V17.0854C14 15.2561 10.6667 14.25 9 14.25C7.33333 14.25 4 15.2561 4 17.0854ZM14 8H20V10H14V8ZM15 12H20V14H15V12ZM20 16H16V18H20V16Z"
+				fill="currentColor"
+			/>
+		) : (
+			<Fragment>
+				<path
+					d="M11.5 10.5C11.5 9.11667 10.3833 8 9 8C7.61667 8 6.5 9.11667 6.5 10.5C6.5 11.8833 7.61667 13 9 13C10.3833 13 11.5 11.8833 11.5 10.5Z"
+					fill="currentColor"
+				/>
+				<path
+					d="M4 17.0854V18H14V17.0854C14 15.2561 10.6667 14.25 9 14.25C7.33333 14.25 4 15.2561 4 17.0854Z"
+					fill="currentColor"
+				/>
+				<path d="M14 8H20V10H14V8Z" fill="currentColor" />
+				<path d="M15 12H20V14H15V12Z" fill="currentColor" />
+				<path d="M20 16H16V18H20V16Z" fill="currentColor" />
+				<path
+					fillRule="evenodd"
+					clipRule="evenodd"
+					d="M2 2H22C23.1046 2 24 2.89543 24 4V20C24 21.1046 23.1046 22 22 22H2C0.89543 22 0 21.1046 0 20V4C0 2.89543 0.89543 2 2 2ZM2 4H22V20H2V4Z"
+					fill="currentColor"
+				/>
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +75,12 @@ IdCardIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */

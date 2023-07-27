@@ -1,5 +1,12 @@
 # @westpac/icon
 
+## 3.0.0
+
+### Major Changes
+
+- 0537e5d6: - Updated icon set
+  - Added filled and outlined variations
+
 ## 2.3.0
 
 ### Minor Changes

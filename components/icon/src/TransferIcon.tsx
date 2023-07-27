@@ -1,28 +1,39 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Icon, IconProps } from './Icon';
 
 export const TransferIcon = ({
 	assistiveText = 'Transfer',
-	copyrightYear = '2020',
+	copyrightYear = '2023',
 	size = 'medium',
+	look = 'filled',
 	color,
 	overrides,
 	...props
 }: Omit<IconProps, 'icon'>) => (
 	<Icon
-		icon="TransferIcon"
+		icon="TestIcon"
 		assistiveText={assistiveText}
 		copyrightYear={copyrightYear}
 		size={size}
+		look={look}
 		color={color}
 		overrides={overrides}
 		{...props}
 	>
-		<path
-			fill="currentColor"
-			fillRule="evenodd"
-			d="M12,12 L16,12 L16,8 L24,16 L16,24 L16,20 L12,20 L12,12 Z M0,8 L8,0 L8,4 L12,4 L12,12 L8,12 L8,16 L0,8 Z"
-		/>
+		{look === 'filled' ? (
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M8 16L0 8L8 0V4H12V12H8V16ZM12 12V20H16V24L24 16L16 8V12H12Z"
+				fill="currentColor"
+			/>
+		) : (
+			<Fragment>
+				<path d="M8 0L0 8L8 16V13.1719L2.82837 8L6 4.82812V6H11V10H13V4H8V0Z" fill="currentColor" />
+				<path d="M16 20V24L24 16L16 8V12H10V20H16Z" fill="currentColor" />
+			</Fragment>
+		)}
 	</Icon>
 );
 
@@ -49,6 +60,12 @@ TransferIcon.propTypes = {
 	 * The icon SVG metadata copyright year text
 	 */
 	copyrightYear: PropTypes.string,
+	/**
+	 * The look of the icon.
+	 *
+	 * Defaults to the filled version.
+	 */
+	look: PropTypes.string,
 	/**
 	 * The override API
 	 */
