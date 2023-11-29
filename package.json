@@ -37,8 +37,6 @@
     "dev": "/bin/sh -c 'cd components/${1:-$0} && yarn start'",
     "dev:backend": "yarn build && yarn --cwd website-backend dev",
     "dev:frontend": "yarn build && yarn --cwd website dev",
-    "docs": "NODE_ENV=development webpack server --progress --config ./helpers/example/docs.webpack.config.js",
-    "docs:build": "NODE_ENV=development webpack --progress --config ./helpers/example/docs.webpack.config.js && yarn docs:redirects",
     "docs:redirects": "cp helpers/public/* docs/",
     "format": "prettier --list-different \"**/*.{js,md,mdx,json,ts,tsx}\"",
     "format:fix": "prettier --write \"**/*.{js,md,mdx,json,ts,tsx}\"",

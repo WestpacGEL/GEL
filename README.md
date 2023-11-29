@@ -485,23 +485,6 @@ cd path/to/root/of/repo
 yarn dev [component name]
 ```
 
-### Docs build
-
-This build is for the developer documentation site that puts all the examples of all components together with a navigation.
-It's for the docs that are automatically published to:
-
-| Purpose    | branch    | url                                    |
-| ---------- | --------- | -------------------------------------- |
-| Production | `master`  | https://westpacgel.netlify.com         |
-| Staging    | `develop` | https://westpacgel-develop.netlify.com |
-
-You run it via:
-
-```sh
-cd path/to/root/of/repo
-yarn docs
-```
-
 ## Blender support
 
 [The blender](https://github.com/WestpacGEL/blender) can generate human readable html and css from react and emotion components.
