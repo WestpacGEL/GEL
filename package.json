@@ -93,7 +93,7 @@
     "@changesets/cli": "^2.16.0",
     "@emotion/react": "^11.10.6",
     "@emotion/weak-memoize": "^0.2.5",
-    "@manypkg/cli": "^0.18.0",
+    "@manypkg/cli": "^0.21.1",
     "@preconstruct/cli": "^2.2.2",
     "@react-spring/web": "^9.2.4",
     "@testing-library/jest-dom": "^5.16.5",
