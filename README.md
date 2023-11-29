@@ -211,8 +211,6 @@ This component can now be viewed on `http://localhost:8080/`.
 | `yarn dev [package-name]` | start the example server of a component                     |
 | `yarn test`               | runs tests                                                  |
 | `lint:format:fix`         | runs prettier and eslint to format and lint all code        |
-| `yarn deploy:staging`     | deploys the site to staging from the `staging` branch       |
-| `yarn deploy:live`        | deploys the site to live from the `master` branch           |
 
 See the [Website README](./website/README.md#deployment) for details on it's deployment.
 
@@ -485,23 +483,6 @@ You run it via:
 ```sh
 cd path/to/root/of/repo
 yarn dev [component name]
-```
-
-### Docs build
-
-This build is for the developer documentation site that puts all the examples of all components together with a navigation.
-It's for the docs that are automatically published to:
-
-| Purpose    | branch    | url                                    |
-| ---------- | --------- | -------------------------------------- |
-| Production | `master`  | https://westpacgel.netlify.com         |
-| Staging    | `develop` | https://westpacgel-develop.netlify.com |
-
-You run it via:
-
-```sh
-cd path/to/root/of/repo
-yarn docs
 ```
 
 ## Blender support

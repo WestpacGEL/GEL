@@ -34,19 +34,9 @@
     "build:watch": "preconstruct watch",
     "dep:fix": "manypkg fix && preconstruct fix",
     "dep:test": "manypkg check && preconstruct build",
-    "deploy:live": "yarn deploy:live:sync && yarn deploy:live:restart && yarn deploy:live:msg",
-    "deploy:live:msg": "echo \"If you made changes to the nginx config follow below steps:\n\n1. Log into the server: \\x1b[33mssh deploy@128.199.200.220\\x1b[0m\n2. Copy the file: \\x1b[33msudo cp /srv/pm2-apps/gel3-website/source/nginx/gel3-keystone-routes.conf /etc/nginx/snippets/gel3-keystone-routes.conf\\x1b[0m\n3. Test the new config: \\x1b[33msudo nginx -t\\x1b[0m\n4. If there are errors correct them in this repo and start again from scratch by running \\x1b[33myarn deploy:live\\x1b[0m\n5. If all is well run \\x1b[33msudo nginx -s reload\\x1b[0m\n6. ✨ Done\n\"",
-    "deploy:live:restart": "ssh deploy@128.199.200.220 forever restart /srv/blender/server/server.js",
-    "deploy:live:sync": "pm2 deploy pm2-ecosystem.json live",
-    "deploy:staging": "yarn deploy:staging:sync && yarn deploy:staging:restart && yarn deploy:staging:msg",
-    "deploy:staging:msg": "echo \"If you made changes to the nginx config follow below steps:\n\n1. Log into the server: \\x1b[33mssh deploy@165.22.110.244\\x1b[0m\n2. Copy the file: \\x1b[33msudo cp /srv/pm2-apps/gel3-website/source/nginx/gel3-keystone-routes.conf /etc/nginx/snippets/gel3-keystone-routes.conf\\x1b[0m\n3. Test the new config: \\x1b[33msudo nginx -t\\x1b[0m\n4. If there are errors correct them in this repo and start again from scratch by running \\x1b[33myarn deploy:staging\\x1b[0m\n5. If all is well run \\x1b[33msudo nginx -s reload\\x1b[0m\n6. ✨ Done\n\"",
-    "deploy:staging:restart": "ssh deploy@165.22.110.244 forever restart /srv/blender/server/server.js",
-    "deploy:staging:sync": "pm2 deploy pm2-ecosystem.json staging",
     "dev": "/bin/sh -c 'cd components/${1:-$0} && yarn start'",
     "dev:backend": "yarn build && yarn --cwd website-backend dev",
     "dev:frontend": "yarn build && yarn --cwd website dev",
-    "docs": "NODE_ENV=development webpack server --progress --config ./helpers/example/docs.webpack.config.js",
-    "docs:build": "NODE_ENV=development webpack --progress --config ./helpers/example/docs.webpack.config.js && yarn docs:redirects",
     "docs:redirects": "cp helpers/public/* docs/",
     "format": "prettier --list-different \"**/*.{js,md,mdx,json,ts,tsx}\"",
     "format:fix": "prettier --write \"**/*.{js,md,mdx,json,ts,tsx}\"",
@@ -136,7 +126,6 @@
     "lodash.merge": "^4.6.2",
     "mini-svg-data-uri": "^1.3.3",
     "parse-prop-types": "^0.3.0",
-    "pm2": "^4.5.6",
     "prettier": "^2.3.2",
     "prop-types": "^15.7.2",
     "raf": "^3.4.1",
@@ -158,9 +147,6 @@
     "webpack-dev-server": "^4.0.0"
   },
   "packageManager": "yarn@1.22.19",
-  "engines": {
-    "node": "16.x"
-  },
   "preconstruct": {
     "packages": [
       "components/*",
