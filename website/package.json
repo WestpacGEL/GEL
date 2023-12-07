@@ -43,7 +43,7 @@
     "graphql-tag": "^2.12.5",
     "isomorphic-unfetch": "^3.1.0",
     "js-cookie": "^2.2.1",
-    "knex": "^0.20.13",
+    "knex": "^0.21.13",
     "lodash.debounce": "^4.0.8",
     "lodash.merge": "^4.6.2",
     "lodash.throttle": "^4.1.1",
