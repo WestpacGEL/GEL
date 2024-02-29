@@ -1,4 +1,6 @@
-# GEL [![CircleCI](https://circleci.com/gh/WestpacGEL/GEL/tree/master.svg?style=svg)](https://circleci.com/gh/WestpacGEL/GEL/tree/master)
+# This repository is no longer maintained. The new GEL design system can be found [here](https://github.com/WestpacGEL/GEL-next)
+
+## GEL [![CircleCI](https://circleci.com/gh/WestpacGEL/GEL/tree/master.svg?style=svg)](https://circleci.com/gh/WestpacGEL/GEL/tree/master)
 
 **<p align="center">For the docs for the design system please go to</p>**
 **<p align="center">https://gel.westpacgroup.com.au/design-system</p>**
